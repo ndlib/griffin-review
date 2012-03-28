@@ -1,6 +1,15 @@
 Griffin::Application.routes.draw do
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  
+  # Testing multi model access
+  # match "/group/list", :controller => 'group', :action => 'list'
+  # match "/groups", :method => 'get', :controller => 'group', :action => 'list'
+
+  resources :groups
+  resources :items
+  resources :videos
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
