@@ -105,7 +105,7 @@ namespace :deploy do
   desc "Symlink shared configs and folders on each release."
   task :symlink_shared, :roles => :app do
     run "ln -nfs #{shared_path}/log #{release_path}/log"
-    run "ln -nfs #{shared_path}/bundle/config #{release_path}/.bundle/config"
+    # run "ln -nfs #{shared_path}/bundle/config #{release_path}/.bundle/config"
     run "ln -nfs #{shared_path}/vendor/bundle #{release_path}/vendor/bundle"
   end
 
