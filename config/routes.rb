@@ -11,6 +11,8 @@ Griffin::Application.routes.draw do
   resources :items
   resources :videos
 
+  match "/find-record", :method => 'post', :controller => 'videos', :action => 'find_record'
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

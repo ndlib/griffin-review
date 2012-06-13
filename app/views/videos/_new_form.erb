@@ -1,9 +1,49 @@
-<%= semantic_form_for @video do |v| %>
-  <%= v.input :title %>
-  <%= v.input :url %>
-  <%= v.input :year %>
-  <%= v.input :edition %>
-  <%= v.input :publisher %>
-  <%= v.input :display_note %>
-  <%= v.actions %>
+<script type="text/javascript">
+  jQuery(function($) {
+    $("#ils_sysnum_find")
+    .click(function(){
+      var ils_sysnum = $("#ils_sysnum").attr('value');
+      $.ajax({
+        type: "POST",
+        url: "/find-record",
+        dataType: "json",
+        data: {ils_sysnum: ils_sysnum},
+        cache: false,
+        success: function(data){
+          $("#video_title").val(data.title);
+          $("#video_publisher").val(data.imprint);
+          $("#video_note").val(data.note);
+          $("#video_edition").val(data.edition);
+        }
+      });
+    });
+  });
+</script>
+<form class="form-horizontal">
+  <fieldset>
+    <div class="control-group">
+      <div class="controls">
+        <input type="text" size="40" style="width: 120px;" name="ils_sysnum" id="ils_sysnum"/>
+        <a class="btn btn-info hidden-phone" id="ils_sysnum_find" href="#">
+          <i class="icon-search icon-white"></i>
+          Find by System Number
+        </a>
+        <a class="btn btn-info visible-phone" style="width: 80px;" id="ils_sysnum_find" href="#"><i class="icon-search icon-white"></i> Sys #</a>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<hr/>
+<%= simple_form_for @video, :html => {:class => 'form-horizontal' } do |v| %>
+  <%= v.error_notification %>
+  <%= v.input :title, :input_html => { :id => "video_title", :class => "span6" }%>
+  <%= v.input :url, :label => "Video Link", :input_html => { :id => "video_url", :class => "span6" } %>
+  <%= v.input :edition, :input_html => { :id => "video_edition", :class => "span4" } %>
+  <%= v.input :publisher, :input_html => { :id => "video_publisher", :class => "span4" } %>
+  <%= v.input :display_note, :input_html => { :id => "video_note", :class => "span6" } %>
+  <%= v.input :upload, :as => :file, :label => "File to upload", :input_html => { :id => "upload_file", :class => "span6" } %>
+  <%= v.input :item_type, :as => :hidden, :input_html => { :value => 'video' } %>
+  <div class="form-actions">
+    <%= v.button :submit, :class => 'btn-primary'%>
+  </div>
 <% end %>

@@ -1,22 +1,132 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+#############################################################
+#  Deployment Settings
+#############################################################
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+#############################################################
+#  Application
+#############################################################
+set :application, 'reserves'
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+#############################################################
+#  Settings
+#############################################################
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+default_run_options[:pty] = true
+set :use_sudo, false
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+#############################################################
+#  Source Control
+#############################################################
+
+set :scm, 'git'
+set :scm_command,   '/shared/git/bin/git'
+set :repository, "git@git.library.nd.edu:griffin"
+# Set an environment variable to deploy from a branch other than master
+# branch=beta cap staging deploy
+set(:branch) {
+  name = ENV['branch'] ? ENV['branch'] : 'master'
+
+  if name == 'master'
+    set :git_shallow_clone, 1
+  end
+
+  puts "Deploying to branch #{name}"
+  name
+}
+
+#############################################################
+#  Environments
+#############################################################
+
+desc "Setup for the Pre-Production environment"
+task :pre_production do
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
+
+  set :rails_env, 'pre_production'
+  set :deploy_to, "/shared/reserves_pprd/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/reserves_pprd/ruby/1.8.7/bin'
+  set :ruby,      File.join(ruby_bin, 'ruby')
+  set :bundler,   File.join(ruby_bin, 'bundle')
+  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :user,      'rpprd'
+  set :domain,    'reservespprd.library.nd.edu'
+  set :site_url,  'reservespprdpprd.library.nd.edu'
+
+  server "#{user}@#{domain}", :app, :web, :db, :primary => true
+end
+
+desc "Setup for the Production environment"
+task :production do
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
+
+  set :rails_env, 'production'
+  set :deploy_to, "/shared/reserves_prod/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/reserves_prod/ruby/1.8.7/bin'
+  set :ruby,      File.join(ruby_bin, 'ruby')
+  set :bundler,   File.join(ruby_bin, 'bundle')
+  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :user,      'rprod'
+  set :domain,    'reservesprod.library.nd.edu'
+  set :site_url,  'reserves.library.nd.edu'
+
+  server "#{user}@#{domain}", :app, :web, :db, :primary => true
+end
+
+#############################################################
+#  Passenger
+#############################################################
+
+desc "Restart Application"
+task :restart_passenger do
+  run "touch #{current_path}/tmp/restart.txt"
+end
+
+#############################################################
+#  Deploy
+#############################################################
+
+namespace :deploy do
+  desc "Start application in Passenger"
+  task :start, :roles => :app do
+    restart_passenger
+  end
+
+  desc "Restart application in Passenger"
+  task :restart, :roles => :app do
+    restart_passenger
+  end
+
+  task :stop, :roles => :app do
+    # Do nothing.
+  end
+
+  desc "Symlink shared configs and folders on each release."
+  task :symlink_shared, :roles => :app do
+    run "ln -nfs #{shared_path}/log #{release_path}/log"
+    run "ln -nfs #{shared_path}/bundle/config #{release_path}/.bundle/config"
+    run "ln -nfs #{shared_path}/vendor/bundle #{release_path}/vendor/bundle"
+  end
+
+  desc "Spool up Passenger spawner to keep user experience speedy"
+  task :kickstart, :roles => :app do
+    run "curl -I http://#{site_url}"
+  end
+
+  desc "Run the migrate rake task"
+  task :migrate, :roles => :app do
+    run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} db:migrate --trace"
+  end
+
+end
+
+namespace :bundle do
+  desc "Install gems in Gemfile"
+  task :install, :roles => :app do
+    run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
+  end
+end
+
+after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'
+after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'

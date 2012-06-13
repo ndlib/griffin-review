@@ -41,20 +41,20 @@ describe VideosController do
     describe "with valid params" do
       it "creates a new Video" do
         expect {
-          post :create, {:video => {:title => @video.title, :item_type => @video.item_type}}, valid_session
+          post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}, valid_session
         }.to change(Video, :count).by(1)
         assigns(:video).destroy
       end
 
       it "assigns a newly created video as @video" do
-        post :create, {:video => {:title => @video.title, :item_type => @video.item_type}}, valid_session
+        post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}, valid_session
         assigns(:video).should be_a(Video)
         assigns(:video).should be_persisted
         assigns(:video).destroy
       end
 
       it "redirects to the created video" do
-        post :create, {:video => {:title => @video.title, :item_type => @video.item_type}}, valid_session
+        post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}, valid_session
         response.should redirect_to(Video.last)
         assigns(:video).destroy
       end

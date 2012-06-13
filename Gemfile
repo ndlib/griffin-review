@@ -1,9 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
+gem 'pry-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+
+# ILS compendium gem
+gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 # db backends
 gem 'mysql2', "~> 0.3.11"
@@ -11,7 +15,7 @@ gem 'mysql2', "~> 0.3.11"
 gem 'json'
 
 # form generation
-gem 'formtastic'
+gem 'simple_form'
 
 # REST queries
 gem 'rest-client', "~> 1.6.7"
@@ -31,6 +35,8 @@ group :test do
 	gem 'libnotify'
 	gem 'rb-fsevent'
 	gem 'cucumber'
+    gem 'cucumber-rails'
+    gem 'database_cleaner'
 	gem 'capybara'
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
@@ -59,4 +65,3 @@ gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
-

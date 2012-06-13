@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
 
+  respond_to :json, :html
+
   def show
     @video = Video.find(params[:id])
 
@@ -30,6 +32,12 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(params[:video])
 
+    uploaded_io = params[:video][:upload]
+    directory = "/shared/data/reserves_files"
+    file_name = uploaded_io.original_filename
+    path = File.join(directory, file_name)
+    File.open(path, "wb") { |f| f.write(uploaded_io.read) }
+
     respond_to do |format|
       if @video.save
         format.html { redirect_to @video, :notice => 'Video was successfully created.' }
@@ -39,6 +47,43 @@ class VideosController < ApplicationController
         format.json { render :json => @video.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def find_record
+    system_number = params[:ils_sysnum]
+
+    # sanitize input
+    system_number.strip!
+
+    # compendium gem
+    bib = Compendium::Resource.new('bib', system_number).fetch
+
+    # compile the field info
+    title = bib.field('title')
+    imprint = bib.field('imprint')
+    note = bib.field('note')
+    note += ' ' + bib.field('summary_note')
+    note += ' ' + bib.field('physical_desc')
+    note += ' ' + bib.field('performers')
+    note += ' ' + bib.field('production_team')
+    note += ' ' + bib.field('language_note')
+    edition = bib.field('edition')
+
+    respond_to do |format|
+      format.html { render :json => { 
+        :title => title, 
+        :imprint => imprint,
+        :note => note,
+        :edition => edition
+      }.to_json }
+      format.json { render :json => { 
+        :title => title, 
+        :imprint => imprint, 
+        :note => note,
+        :edition => edition
+      }.to_json }
+    end
+
   end
 
   # PUT /videos/1

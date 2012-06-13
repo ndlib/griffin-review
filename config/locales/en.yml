@@ -3,3 +3,16 @@
 
 en:
   hello: "Hello world"
+  formtastic:
+    labels:
+      video:
+        new:
+          title: "Video Title"
+          url: "Link to Video File"
+    actions:
+      video:
+        create: "Save Video"
+    errors:
+      video:
+        messages:
+          blank: "should not be blank"
