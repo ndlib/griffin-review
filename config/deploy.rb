@@ -48,10 +48,10 @@ task :pre_production do
   set :ruby_bin,  '/shared/reserves_pprd/ruby/1.8.7/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
-  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :rake,      File.join(ruby_bin, 'rake')
   set :user,      'rpprd'
   set :domain,    'reservespprd.library.nd.edu'
-  set :site_url,  'reservespprdpprd.library.nd.edu'
+  set :site_url,  'reservespprd.library.nd.edu'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
@@ -66,7 +66,7 @@ task :production do
   set :ruby_bin,  '/shared/reserves_prod/ruby/1.8.7/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
-  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :rake,      File.join(ruby_bin, 'rake')
   set :user,      'rprod'
   set :domain,    'reservesprod.library.nd.edu'
   set :site_url,  'reserves.library.nd.edu'
