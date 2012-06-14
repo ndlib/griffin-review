@@ -27,4 +27,7 @@ Griffin::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Custom configuration
+  config.reserves_upload_path = '/shared/data/reserves_files'
 end

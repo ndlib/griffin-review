@@ -59,5 +59,5 @@ Griffin::Application.configure do
   config.active_support.deprecation = :notify
 
   # Custom configuration
-  config.reserves_upload_path = '/shared/data/reserves_files'
+  config.reserves_upload_path = '/shared/reserves_pprd/data/files'
 end

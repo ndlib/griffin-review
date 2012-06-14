@@ -33,7 +33,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
 
     uploaded_io = params[:video][:upload]
-    directory = "/shared/data/reserves_files"
+    directory = Rails.configuration.reserves_upload_path
     file_name = uploaded_io.original_filename
     path = File.join(directory, file_name)
     File.open(path, "wb") { |f| f.write(uploaded_io.read) }
