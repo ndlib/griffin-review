@@ -17,6 +17,9 @@ gem 'json'
 # form generation
 gem 'simple_form'
 
+# Javascript runtime
+gem 'therubyracer'
+
 # REST queries
 gem 'rest-client', "~> 1.6.7"
 
