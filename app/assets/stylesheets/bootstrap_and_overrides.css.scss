@@ -1,13 +1,13 @@
 // Set the correct sprite paths
 $iconSpritePath: image-path('glyphicons-halflings.png');
 $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
-@import "bootstrap";
+@import "bootstrap.css.scss";
 body { padding-top: 60px; }
 .navbar-inner {
   background-color: #100B44;
   background-image: -moz-linear-gradient(center top , #100B44, #5e57a1);
 }
-@import "bootstrap-responsive";
+@import "bootstrap-responsive.css.scss";
 h1 {
   margin-bottom: 20px;
 }
