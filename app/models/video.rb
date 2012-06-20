@@ -4,7 +4,7 @@ class Video < Item
 
   attr_accessor :upload
 
-  validates :url, :title, :presence => true
+  validates :title, :presence => true
   validates :item_type, :presence => true, :inclusion => { :in => %w(video) }
 
   def self.all_videos

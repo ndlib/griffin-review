@@ -12,7 +12,15 @@ gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 # db backends
 gem 'mysql2', "~> 0.3.11"
 
+# authentication
+gem 'rubycas-client'
+gem 'devise'
+gem 'devise_cas_authenticatable'
+
 gem 'json'
+
+# LDAP lookups
+gem 'net-ldap'
 
 # form generation
 gem 'simple_form'

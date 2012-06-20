@@ -30,4 +30,5 @@ Griffin::Application.configure do
 
   # Custom configuration
   config.reserves_upload_path = '/shared/data/reserves_files'
+  config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
 end

@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
 
+  before_filter :authenticate_user!
+
   respond_to :json, :html
 
   def show
