@@ -1,0 +1,240 @@
+
+Admin::VideoController
+  GET show
+    assigns the requested item as @video
+  GET new
+    assigns a new video as @video (FAILED - 1)
+  GET edit
+    assigns the requested video as @video
+  POST create
+    with valid params
+      creates a new Video (FAILED - 2)
+      assigns a newly created video as @video (FAILED - 3)
+      redirects to the created video (FAILED - 4)
+    with invalid params
+      assigns a newly created but unsaved video as @video (FAILED - 5)
+      re-renders the 'new' template (FAILED - 6)
+  PUT update
+    with valid params
+      updates the requested video
+      assigns the requested video as @video
+      redirects to the video (FAILED - 7)
+    with invalid params
+      assigns the video as @video
+      re-renders the 'edit' template
+  DELETE destroy
+    destroys the requested video record (FAILED - 8)
+
+Admin::ItemController
+  CREATE user
+    should have a current_user
+  GET show
+    assigns the requested item as @item
+  GET new
+    assigns a new item as @item
+  GET edit
+    assigns the requested item as @item
+  POST create
+    with valid params
+      creates a new Item
+      assigns a newly created item as @item
+      redirects to the created item
+    with invalid params
+      assigns a newly created but unsaved item as @item
+      re-renders the 'new' template
+  PUT update
+    with valid params
+      updates the requested item
+      assigns the requested item as @item
+      redirects to the item
+    with invalid params
+      assigns the item as @item
+      re-renders the 'edit' template
+  DELETE destroy
+    destroys the requested item
+
+Admin::GroupController
+  GET index
+    creates new group and assigns all groups to @groups (FAILED - 9)
+
+admin/item/edit
+  renders the edit item form
+
+admin/item/new
+  renders new item form
+
+admin/item/index
+  renders a list of items
+
+admin/item/show
+  renders attributes in <p>
+
+AdminHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin_helper_spec.rb (PENDING: No reason given)
+
+Admin::UserHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/user_helper_spec.rb (PENDING: No reason given)
+
+Admin::RoleHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/role_helper_spec.rb (PENDING: No reason given)
+
+Admin::VideoHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/video_helper_spec.rb (PENDING: No reason given)
+
+Admin::ItemHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/item_helper_spec.rb (PENDING: No reason given)
+
+Admin::GroupHelper
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/group_helper_spec.rb (PENDING: No reason given)
+
+Admin::ItemController
+  routing
+    routes to #index
+    routes to #new
+    routes to #show
+    routes to #edit
+    routes to #create
+    routes to #update
+    routes to #destroy
+
+Assignment
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/assignment_spec.rb (PENDING: No reason given)
+
+Role
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/role_spec.rb (PENDING: No reason given)
+
+Item
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/item_spec.rb (PENDING: No reason given)
+
+User
+  add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/user_spec.rb (PENDING: No reason given)
+
+Group
+  #create_new_group
+    checks to make sure group was created
+    should place groups into categories (PENDING: Not yet implemented)
+    should alphabetize the group names (PENDING: Not yet implemented)
+
+Pending:
+  AdminHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin_helper_spec.rb:14
+  Admin::UserHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/user_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin/user_helper_spec.rb:14
+  Admin::RoleHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/role_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin/role_helper_spec.rb:14
+  Admin::VideoHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/video_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin/video_helper_spec.rb:14
+  Admin::ItemHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/item_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin/item_helper_spec.rb:14
+  Admin::GroupHelper add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/helpers/admin/group_helper_spec.rb
+    # No reason given
+    # ./spec/helpers/admin/group_helper_spec.rb:14
+  Assignment add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/assignment_spec.rb
+    # No reason given
+    # ./spec/models/assignment_spec.rb:4
+  Role add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/role_spec.rb
+    # No reason given
+    # ./spec/models/role_spec.rb:4
+  Item add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/item_spec.rb
+    # No reason given
+    # ./spec/models/item_spec.rb:4
+  User add some examples to (or delete) /home/rfox2/Public/devel/griffin/spec/models/user_spec.rb
+    # No reason given
+    # ./spec/models/user_spec.rb:4
+  Group#create_new_group should place groups into categories
+    # Not yet implemented
+    # ./spec/models/groups_spec.rb:12
+  Group#create_new_group should alphabetize the group names
+    # Not yet implemented
+    # ./spec/models/groups_spec.rb:13
+
+Failures:
+
+  1) Admin::VideoController GET new assigns a new video as @video
+     Failure/Error: get :new, {}
+     ActionView::Template::Error:
+       undefined local variable or method `items_path' for #<#<Class:0xb3597f64>:0xb345c1b8>
+     # ./app/views/admin/video/new.html.erb:41:in `_app_views_admin_video_new_html_erb__454874490__643639978'
+     # ./app/controllers/admin/video_controller.rb:19:in `new'
+     # ./spec/controllers/admin/video_controller_spec.rb:31
+
+  2) Admin::VideoController POST create with valid params creates a new Video
+     Failure/Error: post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
+     NoMethodError:
+       undefined method `original_filename' for nil:NilClass
+     # ./app/controllers/admin/video_controller.rb:34:in `create'
+     # ./spec/controllers/admin/video_controller_spec.rb:47
+     # ./spec/controllers/admin/video_controller_spec.rb:46
+
+  3) Admin::VideoController POST create with valid params assigns a newly created video as @video
+     Failure/Error: post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
+     NoMethodError:
+       undefined method `original_filename' for nil:NilClass
+     # ./app/controllers/admin/video_controller.rb:34:in `create'
+     # ./spec/controllers/admin/video_controller_spec.rb:53
+
+  4) Admin::VideoController POST create with valid params redirects to the created video
+     Failure/Error: post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
+     NoMethodError:
+       undefined method `original_filename' for nil:NilClass
+     # ./app/controllers/admin/video_controller.rb:34:in `create'
+     # ./spec/controllers/admin/video_controller_spec.rb:60
+
+  5) Admin::VideoController POST create with invalid params assigns a newly created but unsaved video as @video
+     Failure/Error: post :create, {:video => {}}
+     NoMethodError:
+       undefined method `original_filename' for nil:NilClass
+     # ./app/controllers/admin/video_controller.rb:34:in `create'
+     # ./spec/controllers/admin/video_controller_spec.rb:70
+
+  6) Admin::VideoController POST create with invalid params re-renders the 'new' template
+     Failure/Error: post :create, {:video => {}}
+     NoMethodError:
+       undefined method `original_filename' for nil:NilClass
+     # ./app/controllers/admin/video_controller.rb:34:in `create'
+     # ./spec/controllers/admin/video_controller_spec.rb:77
+
+  7) Admin::VideoController PUT update with valid params redirects to the video
+     Failure/Error: put :update, {:id => @video.item_id, :video => {:item_type => 'video'}}
+     NoMethodError:
+       undefined method `video_url' for #<Admin::VideoController:0xb3180688>
+     # ./app/controllers/admin/video_controller.rb:91:in `update'
+     # ./app/controllers/admin/video_controller.rb:89:in `update'
+     # ./spec/controllers/admin/video_controller_spec.rb:100
+
+  8) Admin::VideoController DELETE destroy destroys the requested video record
+     Failure/Error: delete :destroy, {:id => @video.item_id}
+     NameError:
+       undefined local variable or method `videos_url' for #<Admin::VideoController:0xb338c5d0>
+     # ./app/controllers/admin/video_controller.rb:105:in `destroy'
+     # ./app/controllers/admin/video_controller.rb:104:in `destroy'
+     # ./spec/controllers/admin/video_controller_spec.rb:125
+     # ./spec/controllers/admin/video_controller_spec.rb:124
+
+  9) Admin::GroupController GET index creates new group and assigns all groups to @groups
+     Failure/Error: get :index
+     ActionView::MissingTemplate:
+       Missing template admin/group/index, application/index with {:locale=>[:en, :en], :handlers=>[:erb, :builder, :coffee], :formats=>[:html]}. Searched in:
+         * "#<RSpec::Rails::ViewRendering::EmptyTemplatePathSetDecorator:0xb3233ff8>"
+     # ./app/controllers/admin/group_controller.rb:39:in `index'
+     # ./spec/controllers/admin/group_controller_spec.rb:7
+
+Finished in 5.16 seconds
+54 examples, 9 failures, 12 pending
+
+Failed examples:
+
+rspec ./spec/controllers/admin/video_controller_spec.rb:30 # Admin::VideoController GET new assigns a new video as @video
+rspec ./spec/controllers/admin/video_controller_spec.rb:45 # Admin::VideoController POST create with valid params creates a new Video
+rspec ./spec/controllers/admin/video_controller_spec.rb:52 # Admin::VideoController POST create with valid params assigns a newly created video as @video
+rspec ./spec/controllers/admin/video_controller_spec.rb:59 # Admin::VideoController POST create with valid params redirects to the created video
+rspec ./spec/controllers/admin/video_controller_spec.rb:67 # Admin::VideoController POST create with invalid params assigns a newly created but unsaved video as @video
+rspec ./spec/controllers/admin/video_controller_spec.rb:74 # Admin::VideoController POST create with invalid params re-renders the 'new' template
+rspec ./spec/controllers/admin/video_controller_spec.rb:99 # Admin::VideoController PUT update with valid params redirects to the video
+rspec ./spec/controllers/admin/video_controller_spec.rb:123 # Admin::VideoController DELETE destroy destroys the requested video record
+rspec ./spec/controllers/admin/group_controller_spec.rb:5 # Admin::GroupController GET index creates new group and assigns all groups to @groups

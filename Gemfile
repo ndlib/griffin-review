@@ -17,6 +17,9 @@ gem 'rubycas-client'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 
+# authorization
+gem 'cancan'
+
 gem 'json'
 
 # LDAP lookups

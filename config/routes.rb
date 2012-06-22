@@ -9,11 +9,17 @@ Griffin::Application.routes.draw do
   # match "/group/list", :controller => 'group', :action => 'list'
   # match "/groups", :method => 'get', :controller => 'group', :action => 'list'
 
-  resources :groups
-  resources :items
-  resources :videos
 
-  match "/find-record", :method => 'post', :controller => 'videos', :action => 'find_record'
+  # admin
+  namespace :admin do
+    resources :role
+    resources :user
+    resources :video
+    resources :group
+    resources :item
+  end
+
+  match "/admin/find-record", :method => 'post', :controller => 'admin/video', :action => 'find_record'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

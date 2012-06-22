@@ -7,8 +7,16 @@ class User < ActiveRecord::Base
 
   before_save :fetch_attributes_from_ldap, :on => :create
 
+  has_many :assignments
+  has_many :roles, :through => :assignments
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :username
+
+  # roles
+  def has_role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
+  end
 
   def self.ldap_lookup(username)
     return nil if username.blank?

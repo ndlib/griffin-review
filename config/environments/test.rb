@@ -36,4 +36,8 @@ Griffin::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Custom configuration
+  config.reserves_upload_path = '/shared/data/reserves_files'
+  config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
 end
