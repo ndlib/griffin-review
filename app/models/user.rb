@@ -11,7 +11,11 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :assignments
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :username
+  attr_accessible :email, :username, :last_name, :first_name, :role_ids, :display_name
+
+  validates :username, :email, :uniqueness => true
+  validates_presence_of :email, :username, :first_name, :last_name, :display_name
+  validate :must_exist_in_ldap
 
   # roles
   def has_role?(role_sym)
@@ -44,6 +48,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def must_exist_in_ldap
+    if !User.ldap_lookup(username)
+      errors.add(:username, "not valid username")
+    end
+  end
 
   def preferred_name_from_nickname(first_name, last_name, nickname)
     if nickname

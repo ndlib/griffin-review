@@ -1,4 +1,4 @@
-class Admin::GroupController < ApplicationController
+class Admin::GroupController < AdminController
 
   def show
     @group = Group.find_by_group_name(params[:id])

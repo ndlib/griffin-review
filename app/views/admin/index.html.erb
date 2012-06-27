@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>Reserves Administration</h1>
+      <div class="span6">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Items Current Semester</span>
+                  </td>
+                  <td>
+                    <%= @items.count %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Courses Current Semester</span>
+                  </td>
+                  <td>
+                    <%= @courses.count %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Students Current Semester</span>
+                  </td>
+                  <td>
+                    <%= @students.count %>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

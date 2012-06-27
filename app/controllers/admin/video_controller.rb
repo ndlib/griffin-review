@@ -1,8 +1,18 @@
-class Admin::VideoController < ApplicationController
-
-  before_filter :authenticate_user!
+class Admin::VideoController < AdminController
 
   respond_to :json, :html
+
+  def index
+
+    @videos = Video.currently_used(self.calculate_semester)
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @videos }
+    end
+
+  end
+  
 
   def show
     @video = Video.find(params[:id])

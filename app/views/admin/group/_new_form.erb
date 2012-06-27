@@ -1,0 +1,9 @@
+<%= simple_form_for @group,
+  :url => url_for(:action => 'create', :controller => 'admin/group'),
+  :html => {:class => 'form-horizontal' } do |u| %>
+  <%= u.error_notification %>
+  <%= u.input :group_name, :label => "Group Name", :input_html => { :id => "group_name", :class => "span6" } %>
+  <div class="form-actions">
+    <%= u.button :submit, :class => 'btn-primary'%>
+  </div>
+<% end %>

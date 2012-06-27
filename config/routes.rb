@@ -20,6 +20,8 @@ Griffin::Application.routes.draw do
   end
 
   match "/admin/find-record", :method => 'post', :controller => 'admin/video', :action => 'find_record'
+  match "/admin/not-authorized", :method => 'get', :controller => 'admin', :action => 'not_authorized', :as => 'admin_not_authorized'
+  match "/admin", :method => 'get', :controller => 'admin', :action => 'index', :as => 'admin_index'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

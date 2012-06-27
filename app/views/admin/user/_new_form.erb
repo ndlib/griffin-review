@@ -1,0 +1,14 @@
+<%= simple_form_for @user,
+  :url => url_for(:action => 'create', :controller => 'admin/user'),
+  :html => {:class => 'form-horizontal' } do |u| %>
+  <%= u.error_notification %>
+  <%= u.input :first_name, :label => "First Name", :input_html => { :id => "user_first_name", :class => "span6" } %>
+  <%= u.input :last_name, :label => "Last Name", :input_html => { :id => "user_last_name", :class => "span6" }%>
+  <%= u.input :display_name, :label => "Display Name", :input_html => { :id => "user_last_name", :class => "span6" }%>
+  <%= u.input :email, :label => "Email", :input_html => { :id => "user_email", :class => "span4" } %>
+  <%= u.input :username, :label => "Username", :input_html => { :id => "user_username", :class => "span4" } %>
+  <%= u.association :roles %>
+  <div class="form-actions">
+    <%= u.button :submit, :class => 'btn-primary'%>
+  </div>
+<% end %>

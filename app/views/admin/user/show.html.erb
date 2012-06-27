@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <h1 style="display:inline; margin-right: 40px;">User <%= @user.display_name %></h1><a class="btn btn-primary" href="<%= url_for(edit_admin_user_path(@user)) %>">Edit User</a>
+    <hr/>
+    <div class="span9 tabbable tabs-top">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#lA">Basic Info</a>
+        </li>
+        <li class="">
+          <a data-toggle="tab" href="#lB">Authorization</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="lA" class="tab-pane active">
+          <div class="span6">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Name</span>
+                  </td>
+                  <td>
+                    <%= @user.display_name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Email</span>
+                  </td>
+                  <td>
+                    <%= @user.email %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Username</span>
+                  </td>
+                  <td>
+                    <%= @user.username %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Login Count</span>
+                  </td>
+                  <td>
+                    <%= @user.sign_in_count %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="label label-inverse">Last Login</span>
+                  </td>
+                  <td>
+                    <% if @user.last_sign_in_at? %>
+                      <%= @user.last_sign_in_at.strftime("%A %B %d, %Y %I:%M:%S%p")  %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+        <div id="lB" class="tab-pane">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td><span class="label label-inverse">Name</span></td>
+                <td><span class="label label-inverse">Description</span></td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.roles.each do |role| %>
+              <tr>
+                <td>
+                  <%= role.name %>  
+                </td>
+                <td>
+                  <%= role.description %>  
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

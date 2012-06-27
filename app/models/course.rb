@@ -1,7 +1,14 @@
-class Item < OpenReserves
-  self.table_name = 'item'
-  self.primary_key = 'item_id'
+class Course < OpenReserves
+  self.table_name = 'course'
+  self.primary_key = 'course_id'
 
-  validates :title, :presence => true, :allow_nil => false
-  validates :item_type, :presence => true, :inclusion => { :in => %w(article chapter book video music map journal mixed computer file) }
+  has_many :item_course_links
+  has_many :items, :through => :item_course_links
+
+  validates :course_id, :instructor_firstname, :instructor_lastname, :presence => true
+
+  scope :currently_available, lambda { |semester|
+    where('term like ?', semester + "%")
+  }
+
 end

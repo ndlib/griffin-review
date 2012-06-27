@@ -1,4 +1,4 @@
-class Admin::ItemController < ApplicationController
+class Admin::ItemController < AdminController
 
   def index
     @items = Item.all
