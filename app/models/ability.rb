@@ -5,8 +5,6 @@ class Ability
 
     user ||= User.new
 
-    
-   
     # note that all item types inherit from Item
     if user.has_role? :administrator
       can :manage, [Item, Group, Role]
@@ -16,6 +14,8 @@ class Ability
     if user.username == 'rfox2'
       can :manage, User
     end
+
+    can :read, External
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

@@ -11,8 +11,7 @@ class AdminController < ApplicationController
   def not_authorized
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
+      format.html
     end
 
   end
