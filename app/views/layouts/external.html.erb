@@ -5,8 +5,8 @@
     <title><%= "#{page_title}".html_safe + " // " if page_title.present? %>Hesburgh Libraries // University of Notre Dame</title>
     <meta name="description" content="Information resources and collections of the Hesburgh Libraries, University of Notre Dame." />
     <link rel="shortcut icon" href="http://www.library.nd.edu/favicon.ico" />
-    <%= include_ssi("css") %>
     <%= stylesheet_link_tag    "external" %>
+    <%= include_ssi("css") %>
     <!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
     <!--[if IE 7]><%= stylesheet_link_tag 'ie7' %><![endif]-->
     <%= javascript_include_tag "external" %>
@@ -25,9 +25,6 @@
         <div id="content" class="container">
           <%= render_breadcrumb %>
           <div id="single-col" class="column span-24 last">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-
           <%= yield %>
         </div>
         </div> <!-- end content-col -->

@@ -10,6 +10,8 @@ class ExternalController < ApplicationController
 
   def index
 
+    page_title = "Reserves"
+
     respond_to do |format|
       format.html
     end
