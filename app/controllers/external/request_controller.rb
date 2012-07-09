@@ -1,2 +1,2 @@
-class External::RequestController < ApplicationController
+class External::RequestController < ExternalController
 end

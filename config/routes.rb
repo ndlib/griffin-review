@@ -19,10 +19,16 @@ Griffin::Application.routes.draw do
     resources :item
   end
 
-  match "/admin/find-record", :method => 'post', :controller => 'admin/video', :action => 'find_record'
-  match "/admin/not-authorized", :method => 'get', :controller => 'admin', :action => 'not_authorized', :as => 'admin_not_authorized'
-  match "/admin", :method => 'get', :controller => 'admin', :action => 'index', :as => 'admin_index'
+  post "/admin/find-record", :controller => 'admin/video', :action => 'find_record'
+  get "/admin/not-authorized", :controller => 'admin', :action => 'not_authorized', :as => 'admin_not_authorized'
+  get "/admin", :controller => 'admin', :action => 'index', :as => 'admin_index'
 
+  # external
+  root :to => 'external#index'
+
+  get "/video/request/new", :controller => 'external/request', :action => 'new', :as => 'new_video_request'
+  post "/video/request", :controller => 'external/request', :action => 'create'
+  delete "/video/request/:id", :controller => 'admin/video_queue', :action => 'destroy'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -69,7 +75,6 @@ Griffin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'external#index'
 
   # See how all your routes lay out with "rake routes"
 

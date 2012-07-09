@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'pry-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -33,6 +32,15 @@ gem 'therubyracer'
 
 # REST queries
 gem 'rest-client', "~> 1.6.7"
+
+# development only
+group :development do
+    # specific versions of boson and irbtools for ruby 1.8.7
+    gem 'boson', "0.3.4"
+    gem 'irbtools', "1.0.6", :require => 'irbtools/configure'
+    gem 'looksee'
+    gem 'rdoc'
+end
 
 # testing
 gem 'rspec-rails', :group => [:test, :development]
