@@ -1,0 +1,14 @@
+<%= simple_form_for @request,
+  :url => url_for(:action => 'create', :controller => 'external/request'),
+  :html => {:class => 'form-horizontal' } do |vr| %>
+  <%= u.error_notification %>
+  <%= u.input :title, :label => "Video Title", :input_html => { :id => "vr_title", :class => "span6" } %>
+  <%= u.input :course, :label => "Course", :input_html => { :id => "vr_course", :class => "span6" }%>
+  <%= u.association :semester, :as => :select, :label => "Semester", input_html => { :id => "vr_semester", :class => "span6" } %>
+  <%= u.input :language, :label => "Language", :input_html => { :id => "vr_language", :class => "span6" }%>
+  <%= u.input :date_needed_by, :label => "Date Needed By", :input_html => { :id => "vr_needed_by", :class => "span4" } %>
+  <%= u.input :note, :label => "Special Instructions", :input_html => { :id => "vr_note", :class => "span4" } %>
+  <div class="form-actions">
+    <%= u.button :submit, :class => 'btn-primary'%>
+  </div>
+<% end %>
