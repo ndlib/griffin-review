@@ -1,4 +1,5 @@
 class VideoQueue < ActiveRecord::Base
 
-  :belongs_to => :semester
+  belongs_to :semester
+
 end

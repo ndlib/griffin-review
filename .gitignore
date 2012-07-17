@@ -4,3 +4,5 @@ tmp/
 .sass-cache/
 vendor/bundle/ruby/
 doc/apidocs/
+doc/api/
+doc/app/

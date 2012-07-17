@@ -39,25 +39,28 @@ group :development do
     gem 'boson', "0.3.4"
     gem 'irbtools', "1.0.6", :require => 'irbtools/configure'
     gem 'looksee'
+    gem 'rspec-rails'
     gem 'rdoc'
+    gem 'awesome_print'
 end
 
 # testing
-gem 'rspec-rails', :group => [:test, :development]
 group :test do
 	gem 'rspec'
 	gem 'rspec-core'
 	gem 'rspec-expectations'
 	gem 'rspec-mocks'
+    gem 'rspec-rails'
 	gem 'guard-rspec'
-	gem 'guard-cucumber'
+	gem 'guard-cucumber', :require => false
 	gem 'guard-coffeescript'
 	gem 'guard-shell'
 	gem 'guard-rails'
-	gem 'libnotify'
+	gem 'growl'
+	gem 'growl-rspec'
 	gem 'rb-fsevent'
-	gem 'cucumber'
-    gem 'cucumber-rails'
+	gem 'cucumber', :require => false
+    gem 'cucumber-rails', :require => false
     gem 'database_cleaner'
 	gem 'capybara'
 	gem 'factory_girl', "~> 2.6.0"
@@ -65,6 +68,8 @@ group :test do
 	gem "spork", "~> 0.9.0"
 	gem "guard-spork", '<= 0.5.1'
 end
+
+gem 'jquery-rails', '1.0.19'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -74,7 +79,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

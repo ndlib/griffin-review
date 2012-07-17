@@ -1,6 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+# guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 300 do
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 300 do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -30,7 +31,7 @@ guard 'rspec', :version => 2, :cli => "-f doc --drb", :all_on_start => false, :a
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end
 
-guard 'cucumber' do
+guard 'cucumber', :all_on_start => false, :all_after_pass => false do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }

@@ -1,14 +1,14 @@
-<%= simple_form_for @request,
+<%= simple_form_for @r,
   :url => url_for(:action => 'create', :controller => 'external/request'),
-  :html => {:class => 'form-horizontal' } do |vr| %>
-  <%= u.error_notification %>
-  <%= u.input :title, :label => "Video Title", :input_html => { :id => "vr_title", :class => "span6" } %>
-  <%= u.input :course, :label => "Course", :input_html => { :id => "vr_course", :class => "span6" }%>
-  <%= u.association :semester, :as => :select, :label => "Semester", input_html => { :id => "vr_semester", :class => "span6" } %>
-  <%= u.input :language, :label => "Language", :input_html => { :id => "vr_language", :class => "span6" }%>
-  <%= u.input :date_needed_by, :label => "Date Needed By", :input_html => { :id => "vr_needed_by", :class => "span4" } %>
-  <%= u.input :note, :label => "Special Instructions", :input_html => { :id => "vr_note", :class => "span4" } %>
+  :html => {:class => 'form-horizontal' } do |r| %>
+  <%= r.error_notification %>
+  <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span6" } %>
+  <%= r.input :course, :label => "Course", :input_html => { :id => "r_course", :class => "span6" }%>
+  <%= r.association :semester, :as => :select, :label => "Semester", :input_html => { :id => "r_semester", :class => "span6" } %>
+  <%= r.input :language, :label => "Language", :input_html => { :id => "r_language", :class => "span6" }%>
+  <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4" } %>
+  <%= r.input :note, :label => "Special Instructions", :input_html => { :id => "r_note", :class => "span4" } %>
   <div class="form-actions">
-    <%= u.button :submit, :class => 'btn-primary'%>
+    <%= r.button :submit, :class => 'btn-primary'%>
   </div>
 <% end %>

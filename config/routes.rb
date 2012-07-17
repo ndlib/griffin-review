@@ -25,6 +25,7 @@ Griffin::Application.routes.draw do
 
   # external
   root :to => 'external#index'
+  get "/not-authorized", :controller => 'external', :action => 'not_authorized', :as => 'external_not_authorized'
 
   get "/video/request/new", :controller => 'external/request', :action => 'new', :as => 'new_video_request'
   post "/video/request", :controller => 'external/request', :action => 'create'

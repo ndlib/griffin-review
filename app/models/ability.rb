@@ -16,6 +16,7 @@ class Ability
     end
 
     can :read, External
+    can :create, Request
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
