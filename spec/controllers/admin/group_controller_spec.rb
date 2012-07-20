@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Admin::GroupController do
+
+  login_admin
+
   describe "GET index" do
     it "creates new group and assigns all groups to @groups" do
       group = Factory.create(:group)

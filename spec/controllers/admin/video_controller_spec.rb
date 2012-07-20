@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe Admin::VideoController do
 
-  login_user
-
-  render_views
+  login_admin
 
   # build test recipe procedure
-  before(:all) do
+  before(:each) do
     @video = Factory.create(:video);
   end 
+
+  after(:each) do
+    @video.destroy
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

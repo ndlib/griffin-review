@@ -13,7 +13,8 @@ describe Request do
   end
 
   it "should have a proper course code" do
-    pending
+    @request.course = 'IMPROPER PATTERN'
+    @request.should have(1).error_on(:course)
   end
 
   it "should have a correct needed by date" do

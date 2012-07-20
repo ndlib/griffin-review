@@ -52,17 +52,14 @@ group :test do
 	gem 'rspec-mocks'
     gem 'rspec-rails'
 	gem 'guard-rspec'
-	gem 'guard-cucumber', :require => false
 	gem 'guard-coffeescript'
 	gem 'guard-shell'
 	gem 'guard-rails'
 	gem 'growl'
 	gem 'growl-rspec'
 	gem 'rb-fsevent'
-	gem 'cucumber', :require => false
-    gem 'cucumber-rails', :require => false
     gem 'database_cleaner'
-	gem 'capybara'
+	gem 'webrat'
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem "spork", "~> 0.9.0"

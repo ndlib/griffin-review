@@ -2,12 +2,16 @@ require 'spec_helper'
 
 describe Admin::ItemController do
 
-  login_user
+  login_admin
 
   # build test recipe procedure
-  before(:all) do
+  before(:each) do
     @item = Factory.create(:item);
   end 
+
+  after(:each) do
+    @item.destroy
+  end
   
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

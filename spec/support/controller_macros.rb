@@ -12,4 +12,17 @@ module ControllerMacros
         end
       end
 
+      def login_admin
+        before(:each) do
+          @request.env["devise.mapping"] = Devise.mappings[:user]
+          @admin_user = Factory.create(:admin_user)
+          sign_in @admin_user
+        end
+
+        after(:each) do
+          @admin_user.destroy
+        end
+
+      end
+
 end

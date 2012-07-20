@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   before_save :fetch_attributes_from_ldap, :on => :create
 
-  has_many :assignments
+  has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
 
   # Setup accessible (or protected) attributes for your model
@@ -19,9 +19,10 @@ class User < ActiveRecord::Base
 
   # roles
   def has_role?(role_sym)
-    roles.any? { |r| r.name.underscore.to_sym == role_sym }
+    roles.any? { |r| r.name.titlecase.split.to_s.underscore.to_sym == role_sym }
   end
 
+  # ldap
   def self.ldap_lookup(username)
     return nil if username.blank?
     ldap = Net::LDAP.new :host => Rails.configuration.reserves_ldap_host,

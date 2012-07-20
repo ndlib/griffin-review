@@ -7,9 +7,15 @@ class Ability
 
     # note that all item types inherit from Item
     if user.has_role? :administrator
-      can :manage, [Item, Group, Role]
+      can :manage, [Item, Group, Role, Request]
       can :read, Admin
     end
+
+    if user.has_role? :reserves_admin
+      can :manage, VideoQueue
+      can :read, User
+    end
+
 
     if user.username == 'rfox2'
       can :manage, User
