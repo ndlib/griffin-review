@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710151041) do
+ActiveRecord::Schema.define(:version => 20120723202005) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20120710151041) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
-  create_table "video_queues", :force => true do |t|
+  create_table "video_workflows", :force => true do |t|
     t.integer  "user_id"
     t.date     "needed_by"
     t.integer  "semester_id"

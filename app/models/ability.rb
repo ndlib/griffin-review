@@ -12,7 +12,7 @@ class Ability
     end
 
     if user.has_role? :reserves_admin
-      can :manage, VideoQueue
+      can :manage, VideoWorkflow
       can :read, User
     end
 

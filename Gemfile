@@ -46,11 +46,14 @@ end
 
 # testing
 group :test do
-	gem 'rspec'
-	gem 'rspec-core'
-	gem 'rspec-expectations'
-	gem 'rspec-mocks'
+	gem 'rspec', '~> 2.11.0'
+	gem 'rspec-core', '~> 2.11.0'
+	gem 'rspec-expectations', '~> 2.11.0'
+	gem 'rspec-mocks', '~> 2.11.0'
     gem 'rspec-rails'
+    gem 'capybara'
+    gem 'launchy', '~> 2.1.0'
+    gem 'faker'
 	gem 'guard-rspec'
 	gem 'guard-coffeescript'
 	gem 'guard-shell'
@@ -59,7 +62,6 @@ group :test do
 	gem 'growl-rspec'
 	gem 'rb-fsevent'
     gem 'database_cleaner'
-	gem 'webrat'
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem "spork", "~> 0.9.0"

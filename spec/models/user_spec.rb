@@ -6,7 +6,8 @@ describe User do
   context "with admin abilities" do
 
     before(:all) do
-      @admin_user = Factory.build(:admin_user)
+      @admin_role = Factory.build(:admin_role)
+      @admin_user = Factory.build(:user, :roles => [@admin_role])
     end
 
     subject { ability }
@@ -33,14 +34,15 @@ describe User do
   context "with reserves admin privileges" do
 
     before(:all) do
-      @reserves_admin = Factory.build(:reserves_admin)
+      @reserves_admin_role = Factory.build(:reserves_admin_role)
+      @reserves_admin = Factory.build(:user, :roles => [@reserves_admin_role])
     end
 
     subject { ability }
     let(:ability){ Ability.new(@reserves_admin) }
 
-    it "should be able to manage the video queue" do
-      should be_able_to(:manage, VideoQueue.new)
+    it "should be able to manage the video workflow" do
+      should be_able_to(:manage, VideoWorkflow.new)
     end
 
     it "should be able to view user accounts" do

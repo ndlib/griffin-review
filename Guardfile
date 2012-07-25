@@ -16,7 +16,7 @@ guard 'rspec', :version => 2, :cli => "-f doc --drb", :all_on_start => false, :a
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
-  watch('spec/factories.rb')  { "spec" }
+  watch(%r{^spec/factories/(.+)\.rb$}) { "spec" }
 
   # Rails example
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }

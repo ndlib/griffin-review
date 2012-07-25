@@ -1,10 +1,11 @@
 <%= simple_form_for @item,
-  :url => url_for(:action => 'create', :controller => 'admin/video') do |v| %>
+  :url => url_for(:action => 'create', :controller => 'admin/item') do |v| %>
   <%= v.error_notification %>
   <%= v.input :title %>
   <%= v.input :url, :label => "Video Link" %>
   <%= v.input :edition %>
   <%= v.input :publisher %>
   <%= v.input :display_note %>
+  <%= v.input :item_type, :as => :hidden, :input_html => { :value => 'book' } %>
   <%= v.button :submit %>
 <% end %>
