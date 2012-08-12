@@ -7,8 +7,7 @@ FactoryGirl.define do
     u.last_name { Faker::Name.last_name }
     u.display_name { Faker::Name.name }
     u.email { Faker::Internet.safe_email }
-    u.username "rfox2"
-
+    u.username { Faker::Internet.user_name }
   end
 
 end

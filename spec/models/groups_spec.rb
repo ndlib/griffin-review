@@ -8,9 +8,5 @@ describe Group do
       group.group_name.should eq(Group.find(group.group_name).group_name)
       group.destroy 
     end
-
-    it "should place groups into categories"
-    it "should alphabetize the group names"
-
   end
 end

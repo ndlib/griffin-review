@@ -6,3 +6,8 @@
 //= require bootstrap
 //= require bootstrap-dropdown
 //= require bootstrap.min
+//= require underscore
+//= require backbone
+//= require backbone_datalink
+//= require backbone_rails_sync
+//= require backbone/griffin

@@ -53,8 +53,8 @@
                     <span class="label label-inverse">Last Login</span>
                   </td>
                   <td>
-                    <% if @user.last_sign_in_at? %>
-                      <%= @user.last_sign_in_at.strftime("%A %B %d, %Y %I:%M:%S%p")  %>
+                    <% if @user.current_sign_in_at? %>
+                      <%= @user.current_sign_in_at.strftime("%A %B %d, %Y %I:%M:%S%p")  %>
                     <% end %>
                   </td>
                 </tr>

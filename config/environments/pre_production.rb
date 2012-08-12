@@ -59,6 +59,7 @@ Griffin::Application.configure do
   config.active_support.deprecation = :notify
 
   # Custom configuration
+  config.ldap_lookup_flag = true
   config.reserves_upload_path = '/shared/reserves_pprd/data/files'
   config.reserves_cas_base = 'https://login-test.cc.nd.edu/cas'
 end

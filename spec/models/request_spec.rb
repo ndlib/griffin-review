@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe Request do
   before(:each) do
-    @request = Request.new
-    @request.title = 'TEST'
-    @request.course = 'FA12 BUS 3023 01'
-    @request.needed_by = 1.month.from_now
+    @semester_a = Factory.create(:semester)
+    @faculty_user = Factory.create(:user)
+    @faculty_role = Factory.create(:faculty_role)
+    @faculty_user.roles = [@faculty_role]
+    @request = Factory.create(:generic_request, :semester => @semester_a, :user => @faculty_user)
   end
 
-  it do
+  it "should be a valid request" do
     @request.should be_valid
   end
 

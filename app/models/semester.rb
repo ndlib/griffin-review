@@ -1,6 +1,9 @@
 class Semester < ActiveRecord::Base
 
+  has_many :requests
+
   validates :code, :full_name, :presence => true
+  validates :code, :uniqueness => true
 
   # default_scope where('date_begin >= ?', Date.today << 6)
   
@@ -11,11 +14,15 @@ class Semester < ActiveRecord::Base
                Date.today + 3.months, Date.today + 6.months # next semester
               )
   end
+
+  def pending_requests
+    self.requests.where(:request_processed => false)
+  end
   
   def proximate?
     if self.date_begin <= Date.today && self.date_end <= Date.today
       return false
-    elsif self.date_begin >= Date.today + 10.months
+    elsif self.date_begin >= Date.today + 7.months
       return false
     else
       return true

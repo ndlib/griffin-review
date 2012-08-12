@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
+  has_many :requests
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :username, :last_name, :first_name, :role_ids, :display_name
@@ -51,8 +52,10 @@ class User < ActiveRecord::Base
   private
 
   def must_exist_in_ldap
-    if !User.ldap_lookup(username)
-      errors.add(:username, "not valid username")
+    if Rails.configuration.ldap_lookup_flag
+      if !User.ldap_lookup(username)
+        errors.add(:username, "not valid username")
+      end
     end
   end
 
@@ -71,13 +74,15 @@ class User < ActiveRecord::Base
   end
 
   def fetch_attributes_from_ldap
-    attributes = User.ldap_lookup(username)
-    fn = attributes[:givenname].first
-    sn = attributes[:sn].first
-    nickname = attributes[:ndvanityname].first
-    self.first_name, self.last_name = preferred_name_from_nickname(fn, sn, nickname)
-    self.email = attributes[:mail].first
-    self.display_name = attributes[:displayname].first
+    if Rails.configuration.ldap_lookup_flag
+      attributes = User.ldap_lookup(username)
+      fn = attributes[:givenname].first
+      sn = attributes[:sn].first
+      nickname = attributes[:ndvanityname].first
+      self.first_name, self.last_name = preferred_name_from_nickname(fn, sn, nickname)
+      self.email = attributes[:mail].first
+      self.display_name = attributes[:displayname].first
+    end
   end
 
 end

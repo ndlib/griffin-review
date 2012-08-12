@@ -14,6 +14,9 @@ Griffin::Application.configure do
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 
+  # Log level
+  config.log_level = :debug
+
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -38,6 +41,10 @@ Griffin::Application.configure do
   config.active_support.deprecation = :stderr
 
   # Custom configuration
+  config.ldap_lookup_flag = false
   config.reserves_upload_path = '/shared/data/reserves_files'
   config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
+  config.rspec_uid = 'rfox2'
+  config.rspec_cn = 'Robert Fox'
+  config.rspec_last_name = "Fox"
 end

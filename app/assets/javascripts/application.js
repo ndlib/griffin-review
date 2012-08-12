@@ -9,3 +9,5 @@
 //= require bootstrap
 //= require bootstrap-dropdown
 //= require bootstrap.min
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap

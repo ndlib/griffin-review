@@ -51,6 +51,7 @@ group :test do
 	gem 'rspec-expectations', '~> 2.11.0'
 	gem 'rspec-mocks', '~> 2.11.0'
     gem 'rspec-rails'
+    gem 'json_spec'
     gem 'capybara'
     gem 'launchy', '~> 2.1.0'
     gem 'faker'
@@ -69,6 +70,8 @@ group :test do
 end
 
 gem 'jquery-rails', '1.0.19'
+gem 'jquery-datatables-rails'
+gem 'rails-backbone'
 
 # Gems used only for assets and not required
 # in production environments by default.

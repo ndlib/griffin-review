@@ -1,23 +1,29 @@
 require 'spec_helper'
 
 describe Admin::VideoController do
+  
+  before(:all) do
+    @admin_role = Factory.create(:admin_role)
+    @jane_user = Factory.create(:user)
+    @admin_user = Factory.create(:user)
+    @admin_user.roles = [@admin_role]
+  end
 
-  login_admin
+  after(:all) do
+    @jane_user.destroy
+    @admin_user.destroy
+    @admin_role.destroy
+  end
 
-  # build test recipe procedure
   before(:each) do
     @video = Factory.create(:video);
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in @admin_user
   end 
 
   after(:each) do
     @video.destroy
-  end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # VideosController.
-  def valid_session
-    {}
+    sign_out @admin_user
   end
 
   describe "GET show" do
@@ -48,20 +54,17 @@ describe Admin::VideoController do
         expect {
           post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
         }.to change(Video, :count).by(1)
-        assigns(:video).destroy
       end
 
       it "assigns a newly created video as @video" do
         post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
         assigns(:video).should be_a(Video)
         assigns(:video).should be_persisted
-        assigns(:video).destroy
       end
 
       it "redirects to the created video" do
         post :create, {:video => {:title => @video.title, :url => @video.url, :item_type => @video.item_type}}
         response.should redirect_to(admin_video_url(Video.last))
-        assigns(:video).destroy
       end
     end
 

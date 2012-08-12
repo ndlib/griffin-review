@@ -23,13 +23,36 @@ Griffin::Application.routes.draw do
   get "/admin/not-authorized", :controller => 'admin', :action => 'not_authorized', :as => 'admin_not_authorized'
   get "/admin", :controller => 'admin', :action => 'index', :as => 'admin_index'
 
+  # video workflow
+  get "/admin/video/request/all", :controller => 'admin/video_workflow', :action => 'full_list'
+  get "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'show'
+  post "/admin/requester_info/:user_id", :controller => 'admin/video_workflow', :action => 'requester_info'
+  get "/admin/video/request/processed", :controller => 'admin/video_workflow', :action => 'processed_requests'
+  get "/admin/video/request/unprocessed", :controller => 'admin/video_workflow', :action => 'unprocessed_requests'
+  get "/admin/video/request/by_semester/:s_id", :controller => 'admin/video_workflow', :action => 'requests_by_semester'
+  delete "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'destroy'
+  put "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'update'
+  get "/admin/video/request/:r_id/edit", :controller => 'admin/video_workflow', :action => 'edit', :as => 'edit_admin_request'
+
+  # semesters
+  get "/admin/semester/all", :controller => 'admin', :action => 'show_all_semesters'
+  get "/admin/semester/active", :controller => 'admin', :action => 'show_proximate_semesters'
+  get "/admin/semester/new", :controller => 'admin', :action => 'new_semester', :as => 'new_admin_semester'
+  post "/admin/semester", :controller => 'admin', :action => 'create_semester'
+  get "/admin/semester", :controller => 'admin', :action => 'index_semester'
+  get "/admin/semester/:s_id/edit", :controller => 'admin', :action => 'edit_semester', :as => 'edit_admin_semester'
+  put "/admin/semester/:s_id", :controller => 'admin', :action => 'update_semester'
+  get "/admin/semester/:s_id", :controller => 'admin', :action => 'show_semester', :as => 'admin_semester'
+
   # external
   root :to => 'external#index'
   get "/not-authorized", :controller => 'external', :action => 'not_authorized', :as => 'external_not_authorized'
 
   get "/video/request/new", :controller => 'external/request', :action => 'new', :as => 'new_video_request'
   post "/video/request", :controller => 'external/request', :action => 'create'
-  delete "/video/request/:id", :controller => 'admin/video_queue', :action => 'destroy'
+  delete "/video/request/:r_id", :controller => 'admin/video_queue', :action => 'destroy'
+  get "/video/request/:r_id/status", :controller => 'external/request', :action => 'video_request_status', :as => 'video_request_status'
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

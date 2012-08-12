@@ -7,22 +7,28 @@ class Ability
 
     # note that all item types inherit from Item
     if user.has_role? :administrator
-      can :manage, [Item, Group, Role, Request]
-      can :read, Admin
+      can :manage, [Item, Group, Role, Request, Semester]
+      can [:show_all_semesters, :show_proximate_semesters, :index_semester, :new_semester, :read, :edit_semester, :create_semester, :update_semester, :show_semester], :all
     end
 
     if user.has_role? :reserves_admin
+      can :read, User
+    end
+
+    if user.has_role? :media_admin
       can :manage, VideoWorkflow
       can :read, User
     end
 
+    if user.has_role? :faculty
+      can :read, External
+      can [:create, :video_request_status], Request
+    end
 
     if user.username == 'rfox2'
       can :manage, User
     end
 
-    can :read, External
-    can :create, Request
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

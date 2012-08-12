@@ -39,12 +39,12 @@ class Admin::VideoController < AdminController
   def create
     @video = Video.new(params[:video])
 
-    uploaded_io = params[:video][:upload]
-    if uploaded_io
-      directory = Rails.configuration.reserves_upload_path
-      file_name = uploaded_io.original_filename
-      path = File.join(directory, file_name)
-      File.open(path, "wb") { |f| f.write(uploaded_io.read) }
+    uploaded_io = params[:video][:upload] 
+    if uploaded_io 
+      directory = Rails.configuration.reserves_upload_path 
+      file_name = uploaded_io.original_filename 
+      path = File.join(directory, file_name) 
+      File.open(path, "wb") { |f| f.write(uploaded_io.read) } 
     end
 
     respond_to do |format|

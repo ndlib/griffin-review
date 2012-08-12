@@ -55,6 +55,7 @@ Spork.prefork do
     # config.mock_with :rr
     # config.mock_with :rspec
     config.include Warden::Test::Helpers
+    config.include JsonSpec::Helpers
 
     config.before(:suite) do
       DatabaseCleaner.clean_with(:truncation)
@@ -66,6 +67,10 @@ Spork.prefork do
 
     config.after(:each) do
       DatabaseCleaner.clean
+    end
+
+    config.after(:all) do
+      DatabaseCleaner.clean_with(:truncation)
     end
   
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -88,4 +93,5 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
   FactoryGirl.reload
+  Griffin::Application.reload_routes!
 end

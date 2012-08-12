@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>All Semesters</h1>
+      <div class="span9">
+        <table class="table table-bordered table-striped">
+              <thead>
+                <th>System ID</th>
+                <th>Code</th>
+                <th>Full Name</th>
+                <th>Begin Date</th>
+                <th>End Date</th>
+              </thead>
+              <tbody>
+                <% for semester in @semesters %>
+                <tr>
+                  <td>
+                    <%= link_to semester[:id], edit_admin_semester_path(semester) %>
+                  </td>
+                  <td>
+                    <%= semester[:code] %>
+                  </td>
+                  <td>
+                    <%= semester[:full_name] %>
+                  </td>
+                  <td>
+                    <%= semester[:date_begin].strftime('%m/%d/%Y')%>
+                  </td>
+                  <td>
+                    <%= semester[:date_end].strftime('%m/%d/%Y') %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

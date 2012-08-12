@@ -1,12 +1,23 @@
 require 'spec_helper'
-require 'casclient/frameworks/rails/filter'
+# require 'casclient/frameworks/rails/filter'
 
 describe "Item" do
-  describe "GET /admin/item/new" do
+
+  before(:all) do
+    @admin_role = Factory.create(:admin_role)
+    @admin_user = Factory.create(:user)
+    @admin_user.roles = [@admin_role]
+    @item = Factory.create(:item, :edition => 'Best One', :publisher => 'Publisher 1', :display_note => 'Mock display note')
+  end
+
+  after(:all) do
+    @admin_user.destroy
+    @admin_role.destroy
+    @item.destroy
+  end
+
+  describe "Create new item" do
     it "fills in the new item form and submits" do
-      @admin_role = Factory.create(:admin_role)
-      @admin_user = Factory.create(:user, :roles => [@admin_role])
-      @item = Factory.create(:item, :edition => 'Best One', :publisher => 'Publisher 1', :display_note => 'Mock display note')
       login_as @admin_user
       expect {
         visit new_admin_item_path

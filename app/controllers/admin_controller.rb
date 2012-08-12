@@ -28,6 +28,79 @@ class AdminController < ApplicationController
     end
 
   end
+
+  def new_semester
+    @semester = Semester.new
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/new' }
+    end
+  end
+
+  def index_semester
+    @semesters = Semester.order(:date_begin).all
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/index' }
+    end
+  end
+
+  def edit_semester
+    @semester = Semester.find(params[:s_id])
+    logger.debug "Semester found: #{@semester.attributes.inspect}"
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/edit' }
+    end
+  end
+
+  def create_semester
+    @semester = Semester.new(params[:semester])
+
+    respond_to do |format|
+      if @semester.save
+        format.html { redirect_to admin_semester_url(@semester), :notice => 'Semester was successfully created.' }
+        format.json { render :json => @semester, :status => :created, :location => admin_semester_url(@semester) }
+      else
+        format.html { render :action => 'new_semester', :template => 'admin/semester/new' }
+        format.json { render :json => @semester.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_semester
+    @semester = Semester.find(params[:s_id])
+
+    respond_to do |format|
+      if @semester.update_attributes(params[:semester])
+        format.html { redirect_to admin_semester_url(@semester), :notice => 'Semester was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit_semester", :template => 'admin/semester/edit'  }
+        format.json { render :json => @semester.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def show_semester
+    @semester = Semester.find(params[:s_id])
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/show' }
+    end
+  end
+
+  def show_all_semesters
+    @semesters = Semester.order(:date_begin).all
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/list' }
+      format.json { render :json => @semesters }
+    end
+  end
+
+  def show_proximate_semesters
+    @semesters = Semester.proximates
+    respond_to do |format|
+      format.html { render :template => 'admin/semester/list' }
+      format.json { render :json => @semesters }
+    end
+  end
   
   def calculate_semester
     
