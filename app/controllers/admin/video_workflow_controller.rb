@@ -47,7 +47,7 @@ class Admin::VideoWorkflowController < AdminController
     @request.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_video_request_unprocessed_url }
+      format.html { redirect_to admin_video_request_all_path }
       format.json { head :ok }
     end
   end
@@ -76,17 +76,23 @@ class Admin::VideoWorkflowController < AdminController
 
   def requester_info
 
-    @requester_record = User.find(params[:user_id])
+    requester_record = User.find(params[:user_id])
+
+    # LDAP interface
+    ldap = Ldap.new
+    ldap.connect
+    @requester = ldap.find('uid', requester_record.username)
 
     respond_to do |format|
       format.html { render :json => { 
-        :first_name => @requester_record.first_name, 
-        :last_name => @requester_record.last_name
+        :first_name => requester_record.first_name, 
+        :last_name => requester_record.last_name
       }.to_json }
       format.json { render :json => { 
-        :first_name => @requester_record.first_name, 
-        :last_name => @requester_record.last_name
+        :first_name => requester_record.first_name, 
+        :last_name => requester_record.last_name
       }.to_json }
+      format.js
     end
   end
 

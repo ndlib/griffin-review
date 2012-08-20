@@ -54,7 +54,8 @@
                   </td>
                   <td>
                     <% if @user.current_sign_in_at? %>
-                      <%= @user.current_sign_in_at.strftime("%A %B %d, %Y %I:%M:%S%p")  %>
+                      <%# @user.current_sign_in_at.strftime("%A %B %d, %Y %I:%M:%S%p")  %>
+                      <%= @user.current_sign_in_at  %>
                     <% end %>
                   </td>
                 </tr>

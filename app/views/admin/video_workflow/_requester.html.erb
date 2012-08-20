@@ -1,0 +1,32 @@
+<div style="display:none;">
+  <table cellpadding="4">
+    <tr>
+      <td align="right"><span class="label label-info">Name</span></td>
+      <td><span><%= @requester.displayname.first %> (<%= @requester.uid %>)</span></td>
+    </tr>
+    <tr>
+      <td align="right"><span class="label label-info">Title</span></td>
+      <td><span><%= @requester.title.first %> (<%= @requester.edupersonaffiliation %>)</span></td>
+    </tr>
+    <tr>
+      <td align="right"><span class="label label-info">Department</span></td>
+      <td><span><%= @requester.nddepartment.first %></span></td>
+    </tr>
+    <tr>
+      <td align="right"><span class="label label-info">Email</span></td>
+      <td><span><a href="mailto:<%= @requester.ndmail.first %>" style="text-decoration: underline; outline-style: none;"><%= @requester.ndmail.first %></a></span></td>
+    </tr>
+    <tr>
+      <td align="right"><span class="label label-info">Phone Number</span></td>
+      <td><span><%= @requester.telephonenumber.first %></span></td>
+    </tr>
+    <tr>
+      <td align="right"><span class="label label-info">Address</span></td>
+      <td>
+        <% for @part in @requester.ndofficeaddress.first.split(/\$/) %>
+          <span><%= @part %></span><br/>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

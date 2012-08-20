@@ -2,17 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  formtastic:
-    labels:
-      video:
-        new:
-          title: "Video Title"
-          url: "Link to Video File"
-    actions:
-      video:
-        create: "Save Video"
-    errors:
-      video:
-        messages:
-          blank: "should not be blank"
+  date:
+    formats:
+      default: "%m/%d/%Y"
+  time:
+    formats:
+      default: "%m/%d/%Y %I:%M%p"

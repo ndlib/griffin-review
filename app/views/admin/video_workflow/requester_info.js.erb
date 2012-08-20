@@ -1,0 +1,10 @@
+var dialog = $('<%= escape_javascript(render :partial => 'admin/video_workflow/requester') %>').appendTo('body');
+dialog.dialog({
+  close: function(event, ui) {
+    dialog.remove();
+  },
+  modal: true,
+  width: 'auto',
+  resizable: false,
+  title: 'Requester Information'
+});

@@ -7,7 +7,7 @@ class Ability
 
     # note that all item types inherit from Item
     if user.has_role? :administrator
-      can :manage, [Item, Group, Role, Request, Semester]
+      can :manage, [Item, Group, Role, Request, Semester, VideoWorkflow]
       can [:show_all_semesters, :show_proximate_semesters, :index_semester, :new_semester, :read, :edit_semester, :create_semester, :update_semester, :show_semester], :all
     end
 

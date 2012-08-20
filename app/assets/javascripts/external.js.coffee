@@ -4,5 +4,5 @@
 # ORDER HERE IS IMPORTANT
 //= require jquery
 //= require external/superfish
-//= require external/jquery-datepicker.min
+//= require external/jquery-ui-1.8.22.custom.min
 //= require external/request

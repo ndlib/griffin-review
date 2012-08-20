@@ -1,1 +1,40 @@
-<h1>All Video Requests</h1>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>All Video Requests</h1>
+      <div class="span9">
+        <table id="requests_table" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date Requested</th>
+              <th>Date Due</th>
+              <th>Title</th>
+              <th>Course</th>
+              <th>Requester</th>
+              <th>Processed?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @requests.each do |request| %>
+              <tr>
+                <td><%= link_to request.id, edit_admin_request_path(request) %></td>
+                <td><%= request.created_at %></td>
+                <td><%= request.needed_by %></td>
+                <td><%= request.title %></td>
+                <td><%= request.course %></td>
+                <td>
+                  <%= link_to(requester_info_path(request.user), :method => :post, :remote => true) do %>
+                    <i class="icon-user"></i>
+                    <%= request.user.display_name %>
+                  <% end %>
+                </td>
+                <td><%= request.request_processed %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

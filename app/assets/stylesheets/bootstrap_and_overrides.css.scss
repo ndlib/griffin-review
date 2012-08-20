@@ -4,8 +4,11 @@ $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 @import "bootstrap.css.scss";
 body { padding-top: 60px; }
 .navbar-inner {
-  background-color: #100B44;
-  background-image: -moz-linear-gradient(center top , #100B44, #5e57a1);
+  background-color: #88B0CD;
+  background-image: -moz-linear-gradient(center top , #100B44, #0043C4);
+  background-image: -o-linear-gradient(top, #100B44, #0043C4);
+  background-image: -linear-gradient(top, #100B44, #0043C4);
+  background-image: -webkit-linear-gradient(top, #100B44, #0043C4);
 }
 @import "bootstrap-responsive.css.scss";
 h1 {

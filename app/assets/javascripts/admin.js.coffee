@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 //= require jquery
 //= require jquery_ujs
+//= require admin/jquery-ui-1.8.22.custom.min
+//= require dataTables/jquery.dataTables
 //= require bootstrap
 //= require bootstrap-dropdown
 //= require bootstrap.min
@@ -11,3 +13,4 @@
 //= require backbone_datalink
 //= require backbone_rails_sync
 //= require backbone/griffin
+//= require admin/video_workflow

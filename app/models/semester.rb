@@ -2,7 +2,7 @@ class Semester < ActiveRecord::Base
 
   has_many :requests
 
-  validates :code, :full_name, :presence => true
+  validates :code, :full_name, :date_begin, :date_end, :presence => true
   validates :code, :uniqueness => true
 
   # default_scope where('date_begin >= ?', Date.today << 6)

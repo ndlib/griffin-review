@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723202005) do
+ActiveRecord::Schema.define(:version => 20120816162945) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20120723202005) do
     t.string   "language"
     t.boolean  "subtitles"
     t.text     "note"
-    t.boolean  "request_processed"
+    t.boolean  "request_processed", :default => false, :null => false
     t.datetime "date_processed"
     t.integer  "processed_by"
     t.datetime "created_at"
