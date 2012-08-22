@@ -41,7 +41,6 @@ describe Admin::VideoWorkflowController do
         get :show, :r_id => @request_b.id
         assigns(:request).should be_an_instance_of(Request)
         assigns(:request).should be_library_owned
-        assigns(:request).request_processed.should_not be_true
         assigns(:request).title.should eq(@request_b.title)
         sign_out @media_admin_user
       end
@@ -52,22 +51,20 @@ describe Admin::VideoWorkflowController do
         response.body.should be_json_eql(requester_info)
         sign_out @media_admin_user
       end
-      it "is able to view processed requests" do
-        @request_a.request_processed = true
-        @request_a.save
-        sign_in @media_admin_user
-        get :processed_requests
-        assigns(:requests).should have(1).request
-        sign_out @media_admin_user
-      end
-      it "is able to view unprocessed requests" do
-        @request_b.request_processed = true
-        @request_b.save
-        sign_in @media_admin_user
-        get :unprocessed_requests
-        assigns(:requests).should have(2).request
-        sign_out @media_admin_user
-      end
+      it "is able to view processed requests"
+        # @request_a.request_processed = true
+        # @request_a.save
+        # sign_in @media_admin_user
+        # get :processed_requests
+        # assigns(:requests).should have(1).request
+        # sign_out @media_admin_user
+      it "is able to view unprocessed requests"
+        # @request_b.request_processed = true
+        # @request_b.save
+        # sign_in @media_admin_user
+        # get :unprocessed_requests
+        # assigns(:requests).should have(2).request
+        # sign_out @media_admin_user
       it "is able to view requests for a specific semester" do
         sign_in @media_admin_user
         get :requests_by_semester, :s_id => @current_semester.id
@@ -105,13 +102,12 @@ describe Admin::VideoWorkflowController do
           delete :destroy, :r_id => @request_b.id
         }.to change(Request, :count).from(3).to(2)
       end
-      it "is able to mark a request as processed" do
-        @request_c.request_processed.should eq(false)
-        @request_c.request_processed = true
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
-        assigns(:request).should be_processed
-      end
+      it "is able to mark a request as processed"
+        # @request_c.request_processed.should eq(false)
+        # @request_c.request_processed = true
+        # put :update, :r_id => @request_c.id, :request => @request_c.attributes
+        # get :edit, :r_id => @request_c.id
+        # assigns(:request).should be_processed
       it "is able to unmark a request as library owned" do
         @request_c.library_owned.should eq(true)
         @request_c.library_owned = false
@@ -150,11 +146,10 @@ describe Admin::VideoWorkflowController do
           delete :destroy, :r_id => @request_c.id
           response.should redirect_to :admin_not_authorized
       end
-      it "is not able to mark a request as unprocessed" do
-        @request_c.request_processed = false
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        response.should redirect_to :admin_not_authorized
-      end
+      it "is not able to mark a request as unprocessed"
+        # @request_c.request_processed = false
+        # put :update, :r_id => @request_c.id, :request => @request_c.attributes
+        # response.should redirect_to :admin_not_authorized
     end
   end
 

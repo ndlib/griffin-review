@@ -11,7 +11,6 @@ FactoryGirl.define do
     language 'English'
     subtitles true
     note { Faker::Lorem.paragraph }
-    request_processed false
   end
 
 end

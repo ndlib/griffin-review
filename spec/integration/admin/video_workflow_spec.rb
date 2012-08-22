@@ -12,7 +12,7 @@ describe "Video Workflow Integration" do
     @next_semester = Factory.create(:semester, :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
     @distant_semester = Factory.create(:semester, :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
     @old_semester = Factory.create(:semester, :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
-    @request_a = Factory.create(:generic_request, :semester_id => @current_semester.id, :user_id => @faculty_user_a.id, :request_processed => true)
+    @request_a = Factory.create(:generic_request, :semester_id => @current_semester.id, :user_id => @faculty_user_a.id)
     @request_b = Factory.create(:generic_request, :needed_by => Date.today + 4.weeks, :semester_id => @current_semester.id, :user_id => @faculty_user_b.id, :library_owned => false)
     @request_c = Factory.create(:generic_request, :needed_by => Date.today + 14.days, :semester_id => @current_semester.id, :user_id => @faculty_user_b.id)
     @media_admin_role = Factory.create(:media_admin_role)
@@ -44,14 +44,7 @@ describe "Video Workflow Integration" do
       visit edit_admin_request_path(@request_b)
       find_field('Library Owns?').value.should be_true
     end
-    it "marks the video as processed" do
-      visit edit_admin_request_path(@request_b)
-      find_field('Processed').checked?.should be_false
-      check('Processed')
-      click_button('Save')
-      visit edit_admin_request_path(@request_b)
-      find_field('Processed').checked?.should be_true
-    end
+    it "marks the video as processed"
     it "changes the needed by date" do
       visit edit_admin_request_path(@request_b)
       find_field('Date Needed By').value.should eq(@request_b.needed_by.to_s)
@@ -111,19 +104,12 @@ describe "Video Workflow Integration" do
     after :each do
       logout @media_admin_user
     end
-    it "views the unprocessed list" do
-      visit admin_video_request_unprocessed_path
-      page.should have_content(@request_b.title)
-    end
-    it "views the processed list" do
-      visit admin_video_request_processed_path
-      page.should have_content(@request_a.title)
-    end
-    it "accesses the request edit screen" do
-      visit admin_video_request_processed_path
-      click_link(@request_a.id.to_s)
-      current_path.should eq(edit_admin_request_path(@request_a))
-    end
+    it "views the unprocessed list"
+    it "views the processed list"
+    it "accesses the request edit screen"
+      # visit admin_video_request_processed_path
+      # click_link(@request_a.id.to_s)
+      # current_path.should eq(edit_admin_request_path(@request_a))
     it "marks a video as processed"
     it "views requester information for request"
     it "reorders the list by title"

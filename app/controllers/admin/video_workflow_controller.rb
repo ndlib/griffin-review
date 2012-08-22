@@ -14,7 +14,7 @@ class Admin::VideoWorkflowController < AdminController
 
   def processed_requests
    
-    @requests = Request.where(:request_processed => true).order('needed_by ASC')
+    # @requests = Request.where(:request_processed => true).order('needed_by ASC')
     
     respond_to do |format|
       format.html { render :template => 'admin/video_workflow/list' }
@@ -24,7 +24,7 @@ class Admin::VideoWorkflowController < AdminController
 
   def unprocessed_requests
    
-    @requests = Request.where(:request_processed => false).order('needed_by ASC')
+    # @requests = Request.where(:request_processed => false).order('needed_by ASC')
     
     respond_to do |format|
       format.html { render :template => 'admin/video_workflow/list' }

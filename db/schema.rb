@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816162945) do
+ActiveRecord::Schema.define(:version => 20120820184700) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(:version => 20120816162945) do
     t.string   "language"
     t.boolean  "subtitles"
     t.text     "note"
-    t.boolean  "request_processed", :default => false, :null => false
-    t.datetime "date_processed"
-    t.integer  "processed_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "workflow_state"
+    t.datetime "workflow_state_change_date"
+    t.integer  "workflow_state_change_user"
   end
 
 end

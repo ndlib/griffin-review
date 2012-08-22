@@ -16,6 +16,12 @@ gem 'rubycas-client'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 
+# exception logging
+gem 'airbrake'
+
+# workflow functionality
+gem 'workflow', '0.8.1'
+
 # authorization
 gem 'cancan'
 
