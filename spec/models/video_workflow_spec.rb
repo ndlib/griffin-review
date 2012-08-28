@@ -45,11 +45,27 @@ describe VideoWorkflow do
       @request_check = Request.find(@request_b.id)
       @request_check.should be_library_owned
     end
-    it "updates a request to reflect processed status"
-      # @request_b.request_processed = true
-      # @request_b.save
-      # @request_check = Request.find(@request_b.id)
-      # @request_check.should be_request_processed
+    it "updates a request to reflect status change from new to digitized" do
+      @request_b.new?.should be_true
+      @request_b.workflow_state_user = @faculty_user_b
+      @request_b.workflow_state_change_date = Time.now
+      @request_b.save
+      @request_b.digitize!
+      @request_b.should be_digitized
+      @request_check = Request.find(@request_b.id)
+      @request_check.current_state.name.should eq(:digitized)
+      @request_check.workflow_state_user.first_name.should eq(@faculty_user_b.first_name)
+    end
+    it "updates a request to reflect status change from digitized to converted for streaming" do
+      @request_b.workflow_state_user = @media_admin_user
+      @request_b.workflow_state_change_date = Time.now
+      @request_b.save
+      @request_b.convert_for_streaming!
+      @request_b.should be_converted
+      @request_check = Request.find(@request_b.id)
+      @request_check.current_state.name.should eq(:converted)
+      @request_check.workflow_state_user.first_name.should eq(@media_admin_user.first_name)
+    end
   end
 
 end

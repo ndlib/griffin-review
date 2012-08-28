@@ -7,5 +7,5 @@ Airbrake.configure do |config|
   when "development"
     config.api_key = 'e592ad1e2a5822d292f126ea94a633a7'
   end
-  config.development_environments = []
+  config.development_environments = ['test']
 end

@@ -113,13 +113,12 @@ describe Admin::ItemController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested item" do
-        # Assuming there are no other items in the database, this
-        # specifies that the Item created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        # Item.should_receive(:update_attributes).with({'these' => 'params'})
-        # put :update, {:id => @item.item_id, :item => {'these' => 'params'}}
-        pending "needs to be rewritten"
+        sign_in @admin_user
+        @item.title = "Another Title"
+        put :update, :id => @item.item_id, :item => @item.attributes
+        get :edit, :id => @item.item_id
+        assigns(:item).title.should eq("Another Title")
+        sign_out @admin_user
       end
 
       it "assigns the requested item as @item" do
@@ -145,14 +144,6 @@ describe Admin::ItemController do
         put :update, {:id => @item.item_id, :item => {}}
         assigns(:item).should eq(@item)
         sign_out @admin_user
-      end
-
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        # Item.stub(:save).and_return(false)
-        # put :update, {:id => @item.item_id, :item => {}}
-        # response.should render_template("edit")
-        pending "needs to be rewritten"
       end
     end
   end

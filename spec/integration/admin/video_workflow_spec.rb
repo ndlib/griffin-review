@@ -44,7 +44,14 @@ describe "Video Workflow Integration" do
       visit edit_admin_request_path(@request_b)
       find_field('Library Owns?').value.should be_true
     end
-    it "marks the video as processed"
+    it "transitions workflow state to awaiting_acquisitions" do
+      visit edit_admin_request_path(@request_b)
+      find('#current_state').text.should eq('New')
+      select 'Requested from Acquisitions', :from => 'Transition To'
+      click_button('Save')
+      visit edit_admin_request_path(@request_b)
+      find('#current_state').text.should eq('Awaiting Acquisitions')
+    end
     it "changes the needed by date" do
       visit edit_admin_request_path(@request_b)
       find_field('Date Needed By').value.should eq(@request_b.needed_by.to_s)
@@ -104,13 +111,13 @@ describe "Video Workflow Integration" do
     after :each do
       logout @media_admin_user
     end
-    it "views the unprocessed list"
-    it "views the processed list"
+    it "views the new request list"
+    it "views the sent to acquisitions list"
     it "accesses the request edit screen"
       # visit admin_video_request_processed_path
       # click_link(@request_a.id.to_s)
       # current_path.should eq(edit_admin_request_path(@request_a))
-    it "marks a video as processed"
+    it "marks a video as digitized"
     it "views requester information for request"
     it "reorders the list by title"
     it "reorders the list by request date"

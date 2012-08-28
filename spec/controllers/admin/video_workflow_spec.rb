@@ -29,7 +29,7 @@ describe Admin::VideoWorkflowController do
     describe "with media admin account" do
       it "is able to view the request list" do
         sign_in @media_admin_user
-        get :full_list
+        get :requests_by_state, :s_val => 'all'
         assigns(:requests).should include(@request_c)
         assigns(:requests).should have(3).requests
         sign_out @media_admin_user
@@ -46,25 +46,27 @@ describe Admin::VideoWorkflowController do
       end
       it "can see contact information for specific requester" do
         sign_in @media_admin_user
-        post :requester_info, :user_id => @request_c.user.id
+        post :requester, :user_id => @request_c.user.id
         requester_info = %({"first_name":"#{@request_c.user.first_name}", "last_name":"#{@request_c.user.last_name}"})
         response.body.should be_json_eql(requester_info)
         sign_out @media_admin_user
       end
-      it "is able to view processed requests"
-        # @request_a.request_processed = true
-        # @request_a.save
-        # sign_in @media_admin_user
-        # get :processed_requests
-        # assigns(:requests).should have(1).request
-        # sign_out @media_admin_user
-      it "is able to view unprocessed requests"
-        # @request_b.request_processed = true
-        # @request_b.save
-        # sign_in @media_admin_user
-        # get :unprocessed_requests
-        # assigns(:requests).should have(2).request
-        # sign_out @media_admin_user
+      it "is able to view digitized requests" do
+        @request_a.digitize!
+        sign_in @media_admin_user
+        get :requests_by_state, :s_val => 'digitized'
+        assigns(:requests).should have(1).request
+        sign_out @media_admin_user
+      end
+      it "is able to view uploaded requests" do
+        @request_b.digitize!
+        @request_b.upload!
+        @request_a.upload!
+        sign_in @media_admin_user
+        get :requests_by_state, :s_val => 'uploaded'
+        assigns(:requests).should have(2).request
+        sign_out @media_admin_user
+      end
       it "is able to view requests for a specific semester" do
         sign_in @media_admin_user
         get :requests_by_semester, :s_id => @current_semester.id
@@ -102,18 +104,21 @@ describe Admin::VideoWorkflowController do
           delete :destroy, :r_id => @request_b.id
         }.to change(Request, :count).from(3).to(2)
       end
-      it "is able to mark a request as processed"
-        # @request_c.request_processed.should eq(false)
-        # @request_c.request_processed = true
-        # put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        # get :edit, :r_id => @request_c.id
-        # assigns(:request).should be_processed
-      it "is able to unmark a request as library owned" do
-        @request_c.library_owned.should eq(true)
-        @request_c.library_owned = false
+      it "is able to mark a request as digitized" do
+        @request_c.digitized?.should be_false
+        @request_c.workflow_state = :digitized
+        @request_c.workflow_state_change_date = Time.now
+        @request_c.workflow_state_change_user = @media_admin_user.id
         put :update, :r_id => @request_c.id, :request => @request_c.attributes
         get :edit, :r_id => @request_c.id
-        assigns(:request).should_not be_library_owned
+        assigns(:request).digitized?.should be_true
+      end
+      it "is able to mark a request as library owned" do
+        @request_c.library_owned.should eq(false)
+        @request_c.library_owned = true
+        put :update, :r_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :r_id => @request_c.id
+        assigns(:request).should be_library_owned
       end
       it "is able to mark a requests as a repeat request" do
         @request_c.repeat_request.should eq(false)
@@ -146,10 +151,12 @@ describe Admin::VideoWorkflowController do
           delete :destroy, :r_id => @request_c.id
           response.should redirect_to :admin_not_authorized
       end
-      it "is not able to mark a request as unprocessed"
-        # @request_c.request_processed = false
-        # put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        # response.should redirect_to :admin_not_authorized
+      it "is not able to mark a request as converted" do
+        @request_c.converted?.should be_false
+        @request_c.workflow_state = :converted
+        put :update, :r_id => @request_c.id, :request => @request_c.attributes
+        response.should redirect_to :admin_not_authorized
+      end
     end
   end
 

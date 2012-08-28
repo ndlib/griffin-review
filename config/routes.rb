@@ -25,9 +25,10 @@ Griffin::Application.routes.draw do
 
   # video workflow
   get "/admin/video/request/all", :controller => 'admin/video_workflow', :action => 'full_list'
-  post "/admin/requester_info/:user_id", :controller => 'admin/video_workflow', :action => 'requester_info', :as => 'requester_info'
-  get "/admin/video/request/processed", :controller => 'admin/video_workflow', :action => 'processed_requests'
-  get "/admin/video/request/unprocessed", :controller => 'admin/video_workflow', :action => 'unprocessed_requests'
+  post "/admin/requester/:user_id", :controller => 'admin/video_workflow', :action => 'requester', :as => 'requester'
+  post "/admin/request/:request_id", :controller => 'admin/video_workflow', :action => 'request_record', :as => 'request'
+  post "/admin/video/request/state", :controller => 'admin/video_workflow', :action => 'requests_by_state', :as => 'requests_by_state'
+  post "/admin/video/request/transition", :controller => 'admin/video_workflow', :action => 'request_transition', :as => 'request_transition'
   get "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'show'
   get "/admin/video/request/by_semester/:s_id", :controller => 'admin/video_workflow', :action => 'requests_by_semester'
   delete "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'destroy', :as => 'delete_admin_request'

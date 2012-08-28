@@ -1,38 +1,114 @@
+<script type="text/javascript">
+  $(document).ready(function() { 
+      
+    refresh_tables('all'); 
+    preload([
+      '/assets/images/ajax-loader.gif'
+    ]);
+    
+    $('a[data-toggle="tab"]').click(function (e) {
+      var req_type = $(e.target).attr('r_type');
+      busyLoader();
+      refresh_tables(req_type);
+    });
+
+    $(document).ajaxStart(function() {
+      // put start activities here if necesary
+    }).ajaxStop(function() {
+      $('.ajaxBusy').remove();
+    });
+    
+  });
+
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function() {
+        $('<img/>')[0].src = this;
+    });
+  }
+
+  function busyLoader() {
+    $('.requests_table_container').empty();
+    $('.requests_table_container').append('<div class="ajaxBusy"><img src="/assets/images/ajax-loader.gif"></div>');
+    $('.ajaxBusy').css({
+      width: 'auto',
+      padding: '50px',
+      'text-align': 'center',
+      margin: '0px auto 0px auto'
+    });
+  }
+
+  function refresh_tables(type) { 
+      $.ajax({
+        url: <%= link_to requests_by_state_path %>,
+        dataType: 'html',
+        type: 'POST',
+        data: 's_val=' + type,
+        success: function(data) {
+          $('.ajaxBusy').remove();
+          $('#' + type + '_div').append(data);
+          $('#' + type + '_table').dataTable({
+            sPaginationType: "full_numbers"
+          });
+        }
+      });
+  }
+</script>
 <div class="container">
   <div class="row">
-    <div class="span9">
-      <h1>All Video Requests</h1>
-      <div class="span9">
-        <table id="requests_table" class="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Date Requested</th>
-              <th>Date Due</th>
-              <th>Title</th>
-              <th>Course</th>
-              <th>Requester</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @requests.each do |request| %>
-              <tr>
-                <td><%= link_to request.id, edit_admin_request_path(request) %></td>
-                <td><%= request.created_at %></td>
-                <td><%= request.needed_by %></td>
-                <td><%= request.title %></td>
-                <td><%= request.course %></td>
-                <td>
-                  <%= link_to(requester_info_path(request.user), :method => :post, :remote => true) do %>
-                    <i class="icon-user"></i>
-                    <%= request.user.display_name %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <h1 id='bubba'>Video Requests</h1>
+    <div class="span12 tabbable tabs-top">
+      <ul class="nav nav-tabs">
+        <li class="active">
+        <a data-toggle="tab" style="outline-style: none;" r_type="all" href="#lA">All</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="new" href="#lB">New</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_acquisitions" href="#lC">Awaiting Acquisitions</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_cataloging" href="#lD">Awaiting Cataloging</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="digitized" href="#lE">Digitized</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="converted" href="#lF">Converted</a>
+        </li>
+        <li class="">
+        <a data-toggle="tab" style="outline-style: none;" r_type="uploaded" href="#lG">Uploaded</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="lA" class="tab-pane active">
+          <div id="all_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lB" class="tab-pane">
+          <div id="new_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lC" class="tab-pane">
+          <div id="awaiting_acquisitions_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lD" class="tab-pane">
+          <div id="awaiting_cataloging_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lE" class="tab-pane">
+          <div id="digitized_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lF" class="tab-pane">
+          <div id="converted_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lG" class="tab-pane">
+          <div id="uploaded_div" class="requests_table_container">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

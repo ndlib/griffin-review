@@ -1,0 +1,71 @@
+<script type="text/javascript">
+  $(document).ready(function() { 
+    $('.transition_state').change(function() {
+      var req_type = $(this).attr('tab_type');
+      var trans_val = $('option:selected', this).val();
+      var req_id = $(this).attr('req_id');
+      $.ajax({
+        url: <%= link_to request_transition_path %>,
+        dataType: 'json',
+        type: 'POST',
+        data: 'r_id=' + req_id + '&trans_val=' + trans_val,
+      });
+      busyLoader();
+      refresh_tables(req_type);
+    });
+  });
+</script>
+<% if @requests.count >= 1 %>
+  <table id="<%= @type %>_table" class="table table-bordered admin_data_table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date Requested</th>
+        <th>Title</th>
+        <th>Date Due</th>
+        <th>Status</th>
+        <th>Transition To</th>
+        <th>Course</th>
+        <th>Requester</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requests.each do |request| %>
+        <tr>
+          <td>
+            <%= link_to request.id, edit_admin_request_path(request) %>
+            <%= link_to(request_path(request), :method => :post, :remote => true) do %>
+              <i class="icon-info-sign"></i>
+            <% end %>
+          </td>
+          <td><%= request.created_at %></td>
+          <td><%= request.title %></td>
+          <td><%= request.needed_by %></td>
+          <td><span style="color:<%= request.current_state.meta[:color] %>;"><%= request.current_state.meta[:label] %></span></td>
+          <td>
+            <select style="width:25; outline-style: none; outline: none; -moz-outline: none; background-color: #F1F1F1; margin-bottom: 0px; padding: 0px; height: auto;" class="transition_state" tab_type="<%= @type %>" req_id="<%= request.id %>">
+              <option value="">--Transition Event--</option>
+              <%= request.current_state.events.keys.each do |transition_key| %>
+                <option value="<%= transition_key %>"><%= request.current_state.events[transition_key].meta[:label] %></option>
+              <% end %>
+            </select>
+          </td>
+          <td><%= request.course %></td>
+          <td>
+            <% if !request.user.nil? %>
+              <%= link_to(requester_path(request.user), :method => :post, :remote => true) do %>
+                <i class="icon-user"></i>
+                <%= request.user.display_name %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-error" style="width: 80%;">
+    <i class='icon-exclamation-sign'></i>
+    There were no requests found in this category
+  </div>
+<% end %>

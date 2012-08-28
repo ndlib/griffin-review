@@ -2,11 +2,14 @@
     :url => url_for(:action => 'update', :controller => 'admin/video_workflow'),
     :html => {:class => 'form-horizontal' } do |r| %>
   <%= r.error_notification %>
-  <div class="control-group">
+  <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span6" }%>
+  <div class="control-group string">
+    <label class="control-label string">Current State</label>  
     <div class="controls">
+      <span style="vertical-align: middle; padding: 4px; font-weight: normal; color: <%= @request.current_state.meta[:color] %>; display: inline-block;" id="current_state"><%= @request.current_state.meta[:label] %></span>
     </div>
   </div>
-  <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span6" }%>
+  <%= r.input :workflow_transition, :label => "Transition To", :collection => @request.current_state.events.keys, :include_blank => '---Select Transition Event---', :label_method => lambda { |s| @request.current_state.events[s].meta[:label] }, :input_html => { :id => "r_workflow_transition" }%>
   <div class="control-group">
     <label class="control-label" for="optionsCheckboxList">Record Flags</label>  
     <div class="controls" style="margin-left: 140px">
@@ -21,7 +24,7 @@
   <div class="form-actions span6">
     <%= r.button :submit, :value => 'Save', :class => 'btn-primary'%>
     <%= link_to 'Cancel', admin_video_request_all_path, :class => 'btn' %>
-    <%= link_to(requester_info_path(@request.user), :class => 'btn btn-primary', :method => :post, :remote => true, :style => "margin-left: 60px;") do %>
+    <%= link_to(requester_path(@request.user), :class => 'btn btn-primary', :method => :post, :remote => true, :style => "margin-left: 60px;") do %>
         <i class="icon-user icon-white"></i>
         Requester Info
       <% end %>

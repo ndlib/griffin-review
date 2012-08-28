@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ = jQuery                                                                                                                                                                       
 $ ->
-    $("#requests_table").dataTable
+    $(".admin_data_table").dataTable
         sPaginationType: "full_numbers"
 

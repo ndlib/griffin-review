@@ -88,13 +88,10 @@ describe Admin::VideoController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested video" do
-        # Assuming there are no other videos in the database, this
-        # specifies that the Video created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        # Video.should_receive(:update_attributes) # .with({'these' => 'params'})
-        # put :update, {:id => @video.item_id} # , :video => {'these' => 'params'}}
-        pending "needs to be rewritten"
+        @video.title = "Another Title"
+        put :update, :id => @video.item_id, :video => @video.attributes
+        get :edit, :id => @video.item_id
+        assigns(:video).title.should eq("Another Title")
       end
 
       it "assigns the requested video as @video" do
@@ -115,14 +112,6 @@ describe Admin::VideoController do
         put :update, {:id => @video.item_id, :video => {}}
         assigns(:video).should eq(@video)
       end
-
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        # Video.stub(:save).and_return(false)
-        # put :update, {:id => @video.item_id, :video => {}}
-        # response.should render_template("edit")
-        pending "needs to be rewritten"
-      end
     end
   end
 
@@ -132,12 +121,6 @@ describe Admin::VideoController do
         delete :destroy, {:id => @video.item_id}
       }.to change(Video, :count).by(-1)
     end
-
-    # it "redirects to the videos list" do
-    #   video = Video.create! valid_attributes
-    #   delete :destroy, {:id => @video_video_id}
-    #   response.should redirect_to(videos_url)
-    # end
   end
 
 end

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
   has_many :requests
+  has_many :video_workflows, :foreign_key => 'workflow_state_change_user'
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :username, :last_name, :first_name, :role_ids, :display_name

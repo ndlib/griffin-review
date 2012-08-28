@@ -16,7 +16,7 @@ class Semester < ActiveRecord::Base
   end
 
   def pending_requests
-    self.requests.where(:request_processed => false)
+    self.requests.where(:workflow_state != 'completed')
   end
   
   def proximate?

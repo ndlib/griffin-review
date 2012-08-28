@@ -7,7 +7,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Request Title #{n}" }
     sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
     repeat_request false
-    library_owned true
+    library_owned false
     language 'English'
     subtitles true
     note { Faker::Lorem.paragraph }

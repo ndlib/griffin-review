@@ -4,30 +4,24 @@ class Admin::VideoWorkflowController < AdminController
 
   def full_list
     
-    @requests = Request.order('needed_by ASC').all
-    
     respond_to do |format|
       format.html { render :template => 'admin/video_workflow/list' }
     end
 
   end
 
-  def processed_requests
-   
-    # @requests = Request.where(:request_processed => true).order('needed_by ASC')
-    
-    respond_to do |format|
-      format.html { render :template => 'admin/video_workflow/list' }
+  def requests_by_state
+
+    if (params[:s_val] == 'all')
+      @requests = Request.order('needed_by ASC').all
+    else
+      @requests = Request.where(:workflow_state => params[:s_val]).order('needed_by ASC')
     end
 
-  end
-
-  def unprocessed_requests
-   
-    # @requests = Request.where(:request_processed => false).order('needed_by ASC')
+    @type = params[:s_val]
     
     respond_to do |format|
-      format.html { render :template => 'admin/video_workflow/list' }
+       format.html { render :partial => 'admin/video_workflow/request_list_table' }
     end
 
   end
@@ -40,6 +34,31 @@ class Admin::VideoWorkflowController < AdminController
       format.html { render :template => 'admin/video_workflow/list' }
     end
 
+  end
+  
+  def request_transition
+    @request = Request.find(params[:r_id])
+
+    transition_success = true
+    if (!params[:trans_val].nil? && !params[:trans_val].empty?)
+      transition = params[:trans_val]
+      begin
+        @request.send("#{transition}!".to_sym)
+      rescue
+        transition_success = false
+      end
+    end
+
+    if transition_success
+      @request.workflow_state_user = current_user
+      @request.workflow_state_change_date = Time.now
+      @request.save
+    end
+
+    respond_to do |format|
+      transition_success ?  format.json { head :ok } : format.json { head :bad_request }
+    end
+    
   end
 
   def destroy
@@ -58,6 +77,12 @@ class Admin::VideoWorkflowController < AdminController
 
   def update
     @request = Request.find(params[:r_id])
+    if (!params[:request][:workflow_transition].nil? && !params[:request][:workflow_transition].empty?)
+      transition = params[:request][:workflow_transition]
+      @request.send("#{transition}!".to_sym)
+      @request.workflow_state_user = current_user
+      @request.workflow_state_change_date = Time.now
+    end
 
     respond_to do |format|
       if @request.update_attributes(params[:request])
@@ -74,7 +99,27 @@ class Admin::VideoWorkflowController < AdminController
     @request = Request.find(params[:r_id])
   end
 
-  def requester_info
+  def request_record
+
+    @request = Request.find(params[:request_id])
+    
+    # LDAP interface
+    if (!@request.workflow_state_change_user.nil?)
+      ldap = Ldap.new
+      ldap.connect
+      begin
+        @workflow_user = ldap.find('uid', @request.workflow_state_user.username)
+      rescue
+        @workflow_user = nil
+      end
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def requester
 
     requester_record = User.find(params[:user_id])
 
@@ -95,5 +140,4 @@ class Admin::VideoWorkflowController < AdminController
       format.js
     end
   end
-
 end
