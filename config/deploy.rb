@@ -45,7 +45,7 @@ task :pre_production do
 
   set :rails_env, 'pre_production'
   set :deploy_to, "/shared/reserves_pprd/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/reserves_pprd/ruby/bin'
+  set :ruby_bin,  '/shared/reserves_pprd/ruby/1.8.7/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
@@ -130,6 +130,3 @@ end
 
 after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'
 after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'
-
-        require './config/boot'
-        require 'airbrake/capistrano'
