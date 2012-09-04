@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+      $('#logged_in_user').popover({
+        animation:true,
+        content:'<table cellpadding="5"><tr><td style="text-align:right;">Last log in:</td><td><%= current_user.last_sign_in_at %></td></tr><tr><td style="text-align:right; vertical-align:top;">Roles:</td><td><% current_user.roles.each do |r| %><%= r.name %><br/><% end %></td></tr></table>',
+        placement:'bottom',
+        trigger:'hover',
+        title:'User Info'
+        });
+      });
+</script>
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -18,9 +30,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">Course Reserves Administration</a>
+      <a class="brand" href="/admin">Course Reserves Administration</a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
+          <li class="navbar-text" id="logged_in_user"><span>Logged in as <%= current_user.username %></span></li>
+          <li class="divider-vertical"></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               Menu
@@ -29,6 +43,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "System Users", admin_user_index_path %></li>
               <li><%= link_to "Video Records", admin_video_index_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path %></li>
             </ul>
           </ul>
           </li>

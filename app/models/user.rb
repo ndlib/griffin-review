@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :cas_authenticatable, :trackable
 
-  before_save :fetch_attributes_from_ldap, :on => :create
+  before_validation :fetch_attributes_from_ldap, :on => :create
 
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :video_workflows, :foreign_key => 'workflow_state_change_user'
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :username, :last_name, :first_name, :role_ids, :display_name
+  attr_accessible :email, :username, :last_name, :first_name, :role_ids, :display_name, :roles
 
   validates :username, :email, :uniqueness => true
   validates_presence_of :email, :username, :first_name, :last_name, :display_name

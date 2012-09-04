@@ -13,6 +13,14 @@
       busyLoader();
       refresh_tables(req_type);
     });
+
+    $('.request_load').click(function() {
+      busyLoaderModal();
+    });
+
+    $('.requester_load').click(function() {
+      busyLoaderModal();
+    });
   });
 </script>
 <% if @requests.count >= 1 %>
@@ -32,9 +40,9 @@
     <tbody>
       <% @requests.each do |request| %>
         <tr>
-          <td>
+          <td style="white-space:nowrap;">
             <%= link_to request.id, edit_admin_request_path(request) %>
-            <%= link_to(request_path(request), :method => :post, :remote => true) do %>
+            <%= link_to(request_path(request), :method => :post, :class => 'request_load', :remote => true) do %>
               <i class="icon-info-sign"></i>
             <% end %>
           </td>
@@ -50,12 +58,12 @@
               <% end %>
             </select>
           </td>
-          <td><%= request.course %></td>
-          <td>
+          <td><span style="white-space:nowrap;"><%= request.course %></span></td>
+          <td style="white-space:nowrap;">
             <% if !request.user.nil? %>
-              <%= link_to(requester_path(request.user), :method => :post, :remote => true) do %>
+              <%= link_to(requester_path(request.user), :class => 'requester_load', :method => :post, :remote => true) do %>
                 <i class="icon-user"></i>
-                <%= request.user.display_name %>
+                <span style="white-space:nowrap;"><%= request.user.display_name %></span>
               <% end %>
             <% end %>
           </td>

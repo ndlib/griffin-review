@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="span9">
-      <h1>Reserves Administration</h1>
-      <div class="span9">
-        <table class="table table-bordered table-striped">
+      <h1>User Administration</h1>
+      <div class="span12">
+        <table class="table table-bordered admin_data_table">
               <thead>
                 <th>System ID</th>
                 <th>Last Name</th>
@@ -14,7 +14,7 @@
                 <% for user in @users %>
                 <tr>
                   <td>
-                    <%= link_to user[:id], edit_admin_user_path(user) %>
+                    <%= link_to user[:id], admin_user_path(user) %>
                   </td>
                   <td>
                     <%= user[:last_name] %>

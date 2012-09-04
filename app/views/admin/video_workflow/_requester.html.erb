@@ -1,41 +1,50 @@
 <div class="modal" id="requesterModal" tabindex="-1" role="dialog" aria-labelledby="requesterModalLabel" aria-hidden="true">
-  <style type="text/css">
-    .label-info {font-size: 12px;}
-  </style>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="requesterModalLabel">Requester Information</h3>
   </div>
   <div class="modal-body">
     <table cellpadding="4">
-      <tr>
-        <td align="right"><h4>Name</h4></td>
-        <td><span><%= @requester.displayname.first %> (<%= @requester.uid %>)</span></td>
-      </tr>
-      <tr>
-        <td align="right"><h4>Title</h4></td>
-        <td><span><%= @requester.title.first %> (<%= @requester.edupersonaffiliation %>)</span></td>
-      </tr>
-      <tr>
-        <td align="right"><h4>Department</h4></td>
-        <td><span><%= @requester.nddepartment.first %></span></td>
-      </tr>
-      <tr>
-        <td align="right"><h4>Email</h4></td>
-        <td><span><a href="mailto:<%= @requester.ndmail.first %>" style="text-decoration: underline; outline-style: none;"><%= @requester.ndmail.first %></a></span></td>
-      </tr>
-      <tr>
-        <td align="right"><h4>Phone Number</h4></td>
-        <td><span><%= @requester.telephonenumber.first %></span></td>
-      </tr>
-      <tr>
-        <td align="right"><h4>Address</h4></td>
-        <td>
-          <% for @part in @requester.ndofficeaddress.first.split(/\$/) %>
-            <span><%= @part %></span><br/>
-          <% end %>
-        </td>
-      </tr>
+      <% if @requester.respond_to?(:displayname) %>
+        <tr>
+          <td align="right"><h4>Name</h4></td>
+          <td><span><%= @requester.displayname.first %> (<%= @requester.uid.first %>)</span></td>
+        </tr>
+      <% end %>
+      <% if @requester.respond_to?(:title) %>
+        <tr>
+          <td align="right"><h4>Title</h4></td>
+          <td><span><%= @requester.title.first %> (<%= @requester.edupersonaffiliation.first %>)</span></td>
+        </tr>
+      <% end %>
+      <% if @requester.respond_to?(:nddepartment) %>
+        <tr>
+          <td align="right"><h4>Department</h4></td>
+          <td><span><%= @requester.nddepartment.first %></span></td>
+        </tr>
+      <% end %>
+      <% if @requester.respond_to?(:ndmail) %>
+        <tr>
+          <td align="right"><h4>Email</h4></td>
+          <td><span><a href="mailto:<%= @requester.ndmail.first %>" style="text-decoration: underline; outline-style: none;"><%= @requester.ndmail.first %></a></span></td>
+        </tr>
+      <% end %>
+      <% if @requester.respond_to?(:telephonenumber) %>
+        <tr>
+          <td align="right"><h4>Phone Number</h4></td>
+          <td><span><%= @requester.telephonenumber.first %></span></td>
+        </tr>
+      <% end %>
+      <% if @requester.respond_to?(:ndofficeaddress) %>
+        <tr>
+          <td align="right"><h4>Address</h4></td>
+          <td>
+            <% for @part in @requester.ndofficeaddress.first.split(/\$/) %>
+              <span><%= @part %></span><br/>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     </table>
   </div>
   <div class="modal-footer">

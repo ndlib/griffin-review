@@ -5,20 +5,20 @@
     <div class="span9 tabbable tabs-top">
       <ul class="nav nav-tabs">
         <li class="active">
-          <a data-toggle="tab" href="#lA">Basic Info</a>
+          <a data-toggle="tab" style="outline-style: none;" href="#lA">Basic Info</a>
         </li>
         <li class="">
-          <a data-toggle="tab" href="#lB">Authorization</a>
+          <a data-toggle="tab" style="outline-style: none;" href="#lB">Authorization</a>
         </li>
       </ul>
       <div class="tab-content">
         <div id="lA" class="tab-pane active">
           <div class="span6">
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="width:80%;">
               <tbody>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Name</span>
+                    <span class="label label-info">Name</span>
                   </td>
                   <td>
                     <%= @user.display_name %>
@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Email</span>
+                    <span class="label label-info">Email</span>
                   </td>
                   <td>
                     <%= @user.email %>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Username</span>
+                    <span class="label label-info">Username</span>
                   </td>
                   <td>
                     <%= @user.username %>
@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Login Count</span>
+                    <span class="label label-info">Login Count</span>
                   </td>
                   <td>
                     <%= @user.sign_in_count %>
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Last Login</span>
+                    <span class="label label-info">Last Login</span>
                   </td>
                   <td>
                     <% if @user.current_sign_in_at? %>
@@ -67,8 +67,8 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <td><span class="label label-inverse">Name</span></td>
-                <td><span class="label label-inverse">Description</span></td>
+                <td><span class="label label-info">Name</span></td>
+                <td><span class="label label-info">Description</span></td>
               </tr>
             </thead>
             <tbody>

@@ -10,28 +10,28 @@ class VideoWorkflow < ActiveRecord::Base
     state :new, :meta => {:label => 'New', :color => '#2929FF'} do
       event :request_from_acquisitions, :transitions_to => :awaiting_acquisitions, :meta => {:label => 'Requested from Acquisitions'}
       event :digitize, :transitions_to => :digitized, :meta => {:label => 'Digitized'}
-      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted for Streaming'}
+      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted'}
     end
     
     state :awaiting_acquisitions, :meta => {:label => 'Awaiting Acquisitions', :color => '#567B6C'} do
-      event :send_to_cataloging, :transitions_to => :awaiting_cataloging, :meta => {:label => 'Sent to Cataloging'}
+      event :send_to_cataloging, :transitions_to => :awaiting_cataloging, :meta => {:label => 'Cataloging'}
     end
 
-    state :awaiting_cataloging, :meta => {:label => 'Awaiting Cataloging', :color => '#7D7135'} do
+    state :awaiting_cataloging, :meta => {:label => 'Cataloging', :color => '#7D7135'} do
       event :digitize, :transitions_to => :digitized, :meta => {:label => 'Digitized'}
-      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted for Streaming'}
+      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted'}
     end
     
     state :digitized, :meta => {:label => 'Digitized', :color => '#7D5426'} do
-      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted for Streaming'}
-      event :upload, :transitions_to => :uploaded, :meta => {:label => 'Uploaded to Streaming Server'}
+      event :convert_for_streaming, :transitions_to => :converted, :meta => {:label => 'Converted'}
+      event :upload, :transitions_to => :uploaded, :meta => {:label => 'Uploaded'}
     end
 
     state :converted, :meta => {:label => 'Converted for Streaming', :color => '#7D3209'} do
-      event :upload, :transitions_to => :uploaded, :meta => {:label => 'Uploaded to Streaming Server'}
+      event :upload, :transitions_to => :uploaded, :meta => {:label => 'Uploaded'}
     end
     
-    state :uploaded, :meta => {:label => 'Uploaded to Streaming Server', :color => '#47507D'} do
+    state :uploaded, :meta => {:label => 'Uploaded', :color => '#47507D'} do
       event :complete, :transitions_to => :completed, :meta => {:label => 'Processing Complete'}
     end
 

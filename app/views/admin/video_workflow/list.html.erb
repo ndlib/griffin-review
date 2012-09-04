@@ -1,11 +1,14 @@
 <script type="text/javascript">
+  $(window).load(function() {
+    busyLoader();
+    refresh_tables('all'); 
+  });
   $(document).ready(function() { 
       
-    refresh_tables('all'); 
     preload([
       '/assets/images/ajax-loader.gif'
-    ]);
-    
+      ]);
+
     $('a[data-toggle="tab"]').click(function (e) {
       var req_type = $(e.target).attr('r_type');
       busyLoader();
@@ -22,7 +25,9 @@
 
   function preload(arrayOfImages) {
     $(arrayOfImages).each(function() {
-        $('<img/>')[0].src = this;
+        loading_image = new Image();
+        loading_image.src = this;
+        // $('<img/>')[0].src = this;
     });
   }
 
@@ -34,6 +39,15 @@
       padding: '50px',
       'text-align': 'center',
       margin: '0px auto 0px auto'
+    });
+  }
+
+  function busyLoaderModal() {
+    $('<div class="modal ajaxBusy" role="dialog" aria-hidden="true"><img src="/assets/images/ajax-loader.gif"></div>').appendTo('body').modal({backdrop: false});
+    $('.ajaxBusy').css({
+      width: 'auto',
+      padding: '180px',
+      'text-align': 'center'
     });
   }
 
@@ -55,7 +69,7 @@
 </script>
 <div class="container">
   <div class="row">
-    <h1 id='bubba'>Video Requests</h1>
+    <h1>Video Requests</h1>
     <div class="span12 tabbable tabs-top">
       <ul class="nav nav-tabs">
         <li class="active">

@@ -7,3 +7,11 @@
 @import "bootstrap_and_overrides.css.scss";
 @import "dataTables/jquery.dataTables.bootstrap";
 @import "dataTables/jquery.dataTables";
+
+.label-info {
+  font-size: 14px;
+}
+
+table.modal_info_table h4 {
+  white-space: nowrap;
+}
