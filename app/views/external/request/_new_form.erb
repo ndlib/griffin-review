@@ -7,9 +7,10 @@
   <%= r.input :repeat_request, :label => "Repeat Request?", :input_html => { :id => "r_repeat_request" } %>
   <%= r.input :course, :label => "Course", :placeholder => 'e.g. SP12 CHEM 1001 01', :hint => "should be formatted as FA12 BUS 3021 01", :input_html => { :id => "r_course", :class => "span4" }%>
   <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
-  <%= r.input :language, :label => "Language", :placeholder => 'language track to be used', :input_html => { :id => "r_language", :class => "span4" }%>
+  <%= r.input :language, :label => "Audio Language", :placeholder => 'language track to be used', :input_html => { :id => "r_language", :class => "span4" }%>
+  <%= r.input :subtitles, :label => "Subtitle Language", :placeholder => 'subtitle language (if any)', :input_html => { :id => "r_language", :class => "span4" }%>
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4" } %>
-  <%= r.input :note, :label => "Special Instructions", :placeholder => 'e.g. - technical information, audio information, desired compression quality, etc', :input_html => { :id => "r_note", :class => "span6" } %>
+  <%= r.input :note, :label => "Special Instructions", :placeholder => 'e.g. - technical information, special audio information, course managemenet information, etc', :input_html => { :id => "r_note", :class => "span6" } %>
   <div class="form-actions span6">
     <%= r.button :submit, :class => 'btn-primary'%>
   </div>

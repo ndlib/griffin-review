@@ -1,0 +1,53 @@
+<div class="modal" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="userModalLabel">User Information</h3>
+  </div>
+  <div class="modal-body">
+    <table cellpadding="4">
+      <% if @user.respond_to?(:displayname) %>
+        <tr>
+          <td align="right"><h4>Name</h4></td>
+          <td><span><%= @user.displayname.first %> (<%= @user.uid.first %>)</span></td>
+        </tr>
+      <% end %>
+      <% if @user.respond_to?(:title) %>
+        <tr>
+          <td align="right"><h4>Title</h4></td>
+          <td><span><%= @user.title.first %> (<%= @user.edupersonaffiliation.first %>)</span></td>
+        </tr>
+      <% end %>
+      <% if @user.respond_to?(:nddepartment) %>
+        <tr>
+          <td align="right"><h4>Department</h4></td>
+          <td><span><%= @user.nddepartment.first %></span></td>
+        </tr>
+      <% end %>
+      <% if @user.respond_to?(:ndmail) %>
+        <tr>
+          <td align="right"><h4>Email</h4></td>
+          <td><span><a href="mailto:<%= @user.ndmail.first %>" style="text-decoration: underline; outline-style: none;"><%= @user.ndmail.first %></a></span></td>
+        </tr>
+      <% end %>
+      <% if @user.respond_to?(:telephonenumber) %>
+        <tr>
+          <td align="right"><h4>Phone Number</h4></td>
+          <td><span><%= @user.telephonenumber.first %></span></td>
+        </tr>
+      <% end %>
+      <% if @user.respond_to?(:ndofficeaddress) %>
+        <tr>
+          <td align="right"><h4>Address</h4></td>
+          <td>
+            <% for @part in @user.ndofficeaddress.first.split(/\$/) %>
+              <span><%= @part %></span><br/>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

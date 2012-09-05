@@ -16,6 +16,29 @@ class AdminController < ApplicationController
 
   end
 
+
+  def user_info
+
+    user_record = User.find(params[:user_id])
+
+    # LDAP interface
+    ldap = Ldap.new
+    ldap.connect
+    @user = ldap.find('uid', user_record.username)
+
+    respond_to do |format|
+      format.html { render :json => { 
+        :first_name => user_record.first_name, 
+        :last_name => user_record.last_name
+      }.to_json }
+      format.json { render :json => { 
+        :first_name => user_record.first_name, 
+        :last_name => user_record.last_name
+      }.to_json }
+      format.js
+    end
+  end
+
   def index
 
     @items = Item.currently_used(self.calculate_semester)

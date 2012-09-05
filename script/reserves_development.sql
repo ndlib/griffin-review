@@ -23,7 +23,7 @@ CREATE TABLE `schema_migrations` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-INSERT INTO `schema_migrations` VALUES ('20120618210515'),('20120621182135'),('20120621185142'),('20120706195736'),('20120710151041'),('20120723202005'),('20120816162945'),('20120820183857'),('20120820184700');
+INSERT INTO `schema_migrations` VALUES ('20120618210515'),('20120621182135'),('20120621185142'),('20120706195736'),('20120710151041'),('20120723202005'),('20120816162945'),('20120820183857'),('20120820184700'),('20120905133021');
 DROP TABLE IF EXISTS `semesters`;
 CREATE TABLE `semesters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-INSERT INTO `users` VALUES (4,'Robert','Fox','Robert Fox','rfox2@nd.edu',24,'2012-08-22 14:28:46','2012-08-17 18:26:22','127.0.0.1','127.0.0.1','rfox2','2012-06-20 18:16:36','2012-08-22 14:28:46'),(5,'Tom','Hanstra','Tom Hanstra','hanstra@nd.edu',0,NULL,NULL,NULL,NULL,'hanstra','2012-06-25 19:09:18','2012-06-25 19:09:18');
+INSERT INTO `users` VALUES (4,'Robert','Fox','Robert Fox','rfox2@nd.edu',25,'2012-09-04 21:31:22','2012-08-22 14:28:46','127.0.0.1','127.0.0.1','rfox2','2012-06-20 18:16:36','2012-09-04 21:31:22'),(5,'Tom','Hanstra','Tom Hanstra','hanstra@nd.edu',0,NULL,NULL,NULL,NULL,'hanstra','2012-06-25 19:09:18','2012-06-25 19:09:18');
 DROP TABLE IF EXISTS `video_workflows`;
 CREATE TABLE `video_workflows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,7 +67,7 @@ CREATE TABLE `video_workflows` (
   `repeat_request` tinyint(1) DEFAULT NULL,
   `library_owned` tinyint(1) DEFAULT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `subtitles` tinyint(1) DEFAULT NULL,
+  `subtitles` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `note` text COLLATE utf8_unicode_ci,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

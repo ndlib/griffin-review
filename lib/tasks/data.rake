@@ -118,3 +118,44 @@ task :reset_dev_db => :environment do
     end
   end
 end
+
+desc "Reset the preproduction database"
+task :reset_preprod_db => :environment do
+  Rails.env = 'pre_production'
+  log_path = 'log/'
+  log_file = File.open("#{log_path}reset_preprod_db.log", 'w+')
+  logger = Logger.new(log_file)
+  sql = File.open('script/reserves_preprod.sql', "r")
+  new_sql = File.new('script/reserves_preprod_revised.sql', "w")
+  new_sql.close
+  sql_new = File.open('script/reserves_preprod_revised.sql', "w+")
+  sql.read.each do |sql_line|
+    sql_line.gsub! /\n/, ''
+    if (
+      !sql_line.nil? &&
+      !sql_line.empty? &&
+      sql_line !~ /^\s+$/ && 
+      sql_line !~ /^\/\*/ &&
+      sql_line !~ /^---/ &&
+      sql_line !~ /^--/
+    )
+    sql_new.write(sql_line + "\n")
+    end
+  end
+  sql_new.close
+  sql.close
+  File.delete('script/reserves_preprod.sql')
+  File.rename('script/reserves_preprod_revised.sql', 'script/reserves_preprod.sql')
+  sql = File.open('script/reserves_preprod.sql').read
+  sql.split(';').each do |sql_statement|
+    sql_statement.gsub! /\n/, ''
+    if (
+      !sql_statement.nil? &&
+      !sql_statement.empty? &&
+      sql_statement !~ /^\s+$/
+    )
+    ActiveRecord::Base.connection().execute(sql_statement)
+    logger.info(sql_statement)
+    end
+  end
+end

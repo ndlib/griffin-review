@@ -35,6 +35,9 @@ Griffin::Application.routes.draw do
   put "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'update'
   get "/admin/video/request/:r_id/edit", :controller => 'admin/video_workflow', :action => 'edit', :as => 'edit_admin_request'
 
+  # users
+  post "/admin/user/:user_id", :controller => 'admin', :action => 'user_info', :as => 'user_info'
+
   # semesters
   get "/admin/semester/all", :controller => 'admin', :action => 'show_all_semesters'
   get "/admin/semester/active", :controller => 'admin', :action => 'show_proximate_semesters'

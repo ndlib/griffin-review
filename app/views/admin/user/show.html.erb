@@ -1,3 +1,11 @@
+<script type="text/javascript" charset="utf-8">
+  
+  $(document).ready(function() { 
+    $('.user_load').click(function() {
+      busyLoaderModal();
+    });
+  });
+</script>
 <div class="container">
   <div class="row">
     <h1 style="display:inline; margin-right: 40px;">User <%= @user.display_name %></h1><a class="btn btn-primary" href="<%= url_for(edit_admin_user_path(@user)) %>">Edit User</a>
@@ -21,6 +29,9 @@
                     <span class="label label-info">Name</span>
                   </td>
                   <td>
+                    <%= link_to(user_info_path(@user), :class => 'user_load', :method => :post, :remote => true) do %>
+                      <i class="icon-user"></i>
+                    <% end %>
                     <%= @user.display_name %>
                   </td>
                 </tr>

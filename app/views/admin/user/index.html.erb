@@ -1,3 +1,11 @@
+<script type="text/javascript" charset="utf-8">
+  
+  $(document).ready(function() { 
+    $('.user_load').click(function() {
+      busyLoaderModal();
+    });
+  });
+</script>
 <div class="container">
   <div class="row">
     <div class="span9">
@@ -23,6 +31,9 @@
                     <%= user[:first_name] %>
                   </td>
                   <td>
+                    <%= link_to(user_info_path(user), :class => 'user_load', :method => :post, :remote => true) do %>
+                      <i class="icon-user"></i>
+                    <% end %>
                     <%= user[:username] %>
                   </td>
                 </tr>

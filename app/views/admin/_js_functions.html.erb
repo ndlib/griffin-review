@@ -1,0 +1,62 @@
+<script type="text/javascript" charset="utf-8">
+  
+  $(document).ready(function() {
+      $('#logged_in_user').popover({
+        animation:true,
+        content:'<table cellpadding="5"><tr><td style="text-align:right;">Last log in:</td><td><%= current_user.last_sign_in_at %></td></tr><tr><td style="text-align:right; vertical-align:top;">Roles:</td><td><% current_user.roles.each do |r| %><%= r.name %><br/><% end %></td></tr></table>',
+        placement:'bottom',
+        trigger:'hover',
+        title:'User Info'
+        });
+
+      $(document).ajaxStart(function() {
+        // put start activities here if necesary
+      }).ajaxStop(function() {
+        $('.ajaxBusy').remove();
+      });
+  });
+
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function() {
+        loading_image = new Image();
+        loading_image.src = this;
+        // $('<img/>')[0].src = this;
+    });
+  }
+
+  function busyLoader() {
+    $('.requests_table_container').empty();
+    $('.requests_table_container').append('<div class="ajaxBusy"><img src="/assets/images/ajax-loader.gif"></div>');
+    $('.ajaxBusy').css({
+      width: 'auto',
+      padding: '50px',
+      'text-align': 'center',
+      margin: '0px auto 0px auto'
+    });
+  }
+
+  function busyLoaderModal() {
+    $('<div class="modal ajaxBusy" role="dialog" aria-hidden="true"><img src="/assets/images/ajax-loader.gif"></div>').appendTo('body').modal({backdrop: false});
+    $('.ajaxBusy').css({
+      width: 'auto',
+      padding: '180px',
+      'text-align': 'center'
+    });
+  }
+
+  function refresh_tables(type) { 
+      $.ajax({
+        url: <%= link_to requests_by_state_path %>,
+        dataType: 'html',
+        type: 'POST',
+        data: 's_val=' + type,
+        success: function(data) {
+          $('.ajaxBusy').remove();
+          $('#' + type + '_div').append(data);
+          $('#' + type + '_table').dataTable({
+            sPaginationType: "full_numbers"
+          });
+        }
+      });
+  }
+</script>

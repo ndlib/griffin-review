@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820184700) do
+ActiveRecord::Schema.define(:version => 20120905133021) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20120820184700) do
     t.boolean  "repeat_request"
     t.boolean  "library_owned"
     t.string   "language"
-    t.boolean  "subtitles"
+    t.string   "subtitles"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
