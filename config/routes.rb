@@ -35,6 +35,13 @@ Griffin::Application.routes.draw do
   put "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'update'
   get "/admin/video/request/:r_id/edit", :controller => 'admin/video_workflow', :action => 'edit', :as => 'edit_admin_request'
 
+  # metadata attributes
+  scope '/admin' do
+    resources :metadata_attributes, :controller => 'admin' do # , :controller => 'admin', :as => 'metadata'
+      get 'metadata_index'
+    end
+  end
+
   # users
   post "/admin/user/:user_id", :controller => 'admin', :action => 'user_info', :as => 'user_info'
 

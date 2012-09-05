@@ -46,7 +46,7 @@
 
   function refresh_tables(type) { 
       $.ajax({
-        url: <%= link_to requests_by_state_path %>,
+        url: '<%= url_for requests_by_state_path %>',
         dataType: 'html',
         type: 'POST',
         data: 's_val=' + type,

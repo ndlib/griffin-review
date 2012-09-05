@@ -6,7 +6,7 @@
       var trans_val = $('option:selected', this).val();
       var req_id = $(this).attr('req_id');
       $.ajax({
-        url: <%= link_to request_transition_path %>,
+        url: '<%= url_for request_transition_path %>',
         dataType: 'json',
         type: 'POST',
         data: 'r_id=' + req_id + '&trans_val=' + trans_val,

@@ -9,25 +9,51 @@ describe AdminController do
     @distant_semester = Factory.create(:semester, :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
     @old_semester = Factory.create(:semester, :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
     @admin_role = Factory.create(:admin_role)
+    @media_admin_role = Factory.create(:media_admin_role)
     @jane_user = Factory.create(:user)
     @admin_user = Factory.create(:user)
     @admin_user.roles = [@admin_role]
+    @media_admin_user = Factory.create(:user)
+    @media_admin_user.roles = [@media_admin_role]
     @pending_request_a = Factory.create(:generic_request, :semester => @current_semester, :user => @jane_user)
     @pending_request_b = Factory.create(:generic_request, :semester => @current_semester, :user => @jane_user)
     @pending_request_c = Factory.create(:generic_request, :semester => @next_semester, :user => @admin_user)
+    @metadata_a = Factory.create(:metadata_attribute)
+    @metadata_b = Factory.create(:metadata_attribute)
   end
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in @admin_user
   end
 
-  after(:each) do
-    sign_out @admin_user
+  context "Metadata Attribute Administration" do
+    describe "list of metadata attributes" do
+
+      before(:each) do
+        sign_in @media_admin_user
+      end
+
+      after(:each) do
+        sign_out @media_admin_user
+      end
+
+      it "shows a list of all metadata attributes in the system" do
+        get :show_all_meta_attributes
+        assigns(:meta_attrs).should have(2).items
+      end
+    end
   end
 
   context "Semester Administration" do
     describe "list of semesters" do
+
+      before(:each) do
+        sign_in @admin_user
+      end
+
+      after(:each) do
+        sign_out @admin_user
+      end
       
       it "shows a list of all semesters in the system" do
         get :show_all_semesters
@@ -198,7 +224,6 @@ describe AdminController do
             response.should render_template 'admin/semester/edit'
         end
       end
-
 
     end
 

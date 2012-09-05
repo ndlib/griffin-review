@@ -10,11 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905133021) do
+ActiveRecord::Schema.define(:version => 20120905190442) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metadata_attributes", :force => true do |t|
+    t.string   "name"
+    t.text     "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20120905133021) do
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "technical_metadata", :force => true do |t|
+    t.integer  "vw_id"
+    t.integer  "ma_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
