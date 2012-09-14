@@ -56,6 +56,10 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :inline_fields, :tag => 'span', :class => 'inline-form' do |s|
+      s.use :input
+  end
+
   config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder

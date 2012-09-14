@@ -1,6 +1,6 @@
 <%= simple_form_for @request, 
-    :url => url_for(:action => 'update', :controller => 'admin/video_workflow'),
-    :html => {:class => 'form-horizontal' } do |r| %>
+  :url => url_for(:action => 'update', :controller => 'admin/video_workflow'),
+  :html => {:class => 'form-horizontal' } do |r| %>
   <%= r.error_notification %>
   <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span6" }%>
   <div class="control-group string">
@@ -21,13 +21,13 @@
   <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4" } %>
   <%= r.input :note, :label => "Special Instructions", :input_html => { :id => "r_note", :class => "span6" } %>
-  <div class="form-actions span6">
+  <div class="form-actions span5">
     <%= r.button :submit, :value => 'Save', :class => 'btn-primary'%>
-    <%= link_to 'Cancel', admin_video_request_all_path, :class => 'btn' %>
+    <%= link_to 'Cancel', video_request_all_path, :class => 'btn' %>
     <%= link_to(requester_path(@request.user), :class => 'btn btn-primary', :method => :post, :remote => true, :style => "margin-left: 60px;") do %>
-        <i class="icon-user icon-white"></i>
-        Requester Info
-      <% end %>
-    <%= link_to 'Delete Request', delete_admin_request_path(@request), :method => :delete, :confirm => 'Are you sure you want to delete this request?', :style => "float: right;", :class => 'btn btn-danger'%>
+      <i class="icon-user icon-white"></i>
+      Requester Info
+    <% end %>
+    <%= link_to 'Delete Request', request_admin_destroy_path(@request), :method => :delete, :confirm => 'Are you sure you want to delete this request?', :class => 'btn btn-danger'%>
   </div>
 <% end %>

@@ -29,59 +29,59 @@ describe "Video Workflow Integration" do
       logout @media_admin_user
     end
     it "displays the correct request record info on edit screen" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Title').value.should eq(@request_b.title)
       find_field('Course').value.should eq(@request_b.course)
       find_field('Needed By').value.should eq(@request_b.needed_by.to_s)
-      find_field('Special Instructions').value.should eq(@request_b.note)
+      find_field('Special Instructions').value.should include(@request_b.note)
       find_button('Save').value.should eq('Save')
     end
     it "marks the video as library owned" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Library Owns?').checked?.should be_false
       check('Library Owns?')
       click_button('Save')
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Library Owns?').value.should be_true
     end
     it "transitions workflow state to awaiting_acquisitions" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find('#current_state').text.should eq('New')
       select 'Requested from Acquisitions', :from => 'Transition To'
       click_button('Save')
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find('#current_state').text.should eq('Awaiting Acquisitions')
     end
     it "changes the needed by date" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Date Needed By').value.should eq(@request_b.needed_by.to_s)
       fill_in 'Date Needed By', :with => Date.today + 6.weeks
       click_button('Save')
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Date Needed By').value.should eq((Date.today + 6.weeks).to_s)
     end
     it "modifies the special instructions" do
-      visit edit_admin_request_path(@request_b)
-      find_field('Special Instructions').value.should eq(@request_b.note)
+      visit request_admin_edit_path(@request_b)
+      find_field('Special Instructions').value.should include(@request_b.note)
       fill_in 'Special Instructions', :with => 'New Instructions'
       click_button('Save')
-      visit edit_admin_request_path(@request_b)
-      find_field('Special Instructions').value.should eq('New Instructions')
+      visit request_admin_edit_path(@request_b)
+      find_field('Special Instructions').value.should include('New Instructions')
     end
     it "changes the title" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Video Title').value.should eq(@request_b.title)
       fill_in 'Video Title', :with => 'Brand new title'
       click_button('Save')
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       find_field('Video Title').value.should eq('Brand new title')
     end
     it "deletes a request record" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       expect {
         click_link('Delete')
       }.to change(Request, :count).from(3).to(2)
-      current_path.should eq(admin_video_request_all_path)
+      current_path.should eq(video_request_all_path)
     end
   end
 
@@ -97,7 +97,7 @@ describe "Video Workflow Integration" do
       logout @media_admin_user
     end
     it "views the requester informaion" do
-      visit edit_admin_request_path(@request_b)
+      visit request_admin_edit_path(@request_b)
       click_link('Requester Info')
       wait_until{ page.has_content?('Requester Information') }
       page.should have_content(@request_b.user.username)
@@ -116,7 +116,7 @@ describe "Video Workflow Integration" do
     it "accesses the request edit screen"
       # visit admin_video_request_processed_path
       # click_link(@request_a.id.to_s)
-      # current_path.should eq(edit_admin_request_path(@request_a))
+      # current_path.should eq(request_admin_edit_path(@request_a))
     it "marks a video as digitized"
     it "views requester information for request"
     it "reorders the list by title"

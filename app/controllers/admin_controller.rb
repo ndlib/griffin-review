@@ -5,6 +5,7 @@ class AdminController < ApplicationController
   skip_authorize_resource :only => :not_authorized
 
   rescue_from CanCan::AccessDenied do |exception|
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     redirect_to admin_not_authorized_url, :alert => exception.message
   end
 
@@ -15,7 +16,6 @@ class AdminController < ApplicationController
     end
 
   end
-
 
   def user_info
 
@@ -67,7 +67,7 @@ class AdminController < ApplicationController
   end
 
   def edit_semester
-    @semester = Semester.find(params[:s_id])
+    @semester = Semester.find(params[:semester_id])
     logger.debug "Semester found: #{@semester.attributes.inspect}"
     respond_to do |format|
       format.html { render :template => 'admin/semester/edit' }
@@ -79,8 +79,8 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to admin_semester_url(@semester), :notice => 'Semester was successfully created.' }
-        format.json { render :json => @semester, :status => :created, :location => admin_semester_url(@semester) }
+        format.html { redirect_to semester_url(:semester_id => @semester.id), :notice => 'Semester was successfully created.' }
+        format.json { render :json => @semester, :status => :created, :location => semester_url(@semester) }
       else
         format.html { render :action => 'new_semester', :template => 'admin/semester/new' }
         format.json { render :json => @semester.errors, :status => :unprocessable_entity }
@@ -89,11 +89,11 @@ class AdminController < ApplicationController
   end
 
   def update_semester
-    @semester = Semester.find(params[:s_id])
+    @semester = Semester.find(params[:semester_id])
 
     respond_to do |format|
       if @semester.update_attributes(params[:semester])
-        format.html { redirect_to admin_semester_url(@semester), :notice => 'Semester was successfully updated.' }
+        format.html { redirect_to semester_url(@semester), :notice => 'Semester was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit_semester", :template => 'admin/semester/edit'  }
@@ -103,7 +103,7 @@ class AdminController < ApplicationController
   end
 
   def show_semester
-    @semester = Semester.find(params[:s_id])
+    @semester = Semester.find(params[:semester_id])
     respond_to do |format|
       format.html { render :template => 'admin/semester/show' }
     end
@@ -122,6 +122,66 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html { render :template => 'admin/semester/list' }
       format.json { render :json => @semesters }
+    end
+  end
+
+  def all_metadata_attributes
+    @metadata_attributes = MetadataAttribute.order(:name).all
+    respond_to do |format|
+      format.html { render :template => 'admin/metadata_attribute/list' }
+      format.json { render :json => @metadata_attributes }
+    end
+  end
+
+  def new_metadata_attribute
+    @metadata_attribute = MetadataAttribute.new
+    respond_to do |format|
+      format.html { render :template => 'admin/metadata_attribute/new' }
+    end
+  end
+
+  def edit_metadata_attribute
+    @metadata_attribute = MetadataAttribute.find(params[:metadata_attribute_id])
+    respond_to do |format|
+      format.html { render :template => 'admin/metadata_attribute/edit' }
+    end
+  end
+
+  def create_metadata_attribute
+    @metadata_attribute = MetadataAttribute.new(params[:metadata_attribute])
+
+    respond_to do |format|
+      if @metadata_attribute.save
+        format.html { redirect_to all_metadata_attribute_url }
+        format.json { render :json => @metadata_attribute, :status => :created }
+      else
+        format.html { render :action => 'new_metadata_attribute', :template => 'admin/metadata_attribute/new' }
+        format.json { render :json => @metadata_attribute.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_metadata_attribute
+    @metadata_attribute = MetadataAttribute.find(params[:metadata_attribute_id])
+
+    respond_to do |format|
+      if @metadata_attribute.update_attributes(params[:metadata_attribute])
+        format.html { redirect_to all_metadata_attribute_url }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit_metadata_attribute", :template => 'admin/metadata_attribute/edit'  }
+        format.json { render :json => @metadata_attribute.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy_metadata_attribute
+    @metadata_attribute = MetadataAttribute.find(params[:metadata_attribute_id])
+    @metadata_attribute.destroy
+
+    respond_to do |format|
+      format.html { redirect_to all_metadata_attribute_path }
+      format.json { head :ok }
     end
   end
   

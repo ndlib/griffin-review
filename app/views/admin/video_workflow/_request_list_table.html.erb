@@ -9,7 +9,7 @@
         url: '<%= url_for request_transition_path %>',
         dataType: 'json',
         type: 'POST',
-        data: 'r_id=' + req_id + '&trans_val=' + trans_val,
+        data: 'request_id=' + req_id + '&trans_val=' + trans_val,
       });
       busyLoader();
       refresh_tables(req_type);
@@ -20,6 +20,10 @@
     });
 
     $('.requester_load').click(function() {
+      busyLoaderModal();
+    });
+
+    $('.request_tech_load').click(function() {
       busyLoaderModal();
     });
   });
@@ -42,9 +46,12 @@
       <% @requests.each do |request| %>
         <tr>
           <td style="white-space:nowrap;">
-            <%= link_to request.id, edit_admin_request_path(request) %>
+            <%= link_to request.id, request_admin_edit_path(request) %>
             <%= link_to(request_path(request), :method => :post, :class => 'request_load', :remote => true) do %>
               <i class="icon-info-sign"></i>
+            <% end %>
+            <%= link_to(request_tech_path(request), :method => :post, :class => 'request_tech_load', :remote => true) do %>
+              <i class="icon-cog"></i>
             <% end %>
           </td>
           <td><%= request.created_at %></td>

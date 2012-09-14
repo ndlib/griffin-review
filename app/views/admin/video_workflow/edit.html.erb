@@ -1,10 +1,71 @@
+<script type="text/javascript" charset="utf-8">
+  
+  $(window).load(function() {
+    <% if flash[:notice] %>
+      busyUpdateMessage('<%= flash[:notice] %>');
+      setTimeout('refresh_tech_data(<%= @request.id %>);', 1200); 
+    <% else %>
+      busyLoaderTech();
+      refresh_tech_data(<%= @request.id %>); 
+    <% end %>
+  });
+
+  $(document).ready(function() { 
+      
+    preload([
+      '/assets/images/ajax-loader.gif'
+    ]);
+
+    $('#tech_info_container_tab').click(function () {
+       busyLoaderTech();
+       refresh_tech_data(<%= @request.id %>);
+    });
+    
+  });
+
+</script>
 <div class="container">
   <div class="row">
-    <div class="span9">
+    <div class="span15">
       <h1>Edit Video Request</h1>
-      <div class="span9">
-        <%= render 'edit_form' %>
-      </div>
+      <div class="span12 tabbable tabs-left">
+        <ul class="nav nav-tabs">
+          <% if @tech_update_return %>
+          <li class="">
+          <% else %>
+          <li class="active">
+          <% end %>
+          <a data-toggle="tab" style="outline-style: none;" href="#lA">Basic Info</a>
+          </li>
+          <% if @tech_update_return %>
+          <li class="active">
+          <% else %>
+          <li class="">
+          <% end %>
+          <a data-toggle="tab" style="outline-style: none;" id="tech_info_container_tab" href="#lB">Technical Info</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <% if @tech_update_return %>
+            <div id="lA" class="tab-pane">
+          <% else %>
+            <div id="lA" class="tab-pane active">
+          <% end %>
+            <legend>Basic Information</legend>
+          <% if flash[:notice] && !@tech_update_return %>
+            <div id="notice_area" class="alert alert-success">
+              <%= flash[:notice] %> 
+            </div>
+          <% end %>
+            <%= render 'edit_form' %>
+            </div>
+          <% if @tech_update_return %>
+            <div id="lB" class="tab-pane active">
+          <% else %>
+            <div id="lB" class="tab-pane">
+          <% end %>
+            </div>
+        </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -41,13 +41,12 @@ gem 'rest-client', "~> 1.6.7"
 
 # development only
 group :development do
-    # specific versions of boson and irbtools for ruby 1.8.7
-    gem 'boson', "0.3.4"
-    gem 'irbtools', "1.0.6", :require => 'irbtools/configure'
+    gem 'pry-rails'
     gem 'looksee'
     gem 'rspec-rails'
     gem 'rdoc'
     gem 'awesome_print'
+    gem 'sextant'
 end
 
 # testing
@@ -82,9 +81,9 @@ gem 'rails-backbone'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails',   '~> 3.2.5'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier', '>= 1.2.4'
 end
 
 

@@ -26,6 +26,17 @@ class Admin::VideoWorkflowController < AdminController
 
   end
 
+  def tech_data
+
+    @request = Request.find(params[:request_id])
+    @metadata_attributes = MetadataAttribute.order('name ASC').all
+    
+    respond_to do |format|
+       format.html { render :partial => 'admin/video_workflow/technical_metadata' }
+    end
+
+  end
+
   def requests_by_semester
 
     @requests = Request.where(:semester_id => params[:s_id]).order('needed_by ASC')
@@ -37,7 +48,7 @@ class Admin::VideoWorkflowController < AdminController
   end
   
   def request_transition
-    @request = Request.find(params[:r_id])
+    @request = Request.find(params[:request_id])
 
     transition_success = true
     if (!params[:trans_val].nil? && !params[:trans_val].empty?)
@@ -62,31 +73,63 @@ class Admin::VideoWorkflowController < AdminController
   end
 
   def destroy
-    @request = Request.find(params[:r_id])
+    @request = Request.find(params[:request_id])
     @request.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_video_request_all_path }
+      format.html { redirect_to video_request_all_path }
       format.json { head :ok }
     end
   end
 
   def edit
-    @request = Request.find(params[:r_id])
+    @request = Request.find(params[:request_id])
+    @metadata_attributes = MetadataAttribute.order('name ASC').all
+    if (flash[:notice] == 'Adding a technical attribute...' || flash[:notice] == 'Updating technical attributes...')
+      @tech_update_return = true
+    end
+  end
+
+  def destroy_technical_metadata
+    @request = Request.find(params[:request_id])
+    @tech_metadata = TechnicalMetadata.find(params[:tech_id])
+    
+    respond_to do |format|
+      if @tech_metadata.destroy
+        format.json { render :json => {:id => @tech_metadata.id, :status => 'deleted'} }
+      else
+        format.json { render :json => @tech_metadata.errors, :status => :unprocessable_entity }
+      end
+    end
+
   end
 
   def update
-    @request = Request.find(params[:r_id])
-    if (!params[:request][:workflow_transition].nil? && !params[:request][:workflow_transition].empty?)
-      transition = params[:request][:workflow_transition]
-      @request.send("#{transition}!".to_sym)
-      @request.workflow_state_user = current_user
-      @request.workflow_state_change_date = Time.now
+    @request = Request.find(params[:request_id])
+    if (params[:request])
+      if (!params[:request][:workflow_transition].nil? && !params[:request][:workflow_transition].empty?)
+        transition = params[:request][:workflow_transition]
+        @request.send("#{transition}!".to_sym)
+        @request.workflow_state_user = current_user
+        @request.workflow_state_change_date = Time.now
+      end
+    end
+
+    update_notice = 'Updating technical attributes...'
+    if (params[:addtech])
+      ma = MetadataAttribute.first
+      tm = TechnicalMetadata.new(:vw_id => @request.id, :ma_id => ma.id, :value => 'Please Change');
+      tm.save
+      update_notice = 'Adding a technical attribute...'
     end
 
     respond_to do |format|
       if @request.update_attributes(params[:request])
-        format.html { redirect_to admin_video_request_all_url, :notice => 'Request was successfully updated.' }
+        if (params[:techupdate])
+        format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => update_notice }
+        else
+        format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => 'Request was successfully updated.' }
+        end
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -96,7 +139,16 @@ class Admin::VideoWorkflowController < AdminController
   end
 
   def show
-    @request = Request.find(params[:r_id])
+    @request = Request.find(params[:request_id])
+  end
+
+  def request_tech
+
+    @request = Request.find(params[:request_id])
+    
+    respond_to do |format|
+      format.js
+    end
   end
 
   def request_record

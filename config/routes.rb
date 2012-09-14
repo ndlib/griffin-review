@@ -2,15 +2,9 @@ Griffin::Application.routes.draw do
 
   devise_for :users
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-  
-  # Testing multi model access
-  # match "/group/list", :controller => 'group', :action => 'list'
-  # match "/groups", :method => 'get', :controller => 'group', :action => 'list'
-
-
-  # admin
+  ############################
+  # Administrative Functions # 
+  ############################
   namespace :admin do
     resources :role
     resources :user
@@ -18,102 +12,72 @@ Griffin::Application.routes.draw do
     resources :group
     resources :item
   end
-
-  post "/admin/find-record", :controller => 'admin/video', :action => 'find_record'
-  get "/admin/not-authorized", :controller => 'admin', :action => 'not_authorized', :as => 'admin_not_authorized'
-  get "/admin", :controller => 'admin', :action => 'index', :as => 'admin_index'
-
-  # video workflow
-  get "/admin/video/request/all", :controller => 'admin/video_workflow', :action => 'full_list'
-  post "/admin/requester/:user_id", :controller => 'admin/video_workflow', :action => 'requester', :as => 'requester'
-  post "/admin/request/:request_id", :controller => 'admin/video_workflow', :action => 'request_record', :as => 'request'
-  post "/admin/video/request/state", :controller => 'admin/video_workflow', :action => 'requests_by_state', :as => 'requests_by_state'
-  post "/admin/video/request/transition", :controller => 'admin/video_workflow', :action => 'request_transition', :as => 'request_transition'
-  get "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'show'
-  get "/admin/video/request/by_semester/:s_id", :controller => 'admin/video_workflow', :action => 'requests_by_semester'
-  delete "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'destroy', :as => 'delete_admin_request'
-  put "/admin/video/request/:r_id", :controller => 'admin/video_workflow', :action => 'update'
-  get "/admin/video/request/:r_id/edit", :controller => 'admin/video_workflow', :action => 'edit', :as => 'edit_admin_request'
-
-  # metadata attributes
-  scope '/admin' do
-    resources :metadata_attributes, :controller => 'admin' do # , :controller => 'admin', :as => 'metadata'
-      get 'metadata_index'
+  scope '/admin/video/request', :controller => 'admin/video_workflow' do
+    get 'requests_by_semester', :as => nil, :path => '/by_semester/:s_id'
+    post 'state', :action => 'requests_by_state', :as => 'requests_by_state'
+    post 'transition', :action => 'request_transition', :as => 'request_transition'
+    get 'all', :action => 'full_list', :as => 'video_request_all'
+  end
+  scope '/admin/video', :controller => 'admin/video_workflow' do
+    resources :request, :controller => 'admin/video_workflow', :only => :none do
+      put 'update', :as => nil, :path => ''
+      get 'edit', :as => 'admin_edit'
+      delete 'destroy', :as => 'admin_destroy'
+      get 'show', :as => nil, :path => ''
+    end
+  end
+  scope '/admin', :controller => 'admin/video' do
+    post 'find_record', :as => nil, :path => '/find-record'
+  end
+  scope '/admin', :controller => 'admin/video_workflow' do
+    post 'requester', :as => 'requester', :path => '/requester/:user_id'
+    post 'request_record', :as => 'request', :path => '/request/:request_id'
+    post 'tech_data', :as => 'tech_data', :path => '/tech_data'
+    post 'request_tech', :as => 'request_tech', :path => '/request_tech/:request_id'
+    post 'destroy_technical_metadata', :as => 'destroy_technical_metadata', :path => '/destroy_tech_metadata'
+  end
+  scope '/admin', :controller => 'admin' do
+    get 'index', :as => 'admin_index', :path => ''
+    get 'not_authorized', :as => 'admin_not_authorized', :path => '/not-authorized'
+    post 'user_info', :as => 'user_info', :path => '/user/:user_id'
+    resource :metadata_attribute, :controller => 'admin', :only => :none do
+      collection do
+        get 'all_metadata_attributes', :as => 'all', :path => '/all'
+        get 'new', :action => 'new_metadata_attribute', :as => 'new', :path => '/new'
+        post 'create', :action => 'create_metadata_attribute', :as => nil, :path => '/create'
+      end
+    end
+    resources :metadata_attribute, :controller => 'admin', :only => :none do
+        get 'edit', :action => 'edit_metadata_attribute'
+        put 'update', :action => 'update_metadata_attribute', :as => nil
+        delete 'destroy', :action => 'destroy_metadata_attribute'
+    end
+    resource :semester, :controller => 'admin', :only => :none do
+      collection do
+        get 'all', :action => 'show_all_semesters'
+        get 'new', :action => 'new_semester', :as => 'new', :path => '/new'
+        post 'create', :action => 'create_semester', :as => nil, :path => '/create'
+        get 'active', :action => 'show_proximate_semesters'
+      end
+    end
+    resources :semester, :controller => 'admin', :only => :none do
+      get 'edit', :action => 'edit_semester', :as => 'edit'
+      put 'update', :action => 'update_semester', :as => nil
+      get 'show', :action => 'show_semester', :as => '', :path => ''
     end
   end
 
-  # users
-  post "/admin/user/:user_id", :controller => 'admin', :action => 'user_info', :as => 'user_info'
-
-  # semesters
-  get "/admin/semester/all", :controller => 'admin', :action => 'show_all_semesters'
-  get "/admin/semester/active", :controller => 'admin', :action => 'show_proximate_semesters'
-  get "/admin/semester/new", :controller => 'admin', :action => 'new_semester', :as => 'new_admin_semester'
-  post "/admin/semester", :controller => 'admin', :action => 'create_semester'
-  get "/admin/semester", :controller => 'admin', :action => 'index_semester'
-  get "/admin/semester/:s_id/edit", :controller => 'admin', :action => 'edit_semester', :as => 'edit_admin_semester'
-  put "/admin/semester/:s_id", :controller => 'admin', :action => 'update_semester'
-  get "/admin/semester/:s_id", :controller => 'admin', :action => 'show_semester', :as => 'admin_semester'
-
-  # external
+  ###########################
+  # External User Functions #
+  ###########################
   root :to => 'external#index'
-  get "/not-authorized", :controller => 'external', :action => 'not_authorized', :as => 'external_not_authorized'
+  scope '/', :controller => 'external' do
+    get 'not_authorized', :as => 'external_not_authorized', :path => 'not-authorized'
+  end
+  scope '/video/request', :controller => 'external/request' do
+    get 'new', :as => 'new_video_request'
+    get 'video_request_status', :as => 'video_request_status', :path => '/:r_id/status'
+    post 'create', :path => '', :as => 'video_request'
+  end
 
-  get "/video/request/new", :controller => 'external/request', :action => 'new', :as => 'new_video_request'
-  post "/video/request", :controller => 'external/request', :action => 'create'
-  delete "/video/request/:r_id", :controller => 'admin/video_queue', :action => 'destroy'
-  get "/video/request/:r_id/status", :controller => 'external/request', :action => 'video_request_status', :as => 'video_request_status'
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end

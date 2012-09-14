@@ -38,7 +38,7 @@ describe Admin::VideoWorkflowController do
         @request_b.library_owned = true
         @request_b.save
         sign_in @media_admin_user
-        get :show, :r_id => @request_b.id
+        get :show, :request_id => @request_b.id
         assigns(:request).should be_an_instance_of(Request)
         assigns(:request).should be_library_owned
         assigns(:request).title.should eq(@request_b.title)
@@ -84,7 +84,7 @@ describe Admin::VideoWorkflowController do
       end
       it "is not able to open full view for specific request" do
         sign_in @jane_user
-        get :show, :r_id => @request_b.id
+        get :show, :request_id => @request_b.id
         response.should redirect_to :admin_not_authorized
         sign_out @jane_user
       end
@@ -101,7 +101,7 @@ describe Admin::VideoWorkflowController do
       end
       it "is able to cancel a specific request" do
         expect {
-          delete :destroy, :r_id => @request_b.id
+          delete :destroy, :request_id => @request_b.id
         }.to change(Request, :count).from(3).to(2)
       end
       it "is able to mark a request as digitized" do
@@ -109,34 +109,34 @@ describe Admin::VideoWorkflowController do
         @request_c.workflow_state = :digitized
         @request_c.workflow_state_change_date = Time.now
         @request_c.workflow_state_change_user = @media_admin_user.id
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :request_id => @request_c.id
         assigns(:request).digitized?.should be_true
       end
       it "is able to mark a request as library owned" do
         @request_c.library_owned.should eq(false)
         @request_c.library_owned = true
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :request_id => @request_c.id
         assigns(:request).should be_library_owned
       end
       it "is able to mark a requests as a repeat request" do
         @request_c.repeat_request.should eq(false)
         @request_c.repeat_request = true
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :request_id => @request_c.id
         assigns(:request).should be_repeat_request
       end
       it "is able to change the title of a video" do
         @request_c.title = "TEST TITLE"
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :request_id => @request_c.id
         assigns(:request).title.should eq("TEST TITLE")
       end
       it "is able to change a course id for a request" do
         @request_c.course = "FA13 CHEM 101 01"
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
-        get :edit, :r_id => @request_c.id
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
+        get :edit, :request_id => @request_c.id
         assigns(:request).course.should eq("FA13 CHEM 101 01")
       end
     end
@@ -148,13 +148,13 @@ describe Admin::VideoWorkflowController do
         sign_out @jane_user
       end
       it "is not able to cancel a request" do
-          delete :destroy, :r_id => @request_c.id
+          delete :destroy, :request_id => @request_c.id
           response.should redirect_to :admin_not_authorized
       end
       it "is not able to mark a request as converted" do
         @request_c.converted?.should be_false
         @request_c.workflow_state = :converted
-        put :update, :r_id => @request_c.id, :request => @request_c.attributes
+        put :update, :request_id => @request_c.id, :request => @request_c.attributes
         response.should redirect_to :admin_not_authorized
       end
     end

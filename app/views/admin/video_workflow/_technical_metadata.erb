@@ -1,0 +1,122 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() { 
+
+    $('.tech_data_value').change(function() {
+      var valid_attrs = true;
+      $('.tech_data_value').each(function() {
+        var tech_value = $(this).val();
+        if (!tech_value || tech_value == '') {
+          alert("Value fields can't be blank");
+          $('#save-tech').attr('disabled', 'disbled');
+          valid_attrs = false;
+        }
+      });
+      $('.tech_name_value').each(function() {
+        var tech_value = $(this).val();
+        if (!tech_value || tech_value == '') {
+          alert("Name fields must be valid");
+          $('#save-tech').attr('disabled', 'disbled');
+          valid_attrs = false;
+        }
+      });
+      if (valid_attrs == true) { 
+        $('#save-tech').removeAttr('disabled');
+      }
+    });
+
+    $('.tech_name_value').change(function() {
+      var valid_attrs = true;
+      $('.tech_data_value').each(function() {
+        var tech_value = $(this).val();
+        if (!tech_value || tech_value == '') {
+          alert("Value fields can't be blank");
+          $('#save-tech').attr('disabled', 'disbled');
+          valid_attrs = false;
+        }
+      });
+      $('.tech_name_value').each(function() {
+        var tech_value = $(this).val();
+        if (!tech_value || tech_value == '') {
+          alert("Name fields must be valid");
+          $('#save-tech').attr('disabled', 'disbled');
+          valid_attrs = false;
+        }
+      });
+      if (valid_attrs == true) { 
+        $('#save-tech').removeAttr('disabled');
+      }
+    });
+
+    $('.delete_tech_meta').click(function() {
+      var tech_meta_id = $(this).parent().next().attr('value');
+      var req_id = $(this).attr('request');
+      var tech_element = $(this).get();
+      $.ajax({
+        url: '<%= url_for destroy_technical_metadata_path %>',
+        dataType: 'json',
+        type: 'POST',
+        data: {request_id: req_id, tech_id: tech_meta_id},
+        success: function() {
+          $(tech_element).parent().next().remove();
+          $(tech_element).parent().remove();
+          $('#notice_area').hide();
+          $('<div id="tech_alert_area" class="alert alert-error" style="width:70%;">Attribute deleted.</div>').insertAfter('#pre-tech-notice-area');
+          $('#tech_alert_area').delay(600).fadeOut(1400, function() {
+            $('#tech_alert_area').remove();
+          });
+        },
+        error: function(jqx, errstr, et) {
+          alert(errstr);
+        }
+      });
+    });
+
+    $('#add_tech_element').click(function() {
+        $('.tech-maintenance').append('<input type="hidden" name="addtech" value="true"/>');
+        $('.tech_data_value').each(function() {
+          var tech_value = $(this).val();
+          if (!tech_value || tech_value == '') {
+            alert("Value fields can't be blank");
+            $('#save-tech').attr('disabled', 'disbled');
+            return false;
+          }
+        });
+        $('.tech_name_value').each(function() {
+          var tech_value = $(this).val();
+          if (!tech_value || tech_value == '') {
+            alert("Name fields must be valid");
+            $('#save-tech').attr('disabled', 'disbled');
+            return false;
+          }
+        });
+        if (!($('#save-tech').attr('disabled') == 'disabled')) {
+          $('.tech-maintenance').submit();
+        }
+    });
+  });
+</script>
+<%= simple_form_for @request,
+  :url => url_for(:action => 'update', :request_id => @request.id, :controller => 'admin/video_workflow'),
+  :wrapper => :inline_fields,
+  :html => {:class => 'form-horizontal tech-maintenance' } do |r| %>
+  <legend id="tech_legend">Technical Information</legend>
+  <% if flash[:notice] %>
+    <div id="notice_area" class="alert alert-success">
+      <%= flash[:notice] %> 
+    </div>
+  <% end %>
+  <span id="pre-tech-notice-area"></span>
+  <%= r.error_notification %>
+  <input type="hidden" name="techupdate" value="true" />
+  <%= r.simple_fields_for :technical_metadata do |tech| %>
+    <div style="margin-bottom: 10px;" class="tech_info_element">
+      <%= tech.input :ma_id, :as => 'select', :collection => @metadata_attributes, :label => false, :include_blank => 'Please Select', :input_html => { :class => 'tech_name_value', :style => 'margin-left: 30px' } %>
+      <%= tech.input :value, :label => false, :input_html => { :class => 'tech_data_value', :style => 'margin-left: 15px' } %>
+      <a href="#" class="delete_tech_meta" request="<%= @request.id %>" ><i class="icon-remove-sign"></i></a>
+    </div>
+  <% end %>
+  <div class="form-actions" style="width:60%;padding-left: 80px;">
+    <%= r.button :submit, :value => 'Save Technical Data', :id => 'save-tech', :class => 'btn-primary'%>
+    <%= link_to 'Add Tech Info', '#', :id => "add_tech_element", :class => 'btn btn-info'%>
+  </div>
+<% end %>

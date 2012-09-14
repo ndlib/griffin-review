@@ -20,8 +20,8 @@ class Admin::GroupController < AdminController
     @group = Group.new(params[:group])
     respond_to do |format|
       if @group.save
-        flash[:notice] = ‘Group was successfully created.’
-        format.html { redirect_to(@group) }
+        flash[:notice] = 'Group was successfully created.'
+        format.html { redirect_to(admin_group_url(@group)) }
         format.xml { render :xml => @group,
         :status => :created,
         :location => @group }

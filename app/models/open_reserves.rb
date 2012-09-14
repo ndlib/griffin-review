@@ -1,4 +1,5 @@
 class OpenReserves < ActiveRecord::Base
+  self.abstract_class = true
   case Rails.env
   when "production"
     establish_connection configurations['open_reserves_prod']

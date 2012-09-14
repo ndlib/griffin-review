@@ -27,19 +27,106 @@ describe AdminController do
   end
 
   context "Metadata Attribute Administration" do
-    describe "list of metadata attributes" do
+    describe "view, create, and edit metadata attributes" do
 
       before(:each) do
+        @changeable_metadata_attribute = Factory.create(:metadata_attribute, :name => 'Changed')
         sign_in @media_admin_user
       end
 
       after(:each) do
+        @changeable_metadata_attribute.destroy
         sign_out @media_admin_user
       end
 
       it "shows a list of all metadata attributes in the system" do
-        get :show_all_meta_attributes
-        assigns(:meta_attrs).should have(2).items
+        get :all_metadata_attributes
+        assigns(:metadata_attributes).should have(3).items
+      end
+
+      it "assigns a new meta attr to @metadata_attribute" do
+        get :new_metadata_attribute
+        assigns(:metadata_attribute).should be_a_new(MetadataAttribute)
+      end
+
+      it "renders the :new template" do
+        get :new_metadata_attribute
+        response.should render_template :new
+      end
+
+      context "creates with valid parameters" do
+        it "saves the metadata attribute to the database" do
+          expect {
+            post :create_metadata_attribute, :metadata_attribute => Factory.attributes_for(:metadata_attribute)
+          }.to change(MetadataAttribute, :count).by(1)
+        end
+        it "redirect to the full list of metadata attributes" do
+          post :create_metadata_attribute, :metadata_attribute => Factory.attributes_for(:metadata_attribute)
+          response.should redirect_to all_metadata_attribute_url
+        end
+      end
+
+      context "rejects with invalid attributes" do
+        it "rejects an invalid record" do
+          expect {
+            post :create_metadata_attribute, :metadata_attribute => Factory.attributes_for(:metadata_attribute, :name => '')
+          }.to_not change(MetadataAttribute, :count)
+        end
+        it "re-renders the :new_metadata_attribute template" do
+            post :create_metadata_attribute, :metadata_attribute => Factory.attributes_for(:metadata_attribute, :name => '')
+            response.should render_template 'admin/metadata_attribute/new'
+        end
+      end
+
+      context "opening the edit metadata page" do
+        it "assigns the requested metadata_attribute to @metadata_attribute" do
+          get :edit_metadata_attribute, {:metadata_attribute_id => @metadata_a.id}
+          assigns(:metadata_attribute).should eq(@metadata_a)
+        end
+        it "renders the :edit template" do
+          get :edit_metadata_attribute, {:metadata_attribute_id => @metadata_a.id}
+          response.should render_template :edit
+        end
+      end
+
+      context "updates metadata object with valid attributes" do
+        it "updates the metadata object's attributes" do
+          put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id,
+            :metadata_attribute => Factory.attributes_for(
+              :metadata_attribute,
+              :name => 'Another Name',
+              :definition => 'Another definition'
+            )
+            @changeable_metadata_attribute.reload
+            @changeable_metadata_attribute.definition.should eq('Another definition')
+        end
+        it "redirects to the metadata_attribute page" do
+          put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id,
+            :metadata_attribute => Factory.attributes_for(
+              :metadata_attribute,
+              :name => 'Another Name',
+              :definition => 'Another definition'
+            )
+            response.should redirect_to all_metadata_attribute_url
+        end
+      end
+
+      context "does not update metadata with invalid attributes" do
+        it "rejects an invalid record" do
+          put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id,
+            :metadata_attribute => Factory.attributes_for(
+              :metadata_attribute,
+              :name => nil,
+              :definition => 'Another definition'
+            )
+            @changeable_metadata_attribute.reload
+            @changeable_metadata_attribute.name.should eq(@changeable_metadata_attribute.name)
+        end
+        it "re-renders the :new_metadata_attribute edit template" do
+            put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id, 
+              :metadata_attribute => Factory.attributes_for(:metadata_attribute, :name => '')
+            response.should render_template 'admin/metadata_attribute/edit'
+        end
       end
     end
   end
@@ -115,11 +202,11 @@ describe AdminController do
       end
 
       it "assigns the requested semester to @semester" do
-        get :edit_semester, {:s_id => @semester.id}
+        get :edit_semester, {:semester_id => @semester.id}
         assigns(:semester).should eq(@semester)
       end
       it "renders the :edit template" do
-        get :edit_semester, {:s_id => @semester.id}
+        get :edit_semester, {:semester_id => @semester.id}
         response.should render_template :edit
       end
     end
@@ -147,7 +234,7 @@ describe AdminController do
         it "redirect to this semester page" do
           post :create_semester, :semester => Factory.attributes_for(:semester)
           @last_semester = Semester.last
-          response.should redirect_to admin_semester_url(@last_semester)
+          response.should redirect_to semester_url(@last_semester)
         end
       end
 
@@ -183,7 +270,7 @@ describe AdminController do
 
       context "with valid attributes" do
         it "updates the semester's attributes" do
-          put :update_semester, :s_id => @changeable_semester,
+          put :update_semester, :semester_id => @changeable_semester,
             :semester => Factory.attributes_for(
               :semester,
               :code => 'WIN25',
@@ -195,20 +282,20 @@ describe AdminController do
             @changeable_semester.code.should eq('WIN25')
         end
         it "redirects to the semester page" do
-          put :update_semester, :s_id => @changeable_semester,
+          put :update_semester, :semester_id => @changeable_semester,
             :semester => Factory.attributes_for(
               :semester,
               :code => 'WIN25',
               :date_begin => Date.today - 6.months, 
               :date_end => Date.today - 3.months
             )
-            response.should redirect_to admin_semester_url(@changeable_semester)
+            response.should redirect_to semester_url(@changeable_semester)
         end
       end
 
       context "with invalid attributes" do
         it "rejects an invalid record" do
-          put :update_semester, :s_id => @changeable_semester,
+          put :update_semester, :semester_id => @changeable_semester,
             :semester => Factory.attributes_for(
               :semester,
               :full_name => '',
@@ -219,7 +306,7 @@ describe AdminController do
             @changeable_semester.code.should_not eq('WIN25')
         end
         it "re-renders the :new_semester template" do
-            put :update_semester, :s_id => @changeable_semester, 
+            put :update_semester, :semester_id => @changeable_semester, 
               :semester => Factory.attributes_for(:semester, :code => '')
             response.should render_template 'admin/semester/edit'
         end

@@ -15,7 +15,7 @@
                 <% for semester in @semesters %>
                 <tr>
                   <td>
-                    <%= link_to semester[:id], edit_admin_semester_path(semester) %>
+                    <%= link_to semester[:id], semester_edit_path(semester) %>
                   </td>
                   <td>
                     <%= semester[:code] %>

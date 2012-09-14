@@ -35,6 +35,17 @@
     });
   }
 
+  function busyLoaderTech() {
+    $('#lB').empty();
+    $('#lB').append('<div class="ajaxBusy"><img src="/assets/images/ajax-loader.gif"></div>');
+    $('.ajaxBusy').css({
+      width: 'auto',
+      padding: '50px',
+      'text-align': 'center',
+      margin: '0px auto 0px auto'
+    });
+  }
+
   function busyLoaderModal() {
     $('<div class="modal ajaxBusy" role="dialog" aria-hidden="true"><img src="/assets/images/ajax-loader.gif"></div>').appendTo('body').modal({backdrop: false});
     $('.ajaxBusy').css({
@@ -42,6 +53,12 @@
       padding: '180px',
       'text-align': 'center'
     });
+  }
+
+  function busyUpdateMessage(message) {
+    $('#lB').empty();
+    $('#lB').append('<div id="tech_update_success" class="ajaxBusy alert alert-success"><img src="/assets/images/ajax-loader.gif" style="margin-right: 15px;">' + message + '</div>');
+    $('#tech_update_success').delay(300).fadeOut(900);
   }
 
   function refresh_tables(type) { 
@@ -56,6 +73,19 @@
           $('#' + type + '_table').dataTable({
             sPaginationType: "full_numbers"
           });
+        }
+      });
+  }
+
+  function refresh_tech_data(request_id) { 
+      $.ajax({
+        url: '<%= url_for tech_data_path %>',
+        dataType: 'html',
+        type: 'POST',
+        data: 'request_id=' + request_id,
+        success: function(data) {
+          $('.ajaxBusy').remove();
+          $('#lB').append(data);
         }
       });
   }
