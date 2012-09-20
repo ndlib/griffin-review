@@ -1,49 +1,11 @@
 <div class="container">
   <div class="row">
-    <h1>Status of Video Digitization Request</h1>
-    <hr/>
-    <table class="table table-bordered" style="width: 80%">
-        <tbody>
-          <tr>
-            <td>
-              <span class="label">Title</span>
-            </td>
-            <td>
-              <%= @r.title %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="label">Course</span>
-            </td>
-            <td>
-              <%= @r.course %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="label">Intented Semester</span>
-            </td>
-            <td>
-              <%= @r.semester.full_name %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="label">Date Requested</span>
-            </td>
-            <td>
-              <%= @r.created_at.strftime("%A %B %d, %Y %I:%M:%S%p") %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="label">Status</span>
-            </td>
-            <td>
-            </td>
-          </tr>
-        </tbody>
-    </table>
+    <div class="span9">
+      <h1>Status of Course Video Request</h1>
+      <div class="alert alert-success">
+        The following is the status of an individual course video request. You can check this page periodically to see the status of your request. 
+      </div>
+      <%= render 'single_status' %>
+    </div>
   </div>
 </div>

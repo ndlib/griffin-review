@@ -26,6 +26,16 @@ class Ability
       can [:create, :video_request_status], Request
     end
 
+    if user.has_role? :graduate_student
+      can :read, External
+      can [:create, :video_request_status], Request
+    end
+
+    if user.has_role? :staff
+      can :read, External
+      can [:create, :video_request_status], Request
+    end
+
     if user.username == 'rfox2'
       can :manage, User
     end

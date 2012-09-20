@@ -76,6 +76,7 @@ Griffin::Application.routes.draw do
   end
   scope '/video/request', :controller => 'external/request' do
     get 'new', :as => 'new_video_request'
+    get 'video_request_multi_status', :as => 'video_request_multi_status', :path => '/multiple/status'
     get 'video_request_status', :as => 'video_request_status', :path => '/:r_id/status'
     post 'create', :path => '', :as => 'video_request'
   end

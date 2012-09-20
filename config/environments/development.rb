@@ -20,7 +20,7 @@ Griffin::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send

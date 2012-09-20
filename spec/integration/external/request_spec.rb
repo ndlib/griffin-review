@@ -23,7 +23,7 @@ describe "Digitization Request Integration" do
         select @semester_b.full_name, :from => 'Semester'
         fill_in 'Date Needed By', :with => Date.today + 3.weeks
         fill_in 'Special Instructions', :with => 'Lorem Ipsum'
-        click_button 'Create Request'
+        click_button 'Submit Request'
       }.to change(Request, :count).by(1)
       logout @faculty_user
     end
@@ -33,7 +33,7 @@ describe "Digitization Request Integration" do
       fill_in 'Video Title', :with => @request_a.title
       fill_in 'Course', :with => 'Business 101'
       fill_in 'Special Instructions', :with => @request_a.note
-      click_button 'Create Request'
+      click_button 'Submit Request'
       page.should have_content('Please review the problems below:')
       logout @faculty_user
     end
@@ -49,7 +49,7 @@ describe "Digitization Request Integration" do
       select @semester_b.full_name, :from => 'Semester'
       fill_in 'Date Needed By', :with => Date.today + 3.weeks
       fill_in 'Special Instructions', :with => 'Lorem Ipsum'
-      click_button 'Create Request'
+      click_button 'Submit Request'
       @last_request = Request.last
       visit video_request_status_path(@last_request)
       page.should have_content(@last_request.title)

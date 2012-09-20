@@ -1,0 +1,44 @@
+    <table class="table table-bordered" style="width: 80%">
+        <tbody>
+          <tr>
+            <td>
+              <span class="label">Title</span>
+            </td>
+            <td>
+              <span style="font-style: italic;"><%= @r.title %></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label">Course</span>
+            </td>
+            <td>
+              <%= @r.course %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label">Intented Semester</span>
+            </td>
+            <td>
+              <%= @r.semester.full_name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label">Date Requested</span>
+            </td>
+            <td>
+              <%= @r.created_at.strftime("%A %B %d, %Y %I:%M:%S%p") %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="label">Status</span>
+            </td>
+            <td>
+              <span style="color:<%= @r.current_state.meta[:color] %>;"><%= @r.current_state.meta[:label] %>
+            </td>
+          </tr>
+        </tbody>
+    </table>

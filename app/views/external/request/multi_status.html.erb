@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <% if @multiple_previous.respond_to?(:count) %>
+        <h1>Request Submitted</h1>
+      <% else %>
+        <h1>Session Expired</h1>
+      <% end %>
+      <% if @multiple_previous.respond_to?(:count) %>
+        <div class="alert alert-success">
+          Your request for the following videos has been received, and you will be notified of the status. There are links below for each request that will allow you to track the status of each request. Please be patient during heavy request periods such as the beginning of a semester.
+        </div>
+        <% @multiple_previous.each do |@r| %>
+          <%= render 'single_status' %>
+        <% end %>
+      <% else %>
+        <div class="alert alert-error">
+          Apparently your session has expired. If you need to submit a new course video request, please direct your browser <a href="<%= url_for new_video_request_path %>">here</a>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
