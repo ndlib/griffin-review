@@ -1,15 +1,14 @@
 require 'spec_helper'
 
-describe "admin/item/index" do
+describe "admin/open_item/index" do
   before(:each) do
-    assign(:items, [
-      stub_model(Item),
-      stub_model(Item)
+    assign(:open_items, [
+      stub_model(OpenItem),
+      stub_model(OpenItem)
     ])
   end
 
-  it "renders a list of items" do
+  it "renders a list of open_items" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
   end
 end

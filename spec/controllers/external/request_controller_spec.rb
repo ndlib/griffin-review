@@ -100,14 +100,35 @@ describe External::RequestController do
           @request_a = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
           @request_b = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
           expect {
-            post :create, :request => Factory.attributes_for(:generic_request, :semester_id => @next_semester.id), :multiple => true, :previous => [@request_a.id, @request_b.id]
+            post :create, :request => Factory.attributes_for(:generic_request, :semester_id => @next_semester.id), :final_multiple => true, :previous => [@request_a.id, @request_b.id]
           }.to change(Request, :count).by(1)
           sign_out @faculty_user
       end
-      it "redirects back to the request form if request valid"
-      it "rejects a subsequent request if invalid but retains the valid records"
-      it "renders a status page with all of their requests"
+      it "redirects back to the request form if request invalid" do
+          sign_in @faculty_user
+          @request_a = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          @request_b = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          post :create, :request => Factory.attributes_for(:generic_request, :course => "Bus 101", :semester_id => @next_semester.id), :final_multiple => true, :previous => [@request_a.id, @request_b.id]
+          response.should render_template("new")
+          sign_out @faculty_user
+      end
+      it "rejects a subsequent request if invalid but retains the valid records" do
+          sign_in @faculty_user
+          @request_a = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          @request_b = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          post :create, :request => Factory.attributes_for(:generic_request, :course => "Bus 101", :semester_id => @next_semester.id), :final_multiple => true, :previous => [@request_a.id, @request_b.id]
+          response.should render_template("new")
+          sign_out @faculty_user
+      end
+      it "renders a status page with all of their requests" do
+          sign_in @faculty_user
+          @request_a = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          @request_b = Factory.create(:generic_request, :semester_id => @next_semester.id, :user => @faculty_user)
+          post :create, :request => Factory.attributes_for(:generic_request, :course => "Bus 101", :semester_id => @next_semester.id), :final_multiple => true, :previous => [@request_a.id, @request_b.id]
+          response.should render_template("new")
+          assigns(:multiple_previous).should have(2).items
+          sign_out @faculty_user
+      end
     end
   end
-
 end

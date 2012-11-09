@@ -32,6 +32,8 @@ gem 'net-ldap'
 
 # form generation
 gem 'simple_form'
+gem 'nested_form'
+gem 'rails3-jquery-autocomplete'
 
 # Javascript runtime
 gem 'therubyracer'

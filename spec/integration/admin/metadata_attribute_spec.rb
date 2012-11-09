@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ejs'
 
 describe "Metadata Attribute Integration" do
   before(:all) do

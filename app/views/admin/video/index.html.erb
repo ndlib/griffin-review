@@ -1,18 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="span9">
-      <h1>Videos</h1>
-      <div class="span6">
-            <table class="table table-bordered">
+      <h1>Video Items</h1>
+      <div class="span12">
+        <table class="table table-bordered admin_data_table">
+              <thead>
+                <th>System ID</th>
+                <th>Name</th>
+                <th>Description</th>
+              </thead>
               <tbody>
+                <% for video in @videos %>
                 <tr>
                   <td>
-                    <span class="label label-inverse">Videos Current Semester</span>
+                    <%= link_to video[:id], edit_admin_video_path(video) %>
                   </td>
                   <td>
-                    <%= @videos.count %>
+                    <%= video[:name] %>
+                  </td>
+                  <td>
+                    <%= video[:description] %>
                   </td>
                 </tr>
+                <% end %>
               </tbody>
           </table>
       </div>

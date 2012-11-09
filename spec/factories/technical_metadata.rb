@@ -1,8 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :technical_metadata do
-    vw_id 1
-    ma_id 1
+    metadata_attribute_id 1
+    item_id 1
+    value "25 minutes"
   end
 end

@@ -126,9 +126,9 @@ class Admin::VideoWorkflowController < AdminController
     respond_to do |format|
       if @request.update_attributes(params[:request])
         if (params[:techupdate])
-        format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => update_notice }
+          format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => update_notice }
         else
-        format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => 'Request was successfully updated.' }
+          format.html { redirect_to request_admin_edit_path(:request_id => @request.id), :notice => 'Request was successfully updated.' }
         end
         format.json { head :ok }
       else

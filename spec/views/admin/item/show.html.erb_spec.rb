@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-describe "admin/item/show" do
+describe "admin/open_item/show" do
   before(:each) do
-    @item = assign(:item, stub_model(Item))
+    @item = assign(:open_item, stub_model(OpenItem))
   end
 
   it "renders attributes in <p>" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
   end
 end

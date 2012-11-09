@@ -1,7 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<div><%= @video.title %></div>
-
-
-<%= link_to 'Edit', edit_admin_video_path(@video) %> |
-<%= link_to 'Back', admin_video_path %>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>Semester</h1>
+      <div class="span9">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>
+                <span class="label label-inverse">Code</span>
+              </td>
+              <td>
+                <%= @semester.code %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-inverse">Full Name</span>
+              </td>
+              <td>
+                <%= @semester.full_name %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-inverse">Begin Date</span>
+              </td>
+              <td>
+                <%= @semester.date_begin.strftime("%A %B %d, %Y")%>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label label-inverse">End Date</span>
+              </td>
+              <td>
+                <%= @semester.date_end.strftime("%A %B %d, %Y")%>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

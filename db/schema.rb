@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120909173855) do
+ActiveRecord::Schema.define(:version => 20121109044748) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -19,11 +19,35 @@ ActiveRecord::Schema.define(:version => 20120909173855) do
     t.datetime "updated_at"
   end
 
+  create_table "basic_metadata", :force => true do |t|
+    t.integer  "metadata_attribute_id"
+    t.integer  "item_id"
+    t.string   "value"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "item_types", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "item_type_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "metadata_attributes", :force => true do |t|
     t.string   "name"
     t.text     "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "metadata_type"
   end
 
   create_table "roles", :force => true do |t|
@@ -43,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120909173855) do
   end
 
   create_table "technical_metadata", :force => true do |t|
-    t.integer  "vw_id"
-    t.integer  "ma_id"
+    t.integer  "item_id"
+    t.integer  "metadata_attribute_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "value"
@@ -84,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20120909173855) do
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
+    t.integer  "video_id"
   end
 
 end

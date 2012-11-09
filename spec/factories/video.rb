@@ -1,5 +1,7 @@
-Factory.define :video do |i|
-  i.sequence(:title) { |n| "video_title#{n}" }
-  i.sequence(:url) { |n| "video_url#{n}" }
-  i.item_type 'video'
+FactoryGirl.define do
+  factory :video do
+    name "MyVideo"
+    description "MyVideo Description"
+    item_type_id 1
+  end
 end

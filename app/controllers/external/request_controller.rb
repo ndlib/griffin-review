@@ -26,7 +26,6 @@ class External::RequestController < ExternalController
 
     respond_to do |format|
       if @r.save
-        logger.debug('SAVED')
         if (params[:add_another])
           flash.now[:notice] = "The course video request for \"#{@r.title}\" has been received. An additional request can be made by filling out the form below."
           @multiple_previous.push(@r)
@@ -45,10 +44,12 @@ class External::RequestController < ExternalController
               format.html { redirect_to video_request_status_path(@r), :notice => 'Thank you. Your request was received and the team has been notified.' }
               format.json { render :json => @r, :status => :created, :location => @r }
             end
+          else
+              format.html { redirect_to video_request_status_path(@r), :notice => 'Thank you. Your request was received and the team has been notified.' }
+              format.json { render :json => @r, :status => :created, :location => @r }
           end
         end
       else
-        logger.debug('not saved')
         @repeat_semester = @r.semester
         flash.now[:error] = "There was a problem creating your most recent video request."
         format.html { render :action => "new" }

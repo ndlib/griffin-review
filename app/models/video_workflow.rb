@@ -4,10 +4,8 @@ class VideoWorkflow < ActiveRecord::Base
   attr_accessor :workflow_transition
 
   belongs_to :semester
+  belongs_to :video
   belongs_to :workflow_state_user, :class_name => "User", :foreign_key => 'workflow_state_change_user'
-  has_many :technical_metadata, :dependent => :destroy, :class_name => "TechnicalMetadata", :foreign_key => 'vw_id'
-  has_many :metadata_attributes, :through => :technical_metadata
-  accepts_nested_attributes_for :technical_metadata
 
   workflow do
     state :new, :meta => {:label => 'New', :color => '#2929FF'} do

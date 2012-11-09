@@ -1,0 +1,21 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @open_items.each do |open_item| %>
+  <tr>
+    <td><%= link_to 'Show', admin_open_item_path(open_item) %></td>
+    <td><%= link_to 'Edit', edit_admin_open_item_path(open_item) %></td>
+    <td><%= link_to 'Destroy', admin_open_item_path(open_item), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Open Item', new_admin_open_item_path %>

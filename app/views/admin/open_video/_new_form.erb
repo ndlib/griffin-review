@@ -34,8 +34,8 @@
   </fieldset>
 </form>
 <hr/>
-<%= simple_form_for @video, 
-    :url => url_for(:action => 'create', :controller => 'admin/video'),
+<%= simple_form_for @open_video, 
+    :url => url_for(:action => 'create', :controller => 'admin/open_video'),
     :html => {:class => 'form-horizontal' } do |v| %>
   <%= v.error_notification %>
   <%= v.input :title, :input_html => { :id => "video_title", :class => "span6" }%>
@@ -46,6 +46,6 @@
   <%= v.input :upload, :as => :file, :label => "File to upload", :input_html => { :id => "upload_file", :class => "span6" } %>
   <%= v.input :item_type, :as => :hidden, :input_html => { :value => 'video' } %>
   <div class="form-actions">
-    <%= v.button :submit, :class => 'btn-primary'%>
+    <%= v.button :submit, :class => 'btn-primary', :value => 'Create Video'%>
   </div>
 <% end %>

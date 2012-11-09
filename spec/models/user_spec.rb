@@ -22,7 +22,7 @@ describe User do
     end
 
     it "should be able to manage items" do
-      should be_able_to(:manage, Item.new)
+      should be_able_to(:manage, OpenItem.new)
     end
 
     it "should be able to manage requests" do
@@ -85,7 +85,7 @@ describe User do
     end
 
     it "should not be able to manage items" do
-      should_not be_able_to(:manage, Item.new)
+      should_not be_able_to(:manage, OpenItem.new)
     end
 
     it "should not be able to manage requests" do

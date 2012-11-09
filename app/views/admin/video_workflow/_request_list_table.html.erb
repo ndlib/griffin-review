@@ -50,9 +50,6 @@
             <%= link_to(request_path(request), :method => :post, :class => 'request_load', :remote => true) do %>
               <i class="icon-info-sign"></i>
             <% end %>
-            <%= link_to(request_tech_path(request), :method => :post, :class => 'request_tech_load', :remote => true) do %>
-              <i class="icon-cog"></i>
-            <% end %>
           </td>
           <td><%= request.created_at %></td>
           <td><%= request.title %></td>

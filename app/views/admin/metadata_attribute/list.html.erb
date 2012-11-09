@@ -7,6 +7,7 @@
               <thead>
                 <th>System ID</th>
                 <th>Name</th>
+				<th>Type</th>
                 <th>Definition</th>
               </thead>
               <tbody>
@@ -18,6 +19,8 @@
                   <td>
                     <%= attribute[:name] %>
                   </td>
+                  <td>
+					<%= attribute[:metadata_type] %>
                   <td>
                     <%= attribute[:definition] %>
                   </td>

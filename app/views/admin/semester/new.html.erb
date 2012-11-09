@@ -3,7 +3,18 @@
     <div class="span9">
       <h1>New Semester</h1>
       <div class="span9">
-        <%= render 'admin/semester/new_form' %>
+		<%= simple_form_for @semester, 
+		    :url => url_for(:action => 'create_semester', :controller => 'admin'),
+		    :html => {:class => 'form-horizontal' } do |s| %>
+		  <%= s.error_notification %>
+		  <%= s.input :code, :input_html => { :id => "semester_code", :class => "span6" }%>
+		  <%= s.input :full_name, :label => "Full Name", :input_html => { :id => "semester_full_name", :class => "span6" } %>
+		  <%= s.input :date_begin, :label => "Begin Date", :as => :date_picker, :input_html => { :id => "semester_date_begin", :class => "span4" } %>
+		  <%= s.input :date_end, :label => "End Date", :as => :date_picker, :input_html => { :id => "semester_date_end", :class => "span4" } %>
+		  <div class="form-actions">
+		    <%= s.button :submit, :class => 'btn-primary'%>
+		  </div>
+		<% end %>
         <%= link_to 'Back', all_semester_path %>
       </div>
     </div>

@@ -1,12 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="span9">
-      <h1>Edit Video Item</h1>
-      <div class="span9">
-        <%= render 'form' %>
-        <%= link_to 'Show', admin_video_path(@video) %> |
-        <%= link_to 'Back', admin_video_path %>
+      <h1>Edit Video</h1>
+      <div class="span9 tabbable tabs-left">
+		<ul class="nav nav-tabs">
+			<% if @tech_update_return %>
+	          <li class="">
+	          <% else %>
+	          <li class="active">
+	          <% end %>
+	          <a data-toggle="tab" style="outline-style: none;" href="#lA">Basic Info</a>
+	          </li>
+	          <% if @tech_update_return %>
+	          <li class="active">
+	          <% else %>
+	          <li class="">
+	          <% end %>
+	          <a data-toggle="tab" style="outline-style: none;" id="tech_info_container_tab" href="#lB">Technical Info</a>
+	          </li>
+		</ul>
+		<!-- FORM BEGINS -->
+		<%= simple_nested_form_for @video, 
+			:url => url_for(:action => 'update', :controller => 'admin/video'),
+			:html => {:class => 'form-horizontal' } do |v| %>
+		<%= render 'form', :v => v %>
+		<% end %>
+		<!-- FORM ENDS -->
       </div>
     </div>
   </div>
 </div>
+

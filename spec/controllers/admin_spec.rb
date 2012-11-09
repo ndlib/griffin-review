@@ -95,7 +95,8 @@ describe AdminController do
             :metadata_attribute => Factory.attributes_for(
               :metadata_attribute,
               :name => 'Another Name',
-              :definition => 'Another definition'
+              :definition => 'Another definition',
+              :metadata_type => 'Another type'
             )
             @changeable_metadata_attribute.reload
             @changeable_metadata_attribute.definition.should eq('Another definition')
@@ -105,7 +106,8 @@ describe AdminController do
             :metadata_attribute => Factory.attributes_for(
               :metadata_attribute,
               :name => 'Another Name',
-              :definition => 'Another definition'
+              :definition => 'Another definition',
+              :metadata_type => 'Another type'
             )
             response.should redirect_to all_metadata_attribute_url
         end

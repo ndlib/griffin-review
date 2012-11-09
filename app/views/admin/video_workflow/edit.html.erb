@@ -28,44 +28,9 @@
   <div class="row">
     <div class="span15">
       <h1>Edit Video Request</h1>
-      <div class="span12 tabbable tabs-left">
-        <ul class="nav nav-tabs">
-          <% if @tech_update_return %>
-          <li class="">
-          <% else %>
-          <li class="active">
-          <% end %>
-          <a data-toggle="tab" style="outline-style: none;" href="#lA">Basic Info</a>
-          </li>
-          <% if @tech_update_return %>
-          <li class="active">
-          <% else %>
-          <li class="">
-          <% end %>
-          <a data-toggle="tab" style="outline-style: none;" id="tech_info_container_tab" href="#lB">Technical Info</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <% if @tech_update_return %>
-            <div id="lA" class="tab-pane">
-          <% else %>
-            <div id="lA" class="tab-pane active">
-          <% end %>
-            <legend>Basic Information</legend>
-          <% if flash[:notice] && !@tech_update_return %>
-            <div id="notice_area" class="alert alert-success">
-              <%= flash[:notice] %> 
-            </div>
-          <% end %>
+      <div class="span12">
             <%= render 'edit_form' %>
-            </div>
-          <% if @tech_update_return %>
-            <div id="lB" class="tab-pane active">
-          <% else %>
-            <div id="lB" class="tab-pane">
-          <% end %>
-            </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>

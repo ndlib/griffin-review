@@ -5,18 +5,19 @@ class Ability
 
     user ||= User.new
 
-    # note that all item types inherit from Item
+    # note that all open item types inherit from OpenItem
     if user.has_role? :administrator
-      can :manage, [Item, Group, Role, Request, Semester, VideoWorkflow, User, Admin]
+      can :manage, [OpenItem, Group, Role, Request, Semester, VideoWorkflow, User, Admin, Item, Video]
       can [:show_all_semesters, :show_proximate_semesters, :index_semester, :new_semester, :read, :edit_semester, :create_semester, :update_semester, :show_semester, :user_info, :all_metadata_attributes], :all
     end
 
     if user.has_role? :reserves_admin
+      can [:manage ], [Item, OpenItem, MetadataAttribute, BasicMetadata, TechnicalMetadata]
       can :read, User
     end
 
     if user.has_role? :media_admin
-      can [:manage ], [VideoWorkflow, MetadataAttribute, TechnicalMetadata]
+      can [:manage ], [VideoWorkflow, Video, MetadataAttribute, BasicMetadata, TechnicalMetadata]
       can [:all_metadata_attributes, :new_metadata_attribute, :create_metadata_attribute, :edit_metadata_attribute, :update_metadata_attribute, :destroy_metadata_attribute], [Admin]
       can :read, User
     end

@@ -8,9 +8,13 @@ Griffin::Application.routes.draw do
   namespace :admin do
     resources :role
     resources :user
-    resources :video
+    resources :open_video
     resources :group
+    resources :open_item
     resources :item
+    resources :video do
+      get :autocomplete_video_name, :on => :collection
+    end
   end
   scope '/admin/video/request', :controller => 'admin/video_workflow' do
     get 'requests_by_semester', :as => nil, :path => '/by_semester/:s_id'
@@ -28,6 +32,7 @@ Griffin::Application.routes.draw do
   end
   scope '/admin', :controller => 'admin/video' do
     post 'find_record', :as => nil, :path => '/find-record'
+    delete 'destroy_attribute', :as => 'attribute_admin_destroy'
   end
   scope '/admin', :controller => 'admin/video_workflow' do
     post 'requester', :as => 'requester', :path => '/requester/:user_id'

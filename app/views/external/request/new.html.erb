@@ -1,29 +1,3 @@
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function() { 
-    $('#final_submit').click(function() {
-      var empty_value = false;
-      $('.required_data').each(function(i) {
-        var the_value = $(this).val();
-        if (!the_value || the_value == '') {
-          empty_value = true;
-        }
-      });
-      if (empty_value) {
-        var answer = confirm("Your final request is incomplete. Are you sure?");
-        if (answer) {
-          $('#video_request_form').append('<input type="hidden" name="final_multiple" value="true"/>');
-          $('#video_request_form').submit();
-        } else {
-          return false;
-        }
-      } else {
-        var input = $("<input>").attr("type","hidden").attr("name","final_multiple").val("true");
-        $('#video_request_form').append(input);
-        $('#video_request_form').submit();
-      }
-    });
-  });
-</script>
 <div class="container">
   <div class="row">
     <div class="span9">

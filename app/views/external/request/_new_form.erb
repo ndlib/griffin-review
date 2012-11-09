@@ -50,7 +50,7 @@
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4 required_data" } %>
   <%= r.input :note, :label => "Special Instructions", :placeholder => 'e.g. - technical information, special audio information, course managemenet information, etc', :input_html => { :id => "r_note", :class => "span6", :style => "height: 100px;" } %>
   <div class="form-actions span6">
-    <%= r.button :submit, :type => 'button', :class => 'btn-primary', :name => 'final_submit_sent', :value => 'Finalize Request', :id => 'final_submit' %>
+    <%= r.button :submit, :class => 'btn-primary', :name => 'final_submit_sent', :value => 'Finalize Request', :id => 'final_submit' %>
     <%= r.button :submit, :class => 'btn-info', :name => 'add_another', :value => 'Add Another Video'%>
   </div>
 <% end %>
