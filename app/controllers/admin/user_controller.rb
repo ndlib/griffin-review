@@ -23,7 +23,6 @@ class Admin::UserController < AdminController
     end
   end
 
-
   def index
     User.order('last_name')
     @users = User.all

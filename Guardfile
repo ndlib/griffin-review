@@ -1,6 +1,3 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
-
 guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 300 do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -13,6 +10,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 300 do
 end
 
 guard 'rspec', :cli => "-f doc --drb", :all_on_start => false, :all_after_pass => false do
+  # interactor :off
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }

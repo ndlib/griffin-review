@@ -1,6 +1,8 @@
 class Admin::VideoWorkflowController < AdminController
 
   respond_to :json, :html
+  
+  autocomplete :video, :name, :full => true, :display_value => :video_display
 
   def full_list
     
@@ -116,12 +118,12 @@ class Admin::VideoWorkflowController < AdminController
     end
 
     update_notice = 'Updating technical attributes...'
-    if (params[:addtech])
-      ma = MetadataAttribute.first
-      tm = TechnicalMetadata.new(:vw_id => @request.id, :ma_id => ma.id, :value => 'Please Change');
-      tm.save
-      update_notice = 'Adding a technical attribute...'
-    end
+            if (params[:addtech])
+              ma = MetadataAttribute.first
+              tm = TechnicalMetadata.new(:vw_id => @request.id, :ma_id => ma.id, :value => 'Please Change');
+              tm.save
+              update_notice = 'Adding a technical attribute...'
+            end
 
     respond_to do |format|
       if @request.update_attributes(params[:request])

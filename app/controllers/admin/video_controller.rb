@@ -1,7 +1,5 @@
 class Admin::VideoController < AdminController
   respond_to :json, :html
-  
-  autocomplete :video, :name, :full => true
 
   def index
     @videos = Video.order('items.name').all

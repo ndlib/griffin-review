@@ -19,7 +19,12 @@
   </div>
   <%= r.input :course, :label => "Course", :hint => "should be formatted as FA12 BUS 3021 01", :input_html => { :id => "r_course", :class => "span4" }%>
   <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
-  <%= r.input :video_id, :url => autocomplete_video_name_admin_video_index_path, :as => :autocomplete %>
+  <%= r.input :video_id, :as => 'hidden', :input_html => { :id => 'video_id_field' } %>
+  <% unless @request.video.blank? %>
+  <%= r.input :video_name, :url => autocomplete_video_name_video_workflow_index_path, :as => :autocomplete, :id_element => '#video_id_field', :input_html => { :id => 'video_name_field', :value => @request.video.name + ' (' + @request.video.id.to_s + ')'  }  %>
+  <% else %>
+  <%= r.input :video_name, :url => autocomplete_video_name_video_workflow_index_path, :as => :autocomplete, :id_element => '#video_id_field', :input_html => { :id => 'video_name_field' }  %>
+  <% end %>
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4" } %>
   <%= r.input :note, :label => "Special Instructions", :input_html => { :id => "r_note", :class => "span6" } %>
   <div class="form-actions span5">

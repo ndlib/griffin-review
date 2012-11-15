@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>Edit Role</h1>
+      <div class="span9">
+		<%= simple_form_for @role, 
+		    :url => url_for(:action => 'update', :controller => 'admin/role'),
+		    :html => {:class => 'form-horizontal' } do |s| %>
+		  <%= s.error_notification %>
+		  <%= s.input :name, :input_html => { :id => "role_name", :class => "span6" }%>
+		  <%= s.input :description, :input_html => { :id => "role_description", :class => "span6" } %>
+		  <div class="form-actions">
+		    <%= s.button :submit, :class => 'btn-primary'%>
+            <%= link_to 'Delete Role', admin_role_path(@role), :method => :delete, :confirm => 'Are you sure you want to delete this role?', :class => 'btn btn-danger'%>
+		  </div>
+		<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

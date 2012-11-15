@@ -74,6 +74,7 @@ group :test do
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem "spork", "~> 0.9.0"
 	gem "guard-spork", '<= 0.5.1'
+    gem "rb-readline"
 end
 
 gem 'jquery-rails', '1.0.19'

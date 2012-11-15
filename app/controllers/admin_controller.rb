@@ -49,7 +49,7 @@ class AdminController < ApplicationController
 
   def index
 
-    @items = Item.currently_used(self.calculate_semester)
+    @items = OpenItem.currently_used(self.calculate_semester)
     @students = Student.currently_enrolled(self.calculate_semester)
     @courses = Course.currently_available(self.calculate_semester)
 

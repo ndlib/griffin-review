@@ -9,6 +9,14 @@ class Admin::RoleController < AdminController
     end
   end
 
+  def index
+    @roles = Role.order(:name).all
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @roles }
+    end
+  end
+
   def create
     @role= Role.new(params[:role])
 
@@ -28,6 +36,17 @@ class Admin::RoleController < AdminController
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @role}
+    end
+  end
+
+  def destroy
+    @role = Role.find(params[:id])
+    
+    @role.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_role_index_path }
+      format.json { head :ok }
     end
   end
 

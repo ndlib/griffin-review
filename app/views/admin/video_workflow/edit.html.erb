@@ -1,35 +1,9 @@
-<script type="text/javascript" charset="utf-8">
-  
-  $(window).load(function() {
-    <% if flash[:notice] %>
-      busyUpdateMessage('<%= flash[:notice] %>');
-      setTimeout('refresh_tech_data(<%= @request.id %>);', 1200); 
-    <% else %>
-      busyLoaderTech();
-      refresh_tech_data(<%= @request.id %>); 
-    <% end %>
-  });
-
-  $(document).ready(function() { 
-      
-    preload([
-      '/assets/images/ajax-loader.gif'
-    ]);
-
-    $('#tech_info_container_tab').click(function () {
-       busyLoaderTech();
-       refresh_tech_data(<%= @request.id %>);
-    });
-    
-  });
-
-</script>
 <div class="container">
   <div class="row">
     <div class="span15">
       <h1>Edit Video Request</h1>
       <div class="span12">
-            <%= render 'edit_form' %>
+		<%= render 'edit_form' %>
       </div>
     </div>
   </div>

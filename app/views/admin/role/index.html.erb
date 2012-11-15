@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>Role Administration</h1>
+      <div class="span12">
+        <table class="table table-bordered admin_data_table">
+              <thead>
+                <th>System ID</th>
+                <th>Name</th>
+                <th>Description</th>
+              </thead>
+              <tbody>
+                <% for role in @roles %>
+                <tr>
+                  <td>
+                    <%= link_to role[:id], edit_admin_role_path(role) %>
+                  </td>
+                  <td>
+                    <%= role[:name] %>
+                  </td>
+                  <td>
+                    <%= role[:description] %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
