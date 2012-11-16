@@ -2,6 +2,10 @@ class External::RequestController < ExternalController
 
   def new
     @r = Request.new
+    unless (session[:viewed_modal] == 'viewed')
+      session[:viewed_modal] = 'new'
+    end
+    puts "SESSION" + session.inspect
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @r }

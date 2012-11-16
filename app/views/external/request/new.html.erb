@@ -1,3 +1,15 @@
+<script type="text/javascript" charset="utf-8">
+  var test = '<%= session[:viewed_modal] %>';
+  
+  <% if session[:viewed_modal] != 'viewed' %>
+    <% session[:viewed_modal] = 'viewed' %>
+    $(window).load(function() {
+      var dialog = $('<%= escape_javascript(render :partial => 'external/request/warning') %>').appendTo('body');
+      dialog.modal();
+    });
+  <% end %>
+
+</script>
 <div class="container">
   <div class="row">
     <div class="span9">

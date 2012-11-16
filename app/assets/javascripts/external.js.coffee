@@ -5,4 +5,7 @@
 //= require jquery
 //= require external/superfish
 //= require external/jquery-ui-1.8.22.custom.min
+//= require bootstrap
+//= require bootstrap-dropdown
+//= require bootstrap.min
 //= require external/request
