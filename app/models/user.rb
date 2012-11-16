@@ -146,16 +146,16 @@ class User < ActiveRecord::Base
       case primary_association
       when 'faculty'
         faculty_role = Role.where(:name => 'Faculty').first_or_create(:description => 'Teaching and research faculty of the university')
-        self.roles.push(faculty_role)
+        self.roles.push(faculty_role) unless self.roles.include?(faculty_role)
       when 'grad'
         grad_role = Role.where(:name => 'Graduate Student').first_or_create(:description => 'Graduate student enrolled in the university')
-        self.roles.push(grad_role)
+        self.roles.push(grad_role) unless self.roles.include?(grad_role)
       when 'staff'
         staff_role = Role.where(:name => 'Staff').first_or_create(:description => 'Full or part time staff of the university')
-        self.roles.push(staff_role)
+        self.roles.push(staff_role) unless self.roles.include?(staff_role)
       when 'undergrad'
         undergrad_role = Role.where(:name => 'Undergraduate Student').first_or_create(:description => 'Undergraduate student enrolled in the university')
-        self.roles.push(undergrad_role)
+        self.roles.push(undergrad_role) unless self.roles.include?(undergrad_role)
       end
     end
   end
