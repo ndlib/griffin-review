@@ -1,0 +1,1 @@
+(function(){var e;e=jQuery,e(function(){return e(".admin_data_table").dataTable({sPaginationType:"full_numbers"})})}).call(this);
