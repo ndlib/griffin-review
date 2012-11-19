@@ -10,6 +10,7 @@ FactoryGirl.define do
     library_owned false
     language 'English'
     subtitles true
+    extent 'all'
     note { Faker::Lorem.paragraph }
   end
 

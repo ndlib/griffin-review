@@ -13,18 +13,24 @@ describe "Digitization Request Integration" do
   end
 
   describe "Visits new video processing request form" do
+    before :all do
+      Capybara.default_wait_time =5 
+      Capybara.current_driver = :selenium
+    end
     it "fills in request form and submits with valid data" do
       login_as @faculty_user
-      expect {
-        visit new_video_request_path
-        fill_in 'Video Title', :with => @request_a.title
-        fill_in 'Course', :with => @request_a.course
-        check 'Library Owns?'
-        select @semester_b.full_name, :from => 'Semester'
-        fill_in 'Date Needed By', :with => Date.today + 3.weeks
-        fill_in 'Special Instructions', :with => 'Lorem Ipsum'
-        click_button 'Finalize Request'
-      }.to change(Request, :count).by(1)
+      visit new_video_request_path
+      click_button 'Close'
+      fill_in 'Video Title', :with => @request_a.title
+      fill_in 'Course', :with => @request_a.course
+      check 'Library Owns?'
+      choose 'request_extent_all'
+      choose 'request_extent_all'
+      select @semester_b.full_name, :from => 'Semester'
+      fill_in 'Date Needed By', :with => Date.today + 3.weeks
+      fill_in 'Special Instructions', :with => 'Lorem Ipsum'
+      click_button 'Finalize Request'
+      page.should have_content('Status of Course Video Request') 
       logout @faculty_user
     end
     it "returns error message with invalid data" do

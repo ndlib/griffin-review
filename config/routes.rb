@@ -14,6 +14,7 @@ Griffin::Application.routes.draw do
     resources :item
     resources :video
   end
+  match '/img/glyphicons-halflings.png' => redirect('/assets/img/glyphicons-halflings.png')
   scope '/admin/video/request', :controller => 'admin/video_workflow' do
     get 'requests_by_semester', :as => nil, :path => '/by_semester/:s_id'
     post 'state', :action => 'requests_by_state', :as => 'requests_by_state'
