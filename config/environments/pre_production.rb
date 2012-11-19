@@ -44,7 +44,7 @@ Griffin::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w( admin.css  )
+  config.assets.precompile += %w( admin.css jquery_ujs.js jquery_nested_form.js autocomplete-rails.js admin/jquery-ui-1.8.22.cusom.min.js dataTables/jquery.dataTables.js underscore.js admin/video_workflow.js admin.js external.css external/superfish.js external/jquery-ui-1.8.22.custom.min.js external/request.js external.js jquery.js bootstrap.js bootstrap-dropdown.js bootstrap.min.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
