@@ -16,6 +16,17 @@ class External::RequestController < ExternalController
     @r = Request.new(params[:request])
     @r.user = current_user
 
+    case params[:request][:extent]
+    when 'all'
+      unless (@r.note =~ /The requester indicated that they would like to use/)
+        @r.note = params[:request][:note] + "\nThe requester indicated that they would like to use the entire video in the course."
+      end
+    when 'clips'
+      unless (@r.note =~ /The requester indicated that they would like to use/)
+        @r.note = params[:request][:note] + "\nThe requester indicated that they would like to use clips of the video in the course."
+      end
+    end
+
     if ((params[:add_another] || params[:final_multiple]) && params[:request][:semester_id].to_i >= 1)
       @multiple_previous_keys = []
       @multiple_previous = []
