@@ -7,4 +7,7 @@
 //= require autocomplete-rails
 //= require admin/jquery-ui-1.8.22.custom.min
 //= require dataTables/jquery.dataTables
+//= require bootstrap
+//= require bootstrap-dropdown
+//= require bootstrap.min
 //= require admin/video_workflow
