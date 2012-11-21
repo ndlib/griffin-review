@@ -8,3 +8,10 @@ en:
   time:
     formats:
       default: "%m/%d/%Y %I:%M%p"
+  activerecord:
+    errors:
+      models:
+        request:
+          attributes:
+            needed_by:
+              on_or_after: "Date must be in the future"

@@ -35,6 +35,9 @@ gem 'simple_form'
 gem 'nested_form'
 gem 'rails3-jquery-autocomplete'
 
+# model validation
+gem 'validates_timeliness', '~> 3.0'
+
 # Javascript runtime
 gem 'therubyracer'
 
