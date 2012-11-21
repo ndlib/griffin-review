@@ -55,6 +55,10 @@ Griffin::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Action mailer settings
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { :host => "localhost" }
 
   # Custom configuration
   config.ldap_lookup_flag = true

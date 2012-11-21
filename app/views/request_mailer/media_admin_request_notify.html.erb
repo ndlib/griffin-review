@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>New Video Request for <%= @requester.display_name %></h1>
+    <p>
+      A new video request has been submitted. The link to the request is here:
+      <br/><br/>
+      <a href="<%= video_workflow_url(@request.id) %>"/><br/><br/>
+      Here are the details:
+      <br/><br/>
+      <span style="font-weight: bold;">Requested Video Name:</span>
+      <span style="font-weight: bold;"><%= @request.title %></span>
+      <br/>
+      <span style="font-weight: bold;">Course:</span>
+      <span style="font-weight: bold;"><%= @request.course %></span>
+      <br/>
+      <span style="font-weight: bold;">Needed By:</span>
+      <span style="font-weight: bold;"><%= @request.needed_by %></span>
+      <br/>
+      <span style="font-weight: bold;">Note:</span>
+      <span style="font-weight: bold;"><%= @request.note %></span>
+    </p>
+  </body>
+</html>

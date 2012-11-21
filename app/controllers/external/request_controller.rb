@@ -40,6 +40,7 @@ class External::RequestController < ExternalController
 
     respond_to do |format|
       if @r.save
+        RequestMailer.media_admin_request_notify(@r).deliver
         if (params[:add_another])
           flash.now[:notice] = "The course video request for \"#{@r.title}\" has been received. An additional request can be made by filling out the form below."
           @multiple_previous.push(@r)

@@ -1,0 +1,14 @@
+New Video Request for <%= @requester.display_name %>
+
+
+A new video request has been submitted. The link to the request is here:
+
+<a href="<%= video_workflow_url(@request.id) %>"/><br/><br/>
+
+Here are the details:
+
+
+Requested Video Name: <%= @request.title %>
+Course: <%= @request.course %>
+Needed By: <%= @request.needed_by %>
+Note: <%= @request.note %>

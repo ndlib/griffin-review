@@ -39,6 +39,10 @@ Griffin::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  # Action mailer settings
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { :host => "localhost" }
 
   # Custom configuration
   config.ldap_lookup_flag = false
