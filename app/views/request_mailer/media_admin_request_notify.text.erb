@@ -3,12 +3,13 @@ New Video Request for <%= @requester.display_name %>
 
 A new video request has been submitted. The link to the request is here:
 
-<%= video_workflow_url(@request.id) %>
+<%= request_admin_show_url(@request.id) %>
 
 Here are the details:
-
 
 Requested Video Name: <%= @request.title %>
 Course: <%= @request.course %>
 Needed By: <%= @request.needed_by %>
-Note: <%= @request.note %>
+Note: 
+
+<%= @request.note %>

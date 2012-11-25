@@ -26,7 +26,7 @@ Griffin::Application.routes.draw do
       put 'update', :as => nil, :path => ''
       get 'edit', :as => 'admin_edit'
       delete 'destroy', :as => 'admin_destroy'
-      get 'show', :as => nil, :path => ''
+      get 'show', :as => 'admin_show', :path => ''
     end
   end
   scope '/admin', :controller => 'admin/video' do
