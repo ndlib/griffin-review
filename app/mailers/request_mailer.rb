@@ -13,7 +13,9 @@ class RequestMailer < ActionMailer::Base
       media_admins.each do |media_admin|
         media_admin_emails.push(media_admin.email)
       end
-      mail(:to => media_admin_emails, :subject => "Video Digitization Request from " + @requester.display_name, :content_type => "multipart/alternative")
+      unless media_admin_emails.blank?
+        mail(:to => media_admin_emails, :subject => "Video Digitization Request from " + @requester.display_name)
+      end
     else
       self.message.perform_deliveries = false
     end
