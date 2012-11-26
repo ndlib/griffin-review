@@ -16,16 +16,33 @@ class External::RequestController < ExternalController
     @r = Request.new(params[:request])
     @r.user = current_user
 
+    incoming_note = params[:request][:note]
+    incoming_note.sub!(/\s+Media Admin Info/, '')
+    incoming_note = incoming_note + "\n\nMedia Admin Info"
     case params[:request][:extent]
     when 'all'
-      unless (@r.note =~ /The requester indicated that they would like to use/)
-        @r.note = params[:request][:note] + "\nThe requester indicated that they would like to use the entire video in the course."
-      end
+      incoming_note.sub!(/\s+extent:\w+/, '')
+      incoming_note = incoming_note + "\nextent:all"
     when 'clips'
-      unless (@r.note =~ /The requester indicated that they would like to use/)
-        @r.note = params[:request][:note] + "\nThe requester indicated that they would like to use clips of the video in the course."
-      end
+      incoming_note.sub!(/\s+extent:\w+/, '')
+      incoming_note = incoming_note + "\nextent:clips"
     end
+
+    case params[:request][:cms]
+    when 'none'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:none"
+    when 'vista_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:vista_only"
+    when 'sakai_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:sakai_only"
+    when 'both_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:sakai_and_vista"
+    end
+    @r.note = incoming_note
 
     if ((params[:add_another] || params[:final_multiple]) && params[:request][:semester_id].to_i >= 1)
       @multiple_previous_keys = []
