@@ -5,7 +5,7 @@ class Request < VideoWorkflow
   belongs_to :semester
   belongs_to :user
 
-  validates_presence_of :title, :needed_by, :course, :user, :semester
+  validates_presence_of :title, :needed_by, :course, :user, :semester, :cms
   validates :cms, :inclusion => { :in => %w(none vista_concourse sakai_concourse both_concourse), :message => "CMS choice required" }, :on => :create
   validates_presence_of :extent, :message => 'Please indicate whether you need clips or the entire video', :on => :create
   validates :course, :format => { :with => /^(FA|SP|SU)[1-2][0-9] [A-Z]{1,10} [0-9]{1,10} ([A-Z,0-9]{2,4}|[0-9]{2})$/i,

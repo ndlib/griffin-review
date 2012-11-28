@@ -1,4 +1,4 @@
-<div class="alert alert-info"><strong>Instructions:</strong> First, please select the semester for which you would like to make a course digitization request. After filling out the initial request, you will have the opporunity to make multiple requests for the same semester. Fields that are required are marked with an asterisk.</div>
+<div class="alert alert-info"><strong>Instructions:</strong> First, please select the semester for which you would like to make a course digitization request. After filling out the initial request, you will have the opportunity to make multiple requests for the same semester. Fields that are required are marked with an asterisk.<p style="margin-top: 10px;">For questions regarding this service, please contact Patrick Rader at <a href="mailto:prader@nd.edu">prader@nd.edu</a> or (574)631-3099</p></div>
 <% if @multiple_previous_keys.respond_to?(:count) %>
   <% if @multiple_previous_keys.count >= 1 %>
     <% if flash[:notice] %>
@@ -44,7 +44,7 @@
       <input type="hidden" name="previous[]" value="<%= prev_key %>" />
     <% end %>
   <% end %>
-  <%= r.input :course, :label => "Course", :hint => 'must be in the form of SP12 CHEM 1001 01', :input_html => { :id => "r_course", :class => "span4 required_data" }%>
+  <%= r.input :course, :label => "Course", :hint => 'must be in the form of SP12 CHEM 1001 01 or FA13 THEO 83826 01', :input_html => { :id => "r_course", :class => "span4 required_data" }%>
   <%= r.input :language, :label => "Audio Language", :placeholder => 'language track to be used', :input_html => { :id => "r_language", :class => "span4" }%>
   <%= r.input :subtitles, :label => "Subtitle Language", :placeholder => 'subtitle language (if any)', :input_html => { :id => "r_language", :class => "span4" }%>
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4 required_data" } %>
