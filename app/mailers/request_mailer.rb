@@ -21,4 +21,9 @@ class RequestMailer < ActionMailer::Base
     end
 
   end
+
+  def requester_notify(request)
+    @request = request
+    mail(:to => request.user.email, :subject => "Video Digitization Request Receipt")
+  end
 end
