@@ -30,6 +30,20 @@ class Admin::RoleController < AdminController
       end
     end
   end
+  
+  def update
+    @role = Role.find(params[:id])
+    
+    respond_to do |format|
+      if @role.update_attributes(params[:role])
+        format.html { redirect_to admin_role_index_url, :notice => 'Role was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render :action => 'edit' }
+        format.json { render :json => @video.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   def show
     @role= Role.find(params[:id])
