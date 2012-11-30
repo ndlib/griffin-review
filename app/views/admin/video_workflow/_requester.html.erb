@@ -7,37 +7,37 @@
     <table cellpadding="4">
       <% if @requester.respond_to?(:displayname) %>
         <tr>
-          <td align="right"><h4>Name</h4></td>
+          <td align="right"><span style="font-weight: bold;">Name</span></td>
           <td><span><%= @requester.displayname.first %> (<%= @requester.uid.first %>)</span></td>
         </tr>
       <% end %>
       <% if @requester.respond_to?(:title) %>
         <tr>
-          <td align="right"><h4>Title</h4></td>
+          <td align="right"><span style="font-weight: bold;">Title</span></td>
           <td><span><%= @requester.title.first %> (<%= @requester.edupersonaffiliation.first %>)</span></td>
         </tr>
       <% end %>
       <% if @requester.respond_to?(:nddepartment) %>
         <tr>
-          <td align="right"><h4>Department</h4></td>
+          <td align="right"><span style="font-weight: bold;">Department</span></td>
           <td><span><%= @requester.nddepartment.first %></span></td>
         </tr>
       <% end %>
       <% if @requester.respond_to?(:ndmail) %>
         <tr>
-          <td align="right"><h4>Email</h4></td>
+          <td align="right"><span style="font-weight: bold;">Email</span></td>
           <td><span><a href="mailto:<%= @requester.ndmail.first %>" style="text-decoration: underline; outline-style: none;"><%= @requester.ndmail.first %></a></span></td>
         </tr>
       <% end %>
       <% if @requester.respond_to?(:telephonenumber) %>
         <tr>
-          <td align="right"><h4>Phone Number</h4></td>
+          <td align="right"><span style="font-weight: bold;">Phone Number</span></td>
           <td><span><%= @requester.telephonenumber.first %></span></td>
         </tr>
       <% end %>
       <% if @requester.respond_to?(:ndofficeaddress) %>
         <tr>
-          <td align="right"><h4>Address</h4></td>
+          <td align="right"><span style="font-weight: bold;">Address</span></td>
           <td>
             <% for @part in @requester.ndofficeaddress.first.split(/\$/) %>
               <span><%= @part %></span><br/>

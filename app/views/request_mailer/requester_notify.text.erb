@@ -20,9 +20,32 @@ You can view the status of this request by periodically going to this URL: <%= v
 
 <% if @request.note =~ /cms:\w*sakai/ %>
 You indicated in your request that you would like to provide access to this video via the Sakai course management system (Concourse in Sakai). You will need to do the following to make the video available in Sakai:
+=======================
+Granting access to Concourse in Sakai
+- Log in and click the course title that your requested videos for.
+- Click the "Site Editor" button on the left 
+- Click "Add Participants"
+- In the box titled "Official Notre Dame NetID" type in: stream
+- Make sure "Assign all participants to the same role" and "Active" are selected and click continue.
+- Check the role 'designer'.
+- Select "Send Now - send an email to the users notifying them that the site is available" .
+- Click Continue.
+- Click Finish.
+
 <% end %>
 <% if @request.note =~ /cms:\w*vista/ %>
 You indicated in your request that you would like to provide access to this video via the Concourse Classic course management system. You will need to do the following to make the video available in Concourse:
+
+=======================
+Granting access to Concourse Classic
+- Log in and click the course title that your requested videos for.
+- Click the "Teach" tab, then "Grade Book".
+- Click "Enroll Members".
+- For the "User Name" enter:  stream
+- Check the role 'section designer'.
+- Click "Enroll" for verification of the name.
+- If the correct name appears, click "Save"
+
 <% end %>
 
 If you have any questions about this service, please contact Patrick Rader (prader@nd.edu).

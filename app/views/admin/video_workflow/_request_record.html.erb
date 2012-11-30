@@ -9,47 +9,47 @@
   <div class="modal-body">
     <table class="modal_info_table" cellpadding="4">
       <tr>
-        <td align="right"><h4>Title</h4></td>
+        <td align="right"><span style="font-weight: bold;">Title</span></td>
         <td><span><%= @request.title %></span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Date Requested</h4></td>
+        <td align="right"><span style="font-weight: bold;">Date Requested</span></td>
         <td><span><%= @request.created_at %></span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Needed By</h4></td>
+        <td align="right"><span style="font-weight: bold;">Needed By</span></td>
         <td><span><%= @request.needed_by %></span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Workflow Status</h4></td>
+        <td align="right"><span style="font-weight: bold;">Workflow Status</span></td>
         <td><span style="color:<%= @request.current_state.meta[:color] %>;"><%= @request.current_state.meta[:label] %></span></td>
       </tr>
       <% if !@request.workflow_state_change_date.nil? %>
       <tr>
-        <td align="right"><h4>Status Change Time</h4></td>
+        <td align="right"><span style="font-weight: bold;">Status Change Time</span></td>
         <td><span><%= @request.workflow_state_change_date %></span></td>
       </tr>
       <% end %>
       <% if !@workflow_user.nil? %>
       <tr>
-        <td align="right"><h4>Last Transition By</h4></td>
+        <td align="right"><span style="font-weight: bold;">Last Transition By</span></td>
         <td><span><%= @workflow_user.displayname.first %> (<%= @workflow_user.uid %>)</span></td>
       </tr>
       <% end %>
       <tr>
-        <td align="right"><h4>Course</h4></td>
+        <td align="right"><span style="font-weight: bold;">Course</span></td>
         <td><span><%= @request.course %> (<%= @request.semester.full_name %>)</span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Language</h4></td>
+        <td align="right"><span style="font-weight: bold;">Language</span></td>
         <td><span><%= @request.language %></span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Subtitles</h4></td>
+        <td align="right"><span style="font-weight: bold;">Subtitles</span></td>
         <td><span><%= @request.subtitles %></span></td>
       </tr>
       <tr>
-        <td align="right"><h4>Note</h4></td>
+        <td align="right"><span style="font-weight: bold;">Note</span></td>
         <td><span><%= @request.note %></span></td>
       </tr>
     </table>

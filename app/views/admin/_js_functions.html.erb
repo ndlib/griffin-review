@@ -2,8 +2,9 @@
   
   $(document).ready(function() {
       $('#logged_in_user').popover({
-        animation:true,
-        content:'<table cellpadding="5"><tr><td style="text-align:right;">Last log in:</td><td><%= current_user.last_sign_in_at %></td></tr><tr><td style="text-align:right; vertical-align:top;">Roles:</td><td><% current_user.roles.each do |r| %><%= r.name %><br/><% end %></td></tr></table>',
+        animation: true,
+        html: true,
+        content:'<table cellpadding="4"><tr><td style="text-align:right;" nowrap="nowrap">Last log in:</td><td nowrap="nowrap"><%= current_user.last_sign_in_at %></td></tr><tr><td style="text-align:right; vertical-align:top;" nowrap="nowrap">Roles:</td><td nowrap="nowrap"><% current_user.roles.each do |r| %><%= r.name %><br/><% end %></td></tr></table>',
         placement:'bottom',
         trigger:'hover',
         title:'User Info'
