@@ -27,7 +27,7 @@ describe "Digitization Request Integration" do
       fill_in 'Video Title', :with => @request_a.title
       fill_in 'Course', :with => @request_a.course
       check 'Library Owns?'
-      select 'None', :from => 'Course Management'
+      select 'Concourse Classic', :from => 'Course Management'
       choose 'request_extent_all'
       fill_in 'Date Needed By', :with => Date.today + 3.weeks
       fill_in 'Special Instructions', :with => 'Lorem Ipsum'
@@ -55,7 +55,7 @@ describe "Digitization Request Integration" do
       fill_in 'Video Title', :with => @request_a.title
       fill_in 'Course', :with => @request_a.course
       check 'Library Owns?'
-      select 'None', :from => 'Course Management'
+      select 'Concourse Classic', :from => 'Course Management'
       fill_in 'Date Needed By', :with => Date.today + 3.weeks
       fill_in 'Special Instructions', :with => 'Lorem Ipsum'
       click_button 'Finalize Request'

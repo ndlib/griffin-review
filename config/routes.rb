@@ -21,6 +21,9 @@ Griffin::Application.routes.draw do
     post 'transition', :action => 'request_transition', :as => 'request_transition'
     get 'all', :action => 'full_list', :as => 'video_request_all'
   end
+  scope '/admin/item', :controller => 'admin/item' do
+    get 'all', :action => 'full_list', :as => 'admin_item_all'
+  end
   scope '/admin/video', :controller => 'admin/video_workflow' do
     resources :request, :controller => 'admin/video_workflow', :only => :none do
       put 'update', :as => nil, :path => ''

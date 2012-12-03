@@ -87,7 +87,7 @@ describe "Video Workflow Integration" do
 
   describe "Utilize ajax information tools", :js => true do
     before :all do
-      Capybara.default_wait_time =5 
+      Capybara.default_wait_time = 5 
       Capybara.current_driver = :selenium
     end
     before :each do
@@ -104,24 +104,88 @@ describe "Video Workflow Integration" do
     end
   end
 
-  describe "Utilize aspects of the video workflow lists" do
+  describe "Access initial workflow list" do
+    before :all do
+      Capybara.default_wait_time = 5 
+      Capybara.current_driver = :selenium
+    end
     before :each do
      login_as @media_admin_user 
     end
     after :each do
       logout @media_admin_user
     end
-    it "views the new request list"
-    it "views the sent to acquisitions list"
-    it "accesses the request edit screen"
-      # visit admin_video_request_processed_path
-      # click_link(@request_a.id.to_s)
-      # current_path.should eq(request_admin_edit_path(@request_a))
-    it "marks a video as digitized"
-    it "views requester information for request"
-    it "reorders the list by title"
-    it "reorders the list by request date"
-    it "reorders the list by needed by date"
+    it "views the new request list" do
+      visit video_request_all_path
+      click_link('New')
+      wait_until{ page.has_content?('Search:') }
+      page.should have_content(@request_b.title)
+    end
+  end
+
+  describe "View requester information for individual request" do
+    before :all do
+      Capybara.default_wait_time = 5 
+      Capybara.current_driver = :selenium
+    end
+    before :each do
+     login_as @media_admin_user 
+    end
+    after :each do
+      logout @media_admin_user
+    end
+    it "views requester information for request" do
+      visit video_request_all_path
+      click_link(@request_b.user.display_name)
+      wait_until{ page.has_content?('Requester Information') }
+      page.should have_content(@request_b.user.display_name)
+    end
+  end
+  
+  describe "Transition item to digitized state" do
+    before :all do
+      Capybara.default_wait_time = 5 
+      Capybara.current_driver = :selenium
+    end
+    before :each do
+     login_as @media_admin_user 
+    end
+    after :each do
+      logout @media_admin_user
+    end
+    it "edits a record to transition it and views digitized list" do
+      visit request_admin_edit_path(@request_b)
+      find('#current_state').text.should eq('New')
+      select 'Digitized', :from => 'Transition To'
+      click_button('Save')
+      visit video_request_all_path
+      click_link('Digitized')
+      wait_until{ page.has_content?('Search:') }
+      page.should have_content(@request_b.title)
+    end
+  end
+
+  describe "Transition item to awaiting acquisitions workflow state" do
+    before :all do
+      Capybara.default_wait_time = 5 
+      Capybara.current_driver = :selenium
+    end
+    before :each do
+     login_as @media_admin_user 
+    end
+    after :each do
+      logout @media_admin_user
+    end
+    it "edits a record to transition it and views awaiting acquisition list" do
+      visit request_admin_edit_path(@request_a)
+      find('#current_state').text.should eq('New')
+      select 'Requested from Acquisitions', :from => 'Transition To'
+      click_button('Save')
+      visit video_request_all_path
+      click_link('Awaiting Acquisitions')
+      wait_until{ page.has_content?('Search:') }
+      page.should have_content(@request_a.title)
+    end
   end
 
 end

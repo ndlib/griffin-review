@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h1>Item</h1>
+      <div class="span9">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>
+                <span class="label">Name</span>
+              </td>
+              <td>
+                <%= @item.name %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label">Description</span>
+              </td>
+              <td>
+                <%= @item.description %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label">Item Type</span>
+              </td>
+              <td>
+                <%= @semester.date_begin.strftime("%A %B %d, %Y")%>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="label">Created On</span>
+              </td>
+              <td>
+                <%= @item.created_at%>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

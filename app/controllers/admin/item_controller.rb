@@ -9,6 +9,13 @@ class Admin::ItemController < AdminController
     end
   end
 
+  def full_list
+    
+    respond_to do |format|
+      format.html { render :template => 'admin/item/list' }
+    end
+  end
+
   def new
   end
 
