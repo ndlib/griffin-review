@@ -72,7 +72,10 @@
           $('.ajaxBusy').remove();
           $('#' + type + '_div').append(data);
           $('#' + type + '_table').dataTable({
-            sPaginationType: "full_numbers"
+            sPaginationType: "full_numbers",
+            "aoColumnDefs": [
+              { "sType": "num-html", "aTargets": [ 0 ] }
+            ]
           });
         }
       });
