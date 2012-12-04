@@ -7,6 +7,7 @@
 //= require autocomplete-rails
 //= require admin/jquery-ui-1.8.22.custom.min
 //= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.typeDetection.numbersHtml
 //= require dataTables/jquery.dataTables.sorting.numbersHtml
 //= require bootstrap
 //= require bootstrap.min

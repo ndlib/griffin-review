@@ -73,8 +73,9 @@
           $('#' + type + '_div').append(data);
           $('#' + type + '_table').dataTable({
             sPaginationType: "full_numbers",
+            bStateSave: true,
             "aoColumnDefs": [
-              { "sType": "num-html", "aTargets": [ 0 ] }
+              { "sType": 'num-html', "aTargets": [ 0 ] }
             ]
           });
         }

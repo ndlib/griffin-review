@@ -2,7 +2,7 @@
   
   $(window).load(function() {
     busyLoader();
-    refresh_tables('all'); 
+    refresh_tables('new'); 
   });
 
   $(document).ready(function() { 
@@ -26,54 +26,54 @@
     <div class="span12 tabbable tabs-top">
       <ul class="nav nav-tabs">
         <li class="active">
-        <a data-toggle="tab" style="outline-style: none;" r_type="all" href="#lA">All</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="new" href="#lA">New</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="new" href="#lB">New</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_acquisitions" href="#lB">Awaiting Acquisitions</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_acquisitions" href="#lC">Awaiting Acquisitions</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_cataloging" href="#lC">Awaiting Cataloging</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_cataloging" href="#lD">Awaiting Cataloging</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="digitized" href="#lD">Digitized</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="digitized" href="#lE">Digitized</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="converted" href="#lE">Converted</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="converted" href="#lF">Converted</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="uploaded" href="#lF">Uploaded</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="uploaded" href="#lG">Uploaded</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="all" href="#lG">All</a>
         </li>
       </ul>
       <div class="tab-content">
         <div id="lA" class="tab-pane active">
-          <div id="all_div" class="requests_table_container">
-          </div>
-        </div>
-        <div id="lB" class="tab-pane">
           <div id="new_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lC" class="tab-pane">
+        <div id="lB" class="tab-pane">
           <div id="awaiting_acquisitions_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lD" class="tab-pane">
+        <div id="lC" class="tab-pane">
           <div id="awaiting_cataloging_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lE" class="tab-pane">
+        <div id="lD" class="tab-pane">
           <div id="digitized_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lF" class="tab-pane">
+        <div id="lE" class="tab-pane">
           <div id="converted_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lG" class="tab-pane">
+        <div id="lF" class="tab-pane">
           <div id="uploaded_div" class="requests_table_container">
+          </div>
+        </div>
+        <div id="lG" class="tab-pane">
+          <div id="all_div" class="requests_table_container">
           </div>
         </div>
       </div>
