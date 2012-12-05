@@ -3,6 +3,7 @@ class Admin::VideoWorkflowController < AdminController
   respond_to :json, :html
   
   autocomplete :video, :name, :full => true, :display_value => :video_display
+  autocomplete :user, :username, :extra_data => [:display_name], :display_value => :requester_display
 
   def new
     @r = Request.new

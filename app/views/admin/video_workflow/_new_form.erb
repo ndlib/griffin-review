@@ -1,58 +1,23 @@
-<div class="alert alert-info"><strong>Instructions:</strong> First, please select the semester for which you would like to make a course digitization request. After filling out the initial request, you will have the opportunity to make multiple requests for the same semester. Fields that are required are marked with an asterisk.<p style="margin-top: 10px;">For questions regarding this service, please contact Patrick Rader at <a href="mailto:prader@nd.edu">prader@nd.edu</a> or (574)631-3099</p></div>
-<% if @multiple_previous_keys.respond_to?(:count) %>
-  <% if @multiple_previous_keys.count >= 1 %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <h4>Request Created</h4>
-        <div style="margin-top: 10px;"><%= flash[:notice] %></div>
-      </div>
-    <% end %>
-    <% if flash[:error] %>
-      <div class="alert alert-error">
-        <h4>Error</h4>
-        <div style="margin-top: 10px;"><%= flash[:error] %></div>
-      </div>
-    <% end %>
-    <div class="well">
-      <h4>Multivideo Request for the <%= @repeat_semester.full_name %> Semester</h4>
-      <p style="width: 70%; margin: 10px 0px 15px 0px;">The following are the video requests that have been submitted by you for this course. You can continue to request videos for this semester, or please click 'Finalize Request' below.</p>
-      <% @multiple_previous.each do |previous_request| %>
-        <div>
-          <span class="badge badge-info"><%= @multiple_previous.index(previous_request) + 1 %></span>
-          <span style="font-style: italic;"><%= previous_request.title %></span>
-          <span> for course <%= previous_request.course %></span>
-        </div>
-        <hr/>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
 <%= simple_form_for @r,
-  :url => url_for(:action => 'create', :controller => 'external/request'),
+  :url => url_for(:action => 'create', :controller => 'admin/video_workflow'),
   :html => {:class => 'form-horizontal', :id => 'video_request_form' } do |r| %>
   <%= r.error_notification %>
-  <% if !@multiple_previous_keys.respond_to?(:count) %>
-    <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
-    <hr/>
-  <% end %>
+  <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
+  <hr/>
   <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span5 required_data" } %>
+  <%= r.input :user_id, :as => 'hidden', :input_html => { :id => 'user_id_field' } %>
+  <%= r.input :user_name, :url => autocomplete_user_username_video_workflow_index_path, :as => :autocomplete, :id_element => '#user_id_field', :label => "Requester", :input_html => { :id => "r_requester", :class => "span5 required_data" } %>
+  <%= r.input :video_id, :as => 'hidden', :input_html => { :id => 'video_id_field' } %>
+  <%= r.input :video_name, :url => autocomplete_video_name_video_workflow_index_path, :as => :autocomplete, :id_element => '#video_id_field', :input_html => { :id => 'video_name_field' }  %>
   <%= r.input :library_owned, :label => "Library Owns?", :input_html => { :id => "r_library_owned" } %>
-  <%= r.input :repeat_request, :label => "Repeat Request?", :input_html => { :id => "r_repeat_request" } %>
-  <% if @multiple_previous_keys.respond_to?(:count) %>
-    <%= r.input :semester_id, :as => 'hidden', :input_html => { :value => @repeat_semester.id } %>
-    <% @multiple_previous_keys.each do |prev_key| %>
-      <input type="hidden" name="previous[]" value="<%= prev_key %>" />
-    <% end %>
-  <% end %>
   <%= r.input :course, :label => "Course", :hint => 'must be in the form of SP12 CHEM 1001 01 or FA13 THEO 83826 01', :input_html => { :id => "r_course", :class => "span4 required_data" }%>
   <%= r.input :language, :label => "Audio Language", :placeholder => 'language track to be used', :input_html => { :id => "r_language", :class => "span4" }%>
   <%= r.input :subtitles, :label => "Subtitle Language", :placeholder => 'subtitle language (if any)', :input_html => { :id => "r_language", :class => "span4" }%>
   <%= r.input :needed_by, :label => "Date Needed By", :as => :date_picker, :input_html => { :id => "r_needed_by", :class => "span4 required_data" } %>
   <%= r.input :cms, :label => "Course Management", :as => :select, :collection => [['Concourse Classic', 'vista_concourse'], ['Concourse in Sakai', 'sakai_concourse'], ['Both Sakai and Concourse Classic', 'both_concourse']], :include_blank => 'Please Select', :input_html => { :id => "r_cms", :class => "span4 required_data" } %>
-  <%= r.input :extent, :label => 'Video Extent', :hint => 'If you require clips of this video, please indicate which clips in the special instructions including the time stamp and length of the clip(s)', :collection => [['I plan to show or discuss the entirety of this resource within the context of the course', 'all'], ['I plan to show or discuss only short clips of this resource within the context of the course', 'clips']], :as => :radio_buttons %>
-  <%= r.input :note, :label => "Special Instructions", :placeholder => 'e.g. - clip information, special audio information, course management information, etc', :input_html => { :id => "r_note", :class => "span6", :style => "height: 100px;" } %>
+  <%= r.input :extent, :label => 'Video Extent', :collection => [['The entire video will be used', 'all'], ['Clips will be used', 'clips']], :as => :radio_buttons %>
+  <%= r.input :note, :label => "Special Instructions", :input_html => { :id => "r_note", :class => "span6", :style => "height: 100px;" } %>
   <div class="form-actions span6">
-    <%= r.button :submit, :class => 'btn-primary', :name => 'final_submit_sent', :value => 'Finalize Request', :id => 'final_submit' %>
-    <%= r.button :submit, :class => 'btn-info', :name => 'add_another', :value => 'Add Another Video'%>
+    <%= r.button :submit, :class => 'btn-primary', :name => 'submit', :value => 'Create Request', :id => 'submit' %>
   </div>
 <% end %>

@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   def has_role?(role_sym)
     roles.any? { |r| r.name.titlecase.split.to_s.underscore.to_sym == role_sym }
   end
+
+  def requester_display
+    "#{self.display_name} (#{self.username})"
+  end
   
   def self.get_affiliation(ldap_result)
     # This is engineered to get the most important affiliation in

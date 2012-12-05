@@ -17,9 +17,9 @@ class Ability
     end
 
     if user.has_role? :media_admin
-      can [:manage ], [VideoWorkflow, Video, MetadataAttribute, BasicMetadata, TechnicalMetadata]
+      can [:manage ], [VideoWorkflow, Request, Video, MetadataAttribute, BasicMetadata, TechnicalMetadata]
       can [:all_metadata_attributes, :new_metadata_attribute, :create_metadata_attribute, :edit_metadata_attribute, :update_metadata_attribute, :destroy_metadata_attribute], [Admin]
-      can :read, User
+      can [:read, :create], User
     end
 
     if user.has_role? :faculty

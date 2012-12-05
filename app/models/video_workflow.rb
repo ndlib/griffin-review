@@ -1,7 +1,7 @@
 class VideoWorkflow < ActiveRecord::Base
   include Workflow
 
-  attr_accessor :workflow_transition, :video_name
+  attr_accessor :workflow_transition, :video_name, :user_name
 
   belongs_to :semester
   belongs_to :video

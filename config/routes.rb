@@ -25,8 +25,10 @@ Griffin::Application.routes.draw do
     get 'all', :action => 'full_list', :as => 'admin_item_all'
   end
   scope '/admin/video', :controller => 'admin/video_workflow' do
-      get 'new', :as => 'request_admin_new'
+    get 'new', :as => 'request_admin_new', :path => '/request/new'
+    resource :request, :controller => 'admin/video_workflow', :only => :none do
       post 'create', :as => nil, :path => ''
+    end
     resources :request, :controller => 'admin/video_workflow', :only => :none do
       put 'update', :as => nil, :path => ''
       get 'edit', :as => 'admin_edit'
@@ -41,6 +43,7 @@ Griffin::Application.routes.draw do
   scope '/admin', :controller => 'admin/video_workflow' do
     resources :video_workflow, :controller => 'admin/video_workflow' do
       get 'autocomplete_video_name', :on => :collection
+      get 'autocomplete_user_username', :on => :collection
     end
     post 'requester', :as => 'requester', :path => '/requester/:user_id'
     post 'request_record', :as => 'request', :path => '/request/:request_id'

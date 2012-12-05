@@ -1,19 +1,7 @@
-<script type="text/javascript" charset="utf-8">
-  var test = '<%= session[:viewed_modal] %>';
-  
-  <% if session[:viewed_modal] != 'viewed' %>
-    <% session[:viewed_modal] = 'viewed' %>
-    $(window).load(function() {
-      var dialog = $('<%= escape_javascript(render :partial => 'external/request/warning') %>').appendTo('body');
-      dialog.modal();
-    });
-  <% end %>
-
-</script>
 <div class="container">
   <div class="row">
     <div class="span9">
-      <h1>Course Video Digitization Request</h1>
+      <h1>Create Video Request</h1>
       <div class="span9" style="margin-top: 20px;">
         <%= render 'new_form' %>
       </div>
