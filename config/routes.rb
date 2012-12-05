@@ -25,6 +25,8 @@ Griffin::Application.routes.draw do
     get 'all', :action => 'full_list', :as => 'admin_item_all'
   end
   scope '/admin/video', :controller => 'admin/video_workflow' do
+      get 'new', :as => 'request_admin_new'
+      post 'create', :as => nil, :path => ''
     resources :request, :controller => 'admin/video_workflow', :only => :none do
       put 'update', :as => nil, :path => ''
       get 'edit', :as => 'admin_edit'

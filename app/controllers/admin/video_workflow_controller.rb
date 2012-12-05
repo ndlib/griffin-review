@@ -4,6 +4,60 @@ class Admin::VideoWorkflowController < AdminController
   
   autocomplete :video, :name, :full => true, :display_value => :video_display
 
+  def new
+    @r = Request.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @r }
+    end
+  end
+
+  def create
+
+    @r = Request.new(params[:request])
+
+    incoming_note = params[:request][:note]
+    incoming_note.sub!(/\s+Media Admin Info/, '')
+    incoming_note = incoming_note + "\n\nMedia Admin Info"
+    case params[:request][:extent]
+    when 'all'
+      incoming_note.sub!(/\s+extent:\w+/, '')
+      incoming_note = incoming_note + "\nextent:all"
+    when 'clips'
+      incoming_note.sub!(/\s+extent:\w+/, '')
+      incoming_note = incoming_note + "\nextent:clips"
+    end
+
+    case params[:request][:cms]
+    when 'none'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:none"
+    when 'vista_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:vista_only"
+    when 'sakai_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:sakai_only"
+    when 'both_concourse'
+      incoming_note.sub!(/\s+cms:\w+/, '')
+      incoming_note = incoming_note + "\ncms:sakai_and_vista"
+    end
+    @r.note = incoming_note
+
+    respond_to do |format|
+      if @r.save
+        RequestMailer.requester_notify(@r).deliver
+        format.html { redirect_to video_request_status_path(@r), :notice => 'Thank you. Your request was received and the team has been notified.' }
+        format.json { render :json => @r, :status => :created, :location => @r }
+      else
+        @repeat_semester = @r.semester
+        flash.now[:error] = "There was a problem creating the video request."
+        format.html { render :action => "new" }
+        format.json { render :json => @r.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   def full_list
     
     respond_to do |format|

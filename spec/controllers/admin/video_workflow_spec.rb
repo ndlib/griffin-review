@@ -91,6 +91,24 @@ describe Admin::VideoWorkflowController do
     end
   end
 
+  context "Create a new request" do
+    describe "with media admin account" do
+      before :each do
+        sign_in @media_admin_user 
+      end
+      after :each do
+        sign_out @media_admin_user
+      end
+      describe "with valid data entry" do
+        it "saves the request to the database" do
+          expect {
+            post :create, :request => Factory.attributes_for(:generic_request, :semester_id => @next_semester.id)
+          }.to change(Request, :count).by(1)
+        end
+      end
+    end
+  end
+
   context "Modify specific request" do
     describe "with media admin account" do
       before :each do
