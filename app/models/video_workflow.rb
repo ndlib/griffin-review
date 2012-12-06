@@ -1,17 +1,11 @@
 class VideoWorkflow < ActiveRecord::Base
   include Workflow
 
-  attr_accessor :workflow_transition, :video_name, :user_name, :admin_interface
-
-  validates_presence_of :user_name, :if => :admin_interface?, :message => 'Requester required'
+  attr_accessor :workflow_transition, :video_name
 
   belongs_to :semester
   belongs_to :video
   belongs_to :workflow_state_user, :class_name => "User", :foreign_key => 'workflow_state_change_user'
-
-  def admin_interface?
-    :admin_interface == true
-  end
 
   workflow do
     state :new, :meta => {:label => 'New', :color => '#2929FF'} do

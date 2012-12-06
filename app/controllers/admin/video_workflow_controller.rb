@@ -6,7 +6,7 @@ class Admin::VideoWorkflowController < AdminController
   autocomplete :user, :username, :extra_data => [:display_name], :display_value => :requester_display
 
   def new
-    @r = Request.new
+    @r = AdministrativeRequest.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @r }
@@ -15,12 +15,12 @@ class Admin::VideoWorkflowController < AdminController
 
   def create
 
-    @r = Request.new(params[:request])
+    @r = AdministrativeRequest.new(params[:administrative_request])
 
-    incoming_note = params[:request][:note]
+    incoming_note = params[:administrative_request][:note]
     incoming_note.sub!(/\s+Media Admin Info/, '')
     incoming_note = incoming_note + "\n\nMedia Admin Info"
-    case params[:request][:extent]
+    case params[:administrative_request][:extent]
     when 'all'
       incoming_note.sub!(/\s+extent:\w+/, '')
       incoming_note = incoming_note + "\nextent:all"
@@ -29,7 +29,7 @@ class Admin::VideoWorkflowController < AdminController
       incoming_note = incoming_note + "\nextent:clips"
     end
 
-    case params[:request][:cms]
+    case params[:administrative_request][:cms]
     when 'none'
       incoming_note.sub!(/\s+cms:\w+/, '')
       incoming_note = incoming_note + "\ncms:none"

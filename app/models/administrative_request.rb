@@ -1,10 +1,11 @@
-class Request < VideoWorkflow
+class AdministrativeRequest < VideoWorkflow
 
-  attr_accessor :extent, :cms
+  attr_accessor :extent, :cms, :user_name
 
   belongs_to :semester
   belongs_to :user
 
+  validates_presence_of :user_name, :message => 'Requester required'
   validates_presence_of :title, :needed_by, :course, :user, :semester
   validates :cms, :inclusion => { :in => %w(vista_concourse sakai_concourse both_concourse), :message => "CMS choice required" }, :on => :create
   validates_presence_of :extent, :message => 'Please indicate whether you need clips or the entire video', :on => :create
