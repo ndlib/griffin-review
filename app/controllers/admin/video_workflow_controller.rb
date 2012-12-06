@@ -48,7 +48,7 @@ class Admin::VideoWorkflowController < AdminController
     respond_to do |format|
       if @r.save
         RequestMailer.requester_notify(@r).deliver
-        format.html { redirect_to video_request_status_path(@r), :notice => 'Thank you. Your request was received and the team has been notified.' }
+        format.html { redirect_to request_admin_edit_path(:request_id => @r.id), :notice => 'Thank you. Your request was received and the team has been notified.' }
         format.json { render :json => @r, :status => :created, :location => @r }
       else
         @repeat_semester = @r.semester

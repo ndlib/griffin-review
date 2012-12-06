@@ -5,8 +5,9 @@
   <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
   <hr/>
   <%= r.input :title, :label => "Video Title", :input_html => { :id => "r_title", :class => "span5 required_data" } %>
+  <%= r.input :admin_interface, :as => 'hidden', :input_html => { :id => 'admin_interface_field', :value => 'true' } %>
   <%= r.input :user_id, :as => 'hidden', :input_html => { :id => 'user_id_field' } %>
-  <%= r.input :user_name, :url => autocomplete_user_username_video_workflow_index_path, :as => :autocomplete, :id_element => '#user_id_field', :label => "Requester", :input_html => { :id => "r_requester", :class => "span5 required_data" } %>
+  <%= r.input :user_name, :url => autocomplete_user_username_video_workflow_index_path, :as => :autocomplete, :id_element => '#user_id_field', :label => "Requester", :placeholder => 'enter netid to locate user record', :input_html => { :id => "r_requester", :class => "span5 required_data" } %>
   <%= r.input :video_id, :as => 'hidden', :input_html => { :id => 'video_id_field' } %>
   <%= r.input :video_name, :url => autocomplete_video_name_video_workflow_index_path, :as => :autocomplete, :id_element => '#video_id_field', :input_html => { :id => 'video_name_field' }  %>
   <%= r.input :library_owned, :label => "Library Owns?", :input_html => { :id => "r_library_owned" } %>
