@@ -26,7 +26,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <span class="label label-info">Name</span>
+                    <strong>Name</strong>
                   </td>
                   <td>
                     <%= link_to(user_info_path(@user), :class => 'user_load', :method => :post, :remote => true) do %>
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-info">Email</span>
+                    <strong>Email</strong>
                   </td>
                   <td>
                     <%= @user.email %>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-info">Username</span>
+                    <strong>Username</strong>
                   </td>
                   <td>
                     <%= @user.username %>
@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-info">Login Count</span>
+                    <strong>Login Count</strong>
                   </td>
                   <td>
                     <%= @user.sign_in_count %>
@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <span class="label label-info">Last Login</span>
+                    <strong>Last Login</strong>
                   </td>
                   <td>
                     <% if @user.current_sign_in_at? %>
@@ -78,8 +78,8 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <td><span class="label label-info">Name</span></td>
-                <td><span class="label label-info">Description</span></td>
+                <td><strong>Name</strong></td>
+                <td><strong>Description</strong></td>
               </tr>
             </thead>
             <tbody>
