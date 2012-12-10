@@ -102,7 +102,7 @@ describe Admin::VideoWorkflowController do
       describe "with valid data entry" do
         it "saves the request to the database" do
           expect {
-            post :create, :request => Factory.attributes_for(:generic_request, :extent => 'all', :cms => 'vista_concourse', :semester_id => @next_semester.id, :user_id => @faculty_user_a.id)
+            post :create, :administrative_request => Factory.attributes_for(:administrative_request, :extent => 'all', :cms => 'vista_concourse', :semester_id => @next_semester.id, :user_id => @faculty_user_a.id, :user_name => @faculty_user_a.display_name)
           }.to change(Request, :count).by(1)
         end
       end

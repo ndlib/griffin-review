@@ -108,8 +108,8 @@ class Admin::VideoWorkflowController < AdminController
     @request = Request.find(params[:request_id])
 
     transition_success = true
+    transition = params[:trans_val]
     if (!params[:trans_val].nil? && !params[:trans_val].empty?)
-      transition = params[:trans_val]
       begin
         @request.send("#{transition}!".to_sym)
       rescue
@@ -121,6 +121,9 @@ class Admin::VideoWorkflowController < AdminController
       @request.workflow_state_user = current_user
       @request.workflow_state_change_date = Time.now
       @request.save
+      if (transition == 'complete')
+        RequestMailer.requester_status_notify(@request).deliver
+      end
     end
 
     respond_to do |format|

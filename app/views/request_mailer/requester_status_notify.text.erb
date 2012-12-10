@@ -1,6 +1,6 @@
 <%= @request.user.display_name %>
 
-Your request for a course related digital video has been received. Here are the details of this request:
+The video that you requested to be digitized for your course(s) is now available.
 
 Date of request: <%= @request.created_at %>
 
@@ -13,10 +13,6 @@ Language: <%= @request.language %>
 <% if @request.subtitles %>
 Subtitles: <%= @request.subtitles %>
 <% end %>
-
-Requests will be processed in the order they are received with regard to the date requested.  Because of the high volume of requests received at the start of each semester, requests submitted with a short turnaround time may not be available by the requested date.
-
-You can view the status of this request by periodically going to this URL: <%= video_request_status_url(@request) %>
 
 <% if @request.note =~ /cms:\w*sakai/ %>
 You indicated in your request that you would like to provide access to this video via the Sakai course management system (Concourse in Sakai). You will need to do the following to make the video available in Sakai:
@@ -48,7 +44,7 @@ Granting access to Concourse Classic
 
 <% end %>
 
-If you have any questions about this service, please contact Patrick Rader (prader@nd.edu).
+If you have any questions about this, please contact Patrick Rader (prader@nd.edu).
 
 Thank you!
 
