@@ -5,7 +5,7 @@
   <%= u.input :last_name, :label => "Last Name", :input_html => { :id => "user_last_name", :class => "span6" }%>
   <%= u.input :first_name, :label => "First Name", :input_html => { :id => "user_first_name", :class => "span6" } %>
   <%= u.input :email, :label => "Email", :input_html => { :id => "user_email", :class => "span4" } %>
-  <%= u.association :roles %>
+  <%= u.association :roles, :collection => Role.accessible_by(current_ability) %>
   <div class="form-actions">
     <%= u.button :submit, :class => 'btn-primary'%>
   </div>

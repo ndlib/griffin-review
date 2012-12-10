@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :first_name, :last_name, :display_name
   validate :must_exist_in_ldap
 
+  scope :non_administrator, :include => :roles, :conditions => ['roles.name != ?', 'Administrator']
+
   # roles
   def has_role?(role_sym)
     roles.any? { |r| r.name.titlecase.split.to_s.underscore.to_sym == role_sym }

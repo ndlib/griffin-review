@@ -1,5 +1,5 @@
 class Admin::UserController < AdminController
-
+  
   def new
     @user = User.new
 
