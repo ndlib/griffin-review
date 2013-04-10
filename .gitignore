@@ -6,3 +6,5 @@ vendor/bundle/ruby/
 doc/apidocs/
 doc/api/
 doc/app/
+.sass-cache/
+config/database.yml

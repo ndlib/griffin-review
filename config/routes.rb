@@ -3,7 +3,7 @@ Griffin::Application.routes.draw do
   devise_for :users
 
   ############################
-  # Administrative Functions # 
+  # Administrative Functions #
   ############################
   namespace :admin do
     resources :role
@@ -96,5 +96,9 @@ Griffin::Application.routes.draw do
     get 'video_request_status', :as => 'video_request_status', :path => '/:r_id/status'
     post 'create', :path => '', :as => 'video_request'
   end
+
+
+  resources :student_listings
+
 
 end
