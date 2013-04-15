@@ -1,12 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # ILS compendium gem
 gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
+
+gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
 
 # db backends
 gem 'mysql2', "~> 0.3.11"
@@ -65,10 +67,8 @@ group :test do
     gem 'capybara'
     gem 'launchy', '~> 2.1.0'
     gem 'faker'
-	gem 'guard-rspec'
-	gem 'guard-coffeescript'
-	gem 'guard-shell'
-	gem 'guard-rails'
+    gem 'selenium-webdriver'
+
 	gem 'growl'
 	gem 'growl-rspec'
 	gem 'rb-fsevent'
@@ -76,11 +76,19 @@ group :test do
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem "spork", "~> 0.9.0"
-	gem "guard-spork", '<= 0.5.1'
+
+    gem 'guard-rspec'
+    gem 'guard-livereload'
+    gem 'guard-coffeescript'
+    gem 'guard-rails'
+    gem 'guard-bundler'
+    gem 'guard-spork'
+    gem 'guard-shell'
+
     gem "rb-readline"
 end
 
-gem 'jquery-rails', '1.0.19'
+gem 'jquery-rails', '2.1.4'
 gem 'jquery-datatables-rails'
 gem 'rails-backbone'
 

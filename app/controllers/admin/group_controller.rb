@@ -26,7 +26,7 @@ class Admin::GroupController < AdminController
         :status => :created,
         :location => @group }
       else
-        format.html { render :action => “new” }
+        format.html { render(:action => :new) }
         format.xml { render :xml => @group.errors,
         :status => :unprocessable_entity }
       end

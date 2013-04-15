@@ -1,16 +1,5 @@
 module ExternalHelper
     # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
-    def include_ssi(filename)
-      render :partial => "/layouts/include_ssi", :locals => {:filename => filename}
-    end
-
-    def read_ssi_file(filename)
-      contents = download_ssi_file(filename)
-      if filename == "js"
-        contents = clean_ssi_js(contents)
-      end
-      parse_ssi_contents(contents)
-    end
 
     def download_ssi_file(filename)
       require 'open-uri'

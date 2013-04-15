@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <p class="author"><i class="icon-file" title="journal"></i> <%= h object.creator %></p>
+    <p class="title"><%= link_to h(object.title), '#' %></p>
+    <p class="journal"><%= object.journal_title %></p>
+  </td>
+  <td>
+    <%= h object.length %>
+    <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
+  </td>
+</tr>

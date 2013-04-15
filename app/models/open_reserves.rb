@@ -6,7 +6,9 @@ class OpenReserves < ActiveRecord::Base
   when "pre_production"
     establish_connection configurations['open_reserves_pprd']
   when "development"
-    establish_connection configurations['open_reserves_development']
+    #establish_connection configurations['open_reserves_development']
+    establish_connection configurations['open_reserves_prod']
+
   else
     establish_connection configurations['open_reserves_test']
   end

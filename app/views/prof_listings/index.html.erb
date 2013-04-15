@@ -1,0 +1,74 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Course Reserves</h1></div>
+<% end %>
+<% content_for(:content_title_links) do %>
+  <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
+<% end %>
+
+<% breadcrumb([ 'Courses ']) %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Instructor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="<%= prof_listing_path(1) %>">Course 1</a>
+        <ul>
+          <li>Cross List 1</li>
+          <li>Cross List 2</li>
+          <li>Cross List 3</li>
+        </ul>
+      </td>
+      <td>Instructor</td>
+    </tr>
+    <tr>
+      <td>
+        <a href="teacher_items">Course 2</a>
+        <ul>
+          <li>Cross List 1</li>
+          <li>Cross List 2</li>
+          <li>Cross List 3</li>
+        </ul>
+      </td>
+      <td>Instructor</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Courses Without Reserves</h2>
+
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Instructor</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Course 3
+        <ul>
+          <li>Cross List 1</li>
+          <li>Cross List 2</li>
+        </ul>
+      </td>
+      <td>Instructor</td>
+      <td><a href="new_requests/new" class="btn btn-primary">New Request</a></td>
+    </tr>
+    <tr>
+      <td>Course 4</td>
+      <td>Instructor</td>
+      <td><a href="new_requests/new" class="btn btn-primary">New Request</a></td>
+    </tr>
+  </tbody>
+</table>
+
+ <p><span class="badge badge-important">Prof View</span></p>

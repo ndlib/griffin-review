@@ -1,0 +1,126 @@
+<% content_for(:content_title) do %>
+  <h1>Course 1 <small>Instructor Name</small></h1>
+<% end %>
+
+<% content_for(:content_title_links) do %>
+  <div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-book"></i> Add Material
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="<%= new_new_request_path %>">New Material</a></li>
+      <li><a>Copy Existing</a></li/
+    </ul>
+  </div>
+
+    <a href="teacher_reorder" class="btn"><i class="icon-tasks"></i> Organize Material</a>
+  </div>
+<% end %>
+
+
+<% breadcrumb([ link_to('Courses', 'teacher_courses'), 'Course 1']) %>
+
+<form class="well form-search">
+  <label>Reserve Filter</label>
+  <input type="text" id="eresearve_seach" class="input-medium" placeholder="Author name or Title" data-content="Start typeing to filter the list" data-title="Reserve Filter" >
+</form>
+
+<p>
+</p>
+
+<table class="table table-striped citations">
+  <thead>
+    <tr>
+      <th>Reserve</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p class="author"><i class="icon-file" title="journal"></i> Addison, Jeff,</p>
+        <p class="title"><a>Powerpoint and the Art of Presentations</a></p>
+      </td>
+      <td>
+        <p>pages: 22-25</p>
+        <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
+        <div id="citation_modal" class="modal hide fade" tabindex="-1">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Citation</h3>
+          </div>
+          <div class="modal-body">
+            Libby, Libby. <br />
+            Financial Accounting, 7th ed.
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p class="author"><i class="icon-file" title="journal"></i> Jones,</p>
+        <p class="title"><a>Illicit business: accounting for smuggling in mid-sixteenth-century Bristol</a></p>
+      </td>
+      <td>pages: 17-38</td>
+    </tr>
+    <tr>
+      <td>
+        <p class="author"><i class="icon-facetime-video" title="video"></i> Hartzler, Jon</p>
+        <p class="title"><a>Fancy Movie</a> </p>
+      </td>
+      <td>20 min.</td>
+    </tr>
+    <tr>
+      <td>
+        <p class="author"><i class="icon-file" title="website"></i> Kennel, Jaron</p>
+        <p class="title"><a>Boring Website</a></p>
+      </td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>
+        <p class="author"><i class="icon-book" title="book"></i>  Feller, William.</p>
+        <p class="title"> An introduction to probability theory and its applications</p>
+        <p class="availability">
+          <strong style="color:green">Available</stong> - <a>Library Locations</a>
+        </p>
+      </td>
+      <td>
+        Chapter 704
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $('#eresearve_seach').focus(function () {
+
+      if ($(this).attr('data-popover-shown') != 'shown') {
+        setTimeout(function () { $(eresearve_seach).popover('show'); }, 2000);
+        $(this).attr('data-popover-shown', 'shown');
+      }
+
+      return true;
+    });
+
+    $('#eresearve_seach').blur(function () {
+      $(this).popover('hide');
+    });
+
+    $('#eresearve_seach').keyup(function () {
+      $(this).popover('hide');
+    });
+
+    $('#eresearve_seach').popover({ trigger: 'manual' })
+
+    $('#eresearve_seach').focus();
+  });
+
+
+</script>
+

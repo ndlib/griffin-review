@@ -1,0 +1,56 @@
+<% content_for(:content_title) do %>
+  <h1><%= h @course.title %> <small><%= h @course.instructor %></small></h1>
+<% end %>
+<% content_for(:content_title_links) do %>
+  <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
+  <a href="student_courses" class="btn btn-primary"></i> Done</a>
+<% end %>
+
+<% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
+
+<form class="well form-search">
+  <label>Search</label>
+  <input type="text" id="eresearve_seach" class="input-medium" placeholder="Author name or Title" data-content="Start typeing to filter the list" data-title="Reserve Filter" >
+
+</form>
+
+<table class="table table-striped citations">
+  <thead>
+    <tr>
+      <th>Reserve</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course.reserves.each do | reserve | %>
+      <%= render :partial => reserve.list_partial, :locals => { object: reserve } %>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#eresearve_seach').popover({ trigger: 'manual' })
+
+    $('#eresearve_seach').focus(function () {
+
+      if ($(this).attr('data-popover-shown') != 'shown') {
+        setTimeout(function () { $(eresearve_seach).popover('show'); }, 2000);
+        $(this).attr('data-popover-shown', 'shown');
+      }
+
+      return true;
+    });
+
+    $('#eresearve_seach').blur(function () {
+      $(this).popover('hide');
+    });
+
+    $('#eresearve_seach').keyup(function () {
+      $(this).popover('hide');
+    });
+
+    $('#eresearve_seach').focus();
+  });
+
+</script>

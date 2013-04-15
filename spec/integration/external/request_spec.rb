@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+=begin
 describe "Digitization Request Integration" do
 
   before(:all) do
@@ -16,8 +17,8 @@ describe "Digitization Request Integration" do
 
   describe "Visits new video processing request form" do
     before :all do
-      Capybara.default_wait_time =5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time =5
+      Capybara.current_driver = :rack_test
     end
     it "fills in request form and submits with valid data" do
       login_as @faculty_user
@@ -32,7 +33,7 @@ describe "Digitization Request Integration" do
       fill_in 'Date Needed By', :with => Date.today + 3.weeks
       fill_in 'Special Instructions', :with => 'Lorem Ipsum'
       click_button 'Finalize Request'
-      page.should have_content('Status of Course Video Request') 
+      page.should have_content('Status of Course Video Request')
       logout @faculty_user
     end
     it "returns error message with invalid data" do
@@ -67,4 +68,6 @@ describe "Digitization Request Integration" do
     end
   end
 end
+=end
+
 

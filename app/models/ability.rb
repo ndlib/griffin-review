@@ -20,25 +20,25 @@ class Ability
       can :read, External
       can [:create, :video_request_status], Request
     end
-    
+
     if user.has_role? :media_admin
       can [:manage ], [VideoWorkflow, Request, Video, MetadataAttribute, BasicMetadata, TechnicalMetadata]
       can [:all_metadata_attributes, :new_metadata_attribute, :create_metadata_attribute, :edit_metadata_attribute, :update_metadata_attribute, :destroy_metadata_attribute], [Admin]
       can :read, Role, :name => ['Media Admin', 'Staff', 'Faculty', 'Graduate Student']
-      can [:read, :create, :update], User 
+      can [:read, :create, :update], User
     end
-    
+
     if user.has_role? :reserves_admin
       can [:manage ], [Item, OpenItem, MetadataAttribute, BasicMetadata, TechnicalMetadata]
       can :read, Role, :name => ['Reserves Admin', 'Reserves Technician', 'Media Admin', 'Staff', 'Faculty', 'Graduate Student']
-      can [:read, :create, :update], User 
+      can [:read, :create, :update], User
     end
-    
+
     if user.has_role? :administrator
       can :manage, :all
     end
 
-    if user.username == 'rfox2'
+    if user.username == 'rfox2' || user.username == 'jhartzle'
       can :manage, User
     end
 
