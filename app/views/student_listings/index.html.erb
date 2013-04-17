@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_reserves.reserve_courses.each do | course | %>
+    <% @student_reserves.courses_with_reserves.each do | course | %>
     <tr>
       <td><a href="<%= student_listing_path(course) %>"><%= h course.title %></a></td>
       <td><%= h course.instructor %></td>
@@ -35,7 +35,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_reserves.no_reserve_courses.each do | course | %>
+    <% @student_reserves.courses_without_reserves.each do | course | %>
       <tr>
         <td><%= h course.title %></td>
         <td><%= h course.instructor %></td>
@@ -44,4 +44,4 @@
   </tbody>
 </table>
 
-  <p><span class="badge badge-important">Student View</span></p>
+<p><span class="badge badge-important">Student View</span></p>

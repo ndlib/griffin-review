@@ -9,4 +9,13 @@ describe BookListing do
   it "has a listing partial" do
     listing.list_partial.should == 'external/request/lists/basic_listing'
   end
+
+
+  describe :approval_required? do
+
+    it "always returns false" do
+      listing.approval_required?.should be_false
+    end
+
+  end
 end

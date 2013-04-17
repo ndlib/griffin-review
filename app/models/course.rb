@@ -1,9 +1,10 @@
 class Course
+
   attr_accessor :title, :instructor
 
   def initialize(attributes = {})
     self.title = attributes[:title]
-    self.instructor = 'Instructor'
+    self.instructor = attributes[:instructor]
   end
 
 =begin < OpenReserves
@@ -24,13 +25,16 @@ class Course
     1
   end
 
+
   def students
     []
   end
 
 
-  def instructors
-
+  def all_tags
+    @all_tags = []
+    reserves.each{ | r | @all_tags = @all_tags + r.tags }
+    @all_tags.uniq!
   end
 
 
@@ -38,14 +42,26 @@ class Course
     CourseListing
 
     [
-      BookListing.test_request,
-      BookChapterListing.test_request,
-      JournalListing.test_file_request,
-      JournalListing.test_url_request,
-      VideoListing.test_request,
-      AudioListing.test_request,
-      WebsiteListing.test_request
+      BookListing.test_request(1),
+      BookChapterListing.test_request(2),
+      JournalListing.test_file_request(3),
+      JournalListing.test_url_request(4),
+      VideoListing.test_request(5),
+      AudioListing.test_request(6),
+      WebsiteListing.test_request(7)
     ]
   end
+
+
+  def reserve(id)
+    reserves[id.to_i - 1]
+  end
+
+
+  def self.test_data(title = 'Course 1')
+    Course.new(title: title, instructor: 'Instructor')
+  end
+
+
 
 end

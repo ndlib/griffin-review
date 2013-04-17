@@ -98,7 +98,10 @@ Griffin::Application.routes.draw do
   end
 
 
-  resources :student_listings
+  resources :student_listings do
+    resources :get_listings
+  end
+
   resources :prof_listings
   resources :new_requests
 

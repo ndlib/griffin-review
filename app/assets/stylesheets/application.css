@@ -1,3 +1,6 @@
+/*
+*/
+
 .page-header h1 { margin-bottom: 0; }
 .page-header { margin-top: 0;}
 
@@ -30,15 +33,19 @@ x
 }
 
  .nav-pills > .active > a, .nav-pills > .active > a:hover {
-background-image: -ms-linear-gradient(top, #8392A1, #304962);
-background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8392A1), to(#304962));
-background-image: -webkit-linear-gradient(top, #8392A1, #304962);
-background-image: -o-linear-gradient(top, #8392A1, #304962);
-background-image: -moz-linear-gradient(top, #8392A1, #304962);
-background-image: linear-gradient(top, #8392A1, #304962);
-border-color: #304962 #304962 #003580;
-border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-filter: progid:dximagetransform.microsoft.gradient(startColorstr='#8392A1', endColorstr='#304962', GradientType=0);
-filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-
+  background-image: -ms-linear-gradient(top, #8392A1, #304962);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8392A1), to(#304962));
+  background-image: -webkit-linear-gradient(top, #8392A1, #304962);
+  background-image: -o-linear-gradient(top, #8392A1, #304962);
+  background-image: -moz-linear-gradient(top, #8392A1, #304962);
+  background-image: linear-gradient(top, #8392A1, #304962);
+  border-color: #304962 #304962 #003580;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#8392A1', endColorstr='#304962', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
+
+
+.dataTables_filter label { display: block; width: 200px;}
+.dataTables_info { display: none;}
+.dataTables_paginate { display: none;}

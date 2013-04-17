@@ -7,17 +7,11 @@
 <% end %>
 
 <% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
-
-<form class="well form-search">
-  <label>Search</label>
-  <input type="text" id="eresearve_seach" class="input-medium" placeholder="Author name or Title" data-content="Start typeing to filter the list" data-title="Reserve Filter" >
-
-</form>
-
-<table class="table table-striped citations">
+<table class="table table-striped citations datatable">
   <thead>
     <tr>
       <th>Reserve</th>
+      <th>citation</th>
       <th></th>
     </tr>
   </thead>
@@ -30,27 +24,52 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#eresearve_seach').popover({ trigger: 'manual' })
 
-    $('#eresearve_seach').focus(function () {
+
+    // For fluid containers
+    $('.datatable').dataTable({
+      "sPaginationType": "bootstrap",
+      "iDisplayLength": 1000,
+      "bLengthChange": false
+    });
+
+    var input = $('.dataTables_filter').addClass('well form-vertical ').find('input');
+    input.attr('placeholder', "Author name or Title");
+    input.attr('data-content', 'Start typeing to filter the list');
+    input.attr('data-title', 'Reserve Filter');
+
+    input.popover({ trigger: 'manual' })
+
+    input.focus(function () {
 
       if ($(this).attr('data-popover-shown') != 'shown') {
-        setTimeout(function () { $(eresearve_seach).popover('show'); }, 2000);
-        $(this).attr('data-popover-shown', 'shown');
+        var input = $(this);
+
+        setTimeout(function () { input.popover('show'); }, 2000);
+        input.attr('data-popover-shown', 'shown');
       }
 
       return true;
     });
 
-    $('#eresearve_seach').blur(function () {
+    input.blur(function () {
       $(this).popover('hide');
     });
 
-    $('#eresearve_seach').keyup(function () {
+    input.keyup(function () {
       $(this).popover('hide');
     });
 
-    $('#eresearve_seach').focus();
+    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label>';
+
+    input.focus();
+
+    $('.dataTables_filter').append(txt);
+    $('#search_filter').change(function () {
+      $('.dataTables_filter input').val($(this).val());
+      $('.datatable').dataTable().fnFilter($(this).val());
+    });
+
   });
 
 </script>

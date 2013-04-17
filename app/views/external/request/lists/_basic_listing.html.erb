@@ -10,6 +10,6 @@
     <%= h object.length %>
     <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
   </td>
-
+  <td><%= object.tags.join(",").gsub(/\s+/, "") %></td>
 </tr>
 

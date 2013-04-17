@@ -34,5 +34,11 @@ describe CourseListing do
     it "has a url" do
       course_listing.respond_to?(:url).should be_true
     end
+
+    describe :tags do
+      it "has tags" do
+        course_listing.respond_to?(:tags).should be_true
+      end
+    end
   end
 end

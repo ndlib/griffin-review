@@ -1,10 +1,11 @@
 <tr>
   <td>
     <p class="author"><i class="icon-music" title="journal"></i> <%= h object.creator %></p>
-    <p class="title"><%= h object.title %></p>
+    <p class="title"><%= link_to h(object.title),  student_listing_get_listing_path(object.course.id, object.id), target: '_blank' %></p>
   </td>
   <td>
     <%= h object.length %>
     <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
   </td>
+  <td><%= object.tags.join(",").gsub(/\s+/, "") %></td>
 </tr>

@@ -9,4 +9,13 @@ describe VideoListing do
   it "has a listing partial" do
     listing.list_partial.should == 'external/request/lists/video_listing'
   end
+
+
+  describe :approval_required? do
+
+    it "always returns true" do
+      listing.approval_required?.should be_true
+    end
+
+  end
 end

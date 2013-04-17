@@ -10,22 +10,22 @@ class StudentReserves
       return nil
     end
 
-    Course.new(title: "Course 1")
+    Course.test_data
   end
 
 
   def courses_with_reserves()
     [
-      Course.new(title: "Course 1"),
-      Course.new(title: "Course 2")
+      Course.test_data,
+      Course.test_data("Course 2")
     ]
   end
 
 
   def courses_without_reserves()
     [
-      Course.new(title: "Course 3"),
-      Course.new(title: "Course 4")
+      Course.test_data("Course 3"),
+      Course.test_data("Course 4")
     ]
   end
 end
