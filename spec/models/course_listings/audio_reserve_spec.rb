@@ -1,9 +1,9 @@
 require 'spec_helper'
-CourseListing
+Reserve
 
-describe AudioListing do
+describe AudioReserve do
 
-  let(:listing) { AudioListing.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
+  let(:listing) { AudioReserve.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
 
 
   it "has a listing partial" do

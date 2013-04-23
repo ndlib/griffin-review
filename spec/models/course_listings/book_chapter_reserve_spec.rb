@@ -1,9 +1,9 @@
 require 'spec_helper'
-CourseListing
+Reserve
 
-describe BookChapterListing do
+describe BookChapterReserve do
 
-  let(:listing) { BookChapterListing.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
+  let(:listing) { BookChapterReserve.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
 
 
   it "has a listing partial" do

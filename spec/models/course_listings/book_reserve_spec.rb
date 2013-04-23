@@ -1,9 +1,9 @@
 require 'spec_helper'
-CourseListing
+Reserve
 
-describe BookListing do
+describe BookReserve do
 
-  let(:listing) { BookListing.new(title: "title", creator: "Author" ) }
+  let(:listing) { BookReserve.new(title: "title", creator: "Author" ) }
 
 
   it "has a listing partial" do

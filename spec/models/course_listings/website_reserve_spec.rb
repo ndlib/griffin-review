@@ -1,9 +1,9 @@
 require 'spec_helper'
-CourseListing
+Reserve
 
-describe WebsiteListing do
+describe WebsiteReserve do
 
-  let(:listing) { WebsiteListing.new(title: "title", creator: "Author", journal_title: "WEBSITE", length:"3:23 5 minutes", file: "url" ) }
+  let(:listing) { WebsiteReserve.new(title: "title", creator: "Author", journal_title: "WEBSITE", length:"3:23 5 minutes", file: "url" ) }
 
 
   it "has a listing partial" do

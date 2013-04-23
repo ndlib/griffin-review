@@ -1,4 +1,5 @@
-class GetCourseListing
+class GetReserve
+
   attr_accessor :course_lising, :current_user
 
   def initialize(course_listing, current_user)

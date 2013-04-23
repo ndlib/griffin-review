@@ -1,10 +1,10 @@
-class GetCourseListingsController < ApplicationController
+class GetReservesController < ApplicationController
 
   layout 'external'
 
 
   def show
-    @course_listing = GetCourseListing.new(course.reserve(params[:id]), "USER")
+    @course_listing = GetReserve.new(course.reserve(params[:id]), "USER")
 
     if params[:accept_terms_of_service]
       @course_listing.approve_terms_of_service!

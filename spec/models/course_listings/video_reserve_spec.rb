@@ -1,9 +1,9 @@
 require 'spec_helper'
-CourseListing
+Reserve
 
-describe VideoListing do
+describe VideoReserve do
 
-  let(:listing) { VideoListing.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
+  let(:listing) { VideoReserve.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
 
 
   it "has a listing partial" do

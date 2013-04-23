@@ -1,4 +1,4 @@
-class CopyCourseListingsController < ApplicationController
+class CopyReservesController < ApplicationController
 
   layout 'external'
 
