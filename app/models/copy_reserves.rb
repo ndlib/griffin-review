@@ -1,4 +1,5 @@
-class CopyCourseListings
+class CopyReserves
+
   attr_accessor :from_course, :to_course
 
   def initialize(from_course, to_course)

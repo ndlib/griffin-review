@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe CopyCourseListings do
+describe CopyReserves do
 
   before(:each) do
-    reserves = Reserves.new("USER", "SEMESTER")
+    reserves = ReservesApp.new("USER", "SEMESTER")
     @from_course = reserves.course(1)
     @to_course = reserves.course(1)
 
-    @copy_course = CopyCourseListings.new(@from_course, @to_course)
+    @copy_course = CopyReserves.new(@from_course, @to_course)
   end
 
 

@@ -19,7 +19,7 @@ class ReservesApp
     from_course = self.course(from_course_id)
     to_course = self.course(to_course_id)
 
-    CopyCourseListings.new(from_course, to_course)
+    CopyReserves.new(from_course, to_course)
   end
 
 

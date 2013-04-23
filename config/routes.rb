@@ -105,7 +105,7 @@ Griffin::Application.routes.draw do
   resources :prof_listings do
     resources :new_requests
     resources :get_course_listings, :path => 'get'
-    resources :copy_course_listings, :path => 'copy'
+    resources :copy_reserves, :path => 'copy'
   end
 
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CopyCourseListingsController do
+describe CopyReservesController do
 
   describe :create do
 
