@@ -27,8 +27,8 @@ class ExternalController < ApplicationController
     respond_to do |format|
       format.html
     end
-
   end
+
 
   def not_authorized
 

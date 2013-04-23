@@ -1,10 +1,11 @@
 class Course
 
-  attr_accessor :title, :instructor
+  attr_accessor :title, :instructor, :cross_listings
 
   def initialize(attributes = {})
     self.title = attributes[:title]
     self.instructor = attributes[:instructor]
+    self.cross_listings = attributes[:cross_listings] || []
   end
 
 =begin < OpenReserves
@@ -59,9 +60,13 @@ class Course
 
 
   def self.test_data(title = 'Course 1')
-    Course.new(title: title, instructor: 'Instructor')
+    listings = Random.rand(4).times.collect { | c | "Cross Listing #{c + 1}"}
+    Course.new(title: title, instructor: 'Instructor', cross_listings: listings)
   end
 
 
+  def new_request(*args)
+    Request.new(*args)
+  end
 
 end

@@ -3,7 +3,7 @@ class NewRequestsController < ApplicationController
   layout 'external'
 
   def new
-
+    @course = reserves.course(params[:prof_listing_id])
   end
 
 
@@ -11,4 +11,8 @@ class NewRequestsController < ApplicationController
 
   end
 
+
+  def reserves
+    @reserves ||= Reserves.new("USER", "SEMESTER")
+  end
 end

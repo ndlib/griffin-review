@@ -1,126 +1,168 @@
 <% content_for(:content_title) do %>
-  <h1>Course 1 <small>Instructor Name</small></h1>
+  <h1><%= h @course.title %> <small><%= h @course.instructor %></small></h1>
 <% end %>
-
 <% content_for(:content_title_links) do %>
-  <div class="btn-group">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <i class="icon-book"></i> Add Material
-      <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="<%= new_new_request_path %>">New Material</a></li>
-      <li><a>Copy Existing</a></li/
-    </ul>
-  </div>
-
-    <a href="teacher_reorder" class="btn"><i class="icon-tasks"></i> Organize Material</a>
-  </div>
+  <a href="<%= new_prof_listing_new_request_path(@course.id) %>" class="btn">New Request</a>
 <% end %>
 
-
-<% breadcrumb([ link_to('Courses', 'teacher_courses'), 'Course 1']) %>
-
-<form class="well form-search">
-  <label>Reserve Filter</label>
-  <input type="text" id="eresearve_seach" class="input-medium" placeholder="Author name or Title" data-content="Start typeing to filter the list" data-title="Reserve Filter" >
-</form>
-
-<p>
-</p>
-
-<table class="table table-striped citations">
+<% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
+<table class="table table-striped find-resources datatable">
   <thead>
     <tr>
       <th>Reserve</th>
       <th></th>
+      <th class="topic_row">Topics</th>
+      <th>Status</th>
+      <th>Copy</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        <p class="author"><i class="icon-file" title="journal"></i> Addison, Jeff,</p>
-        <p class="title"><a>Powerpoint and the Art of Presentations</a></p>
-      </td>
-      <td>
-        <p>pages: 22-25</p>
-        <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
-        <div id="citation_modal" class="modal hide fade" tabindex="-1">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Citation</h3>
-          </div>
-          <div class="modal-body">
-            Libby, Libby. <br />
-            Financial Accounting, 7th ed.
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p class="author"><i class="icon-file" title="journal"></i> Jones,</p>
-        <p class="title"><a>Illicit business: accounting for smuggling in mid-sixteenth-century Bristol</a></p>
-      </td>
-      <td>pages: 17-38</td>
-    </tr>
-    <tr>
-      <td>
-        <p class="author"><i class="icon-facetime-video" title="video"></i> Hartzler, Jon</p>
-        <p class="title"><a>Fancy Movie</a> </p>
-      </td>
-      <td>20 min.</td>
-    </tr>
-    <tr>
-      <td>
-        <p class="author"><i class="icon-file" title="website"></i> Kennel, Jaron</p>
-        <p class="title"><a>Boring Website</a></p>
-      </td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <td>
-        <p class="author"><i class="icon-book" title="book"></i>  Feller, William.</p>
-        <p class="title"> An introduction to probability theory and its applications</p>
-        <p class="availability">
-          <strong style="color:green">Available</stong> - <a>Library Locations</a>
-        </p>
-      </td>
-      <td>
-        Chapter 704
-      </td>
-    </tr>
-
+    <% @course.reserves.each do | reserve | %>
+      <%= render :partial => '/external/request/lists/instructor_list_row', :locals => { object: reserve } %>
+    <% end %>
   </tbody>
 </table>
+
+<div class="modal hide" id="topic_form">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Topic</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset id="topic_list">
+        <legend>Topics</legend>
+        <label class="checkbox"><input type="checkbox"> Topic 1</label>
+        <label class="checkbox"><input type="checkbox"> Topic 2</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>New Topic</legend>
+
+        <label><input type="text" id="add_topic_input"> <a href="#" class="btn" id="add_topic_button">Add</a></label>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+<div id="copy-overlay">
+  <form action="<%= prof_listing_copy_requests_path(@course.id) %>" method="post">
+    <h4>Copy Material to a New Course</h4>
+    <ul id="">
+    </ul>
+    <br />
+    <select id="copy_to_select">
+      <option>Copy to Course</option>
+      <optgroup label="Current Semester">
+        <option>Course 1</option>
+        <option>Course 2</option>
+      </optgroup>
+      <optgroup label="Next Semester">
+        <option>Course 3</option>
+        <option>Course 4</option>
+      </optgroup>
+    </select>
+    <button type="submit" class="copy btn btn-primary">Copy Material</button>
+    <button class="cancel btn">Cancel</button>
+  </form>
+</div>
+
+<style>
+  #copy-overlay {
+    display: none;
+    padding: 25px 25px 5px 25px;
+    position: fixed;
+    right: 10px;
+    bottom: 0px;
+    background-color: white;
+    border: 4px black solid;
+  }
+
+</style>
 
 <script type="text/javascript">
   $(document).ready(function () {
 
-    $('#eresearve_seach').focus(function () {
+    // For fluid containers
+    oTable = $('.datatable').dataTable({
+      "sPaginationType": "bootstrap",
+      "iDisplayLength": 1000,
+      "bLengthChange": false,
+      "aoColumnDefs": [ { "bVisible": true, "aTargets": [ 2 ] }, { "bSortable":false, "bSearchable": false, "aTargets": [ 1 ]} ]
+    });
+
+    var input = $('.dataTables_filter').addClass('well form-vertical ').find('input');
+    input.attr('placeholder', "Author name or Title");
+    input.attr('data-content', 'Start typeing to filter the list');
+    input.attr('data-title', 'Reserve Filter');
+
+    input.popover({ trigger: 'manual' })
+
+    input.focus(function () {
 
       if ($(this).attr('data-popover-shown') != 'shown') {
-        setTimeout(function () { $(eresearve_seach).popover('show'); }, 2000);
-        $(this).attr('data-popover-shown', 'shown');
+        var input = $(this);
+
+        setTimeout(function () { input.popover('show'); }, 2000);
+        input.attr('data-popover-shown', 'shown');
       }
 
       return true;
     });
 
-    $('#eresearve_seach').blur(function () {
+    input.blur(function () {
       $(this).popover('hide');
     });
 
-    $('#eresearve_seach').keyup(function () {
+    input.keyup(function () {
       $(this).popover('hide');
     });
 
-    $('#eresearve_seach').popover({ trigger: 'manual' })
+    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label><label>Filter by Status: <select id="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>';
 
-    $('#eresearve_seach').focus();
+    input.focus();
+
+    $('.dataTables_filter').append(txt);
+    $('#search_filter').change(function () {
+      oTable.fnFilter($(this).val(), 2, true, false, false);
+    });
+    $('#status_filter').change(function () {
+      oTable.fnFilter($(this).val(), 3, true, false, false);
+    });
+    $('#add_topic_button').click(function () {
+      $('#topic_list').append('<label class="checkbox"><input type="checkbox" checked="true"> New Topic</label>')
+    });
+
+    $('.copy').change(function () {
+      txt = $(this).parents('tr').find('.title').text();
+      if ($('#copy-overlay ul li:contains('+txt+')').size() > 0) {
+        $('#copy-overlay ul li:contains('+txt+')').remove();
+      } else {
+        row = $('<li>' + txt + '</li>')
+        $('#copy-overlay ul').append(row);
+        row.effect("highlight", {}, 3000);
+      }
+
+      if ($('#copy-overlay ul li').size() == 0) {
+        $('#copy-overlay').hide();
+      } else {
+        $('#copy-overlay').show();
+      }
+    });
+
+    $('#copy-overlay .cancel').click(function () {
+      $('#copy-overlay ul li').remove();
+      $('#copy-overlay').hide();
+      $('.copy').each(function () {
+        this.checked = false;
+      });
+      return false;
+    });
+
   });
 
-
 </script>
-

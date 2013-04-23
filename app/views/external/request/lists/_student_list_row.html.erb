@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= render :partial => '/external/request/lists/list_record', :locals => { object: object} %>
+  </td>
+  <td>
+    <%= h object.length %>
+  </td>
+  <td><%= object.tags.join(",") %></td>
+</tr>

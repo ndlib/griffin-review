@@ -1,72 +1,33 @@
 <% content_for(:content_title) do %>
-
-<% if params[:show_added] %>
-  <div class="alert alert-info citations">
-    <h3>Resource Requested</h3>
-    <h4><a><span class="author">Addison, Jeff,</span> Powerpoint and the Art of Presentations</a></h4>
-    <p><em>MS Office Quarterly</em>, 2 (23) , 2005.</p>
-  </div>
+  <h1>Request New Material <small><%= h @course.title %></small></h1>
 <% end %>
 
-  <div class="page-header">
-    <h1>Request Reserve Material <small>Course 1</small></h1>
-  </div>
-<% end %>
+<div class="btn-group well" data-toggle="buttons-radio">
+  <h3>1. What type of material do you have? </h3>
+  <p>
+    <a href="#book" class="btn" data-toggle="tab">Book</a>
+    <a href="#book_chapter" class="btn" data-toggle="tab">Book Chapter</a>
+    <a href="#article" class="btn" data-toggle="tab">Article</a>
+    <a href="#video_audio" class="btn" data-toggle="tab">Video Audio</a>
+  </p>
+</div>
 
+<hr>
 
-<% breadcrumb([ link_to('Courses', 'teacher_courses'), link_to('Course 1', 'teacher_items'), 'Request Mateterials']) %>
-
-<% content_for(:right_column) do %>
-
-  <div class="well">
-    <h3>Requestor Information</h3>
-
-    <p><strong>Bob Bobbers</strong> (bob@bob.com)</p>
-    <p>Department #1</p>
-    <p>523452</p>
-    <p><a href="request_user_information">Edit</a></p>
-  </div>
-  <p><span class="badge badge-important">Prof View</span></p>
-
-<% end %>
-
-
-<h3>Select Resource Type</h3>
-
-<ul class="nav nav-pills">
-  <li class="">
-    <a href="#book" data-toggle="tab">Reserve Book</a>
-  </li>
-  <li><a href="#eresource" data-toggle="tab">Electronic Reserve</a></li>
-  <li><a href="#video" data-toggle="tab">Video Reserve</a></li>
-</ul>
-
+<div class="row">
+ <div class="span6">
 <div class="tab-content">
+  <div class="tab-pane" id="copy">
+    copy copy
+  </div>
   <div class="tab-pane" id="book">
-    book
-
-    <div class="form-actions">
-      <a class="btn btn-primary" href="request_resource?show_added=1">Save</a>
-      <a href="teacher_items" class="btn disabled save-btns">Cancel</a>
-    </div>
-
+    <%= render :partial => 'book_form' %>
   </div>
-
-  <div class="tab-pane" id="eresource">
-    eresource
-
-    <div class="form-actions">
-      <a class="btn btn-primary" href="request_resource?show_added=1">Save</a>
-      <a href="teacher_items" class="btn disabled save-btns">Cancel</a>
-    </div>
-  </div>
-
-  <div class="tab-pane" id="video">
-    video
-
-    <div class="form-actions">
-      <a class="btn btn-primary" href="request_resource?show_added=1">Save</a>
-      <a href="teacher_items" class="btn disabled save-btns">Cancel</a>
-    </div>
+  <div class="tab-pane" id="book_chapter">
+    <%= render :partial => 'book_chapter_form' %>
   </div>
 </div>
+
+  </div>
+</div>
+

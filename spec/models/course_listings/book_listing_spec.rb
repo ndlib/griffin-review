@@ -11,6 +11,16 @@ describe BookListing do
   end
 
 
+  it "has a css class to identify this" do
+    listing.css_class.should == 'book-record'
+  end
+
+
+  it "does not link to a get listing page" do
+    listing.link_to_get_listing?.should be_false
+  end
+
+
   describe :approval_required? do
 
     it "always returns false" do

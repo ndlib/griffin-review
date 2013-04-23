@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <%= render :partial => '/external/request/lists/list_record', :locals => { object: object} %>
+  </td>
+  <td>
+    <%= h object.length %>
+  </td>
+  <td>
+    <ul>
+      <% object.tags.each do | tag  | %>
+        <li><%= h tag %></li>
+      <% end %>
+    </ul>
+    <a href="#topic_form" data-toggle="modal" class="add_topic">Edit Topics</a>
+  </td>
+  <td><%= object.status.titleize %>
+  <td><%= check_box_tag 'copy', '1', false, class: "copy" %></td>
+</tr>

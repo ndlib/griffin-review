@@ -7,17 +7,17 @@
 <% end %>
 
 <% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
-<table class="table table-striped citations datatable">
+<table class="table table-striped find-resources datatable">
   <thead>
     <tr>
       <th>Reserve</th>
-      <th>citation</th>
       <th></th>
+      <th class="topic_row"></th>
     </tr>
   </thead>
   <tbody>
     <% @course.reserves.each do | reserve | %>
-      <%= render :partial => reserve.list_partial, :locals => { object: reserve } %>
+      <%= render :partial => '/external/request/lists/student_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>
 </table>
@@ -27,10 +27,11 @@
 
 
     // For fluid containers
-    $('.datatable').dataTable({
+    oTable = $('.datatable').dataTable({
       "sPaginationType": "bootstrap",
       "iDisplayLength": 1000,
-      "bLengthChange": false
+      "bLengthChange": false,
+      "aoColumnDefs": [ { "bVisible": false, "aTargets": [ 2 ] }, { "bSortable":false, "bSearchable": false, "aTargets": [ 1 ]} ]
     });
 
     var input = $('.dataTables_filter').addClass('well form-vertical ').find('input');
@@ -66,8 +67,7 @@
 
     $('.dataTables_filter').append(txt);
     $('#search_filter').change(function () {
-      $('.dataTables_filter input').val($(this).val());
-      $('.datatable').dataTable().fnFilter($(this).val());
+      oTable.fnFilter($(this).val(), 2, true, false, false);
     });
 
   });

@@ -1,7 +1,17 @@
-class StudentReserves
+class Reserves
 
   def initialize(current_user, semester)
     @user = current_user
+  end
+
+
+  def all_semesters
+    Semester.cronologial
+  end
+
+
+  def current_semester
+    Semester.current.first
   end
 
 

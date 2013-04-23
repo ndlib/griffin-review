@@ -1,0 +1,25 @@
+
+<h3>2. Book Details </h3>
+
+<%= simple_form_for @course.new_request, :as => :export, :html => {id: "book_form"}, :url => prof_listings_path() do |f| %>
+
+  <%= f.input :title %>
+  <%= f.input :creator %>
+
+  <%= f.input :needed_by, as: "string", class: 'datepicker' %>
+
+  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
+
+  <%= f.input :number_of_copies do %>
+    <%= f.input_field :number_of_copies, class: 'span2' %>
+  <% end %>
+
+  <%= f.input :note, label: "Special Instuctions" do %>
+    <%= f.input_field :note, placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary', label: "Save" %>
+    <%= link_to 'Cancel', prof_listing_path(@course.id), :class => "btn btn-danger" %>
+  </div>
+<% end %>

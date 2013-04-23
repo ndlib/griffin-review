@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe StudentReserves do
+describe Reserves do
 
-  let(:student_reserves) { StudentReserves.new("current_user", "semester")}
+  let(:reserves) { Reserves.new("current_user", "semester")}
 
   describe :course do
 
     it "returns a course the student belongs to" do
-      student_reserves.course("1").title.should == "Course 1"
-      student_reserves.course("1").instructor.should == "Instructor"
+      reserves.course("1").title.should == "Course 1"
+      reserves.course("1").instructor.should == "Instructor"
     end
 
     it "returns nil if the student is not a part of the class"
@@ -20,7 +20,7 @@ describe StudentReserves do
   describe :courses_with_reserves do
 
     it "returns a list of courses that have reserves for the current user" do
-      student_reserves.courses_with_reserves.size.should == 2
+      reserves.courses_with_reserves.size.should == 2
     end
 
     it "return [] if the student has no reserves in the specified semester"
@@ -33,12 +33,31 @@ describe StudentReserves do
   describe :courses_without_reserves do
 
     it "returns a list of courses that have do not have reserves for the current user" do
-      student_reserves.courses_without_reserves.size.should == 2
+      reserves.courses_without_reserves.size.should == 2
     end
 
     it "return [] if the student has no classes with out reserves in the specified semester"
 
     it "only returns courses without reserves"
+
+  end
+
+
+  describe :all_semsters do
+
+    it "orders them cronologically" do
+      ps = FactoryGirl.create(:previous_semester)
+      cs = FactoryGirl.create(:semester)
+
+      reserves.all_semesters.first.should == cs
+      reserves.all_semesters.last.should == ps
+    end
+
+  end
+
+
+  describe :current_semester do
+
 
   end
 

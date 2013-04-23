@@ -19,6 +19,7 @@ class StudentListingsController < ApplicationController
   protected
 
   def reserves
-    @student_reserves ||= StudentReserves.new("USER", "SEMESTER")
+    @reserves ||= Reserves.new("USER", "SEMESTER")
   end
+
 end

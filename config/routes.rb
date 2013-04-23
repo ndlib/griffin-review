@@ -102,8 +102,11 @@ Griffin::Application.routes.draw do
     resources :get_listings
   end
 
-  resources :prof_listings
-  resources :new_requests
+  resources :prof_listings do
+    resources :new_requests
+    resources :copy_requests
+  end
+
 
 
 end

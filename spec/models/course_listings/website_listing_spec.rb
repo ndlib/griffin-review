@@ -10,6 +10,15 @@ describe WebsiteListing do
     listing.list_partial.should == 'external/request/lists/website_listing'
   end
 
+    it "has a css class to identify this" do
+    listing.css_class.should == 'record-article'
+  end
+
+
+  it "links to a get listing page" do
+    listing.link_to_get_listing?.should be_true
+  end
+
 
   describe :approval_required? do
 

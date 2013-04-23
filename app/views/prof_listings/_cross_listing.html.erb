@@ -1,0 +1,7 @@
+<% if !object.cross_listings.empty? %>
+<ul>
+  <% object.cross_listings.each do | listing | %>
+    <li><%= listing %></li>
+  <% end %>
+</ul>
+<% end %>

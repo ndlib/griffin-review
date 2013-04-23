@@ -4,7 +4,7 @@ class GetListingsController < ApplicationController
 
   def show
     @course_listing = GetCourseListing.new(course.reserve(params[:id]), "USER")
-
+    binding.pry
     if params[:accept_terms_of_service]
       @course_listing.approve_terms_of_service!
     end
@@ -28,7 +28,7 @@ class GetListingsController < ApplicationController
   private
 
     def reserves
-      @reserves ||= StudentReserves.new("USER", "SEMESTER")
+      @reserves ||= Reserves.new("USER", "SEMESTER")
     end
 
     def course

@@ -1,0 +1,24 @@
+<div class="record <%= object.css_class %>">
+  <div class="cover">
+    <div class="cover-image thumbnail"></div>
+    <div class="cover-type"></div>
+  </div>
+  <div class="summary">
+    <h2 class="title">
+      <% if object.link_to_get_listing? %>
+        <%= link_to h(object.title), student_listing_get_listing_path(object.course.id, object.id), target: '_blank' %>
+      <% else %>
+        <%= h object.title %>
+      <% end %>
+    </h2>
+    <h3 class="author"><%= h object.creator %></h3>
+    <p class="details">details</p>
+    <p class="publisher">publisher</p>
+    <p class="availability">
+      <span class="availability-library"></span>
+      <span class="availability-text"></span>
+      <span class="availability-link"></span>
+      <%= raw object.is_a?(BookListing) ? '<span class="available">Available</span>' : '' %>
+    </p>
+  </div>
+</div>

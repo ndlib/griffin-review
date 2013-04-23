@@ -1,6 +1,9 @@
 class CourseListing
+  include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  attr_accessor :title, :creator, :journal_title, :length, :file, :url, :course, :id
+  attr_accessor :title, :creator, :journal_title, :length, :file, :url, :course, :id, :student_comments, :citation, :comments
 
   def initialize(attributes = {})
     attributes.keys.each do  | key |
@@ -19,8 +22,27 @@ class CourseListing
   end
 
 
+  def citation
+    "Citation will go here."
+  end
+
+
   def tags
     []
+  end
+
+  def css_class
+    "book-record"
+  end
+
+
+  def link_to_get_listing?
+    false
+  end
+
+
+  def status
+    'complete'
   end
 end
 
@@ -41,6 +63,18 @@ class BookListing < CourseListing
   def tags
     ['topic 1']
   end
+
+
+  def css_class
+    "book-record"
+  end
+
+
+  def status
+    'new'
+  end
+
+
 end
 
 
@@ -64,6 +98,23 @@ class BookChapterListing < CourseListing
   def tags
     ['topic 2']
   end
+
+
+  def css_class
+    "book-record"
+  end
+
+
+  def link_to_get_listing?
+    true
+  end
+
+
+  def status
+    'complete'
+  end
+
+
 end
 
 
@@ -93,12 +144,27 @@ class JournalListing < CourseListing
     ['topic 1', 'topic 2']
   end
 
+
+  def link_to_get_listing?
+    true
+  end
+
+
+  def css_class
+    "record-article"
+  end
+
+
+  def status
+    'awaiting digitization'
+  end
+
 end
 
 
 class VideoListing < CourseListing
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data, title: "Movie", creator: 'Robin Schaaf', student_comments: "Be sure to catch the after credits moment with spider robot Chewbacca", length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
@@ -115,6 +181,23 @@ class VideoListing < CourseListing
   def tags
     ['topic 1']
   end
+
+
+  def css_class
+    "record-video"
+  end
+
+
+  def link_to_get_listing?
+    true
+  end
+
+
+  def status
+    'complete'
+  end
+
+
 end
 
 
@@ -138,6 +221,23 @@ class AudioListing < CourseListing
   def tags
     ['topic 2']
   end
+
+
+  def css_class
+    "record-audio"
+  end
+
+
+  def link_to_get_listing?
+    true
+  end
+
+
+  def status
+    'complete'
+  end
+
+
 end
 
 
@@ -161,4 +261,21 @@ class WebsiteListing < CourseListing
   def tags
     []
   end
+
+
+  def css_class
+    "record-article"
+  end
+
+
+  def link_to_get_listing?
+    true
+  end
+
+
+  def status
+    'complete'
+  end
+
+
 end

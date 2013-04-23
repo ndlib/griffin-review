@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 describe CourseListing do
 
@@ -35,7 +35,23 @@ describe CourseListing do
       course_listing.respond_to?(:url).should be_true
     end
 
+
+    it "has student_comments" do
+      course_listing.respond_to?(:student_comments).should be_true
+    end
+
+    it "has a citation" do
+      course_listing.respond_to?(:citation).should be_true
+    end
+
+
+    it "has a css class for the record display" do
+      course_listing.respond_to?(:css_class)
+    end
+
+
     describe :tags do
+
       it "has tags" do
         course_listing.respond_to?(:tags).should be_true
       end

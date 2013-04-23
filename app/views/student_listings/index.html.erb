@@ -5,7 +5,7 @@
   <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
 <% end %>
 
-<% # breadcrumb([ 'Courses ']) %>
+<% breadcrumb([ 'Courses ']) %>
 
 <table class="table table-striped">
   <thead>
@@ -15,9 +15,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_reserves.courses_with_reserves.each do | course | %>
+    <% @reserves.courses_with_reserves.each do | course | %>
     <tr>
-      <td><a href="<%= student_listing_path(course) %>"><%= h course.title %></a></td>
+      <td>
+        <a href="<%= student_listing_path(course.id) %>"><%= h course.title %></a>
+      </td>
       <td><%= h course.instructor %></td>
     </tr>
     <% end %>
@@ -35,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @student_reserves.courses_without_reserves.each do | course | %>
+    <% @reserves.courses_without_reserves.each do | course | %>
       <tr>
         <td><%= h course.title %></td>
         <td><%= h course.instructor %></td>

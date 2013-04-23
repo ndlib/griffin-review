@@ -13,8 +13,8 @@ describe StudentListingsController do
     it "passes student_reserves to the view" do
       get :index
 
-      assigns(:student_reserves).should_not be_nil
-      assigns(:student_reserves).class.should == StudentReserves
+      assigns(:reserves).should_not be_nil
+      assigns(:reserves).class.should == Reserves
     end
   end
 

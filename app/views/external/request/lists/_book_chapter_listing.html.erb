@@ -3,10 +3,11 @@
     <p class="author"><i class="icon-book" title="journal"></i> <%= h object.creator %></p>
     <p class="title"><%= link_to h(object.title), student_listing_get_listing_path(object.course.id, object.id) %></p>
   </td>
+  <td><%= simple_format(object.student_comments) %></td>
   <td>
     <%= h object.length %>
-    <p class="citation"><a href="#citation_modal" data-toggle="modal">citation</a></p>
+    <%= render :partial => 'external/request/lists/citation', :locals => { object: object } %>
   </td>
-  <td><%= object.tags.join(",").gsub(/\s+/, "") %></td>
+  <td><%= object.tags.join(",") %></td>
 </tr>
 

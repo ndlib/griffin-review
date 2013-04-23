@@ -7,36 +7,34 @@
 
 <% breadcrumb([ 'Courses ']) %>
 
+<form class="well form-search">
+  <label>Semester: <select name="semster_id" class="search_select"><%= options_from_collection_for_select(@reserves.all_semesters, :id, :name, params[:semster_id]) %></select></label>
+</form>
+<script type="text/javascript">
+  $('.search_select').change(function () {
+    $(this).parents('form').submit();
+  });
+</script>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Course</th>
       <th>Instructor</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
+    <% @reserves.courses_with_reserves.each do | course | %>
     <tr>
       <td>
-        <a href="<%= prof_listing_path(1) %>">Course 1</a>
-        <ul>
-          <li>Cross List 1</li>
-          <li>Cross List 2</li>
-          <li>Cross List 3</li>
-        </ul>
+        <a href="<%= prof_listing_path(course.id) %>"><%= h course.title %></a>
+        <%= render :partial => 'cross_listing', :locals => { object: course } %>
       </td>
-      <td>Instructor</td>
+      <td><%= h course.instructor %></td>
+      <td><%= link_to 'Request Material', new_prof_listing_new_request_path(course.id), class: 'btn btn-primary' %></td>
     </tr>
-    <tr>
-      <td>
-        <a href="teacher_items">Course 2</a>
-        <ul>
-          <li>Cross List 1</li>
-          <li>Cross List 2</li>
-          <li>Cross List 3</li>
-        </ul>
-      </td>
-      <td>Instructor</td>
-    </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -52,23 +50,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        Course 3
-        <ul>
-          <li>Cross List 1</li>
-          <li>Cross List 2</li>
-        </ul>
-      </td>
-      <td>Instructor</td>
-      <td><a href="new_requests/new" class="btn btn-primary">New Request</a></td>
-    </tr>
-    <tr>
-      <td>Course 4</td>
-      <td>Instructor</td>
-      <td><a href="new_requests/new" class="btn btn-primary">New Request</a></td>
-    </tr>
+    <% @reserves.courses_without_reserves.each do | course | %>
+      <tr>
+        <td>
+          <%= h course.title %>
+          <%= render :partial => 'cross_listing', :locals => { object: course } %>
+        </td>
+        <td><%= h course.instructor %></td>
+        <td><%= link_to 'Request Material', '#', class: 'btn btn-primary' %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
- <p><span class="badge badge-important">Prof View</span></p>
