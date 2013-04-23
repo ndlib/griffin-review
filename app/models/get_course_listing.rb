@@ -1,4 +1,5 @@
 class GetCourseListing
+  attr_accessor :course_lising, :current_user
 
   def initialize(course_listing, current_user)
     @course_listing = course_listing

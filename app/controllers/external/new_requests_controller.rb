@@ -11,8 +11,4 @@ class NewRequestsController < ApplicationController
 
   end
 
-
-  def reserves
-    @reserves ||= Reserves.new("USER", "SEMESTER")
-  end
 end

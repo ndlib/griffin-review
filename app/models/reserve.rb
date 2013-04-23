@@ -1,4 +1,4 @@
-class CourseListing
+class Reserve
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
@@ -48,10 +48,10 @@ end
 
 
 
-class BookListing < CourseListing
+class BookReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Book Request", creator: 'Hartzler, Jon')
+    self.new( id: id, course: Course.test_data("User"), title: "Book Request", creator: 'Hartzler, Jon')
   end
 
 
@@ -78,10 +78,10 @@ class BookListing < CourseListing
 end
 
 
-class BookChapterListing < CourseListing
+class BookChapterReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+    self.new( id: id, course: Course.test_data("User"), title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
 
@@ -118,15 +118,15 @@ class BookChapterListing < CourseListing
 end
 
 
-class JournalListing < CourseListing
+class JournalReserve < Reserve
 
   def self.test_file_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
+    self.new( id: id, course: Course.test_data("User"), title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
   end
 
 
   def self.test_url_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
   end
 
 
@@ -162,9 +162,9 @@ class JournalListing < CourseListing
 end
 
 
-class VideoListing < CourseListing
+class VideoReserve < Reserve
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Movie", creator: 'Robin Schaaf', student_comments: "Be sure to catch the after credits moment with spider robot Chewbacca", length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), title: "Movie", creator: 'Robin Schaaf', student_comments: "Be sure to catch the after credits moment with spider robot Chewbacca", length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
@@ -201,10 +201,10 @@ class VideoListing < CourseListing
 end
 
 
-class AudioListing < CourseListing
+class AudioReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data, title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
   end
 
 
@@ -241,10 +241,10 @@ class AudioListing < CourseListing
 end
 
 
-class WebsiteListing < CourseListing
+class WebsiteReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id,  course: Course.test_data, title: "websites article", creator: 'Super Online Writer', journal_title: 'WEBSITE!!', length: "", url: "http://www.google.com/")
+    self.new( id: id,  course: Course.test_data("User"), title: "websites article", creator: 'Super Online Writer', journal_title: 'WEBSITE!!', length: "", url: "http://www.google.com/")
   end
 
 

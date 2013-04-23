@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Course do
 
   before(:each) do
-    @course = Course.new(:title => 'Course 1', :instructor => 'Instructor', :cross_listings => [ 'cross listing'])
+    @course = Course.new(:title => 'Course 1', :instructor => 'Instructor', :cross_listings => [ 'cross listing'], :current_user => 'User')
   end
+
 
   it "has a title" do
     @course.title.should == 'Course 1'
@@ -13,6 +14,11 @@ describe Course do
 
   it "has an instructor" do
     @course.instructor.should == 'Instructor'
+  end
+
+
+  it "has the current user" do
+    @course.current_user.should == 'User'
   end
 
 
@@ -45,6 +51,13 @@ describe Course do
     end
   end
 
+
+  describe :get_course_listing do
+
+    it "returns a GetCourseListing obj" do
+      @course.get_course_listing(1).class.should == GetCourseListing
+    end
+  end
 
   it "can decide if it has reserves or not"
 end

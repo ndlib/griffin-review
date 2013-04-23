@@ -13,9 +13,4 @@ class CopyCourseListingsController < ApplicationController
     flash[:notice] = "Material Copied Successfully"
   end
 
-  protected
-
-    def reserves
-      @reserves ||= Reserves.new("USER", "SEMESTER")
-    end
 end

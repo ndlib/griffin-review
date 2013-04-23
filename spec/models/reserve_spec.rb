@@ -1,8 +1,8 @@
   require 'spec_helper'
 
-describe CourseListing do
+describe Reserve do
 
-  let(:course_listing) { CourseListing.new()}
+  let(:course_listing) { Reserve.new() }
 
   describe "attribute fields" do
 

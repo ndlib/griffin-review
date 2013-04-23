@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe Reserves do
+describe ReservesApp do
 
-  let(:reserves) { Reserves.new("current_user", "semester")}
+  let(:reserves) { ReservesApp.new("current_user", "semester")}
+
 
   describe :course do
 
@@ -60,5 +61,16 @@ describe Reserves do
 
 
   end
+
+
+  describe :copy_course_listings do
+
+    it "returns a copy course listing" do
+      reserves.copy_course_listing(1, 2).class.should == CopyCourseListings
+    end
+
+  end
+
+
 
 end

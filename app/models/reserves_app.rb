@@ -1,4 +1,4 @@
-class Reserves
+class ReservesApp
 
   def initialize(current_user, semester)
     @user = current_user
@@ -28,22 +28,22 @@ class Reserves
       return nil
     end
 
-    Course.test_data
+    Course.test_data(@user)
   end
 
 
   def courses_with_reserves()
     [
-      Course.test_data,
-      Course.test_data("Course 2")
+      Course.test_data(@user),
+      Course.test_data(@user, "Course 2")
     ]
   end
 
 
   def courses_without_reserves()
     [
-      Course.test_data("Course 3"),
-      Course.test_data("Course 4")
+      Course.test_data(@user, "Course 3"),
+      Course.test_data(@user, "Course 4")
     ]
   end
 end

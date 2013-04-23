@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+
+  def reserves
+    @reserves ||= ReservesApp.new("USER", "SEMESTER")
+  end
+
+
   def render_404
     respond_to do |format|
       format.html { render :template => 'errors/error_404', :layout => 'layouts/external', :status => 404 }

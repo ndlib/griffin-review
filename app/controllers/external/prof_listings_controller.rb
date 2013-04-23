@@ -15,11 +15,4 @@ class ProfListingsController < ApplicationController
     end
   end
 
-
-  protected
-
-  def reserves
-    @reserves ||= Reserves.new("USER", "SEMESTER")
-  end
-
 end

@@ -14,7 +14,7 @@ describe ProfListingsController do
       get :index
 
       assigns(:reserves).should_not be_nil
-      assigns(:reserves).class.should == Reserves
+      assigns(:reserves).class.should == ReservesApp
     end
   end
 

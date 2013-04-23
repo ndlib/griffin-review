@@ -1,11 +1,12 @@
 class Course
 
-  attr_accessor :title, :instructor, :cross_listings
+  attr_accessor :title, :instructor, :cross_listings, :current_user
 
   def initialize(attributes = {})
     self.title = attributes[:title]
     self.instructor = attributes[:instructor]
     self.cross_listings = attributes[:cross_listings] || []
+    self.current_user = attributes[:current_user]
   end
 
 =begin < OpenReserves
@@ -40,16 +41,16 @@ class Course
 
 
   def reserves
-    CourseListing
+    Reserve
 
     [
-      BookListing.test_request(1),
-      BookChapterListing.test_request(2),
-      JournalListing.test_file_request(3),
-      JournalListing.test_url_request(4),
-      VideoListing.test_request(5),
-      AudioListing.test_request(6),
-      WebsiteListing.test_request(7)
+      BookReserve.test_request(1),
+      BookChapterReserve.test_request(2),
+      JournalReserve.test_file_request(3),
+      JournalReserve.test_url_request(4),
+      VideoReserve.test_request(5),
+      AudioReserve.test_request(6),
+      WebsiteReserve.test_request(7)
     ]
   end
 
@@ -59,14 +60,19 @@ class Course
   end
 
 
-  def self.test_data(title = 'Course 1')
+  def self.test_data(current_user, title = 'Course 1')
     listings = Random.rand(4).times.collect { | c | "Cross Listing #{c + 1}"}
-    Course.new(title: title, instructor: 'Instructor', cross_listings: listings)
+    Course.new(title: title, instructor: 'Instructor', cross_listings: listings, current_user: current_user)
   end
 
 
   def new_request(*args)
     Request.new(*args)
+  end
+
+
+  def get_course_listing(id)
+    GetCourseListing.new(self.reserve(id), self.current_user)
   end
 
 end

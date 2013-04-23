@@ -28,11 +28,6 @@ class GetCourseListingsController < ApplicationController
 
   private
 
-    def reserves
-      @reserves ||= Reserves.new("USER", "SEMESTER")
-    end
-
-
     def course
       @course ||= reserves.course("1")
     end
