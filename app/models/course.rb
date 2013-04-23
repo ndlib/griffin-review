@@ -71,8 +71,16 @@ class Course
   end
 
 
+  def new_reserve(*args)
+    args[0] ||= {}
+    args[0][:course] = self
+
+    Reserve.new(*args)
+  end
+
+
   def new_request_reserve(*args)
-    RequestReserve.new(self, self.current_user)
+    RequestReserve.new(self.new_reserve(*args), self.current_user)
   end
 
 

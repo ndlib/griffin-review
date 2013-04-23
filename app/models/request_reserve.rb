@@ -1,10 +1,15 @@
-class RequestReserve
-  attr_accessor :course, :current_user
+class RequestReserve < SimpleDelegator
 
-  def initialize(course, current_user)
-    @course = course
+  attr_accessor :reserve, :current_user
+
+  def initialize(reserve, current_user)
+    @reserve = reserve
     @current_user = current_user
+
+    super(reserve)
   end
+
+
 
 
 end

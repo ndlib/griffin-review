@@ -21,7 +21,7 @@
     copy copy
   </div>
   <div class="tab-pane" id="book">
-    <%= render :partial => 'book_form' %>
+    <%= render :partial => 'book_form', :locals => { object: @request_reserve } %>
   </div>
   <div class="tab-pane" id="book_chapter">
     <%= render :partial => 'book_chapter_form' %>

@@ -3,7 +3,13 @@ class Reserve
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :title, :creator, :journal_title, :length, :file, :url, :course, :id, :student_comments, :citation, :comments
+
+  attr_accessor :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments
+
+  #extras to be replaced when the schema is finalized.
+  attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by
+  attr_accessor :length
+
 
   def initialize(attributes = {})
     attributes.keys.each do  | key |
@@ -43,6 +49,11 @@ class Reserve
 
   def status
     'complete'
+  end
+
+
+  def persisted?
+    false
   end
 end
 
@@ -164,7 +175,7 @@ end
 
 class VideoReserve < Reserve
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), title: "Movie", creator: 'Robin Schaaf', student_comments: "Be sure to catch the after credits moment with spider robot Chewbacca", length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 

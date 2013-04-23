@@ -36,12 +36,8 @@ describe Reserve do
     end
 
 
-    it "has student_comments" do
-      course_listing.respond_to?(:student_comments).should be_true
-    end
-
-    it "has a citation" do
-      course_listing.respond_to?(:citation).should be_true
+    it "has note" do
+      course_listing.respond_to?(:note).should be_true
     end
 
 

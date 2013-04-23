@@ -66,7 +66,7 @@ describe ReservesApp do
   describe :copy_course_listings do
 
     it "returns a copy course listing" do
-      reserves.copy_course_listing(1, 2).class.should == CopyCourseListings
+      reserves.copy_course_listing(1, 2).class.should == CopyReserves
     end
 
   end

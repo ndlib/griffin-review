@@ -1,7 +1,7 @@
 
 <h3>2. Book Details </h3>
 
-<%= simple_form_for @course.new_request, :as => :export, :html => {id: "book_form"}, :url => prof_listings_path() do |f| %>
+<%= simple_form_for object, :as => :export, :html => {id: "book_form"}, :url => prof_listings_path() do |f| %>
 
   <%= f.input :title %>
   <%= f.input :creator %>

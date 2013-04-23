@@ -37,17 +37,32 @@ describe Course do
   end
 
 
-  describe :new_request do
+  describe :new_reserve do
 
-    it "returns a request object" do
-      @course.new_request.class.should == Request
+    it "makes a new reserve object" do
+      @course.new_reserve.should_not be_nil
     end
 
-    it "adds the request to the course"
+    it "associates the course with the reserve object" do
+      @course.new_reserve.course.should == @course
+    end
+  end
+
+
+  describe :new_request_reserve do
+
+    it "returns a request object" do
+      @course.new_request_reserve.class.should == RequestReserve
+    end
+
+
+    it "adds the request to the course" do
+      @course.new_reserve.course.should == @course
+    end
 
 
     it "allows you to add attributes in" do
-       @course.new_request(title: "THE TITLE").title.should == "THE TITLE"
+       @course.new_request_reserve(title: "THE TITLE").title.should == "THE TITLE"
     end
   end
 
