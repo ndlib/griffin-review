@@ -1,10 +1,11 @@
-class GetListingsController < ApplicationController
+class GetCourseListingsController < ApplicationController
 
   layout 'external'
 
+
   def show
     @course_listing = GetCourseListing.new(course.reserve(params[:id]), "USER")
-    binding.pry
+
     if params[:accept_terms_of_service]
       @course_listing.approve_terms_of_service!
     end
@@ -30,6 +31,7 @@ class GetListingsController < ApplicationController
     def reserves
       @reserves ||= Reserves.new("USER", "SEMESTER")
     end
+
 
     def course
       @course ||= reserves.course("1")

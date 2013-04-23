@@ -1,7 +1,7 @@
 require 'spec_helper'
 CourseListing
 
-describe GetListingsController do
+describe GetCourseListingsController do
 
   describe :show do
 
