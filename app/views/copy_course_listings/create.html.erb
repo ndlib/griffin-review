@@ -1,0 +1,18 @@
+
+
+<h3>Copied material from <%= h @copy_course_listing.from_course_title %> to <%= h @copy_course_listing.to_course_title %></h3>
+
+<p>Material</p>
+<ul>
+  <li>Item 2</li>
+  <li>Item 6</li>
+  <li>Something Else</li>
+</ul>
+
+
+<div class="form-actions">
+  Go to <%= link_to @copy_course_listing.to_course_title, prof_listing_path(@copy_course_listing.to_course.id), class: 'btn btn-primary' %>
+  Go back <%= link_to @copy_course_listing.from_course_title, prof_listing_path(@copy_course_listing.from_course.id), class: 'btn btn-primary' %>
+  <%= link_to(raw("<i class=\"icon-home\"></i> Home"), prof_listings_path(), class: 'btn') %>
+</div>
+

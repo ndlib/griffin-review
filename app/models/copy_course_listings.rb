@@ -3,7 +3,7 @@ class CopyCourseListings
 
   def initialize(from_course, to_course)
     @from_course = from_course
-    @to_course = to_course
+    @to_course   = to_course
   end
 
 
@@ -15,6 +15,7 @@ class CopyCourseListings
   def to_course_title
     @to_course.title
   end
+
 
   def copy_items(item_ids)
 

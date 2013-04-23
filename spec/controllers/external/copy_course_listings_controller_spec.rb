@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CopyCourseListingsController do
+describe CopyRequestsController do
 
   describe :create do
 
@@ -12,7 +12,7 @@ describe CopyCourseListingsController do
 
     it "sets a copy_requests variable" do
       post :create, :prof_listing_id => 1
-      assigns(:copy_course_listing).should be_true
+      assigns(:copy_requests).should be_true
     end
 
 

@@ -104,7 +104,7 @@ Griffin::Application.routes.draw do
 
   resources :prof_listings do
     resources :new_requests
-    resources :copy_requests
+    resources :copy_course_listings, :path => 'copy'
   end
 
 
