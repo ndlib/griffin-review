@@ -1,4 +1,4 @@
-class NewRequestsController < ApplicationController
+class RequestReservesController < ApplicationController
 
   layout 'external'
 

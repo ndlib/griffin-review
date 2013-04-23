@@ -35,7 +35,7 @@ class GetReserve
 
 
   def download_file_path
-    "#{Rails.root}#{@course_listing.file}"
+    "#{Rails.root}/#{@course_listing.file}"
   end
 
 

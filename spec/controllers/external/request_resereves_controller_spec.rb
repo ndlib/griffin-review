@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NewRequestsController do
+describe RequestReservesController do
 
   describe :new do
 
