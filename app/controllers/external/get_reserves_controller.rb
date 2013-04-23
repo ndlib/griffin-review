@@ -4,7 +4,7 @@ class GetReservesController < ApplicationController
 
 
   def show
-    @course_listing = GetReserve.new(course.reserve(params[:id]), "USER")
+    @course_listing = course.get_reserve(params[:id])
 
     if params[:accept_terms_of_service]
       @course_listing.approve_terms_of_service!

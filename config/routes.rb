@@ -99,11 +99,11 @@ Griffin::Application.routes.draw do
 
 
   resources :student_listings do
-    resources :get_reserves, :path => 'get'
+    resources :get_reserves, :path => 'get', as: 'get_reserve'
   end
 
   resources :prof_listings do
-    resources :new_requests
+    resources :new_requests, :path => 'reserve'
     resources :get_reserves, :path => 'get'
     resources :copy_reserves, :path => 'copy'
   end

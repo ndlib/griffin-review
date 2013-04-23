@@ -52,10 +52,10 @@ describe Course do
   end
 
 
-  describe :get_course_listing do
+  describe :get_reserve do
 
-    it "returns a GetCourseListing obj" do
-      @course.get_course_listing(1).class.should == GetCourseListing
+    it "returns a GetReserve obj" do
+      @course.get_reserve(1).class.should == GetReserve
     end
   end
 

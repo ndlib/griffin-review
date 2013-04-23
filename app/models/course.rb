@@ -71,8 +71,13 @@ class Course
   end
 
 
-  def get_course_listing(id)
-    GetCourseListing.new(self.reserve(id), self.current_user)
+  def new_request_reserve(*args)
+    RequestReserve.new(self, self.current_user)
+  end
+
+
+  def get_reserve(id)
+    GetReserve.new(self.reserve(id), self.current_user)
   end
 
 end
