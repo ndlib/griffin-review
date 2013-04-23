@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StudentListingsController do
+describe ProfListingsController do
 
   describe :index do
 
@@ -10,7 +10,7 @@ describe StudentListingsController do
     end
 
 
-    it "passes student_reserves to the view" do
+    it "passes reserves to the view" do
       get :index
 
       assigns(:reserves).should_not be_nil
