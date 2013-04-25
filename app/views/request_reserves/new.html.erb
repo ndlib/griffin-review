@@ -3,13 +3,15 @@
 <% end %>
 
 <div class="btn-group well" data-toggle="buttons-radio">
-  <h3>1. What type of material do you have? </h3>
+  <h3>1. What type of material do you need? </h3>
   <p>
     <a href="#book" class="btn" data-toggle="tab">Book</a>
     <a href="#book_chapter" class="btn" data-toggle="tab">Book Chapter</a>
     <a href="#article" class="btn" data-toggle="tab">Article</a>
-    <a href="#video_audio" class="btn" data-toggle="tab">Video Audio</a>
+    <a href="#video" class="btn" data-toggle="tab">Video</a>
+    <a href="#audio" class="btn" data-toggle="tab">Audio</a>
   </p>
+
 </div>
 
 <hr>
@@ -24,10 +26,28 @@
     <%= render :partial => 'book_form', :locals => { object: @request_reserve } %>
   </div>
   <div class="tab-pane" id="book_chapter">
-    <%= render :partial => 'book_chapter_form' %>
+    <%= render :partial => 'book_chapter_form', :locals => { object: @request_reserve } %>
+  </div>
+  <div class="tab-pane" id="article">
+    <%= render :partial => 'article_form', :locals => { object: @request_reserve } %>
+  </div>
+  <div class="tab-pane" id="video">
+    <%= render :partial => 'video_form', :locals => { object: @request_reserve } %>
+  </div>
+
+  <div class="tab-pane" id="audio">
+    <%= render :partial => 'audio_form', :locals => { object: @request_reserve } %>
   </div>
 </div>
 
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $('#book_chapter_requestor_has_an_electronic_copy').change(function () {
+    $('book_chapter_file').show();
+  });
+
+</script>
 

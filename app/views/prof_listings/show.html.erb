@@ -2,7 +2,7 @@
   <h1><%= h @course.title %> <small><%= h @course.instructor %></small></h1>
 <% end %>
 <% content_for(:content_title_links) do %>
-  <a href="<%= new_prof_listing_new_request_path(@course.id) %>" class="btn">New Request</a>
+  <a href="<%= new_prof_listing_request_reserve_path(@course.id) %>" class="btn btn-primary">Request Material</a>
 <% end %>
 
 <% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>

@@ -11,7 +11,13 @@ class RequestReservesController < ApplicationController
 
   end
 
+
   protected
+
+    def reserves
+      @reserves ||= ReservesApp.new("USER")
+    end
+
 
     def course
       @course ||= reserves.course(params[:prof_listing_id])

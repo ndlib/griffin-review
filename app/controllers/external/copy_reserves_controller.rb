@@ -13,4 +13,11 @@ class CopyReservesController < ApplicationController
     flash[:notice] = "Material Copied Successfully"
   end
 
+
+  protected
+
+    def reserves
+      @reserves ||= ReservesApp.new("USER")
+    end
+
 end

@@ -1,7 +1,14 @@
 class ReservesApp
+  attr_accessor :semester
 
-  def initialize(current_user, semester)
+  def initialize(current_user, semester_id = false)
     @user = current_user
+
+    if semester_id
+      self.semester = Semester.find(semester_id)
+    else
+      self.semester = self.current_semester
+    end
   end
 
 
@@ -33,17 +40,29 @@ class ReservesApp
 
 
   def courses_with_reserves()
-    [
-      Course.test_data(@user),
-      Course.test_data(@user, "Course 2")
-    ]
+    if self.semester.code.include?('fall')
+      [
+        Course.test_data(@user, 'Course Fall')
+      ]
+    else
+      [
+        Course.test_data(@user),
+        Course.test_data(@user, "Course 2")
+      ]
+    end
   end
 
 
   def courses_without_reserves()
-    [
-      Course.test_data(@user, "Course 3"),
-      Course.test_data(@user, "Course 4")
-    ]
+    if self.semester.code.include?('fall')
+      [
+        Course.test_data(@user, 'Course 6')
+      ]
+    else
+      [
+        Course.test_data(@user, "Course 3"),
+        Course.test_data(@user, "Course 4")
+      ]
+    end
   end
 end

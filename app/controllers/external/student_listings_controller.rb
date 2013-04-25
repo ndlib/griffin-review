@@ -15,4 +15,11 @@ class StudentListingsController < ApplicationController
     end
   end
 
+
+  protected
+
+    def reserves
+      @reserves ||= ReservesApp.new("USER")
+    end
+
 end

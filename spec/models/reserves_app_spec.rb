@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ReservesApp do
 
-  let(:reserves) { ReservesApp.new("current_user", "semester")}
-
+  let(:reserves) { ReservesApp.new("current_user", semester.id)}
+  let(:semester) { FactoryGirl.create(:semester)}
 
   describe :course do
 
@@ -28,6 +28,18 @@ describe ReservesApp do
 
     it "only returns courses with reserves"
 
+    it "returns results only for the current semester" do
+      reserves.courses_without_reserves.size.should == 2
+    end
+
+
+    it "returns results for the previous_semester" do
+      ps = FactoryGirl.create(:previous_semester)
+
+      reserves = ReservesApp.new("current_user", ps.id)
+      reserves.courses_without_reserves.size.should == 1
+    end
+
   end
 
 
@@ -40,6 +52,18 @@ describe ReservesApp do
     it "return [] if the student has no classes with out reserves in the specified semester"
 
     it "only returns courses without reserves"
+
+
+    it "returns results only for the current semester" do
+      reserves.courses_without_reserves.size.should == 2
+    end
+
+    it "returns results for the previous_semester" do
+      ps = FactoryGirl.create(:previous_semester)
+
+      reserves = ReservesApp.new("current_user", ps.id)
+      reserves.courses_without_reserves.size.should == 1
+    end
 
   end
 
@@ -57,9 +81,24 @@ describe ReservesApp do
   end
 
 
-  describe :current_semester do
+  describe :semester do
+
+    it "selects the current semester if no semester is passed in" do
+      ps = FactoryGirl.create(:previous_semester)
+      cs = FactoryGirl.create(:semester)
+
+      reserve = ReservesApp.new("current_user")
+      reserve.semester.should == cs
+    end
 
 
+    it "finds the semester by id that was passed into the constructor" do
+      ps = FactoryGirl.create(:previous_semester)
+      cs = FactoryGirl.create(:semester)
+
+      reserve = ReservesApp.new("current_user", ps.id)
+      reserve.semester.should == ps
+    end
   end
 
 
@@ -70,7 +109,5 @@ describe ReservesApp do
     end
 
   end
-
-
 
 end

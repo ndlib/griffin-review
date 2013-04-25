@@ -15,4 +15,12 @@ class ProfListingsController < ApplicationController
     end
   end
 
+
+  protected
+
+    def reserves
+      @reserves ||= ReservesApp.new("USER", params[:semster_id])
+    end
+
+
 end

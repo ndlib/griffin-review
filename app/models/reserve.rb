@@ -4,10 +4,10 @@ class Reserve
   extend ActiveModel::Naming
 
 
-  attr_accessor :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments
+  attr_accessor :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details
 
   #extras to be replaced when the schema is finalized.
-  attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by
+  attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy
   attr_accessor :length
 
 

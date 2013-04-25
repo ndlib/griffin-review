@@ -32,7 +32,7 @@
         <%= render :partial => 'cross_listing', :locals => { object: course } %>
       </td>
       <td><%= h course.instructor %></td>
-      <td><%= link_to 'Request Material', new_prof_listing_new_request_path(course.id), class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Request Material', new_prof_listing_request_reserve_path(course.id), class: 'btn btn-primary' %></td>
     </tr>
     <% end %>
   </tbody>

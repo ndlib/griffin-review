@@ -26,7 +26,12 @@ class GetReservesController < ApplicationController
   end
 
 
-  private
+  protected
+
+    def reserves
+      @reserves ||= ReservesApp.new("USER")
+    end
+
 
     def course
       @course ||= reserves.course("1")
