@@ -1,5 +1,7 @@
 require 'rubygems'
+require 'vcr'
 require 'spork'
+
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 #
@@ -40,10 +42,15 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
+  require 'webmock/rspec'
+
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+  VCRSetup.configure_vcr
+
 
   RSpec.configure do |config|
 

@@ -39,7 +39,7 @@ Griffin::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  
+
   # Action mailer settings
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { :host => "localhost" }
@@ -51,4 +51,8 @@ Griffin::Application.configure do
   config.rspec_uid = 'rfox2'
   config.rspec_cn = 'Robert Fox'
   config.rspec_last_name = "Fox"
+
+
+  config.api_url = "http://localhost:3005"
+  config.api_token = "TyLPMArC5wjA1QBZ1swx"
 end

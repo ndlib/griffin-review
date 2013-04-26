@@ -92,6 +92,12 @@ gem 'jquery-rails', '2.1.4'
 gem 'jquery-datatables-rails'
 gem 'rails-backbone'
 
+
+group :development, :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
