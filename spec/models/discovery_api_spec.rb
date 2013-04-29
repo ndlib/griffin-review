@@ -32,13 +32,22 @@ describe DiscoveryApi do
       @discovery_api.title.should == "The once and future king."
     end
 
+
     it "has the creator_contributor" do
       @discovery_api.creator_contributor.should == "T. H. White [Terence Hanbury], 1906-1964."
     end
 
+
+    it "has details" do
+      @discovery_api.details.should == nil
+    end
+
+
+
     it "has publisher_provider" do
       @discovery_api.publisher_provider.should == "London, Collins 1958"
     end
+
 
     it "has availability" do
       @discovery_api.availability.should == "Available"

@@ -86,6 +86,9 @@ group :test do
     gem 'guard-shell'
 
     gem "rb-readline"
+
+    gem 'vcr'
+    gem 'webmock'
 end
 
 gem 'jquery-rails', '2.1.4'
@@ -94,8 +97,7 @@ gem 'rails-backbone'
 
 
 group :development, :test do
-  gem 'vcr'
-  gem 'webmock'
+
 end
 
 # Gems used only for assets and not required

@@ -8,7 +8,7 @@ class Reserve
 
   #extras to be replaced when the schema is finalized.
   attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy
-  attr_accessor :length
+  attr_accessor :length, :discovery_id
 
 
   def initialize(attributes = {})
@@ -55,6 +55,55 @@ class Reserve
   def persisted?
     false
   end
+
+
+  def title
+    use_discovery_api? ? discovery_record.title : @title
+  end
+
+
+  def creator_contributor
+    use_discovery_api? ? discovery_record.creator_contributor : @creator
+  end
+
+
+  def publisher_provider
+    use_discovery_api? ? discovery_record.publisher_provider : @journal_title
+  end
+
+
+  def details
+    use_discovery_api? ? discovery_record.details : ""
+  end
+
+
+  def availability
+    use_discovery_api? ? discovery_record.availability : ""
+  end
+
+
+  def available_library
+    use_discovery_api? ? discovery_record.available_library : ""
+  end
+
+
+  def is_available?
+    (self.availability.strip == 'Available')
+  end
+
+  private
+
+    def use_discovery_api?
+      discovery_id.present?
+    end
+
+
+    def discovery_record
+      if use_discovery_api?
+        @discovery_record ||= DiscoveryApi.search_by_ids(discovery_id).first
+      end
+    end
+
 end
 
 
@@ -62,7 +111,7 @@ end
 class BookReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), title: "Book Request", creator: 'Hartzler, Jon')
+    self.new( id: id, course: Course.test_data("User"), title: "Book Request", creator: 'Hartzler, Jon', discovery_id: "book")
   end
 
 
@@ -92,7 +141,7 @@ end
 class BookChapterReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+    self.new( id: id, course: Course.test_data("User"), discovery_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
 
@@ -175,7 +224,7 @@ end
 
 class VideoReserve < Reserve
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), discovery_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
@@ -215,7 +264,7 @@ end
 class AudioReserve < Reserve
 
   def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+    self.new( id: id, course: Course.test_data("User"), discovery_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
   end
 
 

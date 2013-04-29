@@ -11,14 +11,13 @@
         <%= h object.title %>
       <% end %>
     </h2>
-    <h3 class="author"><%= h object.creator %></h3>
-    <p class="details">details</p>
-    <p class="publisher">publisher</p>
+    <h3 class="author"><%= h object.creator_contributor %></h3>
+    <p class="details"><%= h object.details %></p>
+    <p class="publisher"><%= h object.publisher_provider %></p>
     <p class="availability">
-      <span class="availability-library"></span>
-      <span class="availability-text"></span>
+      <span class="availability-library"><%= h object.available_library %></span>
+      <span class="availability-text <%= object.is_available? ? 'available' : '' %>"><%= h object.availability %></span>
       <span class="availability-link"></span>
-      <%= raw object.is_a?(BookReserve) ? '<span class="available">Available</span>' : '' %>
     </p>
   </div>
 </div>

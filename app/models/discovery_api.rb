@@ -35,6 +35,11 @@ class DiscoveryApi
   end
 
 
+  def details
+    @json_result['display']['details']
+  end
+
+
   def publisher_provider
     @json_result['display']['publisher_provider']
   end
