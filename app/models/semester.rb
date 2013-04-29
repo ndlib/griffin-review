@@ -26,6 +26,7 @@ class Semester < ActiveRecord::Base
     self.requests.where(:workflow_state != 'completed')
   end
 
+
   def proximate?
     if self.date_begin <= Date.today && self.date_end <= Date.today
       return false
@@ -35,4 +36,7 @@ class Semester < ActiveRecord::Base
       return true
     end
   end
+
+
+
 end

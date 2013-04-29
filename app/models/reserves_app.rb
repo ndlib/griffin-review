@@ -39,17 +39,18 @@ class ReservesApp
   end
 
 
+  def has_enrolled_courses?
+
+  end
+
+
+  def has_instructed_courses?
+
+  end
+
+
   def courses_with_reserves()
-    if self.semester.code.include?('fall')
-      [
-        Course.test_data(@user, 'Course Fall')
-      ]
-    else
-      [
-        Course.test_data(@user),
-        Course.test_data(@user, "Course 2")
-      ]
-    end
+    return Course.enrolled_courses('jdan', '201210')
   end
 
 
@@ -65,4 +66,5 @@ class ReservesApp
       ]
     end
   end
+
 end

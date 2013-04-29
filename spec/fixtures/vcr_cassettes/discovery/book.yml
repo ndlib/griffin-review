@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3005/1.0/resources/search/catalog.json?auth_token=TyLPMArC5wjA1QBZ1swx&q=book
+    uri: https://apipprd.library.nd.edu/1.0/resources/search/catalog.json?auth_token=SCSGYmwqLqSyBTmxCQgM&q=book
     body:
       encoding: US-ASCII
       string: ''
@@ -14,33 +14,37 @@ http_interactions:
   response:
     status:
       code: 200
-      message: ! 'OK '
+      message: OK
     headers:
+      Date:
+      - Mon, 29 Apr 2013 19:57:34 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
       Cache-Control:
       - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 41848e5768f5044f358d182985419b79
+      X-Runtime:
+      - '0.126701'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
       Access-Control-Allow-Origin:
       - ! '*'
-      Access-Control-Request-Method:
+      Access-Control-Allow-Methods:
       - PUT, GET, POST, DELETE, OPTIONS
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Ua-Compatible:
-      - IE=Edge
-      X-Request-Id:
-      - d458a3dd00883a9de7d2f4a612aad553
-      X-Runtime:
-      - '2.603490'
-      Server:
-      - WEBrick/1.3.1 (Ruby/1.9.3/2012-12-25)
-      Date:
-      - Mon, 29 Apr 2013 15:25:14 GMT
       Content-Length:
       - '75892'
-      Connection:
-      - Keep-Alive
+      Content-Type:
+      - application/json; charset=utf-8
     body:
       encoding: US-ASCII
-      string: ! '{"size":99687,"display_size":"99,687","search_term":"book","search_scope":"catalog","search_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1","google_books":{"ids":{"OCLC:05283301":"ndu_aleph001372463","OCLC:03919942":"dedupmrg74254626","OCLC:00382590":"dedupmrg75795519","OCLC:06715359":"dedupmrg72984074","OCLC:00741667":"ndu_aleph000602929","OCLC:31136872":"ndu_aleph003366556","OCLC:71194494":"dedupmrg16831904"},"url":"http://books.google.com/books?bibkeys=OCLC%3A05283301%2COCLC%3A03919942%2COCLC%3A00382590%2COCLC%3A06715359%2COCLC%3A00741667%2COCLC%3A31136872%2COCLC%3A71194494&callback=googleBooksCallback&jscmd=viewapi"},"records":[{"id":"ndu_aleph001368481","type":"book","oclc":"05283301","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"Book.","creator_contributor":"Ronnie
+      string: ! '{"size":99699,"display_size":"99,699","search_term":"book","search_scope":"catalog","search_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1","google_books":{"ids":{"OCLC:05283301":"ndu_aleph001372463","OCLC:03919942":"dedupmrg74254626","OCLC:00382590":"dedupmrg75795519","OCLC:06715359":"dedupmrg72984074","OCLC:00741667":"ndu_aleph000602929","OCLC:31136872":"ndu_aleph003366556","OCLC:71194494":"dedupmrg16831904"},"url":"http://books.google.com/books?bibkeys=OCLC%3A05283301%2COCLC%3A03919942%2COCLC%3A00382590%2COCLC%3A06715359%2COCLC%3A00741667%2COCLC%3A31136872%2COCLC%3A71194494&callback=googleBooksCallback&jscmd=viewapi"},"records":[{"id":"ndu_aleph001368481","type":"book","oclc":"05283301","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"Book.","creator_contributor":"Ronnie
         Wathen 1934-.","publisher_provider":"s.l. : s.n. 1968","availability":"Available","available_library":"Notre
         Dame, Hesburgh Library General Collection (PR 6073 .A83 B6 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph001368481&indx=1"},"holdings":[{"record_id":"ndu_aleph001368481","institution":"University
         of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
@@ -583,5 +587,5 @@ http_interactions:
         the sacrament.","date":"1708","risdate":"1708.","format":"book","genre":"book","ristype":"BOOK","cop":"London","pub":"Printed
         by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row"}}}]}'
     http_version: 
-  recorded_at: Mon, 29 Apr 2013 15:25:14 GMT
+  recorded_at: Mon, 29 Apr 2013 19:57:33 GMT
 recorded_with: VCR 2.4.0

@@ -59,7 +59,7 @@ Griffin::Application.configure do
   config.reserves_upload_path = '/shared/data/reserves_files'
   config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
 
-  config.api_url = "http://localhost:3005"
-  config.api_token = "TyLPMArC5wjA1QBZ1swx"
+  config.api_url = "https://apipprd.library.nd.edu/"
+  config.api_token = "SCSGYmwqLqSyBTmxCQgM"
 
 end

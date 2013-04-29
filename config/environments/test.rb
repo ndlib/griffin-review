@@ -53,6 +53,6 @@ Griffin::Application.configure do
   config.rspec_last_name = "Fox"
 
 
-  config.api_url = "http://localhost:3005"
-  config.api_token = "TyLPMArC5wjA1QBZ1swx"
+  config.api_url = "https://apipprd.library.nd.edu/"
+  config.api_token = "SCSGYmwqLqSyBTmxCQgM"
 end

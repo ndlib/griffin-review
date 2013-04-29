@@ -3,7 +3,7 @@ class Course
   attr_accessor :title, :instructor, :cross_listings, :current_user
 
   def initialize(attributes = {})
-    self.title = attributes[:title]
+    self.title = attributes['title']
     self.instructor = attributes[:instructor]
     self.cross_listings = attributes[:cross_listings] || []
     self.current_user = attributes[:current_user]
@@ -22,6 +22,17 @@ class Course
     where('term like ?', semester + "%")
   }
 =end
+
+  def self.enrolled_courses(netid, semester)
+    ret = []
+    API::Person.courses(netid, semester)['enrolled_courses'].each do | c |
+      ret << Course.new(c)
+    end
+
+    ret
+  end
+
+
 
   def id
     1
@@ -49,8 +60,7 @@ class Course
       JournalReserve.test_file_request(3),
       JournalReserve.test_url_request(4),
       VideoReserve.test_request(5),
-      AudioReserve.test_request(6),
-      WebsiteReserve.test_request(7)
+      AudioReserve.test_request(6)
     ]
   end
 
@@ -62,7 +72,7 @@ class Course
 
   def self.test_data(current_user, title = 'Course 1')
     listings = Random.rand(4).times.collect { | c | "Cross Listing #{c + 1}"}
-    Course.new(title: title, instructor: 'Instructor', cross_listings: listings, current_user: current_user)
+    Course.new('title' => title, instructor: 'Instructor', cross_listings: listings, current_user: current_user)
   end
 
 

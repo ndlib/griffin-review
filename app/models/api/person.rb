@@ -6,5 +6,12 @@ module API
       result = get_json("by_netid/#{netid}")
       result["people"].first
     end
+
+
+    def self.courses(netid, semester)
+      path = File.join("by_netid", netid, semester, "courses")
+      result = get_json(path)
+      result["people"].first
+    end
   end
 end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3005/1.0/resources/search/catalog.json?auth_token=TyLPMArC5wjA1QBZ1swx&q=the%20once%20and%20future%20king
+    uri: https://apipprd.library.nd.edu/1.0/resources/search/catalog.json?auth_token=SCSGYmwqLqSyBTmxCQgM&q=the%20once%20and%20future%20king
     body:
       encoding: US-ASCII
       string: ''
@@ -14,34 +14,38 @@ http_interactions:
   response:
     status:
       code: 200
-      message: ! 'OK '
+      message: OK
     headers:
+      Date:
+      - Mon, 29 Apr 2013 19:57:32 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
       Cache-Control:
       - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 7b02423ab0e9a90c837329032401f14b
+      X-Runtime:
+      - '1.366956'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
       Access-Control-Allow-Origin:
       - ! '*'
-      Access-Control-Request-Method:
+      Access-Control-Allow-Methods:
       - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '68245'
       Content-Type:
       - application/json; charset=utf-8
-      X-Ua-Compatible:
-      - IE=Edge
-      X-Request-Id:
-      - 7ca2a145ffc2b633681da42a50c98bc5
-      X-Runtime:
-      - '0.087477'
-      Server:
-      - WEBrick/1.3.1 (Ruby/1.9.3/2012-12-25)
-      Date:
-      - Fri, 26 Apr 2013 20:46:11 GMT
-      Content-Length:
-      - '80634'
-      Connection:
-      - Keep-Alive
     body:
       encoding: US-ASCII
       string: ! '{"size":35,"display_size":"35","search_term":"the once and future
-        king","search_scope":"catalog","search_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1","google_books":{"ids":{"OCLC:00547840":"ndu_aleph000871936","OCLC:28498687":"ndu_aleph001054471","OCLC:02817960":"dedupmrg19891903","OCLC:181422948":"ndu_aleph002355271","OCLC:40442498":"ndu_aleph002413077","OCLC:04149934":"ndu_aleph000646822","OCLC:00597017":"dedupmrg19969999","OCLC:52514344":"ndu_aleph002062167","OCLC:656771922":"dedupmrg74773872","OCLC:56449617":"ndu_aleph002336304"},"url":"http://books.google.com/books?bibkeys=OCLC%3A00547840%2COCLC%3A28498687%2COCLC%3A02817960%2COCLC%3A181422948%2COCLC%3A40442498%2COCLC%3A04149934%2COCLC%3A00597017%2COCLC%3A52514344%2COCLC%3A656771922%2COCLC%3A56449617&callback=googleBooksCallback&jscmd=viewapi"},"records":[{"id":"ndu_aleph000871936","type":"book","oclc":"00547840","lccn":"a
+        king","search_scope":"catalog","search_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1","google_books":{"ids":{"OCLC:00547840":"ndu_aleph000871936","OCLC:28498687":"ndu_aleph001054471","OCLC:02817960":"dedupmrg19891903","OCLC:181422948":"ndu_aleph002355271","OCLC:40442498":"ndu_aleph002413077","OCLC:04149934":"ndu_aleph000646822","OCLC:00597017":"dedupmrg19969999","OCLC:52514344":"ndu_aleph002062167","OCLC:56449617":"ndu_aleph002336304","OCLC:32746971":"ndu_aleph001553353"},"url":"http://books.google.com/books?bibkeys=OCLC%3A00547840%2COCLC%3A28498687%2COCLC%3A02817960%2COCLC%3A181422948%2COCLC%3A40442498%2COCLC%3A04149934%2COCLC%3A00597017%2COCLC%3A52514344%2COCLC%3A56449617%2COCLC%3A32746971&callback=googleBooksCallback&jscmd=viewapi"},"records":[{"id":"ndu_aleph000871936","type":"book","oclc":"00547840","lccn":"a
         58006314","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
         once and future king.","creator_contributor":"T. H. White [Terence Hanbury],
         1906-1964.","publisher_provider":"London, Collins 1958","availability":"Available","available_library":"Notre
@@ -452,193 +456,10 @@ http_interactions:
         Item"},"enrichment":{"classificationlcc":"PR 149 .A79"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Bloom","aufirst":"Harold","addau":"Bloom,
         Harold","btitle":"King Arthur","seriestitle":"Major literary characters","date":"2004","risdate":"c2004.","isbn":"0791076709","format":"book","genre":"book","ristype":"BOOK","notes":"Includes
         bibliographical references (p. 227-237) and index.","cop":"Philadelphia","pub":"Chelsea
-        House Publishers","oclcid":"52514344","lccn":"2003014155"}}},{"id":"dedupmrg74773872","type":"book","oclc":"656771922","lccn":"2010041513","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
-        King James Bible : a short history from Tyndale to today","creator_contributor":"David
-        Norton","publisher_provider":"Cambridge ; New York : Cambridge University
-        Press 2011","availability":"Available","available_library":"Notre Dame, Hesburgh
-        Library General Collection (BS 186 .N66 2010 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg74773872&indx=9"},"holdings":[{"record_id":"bci_aleph000130409","institution":"Bethel
-        College","short_institution_name":"BCI","library":"BCI","institution_code":"BCI","library_code":"BCI","collection":"Main
-        Collection","call_number":"(BS 186 .N66 2011 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"2","source_institution_code":"BCI50","source_library_code":"BCI","source_sublocation_code":"MAIN"},{"record_id":"ndu_aleph002740505","institution":"University
-        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
-        Collection","call_number":"(BS 186 .N66 2010 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"1","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Norton,
-        David","aufirst":"David","aulast":"Norton","btitle":"The King James Bible
-        : a short history from Tyndale to today","date":"2011","genre":"book","isbn":"9780521851497","pub":"Cambridge
-        University Press"},"primo":{"control":{"sourcerecordid":["$$V000130409$$Obci_aleph000130409","$$V002740505$$Ondu_aleph002740505"],"sourceid":["$$Vbci_aleph$$Obci_aleph000130409","$$Vndu_aleph$$Ondu_aleph002740505"],"recordid":"dedupmrg74773872","originalsourceid":["$$VBCI01$$Obci_aleph000130409","$$VNDU01$$Ondu_aleph002740505"],"sourceformat":["$$VMARC21$$Obci_aleph000130409","$$VMARC21$$Ondu_aleph002740505"],"sourcesystem":["$$VAleph$$Obci_aleph000130409","$$VAleph$$Ondu_aleph002740505"],"ilsapiid":["$$VBCI01000130409$$Obci_aleph000130409","$$VNDU01002740505$$Ondu_aleph002740505"]},"display":{"type":"book","title":"The
-        King James Bible : a short history from Tyndale to today","creator":"David
-        Norton","publisher":"Cambridge ; New York : Cambridge University Press","creationdate":"2011","format":"xii,
-        218 p. : ill. ; 22 cm..","identifier":"$$CISBN $$V9780521851497; $$CISBN $$V0521851491;
-        $$CISBN $$V9780521616881 (pbk.); $$CISBN $$V0521616883 (pbk.)","subject":"Bible.
-        English. Authorized -- History","description":"\"The King James Bible was
-        the result of an extraordinary effort over nearly a century to make many good
-        English translations and turn them into what the translators called ''one
-        principal good one, not justly to be excepted against''. David Norton traces
-        the work of Tyndale and his successors, analysing the translation and revisions
-        of two representative passages. His fascinating new account follows in detail
-        the creation of the KJB, including attention to the translators'' manuscript
-        work. He also examines previously unknown evidence such as the diary of John
-        Bois, the only man who made notes on the translation. At the centre of the
-        book is a thorough discussion of the first edition. The latter part of the
-        book traces the printing and textual history of the KJB and provides a concise
-        account of its changing scholarly and literary reputations\"-- \"The most
-        important book in English religion and culture, the King James Bible, began
-        to be created at some unknown moment nearer three than two thousand years
-        before 1604, the year in which James I, once king of Scotland, now also king
-        of England, assembled the religious leaders of the land at Hampton Court and,
-        seemingly by chance, ordered the making of a new translation of the Bible.
-        That unknown original moment of creation came when the descendants of Abraham
-        moved beyond telling to writing down their beliefs and the stories of their
-        heritage. It was a crucial moment in civilisation. The ancient Hebrews began
-        to be the people of the written word. Their writings became the collection
-        of books we know as the Old Testament. It enshrined their knowledge of themselves
-        and of their relationship to their God. Without it they might not have survived
-        as a people, and without it the Christian world -- perhaps also the Islamic
-        world -- would have been something unimaginably different from what it is.
-        The word of God was all in all to the religious Jews. In the beginning God
-        talked with Adam and Eve as a lord to his tenants, person to person, then
-        to Moses ''face to face, as a man speaketh unto his friend'' (Exod. 33:11).
-        The intimacy might have declined and, by the timeofthe young Samuel, the wordofthe
-        Lord had become ''precious'' (1 Sam. 3:1), that is, both rare and valuable.
-        God still spoke through his prophets, and they could say, ''thus saith the
-        Lord''. But for ordinary people he spoke most surely in the words of the book.
-        These words came to be guarded as the greatest treasure, for God and the word
-        were the same thing: ''the Word was God'' (John 1:1)\"--","language":"eng","availlibrary":["$$IBCI$$LBCI$$1Main
-        Collection$$2(BS 186 .N66 2011 )$$Savailable$$31$$40$$5N$$62$$XBCI50$$YBCI$$ZMAIN$$Obci_aleph000130409","$$INDU$$LHESB$$1General
-        Collection$$2(BS 186 .N66 2010 )$$Savailable$$31$$40$$5N$$61$$XNDU50$$YHESB$$ZGEN$$Ondu_aleph002740505"],"availinstitution":["$$INDU$$Savailable","$$IBCI$$Savailable"],"availpnx":"available","lds01":"Gift
-        of the Jack Detzler Library Endowment. (2011)","lds02":["bci_aleph000130409","ndu_aleph002740505"],"lds03":["Predecessors:
-        Originals and texts; The first draft: William Tyndale; Revision, completion
-        of the first draft, and more revision: Myles Coverdale; The first ''authorised''
-        version: the Great Bible; Geneva, the people''s Bible; The second ''authorised''
-        version, the Bishop''s Bible; The Rheims New Testament -- Drafting the King
-        James Bible: Joseph and Mary; The Fall -- ''I was a translator'': ''Certain
-        learned men''; A translator''s library; Scholar and notemaker -- Working on
-        the King James Bible: Setting up; Chronology; Manuscript work and notes --
-        1611: the first edition: The Holy Scriptures and ''the translators to the
-        reader''; New and familiar; Typographical errors -- Printing, editing and
-        the development of a standard text: What to call the new Bible; The only Bible
-        in England; Printing through to 1800; Some later developments -- Reputation
-        and future.","Machine generated contents note: List of illustrations; Preface;
-        Abbreviations; 1. Predecessors; 2. Drafting the King James Bible; 3. ''I was
-        a translator''; 4. Working on the King James Bible; 5. 1611: the first edition;
-        6. Printing, editing and the development of a standard text; 7. Reputation
-        and future."]},"links":{"linktoholdings":["$$V$$Taleph_holdings$$IBCI$$Obci_aleph000130409","$$V$$Taleph_holdings$$Obci_aleph000130409","$$V$$Taleph_holdings$$INDU$$Ondu_aleph002740505","$$V$$Taleph_holdings$$Ondu_aleph002740505"],"linktoholdsnotexist":["$$V$$Taleph_holdings_not_in_user_institution$$Obci_aleph000130409","$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph002740505"],"backlink":["$$V$$Taleph_backlink$$DBethel
-        Catalog$$Obci_aleph000130409","$$V$$Taleph_backlink$$DNotre Dame Catalog$$Ondu_aleph002740505"],"openurl":["$$V$$Topenurl_journal$$Obci_aleph000130409","$$V$$Topenurl_journal$$Ondu_aleph002740505"],"openurlfulltext":["$$V$$Topenurlfull_journal$$Obci_aleph000130409","$$V$$Topenurlfull_journal$$Ondu_aleph002740505"],"addlink":["$$Uhttp://assets.cambridge.org/97805218/51497/cover/9780521851497.jpg$$D
-        { Cover image }","$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-b.html$$D
-        { Contributor biographical information }","$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-d.html$$D
-        { Publisher description }","$$Uhttp://assets.cambridge.org/97805218/51497/cover/9780521851497.jpg$$DOnline
-        Access { Cover image }","$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-b.html$$DOnline
-        Access { Contributor biographical information }","$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-d.html$$DOnline
-        Access { Publisher description }"],"linktotoc":["$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-t.html$$D
-        { Table of contents only }","$$Uhttp://catdir.loc.gov/catdir/enhancements/fy1101/2010041513-t.html$$DNotre
-        Dame Online Access { Table of contents only }"],"linktoexcerpt":"$$Tsyndetics_excerpt$$Elinktoexcerpt","linktoabstract":"$$Tsyndetics_abstract$$Elinktoabstract","linktouc":["$$Tworldcat_isbn$$Eworldcat","$$Tworldcat_isbn$$Eworldcat"],"thumbnail":["$$Tamazon_thumb","$$Tsyndetics_thumb","$$Tgoogle_thumb"],"lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["David  Norton","Norton,
-        D","David Norton.","David,  Norton  1946-","Norton, David"],"title":"The King
-        James Bible : a short history from Tyndale to today /","description":["\"The
-        King James Bible was the result of an extraordinary effort over nearly a century
-        to make many good English translations and turn them into what the translators
-        called ''one principal good one, not justly to be excepted against''. David
-        Norton traces the work of Tyndale and his successors, analysing the translation
-        and revisions of two representative passages. His fascinating new account
-        follows in detail the creation of the KJB, including attention to the translators''
-        manuscript work. He also examines previously unknown evidence such as the
-        diary of John Bois, the only man who made notes on the translation. At the
-        centre of the book is a thorough discussion of the first edition. The latter
-        part of the book traces the printing and textual history of the KJB and provides
-        a concise account of its changing scholarly and literary reputations\"-- Provided
-        by publisher.","\"The most important book in English religion and culture,
-        the King James Bible, began to be created at some unknown moment nearer three
-        than two thousand years before 1604, the year in which James I, once king
-        of Scotland, now also king of England, assembled the religious leaders of
-        the land at Hampton Court and, seemingly by chance, ordered the making of
-        a new translation of the Bible. That unknown original moment of creation came
-        when the descendants of Abraham moved beyond telling to writing down their
-        beliefs and the stories of their heritage. It was a crucial moment in civilisation.
-        The ancient Hebrews began to be the people of the written word. Their writings
-        became the collection of books we know as the Old Testament. It enshrined
-        their knowledge of themselves and of their relationship to their God. Without
-        it they might not have survived as a people, and without it the Christian
-        world -- perhaps also the Islamic world -- would have been something unimaginably
-        different from what it is. The word of God was all in all to the religious
-        Jews. In the beginning God talked with Adam and Eve as a lord to his tenants,
-        person to person, then to Moses ''face to face, as a man speaketh unto his
-        friend'' (Exod. 33:11). The intimacy might have declined and, by the timeofthe
-        young Samuel, the wordofthe Lord had become ''precious'' (1 Sam. 3:1), that
-        is, both rare and valuable. God still spoke through his prophets, and they
-        could say, ''thus saith the Lord''. But for ordinary people he spoke most
-        surely in the words of the book. These words came to be guarded as the greatest
-        treasure, for God and the word were the same thing: ''the Word was God'' (John
-        1:1)\"-- Provided by publisher."],"subject":["Bible. English. Authorized History.","RELIGION
-        / Biblical Studies / New Testament"],"general":["Cambridge University Press,","Gift
-        of the Jack Detzler Library Endowment. (2011)","(OCoLC)656771922","656771922","AllDocuments","(ybp)99941841507","99941841507"],"sourceid":["bci_aleph","ndu_aleph"],"recordid":["bci_aleph000130409","000130409","130409","ndu_aleph002740505","002740505","2740505"],"isbn":["9780521851497","0521851491","9780521616881","0521616883"],"toc":["Predecessors:
-        Originals and texts; The first draft: William Tyndale; Revision, completion
-        of the first draft, and more revision: Myles Coverdale; The first ''authorised''
-        version: the Great Bible; Geneva, the people''s Bible; The second ''authorised''
-        version, the Bishop''s Bible; The Rheims New Testament -- Drafting the King
-        James Bible: Joseph and Mary; The Fall -- ''I was a translator'': ''Certain
-        learned men''; A translator''s library; Scholar and notemaker -- Working on
-        the King James Bible: Setting up; Chronology; Manuscript work and notes --
-        1611: the first edition: The Holy Scriptures and ''the translators to the
-        reader''; New and familiar; Typographical errors -- Printing, editing and
-        the development of a standard text: What to call the new Bible; The only Bible
-        in England; Printing through to 1800; Some later developments -- Reputation
-        and future.","Machine generated contents note: List of illustrations; Preface;
-        Abbreviations; 1. Predecessors; 2. Drafting the King James Bible; 3. ''I was
-        a translator''; 4. Working on the King James Bible; 5. 1611: the first edition;
-        6. Printing, editing and the development of a standard text; 7. Reputation
-        and future."],"creationdate":["2011","2010"],"searchscope":["bci_aleph","BCI","ndu_aleph","NDU"],"scope":["BCI","bci_aleph","HESB","ndu_aleph","NDU"],"lsr01":["BCI
-        MAIN","BCI Main Collection","HESB GEN","HESB General Collection"],"lsr02":["Norton,
-        David.","Norton, David,"],"lsr05":["BS 186 .N66 2011","BS186.N662011","BS186
-        .N66 2011 :","BS 186 .N66 2010","BS186.N662010","BS186 .N66 2010 :"],"lsr06":"Cambridge
-        University Press,","lsr07":["Norton The King James Bible","The King James
-        Bible Norton"]},"sort":{"title":"King James Bible : a short history from Tyndale
-        to today /","creationdate":"2011","author":"Norton, David."},"facets":{"language":"eng","creationdate":["2011","2010"],"topic":"Bible.
-        English. Authorized\u2013History","toplevel":"available","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":"Norton,
-        D","library":["BCI","HESB"],"classificationlcc":"B - Philosophy. Psychology.
-        Religion\u2013The Bible\u2013Modern texts and versions\u2013English","frbrgroupid":"76542370","frbrtype":"6"},"dedup":{"t":"1","c1":"2010041513","c2":"9780521851497;0521851491;9780521616881;0521616883","c3":"kingjamesbibleashortaletotoday","c4":"2011","f1":"2010041513","f3":"9780521851497;0521851491;9780521616881;0521616883","f5":"kingjamesbibleashortaletotoday","f6":"2011","f7":"king
-        james bible a short history from tyndale to today","f8":"enk","f9":"xii, 218
-        p. :","f10":"cambridge university press","f11":"norton david"},"frbr":{"t":"1","k1":["$$Knorton
-        david$$AA","$$Knorton david 1946$$AA"],"k3":"$$Kking james bible a short history
-        from tyndale to today$$AT"},"delivery":{"institution":["$$VBCI$$Obci_aleph000130409","$$VNDU$$Ondu_aleph002740505"],"delcategory":["$$VPhysical
-        Item$$Obci_aleph000130409","$$VPhysical Item$$Ondu_aleph002740505"]},"enrichment":{"classificationlcc":"BS
-        186"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Norton","aufirst":["David","David,"],"au":"Norton,
-        David","btitle":"The King James Bible : a short history from Tyndale to today","date":["2011","2010"],"risdate":["2011.","2010."],"isbn":["9780521851497","0521851491","9780521616881","0521616883"],"format":"book","genre":"book","ristype":"BOOK","notes":["Includes
-        bibliographical references (p. 201-208) and index.","Includes bibliographical
-        references and index."],"abstract":["\"The King James Bible was the result
-        of an extraordinary effort over nearly a century to make many good English
-        translations and turn them into what the translators called ''one principal
-        good one, not justly to be excepted against''. David Norton traces the work
-        of Tyndale and his successors, analysing the translation and revisions of
-        two representative passages. His fascinating new account follows in detail
-        the creation of the KJB, including attention to the translators'' manuscript
-        work. He also examines previously unknown evidence such as the diary of John
-        Bois, the only man who made notes on the translation. At the centre of the
-        book is a thorough discussion of the first edition. The latter part of the
-        book traces the printing and textual history of the KJB and provides a concise
-        account of its changing scholarly and literary reputations\"--","\"The most
-        important book in English religion and culture, the King James Bible, began
-        to be created at some unknown moment nearer three than two thousand years
-        before 1604, the year in which James I, once king of Scotland, now also king
-        of England, assembled the religious leaders of the land at Hampton Court and,
-        seemingly by chance, ordered the making of a new translation of the Bible.
-        That unknown original moment of creation came when the descendants of Abraham
-        moved beyond telling to writing down their beliefs and the stories of their
-        heritage. It was a crucial moment in civilisation. The ancient Hebrews began
-        to be the people of the written word. Their writings became the collection
-        of books we know as the Old Testament. It enshrined their knowledge of themselves
-        and of their relationship to their God. Without it they might not have survived
-        as a people, and without it the Christian world -- perhaps also the Islamic
-        world -- would have been something unimaginably different from what it is.
-        The word of God was all in all to the religious Jews. In the beginning God
-        talked with Adam and Eve as a lord to his tenants, person to person, then
-        to Moses ''face to face, as a man speaketh unto his friend'' (Exod. 33:11).
-        The intimacy might have declined and, by the timeofthe young Samuel, the wordofthe
-        Lord had become ''precious'' (1 Sam. 3:1), that is, both rare and valuable.
-        God still spoke through his prophets, and they could say, ''thus saith the
-        Lord''. But for ordinary people he spoke most surely in the words of the book.
-        These words came to be guarded as the greatest treasure, for God and the word
-        were the same thing: ''the Word was God'' (John 1:1)\"--"],"cop":"Cambridge
-        ; New York","pub":"Cambridge University Press","oclcid":"656771922","lccn":"2010041513"}}},{"id":"ndu_aleph002336304","type":"book","oclc":"56449617","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"King
+        House Publishers","oclcid":"52514344","lccn":"2003014155"}}},{"id":"ndu_aleph002336304","type":"book","oclc":"56449617","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"King
         Arthur : Dark Age warrior and mythic hero","creator_contributor":"John Matthews
         1948-","publisher_provider":"London : Carlton 2004","availability":"Available","available_library":"Notre
-        Dame, Hesburgh Library General Collection (DA 152.5 .A7 M3747 2004 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph002336304&indx=10"},"holdings":[{"record_id":"ndu_aleph002336304","institution":"University
+        Dame, Hesburgh Library General Collection (DA 152.5 .A7 M3747 2004 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph002336304&indx=9"},"holdings":[{"record_id":"ndu_aleph002336304","institution":"University
         of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
         Collection","call_number":"(DA 152.5 .A7 M3747 2004 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"2","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Matthews,
         John","aufirst":"John,","aulast":"Matthews","btitle":"King Arthur : Dark Age
@@ -683,7 +504,53 @@ http_interactions:
         arthur dark age warrior and mythic hero$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
         Item"},"enrichment":{"classificationlcc":"DA 152.5 .A7"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Matthews","aufirst":"John,","au":"Matthews,
         John","btitle":"King Arthur : Dark Age warrior and mythic hero","date":"2004","risdate":"2004.","isbn":["1842229346","9781842229347"],"format":"book","genre":"book","ristype":"BOOK","notes":"Includes
-        bibliographical references (p. 122-125) and index.","cop":"London","pub":"Carlton","oclcid":"56449617"}}}]}'
+        bibliographical references (p. 122-125) and index.","cop":"London","pub":"Carlton","oclcid":"56449617"}}},{"id":"ndu_aleph001553353","type":"book","oclc":"32746971","lccn":"95024119","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
+        search for King Arthur","creator_contributor":"David Day 1947-","publisher_provider":"New
+        York : Facts on File c1995","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (DA 152.5 .A7 D39 1995 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cthe+once+and+future+king&tab=nd_campus&vid=NDU&vl%28freeText0%29=the+once+and+future+king&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph001553353&indx=10"},"holdings":[{"record_id":"ndu_aleph001553353","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(DA 152.5 .A7 D39 1995 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"11","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Day,
+        David","aufirst":"David,","aulast":"Day","btitle":"The search for King Arthur","date":"1995","genre":"book","isbn":"0816033706","pub":"Facts
+        on File"},"primo":{"control":{"sourcerecordid":"001553353","sourceid":"ndu_aleph","recordid":"ndu_aleph001553353","originalsourceid":"NDU01","ilsapiid":"NDU01001553353","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"The
+        search for King Arthur","creator":"David Day 1947-","publisher":"New York
+        : Facts on File","creationdate":"c1995","format":"176 p. : ill. (some col.)
+        ; 28 cm..","identifier":"$$CISBN $$V0816033706 (alk. paper)","subject":["Arthur,
+        King","Britons -- Kings and rulers -- Folklore","Arthurian romances -- Sources","Britons
+        -- History","Great Britain -- Antiquities, Celtic","Great Britain -- History
+        -- To 1066"],"description":"Contents: The coming of Arthur -- Arthur Dux Bellorum
+        -- Kingdom of the dragon -- The sword in the stone -- Arthur the king -- Merlin
+        the magician -- Morgan le Fay -- The lady of the lake -- Excalibur -- Camelot
+        and the Round Table -- Guinevere and Lancelot -- The quest of the Holy Grail
+        -- The last battle -- The Isle of Avalon -- Once and future king.","language":"eng","availlibrary":"$$INDU$$LHESB$$1General
+        Collection$$2(DA 152.5 .A7 D39 1995 )$$Savailable$$31$$40$$5N$$611$$XNDU50$$YHESB$$ZGEN","lds02":"ndu_aleph001553353","availinstitution":"$$INDU$$Savailable","availpnx":"available"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog","thumbnail":["$$Tamazon_thumb","$$Tsyndetics_thumb","$$Tgoogle_thumb"],"linktoabstract":"$$Tsyndetics_abstract$$Elinktoabstract","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":["$$Taleph_holdings$$INDU","$$Taleph_holdings"],"linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","linktouc":"$$Tworldcat_isbn$$Eworldcat","linktoexcerpt":"$$Tsyndetics_excerpt$$Elinktoexcerpt","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["David,  Day  1947-","Day,
+        D","David Day."],"title":"The search for King Arthur /","subject":["Arthur,
+        King","Britons Kings and rulers Folklore.","Arthurian romances Sources.","Britons
+        History.","Great Britain Antiquities, Celtic.","Great Britain History To 1066.","Great
+        Britain History To 1066","Arturo, Rey","Artus, K\u00f6nig","Arthur, K\u00f6nig","Art\u00f9,
+        Re","Arthur, King.","Arturus, Rex","Artur, Koning"],"general":["Facts on File,","(OCoLC)32746971","32746971","AHA7407","AllDocuments"],"sourceid":"ndu_aleph","recordid":["ndu_aleph001553353","001553353","1553353"],"isbn":["0816033706","9780816033706"],"toc":"The
+        coming of Arthur -- Arthur Dux Bellorum -- Kingdom of the dragon -- The sword
+        in the stone -- Arthur the king -- Merlin the magician -- Morgan le Fay --
+        The lady of the lake -- Excalibur -- Camelot and the Round Table -- Guinevere
+        and Lancelot -- The quest of the Holy Grail -- The last battle -- The Isle
+        of Avalon -- Once and future king.","creationdate":"1995","searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"lsr01":["HESB
+        GEN","HESB General Collection"],"lsr02":"Day, David,","lsr05":["DA 152.5 .A7
+        D39 1995","DA152.5.A7D391995","DA152.5 .A7 D39 1995 :"],"lsr06":"Facts on
+        File,"},"sort":{"title":"search for King Arthur /","creationdate":"1995","author":"Day,
+        David, 1947-"},"facets":{"language":"eng","creationdate":"1995","topic":["Arthur,
+        King","Britons\u2013Kings and rulers\u2013Folklore","Arthurian romances\u2013Sources","Britons\u2013History","Great
+        Britain\u2013Antiquities, Celtic","Great Britain\u2013History\u2013To 1066"],"toplevel":"available","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":"Day,
+        D","library":"HESB","classificationlcc":"D - History (general) and history
+        of europe.\u2013History of Great Britain\u2013England\u2013History\u2013By
+        period\u2013Early and medieval to 1485\u2013Celts. Romans. Saxons. Danes.
+        Normans","frbrgroupid":"74758162","frbrtype":"6"},"dedup":{"t":"1","c1":"95024119","c2":"0816033706","c3":"searchforkingarthur","c4":"1995","f1":"95024119","f3":"0816033706","f5":"searchforkingarthur","f6":"1995","f7":"search
+        for king arthur","f8":"nyu","f9":"176 p. :","f10":"facts on file","f11":"day
+        david 1947"},"frbr":{"t":"1","k1":"$$Kday david 1947$$AA","k3":"$$Ksearch
+        for king arthur$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
+        Item"},"enrichment":{"classificationlcc":"DA 152.5 .A7 D39 1995"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Day","aufirst":"David,","au":"Day,
+        David","btitle":"The search for King Arthur","date":"1995","risdate":"c1995.","isbn":"0816033706","format":"book","genre":"book","ristype":"BOOK","notes":"Includes
+        bibliographical references (p. 166-171) and index.","cop":"New York","pub":"Facts
+        on File","oclcid":"32746971","lccn":"95024119"}}}]}'
     http_version: 
-  recorded_at: Fri, 26 Apr 2013 20:46:11 GMT
+  recorded_at: Mon, 29 Apr 2013 19:57:33 GMT
 recorded_with: VCR 2.4.0

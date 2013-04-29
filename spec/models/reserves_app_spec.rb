@@ -21,7 +21,9 @@ describe ReservesApp do
   describe :courses_with_reserves do
 
     it "returns a list of courses that have reserves for the current user" do
-      reserves.courses_with_reserves.size.should == 2
+      VCR.use_cassette 'courses/jdan' do
+        reserves.courses_with_reserves.size.should == 3
+      end
     end
 
     it "return [] if the student has no reserves in the specified semester"

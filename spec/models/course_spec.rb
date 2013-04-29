@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Course do
 
   before(:each) do
-    @course = Course.new(:title => 'Course 1', :instructor => 'Instructor', :cross_listings => [ 'cross listing'], :current_user => 'User')
+    @course = Course.new('title' => 'Course 1', :instructor => 'Instructor', :cross_listings => [ 'cross listing'], :current_user => 'User')
   end
 
 
