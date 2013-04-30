@@ -10,7 +10,7 @@
   <label>Filter by Status: <select class="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>
 </div>
 
-<table class="table table-striped find-resources instructor_datatable">
+<table class="table table-striped find-resources instructor_datatable datatable">
   <thead>
     <tr>
       <th>Reserve</th>
@@ -75,29 +75,4 @@
   </form>
 </div>
 
-<style>
-  #copy-overlay {
-    display: none;
-    padding: 25px 25px 5px 25px;
-    position: fixed;
-    right: 10px;
-    bottom: 0px;
-    background-color: white;
-    border: 4px black solid;
-  }
 
-</style>
-
-<script type="text/javascript">
-  $(document).ready(function () {
-
-//    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label><label>Filter by Status: <select id="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>';
-//    $('.dataTables_filter').append(txt);
-
-
-
-
-
-  });
-
-</script>

@@ -1,70 +1,84 @@
 jQuery ($) ->
 
-  # For student table
-  oTable = $(".student_datatable").dataTable(
-    sPaginationType: "bootstrap"
-    iDisplayLength: 1000
-    bLengthChange: false
-    aoColumnDefs: [
-      bVisible: false
-      aTargets: [2]
-    ,
-      bSortable: false
-      bSearchable: false
-      aTargets: [1]
-    ]
-  )
 
-  # For instructor table
-  oTable = $(".instructor_datatable").dataTable(
-    sPaginationType: "bootstrap"
-    iDisplayLength: 1000
-    bLengthChange: false
-    aoColumnDefs: [
-      bVisible: true
-      aTargets: [2]
-    ,
-      bSortable: false
-      bSearchable: false
-      aTargets: [1]
-    ]
-  )
+  setupStudentDatatable = () ->
+    # For student table
+    oTable = $(".student_datatable").dataTable(
+      sPaginationType: "bootstrap"
+      iDisplayLength: 1000
+      bLengthChange: false
+      aoColumnDefs: [
+        bVisible: false
+        aTargets: [2]
+      ,
+        bSortable: false
+        bSearchable: false
+        aTargets: [1]
+      ]
+    )
 
 
-  input = $('.dataTables_filter').addClass('well form-vertical ').find('input')
-  input.attr('placeholder', "Author name or Title")
-  input.attr('data-content', 'Start typeing to filter the list')
-  input.attr('data-title', 'Reserve Filter')
-
-  $('.dataTables_filter').append $('.table_filter').html()
-
-  input.popover({ trigger: 'manual' })
-
-  input.focus ->
-    if ($(this).attr('data-popover-shown') != 'shown')
-      input = $(this)
-
-      setTimeout ( -> input.popover('show') ), 2000
-      input.attr('data-popover-shown', 'shown')
-
-    true
+  setupInstructorDatatable = () ->
+    # For instructor table
+    oTable = $(".instructor_datatable").dataTable(
+      sPaginationType: "bootstrap"
+      iDisplayLength: 1000
+      bLengthChange: false
+      aoColumnDefs: [
+        bVisible: true
+        aTargets: [2]
+      ,
+        bSortable: false
+        bSearchable: false
+        aTargets: [1]
+      ]
+    )
 
 
-  input.blur ->
-    $(this).popover('hide')
+  setupTableFilters = () ->
+    oTable = $(".datatable").dataTable()
+    if oTable.size() == 0
+      return
 
-  input.keyup ->
-    $(this).popover('hide')
+    $('.dataTables_filter').append $('.table_filter').html()
+
+    $('.topic_filter').change ->
+      oTable.fnFilter($(this).val(), 2, true, false, false)
+
+    $('.status_filter').change ->
+      oTable.fnFilter($(this).val(), 3, true, false, false)
+
+    input = $('.dataTables_filter').addClass('well form-vertical ').find('input')
+    input.attr('placeholder', "Author name or Title")
+    input.attr('data-content', 'Start typeing to filter the list')
+    input.attr('data-title', 'Reserve Filter')
+
+    input.popover({ trigger: 'manual' })
+
+    input.focus ->
+      if ($(this).attr('data-popover-shown') != 'shown')
+        input = $(this)
+
+        setTimeout ( -> input.popover('show') ), 2000
+        input.attr('data-popover-shown', 'shown')
+
+      true
 
 
-  input.focus()
+    input.blur ->
+      $(this).popover('hide')
+
+    input.keyup ->
+      $(this).popover('hide')
 
 
-  $('.topic_filter').change ->
-    oTable.fnFilter($(this).val(), 2, true, false, false)
+    input.focus()
 
-  $('.status_filter').change ->
-    oTable.fnFilter($(this).val(), 3, true, false, false)
+
+  setupStudentDatatable()
+  setupInstructorDatatable()
+  setupTableFilters()
+
 
 
 $(document).on 'click', "#add_topic_button", ->

@@ -27,3 +27,14 @@
 .instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
 
 .table_filter { display: none; }
+
+
+#copy-overlay {
+  display: none;
+  padding: 25px 25px 5px 25px;
+  position: fixed;
+  right: 10px;
+  bottom: 0px;
+  background-color: white;
+  border: 4px black solid;
+}
