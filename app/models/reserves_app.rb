@@ -40,31 +40,90 @@ class ReservesApp
 
 
   def has_enrolled_courses?
-
+    !@enrolled_courses_with_reserves.empty? || !@enrolled_courses_without_reserves.empty?
   end
 
 
   def has_instructed_courses?
-
+    !@instructed_courses_with_reserves.empty? || !@instructed_courses_without_reserves.empty?
   end
 
 
   def courses_with_reserves()
-    return Course.enrolled_courses('jdan', '201210')
+    if !@enrolled_courses_with_reserves
+      load_user_courses
+    end
+
+    return @enrolled_courses_with_reserves
   end
 
 
   def courses_without_reserves()
-    if self.semester.code.include?('fall')
-      [
-        Course.test_data(@user, 'Course 6')
-      ]
-    else
-      [
-        Course.test_data(@user, "Course 3"),
-        Course.test_data(@user, "Course 4")
-      ]
+    if !@enrolled_courses_without_reserves
+      load_user_courses
     end
+
+    return @enrolled_courses_without_reserves
   end
 
+
+  def instructed_courses_with_reserves()
+    if !@instructed_courses_with_reserves
+      load_user_courses
+    end
+
+    return @instructed_courses_with_reserves
+  end
+
+
+  def instructed_courses_without_reserves()
+    if !@instructed_courses_without_reserves
+      load_user_courses
+    end
+
+    return @instructed_courses_without_reserves
+  end
+
+  private
+
+    def load_user_courses
+      all_courses = API::Person.courses('jdan', '201210')
+
+      load_enrolled_courses(all_courses['enrolled_courses'])
+      load_instructed_courses(all_courses['instructed_courses'])
+    end
+
+
+    def load_enrolled_courses(enrolled_courses)
+      @enrolled_courses_with_reserves = []
+      @enrolled_courses_without_reserves = []
+
+      i = 1
+      enrolled_courses.each do | c |
+        c = Course.new(c)
+        if i % 2 == 1
+          @enrolled_courses_with_reserves << c
+        else
+          @enrolled_courses_without_reserves << c
+        end
+        i += 1
+      end
+    end
+
+
+    def load_instructed_courses(instructed_courses)
+      @instructed_courses_with_reserves = []
+      @instructed_courses_without_reserves = []
+
+      i = 1
+      instructed_courses.each do | c |
+        c = Course.new(c)
+        if i % 2 == 1
+          @instructed_courses_with_reserves << c
+        else
+          @instructed_courses_without_reserves << c
+        end
+        i += 1
+      end
+    end
 end

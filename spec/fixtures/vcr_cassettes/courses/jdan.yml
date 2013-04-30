@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Apr 2013 19:58:26 GMT
+      - Tue, 30 Apr 2013 15:33:51 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - d3c1ec0a68fead5459b30ac7024682a7
+      - 659c445fb1d56a1702bae6acf31449bd
       X-Runtime:
-      - '0.108798'
+      - '0.095816'
       X-Rack-Cache:
       - miss
       Status:
@@ -43,7 +43,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTZkZjE2ZWE3YzQ1YmQ1ZDdmN2FkYzZkZjc5MGM3Y2U5BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--72c31c924c12b9f2be7ca81831e2b65f40d394a6;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTdhOGMxMTliNTdhNWNkNGMwMjkwNjhlMTE2ZTRhYzlmBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--16d4d39bb0c8468f534d0d4d9c984071a9425ece;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -54,5 +54,5 @@ http_interactions:
         Data Analysis","term_prefix":"201210","alpha_prefix":"ACMS","number":70870,"section":"01"}],"instructed_courses":[{"title":"Statistical
         Reasoning in Politics","term_prefix":"201210","alpha_prefix":"ACMS","number":10141,"section":"01"},{"title":"201210_ACMS_10145","term_prefix":"201210","alpha_prefix":"ACMS","number":10145,"section":"04"}]}]}'
     http_version: 
-  recorded_at: Mon, 29 Apr 2013 19:58:25 GMT
+  recorded_at: Tue, 30 Apr 2013 15:33:52 GMT
 recorded_with: VCR 2.4.0

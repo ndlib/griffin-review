@@ -13,7 +13,7 @@ describe Course do
 
 
   it "has an instructor" do
-    @course.instructor.should == 'Instructor'
+    @course.instructor.should == 'need to get instructor'
   end
 
 

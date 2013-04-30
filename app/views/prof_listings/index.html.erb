@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @reserves.courses_with_reserves.each do | course | %>
+    <% @reserves.instructed_courses_with_reserves.each do | course | %>
     <tr>
       <td>
         <a href="<%= prof_listing_path(course.id) %>"><%= h course.title %></a>
@@ -50,7 +50,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @reserves.courses_without_reserves.each do | course | %>
+    <% @reserves.instructed_courses_without_reserves.each do | course | %>
       <tr>
         <td>
           <%= h course.title %>

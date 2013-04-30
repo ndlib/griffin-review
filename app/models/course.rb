@@ -33,7 +33,6 @@ class Course
   end
 
 
-
   def id
     1
   end
@@ -41,6 +40,11 @@ class Course
 
   def students
     []
+  end
+
+
+  def instructor
+    "need to get instructor"
   end
 
 
