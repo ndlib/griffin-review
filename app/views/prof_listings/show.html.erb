@@ -5,8 +5,12 @@
   <a href="<%= new_prof_listing_request_reserve_path(@course.id) %>" class="btn btn-primary">Request Material</a>
 <% end %>
 
-<% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
-<table class="table table-striped find-resources datatable">
+<div class="table_filter">
+  <label>Filter by Topic: <select class="topic_filter"><option></option><%= options_for_select(@course.all_tags) %></select></label>
+  <label>Filter by Status: <select class="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>
+</div>
+
+<table class="table table-striped find-resources instructor_datatable">
   <thead>
     <tr>
       <th>Reserve</th>
@@ -87,81 +91,12 @@
 <script type="text/javascript">
   $(document).ready(function () {
 
-    // For fluid containers
-    oTable = $('.datatable').dataTable({
-      "sPaginationType": "bootstrap",
-      "iDisplayLength": 1000,
-      "bLengthChange": false,
-      "aoColumnDefs": [ { "bVisible": true, "aTargets": [ 2 ] }, { "bSortable":false, "bSearchable": false, "aTargets": [ 1 ]} ]
-    });
+//    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label><label>Filter by Status: <select id="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>';
+//    $('.dataTables_filter').append(txt);
 
-    var input = $('.dataTables_filter').addClass('well form-vertical ').find('input');
-    input.attr('placeholder', "Author name or Title");
-    input.attr('data-content', 'Start typeing to filter the list');
-    input.attr('data-title', 'Reserve Filter');
 
-    input.popover({ trigger: 'manual' })
 
-    input.focus(function () {
 
-      if ($(this).attr('data-popover-shown') != 'shown') {
-        var input = $(this);
-
-        setTimeout(function () { input.popover('show'); }, 2000);
-        input.attr('data-popover-shown', 'shown');
-      }
-
-      return true;
-    });
-
-    input.blur(function () {
-      $(this).popover('hide');
-    });
-
-    input.keyup(function () {
-      $(this).popover('hide');
-    });
-
-    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label><label>Filter by Status: <select id="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>';
-
-    input.focus();
-
-    $('.dataTables_filter').append(txt);
-    $('#search_filter').change(function () {
-      oTable.fnFilter($(this).val(), 2, true, false, false);
-    });
-    $('#status_filter').change(function () {
-      oTable.fnFilter($(this).val(), 3, true, false, false);
-    });
-    $('#add_topic_button').click(function () {
-      $('#topic_list').append('<label class="checkbox"><input type="checkbox" checked="true"> New Topic</label>')
-    });
-
-    $('.copy').change(function () {
-      txt = $(this).parents('tr').find('.title').text();
-      if ($('#copy-overlay ul li:contains('+txt+')').size() > 0) {
-        $('#copy-overlay ul li:contains('+txt+')').remove();
-      } else {
-        row = $('<li>' + txt + '</li>')
-        $('#copy-overlay ul').append(row);
-        row.effect("highlight", {}, 3000);
-      }
-
-      if ($('#copy-overlay ul li').size() == 0) {
-        $('#copy-overlay').hide();
-      } else {
-        $('#copy-overlay').show();
-      }
-    });
-
-    $('#copy-overlay .cancel').click(function () {
-      $('#copy-overlay ul li').remove();
-      $('#copy-overlay').hide();
-      $('.copy').each(function () {
-        this.checked = false;
-      });
-      return false;
-    });
 
   });
 

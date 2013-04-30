@@ -7,7 +7,7 @@
 <% end %>
 
 <% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
-<table class="table table-striped find-resources datatable">
+<table class="table table-striped find-resources student_datatable">
   <thead>
     <tr>
       <th>Reserve</th>
@@ -25,51 +25,5 @@
 <script type="text/javascript">
   $(document).ready(function () {
 
-
-    // For fluid containers
-    oTable = $('.datatable').dataTable({
-      "sPaginationType": "bootstrap",
-      "iDisplayLength": 1000,
-      "bLengthChange": false,
-      "aoColumnDefs": [ { "bVisible": false, "aTargets": [ 2 ] }, { "bSortable":false, "bSearchable": false, "aTargets": [ 1 ]} ]
-    });
-
-    var input = $('.dataTables_filter').addClass('well form-vertical ').find('input');
-    input.attr('placeholder', "Author name or Title");
-    input.attr('data-content', 'Start typeing to filter the list');
-    input.attr('data-title', 'Reserve Filter');
-
-    input.popover({ trigger: 'manual' })
-
-    input.focus(function () {
-
-      if ($(this).attr('data-popover-shown') != 'shown') {
-        var input = $(this);
-
-        setTimeout(function () { input.popover('show'); }, 2000);
-        input.attr('data-popover-shown', 'shown');
-      }
-
-      return true;
-    });
-
-    input.blur(function () {
-      $(this).popover('hide');
-    });
-
-    input.keyup(function () {
-      $(this).popover('hide');
-    });
-
-    txt = '<label>Filter by Topic: <select id="search_filter"><option></option><%= escape_javascript(options_for_select(@course.all_tags)) %></select></label>';
-
-    input.focus();
-
-    $('.dataTables_filter').append(txt);
-    $('#search_filter').change(function () {
-      oTable.fnFilter($(this).val(), 2, true, false, false);
-    });
-
-  });
 
 </script>
