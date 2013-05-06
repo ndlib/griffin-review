@@ -84,6 +84,26 @@ class ReservesApp
     return @instructed_courses_without_reserves
   end
 
+
+  def self.reserve_test_data
+    Reserve
+
+    [
+      BookReserve.test_request(1),
+      BookChapterReserve.test_request(2),
+      JournalReserve.test_file_request(3),
+      JournalReserve.test_url_request(4),
+      VideoReserve.test_request(5),
+      AudioReserve.test_request(6),
+      BookReserve.new_request(7),
+      BookReserve.awaiting_request(8),
+      BookChapterReserve.new_request(9),
+      BookChapterReserve.awaiting_request(10),
+      VideoReserve.awaiting_request(11),
+      VideoReserve.new_request(12),
+    ]
+  end
+
   private
 
     def load_user_courses

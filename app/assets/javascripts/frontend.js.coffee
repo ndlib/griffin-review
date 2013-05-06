@@ -81,27 +81,36 @@ jQuery ($) ->
 
 
 
-$(document).on 'click', "#add_topic_button", ->
-  $("#topic_list").append "<label class=\"checkbox\"><input type=\"checkbox\" checked=\"true\"> New Topic</label>"
+  $(document).on 'click', "#add_topic_button", ->
+    $("#topic_list").append "<label class=\"checkbox\"><input type=\"checkbox\" checked=\"true\"> New Topic</label>"
 
 
-$(document).on 'change', ".copy",  ->
-  txt = $(this).parents("tr").find(".title").text()
-  if $("#copy-overlay ul li:contains(" + txt + ")").size() > 0
-    $("#copy-overlay ul li:contains(" + txt + ")").remove()
-  else
-    row = $("<li>" + txt + "</li>")
-    $("#copy-overlay ul").append row
-    row.effect "highlight", {}, 3000
-  if $("#copy-overlay ul li").size() is 0
+  $(document).on 'change', ".copy",  ->
+    txt = $(this).parents("tr").find(".title").text()
+    if $("#copy-overlay ul li:contains(" + txt + ")").size() > 0
+      $("#copy-overlay ul li:contains(" + txt + ")").remove()
+    else
+      row = $("<li>" + txt + "</li>")
+      $("#copy-overlay ul").append row
+      row.effect "highlight", {}, 3000
+    if $("#copy-overlay ul li").size() is 0
+      $("#copy-overlay").hide()
+    else
+      $("#copy-overlay").show()
+
+  $("#copy-overlay .cancel").click ->
+    $("#copy-overlay ul li").remove()
     $("#copy-overlay").hide()
-  else
-    $("#copy-overlay").show()
+    $(".copy").each ->
+      @checked = false
 
-$("#copy-overlay .cancel").click ->
-  $("#copy-overlay ul li").remove()
-  $("#copy-overlay").hide()
-  $(".copy").each ->
-    @checked = false
+    false
 
-  false
+
+  $('.has_electronic_copy_checkbox').change ->
+    if this.checked
+      $(this).parents('div.controls').find('div.has_electronic_copy').show()
+    else
+      $(this).parents('div.controls').find('div.has_electronic_copy').hide()
+
+  $('.datepicker').datepicker()

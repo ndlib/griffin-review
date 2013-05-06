@@ -1,12 +1,12 @@
 
 <h3>2. Book Chapter Details </h3>
 
-<%= simple_form_for object, :as => :book_chapter, :html => {id: "book_form"}, :url => prof_listings_path() do |f| %>
+<%= simple_form_for object, :as => :book_chapter, :html => {id: "book_chapter_form"}, :url => prof_listings_path() do |f| %>
 
   <%= f.input :title %>
   <%= f.input :creator %>
 
-  <%= f.input :needed_by do %>
+  <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
     <%= f.input_field :needed_by, as: "string", class: 'datepicker span2' %>
   <% end %>
 
@@ -14,19 +14,24 @@
     <%= f.input_field :length, class: 'span2'%>
   <% end %>
 
+  <%= f.input :library, as: "select", collection: [ 'Hesburgh', 'Math', 'Chemestry/Physics', 'BIC', 'Architecture', 'Engeneering'] %>
+
   <%= f.input :note, label: "Special Instuctions" do %>
-    <%= f.input_field :note, placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
+    <%= f.input_field :note, as: "text", placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
   <% end %>
 
+  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
 
-  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the work.", label: false %>
-
-  <%= f.input :requestor_has_an_electronic_copy, as: :boolean, inline_label: "I have an electronic copy.", label: false %>
-
-  <%= f.input :file, as: 'file', label: 'Electronic Copy' %>
+  <%= f.input :requestor_has_an_electronic_copy, label: false do %>
+    <%= f.input_field :requestor_has_an_electronic_copy, as: :boolean, inline_label: "I have an electronic copy.", label: false, class: 'has_electronic_copy_checkbox' %>
+    <div class="has_electronic_copy">
+      <%= f.input_field :file, as: 'file', label: 'Electronic Copy' %>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', label: "Save" %>
     <%= link_to 'Cancel', prof_listing_path(@course.id), :class => "btn btn-danger" %>
   </div>
+
 <% end %>

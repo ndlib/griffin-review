@@ -49,10 +49,10 @@ describe Course do
   end
 
 
-  describe :new_request_reserve do
+  describe :new_instructor_request do
 
     it "returns a request object" do
-      @course.new_request_reserve.class.should == RequestReserve
+      @course.new_instructor_request.class.should == InstructorReserveRequest
     end
 
 
@@ -62,7 +62,7 @@ describe Course do
 
 
     it "allows you to add attributes in" do
-       @course.new_request_reserve(title: "THE TITLE").title.should == "THE TITLE"
+       @course.new_instructor_request(title: "THE TITLE").title.should == "THE TITLE"
     end
   end
 

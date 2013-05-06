@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.reserves.each do | reserve | %>
+    <% @course.published_reserves.each do | reserve | %>
       <%= render :partial => '/external/request/lists/student_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>

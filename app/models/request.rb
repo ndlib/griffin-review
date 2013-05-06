@@ -4,7 +4,7 @@ class Request < VideoWorkflow
 
   #extras to be replaced when the schema is finalized.
   attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator
-  attr_accessor :length
+  attr_accessor :length, :publisher, :discovery_id, :file, :requestor_has_an_electronic_copy
 
   belongs_to :semester
   belongs_to :user
@@ -19,4 +19,7 @@ class Request < VideoWorkflow
 
 
 
+  def requestor
+    "Bob Bobbers"
+  end
 end

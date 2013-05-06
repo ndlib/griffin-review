@@ -54,6 +54,17 @@ class DiscoveryApi
     @json_result['display']['available_library']
   end
 
+
+  def fulltext_available?
+    @json_result['fulltext_available']
+  end
+
+
+  def fulltext_url
+    @json_result['links']['fulltext_url']
+  end
+
+
   private
 
     def self.make_request(id)

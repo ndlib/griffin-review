@@ -1,5 +1,6 @@
 /*
 *= require search
+*= require jquery-ui-1.10.2.custom
 */
 
 .page-header h1 { margin-bottom: 0; }
@@ -28,6 +29,11 @@
 
 .table_filter { display: none; }
 
+.has_electronic_copy {
+  display: none;
+  margin-left: 20px;
+  margin-top: 10px;
+}
 
 #copy-overlay {
   display: none;

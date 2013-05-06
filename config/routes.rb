@@ -108,6 +108,11 @@ Griffin::Application.routes.draw do
     resources :copy_reserves, :path => 'copy'
   end
 
+  scope '/admin' do
+
+    resources :requests, controller: 'admin/requests'
+    resources :meta_datas, controller: 'admin/requests_meta_data'
+  end
 
 
 end

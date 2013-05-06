@@ -6,19 +6,21 @@
   <%= f.input :title %>
   <%= f.input :creator %>
 
-  <%= f.input :needed_by do %>
+  <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
     <%= f.input_field :needed_by, as: "string", class: 'datepicker span2' %>
   <% end %>
-
-  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
 
   <%= f.input :number_of_copies do %>
     <%= f.input_field :number_of_copies, class: 'span2' %>
   <% end %>
 
+  <%= f.input :library, as: "select", collection: [ 'Hesburgh', 'Math', 'Chemestry/Physics', 'BIC', 'Architecture', 'Engeneering'] %>
+
   <%= f.input :note, label: "Special Instuctions" do %>
-    <%= f.input_field :note, placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
+    <%= f.input_field :note, as: "text", placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
   <% end %>
+
+  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', label: "Save" %>

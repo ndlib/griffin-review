@@ -1,0 +1,95 @@
+<% content_for(:content_title) do %>
+  <h1>Requests</h1>
+<% end %>
+
+<% content_for(:content_title_links) do %>
+  <a href="#filter_form" data-toggle="modal">Filter Request Results</a>
+<% end %>
+
+
+<div class="tabbable tabs-top">
+  <ul class="nav nav-tabs">
+    <li class="<%= params[:filter] == '' ? 'active' : '' %>">
+      <% if !params[:filter] || params[:filter] == 'awaiting' %>
+        <a data-toggle="tab" filter="new" href="#1">New</a>
+      <% else %>
+        <a filter="new" href="<%= requests_path() %>">New</a>
+      <% end %>
+    </li>
+    <li>
+      <% if !params[:filter] || params[:filter] == 'awaiting' %>
+        <a data-toggle="tab" filter="awaiting" href="#2">Awaiting Action</a>
+      <% else %>
+        <a filter="awaiting" href="<%= requests_path(:filter => 'awaiting') %>">Awaiting Action</a>
+      <% end %>
+    </li>
+    <li class="<%= params[:filter] == 'complete' ? 'active' : '' %>">
+      <a data-toggle="link_tab" href="<%= requests_path(:filter => 'complete') %>">Completed</a>
+    </li>
+    <li class="<%= params[:filter] == 'all' ? 'active' : '' %>">
+      <a data-toggle="tab" href="<%= requests_path(:filter => 'all') %>">All</a>
+    </li>
+  </ul>
+</div>
+
+<div class="pull-right">
+  <select>
+    <option>Current Sememster</option>
+    <option>Future Semesters</option>
+  </select>
+</div>
+
+<table class="table table-striped find-resources admin_datatable datatable">
+  <thead>
+    <tr>
+      <th>Date Neeeded</th>
+      <th>Title</th>
+      <th>Requestor</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reserve_list.each do | reserve | %>
+      <%= render :partial => '/external/request/lists/admin_list_row', :locals => { object: reserve } %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<div class="modal hide" id="filter_form">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Filter Requests for</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset id="topic_list">
+        <legend>For Types</legend>
+        <label class="checkbox"><input type="checkbox"> Books</label>
+        <label class="checkbox"><input type="checkbox"> Book Chapters</label>
+        <label class="checkbox"><input type="checkbox"> Journal</label>
+        <label class="checkbox"><input type="checkbox"> Audio</label>
+        <label class="checkbox"><input type="checkbox"> Video</label>
+      </fieldset>
+
+      <fieldset id="topic_list">
+        <legend>For Library </legend>
+        <label class="checkbox"><input type="checkbox"> Hesburgh</label>
+        <label class="checkbox"><input type="checkbox"> Chem/Phys</label>
+        <label class="checkbox"><input type="checkbox"> BIC</label>
+        <label class="checkbox"><input type="checkbox"> Math</label>
+        <label class="checkbox"><input type="checkbox"> ...</label>
+      </fieldset>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+
+  </div>
+</div>

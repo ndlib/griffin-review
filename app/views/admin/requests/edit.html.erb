@@ -1,0 +1,31 @@
+<% content_for(:content_title) do %>
+  <h1>Edit <%= h @request.title %> </h1>
+<% end %>
+
+
+
+<div class="row">
+ <div class="span6">
+
+<%= simple_form_for @request, :url => requests_path() do | f | %>
+
+  <% if !@show_files %>
+    <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
+  <% else %>
+    <% if true || @discovery_record.fulltext_available? %>
+      <%= render :partial => 'full_text_available', locals: { f: f, discovery_record: @discovery_record } %>
+    <% else %>
+
+    <% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit "Continue" %>
+  </div>
+
+<% end %>
+
+
+  </div>
+</div>
+

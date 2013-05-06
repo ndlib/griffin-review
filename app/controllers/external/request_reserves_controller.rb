@@ -3,7 +3,7 @@ class RequestReservesController < ApplicationController
   layout 'external'
 
   def new
-    @request_reserve = course.new_request_reserve
+    @request_reserve = course.new_instructor_request
   end
 
 

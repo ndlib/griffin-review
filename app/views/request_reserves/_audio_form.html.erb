@@ -1,7 +1,7 @@
 
 <h3>2. Audio Request </h3>
 
-<%= simple_form_for object, :as => :video, :html => {id: "book_form"}, :url => prof_listings_path() do |f| %>
+<%= simple_form_for object, :as => :video, :html => {id: "audio_form"}, :url => prof_listings_path() do |f| %>
   <%= f.input :journal_title, label: 'Album' %>
   <%= f.input :title %>
   <%= f.input :creator %>
@@ -18,6 +18,7 @@
     <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work. ", rows: 5 %>
   <% end %>
 
+  <%= f.input :library, as: "hidden", value: 'Hesburgh' %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', label: "Save" %>

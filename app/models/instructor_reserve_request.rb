@@ -1,4 +1,4 @@
-class RequestReserve < SimpleDelegator
+class InstructorReserveRequest < SimpleDelegator
 
   attr_accessor :reserve, :current_user
 

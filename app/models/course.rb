@@ -56,16 +56,12 @@ class Course
 
 
   def reserves
-    Reserve
+    ReservesApp.reserve_test_data
+  end
 
-    [
-      BookReserve.test_request(1),
-      BookChapterReserve.test_request(2),
-      JournalReserve.test_file_request(3),
-      JournalReserve.test_url_request(4),
-      VideoReserve.test_request(5),
-      AudioReserve.test_request(6)
-    ]
+
+  def published_reserves
+    ReservesApp.reserve_test_data.select { | r | r.status == 'complete' }
   end
 
 
@@ -80,11 +76,6 @@ class Course
   end
 
 
-  def new_request(*args)
-    Request.new(*args)
-  end
-
-
   def new_reserve(*args)
     args[0] ||= {}
     args[0][:course] = self
@@ -93,8 +84,8 @@ class Course
   end
 
 
-  def new_request_reserve(*args)
-    RequestReserve.new(self.new_reserve(*args), self.current_user)
+  def new_instructor_request(*args)
+    InstructorReserveRequest.new(self.new_reserve(*args), self.current_user)
   end
 
 

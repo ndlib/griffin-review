@@ -1,0 +1,25 @@
+<tr>
+  <td><%= object.needed_by.to_date.to_s(:short) %></td>
+  <td><%= object.title %></td>
+  <td><%= object.requestor %></td>
+  <td><%= object.type %></td>
+  <td><%= object.status %></td>
+  <td>
+    <div class="btn-group">
+      <button class="btn btn-mini <%= !object.data_complete? ? 'btn-warning' : 'btn-primary' %>">Edit</button>
+      <button class="btn btn-mini dropdown-toggle <%= !object.data_complete? ? 'btn-warning' : 'btn-primary' %>" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><%= link_to raw("<i class=\"#{object.needs_meta_data? ? '' : 'icon-ok'}\"></i> Edit Meta Data"), edit_meta_data_path(object.id) %> </li>
+        <% if object.can_have_uploaded_file? %>
+          <li><%= link_to "Upload File", '#' %></li>
+        <% end %>
+        <% if object.can_have_url? %>
+          <li><%= link_to "Add a Link", '#' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </td>
+</tr>
+

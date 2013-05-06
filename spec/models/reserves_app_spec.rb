@@ -18,6 +18,27 @@ describe ReservesApp do
   end
 
 
+  describe :instructed_courses_with_reserves do
+
+    it "returns a list of courses that have reserves for the current user" do
+      VCR.use_cassette 'courses/jdan' do
+        reserves.instructed_courses_with_reserves.size.should == 1
+      end
+    end
+  end
+
+
+  describe :instructed_courses_without_reserves do
+
+    it "returns a list of courses that have do not have reserves for the current user" do
+      VCR.use_cassette 'courses/jdan' do
+        reserves.instructed_courses_without_reserves.size.should == 1
+      end
+    end
+  end
+
+
+
   describe :courses_with_reserves do
 
     it "returns a list of courses that have reserves for the current user" do
