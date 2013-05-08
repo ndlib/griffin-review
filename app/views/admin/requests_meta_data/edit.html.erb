@@ -5,14 +5,16 @@
 
 <div class="row">
  <div class="span6">
-    <%= simple_form_for @request, :url => requests_path() do | f | %>
+    <%= simple_form_for @request, :url => meta_data_path(@request.id), :method=>'put' do | f | %>
 
       <% if !@show_files %>
         <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
       <% end %>
 
       <div class="form-actions">
-        <%= f.submit "Save" %>
+        <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+        <%= link_to 'Cancel', requests_path(:filter => @request.status), class: 'btn' %>
       </div>
     <% end %>
   </div>

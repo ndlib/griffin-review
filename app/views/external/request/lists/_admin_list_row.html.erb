@@ -3,7 +3,14 @@
   <td><%= object.title %></td>
   <td><%= object.requestor %></td>
   <td><%= object.type %></td>
-  <td><%= object.status %></td>
+  <td>
+    <select>
+      <option value="new" <%= object.status == "new" ? 'selected="true"' : '' %>>New</option>
+      <option value="awaiting cataloging" <%= object.status == "awaiting cataloging" ? 'selected="true"' : '' %>>Awaiting Cataloging</option>
+      <option value="awaiting digitization" <%= object.status == "awaiting digitization" ? 'selected="true"' : '' %>>Awaiting Digitization</option>
+      <option value="complete" <%= object.status == "complete" ? 'selected="true"' : '' %>>Complete</option>
+    </select>
+  </td>
   <td>
     <div class="btn-group">
       <button class="btn btn-mini <%= !object.data_complete? ? 'btn-warning' : 'btn-primary' %>">Edit</button>
@@ -11,15 +18,15 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><%= link_to raw("<i class=\"#{object.needs_meta_data? ? '' : 'icon-ok'}\"></i> Edit Meta Data"), edit_meta_data_path(object.id) %> </li>
-        <% if object.can_have_uploaded_file? %>
-          <li><%= link_to "Upload File", '#' %></li>
-        <% end %>
-        <% if object.can_have_url? %>
-          <li><%= link_to "Add a Link", '#' %></li>
+        <li><%= link_to raw("<i class=\"#{object.needs_meta_data? ? '' : 'icon-ok'}\"></i> Meta Data"), edit_meta_data_path(object.id) %> </li>
+        <% if object.can_have_external_resource? %>
+          <li><%= link_to raw("<i class=\"#{object.needs_external_source? ? '' : 'icon-ok'}\"></i> External Resource"), edit_resource_path(object.id) %></li>
         <% end %>
       </ul>
     </div>
+  </td>
+  <td>
+    <%= object.status %>
   </td>
 </tr>
 

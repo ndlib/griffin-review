@@ -9,7 +9,7 @@
 
 <div class="tabbable tabs-top">
   <ul class="nav nav-tabs">
-    <li class="<%= params[:filter] == '' ? 'active' : '' %>">
+    <li class="<%= params[:filter] == '' || params[:filter] == 'new' ? 'active' : '' %>">
       <% if !params[:filter] || params[:filter] == 'awaiting' %>
         <a data-toggle="tab" filter="new" href="#1">New</a>
       <% else %>
@@ -27,7 +27,7 @@
       <a data-toggle="link_tab" href="<%= requests_path(:filter => 'complete') %>">Completed</a>
     </li>
     <li class="<%= params[:filter] == 'all' ? 'active' : '' %>">
-      <a data-toggle="tab" href="<%= requests_path(:filter => 'all') %>">All</a>
+      <a data-toggle="link_tab" href="<%= requests_path(:filter => 'all') %>">All</a>
     </li>
   </ul>
 </div>
@@ -46,8 +46,9 @@
       <th>Title</th>
       <th>Requestor</th>
       <th>Type</th>
-      <th>Status</th>
+      <th>Change Status</th>
       <th>Edit</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>

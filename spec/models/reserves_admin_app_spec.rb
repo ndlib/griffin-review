@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe ReservesAdmin do
+describe ReservesAdminApp do
 
   before(:each) do
-    @reserves_admin = ReservesAdmin.new('semester', 'current_user')
+    @reserves_admin = ReservesAdminApp.new('semester', 'current_user')
   end
 
   describe "#in_complete_reserves" do
@@ -35,7 +35,7 @@ describe ReservesAdmin do
   describe "#reserve" do
 
     it "decorates reseres with the admin reserve " do
-      @reserves_admin.reserve(1).class.should == AdminReserveRequest
+      @reserves_admin.reserve(1).class.should == AdminReserve
     end
 
 

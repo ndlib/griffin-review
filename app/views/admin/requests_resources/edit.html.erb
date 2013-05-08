@@ -1,0 +1,24 @@
+<% content_for(:content_title) do %>
+  <h1>Set Reserve Resources </h1>
+<% end %>
+
+
+<div class="row">
+ <div class="span6">
+    <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+      <% if @request.can_have_uploaded_file? %>
+        <%= f.input :file, :label => 'Upload a pdf', :as => :file %>
+
+      <% elsif @request.can_have_url? %>
+        <%= f.input :url, :label => 'Link to external site' %>
+
+      <% end %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+        <%= link_to 'Cancel', requests_path(:filter=>@request.status), class: 'btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -19,9 +19,10 @@ jQuery ($) ->
       iDisplayLength: 1000
       bLengthChange: false
       aoColumnDefs: [
+        bVisible: false
         bSortable: false
         bSearchable: false
-        aTargets: [4]
+        aTargets: [6]
       ,
         bSortable: false
         bSearchable: false
@@ -31,14 +32,26 @@ jQuery ($) ->
 
     qs = new QueryString()
     filter = qs.get('filter')
-    if typeof filter is 'undefined'
-      $('a[filter="new"]').first().tab('show')
+    if typeof filter is 'undefined' || filter == "new"
+      oTable.fnFilter("new", 6, true, false, false)
     else if filter == 'awaiting'
       $('a[filter="awaiting"]').tab('show')
 
+
+  setupMetaDataForm = () ->
+    $('#admin_reserve_title').keyup ->
+      $('.title').html($(this).val())
+
+    $('#admin_reserve_creator').keyup ->
+      $('.author').html($(this).val())
+
+    $('#admin_reserve_publisher').keyup ->
+      $('.publisher').html($(this).val())
+
+
   $('a[data-toggle="tab"]').on('shown', ->
     oTable = $(".datatable").dataTable()
-    oTable.fnFilter($(this).attr('filter'), 4, true, false, false)
+    oTable.fnFilter($(this).attr('filter'), 6, true, false, false)
   )
 
 
@@ -57,3 +70,4 @@ jQuery ($) ->
 
 
   setupAdminDatatable()
+  setupMetaDataForm()

@@ -1,5 +1,5 @@
 
-class ReservesAdmin
+class ReservesAdminApp
 
   def initialize(semester, current_user)
     @semester = semester
@@ -18,12 +18,12 @@ class ReservesAdmin
 
 
   def all_reserves
-    ReservesApp.reserve_test_data.collect { | r | AdminReserveRequest.new(r, @current_user) }
+    ReservesApp.reserve_test_data.collect { | r | AdminReserve.new(r, @current_user) }
   end
 
 
   def reserve(id)
-    AdminReserveRequest.new(ReservesApp.reserve_test_data[id.to_i - 1], @current_user)
+    AdminReserve.new(ReservesApp.reserve_test_data[id.to_i - 1], @current_user)
   end
 
 end

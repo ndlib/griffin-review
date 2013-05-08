@@ -112,6 +112,7 @@ Griffin::Application.routes.draw do
 
     resources :requests, controller: 'admin/requests'
     resources :meta_datas, controller: 'admin/requests_meta_data'
+    resources :resources, controller: 'admin/requests_resources'
   end
 
 

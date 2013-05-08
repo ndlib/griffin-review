@@ -9,9 +9,14 @@ class Reserve
   attr_accessor :length, :discovery_id, :library, :publisher, :requestor, :status
 
 
-  def initialize(attributes = {})
-    attributes.keys.each do  | key |
-      self.send("#{key}=", attributes[key])
+  def initialize(attrs = {})
+    self.attributes= attrs
+  end
+
+
+  def attributes=(attrs= {})
+    attrs.keys.each do  | key |
+      self.send("#{key}=", attrs[key])
     end
   end
 
@@ -23,11 +28,6 @@ class Reserve
 
   def approval_required?
     true
-  end
-
-
-  def citation
-    "Citation will go here."
   end
 
 

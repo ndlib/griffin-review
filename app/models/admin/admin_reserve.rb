@@ -1,10 +1,9 @@
-class AdminReserveRequest
+class AdminReserve
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
   attr_accessor :reserve, :current_user
-
 
   delegate :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details, :to => :reserve
   delegate :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy, :to => :reserve
@@ -15,6 +14,32 @@ class AdminReserveRequest
   def initialize(reserve, current_user)
     @reserve = reserve
     @current_user = current_user
+  end
+
+
+  def set_discovery_id(discovery_id)
+    @reserve.discovery_id = discovery_id
+
+    # if it does not have a url and the item can have a url and the discovery system has an electronic copy use it.
+  end
+
+
+  def set_meta_data(data)
+    if data.size > 0
+      @reserve.discovery_id = nil
+    end
+
+    @reserve.attributes = data
+  end
+
+
+  def set_resource_url(url)
+
+  end
+
+
+  def upload_pdf
+
   end
 
 
@@ -48,6 +73,11 @@ class AdminReserveRequest
   end
 
 
+  def can_have_external_resource?
+    can_have_uploaded_file? || can_have_url?
+  end
+
+
   def data_complete?
     !needs_meta_data? && !needs_external_source?
   end
@@ -56,4 +86,5 @@ class AdminReserveRequest
   def persisted?
     false
   end
+
 end

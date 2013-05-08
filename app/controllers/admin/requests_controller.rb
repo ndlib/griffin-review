@@ -28,7 +28,7 @@ class Admin::RequestsController  < ApplicationController
   protected
 
     def reserves
-      @reserves ||= ReservesAdmin.new(params[:semester], "current_user")
+      @reserves ||= ::ReservesAdminApp.new(params[:semester], "current_user")
     end
 
 end
