@@ -1,7 +1,5 @@
 class GetReservesController < ApplicationController
 
-  layout 'external'
-
 
   def show
     @course_listing = course.get_reserve(params[:id])

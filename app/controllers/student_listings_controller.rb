@@ -1,7 +1,5 @@
 class StudentListingsController < ApplicationController
 
-  layout 'external'
-
   def index
     reserves
   end

@@ -26,4 +26,16 @@ class ReservesAdminApp
     AdminReserve.new(ReservesApp.reserve_test_data[id.to_i - 1], @current_user)
   end
 
+
+  def netid_instructed_courses(netid, semester)
+    all_courses = API::Person.courses(netid, '201210')
+
+    all_courses['instructed_courses']
+  end
+
+
+  def all_courses
+
+  end
+
 end

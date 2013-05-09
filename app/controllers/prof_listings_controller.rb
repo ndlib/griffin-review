@@ -1,7 +1,5 @@
 class ProfListingsController < ApplicationController
 
-  layout 'external'
-
   def index
     reserves
   end

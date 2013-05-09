@@ -50,8 +50,8 @@ jQuery ($) ->
 
     input = $('.dataTables_filter').addClass('well form-vertical ').find('input')
     input.attr('placeholder', "Author name or Title")
-    input.attr('data-content', 'Start typeing to filter the list')
-    input.attr('data-title', 'Reserve Filter')
+    input.attr('data-content', 'Type the title or author of the work you need.')
+    input.attr('data-title', 'Filter')
 
     input.popover({ trigger: 'manual' })
 
