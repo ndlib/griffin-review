@@ -6,7 +6,7 @@
   <div class="summary">
     <h2 class="title">
       <% if object.link_to_get_listing? %>
-        <%= link_to h(object.title), student_listing_get_reserve_path(object.course.id, object.id), target: '_blank' %>
+        <%= link_to h(object.title), reserf_get_reserve_path('1', object.id), target: '_blank' %>
       <% else %>
         <%= h object.title %>
       <% end %>

@@ -1,0 +1,24 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Sections</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% instructed_courses.each do | course | %>
+    <tr>
+      <td>
+        <a href="<%= prof_listing_path(course.id) %>"><%= h course.title %></a><br>
+        <% course.cross_listings.each do | listing | %>
+          <%= h listing.title %>
+        <% end %>
+      </td>
+      <td><%= h course.section %></td>
+      <td><%= link_to 'Request Material', new_prof_listing_request_reserve_path(course.id), class: 'btn btn-primary' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

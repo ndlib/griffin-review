@@ -1,10 +1,13 @@
 class ApplicationController < ActionController::Base
+  before_filter :authenticate_user!
+
   protect_from_forgery
 
 
   helper HesburghAssets::AssetsHelper
 
-  # before_filter :authenticate_user!
+
+
 
   protected
 

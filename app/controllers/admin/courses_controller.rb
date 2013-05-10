@@ -1,11 +1,12 @@
 class CoursesController < ApplicationController
 
+  layout 'admin'
 
   def index
     @courses = false
 
     if params[:netid]
-      @courses = reserves.netid_instructed_courses(params[:netid], 'semester')
+      @courses = reserves.netid_instructed_courses(params[:netid], '201210')
     end
 
   end
@@ -13,8 +14,8 @@ class CoursesController < ApplicationController
 
   def show
     @course = reserves.course(params[:id])
-
   end
+
 
   protected
 

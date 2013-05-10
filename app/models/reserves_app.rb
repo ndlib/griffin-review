@@ -31,57 +31,75 @@ class ReservesApp
 
 
   def course(course_id)
-    if course_id.to_s != "1"
-      return nil
-    end
+    load_user_courses
+    (@enrolled_courses + @instructed_courses).select { | c | c.id == course_id }.first
+  end
 
-    Course.test_data(@user)
+
+  def current_user_can_view_course?
+  end
+
+
+  def current_user_instructs_course?
+  end
+
+
+  def current_user_enrolled_in_course?
   end
 
 
   def has_enrolled_courses?
-    !@enrolled_courses_with_reserves.empty? || !@enrolled_courses_without_reserves.empty?
+    load_user_courses
+
+    !@enrolled_courses.empty?
   end
 
 
   def has_instructed_courses?
-    !@instructed_courses_with_reserves.empty? || !@instructed_courses_without_reserves.empty?
+    load_user_courses
+
+    !@instructed_courses.empty?
+  end
+
+
+  def enrolled_courses
+    load_user_courses
+
+    @enrolled_courses
   end
 
 
   def courses_with_reserves()
-    if !@enrolled_courses_with_reserves
-      load_user_courses
-    end
+    load_user_courses
 
     return @enrolled_courses_with_reserves
   end
 
 
   def courses_without_reserves()
-    if !@enrolled_courses_without_reserves
-      load_user_courses
-    end
+    load_user_courses
 
     return @enrolled_courses_without_reserves
   end
 
 
   def instructed_courses_with_reserves()
-    if !@instructed_courses_with_reserves
-      load_user_courses
-    end
+    load_user_courses
 
     return @instructed_courses_with_reserves
   end
 
 
   def instructed_courses_without_reserves()
-    if !@instructed_courses_without_reserves
-      load_user_courses
-    end
-
+    load_user_courses
     return @instructed_courses_without_reserves
+  end
+
+
+  def instructed_courses
+    load_user_courses
+
+    @instructed_courses
   end
 
 
@@ -107,16 +125,20 @@ class ReservesApp
   private
 
     def load_user_courses
-      all_courses = API::Person.courses('jdan', '201210')
+      return if !@result.nil?
 
-      load_enrolled_courses(all_courses['enrolled_courses'])
-      load_instructed_courses(all_courses['instructed_courses'])
+      @result = API::Person.courses(@user.username, '201210')
+
+      load_enrolled_courses(@result['enrolled_courses'])
+      load_instructed_courses(@result['instructed_courses'])
+
     end
 
 
     def load_enrolled_courses(enrolled_courses)
       @enrolled_courses_with_reserves = []
       @enrolled_courses_without_reserves = []
+      @enrolled_courses = []
 
       i = 1
       enrolled_courses.each do | c |
@@ -126,6 +148,7 @@ class ReservesApp
         else
           @enrolled_courses_without_reserves << c
         end
+        @enrolled_courses << c
         i += 1
       end
     end
@@ -134,6 +157,7 @@ class ReservesApp
     def load_instructed_courses(instructed_courses)
       @instructed_courses_with_reserves = []
       @instructed_courses_without_reserves = []
+      @instructed_courses = []
 
       i = 1
       instructed_courses.each do | c |
@@ -143,6 +167,8 @@ class ReservesApp
         else
           @instructed_courses_without_reserves << c
         end
+
+        @instructed_courses << c
         i += 1
       end
     end

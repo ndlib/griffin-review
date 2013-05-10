@@ -1,0 +1,225 @@
+{
+people: [
+{
+id: "jdan",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jdan",
+first_name: "Jun",
+last_name: "Dan",
+full_name: "Jun Dan",
+ndguid: "nd.edu.ndbf7fz2",
+position_title: "Grad Student Stipend",
+campus_department: "Applied Computational Math & Stats",
+primary_affiliation: "Student",
+contact_information: {
+email: "Jun.Dan.2@nd.edu"
+},
+enrolled_courses: [
+{
+term_crn: "201210_19745",
+crn: "19745",
+title: "201210_ACMS_60882",
+term_prefix: "201210",
+alpha_prefix: "ACMS",
+number: 60882,
+section: "01",
+instructors: [
+{
+id: "jli7",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jli7",
+first_name: "Jiahan",
+last_name: "Li",
+full_name: "Jiahan Li",
+ndguid: "nd.edu.ndrh3xh4",
+position_title: "Assistant Professor",
+campus_department: "Applied Computational Mathematics & Statistics",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "jiahan.li@nd.edu",
+phone: "+1 574 631 2741",
+campus_address: "156 Hurley Hall&#10;Notre Dame, IN 46556"
+}
+}
+]
+},
+{
+term_crn: "201210_19591",
+crn: "19591",
+title: "Statistical Methods for Financial Risk Management",
+term_prefix: "201210",
+alpha_prefix: "ACMS",
+number: 60890,
+section: "01",
+instructors: [
+{
+id: "jdelane1",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jdelane1",
+first_name: "James",
+last_name: "Delaney",
+full_name: "James Delaney",
+ndguid: "nd.edu.ndwm7dx3",
+position_title: "Assistant Professional Specialist",
+campus_department: "Applied Computational Mathematics & Statistics",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "james.delaney@nd.edu",
+phone: "+1 574 631 4882",
+campus_address: "152D Hurley Hall&#10;Notre Dame, IN 46556"
+}
+}
+]
+},
+{
+term_crn: "201210_20066",
+crn: "20066",
+title: "Categorical/Discrete Data Analysis",
+term_prefix: "201210",
+alpha_prefix: "ACMS",
+number: 70870,
+section: "01",
+instructors: [
+{
+id: "jli9",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jli9",
+first_name: "Jun",
+last_name: "Li",
+full_name: "Jun Li",
+ndguid: "nd.edu.ndmn8fr7",
+position_title: "Assistant Professor",
+campus_department: "Applied Computational Mathematics & Statistics",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "jun.li@nd.edu",
+phone: "+1 574 631 3429",
+campus_address: "171 Hurley Hall&#10;Notre Dame, IN 46556"
+}
+}
+]
+}
+],
+instructed_courses: [
+{
+term_crn: "201210_18446",
+crn: "18446",
+title: "Statistical Reasoning in Politics",
+term_prefix: "201210",
+alpha_prefix: "ACMS",
+number: 10141,
+section: "01",
+instructors: [
+{
+id: "jdan",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jdan",
+first_name: "Jun",
+last_name: "Dan",
+full_name: "Jun Dan",
+ndguid: "nd.edu.ndbf7fz2",
+position_title: "Grad Student Stipend",
+campus_department: "Applied Computational Math & Stats",
+primary_affiliation: "Student",
+contact_information: {
+email: "Jun.Dan.2@nd.edu"
+}
+},
+{
+id: "ahuebne2",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "ahuebne2",
+first_name: "Alan",
+last_name: "Huebner",
+full_name: "Alan Huebner",
+ndguid: "nd.edu.ndns4vj8",
+position_title: "Assistant Professional Specialist",
+campus_department: "Applied Computational Mathematics & Statistics",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "Alan.Huebner.10@nd.edu",
+phone: "+1 574 631 6252",
+campus_address: "152C Hurley Bldg&#10;Notre Dame, IN 46556-4618"
+}
+}
+]
+},
+{
+term_crn: "201210_18448",
+crn: "18448",
+title: "201210_ACMS_10145",
+term_prefix: "201210",
+alpha_prefix: "ACMS",
+number: 10145,
+section: "04",
+instructors: [
+{
+id: "jdan",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jdan",
+first_name: "Jun",
+last_name: "Dan",
+full_name: "Jun Dan",
+ndguid: "nd.edu.ndbf7fz2",
+position_title: "Grad Student Stipend",
+campus_department: "Applied Computational Math & Stats",
+primary_affiliation: "Student",
+contact_information: {
+email: "Jun.Dan.2@nd.edu"
+}
+},
+{
+id: "ahuebne2",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "ahuebne2",
+first_name: "Alan",
+last_name: "Huebner",
+full_name: "Alan Huebner",
+ndguid: "nd.edu.ndns4vj8",
+position_title: "Assistant Professional Specialist",
+campus_department: "Applied Computational Mathematics & Statistics",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "Alan.Huebner.10@nd.edu",
+phone: "+1 574 631 6252",
+campus_address: "152C Hurley Bldg&#10;Notre Dame, IN 46556-4618"
+}
+}
+]
+}
+]
+}
+]
+}

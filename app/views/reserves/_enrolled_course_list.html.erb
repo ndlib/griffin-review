@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Courses</th>
+      <th>Instructor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% enrolled_courses.each do | course | %>
+    <tr>
+      <td>
+        <a href="<%= reserf_path(course.id) %>"><%= h course.title %></a>
+      </td>
+      <td><%= h course.instructor_name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

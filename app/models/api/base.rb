@@ -1,3 +1,5 @@
+#file = File.open("path-to-file.tar.gz", "rb")
+#contents = file.read
 
 require "addressable/uri"
 

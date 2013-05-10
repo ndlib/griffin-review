@@ -28,9 +28,7 @@ class ReservesAdminApp
 
 
   def netid_instructed_courses(netid, semester)
-    all_courses = API::Person.courses(netid, '201210')
-
-    all_courses['instructed_courses']
+    Course.instructed_courses(netid, semester)
   end
 
 

@@ -8,23 +8,27 @@
 <% breadcrumb([ 'Find Courses ']) %>
 
 <form class="well form-search">
+  <p>
+    <label>
+      Instructor NetID
+      <input type="text" name="netid" value="<%= params[:netid] %>" />
+    </label>
 
-  <label>
-    Instructor NetID
-    <input type="text" name="netid" value="<%= params[:netid] %>" />
-  </label>
-
-  Or
-  <label>
-    Course Title
-    <input type="text" name="course_title" value="<%= params[:course_title] %>" />
-  </label>
-
-  <!-- <label>Semester: <select name="semster_id" class="search_select"></select></label> -->
-
-  <button type="submit" class="btn">Continue</button>
-
-
+    Or
+    <label>
+      Course Title
+      <input type="text" name="course_title" value="<%= params[:course_title] %>" />
+    </label>
+  </p>
+  <p>
+    <label>
+      Semester <br>
+      <select name="semster_id" class="search_select"></select>
+    </label>
+  </p>
+  <p>
+    <button type="submit" class="btn">Continue</button>
+  </p>
 </form>
 
 <% if @courses %>
@@ -39,26 +43,46 @@
           <th>Course</th>
           <th>Course Codes</th>
           <th>Instructor</th>
-          <th>Request Material</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @courses.each do | course | %>
-        <tr>
-          <td>
-            <a><%= h course['title'] %></a>
-          </td>
-          <td>
-          </td>
-          <td><%= h course['instructor'] %></td>
-          <td>
-            <%= link_to 'New Request', '#', class: "btn" %>
-            <%= link_to 'Copy From Course', '#', class: "btn" %>
-          </td>
-        </tr>
+          <tr>
+            <td>
+              <%= link_to h(course.title), prof_listing_path(course.id) %>
+            </td>
+            <td>
+            </td>
+            <td><%= h course.instructor %></td>
+            <td>
+              <%= link_to 'New Request', '#', class: "btn" %>
+              <%= link_to 'Copy From Course', prof_listing_path(course.id), class: "btn" %>
+              <%= link_to 'Add Missing Student', '#add_user', class:'btn', "data-toggle"=>"modal" %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
 
   <% end %>
 <% end %>
+
+<div id="add_user" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Add Missing Student</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <label>
+        Netid
+        <input type="text" name="netid" />
+      </label>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal" class="btn">Close</a>
+    <a href="#" data-dismiss="modal" class="btn btn-primary">Add</a>
+  </div>
+</div>

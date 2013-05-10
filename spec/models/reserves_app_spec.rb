@@ -2,19 +2,34 @@ require 'spec_helper'
 
 describe ReservesApp do
 
-  let(:reserves) { ReservesApp.new("current_user", semester.id)}
+  let(:current_user) { mock(User, :username => 'jdan') }
+  let(:reserves) { ReservesApp.new(current_user, semester.id)}
   let(:semester) { FactoryGirl.create(:semester)}
 
   describe :course do
 
     it "returns a course the student belongs to" do
-      reserves.course("1").title.should == "Course 1"
-      reserves.course("1").instructor.should == "need to get instructor"
+      VCR.use_cassette 'courses/jdan' do
+
+        reserves.course("19745").title.should == "201210_ACMS_60882"
+        reserves.course("19745").instructor_name.should == "Jiahan Li"
+      end
     end
 
     it "returns nil if the student is not a part of the class"
 
-    it "returns nil if the course is not in the current semester passed into student reserves"
+
+    it "returns nil if the course is not in the current semester passed into student reserves" do
+      VCR.use_cassette 'courses/jdan' do
+        reserves.course("19746").should be_nil
+      end
+    end
+
+    it "returns only enrolled courses in the current semester even if the the semester is set to the next "
+
+
+    it "returns instructed courses from the semester passed in"
+
   end
 
 
@@ -25,6 +40,8 @@ describe ReservesApp do
         reserves.instructed_courses_with_reserves.size.should == 1
       end
     end
+
+    it "returns a list of instructed couses for the semester setup in reserves"
   end
 
 
@@ -37,6 +54,16 @@ describe ReservesApp do
     end
   end
 
+
+  describe :instructed_courses do
+
+    it "returns all the instructed courses" do
+      VCR.use_cassette 'courses/jdan' do
+        reserves.instructed_courses.size.should == 2
+      end
+    end
+
+  end
 
 
   describe :courses_with_reserves do
@@ -58,12 +85,7 @@ describe ReservesApp do
     end
 
 
-    it "returns results for the previous_semester" do
-      #ps = FactoryGirl.create(:previous_semester)
-
-      #reserves = ReservesApp.new("current_user", ps.id)
-      #reserves.courses_without_reserves.size.should == 1
-    end
+    it "only returns results for the current semester"
 
   end
 
@@ -87,14 +109,15 @@ describe ReservesApp do
       end
     end
 
-    it "returns results for the previous_semester" do
-#      ps = FactoryGirl.create(:previous_semester)
+    it "only returns results for the current semester"
 
-#      reserves = ReservesApp.new("current_user", ps.id)
-#      VCR.use_cassette 'courses/jdan' do
-#        reserves.courses_without_reserves.size.should == 1
-    end
+  end
 
+  describe :enrolled_courses do
+
+    it "returns all the courses the current user is enrolled in"
+
+    it "returns only the current semester "
   end
 
 
@@ -135,7 +158,9 @@ describe ReservesApp do
   describe :copy_course_listings do
 
     it "returns a copy course listing" do
-      reserves.copy_course_listing(1, 2).class.should == CopyReserves
+      VCR.use_cassette 'courses/jdan' do
+        reserves.copy_course_listing(1, 2).class.should == CopyReserves
+      end
     end
 
   end

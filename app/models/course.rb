@@ -1,11 +1,14 @@
 class Course
 
-  attr_accessor :title, :instructor, :cross_listings, :current_user
+  attr_accessor :title, :instructors, :cross_listings, :section, :current_user
 
   def initialize(attributes = {})
+    @attributes = attributes
+
     self.title = attributes['title']
-    self.instructor = attributes[:instructor]
-    self.cross_listings = attributes[:cross_listings] || []
+    self.instructors= attributes['instructors']
+    self.cross_listings = attributes['cross_listings'] || []
+    self.section = attributes['section']
     self.current_user = attributes[:current_user]
   end
 
@@ -33,8 +36,19 @@ class Course
   end
 
 
+  def self.instructed_courses(netid, semester)
+    ret = []
+
+    API::Person.courses(netid, semester)['instructed_courses'].each do | c |
+      ret << Course.new(c)
+    end
+
+    ret
+  end
+
+
   def id
-    1
+    @attributes['crn']
   end
 
 
@@ -43,8 +57,8 @@ class Course
   end
 
 
-  def instructor
-    "need to get instructor"
+  def instructor_name
+    "#{self.instructors.first['first_name']} #{self.instructors.first['last_name']}"
   end
 
 

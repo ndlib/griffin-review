@@ -1,0 +1,312 @@
+{
+people: [
+{
+id: "cwray",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "cwray",
+first_name: "Christopher",
+last_name: "Wray",
+full_name: "Christopher Wray",
+ndguid: "nd.edu.ndhn6vr5",
+position_title: "Research Assistant",
+campus_department: "Dean's Office-Law School",
+primary_affiliation: "Student",
+contact_information: {
+email: "Christopher.R.Wray.12@nd.edu",
+phone: "+1 816 813 7306"
+},
+enrolled_courses: [
+{
+term_crn: "201220_27013",
+crn: "27013",
+title: "201220_LAW_70104",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 70104,
+section: "01",
+instructors: [
+{
+id: "jhaigh1",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jhaigh1",
+first_name: "James",
+last_name: "Haigh",
+full_name: "James Haigh",
+ndguid: "nd.edu.ndnt8br7",
+position_title: "Adjunct Assistant Professor",
+campus_department: "Law School",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "James.M.Haigh.8@nd.edu",
+campus_address: "Suite 205&#10;205 West Jefferson Boulevard&#10;South Bend, IN 46601-1839"
+}
+}
+]
+},
+{
+term_crn: "201220_25508",
+crn: "25508",
+title: "201220_LAW_70111",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 70111,
+section: "01",
+instructors: [
+{
+id: "kpruitt",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "kpruitt",
+first_name: "Kristin",
+last_name: "Pruitt",
+full_name: "Kristin Pruitt",
+ndguid: "nd.edu.ndrb3fw9",
+position_title: "Adjunct Assistant Professor",
+campus_department: "Law School",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "Kristin.A.Pruitt.18@nd.edu",
+campus_address: "114 East Market Street&#10;Warsaw, IN 46580-2806"
+}
+}
+]
+},
+{
+term_crn: "201220_22114",
+crn: "22114",
+title: "201220_LAW_75721",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 75721,
+section: "02",
+instructors: [
+{
+id: "jkelly24",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jkelly24",
+first_name: "James",
+last_name: "Kelly",
+full_name: "Jim Kelly",
+ndguid: "nd.edu.ndgm4dw6",
+position_title: "Professional Specialist",
+campus_department: "Clinical Law Center",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "J.Kelly@nd.edu",
+campus_address: "Notre Dame Legal Aid Clinic&#10;725 Howard Street&#10;South Bend, IN 46617-1529",
+phone: "+1 574 631 7637"
+}
+}
+]
+},
+{
+term_crn: "201220_25558",
+crn: "25558",
+title: "201220_LAW_75732",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 75732,
+section: "01",
+instructors: [
+{
+id: "jrobinso",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jrobinso",
+first_name: "John",
+last_name: "Robinson",
+full_name: "John Robinson",
+ndguid: "nd.edu.ndqs3zq9",
+position_title: "Associate Professor",
+campus_department: "Law School",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "John.H.Robinson.1@nd.edu",
+campus_address: "2116 Eck Hall of Law&#10;Notre Dame, IN 46556-4639",
+phone: "+1 574 631 6980"
+}
+}
+]
+},
+{
+term_crn: "201220_21054",
+crn: "21054",
+title: "201220_LAW_75749",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 75749,
+section: "01",
+instructors: [
+{
+id: "abellia",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "abellia",
+first_name: "Anthony",
+last_name: "Bellia",
+full_name: "A.J. Bellia",
+ndguid: "nd.edu.ndhg7rb5",
+position_title: "Professor",
+campus_department: "Law School",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "Anthony.J.Bellia.3@nd.edu",
+campus_address: "3153 Eck Hall of Law&#10;Notre Dame, IN 46556-4639",
+phone: "+1 574 631 9353"
+}
+}
+]
+},
+{
+term_crn: "201220_20524",
+crn: "20524",
+title: "201220_LAW_76101",
+term_prefix: "201220",
+alpha_prefix: "LAW",
+number: 76101,
+section: "44",
+instructors: [
+{
+id: "rkozel",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "rkozel",
+first_name: "Randy",
+last_name: "Kozel",
+full_name: "Randy Kozel",
+ndguid: "nd.edu.ndzb5fx5",
+position_title: "Associate Professor",
+campus_department: "Law School",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "rkozel@nd.edu",
+campus_address: "2118 Eck Hall of Law&#10;Notre Dame, IN 46556-4639",
+phone: "+1 574 631 2727"
+}
+}
+]
+},
+{
+term_crn: "201220_22215",
+crn: "22215",
+title: "201220_MBCM_60400",
+term_prefix: "201220",
+alpha_prefix: "MBCM",
+number: 60400,
+section: "01",
+instructors: [
+{
+id: "jorourke",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "jorourke",
+first_name: "James",
+last_name: "O'Rourke",
+full_name: "James O'Rourke",
+ndguid: "nd.edu.ndsn4df6",
+position_title: "Professional Specialist",
+campus_department: "Management",
+primary_affiliation: "Faculty",
+contact_information: {
+email: "jorourke@nd.edu",
+campus_address: "234 Mendoza College of Bus&#10;Notre Dame, IN 46556",
+phone: "+1 574 631 8397"
+}
+}
+]
+}
+],
+instructed_courses: [
+{
+term_crn: "201220_25823",
+crn: "25823",
+title: "201220_ACCT_20100",
+term_prefix: "201220",
+alpha_prefix: "ACCT",
+number: 20100,
+section: "04",
+instructors: [
+{
+id: "cwray",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "cwray",
+first_name: "Christopher",
+last_name: "Wray",
+full_name: "Christopher Wray",
+ndguid: "nd.edu.ndhn6vr5",
+position_title: "Research Assistant",
+campus_department: "Dean's Office-Law School",
+primary_affiliation: "Student",
+contact_information: {
+email: "Christopher.R.Wray.12@nd.edu",
+phone: "+1 816 813 7306"
+}
+}
+]
+},
+{
+term_crn: "201220_26315",
+crn: "26315",
+title: "201220_BAUG_20001",
+term_prefix: "201220",
+alpha_prefix: "BAUG",
+number: 20001,
+section: "04",
+instructors: [
+{
+id: "cwray",
+identifier_contexts: {
+ldap: "uid",
+staff_directory: "email"
+},
+identifier: "by_netid",
+netid: "cwray",
+first_name: "Christopher",
+last_name: "Wray",
+full_name: "Christopher Wray",
+ndguid: "nd.edu.ndhn6vr5",
+position_title: "Research Assistant",
+campus_department: "Dean's Office-Law School",
+primary_affiliation: "Student",
+contact_information: {
+email: "Christopher.R.Wray.12@nd.edu",
+phone: "+1 816 813 7306"
+}
+}
+]
+}
+]
+}
+]
+}

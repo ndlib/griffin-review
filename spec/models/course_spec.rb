@@ -12,13 +12,26 @@ describe Course do
   end
 
 
-  it "has an instructor" do
-    @course.instructor.should == 'need to get instructor'
+  it "has an instructor_name" do
+    @course.instructor_name.should == 'need to get instructor'
   end
 
 
   it "has the current user" do
     @course.current_user.should == 'User'
+  end
+
+
+  it "has an id / crn "
+
+
+  describe "reserves" do
+
+  end
+
+
+  describe "published_reserves" do
+
   end
 
 

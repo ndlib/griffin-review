@@ -1,4 +1,4 @@
-class ProfListingsController < ApplicationController
+class ReservesController < ApplicationController
 
   def index
     reserves

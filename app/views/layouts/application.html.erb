@@ -31,20 +31,30 @@
             <div class="navbar-inner">
               <ul class="nav">
                 <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
-                <li class="dropdown">
-                  <%= link_to raw("Courses <b class=\"caret\"></b>"), "/student_listings", "data-toggle" => "dropdown" %>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "Course 1", "/student_listings/1" %></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), "/prof_listings", "data-toggle" => "dropdown" %>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to "Course 1", "/prof_listings/1" %></li>
-                  </ul>
-                </li>
+                <% if @reserves.has_enrolled_courses? %>
+                  <li class="dropdown">
+                    <%= link_to raw("Courses <b class=\"caret\"></b>"), "/student_listings", "data-toggle" => "dropdown" %>
+                    <ul class="dropdown-menu">
+                      <% @reserves.courses_with_reserves.each do | course | %>
+                        <li><%= link_to h(course.title), student_listing_path(course.id) %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+                <% if @reserves.has_instructed_courses? %>
+                  <li class="dropdown">
+                    <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), "/prof_listings", "data-toggle" => "dropdown" %>
+                    <ul class="dropdown-menu">
+                      <% @reserves.instructed_courses.each do | course | %>
+                        <li><%= link_to h(course.title), prof_listing_path(course.id) %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
               </ul>
               <div class="pull-right">
+                <%= current_user.username %>
+                <a href="/login">Change User</a>
                 <%= content_for(:help) %>
               </div>
             </div>

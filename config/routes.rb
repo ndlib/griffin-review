@@ -86,7 +86,6 @@ Griffin::Application.routes.draw do
   ###########################
   # External User Functions #
   ###########################
-  root :to => 'external#index'
   scope '/', :controller => 'external' do
     get 'not_authorized', :as => 'external_not_authorized', :path => 'not-authorized'
   end
@@ -106,6 +105,14 @@ Griffin::Application.routes.draw do
     resources :request_reserves, :path => 'reserve', as: 'request_reserve'
     resources :get_reserves, :path => 'get'
     resources :copy_reserves, :path => 'copy'
+  end
+
+  root :to => 'reserves#index'
+
+  match "login", :controller => 'development_login', :action => 'login'
+
+  resources :reserves, only: [ 'index', 'show' ] do
+    resources :get_reserves, :path => 'get', as: 'get_reserve', only: 'show'
   end
 
   scope '/admin' do
