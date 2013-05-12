@@ -1,7 +1,7 @@
 class RequestReservesController < ApplicationController
 
   def new
-    @request_reserve = course.new_instructor_request
+    @request_reserve = InstructorReserveRequest.new(course.new_reserve(), current_user)
   end
 
 

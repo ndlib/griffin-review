@@ -5,9 +5,9 @@ class ReservesApp
     @user = current_user
 
     if semester_id
-      self.semester = Semester.find(semester_id)
+      @semester = Semester.find(semester_id)
     else
-      self.semester = self.current_semester
+      @semester = self.current_semester
     end
   end
 
@@ -30,80 +30,70 @@ class ReservesApp
   end
 
 
+  def current_user_instructs_course?(course_id)
+    !instructed_courses.select { | c | c.id == course_id }.empty?
+  end
+
+
+  def current_user_enrolled_in_course?(course_id)
+    !enrolled_courses.select { | c | c.id == course_id }.empty?
+  end
+
+
   def course(course_id)
-    load_user_courses
-    (@enrolled_courses + @instructed_courses).select { | c | c.id == course_id }.first
-  end
-
-
-  def current_user_can_view_course?
-  end
-
-
-  def current_user_instructs_course?
-  end
-
-
-  def current_user_enrolled_in_course?
+    course_api.get(course_id, @user.username, @semester.code)
   end
 
 
   def has_enrolled_courses?
-    load_user_courses
-
-    !@enrolled_courses.empty?
+    !course_api.enrolled_courses(@user.username, current_semester.code).empty?
   end
 
 
   def has_instructed_courses?
-    load_user_courses
-
-    !@instructed_courses.empty?
+    !course_api.instructed_courses(@user.username, @semester.code).empty?
   end
 
 
   def enrolled_courses
-    load_user_courses
-
-    @enrolled_courses
+    course_api.enrolled_courses(@user.username, current_semester.code)
   end
 
 
   def courses_with_reserves()
-    load_user_courses
+    res = []
+    i = 0
+    course_api.enrolled_courses(@user.username, current_semester.code).each do | c |
+      if i % 2 == 1
+        res << c
+      end
+      i += 1
+    end
 
-    return @enrolled_courses_with_reserves
-  end
-
-
-  def courses_without_reserves()
-    load_user_courses
-
-    return @enrolled_courses_without_reserves
+    res
   end
 
 
   def instructed_courses_with_reserves()
-    load_user_courses
+    res = []
+    i = 0
+    course_api.instructed_courses(@user.username, @semester.code).each do | c |
+      if i % 2 == 1
+        res << c
+      end
+      i += 1
+    end
 
-    return @instructed_courses_with_reserves
-  end
-
-
-  def instructed_courses_without_reserves()
-    load_user_courses
-    return @instructed_courses_without_reserves
+    res
   end
 
 
   def instructed_courses
-    load_user_courses
-
-    @instructed_courses
+    course_api.instructed_courses(@user.username, @semester.code)
   end
 
 
-  def self.reserve_test_data
+  def self.reserve_test_data(course)
     Reserve
 
     [
@@ -124,52 +114,8 @@ class ReservesApp
 
   private
 
-    def load_user_courses
-      return if !@result.nil?
-
-      @result = API::Person.courses(@user.username, '201210')
-
-      load_enrolled_courses(@result['enrolled_courses'])
-      load_instructed_courses(@result['instructed_courses'])
-
+    def course_api
+      @course_api ||= CourseApi.new
     end
 
-
-    def load_enrolled_courses(enrolled_courses)
-      @enrolled_courses_with_reserves = []
-      @enrolled_courses_without_reserves = []
-      @enrolled_courses = []
-
-      i = 1
-      enrolled_courses.each do | c |
-        c = Course.new(c)
-        if i % 2 == 1
-          @enrolled_courses_with_reserves << c
-        else
-          @enrolled_courses_without_reserves << c
-        end
-        @enrolled_courses << c
-        i += 1
-      end
-    end
-
-
-    def load_instructed_courses(instructed_courses)
-      @instructed_courses_with_reserves = []
-      @instructed_courses_without_reserves = []
-      @instructed_courses = []
-
-      i = 1
-      instructed_courses.each do | c |
-        c = Course.new(c)
-        if i % 2 == 1
-          @instructed_courses_with_reserves << c
-        else
-          @instructed_courses_without_reserves << c
-        end
-
-        @instructed_courses << c
-        i += 1
-      end
-    end
 end

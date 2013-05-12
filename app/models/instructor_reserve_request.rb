@@ -9,7 +9,4 @@ class InstructorReserveRequest < SimpleDelegator
     super(reserve)
   end
 
-
-
-
 end

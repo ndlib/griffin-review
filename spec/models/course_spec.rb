@@ -2,44 +2,66 @@ require 'spec_helper'
 
 describe Course do
 
+  let(:student_user) { mock(User, :username => 'student') }
+  let(:semester) { FactoryGirl.create(:semester)}
+  let(:reserve)  { ReservesApp.new(student_user, semester.id) }
+
   before(:each) do
-    @course = Course.new('title' => 'Course 1', :instructor => 'Instructor', :cross_listings => [ 'cross listing'], :current_user => 'User')
+    stub_courses!
+    @course = reserve.course("22557")
   end
 
 
   it "has a title" do
-    @course.title.should == 'Course 1'
+    @course.respond_to?(:title).should be_true
+    @course.title.should == "201220_CSC_33963"
   end
 
 
   it "has an instructor_name" do
-    @course.instructor_name.should == 'need to get instructor'
+    @course.respond_to?(:instructor_name).should be_true
+    @course.instructor_name.should == 'William Purcell'
   end
 
 
-  it "has the current user" do
-    @course.current_user.should == 'User'
+  it "has an id / crn " do
+    @course.respond_to?(:id).should be_true
+    @course.id.should == "22557"
   end
 
 
-  it "has an id / crn "
+  it "has a section " do
+    @course.respond_to?(:section).should be_true
+    @course.section.should == "01"
+  end
+
+  it "can decide if it has reserves or not"
 
 
   describe "reserves" do
+
+    it "returns all the reserves associated with the course" do
+      @course.reserves.size.should == 12
+    end
 
   end
 
 
   describe "published_reserves" do
 
+    it "returns only the published reserves" do
+      @course.published_reserves.size.should == 6
+
+      @course.published_reserves.each do | r |
+        r.status.should == 'complete'
+      end
+    end
   end
 
 
   describe :cross_listings do
 
-    it "has cross listings" do
-      @course.cross_listings.should == [ 'cross listing' ]
-    end
+    it "has cross listings"
 
     it "allows you to add a cross listing"
 
@@ -62,30 +84,15 @@ describe Course do
   end
 
 
-  describe :new_instructor_request do
 
-    it "returns a request object" do
-      @course.new_instructor_request.class.should == InstructorReserveRequest
-    end
+  def stub_courses!
+    API::Person.stub!(:courses) do  | netid, semester |
+      path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
+      file = File.open(path, "rb")
+      contents = file.read
 
-
-    it "adds the request to the course" do
-      @course.new_reserve.course.should == @course
-    end
-
-
-    it "allows you to add attributes in" do
-       @course.new_instructor_request(title: "THE TITLE").title.should == "THE TITLE"
+      ActiveSupport::JSON.decode(contents)["people"].first
     end
   end
 
-
-  describe :get_reserve do
-
-    it "returns a GetReserve obj" do
-      @course.get_reserve(1).class.should == GetReserve
-    end
-  end
-
-  it "can decide if it has reserves or not"
 end

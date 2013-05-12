@@ -97,7 +97,7 @@ gem 'rails-backbone'
 
 
 group :development, :test do
-
+  gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
 end
 
 # Gems used only for assets and not required

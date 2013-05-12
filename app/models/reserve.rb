@@ -108,17 +108,17 @@ end
 
 class BookReserve < Reserve
 
-  def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "complete", requestor: "Bob Bobbers", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', discovery_id: "book")
+  def self.test_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "complete", requestor: "Bob Bobbers", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', discovery_id: "book")
   end
 
 
-  def self.new_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "new", requestor: "New Requestor", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
+  def self.new_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "new", requestor: "New Requestor", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
   end
 
-  def self.awaiting_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "awaiting cataloging", requestor: "Awaiting Requestor", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
+  def self.awaiting_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "awaiting cataloging", requestor: "Awaiting Requestor", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
   end
 
   def approval_required?
@@ -140,16 +140,16 @@ end
 
 class BookChapterReserve < Reserve
 
-  def self.test_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "complete", requestor: "Jaron Kennel", needed_by: 6.days.from_now, discovery_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+  def self.test_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "complete", requestor: "Jaron Kennel", needed_by: 6.days.from_now, discovery_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
-  def self.new_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "new", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+  def self.new_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "new", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
-  def self.awaiting_request(id = 1)
-    self.new( id: id, course: Course.test_data("User"), status: "awaiting digitization", discovery_id: "discovery", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7")
+  def self.awaiting_request(id = 1, course = nil)
+    self.new( id: id, course: course, status: "awaiting digitization", discovery_id: "discovery", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7")
   end
 
 
@@ -183,13 +183,13 @@ end
 
 class JournalReserve < Reserve
 
-  def self.test_file_request(id = 1)
-    self.new( id: id, status: "complete", course: Course.test_data("User"), requestor: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
+  def self.test_file_request(id = 1, course = nil)
+    self.new( id: id, status: "complete", course: course, requestor: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
   end
 
 
-  def self.test_url_request(id = 1)
-    self.new( id: id, status: "complete", course: Course.test_data("User"), requestor: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
+  def self.test_url_request(id = 1, course = nil)
+    self.new( id: id, status: "complete", course: course, requestor: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
   end
 
 
@@ -221,18 +221,18 @@ end
 
 
 class VideoReserve < Reserve
-  def self.test_request(id = 1)
-    self.new( id: id, status: "complete", course: Course.test_data("User"), requestor: "Prof P", needed_by: 4.days.from_now, discovery_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+  def self.test_request(id = 1, course = nil)
+    self.new( id: id, status: "complete", course: course, requestor: "Prof P", needed_by: 4.days.from_now, discovery_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
-  def self.new_request(id = 1)
-    self.new( id: id, status: "awaiting digitization", course: Course.test_data("User"), requestor: "Prof Q", needed_by: 14.days.from_now, discovery_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+  def self.new_request(id = 1, course = nil)
+    self.new( id: id, status: "awaiting digitization", course: course, requestor: "Prof Q", needed_by: 14.days.from_now, discovery_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
-  def self.awaiting_request(id = 1)
-    self.new( id: id, status: "new", course: Course.test_data("User"), requestor: "Prof 9", needed_by: 8.days.from_now, title: "Return of the Jedi", creator: 'George L', length: "42:33 20 min.")
+  def self.awaiting_request(id = 1, course = nil)
+    self.new( id: id, status: "new", course: course, requestor: "Prof 9", needed_by: 8.days.from_now, title: "Return of the Jedi", creator: 'George L', length: "42:33 20 min.")
   end
 
 
@@ -266,8 +266,8 @@ end
 
 class AudioReserve < Reserve
 
-  def self.test_request(id = 1)
-    self.new( id: id, status: "complete", course: Course.test_data("User"), requestor: "bla bla", needed_by: 11.days.from_now, discovery_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+  def self.test_request(id = 1, course = nil)
+    self.new( id: id, status: "complete", course: course, requestor: "bla bla", needed_by: 11.days.from_now, discovery_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
   end
 
 
