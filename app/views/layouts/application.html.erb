@@ -31,21 +31,21 @@
             <div class="navbar-inner">
               <ul class="nav">
                 <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
-                <% if @reserves.has_enrolled_courses? %>
+                <% if @user_course_listing.has_enrolled_courses? %>
                   <li class="dropdown">
                     <%= link_to raw("Courses <b class=\"caret\"></b>"), "/student_listings", "data-toggle" => "dropdown" %>
                     <ul class="dropdown-menu">
-                      <% @reserves.courses_with_reserves.each do | course | %>
+                      <% @user_course_listing.courses_with_reserves.each do | course | %>
                         <li><%= link_to h(course.title), student_listing_path(course.id) %></li>
                       <% end %>
                     </ul>
                   </li>
                 <% end %>
-                <% if @reserves.has_instructed_courses? %>
+                <% if @user_course_listing.has_instructed_courses? %>
                   <li class="dropdown">
                     <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), "/prof_listings", "data-toggle" => "dropdown" %>
                     <ul class="dropdown-menu">
-                      <% @reserves.instructed_courses.each do | course | %>
+                      <% @user_course_listing.instructed_courses.each do | course | %>
                         <li><%= link_to h(course.title), prof_listing_path(course.id) %></li>
                       <% end %>
                     </ul>

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReservesApp do
+describe UserCourseListing do
 
   let(:student_user) { mock(User, :username => 'student') }
   let(:instructor_user) { mock(User, :username => 'instructor') }
@@ -17,30 +17,30 @@ describe ReservesApp do
   describe :course do
 
     it "returns a course the student belongs to" do
-      reserves = ReservesApp.new(student_user, semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
 
       reserves.course("22557").title.should == "201220_CSC_33963"
       reserves.course("22557").instructor_name.should == "William Purcell"
     end
 
     it "returns nil if the user is not a part of the class" do
-      reserves = ReservesApp.new(student_user, semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
 
       reserves.course("2234").should be_nil
     end
 
 
     it "returns nil if the course is not in the current semester passed into student reserves" do
-      reserves = ReservesApp.new(student_user, semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
       reserves.course("22557").should_not be_nil
 
-      prev_reserves = ReservesApp.new(student_user, previous_semester.code)
+      prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
       prev_reserves.course("22557").should be_nil
     end
 
 
     it "returns instructed courses from the semester passed in" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       reserves.course("25823").should_not be_nil
     end
 
@@ -50,7 +50,7 @@ describe ReservesApp do
   describe :instructed_courses_with_reserves do
 
     it "returns a list of courses that have reserves for the current user" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       reserves.instructed_courses_with_reserves.size.should == 1
     end
 
@@ -61,7 +61,7 @@ describe ReservesApp do
   describe :instructed_courses do
 
     it "returns all the instructed courses" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       reserves.instructed_courses.size.should == 2
     end
 
@@ -71,7 +71,7 @@ describe ReservesApp do
   describe :courses_with_reserves do
 
     it "returns a list of courses that have reserves for the current user" do
-      reserves = ReservesApp.new(student_user, semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
       reserves.courses_with_reserves.size.should == 5
     end
 
@@ -80,8 +80,8 @@ describe ReservesApp do
     it "only returns courses with reserves"
 
     it "returns results only for the current semester not a passed in semester" do
-      reserves = ReservesApp.new(student_user, semester.code)
-      prev_reserves = ReservesApp.new(student_user, previous_semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
+      prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
 
       prev_reserves.courses_with_reserves.collect{ |c| c.id}.should == reserves.courses_with_reserves.collect{ |c| c.id}
     end
@@ -92,14 +92,14 @@ describe ReservesApp do
   describe :enrolled_courses do
 
     it "returns all the courses the current user is enrolled in" do
-      reserves = ReservesApp.new(student_user, semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
       reserves.enrolled_courses.size.should == 11
     end
 
 
     it "returns results only for the current semester not a passed in semester" do
-      reserves = ReservesApp.new(student_user, semester.code)
-      prev_reserves = ReservesApp.new(student_user, previous_semester.code)
+      reserves = UserCourseListing.new(student_user, semester.code)
+      prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
 
       prev_reserves.enrolled_courses.collect{ |c| c.id}.should == reserves.enrolled_courses.collect{ |c| c.id}
     end
@@ -110,7 +110,7 @@ describe ReservesApp do
   describe :all_semsters do
 
     it "orders them cronologically" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       ps = previous_semester
       cs = semester
 
@@ -123,21 +123,21 @@ describe ReservesApp do
   describe :semester do
 
     it "selects the current semester if no semester is passed in" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       ps = previous_semester
       cs = semester
 
-      reserve = ReservesApp.new("current_user")
+      reserve = UserCourseListing.new("current_user")
       reserve.semester.should == cs
     end
 
 
     it "finds the semester by id that was passed into the constructor" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       ps = previous_semester
       cs = semester
 
-      reserve = ReservesApp.new("current_user", ps.code)
+      reserve = UserCourseListing.new("current_user", ps.code)
       reserve.semester.should == ps
     end
   end
@@ -146,7 +146,7 @@ describe ReservesApp do
   describe :copy_course_listings do
 
     it "returns a copy course listing" do
-      reserves = ReservesApp.new(instructor_user, semester.code)
+      reserves = UserCourseListing.new(instructor_user, semester.code)
       reserves.copy_course_listing(1, 2).class.should == CopyReserves
     end
   end

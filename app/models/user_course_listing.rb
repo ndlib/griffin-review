@@ -1,4 +1,4 @@
-class ReservesApp
+class UserCourseListing
   attr_accessor :semester
 
   def initialize(current_user, semester_code = false)

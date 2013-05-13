@@ -115,6 +115,8 @@ Griffin::Application.routes.draw do
     resources :get_reserves, :path => 'get', as: 'get_reserve', only: 'show'
   end
 
+  resources :courses, controller: 'user_course_listings', only: [ 'index', 'show' ]
+
   scope '/admin' do
 
     resources :requests, controller: 'admin/requests'

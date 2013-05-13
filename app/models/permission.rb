@@ -1,9 +1,13 @@
 class Permission
 
-
   def initialize(current_user, semester_code)
     @current_user = current_user
     @semester_code = semester_code
+  end
+
+
+  def current_user_is_administrator?
+    false
   end
 
 
@@ -20,7 +24,7 @@ class Permission
   private
 
     def reserve_app
-      @reserve_app ||= ReservesApp.new(@current_user, @semester_code)
+      @reserve_app ||= UserCourseListing.new(@current_user, @semester_code)
     end
 
 end

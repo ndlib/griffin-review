@@ -7,7 +7,7 @@
 
 <% breadcrumb([ 'Courses ']) %>
 
-<% if @reserves.has_enrolled_courses? && @reserves.has_instructed_courses? %>
+<% if @user_course_listing.has_enrolled_courses? && @user_course_listing.has_instructed_courses? %>
   <ul class="nav nav-tabs">
     <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
     <li><a href="#instructed" data-toggle="tab">Courses I am Teaching</a></li>
@@ -16,18 +16,18 @@
 
 <div class="tab-content">
 
-  <% if @reserves.has_enrolled_courses? %>
+  <% if @user_course_listing.has_enrolled_courses? %>
     <div class="tab-pane active" id="enrolled">
 
-      <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @reserves.courses_with_reserves } %>
+      <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.courses_with_reserves } %>
 
     </div>
   <% end %>
 
-  <% if @reserves.has_instructed_courses? %>
-    <div class="tab-pane <%= !@reserves.has_enrolled_courses? ? 'active' : '' %>" id="instructed">
+  <% if @user_course_listing.has_instructed_courses? %>
+    <div class="tab-pane <%= !@user_course_listing.has_enrolled_courses? ? 'active' : '' %>" id="instructed">
       <form class="well form-search">
-        <label>Semester: <select name="semster_id" class="search_select"><%= options_from_collection_for_select(@reserves.all_semesters, :id, :name, params[:semster_id]) %></select></label>
+        <label>Semester: <select name="semster_id" class="search_select"><%= options_from_collection_for_select(@user_course_listing.all_semesters, :id, :name, params[:semster_id]) %></select></label>
       </form>
       <script type="text/javascript">
         $('.search_select').change(function () {
@@ -35,7 +35,7 @@
         });
       </script>
 
-      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @reserves.instructed_courses } %>
+      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
 
     </div>
   <% end %>
