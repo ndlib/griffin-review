@@ -5,10 +5,37 @@ class ApplicationController < ActionController::Base
 
   helper HesburghAssets::AssetsHelper
 
+ unless Rails.configuration.consider_all_requests_local
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to external_not_authorized_url, :alert => exception.message
+    end
+    rescue_from Exception, :with => :render_500
+    rescue_from ActionController::RoutingError, :with => :render_404
+    rescue_from ActionController::UnknownController, :with => :render_404
+    rescue_from AbstractController::ActionNotFound, :with => :render_404
+    rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  else
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to external_not_authorized_url, :alert => exception.message
+    end
+  end
+
   protected
 
     def permission
       @permission ||= Permission.new(current_user)
+    end
+
+
+    def check_view_permissions!(course)
+
+      if course.nil?
+        render_404
+      end
+
+      if !permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)
+        render_404
+      end
     end
 
 

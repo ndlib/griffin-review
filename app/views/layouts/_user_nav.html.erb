@@ -7,7 +7,7 @@
           <%= link_to raw("Courses <b class=\"caret\"></b>"), "/student_listings", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
             <% user_course_listing.courses_with_reserves.each do | course | %>
-              <li><%= link_to h(course.title), student_listing_path(course.id) %></li>
+              <li><%= link_to h(course.title), course_path(course.id) %></li>
             <% end %>
           </ul>
         </li>
@@ -17,7 +17,7 @@
           <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), "/prof_listings", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
             <% user_course_listing.instructed_courses.each do | course | %>
-              <li><%= link_to h(course.title), prof_listing_path(course.id) %></li>
+              <li><%= link_to h(course.title), course_path(course.id) %></li>
             <% end %>
           </ul>
         </li>

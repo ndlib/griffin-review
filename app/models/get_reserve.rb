@@ -1,16 +1,16 @@
 class GetReserve
 
-  attr_accessor :course_lising, :current_user
+  attr_accessor :reserve, :current_user, :term_of_service_approved
 
-  def initialize(course_listing, current_user)
-    @course_listing = course_listing
+  def initialize(reserve, current_user)
+    @reserve = reserve
     @current_user = current_user
     @term_of_service_approved = false
   end
 
 
   def approval_required?
-    @course_listing.approval_required? && !term_of_service_approved?
+    @reserve.approval_required? && !term_of_service_approved?
   end
 
 
@@ -25,7 +25,7 @@ class GetReserve
 
 
   def download_listing?
-    @course_listing.file.present?
+    @reserve.file.present?
   end
 
 
@@ -35,12 +35,12 @@ class GetReserve
 
 
   def download_file_path
-    "#{Rails.root}/#{@course_listing.file}"
+    "#{Rails.root}/#{@reserve.file}"
   end
 
 
   def redirect_uri
-    @course_listing.url
+    @reserve.url
   end
 
 end

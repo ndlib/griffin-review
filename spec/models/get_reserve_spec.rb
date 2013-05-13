@@ -4,7 +4,7 @@ describe GetReserve do
 
   before(:each) do
     @course_listing = double(GetReserve)
-    @current_user = "USER"
+    @current_user = FactoryGirl.create(:student)
   end
 
 
@@ -49,6 +49,7 @@ describe GetReserve do
       gcl.download_listing?.should be_false
     end
   end
+
 
   describe :download_file_path do
 
