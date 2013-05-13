@@ -10,6 +10,7 @@ module API
 
     def self.courses(netid, semester)
       path = File.join("by_netid", netid, semester, "courses")
+
       result = get_json(path)
       result["people"].first
     end

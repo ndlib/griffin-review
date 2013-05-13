@@ -2,7 +2,6 @@ class DevelopmentLoginController < ApplicationController
 
 
   def login
-    reserves
 
     if params[:username]
       u = User.where(:username => params[:username]).first
@@ -19,10 +18,4 @@ class DevelopmentLoginController < ApplicationController
 
   end
 
-
-  protected
-
-    def reserves
-      @reserves ||= ReservesApp.new(current_user)
-    end
 end
