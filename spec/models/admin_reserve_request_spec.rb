@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+=begin
 describe AdminReserveRequest do
 
 
@@ -185,4 +185,4 @@ describe AdminReserveRequest do
     end
   end
 
-end
+=end

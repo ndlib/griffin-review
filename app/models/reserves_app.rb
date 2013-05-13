@@ -1,11 +1,11 @@
 class ReservesApp
   attr_accessor :semester
 
-  def initialize(current_user, semester_id = false)
+  def initialize(current_user, semester_code = false)
     @user = current_user
 
-    if semester_id
-      @semester = Semester.find(semester_id)
+    if semester_code
+      @semester = Semester.semester_for_code(semester_code)
     else
       @semester = self.current_semester
     end
@@ -29,15 +29,6 @@ class ReservesApp
     CopyReserves.new(from_course, to_course)
   end
 
-
-  def current_user_instructs_course?(course_id)
-    !instructed_courses.select { | c | c.id == course_id }.empty?
-  end
-
-
-  def current_user_enrolled_in_course?(course_id)
-    !enrolled_courses.select { | c | c.id == course_id }.empty?
-  end
 
 
   def course(course_id)
@@ -97,18 +88,18 @@ class ReservesApp
     Reserve
 
     [
-      BookReserve.test_request(1),
-      BookChapterReserve.test_request(2),
-      JournalReserve.test_file_request(3),
-      JournalReserve.test_url_request(4),
-      VideoReserve.test_request(5),
-      AudioReserve.test_request(6),
-      BookReserve.new_request(7),
-      BookReserve.awaiting_request(8),
-      BookChapterReserve.new_request(9),
-      BookChapterReserve.awaiting_request(10),
-      VideoReserve.awaiting_request(11),
-      VideoReserve.new_request(12),
+      BookReserve.test_request(1, course),
+      BookChapterReserve.test_request(2, course),
+      JournalReserve.test_file_request(3, course),
+      JournalReserve.test_url_request(4, course),
+      VideoReserve.test_request(5, course),
+      AudioReserve.test_request(6, course),
+      BookReserve.new_request(7, course),
+      BookReserve.awaiting_request(8, course),
+      BookChapterReserve.new_request(9, course),
+      BookChapterReserve.awaiting_request(10, course),
+      VideoReserve.awaiting_request(11, course),
+      VideoReserve.new_request(12, course),
     ]
   end
 

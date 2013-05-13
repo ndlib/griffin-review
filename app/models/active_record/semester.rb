@@ -14,6 +14,12 @@ class Semester < ActiveRecord::Base
     full_name
   end
 
+
+  def self.semester_for_code(code)
+    self.where(code: code).first
+  end
+
+
   def self.proximates
     self.where('(date_begin <= ? and date_end <= ?) or (date_begin <= ? and date_end >= ?) or (date_begin <= ? and date_end >= ?)',
                Date.today - 6.months, Date.today - 2.months, # last semester

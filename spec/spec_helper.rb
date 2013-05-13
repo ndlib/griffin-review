@@ -72,6 +72,8 @@ Spork.prefork do
     config.include Warden::Test::Helpers
     config.include JsonSpec::Helpers
 
+    config.include ApiMocks
+
     config.before(:suite) do
       DatabaseCleaner.clean_with(:truncation)
     end
@@ -101,6 +103,8 @@ Spork.prefork do
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
     config.formatter = 'Growl::RSpec::Formatter'
+
+
   end
 
 end
