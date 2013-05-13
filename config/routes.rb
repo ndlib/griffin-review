@@ -107,7 +107,7 @@ Griffin::Application.routes.draw do
     resources :copy_reserves, :path => 'copy'
   end
 
-  root :to => 'reserves#index'
+  root :to => 'user_course_listings#index'
 
   match "login", :controller => 'development_login', :action => 'login'
 

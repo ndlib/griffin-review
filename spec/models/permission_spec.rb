@@ -15,22 +15,25 @@ describe Permission do
   describe :current_user_instructs_course? do
 
     it "returns true if the current user is an instructor for the course" do
-      perm = Permission.new(instructor_user, semester_code)
+      perm = Permission.new(instructor_user)
 
       reserves = UserCourseListing.new(instructor_user, semester_code)
       course = reserves.instructed_courses.first
 
-      perm.current_user_instructs_course?(course.id).should be_true
+      puts semester_code
+      puts course.semester_code
+
+      perm.current_user_instructs_course?(course).should be_true
     end
 
 
     it "returns false if the current user does not instruct the course" do
-      perm = Permission.new(student_user, semester_code)
+      perm = Permission.new(student_user)
 
       inst_reserves = UserCourseListing.new(instructor_user, semester_code)
       course = inst_reserves.instructed_courses.first
 
-      perm.current_user_instructs_course?(course.id).should be_false
+      perm.current_user_instructs_course?(course).should be_false
     end
   end
 
@@ -38,22 +41,22 @@ describe Permission do
   describe :current_user_enrolled_in_course? do
 
     it "returns true if the current user is enrolled in the course" do
-      perm = Permission.new(student_user, semester_code)
+      perm = Permission.new(student_user)
 
       reserves = UserCourseListing.new(student_user, semester_code)
       course = reserves.enrolled_courses.first
 
-      perm.current_user_enrolled_in_course?(course.id).should be_true
+      perm.current_user_enrolled_in_course?(course).should be_true
     end
 
 
     it "returns false if the the user is not enrolled in the course" do
-      perm = Permission.new(student_user, semester_code)
+      perm = Permission.new(student_user)
 
       other_reserves = UserCourseListing.new(inst_stu_user, semester_code)
       course = other_reserves.enrolled_courses.first
 
-      perm.current_user_enrolled_in_course?(course.id).should be_false
+      perm.current_user_enrolled_in_course?(course).should be_false
     end
   end
 

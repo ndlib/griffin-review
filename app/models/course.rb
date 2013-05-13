@@ -1,6 +1,6 @@
 class Course
 
-  attr_accessor :title, :instructors, :cross_listings, :section
+  attr_accessor :title, :instructors, :cross_listings, :section, :semester_code
 
   def initialize(attributes = {})
     @attributes = attributes
@@ -9,11 +9,12 @@ class Course
     self.instructors= attributes['instructors']
     self.cross_listings = attributes['cross_listings'] || []
     self.section = attributes['section']
+    self.semester_code = attributes['term_prefix']
   end
 
 
   def id
-    @attributes['crn']
+    @attributes['term_crn']
   end
 
 
@@ -27,6 +28,11 @@ class Course
   end
 
 
+  def semester
+
+  end
+
+
   def all_tags
     @all_tags = []
     reserves.each{ | r | @all_tags = @all_tags + r.tags }
@@ -35,12 +41,12 @@ class Course
 
 
   def reserves
-    ReservesApp.reserve_test_data(self)
+    self.class.reserve_test_data(self)
   end
 
 
   def published_reserves
-    ReservesApp.reserve_test_data(self).select { | r | r.status == 'complete' }
+    self.class.reserve_test_data(self).select { | r | r.status == 'complete' }
   end
 
 
@@ -68,5 +74,29 @@ class Course
     GetReserve.new(self.reserve(id), self.current_user)
   end
 
+
+  def self.reserve_test_data(course)
+    Reserve
+
+    [
+      BookReserve.test_request(1, course),
+      BookChapterReserve.test_request(2, course),
+      JournalReserve.test_file_request(3, course),
+      JournalReserve.test_url_request(4, course),
+      VideoReserve.test_request(5, course),
+      AudioReserve.test_request(6, course),
+      BookReserve.new_request(7, course),
+      BookReserve.awaiting_request(8, course),
+      BookChapterReserve.new_request(9, course),
+      BookChapterReserve.awaiting_request(10, course),
+      VideoReserve.awaiting_request(11, course),
+      VideoReserve.new_request(12, course),
+    ]
+  end
+
+
+  def self.get_semester_from(course_id)
+    course_id.split('_')[0]
+  end
 
 end

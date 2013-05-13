@@ -1,8 +1,7 @@
 class Permission
 
-  def initialize(current_user, semester_code)
+  def initialize(current_user)
     @current_user = current_user
-    @semester_code = semester_code
   end
 
 
@@ -11,20 +10,21 @@ class Permission
   end
 
 
-  def current_user_instructs_course?(course_id)
-    !reserve_app.instructed_courses.select { | c | c.id == course_id }.empty?
+  def current_user_instructs_course?(course)
+    !course_listing(course.semester_code).instructed_courses.select { | c | c.id == course.id }.empty?
   end
 
 
-  def current_user_enrolled_in_course?(course_id)
-    !reserve_app.enrolled_courses.select { | c | c.id == course_id }.empty?
+  def current_user_enrolled_in_course?(course)
+    !course_listing(course.semester_code).enrolled_courses.select { | c | c.id == course.id }.empty?
   end
 
 
   private
 
-    def reserve_app
-      @reserve_app ||= UserCourseListing.new(@current_user, @semester_code)
+    def course_listing(semester_code)
+      @course_listing ||= {}
+      @course_listing[semester_code] ||= UserCourseListing.new(@current_user, semester_code)
     end
 
 end

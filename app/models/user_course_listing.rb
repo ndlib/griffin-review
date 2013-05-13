@@ -32,7 +32,7 @@ class UserCourseListing
 
 
   def course(course_id)
-    course_api.get(course_id, @user.username, @semester.code)
+    course_api.get(course_id, @user.username)
   end
 
 
@@ -83,25 +83,6 @@ class UserCourseListing
     course_api.instructed_courses(@user.username, @semester.code)
   end
 
-
-  def self.reserve_test_data(course)
-    Reserve
-
-    [
-      BookReserve.test_request(1, course),
-      BookChapterReserve.test_request(2, course),
-      JournalReserve.test_file_request(3, course),
-      JournalReserve.test_url_request(4, course),
-      VideoReserve.test_request(5, course),
-      AudioReserve.test_request(6, course),
-      BookReserve.new_request(7, course),
-      BookReserve.awaiting_request(8, course),
-      BookChapterReserve.new_request(9, course),
-      BookChapterReserve.awaiting_request(10, course),
-      VideoReserve.awaiting_request(11, course),
-      VideoReserve.new_request(12, course),
-    ]
-  end
 
   private
 

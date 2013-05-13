@@ -19,29 +19,29 @@ describe UserCourseListing do
     it "returns a course the student belongs to" do
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("22557").title.should == "201220_CSC_33963"
-      reserves.course("22557").instructor_name.should == "William Purcell"
+      reserves.course("current_22557").title.should == "201220_CSC_33963"
+      reserves.course("current_22557").instructor_name.should == "William Purcell"
     end
 
     it "returns nil if the user is not a part of the class" do
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("2234").should be_nil
+      reserves.course("current_2234").should be_nil
     end
 
 
-    it "returns nil if the course is not in the current semester passed into student reserves" do
+    it "returns the course even if the course is not in the current semester passed" do
       reserves = UserCourseListing.new(student_user, semester.code)
-      reserves.course("22557").should_not be_nil
+      reserves.course("current_22557").should_not be_nil
 
       prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
-      prev_reserves.course("22557").should be_nil
+      prev_reserves.course("current_22557").should_not be_nil
     end
 
 
     it "returns instructed courses from the semester passed in" do
       reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.course("25823").should_not be_nil
+      reserves.course("current_25823").should_not be_nil
     end
 
   end
@@ -147,7 +147,7 @@ describe UserCourseListing do
 
     it "returns a copy course listing" do
       reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.copy_course_listing(1, 2).class.should == CopyReserves
+      reserves.copy_course_listing("current_22557", "current_25823").class.should == CopyReserves
     end
   end
 

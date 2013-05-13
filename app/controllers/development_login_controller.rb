@@ -14,6 +14,7 @@ class DevelopmentLoginController < ApplicationController
 
       sign_in(u)
 
+      redirect_to '/'
     end
 
   end

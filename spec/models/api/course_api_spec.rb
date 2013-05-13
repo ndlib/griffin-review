@@ -18,24 +18,24 @@ describe CourseApi do
 
     it "returns the students enrolled courses for the current semseter" do
       courses = course_api.enrolled_courses('student', 'current')
-      test_result_has_course_ids(courses, ['20334', '22555', '22557', '21188', '20113', '24550', '25426', '28873', '29157', '28883', '21015'])
+      test_result_has_course_ids(courses, ['current_20334', 'current_22555', 'current_22557', 'current_21188', 'current_20113', 'current_24550', 'current_25426', 'current_28873', 'current_29157', 'current_28883', 'current_21015'])
     end
 
     it "returns the students enrolled courses for the previous semseter" do
       courses = course_api.enrolled_courses('student', 'previous')
-      test_result_has_course_ids(courses, ['11389', '12574', '12548', '18985', '12777', '14389', '11640'])
+      test_result_has_course_ids(courses, ['previous_11389', 'previous_12574', 'previous_12548', 'previous_18985', 'previous_12777', 'previous_14389', 'previous_11640'])
     end
 
     it "returns the inst_stu's enrolled courses for the current semester" do
       courses = course_api.enrolled_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ['29898'])
+      test_result_has_course_ids(courses, ['current_29898'])
     end
 
     it "returns the inst_stu's enrolled courses for the previous semester" do
       courses = course_api.enrolled_courses('inst_stu', 'previous')
 
       puts "'" + courses.collect { | c | c.id }.join("', '") + "'"
-      test_result_has_course_ids(courses, ['19745', '19591', '20066'])
+      test_result_has_course_ids(courses, ['previous_19745', 'previous_19591', 'previous_20066'])
     end
 
     it "returns the instructors enrolled courses for the current semester" do
@@ -62,25 +62,26 @@ describe CourseApi do
 
     it "returns the inst_stu's instructed courses for the current semester" do
       courses = course_api.instructed_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ['28972', '28971', '29901'])
+      test_result_has_course_ids(courses, ['current_28972', 'current_28971', 'current_29901'])
     end
 
 
     it "returns the inst_stu's instructed courses for the previous semester" do
       courses = course_api.instructed_courses('inst_stu', 'previous')
-      test_result_has_course_ids(courses, ['18446', '18448'])
+      puts courses.collect { | c | c.id}
+      test_result_has_course_ids(courses, ['previous_18446', 'previous_18448'])
     end
 
 
     it "returns the instructors instructed courses for the current semester" do
       courses = course_api.instructed_courses('instructor', 'current')
-      test_result_has_course_ids(courses, ['25823', '26315'])
+      test_result_has_course_ids(courses, ['current_25823', 'current_26315'])
    end
 
 
     it "returns the instructors instructed courses for the previous semester" do
       courses = course_api.instructed_courses('instructor', 'previous')
-      test_result_has_course_ids(courses, ['16398', '16402'])
+      test_result_has_course_ids(courses, ['previous_16398', 'previous_16402'])
     end
 
   end

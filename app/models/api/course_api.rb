@@ -17,12 +17,14 @@ class CourseApi
   end
 
 
-  def get(course_id, netid, semester_id)
+  def get(course_id, netid)
+    semester_id = Course.get_semester_from(course_id)
     (enrolled_courses(netid, semester_id) + instructed_courses(netid, semester_id)).select { | c | c.id == course_id }.first
   end
 
 
   private
+
 
     def load_api_courses(netid, semester_id)
       @result ||= {}

@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe Course do
 
-  let(:student_user) { mock(User, :username => 'student') }
-  let(:semester) { FactoryGirl.create(:semester)}
-  let(:reserve)  { ReservesApp.new(student_user, semester.id) }
+  let(:username) { 'student' }
+  let(:semester_code) { FactoryGirl.create(:semester).code }
+  let(:course_api) { CourseApi.new }
+
 
   before(:each) do
     stub_courses!
-    @course = reserve.course("22557")
+    @course = course_api.get("current_22557", username)
   end
 
 
@@ -26,7 +27,7 @@ describe Course do
 
   it "has an id / crn " do
     @course.respond_to?(:id).should be_true
-    @course.id.should == "22557"
+    @course.id.should == "current_22557"
   end
 
 
@@ -34,6 +35,7 @@ describe Course do
     @course.respond_to?(:section).should be_true
     @course.section.should == "01"
   end
+
 
   it "can decide if it has reserves or not"
 
@@ -43,7 +45,6 @@ describe Course do
     it "returns all the reserves associated with the course" do
       @course.reserves.size.should == 12
     end
-
   end
 
 

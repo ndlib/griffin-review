@@ -7,10 +7,7 @@ class UserCourseListingsController < ApplicationController
 
   def show
     @course = user_course_listing.course(params[:id])
-
-    if @course.nil?
-      render_404
-    end
+    check_view_permissions!(@course)
   end
 
 
@@ -20,5 +17,15 @@ class UserCourseListingsController < ApplicationController
       @user_course_listing ||= UserCourseListing.new(current_user)
     end
 
+
+    def check_view_permissions!(course)
+      if course.nil?
+        render_404
+      end
+
+      if !permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)
+        render_404
+      end
+    end
 
 end

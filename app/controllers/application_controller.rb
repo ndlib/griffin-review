@@ -3,28 +3,26 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-
   helper HesburghAssets::AssetsHelper
-
-
-
 
   protected
 
-  def render_404
-    respond_to do |format|
-      format.html { render :template => 'errors/error_404', :layout => 'layouts/external', :status => 404 }
-      format.all { render :nothing => true, :status => 404 }
+    def permission
+      @permission ||= Permission.new(current_user)
     end
-  end
 
 
-  def render_500(exception)
-    @error = exception
-    respond_to do |format|
-      format.html { render :template => 'errors/error_500', :layout => 'layouts/external', :status => 500 }
-      format.all { render :nothing => true, :status => 500}
+    def render_404
+      raise ActionController::RoutingError.new('Not Found')
     end
-  end
+
+
+    def render_500(exception)
+      @error = exception
+      respond_to do |format|
+        format.html { render :template => 'errors/error_500', :layout => 'layouts/external', :status => 500 }
+        format.all { render :nothing => true, :status => 500}
+      end
+    end
 
 end
