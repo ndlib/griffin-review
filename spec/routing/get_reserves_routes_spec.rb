@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe 'Get Reserves' do
 
-  it "should not route to the show" do
+  it "should route to the show" do
     { :get => "/courses/course_id/get_reserves/id" }.should route_to(
       action: "show", controller: "get_reserves", id: "id", course_id: "course_id"
     )
   end
 
 
-  it "should route to the index" do
+  it "should not route to the index" do
     { :get => "/courses/course_id/get_reserves" }.should_not be_routable
   end
 

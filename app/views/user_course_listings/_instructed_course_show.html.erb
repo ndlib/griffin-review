@@ -1,6 +1,6 @@
 
 <% content_for(:content_title_links) do %>
-  <a href="<%= new_prof_listing_request_reserve_path(course.id) %>" class="btn btn-primary">Request Material</a>
+  <a href="<%= new_course_reserve_path(course.id) %>" class="btn btn-primary">Request Material</a>
 <% end %>
 
 <div class="table_filter">
@@ -52,7 +52,7 @@
 </div>
 
 <div id="copy-overlay">
-  <form action="<%= prof_listing_copy_reserves_path(course.id) %>" method="post">
+  <form action="<%= course_copy_reserves_path(course.id) %>" method="post">
     <h4>Copy Material to a New Course</h4>
     <ul id="">
     </ul>

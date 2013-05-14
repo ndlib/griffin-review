@@ -2,7 +2,6 @@ class GetReservesController < ApplicationController
 
 
   def show
-    puts params.inspect
     check_view_permissions!(course)
 
     @get_reserve = GetReserve.new(course.reserve(params[:id]), current_user)

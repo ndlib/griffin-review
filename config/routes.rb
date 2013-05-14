@@ -97,16 +97,6 @@ Griffin::Application.routes.draw do
   end
 
 
-  resources :student_listings do
-    resources :get_reserves, :path => 'get', as: 'get_reserve'
-  end
-
-  resources :prof_listings do
-    resources :request_reserves, :path => 'reserve', as: 'request_reserve'
-    resources :get_reserves, :path => 'get'
-    resources :copy_reserves, :path => 'copy'
-  end
-
   root :to => 'user_course_listings#index'
 
   match "login", :controller => 'development_login', :action => 'login'
@@ -117,7 +107,8 @@ Griffin::Application.routes.draw do
 
   resources :courses, controller: 'user_course_listings', only: [ 'index', 'show' ] do
     resources :get_reserves, as: 'get_reserve', only: 'show'
-    resources :new_reserves, controller: 'instructor_new_reserves', as: 'reseves', only: [ 'new', 'create' ]
+    resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
+    resources :copy_reserves, :path => 'copy', only: [ 'create' ]
   end
 
   scope '/admin' do

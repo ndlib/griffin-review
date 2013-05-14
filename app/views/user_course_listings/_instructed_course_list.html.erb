@@ -17,7 +17,7 @@
         <% end %>
       </td>
       <td><%= h course.section %></td>
-      <td><%= link_to 'Request Material', new_prof_listing_request_reserve_path(course.id), class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %></td>
     </tr>
     <% end %>
   </tbody>

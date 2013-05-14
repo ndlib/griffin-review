@@ -1,7 +1,7 @@
 
 <h3>2. Article Details </h3>
 
-<%= simple_form_for object, :as => :article, :html => {id: "article_form"}, :url => prof_listings_path() do |f| %>
+<%= simple_form_for object, :as => :article, :html => {id: "article_form"}, :url => course_reserves_path() do |f| %>
 
   <%= f.input :journal_title %>
   <%= f.input :title %>
@@ -26,7 +26,7 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary', label: "Save" %>
-    <%= link_to 'Cancel', prof_listing_path(@course.id), :class => "btn btn-danger" %>
+    <%= f.button :submit, "Save", :class => 'btn-primary' %>
+    <%= link_to 'Cancel', course_path(@course.id), :class => "btn btn-danger" %>
   </div>
 <% end %>

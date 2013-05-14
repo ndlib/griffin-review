@@ -2,7 +2,10 @@ class CopyReservesController < ApplicationController
 
 
   def create
-    @copy_course_listing = reserves.copy_course_listing(params[:prof_listing_id], params[:prof_listing_id])
+    check_instructor_permissions!(from_course)
+    check_instructor_permissions!(to_course)
+
+    @copy_course_listing = user_course_listing.copy_course_listing(params[:course_id], params[:to_course_id])
 
     if !@copy_course_listing.copy_items([])
 
@@ -14,8 +17,18 @@ class CopyReservesController < ApplicationController
 
   protected
 
-    def reserves
-      @reserves ||= ReservesApp.new("USER")
+    def user_course_listing
+      @user_course_listing ||= UserCourseListing.new(current_user)
+    end
+
+
+    def from_course
+      @from_course ||= user_course_listing.course(params[:course_id])
+    end
+
+
+    def to_course
+      @to_course ||= user_course_listing.course(params[:to_course_id])
     end
 
 end

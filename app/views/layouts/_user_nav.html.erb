@@ -4,7 +4,7 @@
       <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
       <% if user_course_listing.has_enrolled_courses? %>
         <li class="dropdown">
-          <%= link_to raw("Courses <b class=\"caret\"></b>"), "/student_listings", "data-toggle" => "dropdown" %>
+          <%= link_to raw("Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
             <% user_course_listing.courses_with_reserves.each do | course | %>
               <li><%= link_to h(course.title), course_path(course.id) %></li>
@@ -14,7 +14,7 @@
       <% end %>
       <% if user_course_listing.has_instructed_courses? %>
         <li class="dropdown">
-          <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), "/prof_listings", "data-toggle" => "dropdown" %>
+          <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
             <% user_course_listing.instructed_courses.each do | course | %>
               <li><%= link_to h(course.title), course_path(course.id) %></li>

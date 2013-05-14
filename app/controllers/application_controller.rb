@@ -39,6 +39,17 @@ class ApplicationController < ActionController::Base
     end
 
 
+    def check_instructor_permissions!(course)
+      if course.nil?
+        render_404
+      end
+
+      if !permission.current_user_instructs_course?(course)
+        render_404
+      end
+    end
+
+
     def render_404
       raise ActionController::RoutingError.new('Not Found')
     end
