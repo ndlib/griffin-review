@@ -9,6 +9,11 @@ class GetReserve
   end
 
 
+  def course
+    @reserve.course
+  end
+
+
   def approval_required?
     @reserve.approval_required? && !term_of_service_approved?
   end

@@ -32,15 +32,14 @@ class GetReservesController < ApplicationController
 
 
     def send_or_redirect_if_approved!
-      puts @get_reserve.approval_required?
-      puts @get_reserve.term_of_service_approved
-      puts @get_reserve.reserve.approval_required?
 
       if !@get_reserve.approval_required?
         if @get_reserve.download_listing?
           send_file(@get_reserve.download_file_path)
 
         elsif @get_reserve.redirect_to_listing?
+          puts 'redirect!!'
+          puts @get_reserve.redirect_uri
           redirect_to @get_reserve.redirect_uri
         else
           raise "Attempt to get the resource of a listing that cannot be downloaded or redirected to. "
