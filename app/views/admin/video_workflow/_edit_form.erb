@@ -18,6 +18,8 @@
     </div>
   </div>
   <%= r.input :course, :label => "Course", :hint => "should be formatted as FA12 BUS 3021 01", :input_html => { :id => "r_course", :class => "span4" }%>
+  <%= r.input :language, :label => "Language", :input_html => { :id => "r_language", :class => "span4" }%>
+  <%= r.input :subtitles, :label => "Subtitles", :input_html => { :id => "r_subtitles", :class => "span4" }%>
   <%= r.association :semester, :as => 'select', :include_blank => 'Please Select', :label_method => 'full_name', :label => "Semester", :input_html => { :id => "r_semester", :class => "span4" } %>
   <%= r.input :video_id, :as => 'hidden', :input_html => { :id => 'video_id_field' } %>
   <% unless @request.video.blank? %>
