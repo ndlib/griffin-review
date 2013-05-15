@@ -29,13 +29,7 @@ jQuery ($) ->
         aTargets: [0]
       ]
     )
-
-    qs = new QueryString()
-    filter = qs.get('filter')
-    if typeof filter is 'undefined' || filter == "new"
-      oTable.fnFilter("new", 6, true, false, false)
-    else if filter == 'awaiting'
-      $('a[filter="awaiting"]').tab('show')
+    oTable.fnFilter($('li.active a[data-toggle="tab"]').attr('filter'), 6, true, false, false)
 
 
   setupMetaDataForm = () ->

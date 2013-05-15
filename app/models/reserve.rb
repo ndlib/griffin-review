@@ -41,6 +41,7 @@ class Reserve
   end
 
 
+
   def link_to_get_listing?
     false
   end

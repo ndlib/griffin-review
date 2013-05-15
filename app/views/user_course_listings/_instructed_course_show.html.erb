@@ -4,8 +4,7 @@
 <% end %>
 
 <div class="table_filter">
-  <label>Filter by Topic: <select class="topic_filter"><option></option><%= options_for_select(course.all_tags) %></select></label>
-  <label>Filter by Status: <select class="status_filter"><option value=""></option><option value="New">New</option><option value="Awaiting">Awaiting Action</option><option value="Complete">Complete</option></select></label>
+  <label><select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_tags) %></select></label>
 </div>
 
 <table class="table table-striped find-resources instructor_datatable datatable">

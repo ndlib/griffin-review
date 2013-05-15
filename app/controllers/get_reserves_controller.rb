@@ -38,8 +38,6 @@ class GetReservesController < ApplicationController
           send_file(@get_reserve.download_file_path)
 
         elsif @get_reserve.redirect_to_listing?
-          puts 'redirect!!'
-          puts @get_reserve.redirect_uri
           redirect_to @get_reserve.redirect_uri
         else
           raise "Attempt to get the resource of a listing that cannot be downloaded or redirected to. "
