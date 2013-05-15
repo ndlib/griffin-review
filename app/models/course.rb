@@ -1,6 +1,6 @@
 class Course
 
-  attr_accessor :title, :instructors, :cross_listings, :section, :semester_code
+  attr_accessor :title, :instructors, :cross_listings, :semester_code, :sections
 
   def initialize(attributes = {})
     @attributes = attributes
@@ -8,13 +8,22 @@ class Course
     self.title = attributes['title']
     self.instructors= attributes['instructors']
     self.cross_listings = attributes['cross_listings'] || []
-    self.section = attributes['section']
     self.semester_code = attributes['term_prefix']
   end
 
 
   def id
     @attributes['term_crn']
+  end
+
+
+  def supersection_id
+    @attributes['supersection_id']
+  end
+
+
+  def has_supersection?
+    (id != supersection_id && !supersection_id.nil?)
   end
 
 
@@ -30,6 +39,39 @@ class Course
 
   def semester
 
+  end
+
+
+  def join_to_supersection(course)
+    supersections
+    if !@supersections.include?(course)
+      @supersections << course
+    end
+  end
+
+
+  def supersections
+    @supersections ||= [ self ]
+  end
+
+
+  def supersection_course_ids
+    supersections.collect { | s | s.id }
+  end
+
+
+  def supersection_section_ids
+    supersections.collect { | s | s.section }
+  end
+
+
+  def section
+    @attributes['section']
+  end
+
+
+  def display_supersection_section_ids
+    supersection_section_ids.join(", ")
   end
 
 
@@ -73,6 +115,7 @@ class Course
     raise "fix"
     GetReserve.new(self.reserve(id), self.current_user)
   end
+
 
 
   def self.reserve_test_data(course)

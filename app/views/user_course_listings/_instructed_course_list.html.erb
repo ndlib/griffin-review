@@ -16,7 +16,7 @@
           <%= h listing.title %>
         <% end %>
       </td>
-      <td><%= h course.section %></td>
+      <td><%= h course.display_supersection_section_ids %></td>
       <td><%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %></td>
     </tr>
     <% end %>

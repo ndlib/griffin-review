@@ -15,7 +15,7 @@ describe Course do
 
   it "has a title" do
     @course.respond_to?(:title).should be_true
-    @course.title.should == "201220_CSC_33963"
+    @course.title.should == "current_CSC_33963"
   end
 
 
@@ -34,6 +34,60 @@ describe Course do
   it "has a section " do
     @course.respond_to?(:section).should be_true
     @course.section.should == "01"
+  end
+
+
+  it "has a supersection_id" do
+    @course.respond_to?(:supersection_id).should be_true
+  end
+
+
+  describe "supersectiosn" do
+
+    before(:each) do
+      @supersection_course = course_api.get("current_29781", 'supersections')
+      @course.join_to_supersection(@supersection_course)
+    end
+
+    describe "has_supersection?" do
+      it "returns true if the class has a super section" do
+        @supersection_course.has_supersection?.should be_true
+      end
+
+      it "returns false if the class does not have a supersection" do
+        @course.has_supersection?.should be_false
+      end
+    end
+
+    it "allows you to join courses that are supersections to this course" do
+      @course.supersections.collect{|c| c.id}.should == [@course, @supersection_course].collect{|c| c.id}
+    end
+
+
+    it "returns all the supersections sections " do
+      @course.supersection_section_ids.should == [@course.section, @supersection_course.section]
+    end
+
+
+    it "returns all the supersections course ids" do
+      @course.supersection_course_ids.should == [@course.id, @supersection_course.id]
+    end
+
+
+    it "returns all the section ids for the super sections" do
+      @course.supersection_section_ids.should == [@course.section, @supersection_course.section]
+    end
+
+
+    it "displays the super sections with a comma" do
+      @course.display_supersection_section_ids.should == "#{@course.section}, #{@supersection_course.section}"
+    end
+
+
+    it "ignores duplicate courses that are joined " do
+      @course.join_to_supersection(@supersection_course)
+      @course.supersections.size.should == 2
+    end
   end
 
 

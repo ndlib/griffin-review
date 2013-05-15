@@ -18,7 +18,7 @@ describe CourseApi do
 
     it "returns the students enrolled courses for the current semseter" do
       courses = course_api.enrolled_courses('student', 'current')
-      test_result_has_course_ids(courses, ['current_20334', 'current_22555', 'current_22557', 'current_21188', 'current_20113', 'current_24550', 'current_25426', 'current_28873', 'current_29157', 'current_28883', 'current_21015'])
+      test_result_has_course_ids(courses, ['current_20334', 'current_22555', 'current_22557', 'current_21188', 'current_20113', 'current_24550', 'current_25426', 'current_28873', 'current_29157', 'current_21015'])
     end
 
     it "returns the students enrolled courses for the previous semseter" do
@@ -33,8 +33,6 @@ describe CourseApi do
 
     it "returns the inst_stu's enrolled courses for the previous semester" do
       courses = course_api.enrolled_courses('inst_stu', 'previous')
-
-      puts "'" + courses.collect { | c | c.id }.join("', '") + "'"
       test_result_has_course_ids(courses, ['previous_19745', 'previous_19591', 'previous_20066'])
     end
 
@@ -62,13 +60,12 @@ describe CourseApi do
 
     it "returns the inst_stu's instructed courses for the current semester" do
       courses = course_api.instructed_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ['current_28972', 'current_28971', 'current_29901'])
+      test_result_has_course_ids(courses, ['current_28969', 'current_28972', 'current_29901'])
     end
 
 
     it "returns the inst_stu's instructed courses for the previous semester" do
       courses = course_api.instructed_courses('inst_stu', 'previous')
-      puts courses.collect { | c | c.id}
       test_result_has_course_ids(courses, ['previous_18446', 'previous_18448'])
     end
 
@@ -84,6 +81,27 @@ describe CourseApi do
       test_result_has_course_ids(courses, ['previous_16398', 'previous_16402'])
     end
 
+
+    describe "supersections" do
+
+      it "combines supersections into one course in the result" do
+        courses = course_api.instructed_courses('supersections', 'current')
+        courses.size.should == 6
+        courses[4].has_supersection?.should be_true
+      end
+
+    end
+  end
+
+
+  describe "get" do
+    describe "supersections" do
+
+      it "returns all the supersection sections associated with the course" do
+        course = course_api.get('current_29781', 'supersections')
+        course.supersection_course_ids.should == ["current_29781", "current_29780", "current_29782", "current_29783"]
+      end
+    end
   end
 
 

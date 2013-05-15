@@ -8,7 +8,7 @@ class CourseApi
 
   def instructed_courses(netid, semester_id)
     load_api_courses(netid, semester_id)
-    @result[netid][semester_id]['instructed_course_objects']
+    reject_duplicate_supersections(@result[netid][semester_id]['instructed_course_objects'])
   end
 
 
@@ -45,10 +45,10 @@ class CourseApi
     def parse_api_result_to_objs(api_result)
       result = []
 
-      i = 1
       api_result.each do | c |
         result << new_course(c)
       end
+      parse_supersections(result)
 
       result
     end
@@ -56,5 +56,36 @@ class CourseApi
 
     def new_course(args)
       Course.new(args)
+    end
+
+
+    def parse_supersections(courses)
+      courses.each do | search_course |
+        if search_course.has_supersection?
+          courses.each do | new_course |
+            if search_course.supersection_id == new_course.supersection_id
+              search_course.join_to_supersection(new_course)
+            end
+          end
+        end
+      end
+    end
+
+
+    def reject_duplicate_supersections(courses)
+      ret = []
+      included_supersection_ids = []
+      courses.each do | c |
+        if c.has_supersection?
+          if !included_supersection_ids.include?(c.supersection_id)
+            ret << c
+            included_supersection_ids << c.supersection_id
+          end
+        else
+          ret << c
+        end
+      end
+
+      return ret
     end
 end
