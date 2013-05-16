@@ -75,6 +75,7 @@
           $('#' + type + '_div').append(data);
           $('#' + type + '_table').dataTable({
             sPaginationType: "full_numbers",
+            sDom: '<"top"f><"clear">iptr<"bottom"p>',
             bStateSave: true,
             "aoColumnDefs": [
               { "sType": 'num-html', "aTargets": [ 0 ] }
