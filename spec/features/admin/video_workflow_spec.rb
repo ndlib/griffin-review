@@ -134,7 +134,7 @@ describe "Video Workflow Integration" do
     end
     it "views requester information for request" do
       visit video_request_all_path
-      click_link(@request_b.user.display_name)
+      click_on("requester_#{@request_b.id}_#{@request_b.user.id}")
       page.should have_content(@request_b.user.display_name)
     end
   end
