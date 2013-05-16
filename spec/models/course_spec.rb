@@ -115,14 +115,18 @@ describe Course do
 
 
   describe :cross_listings do
+    before(:each) do
+      @crosslisting_course = course_api.get("current_crosslisting", 'crosslisting')
+    end
 
-    it "has cross listings"
+    it "has cross listings" do
+      @crosslisting_course.cross_listings.size.should == 1
+    end
 
-    it "allows you to add a cross listing"
-
-    it "allows you to remove a added cross listing"
-
-    it "replaces an added cross listing with one from banner if one now exists"
+    it "has the correct title" do
+      lists = @crosslisting_course.cross_listings
+      lists.first.title.should == "current_BAUG_20001"
+    end
 
   end
 

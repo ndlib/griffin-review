@@ -7,7 +7,6 @@ class Course
 
     self.title = attributes['title']
     self.instructors= attributes['instructors']
-    self.cross_listings = attributes['cross_listings'] || []
     self.semester_code = attributes['term_prefix']
   end
 
@@ -39,6 +38,11 @@ class Course
 
   def semester
 
+  end
+
+
+  def cross_listings
+    @cross_listings ||= (@attributes['crosslists'] || []).collect { | c | Course.new(c) }
   end
 
 
