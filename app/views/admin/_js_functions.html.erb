@@ -27,9 +27,9 @@
     });
   }
 
-  function busyLoader() {
+  function busyLoader(type) {
     $('.requests_table_container').empty();
-    $('.requests_table_container').append('<div class="ajaxBusy"><img src="/assets/images/ajax-loader.gif"></div>');
+    $('#' + type + '_div').append('<div class="ajaxBusy"><img src="/assets/images/ajax-loader.gif"></div>');
     $('.ajaxBusy').css({
       width: 'auto',
       padding: '50px',

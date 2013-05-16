@@ -13,7 +13,7 @@
 
     $('a[data-toggle="tab"]').click(function (e) {
       var req_type = $(e.target).attr('r_type');
-      busyLoader();
+      busyLoader(req_type);
       refresh_tables(req_type);
     });
     
@@ -32,19 +32,13 @@
         <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_acquisitions" href="#lB">Awaiting Acquisitions</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="awaiting_cataloging" href="#lC">Awaiting Cataloging</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="digitized" href="#lC">Digitized</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="digitized" href="#lD">Digitized</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="uploaded" href="#lD">Uploaded</a>
         </li>
         <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="converted" href="#lE">Converted</a>
-        </li>
-        <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="uploaded" href="#lF">Uploaded</a>
-        </li>
-        <li class="">
-        <a data-toggle="tab" style="outline-style: none;" r_type="all" href="#lG">All</a>
+        <a data-toggle="tab" style="outline-style: none;" r_type="all" href="#lE">All</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -56,23 +50,16 @@
           <div id="awaiting_acquisitions_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lC" class="tab-pane">
-          <div id="awaiting_cataloging_div" class="requests_table_container">
-          </div>
         </div>
-        <div id="lD" class="tab-pane">
+        <div id="lC" class="tab-pane">
           <div id="digitized_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lE" class="tab-pane">
-          <div id="converted_div" class="requests_table_container">
-          </div>
-        </div>
-        <div id="lF" class="tab-pane">
+        <div id="lD" class="tab-pane">
           <div id="uploaded_div" class="requests_table_container">
           </div>
         </div>
-        <div id="lG" class="tab-pane">
+        <div id="lE" class="tab-pane">
           <div id="all_div" class="requests_table_container">
           </div>
         </div>
