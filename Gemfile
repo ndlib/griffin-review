@@ -37,6 +37,9 @@ gem 'simple_form'
 gem 'nested_form'
 gem 'rails3-jquery-autocomplete'
 
+# so that activerecord is happy with US dates
+gem 'american_date'
+
 # model validation
 gem 'validates_timeliness', '~> 3.0'
 
@@ -50,7 +53,7 @@ gem 'rest-client', "~> 1.6.7"
 group :development do
     gem 'pry-rails'
     gem 'looksee'
-    gem 'rspec-rails'
+    gem 'rspec-rails', '~> 2.12.0'
     gem 'rdoc'
     gem 'awesome_print'
     gem 'sextant'
@@ -58,11 +61,11 @@ end
 
 # testing
 group :test do
-	gem 'rspec', '~> 2.11.0'
-	gem 'rspec-core', '~> 2.11.0'
-	gem 'rspec-expectations', '~> 2.11.0'
-	gem 'rspec-mocks', '~> 2.11.0'
-    gem 'rspec-rails'
+	gem 'rspec', '~> 2.12.0'
+	gem 'rspec-core', '~> 2.12.0'
+	gem 'rspec-expectations', '~> 2.12.0'
+	gem 'rspec-mocks', '~> 2.12.0'
+    gem 'rspec-rails', '~> 2.12.0'
     gem 'json_spec'
     gem 'capybara'
     gem 'launchy', '~> 2.1.0'

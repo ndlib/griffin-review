@@ -33,13 +33,13 @@ class Ability
       can :read, Role, :name => ['Reserves Admin', 'Reserves Technician', 'Media Admin', 'Staff', 'Faculty', 'Graduate Student']
       can [:read, :create, :update], User 
     end
-    
+
     if user.has_role? :administrator
       can :manage, :all
     end
-
+    
     if user.username == 'rfox2'
-      can :manage, User
+      can :manage, :all
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

@@ -2,7 +2,7 @@ port_offset = 11
 rails_server_port = 3000 + port_offset
 spork_rspec_port = 50000 + port_offset
 
-guard 'coffeescript', input: 'app/assets/javascripts', noop: true
+# guard 'coffeescript', input: 'app/assets/javascripts', noop: true
 
 guard 'bundler' do
   watch('Gemfile')

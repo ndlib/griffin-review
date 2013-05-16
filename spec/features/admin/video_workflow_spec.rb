@@ -99,7 +99,6 @@ describe "Video Workflow Integration" do
     it "views the requester informaion" do
       visit request_admin_edit_path(@request_b)
       click_link('Requester Info')
-      wait_until{ page.has_content?('Requester Information') }
       page.should have_content(@request_b.user.username)
     end
   end
@@ -118,7 +117,6 @@ describe "Video Workflow Integration" do
     it "views the new request list" do
       visit video_request_all_path
       click_link('New')
-      wait_until{ page.has_content?('Search:') }
       page.should have_content(@request_b.title)
     end
   end
@@ -137,7 +135,6 @@ describe "Video Workflow Integration" do
     it "views requester information for request" do
       visit video_request_all_path
       click_link(@request_b.user.display_name)
-      wait_until{ page.has_content?('Requester Information') }
       page.should have_content(@request_b.user.display_name)
     end
   end
@@ -160,7 +157,6 @@ describe "Video Workflow Integration" do
       click_button('Save')
       visit video_request_all_path
       click_link('Digitized')
-      wait_until{ page.has_content?('Search:') }
       page.should have_content(@request_b.title)
     end
   end
@@ -183,7 +179,6 @@ describe "Video Workflow Integration" do
       click_button('Save')
       visit video_request_all_path
       click_link('Awaiting Acquisitions')
-      wait_until{ page.has_content?('Search:') }
       page.should have_content(@request_a.title)
     end
   end

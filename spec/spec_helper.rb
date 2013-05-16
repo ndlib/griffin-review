@@ -40,6 +40,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
+  require 'capybara/rails'
   
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -57,12 +58,23 @@ Spork.prefork do
     config.include Warden::Test::Helpers
     config.include JsonSpec::Helpers
 
+    config.include RSpec::Rails::RequestExampleGroup, type: :feature
+    
     config.before(:suite) do
       DatabaseCleaner.clean_with(:truncation)
     end
 
     config.before(:each) do
       DatabaseCleaner.start
+    end
+
+    config.before(:all, type: :request) do
+      WebMock.allow_net_connect!
+    end
+
+    config.after(:all, type: :request) do
+      selenium_requests = %r{/((__.+__)|(hub/session.*))$}
+      WebMock.disable_net_connect! :allow => selenium_requests
     end
 
     config.after(:each) do
