@@ -56,16 +56,6 @@ describe VideoWorkflow do
       @request_check.current_state.name.should eq(:digitized)
       @request_check.workflow_state_user.first_name.should eq(@faculty_user_b.first_name)
     end
-    it "updates a request to reflect status change from digitized to converted for streaming" do
-      @request_b.workflow_state_user = @media_admin_user
-      @request_b.workflow_state_change_date = Time.now
-      @request_b.save
-      @request_b.convert_for_streaming!
-      @request_b.should be_converted
-      @request_check = Request.find(@request_b.id)
-      @request_check.current_state.name.should eq(:converted)
-      @request_check.workflow_state_user.first_name.should eq(@media_admin_user.first_name)
-    end
   end
 
 end

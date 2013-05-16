@@ -169,12 +169,6 @@ describe Admin::VideoWorkflowController do
           delete :destroy, :request_id => @request_c.id
           response.should redirect_to :admin_not_authorized
       end
-      it "is not able to mark a request as converted" do
-        @request_c.converted?.should be_false
-        @request_c.workflow_state = :converted
-        put :update, :request_id => @request_c.id, :request => @request_c.attributes
-        response.should redirect_to :admin_not_authorized
-      end
     end
   end
 
