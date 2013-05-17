@@ -20,7 +20,7 @@ describe Request do
 
   it "should have a correct needed by date" do
    @request.needed_by = nil
-   @request.should have(2).errors_on(:needed_by)
+   @request.should have(1).errors_on(:needed_by)
   end
 
   it "should not allow invalid title" do
