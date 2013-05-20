@@ -19,7 +19,7 @@ describe UserCourseListing do
     it "returns a course the student belongs to" do
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("current_22557").title.should == "201220_CSC_33963"
+      reserves.course("current_22557").title.should == "current_CSC_33963"
       reserves.course("current_22557").instructor_name.should == "William Purcell"
     end
 
@@ -93,7 +93,7 @@ describe UserCourseListing do
 
     it "returns all the courses the current user is enrolled in" do
       reserves = UserCourseListing.new(student_user, semester.code)
-      reserves.enrolled_courses.size.should == 11
+      reserves.enrolled_courses.size.should == 10
     end
 
 

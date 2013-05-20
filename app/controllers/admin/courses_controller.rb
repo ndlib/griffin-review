@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Admin::CoursesController < ApplicationController
 
   layout 'admin'
 
@@ -13,14 +13,14 @@ class CoursesController < ApplicationController
 
 
   def show
-    @course = reserves.course(params[:id])
+    @course = reserves.course(params[:id], params[:netid])
   end
 
 
   protected
 
     def reserves
-      @reserves ||= ::ReservesAdminApp.new(params[:semester], "current_user")
+      @reserves ||= ::ReservesAdminApp.new(params[:semester], current_user)
     end
 
 

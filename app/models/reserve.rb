@@ -6,7 +6,7 @@ class Reserve
 
   attr_accessor :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details
   attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy
-  attr_accessor :length, :discovery_id, :library, :publisher, :requestor, :status
+  attr_accessor :fair_use, :length, :discovery_id, :library, :publisher, :requestor, :status
 
 
   def initialize(attrs = {})
@@ -141,7 +141,7 @@ end
 class BookChapterReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, course: course, status: "complete", requestor: "Jaron Kennel", needed_by: 6.days.from_now, discovery_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+    self.new( id: id, course: course, fair_use: "ADFADF", status: "complete", requestor: "Jaron Kennel", needed_by: 6.days.from_now, discovery_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
   def self.new_request(id = 1, course = nil)
@@ -184,12 +184,12 @@ end
 class JournalReserve < Reserve
 
   def self.test_file_request(id = 1, course = nil)
-    self.new( id: id, status: "complete", course: course, requestor: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
+    self.new( id: id, status: "complete", fair_use: "ADFADF", course: course, requestor: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
   end
 
 
   def self.test_url_request(id = 1, course = nil)
-    self.new( id: id, status: "complete", course: course, requestor: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
+    self.new( id: id, status: "complete", fair_use: "ADFADF", course: course, requestor: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
   end
 
 
@@ -222,12 +222,12 @@ end
 
 class VideoReserve < Reserve
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, status: "complete", course: course, requestor: "Prof P", needed_by: 4.days.from_now, discovery_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, status: "complete", fair_use: "ADFADF", course: course, requestor: "Prof P", needed_by: 4.days.from_now, discovery_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
   def self.new_request(id = 1, course = nil)
-    self.new( id: id, status: "awaiting digitization", course: course, requestor: "Prof Q", needed_by: 14.days.from_now, discovery_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, status: "awaiting digitization", fair_use: "ADFADF", course: course, requestor: "Prof Q", needed_by: 14.days.from_now, discovery_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
@@ -267,7 +267,7 @@ end
 class AudioReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, status: "complete", course: course, requestor: "bla bla", needed_by: 11.days.from_now, discovery_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+    self.new( id: id, status: "complete", fair_use: "ADFADF", course: course, requestor: "bla bla", needed_by: 11.days.from_now, discovery_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
   end
 
 

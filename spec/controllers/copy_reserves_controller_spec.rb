@@ -19,13 +19,13 @@ describe CopyReservesController do
     describe :create do
 
       it "returns a successful response" do
-        post :create, :course_id => "current_25823", :to_course_id => "current_26315"
+        post :create, :course_id => "current_25823", :to_course => "current_26315"
         response.should be_success
       end
 
 
       it "sets a copy_requests variable" do
-        post :create, :course_id => "current_25823", :to_course_id => "current_26315"
+        post :create, :course_id => "current_25823", :to_course => "current_26315"
         assigns(:copy_course_listing).should be_true
       end
 
@@ -45,7 +45,7 @@ describe CopyReservesController do
 
       it "denies students access" do
         lambda {
-          post :create, :course_id => "current_25823", :to_course_id => "current_26315"
+          post :create, :course_id => "current_25823", :to_course => "current_26315"
         }.should raise_error(ActionController::RoutingError)
       end
     end

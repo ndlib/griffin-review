@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper HesburghAssets::AssetsHelper
-
  unless Rails.configuration.consider_all_requests_local
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to external_not_authorized_url, :alert => exception.message

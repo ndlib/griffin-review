@@ -41,6 +41,16 @@ class Course
   end
 
 
+  def cross_list_id
+    @attributes['crosslist_id']
+  end
+
+
+  def has_cross_listings?
+    cross_listings.size > 0
+  end
+
+
   def cross_listings
     @cross_listings ||= (@attributes['crosslists'] || []).collect { | c | Course.new(c) }
   end

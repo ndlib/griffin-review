@@ -5,13 +5,11 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(from_course)
     check_instructor_permissions!(to_course)
 
-    @copy_course_listing = user_course_listing.copy_course_listing(params[:course_id], params[:to_course_id])
+    @copy_course_listing = user_course_listing.copy_course_listing(params[:course_id], params[:to_course])
 
     if !@copy_course_listing.copy_items([])
 
     end
-
-    flash[:notice] = "Material Copied Successfully"
   end
 
 
@@ -28,7 +26,7 @@ class CopyReservesController < ApplicationController
 
 
     def to_course
-      @to_course ||= user_course_listing.course(params[:to_course_id])
+      @to_course ||= user_course_listing.course(params[:to_course])
     end
 
 end

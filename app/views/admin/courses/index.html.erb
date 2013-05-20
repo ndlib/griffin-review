@@ -50,14 +50,14 @@
         <% @courses.each do | course | %>
           <tr>
             <td>
-              <%= link_to h(course.title), prof_listing_path(course.id) %>
+              <%= link_to h(course.title), admin_course_path(course.id, netid: params[:netid]) %>
             </td>
             <td>
             </td>
-            <td><%= h course.instructor %></td>
+            <td><%= h course.instructor_name %></td>
             <td>
               <%= link_to 'New Request', '#', class: "btn" %>
-              <%= link_to 'Copy From Course', prof_listing_path(course.id), class: "btn" %>
+              <%= link_to 'Copy From Course', admin_course_path(course.id), class: "btn" %>
               <%= link_to 'Add Missing Student', '#add_user', class:'btn', "data-toggle"=>"modal" %>
             </td>
           </tr>
@@ -71,13 +71,17 @@
 <div id="add_user" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Add Missing Student</h3>
+    <h3>Add Missing User</h3>
   </div>
   <div class="modal-body">
     <p>
       <label>
         Netid
         <input type="text" name="netid" />
+      </label>
+      <label>
+        Type
+        <select><option>Student</option><option>Instructor</option></select>
       </label>
     </p>
   </div>

@@ -10,6 +10,7 @@ describe GetReservesController do
 
     u = FactoryGirl.create(:student)
     sign_in u
+    puts u.username
   end
 
   describe :show do

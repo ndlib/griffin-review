@@ -1,4 +1,22 @@
 <tr>
+  <td>
+    <div class="btn-group">
+      <button class="btn btn-mini <%= !object.data_complete? ? 'btn-warning' : 'btn-success' %>">Edit</button>
+      <button class="btn btn-mini dropdown-toggle <%= !object.data_complete? ? 'btn-warning' : 'btn-success' %>" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><%= link_to raw("<i class=\"#{object.needs_meta_data? ? '' : 'icon-ok'}\"></i> Meta Data"), edit_meta_data_path(object.id) %> </li>
+        <% if object.can_have_external_resource? %>
+          <li><%= link_to raw("<i class=\"#{object.needs_external_source? ? '' : 'icon-ok'}\"></i> External Resource"), edit_resource_path(object.id) %></li>
+        <% end %>
+
+        <% if object.should_have_fair_use? %>
+          <li><%= link_to raw("<i class=\"#{object.needs_fair_use? ? '' : 'icon-ok'}\"></i> Fair User"), edit_resource_path(object.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </td>
   <td><%= object.needed_by.to_date.to_s(:short) %></td>
   <td><%= object.title %></td>
   <td><%= object.requestor %></td>
@@ -12,18 +30,7 @@
     </select>
   </td>
   <td>
-    <div class="btn-group">
-      <button class="btn btn-mini <%= !object.data_complete? ? 'btn-warning' : 'btn-primary' %>">Edit</button>
-      <button class="btn btn-mini dropdown-toggle <%= !object.data_complete? ? 'btn-warning' : 'btn-primary' %>" data-toggle="dropdown">
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><%= link_to raw("<i class=\"#{object.needs_meta_data? ? '' : 'icon-ok'}\"></i> Meta Data"), edit_meta_data_path(object.id) %> </li>
-        <% if object.can_have_external_resource? %>
-          <li><%= link_to raw("<i class=\"#{object.needs_external_source? ? '' : 'icon-ok'}\"></i> External Resource"), edit_resource_path(object.id) %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= raw object.fair_use_display %>
   </td>
   <td>
     <%= object.status %>

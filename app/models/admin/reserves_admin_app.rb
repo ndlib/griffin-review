@@ -18,22 +18,33 @@ class ReservesAdminApp
 
 
   def all_reserves
-    ReservesApp.reserve_test_data.collect { | r | AdminReserve.new(r, @current_user) }
+    Course.reserve_test_data(Course.new).collect { | r | AdminReserve.new(r) }
   end
 
 
   def reserve(id)
-    AdminReserve.new(ReservesApp.reserve_test_data[id.to_i - 1], @current_user)
+    AdminReserve.new(Course.reserve_test_data(Course.new)[id.to_i - 1])
   end
 
 
   def netid_instructed_courses(netid, semester)
-    Course.instructed_courses(netid, semester)
+    ca = CourseApi.new
+    ca.instructed_courses(netid, semester)
   end
 
 
   def all_courses
 
   end
+
+
+  def course(id, netid)
+    course_api = CourseApi.new
+    course_api.get(netid, id)
+  end
+
+
+  private
+
 
 end

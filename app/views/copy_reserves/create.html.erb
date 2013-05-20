@@ -1,18 +1,23 @@
 
+<div class="hero-unit">
 
-<h3>Copied material from <%= h @copy_course_listing.from_course_title %> to <%= h @copy_course_listing.to_course_title %></h3>
+  <h1>Items Copied Successfully</h1>
 
-<p>Material</p>
-<ul>
-  <li>Item 2</li>
-  <li>Item 6</li>
-  <li>Something Else</li>
-</ul>
-
-
-<div class="form-actions">
-  Go to <%= link_to @copy_course_listing.to_course_title, prof_listing_path(@copy_course_listing.to_course.id), class: 'btn btn-primary' %>
-  Go back <%= link_to @copy_course_listing.from_course_title, prof_listing_path(@copy_course_listing.from_course.id), class: 'btn btn-primary' %>
-  <%= link_to(raw("<i class=\"icon-home\"></i> Home"), prof_listings_path(), class: 'btn') %>
+  <p>
+    <dl class="dl-horizontal">
+      <dt>Copied:</dt>
+      <dd>
+        <ul>
+          <li>Item 2</li>
+          <li>Item 6</li>
+          <li>Something Else</li>
+        </ul>
+      </dd>
+      <dt>From:</dt><dd> <%= link_to h(@copy_course_listing.from_course_title), course_path(@copy_course_listing.to_course.id)  %></dd>
+      <dt>To:</dt><dd><%= link_to h(@copy_course_listing.to_course_title), course_path(@copy_course_listing.from_course.id) %></dd>
+    </dl>
+  </p>
+  <p>
+    <%= link_to "Continue to #{@copy_course_listing.to_course_title}", course_path(@copy_course_listing.from_course.id), class: 'btn btn-large' %>
+  </p>
 </div>
-
