@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe AdminController do
-      
-  
+
+
   before(:all) do
-    @current_semester = Factory.create(:semester)
-    @next_semester = Factory.create(:semester, :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
-    @distant_semester = Factory.create(:semester, :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
-    @old_semester = Factory.create(:semester, :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
+    @current_semester = Factory.create(:semester, :code => 'code1')
+    @next_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
+    @distant_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
+    @old_semester = Factory.create(:semester, :code => 'code4', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
     @admin_role = Factory.create(:admin_role)
     @media_admin_role = Factory.create(:media_admin_role)
     @jane_user = Factory.create(:user)
@@ -125,7 +125,7 @@ describe AdminController do
             @changeable_metadata_attribute.name.should eq(@changeable_metadata_attribute.name)
         end
         it "re-renders the :new_metadata_attribute edit template" do
-            put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id, 
+            put :update_metadata_attribute, :metadata_attribute_id => @changeable_metadata_attribute.id,
               :metadata_attribute => Factory.attributes_for(:metadata_attribute, :name => '')
             response.should render_template 'admin/metadata_attribute/edit'
         end
@@ -143,7 +143,7 @@ describe AdminController do
       after(:each) do
         sign_out @admin_user
       end
-      
+
       it "shows a list of all semesters in the system" do
         get :show_all_semesters
         assigns(:semesters).should have(4).items
@@ -155,15 +155,15 @@ describe AdminController do
       end
 
       it "provides access to all requests for a semester" do
-        @current_semester.should have(2).pending_requests 
+        @current_semester.should have(2).pending_requests
       end
 
     end
 
     describe "GET #new_semester" do
-      
-      before(:all) do 
-        @semester = Factory.create(:semester)
+
+      before(:all) do
+        @semester = Factory.create(:semester, :code => 'code5')
         @admin_user.roles = [@admin_role]
       end
 
@@ -188,8 +188,8 @@ describe AdminController do
     end
 
     describe "GET #edit_semester" do
-      
-      before(:all) do 
+
+      before(:all) do
         @admin_user.roles = [@admin_role]
       end
 
@@ -214,8 +214,8 @@ describe AdminController do
     end
 
     describe "POST #create_semester" do
-      
-      before(:all) do 
+
+      before(:all) do
         @admin_user.roles = [@admin_role]
       end
 
@@ -255,8 +255,8 @@ describe AdminController do
     end
 
     describe "PUT #update_semester" do
-      
-      before(:all) do 
+
+      before(:all) do
         @admin_user.roles = [@admin_role]
       end
 
@@ -276,7 +276,7 @@ describe AdminController do
             :semester => Factory.attributes_for(
               :semester,
               :code => 'WIN25',
-              :date_begin => Date.today - 6.months, 
+              :date_begin => Date.today - 6.months,
               :date_end => Date.today - 3.months
             )
             @changeable_semester.reload
@@ -288,7 +288,7 @@ describe AdminController do
             :semester => Factory.attributes_for(
               :semester,
               :code => 'WIN25',
-              :date_begin => Date.today - 6.months, 
+              :date_begin => Date.today - 6.months,
               :date_end => Date.today - 3.months
             )
             response.should redirect_to semester_url(@changeable_semester)
@@ -308,7 +308,7 @@ describe AdminController do
             @changeable_semester.code.should_not eq('WIN25')
         end
         it "re-renders the :new_semester template" do
-            put :update_semester, :semester_id => @changeable_semester, 
+            put :update_semester, :semester_id => @changeable_semester,
               :semester => Factory.attributes_for(:semester, :code => '')
             response.should render_template 'admin/semester/edit'
         end

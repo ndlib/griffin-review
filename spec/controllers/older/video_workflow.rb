@@ -9,9 +9,9 @@ describe Admin::VideoWorkflowController do
     @faculty_user_a.roles = [@faculty_role]
     @faculty_user_b.roles = [@faculty_role]
     @current_semester = Factory.create(:semester)
-    @next_semester = Factory.create(:semester, :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
-    @distant_semester = Factory.create(:semester, :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
-    @old_semester = Factory.create(:semester, :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
+    @next_semester = Factory.create(:semester, :code => 'code1', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
+    @distant_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
+    @old_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
     @request_a = Factory.create(:generic_request, :semester_id => @current_semester.id, :user_id => @faculty_user_a.id)
     @request_b = Factory.create(:generic_request, :needed_by => Date.today + 4.weeks, :semester_id => @current_semester.id, :user_id => @faculty_user_b.id)
     @request_c = Factory.create(:generic_request, :needed_by => Date.today + 14.days, :semester_id => @current_semester.id, :user_id => @faculty_user_b.id)
@@ -94,7 +94,7 @@ describe Admin::VideoWorkflowController do
   context "Create a new request" do
     describe "with media admin account" do
       before :each do
-        sign_in @media_admin_user 
+        sign_in @media_admin_user
       end
       after :each do
         sign_out @media_admin_user
@@ -112,7 +112,7 @@ describe Admin::VideoWorkflowController do
   context "Modify specific request" do
     describe "with media admin account" do
       before :each do
-        sign_in @media_admin_user 
+        sign_in @media_admin_user
       end
       after :each do
         sign_out @media_admin_user
@@ -160,7 +160,7 @@ describe Admin::VideoWorkflowController do
     end
     describe "with no special privileges" do
       before :each do
-        sign_in @jane_user 
+        sign_in @jane_user
       end
       after :each do
         sign_out @jane_user

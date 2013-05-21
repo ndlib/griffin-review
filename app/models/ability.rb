@@ -39,7 +39,7 @@ class Ability
     end
 
     if user.username == 'rfox2' || user.username == 'jhartzle'
-      can :manage, User
+      can :manage, :all
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

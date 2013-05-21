@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   # roles
   def has_role?(role_sym)
-    roles.any? { |r| r.name.titlecase.to_s.underscore.to_sym == role_sym }
+    roles.any? { |r| r.name.split.join.to_s.underscore.to_sym == role_sym }
   end
 
   def requester_display

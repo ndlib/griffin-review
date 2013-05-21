@@ -9,7 +9,7 @@ describe Course do
 
   before(:each) do
     stub_courses!
-    @course = course_api.get("current_22557", username)
+    @course = course_api.get(username, "current_22557")
   end
 
 
@@ -45,7 +45,7 @@ describe Course do
   describe "supersectiosn" do
 
     before(:each) do
-      @supersection_course = course_api.get("current_29781", 'supersections')
+      @supersection_course = course_api.get('supersections', "current_29781")
       @course.join_to_supersection(@supersection_course)
     end
 
@@ -108,7 +108,7 @@ describe Course do
       @course.published_reserves.size.should == 6
 
       @course.published_reserves.each do | r |
-        r.status.should == 'complete'
+        r.status.should == 'available'
       end
     end
   end
@@ -116,7 +116,7 @@ describe Course do
 
   describe :cross_listings do
     before(:each) do
-      @crosslisting_course = course_api.get("current_crosslisting", 'crosslisting')
+      @crosslisting_course = course_api.get('crosslisting', "current_crosslisting")
     end
 
     it "has cross listings" do

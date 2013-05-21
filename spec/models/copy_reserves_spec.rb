@@ -2,10 +2,16 @@ require 'spec_helper'
 
 describe CopyReserves do
 
+  let(:student_user) { mock(User, :username => 'student') }
+
+  let(:semester) { FactoryGirl.create(:semester)}
+
   before(:each) do
-    reserves = ReservesApp.new("USER", "SEMESTER")
-    @from_course = reserves.course(1)
-    @to_course = reserves.course(1)
+    stub_courses!
+    reserves = UserCourseListing.new(student_user, semester.code)
+
+    @from_course = reserves.course('current_22557')
+    @to_course = reserves.course('current_20334')
 
     @copy_course = CopyReserves.new(@from_course, @to_course)
   end

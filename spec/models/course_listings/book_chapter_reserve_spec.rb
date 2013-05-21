@@ -12,7 +12,7 @@ describe BookChapterReserve do
 
 
   it "has a css class to identify this" do
-    listing.css_class.should == 'book-record'
+    listing.css_class.should == 'record-book'
   end
 
 
