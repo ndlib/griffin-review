@@ -157,4 +157,55 @@ describe Reserve do
       it "returns builds a discvo"
     end
   end
+
+
+  describe "status#state_machine" do
+    before(:each) do
+      @reserve = Reserve.new
+    end
+
+    it "starts all reserves in the new state" do
+      @reserve.status.should == "new"
+    end
+
+
+    it "can be completed" do
+      @reserve.complete!
+      @reserve.status.should == "available"
+    end
+
+
+    it "can be started" do
+      @reserve.start!
+      @reserve.status.should == "inprocess"
+    end
+
+
+    it "can be completed from inprocess" do
+      @reserve.start!
+      @reserve.complete!
+      @reserve.status.should == "available"
+    end
+
+
+    it "can be removed from the new state" do
+      @reserve.remove!
+      @reserve.status.should == "removed"
+    end
+
+
+    it "can be removed from the inprocess state" do
+      @reserve.start!
+      @reserve.remove!
+      @reserve.status.should == "removed"
+    end
+
+
+    it "can be removed from the available state" do
+      @reserve.complete!
+      @reserve.remove!
+      @reserve.status.should == "removed"
+    end
+  end
+
 end

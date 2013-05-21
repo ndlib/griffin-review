@@ -12,7 +12,7 @@
         <% end %>
 
         <% if object.should_have_fair_use? %>
-          <li><%= link_to raw("<i class=\"#{object.needs_fair_use? ? '' : 'icon-ok'}\"></i> Fair User"), edit_resource_path(object.id) %></li>
+          <li><%= link_to raw("<i class=\"#{object.needs_fair_use? ? '' : 'icon-ok'}\"></i> Fair Use"), edit_resource_path(object.id) %></li>
         <% end %>
       </ul>
     </div>
@@ -22,12 +22,7 @@
   <td><%= object.requestor %></td>
   <td><%= object.type %></td>
   <td>
-    <select>
-      <option value="new" <%= object.status == "new" ? 'selected="true"' : '' %>>New</option>
-      <option value="awaiting cataloging" <%= object.status == "awaiting cataloging" ? 'selected="true"' : '' %>>Awaiting Cataloging</option>
-      <option value="awaiting digitization" <%= object.status == "awaiting digitization" ? 'selected="true"' : '' %>>Awaiting Digitization</option>
-      <option value="complete" <%= object.status == "complete" ? 'selected="true"' : '' %>>Complete</option>
-    </select>
+
   </td>
   <td>
     <%= raw object.fair_use_display %>

@@ -6,5 +6,5 @@
   <%= render partial: 'enrolled_course_show', locals: { course: @course } %>
 <% elsif @permission.current_user_instructs_course?(@course) %>
   <%= render partial: 'instructed_course_show', locals: { course: @course } %>
-  <%= render partial: 'copy_form', locals: { instucted_courses: @course.instructed_courses }
+  <%= render partial: 'copy_form', locals: { course: @course, instructed_courses: @user_course_listing.instructed_courses } %>
 <% end %>

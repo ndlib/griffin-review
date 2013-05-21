@@ -46,6 +46,8 @@ gem 'therubyracer'
 # REST queries
 gem 'rest-client', "~> 1.6.7"
 
+gem "state_machine"
+
 # development only
 group :development do
     gem 'pry-rails'
