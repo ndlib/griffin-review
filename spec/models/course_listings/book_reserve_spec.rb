@@ -6,11 +6,6 @@ describe BookReserve do
   let(:listing) { BookReserve.new(title: "title", creator: "Author" ) }
 
 
-  it "has a listing partial" do
-    listing.list_partial.should == 'external/request/lists/basic_listing'
-  end
-
-
   it "has a css class to identify this" do
     listing.css_class.should == 'record-book'
   end

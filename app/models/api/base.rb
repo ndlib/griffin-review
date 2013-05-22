@@ -12,7 +12,6 @@ module API
     end
 
     def self.get_json(path, params = {})
-
       JSON.parse(get(path, params, :json))
     end
 
@@ -27,6 +26,7 @@ module API
       end
       params[:auth_token] = Rails.configuration.api_token
 
+      puts File.join(Rails.configuration.api_url, base_path, "#{path}#{extension}?#{convert_params_to_string(params)}")
       File.join(Rails.configuration.api_url, base_path, "#{path}#{extension}?#{convert_params_to_string(params)}")
     end
 

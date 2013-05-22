@@ -1,15 +1,15 @@
-class Request < VideoWorkflow
+class Request < ActiveRecord::Base
 
   attr_accessor :extent, :cms
 
   #extras to be replaced when the schema is finalized.
   attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator
-  attr_accessor :length, :publisher, :discovery_id, :file, :requestor_has_an_electronic_copy
+  attr_accessor :length, :discovery_id, :file, :requestor_has_an_electronic_copy
 
   belongs_to :semester
-  belongs_to :user
+  belongs_to :item
 
-  validates_presence_of :title, :needed_by, :course, :user, :semester
+  validates_presence_of :needed_by, :course, :semester
   validates :cms, :inclusion => { :in => %w(vista_concourse sakai_concourse both_concourse), :message => "CMS choice required" }, :on => :create
   validates_presence_of :extent, :message => 'Please indicate whether you need clips or the entire video', :on => :create
   validates_presence_of :cms, :message => 'CMS choice required', :on => :create

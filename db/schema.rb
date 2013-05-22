@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411010559) do
+ActiveRecord::Schema.define(:version => 20130522161542) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -39,9 +39,20 @@ ActiveRecord::Schema.define(:version => 20130411010559) do
     t.string   "name"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "creator"
+    t.string   "title"
+    t.string   "journal_title"
+    t.string   "discovery_id"
+    t.string   "length"
+    t.string   "file"
+    t.string   "url"
+    t.string   "type"
+    t.string   "publisher"
   end
+
+  add_index "items", ["type"], :name => "index_items_on_type"
 
   create_table "metadata_attributes", :force => true do |t|
     t.string   "name"
@@ -50,6 +61,34 @@ ActiveRecord::Schema.define(:version => 20130411010559) do
     t.datetime "updated_at",    :null => false
     t.string   "metadata_type"
   end
+
+  create_table "requests", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "needed_by"
+    t.integer  "semester_id"
+    t.string   "title"
+    t.string   "course"
+    t.boolean  "repeat_request"
+    t.boolean  "library_owned"
+    t.string   "language"
+    t.string   "subtitles"
+    t.text     "note"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "workflow_state"
+    t.datetime "workflow_state_change_date"
+    t.integer  "workflow_state_change_user"
+    t.integer  "video_id"
+    t.integer  "number_of_copies"
+    t.string   "requestor_owns_a_copy"
+    t.string   "library"
+    t.string   "course_id"
+    t.string   "requestor_netid"
+  end
+
+  add_index "requests", ["course_id"], :name => "index_requests_on_course_id"
+  add_index "requests", ["library"], :name => "index_requests_on_library"
+  add_index "requests", ["requestor_netid"], :name => "index_requests_on_requestor_netid"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -103,24 +142,5 @@ ActiveRecord::Schema.define(:version => 20130411010559) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
-
-  create_table "video_workflows", :force => true do |t|
-    t.integer  "user_id"
-    t.date     "needed_by"
-    t.integer  "semester_id"
-    t.string   "title"
-    t.string   "course"
-    t.boolean  "repeat_request"
-    t.boolean  "library_owned"
-    t.string   "language"
-    t.string   "subtitles"
-    t.text     "note"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.string   "workflow_state"
-    t.datetime "workflow_state_change_date"
-    t.integer  "workflow_state_change_user"
-    t.integer  "video_id"
-  end
 
 end

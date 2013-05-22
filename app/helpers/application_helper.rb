@@ -6,4 +6,7 @@ module ApplicationHelper
   end
 
 
+  def library_select_form(f)
+    f.input :library, as: "select", collection: [ 'Hesburgh', 'Math', 'Chemestry/Physics', 'BIC', 'Architecture', 'Engeneering'], :selected => 'Hesburgh'
+  end
 end

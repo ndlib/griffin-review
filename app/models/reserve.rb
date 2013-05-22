@@ -4,9 +4,16 @@ class Reserve
   extend ActiveModel::Naming
 
 
-  attr_accessor :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details
-  attr_accessor :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy
-  attr_accessor :fair_use, :length, :discovery_id, :library, :publisher, :requestor, :status, :waiting_state
+  delegate :publisher, :journal_title, :creator, :length, :file, :url, :discovery_id, to: :item
+  delegate :publisher=, :title=, :journal_title=, :creator=, :length=, :file=, :url=, :discovery_id=, to: :item
+
+
+  delegate :id, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
+  delegate :id=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
+
+  attr_accessor :course
+  attr_accessor :requestor_has_an_electronic_copy
+  attr_accessor :fair_use, :requestor, :status
 
 
   state_machine :status, :initial => :new do
@@ -43,11 +50,13 @@ class Reserve
     end
   end
 
-
-  def list_partial
-    'external/request/lists/basic_listing'
+  def item
+    @item ||= Item.new
   end
 
+  def request
+    @request ||= Request.new
+  end
 
   def approval_required?
     true
@@ -75,17 +84,17 @@ class Reserve
 
 
   def title
-    use_discovery_api? ? discovery_record.title : @title
+    use_discovery_api? ? discovery_record.title : item.title
   end
 
 
   def creator_contributor
-    use_discovery_api? ? discovery_record.creator_contributor : @creator
+    use_discovery_api? ? discovery_record.creator_contributor : item.creator
   end
 
 
   def publisher_provider
-    use_discovery_api? ? discovery_record.publisher_provider : @journal_title
+    use_discovery_api? ? discovery_record.publisher_provider : item.journal_title
   end
 
 

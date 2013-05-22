@@ -48,6 +48,8 @@ gem 'rest-client', "~> 1.6.7"
 
 gem "state_machine"
 
+gem 'virtus'
+
 # development only
 group :development do
     gem 'pry-rails'

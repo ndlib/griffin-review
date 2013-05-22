@@ -55,6 +55,7 @@ GEM
       json
     arel (3.0.2)
     awesome_print (1.1.0)
+    backports (2.6.7)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     cancan (1.6.10)
@@ -82,6 +83,7 @@ GEM
     coffee-script-source (1.6.2)
     crack (0.3.2)
     database_cleaner (0.9.1)
+    descendants_tracker (0.0.1)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -289,6 +291,9 @@ GEM
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     vcr (2.4.0)
+    virtus (0.5.4)
+      backports (~> 2.6.1)
+      descendants_tracker (~> 0.0.1)
     warden (1.2.1)
       rack (>= 1.0)
     webmock (1.11.0)
@@ -359,5 +364,6 @@ DEPENDENCIES
   uglifier (>= 1.2.4)
   validates_timeliness (~> 3.0)
   vcr
+  virtus
   webmock
   workflow (= 0.8.1)

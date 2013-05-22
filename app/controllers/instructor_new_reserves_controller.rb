@@ -3,7 +3,7 @@ class InstructorNewReservesController < ApplicationController
   def new
     check_instructor_permissions!(course)
 
-    @request_reserve = InstructorReserveRequest.new(course.new_reserve(), current_user)
+    @request_reserve = InstructorReserveRequest.new(current_user, course)
   end
 
 
