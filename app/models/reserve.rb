@@ -50,13 +50,22 @@ class Reserve
     end
   end
 
+
   def item
     @item ||= Item.new
   end
 
+
   def request
     @request ||= Request.new
   end
+
+
+  def save!
+    request.save!
+    item.save!
+  end
+
 
   def approval_required?
     true

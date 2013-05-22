@@ -18,18 +18,19 @@ class InstructorReserveRequest
   attribute :requestor_has_an_electronic_copy, Boolean
   attribute :library, String
   attribute :number_of_copies, Integer
-  attribute :request_type, String
   attribute :type, String
 
   validates :title, :needed_by, :library, :presence => true
   validates :creator, :presence => true, :if => :creator_required?
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
+  validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
+#  validates_date :needed_by, :on_or_after => lambda { Date.current }
 
-
-  def initialize(current_user, course)
+  def initialize(current_user, course, request_attributes = {})
     @current_user = current_user
     @course = course
+    self.attributes = request_attributes
   end
 
 
@@ -38,7 +39,7 @@ class InstructorReserveRequest
   end
 
 
-  def save
+  def make_request
     if valid?
       persist!
       true
@@ -63,9 +64,25 @@ class InstructorReserveRequest
   end
 
 
+  def reserve
+    @reserve ||= reserve_class.new
+  end
+
+
   private
 
+    def reserve_class
+      if type.nil?
+        Reserve
+      else
+        type.constantize
+      end
+    end
+
+
     def persist!
+      reserve.attributes = self.attributes.reject { | key, value | key == :type }
+      reserve.save!
 
     end
 

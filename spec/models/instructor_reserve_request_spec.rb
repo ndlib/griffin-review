@@ -21,7 +21,7 @@ describe InstructorReserveRequest do
     it "has all the form attributes" do
       [
         :title, :publisher, :journal_title, :creator, :length, :note, :needed_by,
-        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies, :request_type
+        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies
       ].each do | at |
         @instructor_reserve.respond_to?(at).should be_true
       end
@@ -45,6 +45,7 @@ describe InstructorReserveRequest do
       end
     end
 
+
     describe "creator" do
       it "requires a creator if the type is Book, BookChapter, Journal, Audio" do
         ['BookReserve', 'BookChapterReserve', 'JournalReserve', 'AudioReserve'].each do | type |
@@ -58,6 +59,7 @@ describe InstructorReserveRequest do
         @instructor_reserve.should_not have(1).error_on(:creator)
       end
     end
+
 
     describe "length" do
 
@@ -91,8 +93,61 @@ describe InstructorReserveRequest do
         end
 
       end
-
     end
+
+
+    describe "type" do
+
+      it "allows each of the types Book, BookChapter, Audio, Video Journal" do
+        ['BookReserve', 'VideoReserve', 'BookChapterReserve', 'AudioReserve', 'JournalReserve'].each do | type |
+          @instructor_reserve.type = type
+          @instructor_reserve.should_not have(1).error_on(:type)
+        end
+      end
+
+
+      it "does not allow nil" do
+        @instructor_reserve.should have(1).error_on(:type)
+      end
+
+
+      it "does not allow types that are not in the accepted values" do
+        ['adsfaf', '@#$@#', 'hgsfgfddg'].each do | type |
+          @instructor_reserve.type = type
+          @instructor_reserve.should have(1).error_on(:type)
+        end
+      end
+    end
+  end
+
+
+  describe "make_request" do
+
+    it "creates the reserve with valid params" do
+      valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }
+
+      @instructor_reserve = InstructorReserveRequest.new(user, course, valid_atts)
+      @instructor_reserve.make_request.should be_true
+    end
+
+
+    it "does not create a reserve when there are not valid params" do
+      invalid_atts = {'title' => "title", type: "BookReserve" }
+
+      @instructor_reserve = InstructorReserveRequest.new(user, course, invalid_atts)
+      @instructor_reserve.make_request.should be_false
+    end
+
+    it "starts the reserve out in the new status" do
+      valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }
+
+      @instructor_reserve = InstructorReserveRequest.new(user, course, valid_atts)
+      @instructor_reserve.make_request
+
+      @instructor_reserve.reserve.status == "new"
+    end
+
+
   end
 
 end
