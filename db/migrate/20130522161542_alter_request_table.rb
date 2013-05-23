@@ -8,6 +8,7 @@ class AlterRequestTable < ActiveRecord::Migration
     add_column :requests, :library, :string
     add_column :requests, :course_id, :string
     add_column :requests, :requestor_netid, :string
+    add_column :requests, :item_id, :integer
 
     add_index :requests, :library
     add_index :requests, :course_id
@@ -21,6 +22,7 @@ class AlterRequestTable < ActiveRecord::Migration
     remove_column :requests, :library
     remove_column :requests, :course_id
     remove_column :requests, :requestor_netid
+    remove_column :requests, :item_id
 
     rename_table :requests, :video_workflows
   end

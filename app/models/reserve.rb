@@ -8,8 +8,8 @@ class Reserve
   delegate :publisher=, :title=, :journal_title=, :creator=, :length=, :file=, :url=, :discovery_id=, to: :item
 
 
-  delegate :id, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
-  delegate :id=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
+  delegate :id, :course_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
+  delegate :id=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
 
   attr_accessor :course
   attr_accessor :requestor_has_an_electronic_copy
@@ -34,7 +34,6 @@ class Reserve
     state :inprocess
     state :available
     state :removed
-
   end
 
 
@@ -62,8 +61,10 @@ class Reserve
 
 
   def save!
-    request.save!
     item.save!
+
+    request.item = item
+    request.save!
   end
 
 

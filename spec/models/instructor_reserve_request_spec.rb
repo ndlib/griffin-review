@@ -4,9 +4,12 @@ Reserve
 describe InstructorReserveRequest do
 
   let(:user) { mock(User, :username => 'instructor') }
-  let(:course) { Course.new }
+  let(:course_api) { CourseApi.new }
+
+  let(:course) { course_api.get(user.username, 'current_25823') }
 
   before(:each) do
+    stub_courses!
     @instructor_reserve = InstructorReserveRequest.new(user, course)
   end
 
@@ -137,6 +140,7 @@ describe InstructorReserveRequest do
       @instructor_reserve = InstructorReserveRequest.new(user, course, invalid_atts)
       @instructor_reserve.make_request.should be_false
     end
+
 
     it "starts the reserve out in the new status" do
       valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }

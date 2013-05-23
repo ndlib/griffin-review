@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20130522161542) do
     t.string   "library"
     t.string   "course_id"
     t.string   "requestor_netid"
+    t.integer  "item_id"
   end
 
   add_index "requests", ["course_id"], :name => "index_requests_on_course_id"

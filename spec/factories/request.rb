@@ -12,6 +12,9 @@ FactoryGirl.define do
     subtitles true
     extent 'all'
     cms 'vista_concourse'
+    course_id "adsfdasadfs"
+    requestor_netid "netid"
+    item FactoryGirl.create(:item)
     note { Faker::Lorem.paragraph }
   end
 
