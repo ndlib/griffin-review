@@ -5,11 +5,11 @@
 <div class="btn-group well" data-toggle="buttons-radio">
   <h3>1. What type of material do you need? </h3>
   <p>
-    <a href="#book" class="btn" data-toggle="tab">Book</a>
-    <a href="#book_chapter" class="btn" data-toggle="tab">Book Chapter</a>
-    <a href="#article" class="btn" data-toggle="tab">Article</a>
-    <a href="#video" class="btn" data-toggle="tab">Video</a>
-    <a href="#audio" class="btn" data-toggle="tab">Audio</a>
+    <a href="#book" class="btn <%= @request_reserve.book_request? ? 'active' : '' %>" data-toggle="tab">Book</a>
+    <a href="#book_chapter" class="btn <%= @request_reserve.book_chapter_request? ? 'active' : '' %>" data-toggle="tab">Book Chapter</a>
+    <a href="#article" class="btn <%= @request_reserve.article_request? ? 'active' : '' %>" data-toggle="tab">Article</a>
+    <a href="#video" class="btn <%= @request_reserve.video_request? ? 'active' : '' %>" data-toggle="tab">Video</a>
+    <a href="#audio" class="btn <%= @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a>
   </p>
 
   <div>
@@ -22,22 +22,19 @@
 <div class="row">
  <div class="span6">
 <div class="tab-content">
-  <div class="tab-pane" id="copy">
-    copy copy
-  </div>
-  <div class="tab-pane" id="book">
+  <div class="tab-pane <%= @request_reserve.book_request? ? 'active' : '' %>" id="book">
     <%= render :partial => 'book_form', :locals => { object: @request_reserve } %>
   </div>
-  <div class="tab-pane" id="book_chapter">
+  <div class="tab-pane<%= @request_reserve.book_chapter_request? ? 'active' : '' %>" id="book_chapter">
     <%= render :partial => 'book_chapter_form', :locals => { object: @request_reserve } %>
   </div>
-  <div class="tab-pane" id="article">
+  <div class="tab-pane <%= @request_reserve.article_request? ? 'active' : '' %>" id="article">
     <%= render :partial => 'article_form', :locals => { object: @request_reserve } %>
   </div>
-  <div class="tab-pane" id="video">
+  <div class="tab-pane <%= @request_reserve.video_request? ? 'active' : '' %>" id="video">
     <%= render :partial => 'video_form', :locals => { object: @request_reserve } %>
   </div>
-  <div class="tab-pane" id="audio">
+  <div class="tab-pane <%= @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
     <%= render :partial => 'audio_form', :locals => { object: @request_reserve } %>
   </div>
 </div>

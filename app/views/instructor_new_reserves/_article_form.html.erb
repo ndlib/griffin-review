@@ -1,7 +1,7 @@
 
 <h3>2. Article Details </h3>
 
-<%= simple_form_for object, :as => :article, :html => {id: "article_form"}, :url => course_reserves_path() do |f| %>
+<%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path() do |f| %>
 
   <%= f.input :journal_title, :required => true %>
   <%= f.input :title %>
@@ -23,6 +23,8 @@
       <%= f.input_field :file, as: 'file', label: 'Electronic Copy' %>
     </div>
   <% end %>
+
+  <%= hidden_field_tag 'instructor_reserve_request[type]', 'ArticleReserve' %>
 
 
   <div class="form-actions">

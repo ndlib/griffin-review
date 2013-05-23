@@ -69,6 +69,32 @@ class InstructorReserveRequest
   end
 
 
+  def book_request?
+    type == 'BookReserve'
+  end
+
+
+  def book_chapter_request?
+    type == 'BookChapterReserve'
+  end
+
+
+  def article_request?
+    type == 'ArticleReserve'
+  end
+
+
+  def video_request?
+    type == 'VideoReserve'
+  end
+
+
+  def audio_request?
+    type == 'AudioReserve'
+  end
+
+
+
   private
 
     def reserve_class

@@ -1,7 +1,7 @@
 
 <h3>2. Audio Request </h3>
 
-<%= simple_form_for object, :as => :video, :html => {id: "audio_form"}, :url => course_reserves_path() do |f| %>
+<%= simple_form_for object, :html => {id: "audio_form"}, :url => course_reserves_path() do |f| %>
   <%= f.input :journal_title, label: 'Album' %>
   <%= f.input :title %>
   <%= f.input :creator %>
@@ -19,6 +19,7 @@
   <% end %>
 
   <%= f.input :library, as: "hidden", value: 'Hesburgh' %>
+  <%= hidden_field_tag 'instructor_reserve_request[type]', 'AudioReserve' %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>

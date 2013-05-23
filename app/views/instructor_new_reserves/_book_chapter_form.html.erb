@@ -1,7 +1,7 @@
 
 <h3>2. Book Chapter Details </h3>
 
-<%= simple_form_for object, :as => :book_chapter, :html => {id: "book_chapter_form"}, :url => course_reserves_path() do |f| %>
+<%= simple_form_for object, :html => {id: "book_chapter_form"}, :url => course_reserves_path() do |f| %>
 
   <%= f.input :title %>
   <%= f.input :creator, :required => true %>
@@ -28,6 +28,8 @@
       <%= f.input_field :file, as: 'file', label: 'Electronic Copy' %>
     </div>
   <% end %>
+
+  <%= hidden_field_tag 'instructor_reserve_request[type]', 'BookChapterReserve' %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary'%>

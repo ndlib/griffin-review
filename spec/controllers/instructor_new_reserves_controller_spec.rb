@@ -30,6 +30,25 @@ describe InstructorNewReservesController do
       end
 
     end
+
+
+    describe :create do
+
+      it "redirects on a successful create" do
+        InstructorReserveRequest.any_instance.stub(:make_request).and_return(true)
+
+        post :create, :course_id => "current_25823", :instructor_reserve_request => {}
+        response.should be_redirect
+      end
+
+
+      it "renders the new action if the form is not valid" do
+        InstructorReserveRequest.any_instance.stub(:make_request).and_return(false)
+
+        post :create, :course_id => "current_25823", :instructor_reserve_request => {}
+        response.should render_template("new")
+      end
+    end
   end
 
   describe :student do
@@ -40,9 +59,17 @@ describe InstructorNewReservesController do
 
     describe :new do
 
-      it "returns a successful response" do
+      it "denies access" do
         lambda {
           get :new, :course_id => "current_25823"
+        }.should raise_error(ActionController::RoutingError)
+      end
+    end
+
+    describe :create do
+      it "denies access" do
+        lambda {
+          post :create, :course_id => "current_25823", :instructor_reserve_request => {}
         }.should raise_error(ActionController::RoutingError)
       end
     end

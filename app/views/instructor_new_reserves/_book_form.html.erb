@@ -1,7 +1,7 @@
 
 <h3>2. Book Details </h3>
 
-<%= simple_form_for object, :as => :book, :html => {id: "book_form"}, :url => course_reserves_path() do |f| %>
+<%= simple_form_for object, :html => {id: "book_form"}, :url => course_reserves_path() do |f| %>
 
   <%= f.input :title %>
   <%= f.input :creator, :required => true %>
@@ -21,6 +21,8 @@
   <% end %>
 
   <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
+
+  <%= hidden_field_tag 'instructor_reserve_request[type]', 'BookReserve' %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
