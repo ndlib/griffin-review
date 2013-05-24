@@ -4,7 +4,8 @@ class AlterItemTable < ActiveRecord::Migration
     add_column :items, :creator, :string
     add_column :items, :title, :string
     add_column :items, :journal_title, :string
-    add_column :items, :discovery_id, :string
+    add_column :items, :nd_meta_data_id, :string
+    add_column :items, :overwrite_nd_meta_data, :boolean
     add_column :items, :length, :string
     add_column :items, :file, :string
     add_column :items, :url, :string
@@ -19,7 +20,8 @@ class AlterItemTable < ActiveRecord::Migration
     remove_column :items, :creator
     remove_column :items, :title
     remove_column :items, :journal_title
-    remove_column :items, :discovery_id
+    remove_column :items, :nd_meta_data_id
+    remove_column :items, :overwrite_nd_meta_data
     remove_column :items, :length
     remove_column :items, :file
     remove_column :items, :url

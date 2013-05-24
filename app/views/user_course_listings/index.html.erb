@@ -27,7 +27,7 @@
   <% if @user_course_listing.has_instructed_courses? %>
     <div class="tab-pane <%= !@user_course_listing.has_enrolled_courses? ? 'active' : '' %>" id="instructed">
       <form class="well form-search">
-        <label>Semester: <select name="semster_id" class="search_select"><%= options_from_collection_for_select(@user_course_listing.all_semesters, :id, :name, params[:semster_id]) %></select></label>
+        <label>Semester: <select name="semester" class="search_select"><%= options_from_collection_for_select(@user_course_listing.all_semesters, :code, :name, @user_course_listing.semester.code) %></select></label>
       </form>
       <script type="text/javascript">
         $('.search_select').change(function () {

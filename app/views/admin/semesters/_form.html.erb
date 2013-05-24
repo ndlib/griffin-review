@@ -1,0 +1,22 @@
+
+<%= f.error_notification %>
+
+<%= f.input :full_name, :label => "Name"  %>
+<%= f.input :code do %>
+  <%= f.input_field :code, as: "string", class: 'span2' %>
+<% end %>
+
+<%= f.input :date_begin, label: "Semester Start Date" do %>
+  <%= f.input_field :date_begin, as: "string", class: 'datepicker span2' %>
+<% end %>
+
+<%= f.input :date_end, label: "Semester End Date" do %>
+  <%= f.input_field :date_end, as: "string", class: 'datepicker span2' %>
+<% end %>
+
+<div class="form-actions">
+  <%= f.button :submit, :class => 'btn-primary', value: 'Save' %>
+  <%= link_to 'Cancel', semesters_path(f.object), :class => 'btn' %>
+
+</div>
+

@@ -5,6 +5,7 @@ class UserCourseListing
     @user = current_user
 
     if semester_code
+      puts semester_code
       @semester = Semester.semester_for_code(semester_code)
     else
       @semester = self.current_semester

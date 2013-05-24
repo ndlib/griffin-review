@@ -102,7 +102,7 @@ class Course
 
 
   def published_reserves
-    self.class.reserve_test_data(self).select { | r | r.status == 'available' }
+    self.class.reserve_test_data(self).select { | r | r.workflow_state == 'available' }
   end
 
 

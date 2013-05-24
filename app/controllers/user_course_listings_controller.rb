@@ -14,7 +14,7 @@ class UserCourseListingsController < ApplicationController
   protected
 
     def user_course_listing
-      @user_course_listing ||= UserCourseListing.new(current_user)
+      @user_course_listing ||= UserCourseListing.new(current_user, params[:semester])
     end
 
 end

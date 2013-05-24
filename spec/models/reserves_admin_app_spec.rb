@@ -10,7 +10,7 @@ describe ReservesAdminApp do
 
     it "only returns reserves that are not complete" do
       @reserves_admin.in_complete_reserves.each do | reserve |
-        reserve.status.should_not == 'complete'
+        reserve.workflow_state.should_not == 'complete'
       end
     end
 
@@ -26,7 +26,7 @@ describe ReservesAdminApp do
 
     it "only returns complete reserves " do
       @reserves_admin.completed_reserves.each do | reserve |
-        reserve.status.should == 'complete'
+        reserve.workflow_state.should == 'complete'
       end
     end
   end

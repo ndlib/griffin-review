@@ -68,19 +68,6 @@ Griffin::Application.routes.draw do
         put 'update', :action => 'update_metadata_attribute', :as => nil
         delete 'destroy', :action => 'destroy_metadata_attribute'
     end
-    resource :semester, :controller => 'admin', :only => :none do
-      collection do
-        get 'all', :action => 'show_all_semesters'
-        get 'new', :action => 'new_semester', :as => 'new', :path => '/new'
-        post 'create', :action => 'create_semester', :as => nil, :path => '/create'
-        get 'active', :action => 'show_proximate_semesters'
-      end
-    end
-    resources :semester, :controller => 'admin', :only => :none do
-      get 'edit', :action => 'edit_semester', :as => 'edit'
-      put 'update', :action => 'update_semester', :as => nil
-      get 'show', :action => 'show_semester', :as => '', :path => ''
-    end
   end
 
   ###########################
@@ -117,6 +104,7 @@ Griffin::Application.routes.draw do
     resources :meta_datas, controller: 'admin/requests_meta_data'
     resources :resources, controller: 'admin/requests_resources'
     resources :admin_courses, controller: 'admin/courses'
+    resources :semesters, controller: 'admin/semesters'
   end
 
 

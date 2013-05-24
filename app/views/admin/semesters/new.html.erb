@@ -1,0 +1,11 @@
+<% content_for(:content_title) do %>
+  <h1>New Semester</h1>
+<% end %>
+
+<div class="row">
+ <div class="span6">
+    <%= simple_form_for @semester do |f | %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  <div>
+</div>

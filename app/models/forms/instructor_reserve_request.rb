@@ -25,7 +25,7 @@ class InstructorReserveRequest
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
-#  validates_date :needed_by, :on_or_after => lambda { Date.current }
+  validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current } }
 
   def initialize(current_user, course, request_attributes = {})
     @current_user = current_user
@@ -113,7 +113,6 @@ class InstructorReserveRequest
       reserve.course_id = @course.id
 
       reserve.save!
-
     end
 
 

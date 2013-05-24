@@ -8,12 +8,12 @@ class ReservesAdminApp
 
 
   def in_complete_reserves
-    all_reserves.select { | r | r.status != 'complete' }
+    all_reserves.select { | r | r.workflow_state != 'complete' }
   end
 
 
   def completed_reserves
-    all_reserves.select { | r | r.status == 'complete' }
+    all_reserves.select { | r | r.workflow_state == 'complete' }
   end
 
 

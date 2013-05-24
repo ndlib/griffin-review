@@ -60,14 +60,14 @@ describe Reserve do
 
         it "returns the title from the discovery api if the record is connected." do
           VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(discovery_id: "book", title: "not real title")
+            course_listing = Reserve.new(nd_meta_data_id: "book", title: "not real title")
             course_listing.title.should == "Book."
           end
 
         end
 
 
-        it "returns title stored in the request if there is no discovery_id" do
+        it "returns title stored in the request if there is no nd_meta_data_id" do
           course_listing = Reserve.new( title: "title")
 
           course_listing.title.should == "title"
@@ -79,7 +79,7 @@ describe Reserve do
 
         it "returns the creator_contributor from the discovery api if the record is connected" do
           VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(discovery_id: "book", creator: "not creator")
+            course_listing = Reserve.new(nd_meta_data_id: "book", creator: "not creator")
             course_listing.creator_contributor.should == "Ronnie Wathen 1934-."
           end
         end
@@ -98,7 +98,7 @@ describe Reserve do
 
         it "returns the publisher_provider from the discovery api if the record is connected" do
           VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(discovery_id: "book", journal_title: "title")
+            course_listing = Reserve.new(nd_meta_data_id: "book", journal_title: "title")
             course_listing.publisher_provider.should == "s.l. : s.n. 1968"
           end
         end
@@ -117,7 +117,7 @@ describe Reserve do
 
         it "returns the availability from the discovery api if the record is connected" do
           VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(discovery_id: "book")
+            course_listing = Reserve.new(nd_meta_data_id: "book")
             course_listing.availability.should == "Available"
           end
         end
@@ -136,7 +136,7 @@ describe Reserve do
 
         it "returns the available_library from the discovery api if the record is connected" do
           VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(discovery_id: "book")
+            course_listing = Reserve.new(nd_meta_data_id: "book")
             course_listing.available_library.should == "Notre Dame, Hesburgh Library General Collection (PR 6073 .A83 B6 )"
           end
         end
@@ -159,52 +159,52 @@ describe Reserve do
   end
 
 
-  describe "status#state_machine" do
+  describe "workflow_state#state_machine" do
     before(:each) do
       @reserve = Reserve.new
     end
 
     it "starts all reserves in the new state" do
-      @reserve.status.should == "new"
+      @reserve.workflow_state.should == "new"
     end
 
 
     it "can be completed" do
       @reserve.complete!
-      @reserve.status.should == "available"
+      @reserve.workflow_state.should == "available"
     end
 
 
     it "can be started" do
       @reserve.start!
-      @reserve.status.should == "inprocess"
+      @reserve.workflow_state.should == "inprocess"
     end
 
 
     it "can be completed from inprocess" do
       @reserve.start!
       @reserve.complete!
-      @reserve.status.should == "available"
+      @reserve.workflow_state.should == "available"
     end
 
 
     it "can be removed from the new state" do
       @reserve.remove!
-      @reserve.status.should == "removed"
+      @reserve.workflow_state.should == "removed"
     end
 
 
     it "can be removed from the inprocess state" do
       @reserve.start!
       @reserve.remove!
-      @reserve.status.should == "removed"
+      @reserve.workflow_state.should == "removed"
     end
 
 
     it "can be removed from the available state" do
       @reserve.complete!
       @reserve.remove!
-      @reserve.status.should == "removed"
+      @reserve.workflow_state.should == "removed"
     end
   end
 

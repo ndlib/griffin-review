@@ -7,7 +7,7 @@ class AdminReserve
 
   delegate :title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details, :to => :reserve
   delegate :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy, :to => :reserve
-  delegate :length, :discovery_id, :library, :publisher, :requestor, :status, :creator_contributor, :css_class, :link_to_get_listing?, :to => :reserve
+  delegate :length, :nd_meta_data_id, :library, :publisher, :requestor, :workflow_state, :creator_contributor, :css_class, :link_to_get_listing?, :to => :reserve
   delegate :fair_use, :details, :publisher_provider, :available_library, :is_available?, :availability, :type, :to => :reserve
 
 
@@ -61,7 +61,7 @@ class AdminReserve
 
 
   def has_nd_record_id?
-    self.discovery_id.present?
+    self.nd_meta_data_id.present?
   end
 
 
@@ -72,15 +72,15 @@ class AdminReserve
 
   def set_meta_data(data)
     if data.size > 0
-      @reserve.discovery_id = nil
+      @reserve.nd_meta_data_id = nil
     end
 
     @reserve.attributes = data
   end
 
 
-  def set_discovery_id(discovery_id)
-    @reserve.discovery_id = discovery_id
+  def set_nd_meta_data_id(nd_meta_data_id)
+    @reserve.nd_meta_data_id = nd_meta_data_id
 
     # if it does not have a url and the item can have a url and the discovery system has an electronic copy use it.
   end

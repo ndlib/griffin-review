@@ -40,7 +40,7 @@ describe InstructorReserveRequest do
       end
 
       it "requires a needed_by" do
-        @instructor_reserve.should have(1).error_on(:needed_by)
+        @instructor_reserve.should have(2).error_on(:needed_by)
       end
 
       it "requires a library" do
@@ -142,13 +142,13 @@ describe InstructorReserveRequest do
     end
 
 
-    it "starts the reserve out in the new status" do
+    it "starts the reserve out in the new workflow_state" do
       valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }
 
       @instructor_reserve = InstructorReserveRequest.new(user, course, valid_atts)
       @instructor_reserve.make_request
 
-      @instructor_reserve.reserve.status == "new"
+      @instructor_reserve.reserve.workflow_state == "new"
     end
 
 

@@ -11,12 +11,12 @@ describe AdminEditReserves do
 
   describe "set_meta_data" do
 
-    it "removes the discovery id when meta data is set " do
-      @reserve.set_discovery_id("did")
+    it "removes the nd meta data id when meta data is set " do
+      @reserve.set_nd_meta_data_id("did")
 
       @reserve.set_meta_data(title: "new")
 
-      @reserve.reserve.discovery_id.should be_nil
+      @reserve.reserve.nd_meta_data_id.should be_nil
     end
 
 
@@ -43,7 +43,7 @@ describe AdminEditReserves do
   end
 
 
-  describe "set_discovery_id" do
+  describe "set_nd_meta_data_id" do
 
     it "sets the discovery id "
 

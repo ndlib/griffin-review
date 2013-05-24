@@ -108,7 +108,7 @@ describe Course do
       @course.published_reserves.size.should == 6
 
       @course.published_reserves.each do | r |
-        r.status.should == 'available'
+        r.workflow_state.should == 'available'
       end
     end
   end

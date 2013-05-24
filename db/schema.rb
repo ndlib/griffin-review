@@ -39,12 +39,13 @@ ActiveRecord::Schema.define(:version => 20130522161542) do
     t.string   "name"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "creator"
     t.string   "title"
     t.string   "journal_title"
-    t.string   "discovery_id"
+    t.string   "nd_meta_data_id"
+    t.boolean  "overwrite_nd_meta_data"
     t.string   "length"
     t.string   "file"
     t.string   "url"

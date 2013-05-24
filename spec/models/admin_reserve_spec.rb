@@ -12,7 +12,7 @@ describe AdminReserve do
       reserve = Reserve.new()
       admin_reserve = AdminReserve.new(reserve)
 
-      atts = [:title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details, :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy, :length, :discovery_id, :library, :publisher]
+      atts = [:title, :journal_title, :length, :file, :url, :course, :id, :note, :citation, :comments, :article_details, :requestor_owns_a_copy, :number_of_copies, :creator, :needed_by, :requestor_has_an_electronic_copy, :length, :nd_meta_data_id, :library, :publisher]
 
       atts.each do | attr |
         admin_reserve.respond_to?(attr).should be_true
@@ -20,17 +20,18 @@ describe AdminReserve do
     end
   end
 
+
   describe "#has_nd_record_id?" do
 
     it "returns true if the request has been connected to the nd discovery systems " do
-      reserve = Reserve.new(:discovery_id => 'id')
+      reserve = Reserve.new(:nd_meta_data_id => 'id')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.has_nd_record_id?.should be_true
     end
 
     it "returns false if the request has not been connected to the nd discovery systems " do
-      reserve = Reserve.new(:discovery_id => nil)
+      reserve = Reserve.new(:nd_meta_data_id => nil)
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.has_nd_record_id?.should be_false
@@ -41,11 +42,11 @@ describe AdminReserve do
   describe "#set_nd_record_id" do
 
     it "sets the id" do
-      reserve = Reserve.new(:discovery_id => nil)
+      reserve = Reserve.new(:nd_meta_data_id => nil)
       admin_reserve = AdminReserve.new(reserve)
 
-      admin_reserve.set_discovery_id("IDID")
-      admin_reserve.discovery_id.should == "IDID"
+      admin_reserve.set_nd_meta_data_id("IDID")
+      admin_reserve.nd_meta_data_id.should == "IDID"
     end
 
 

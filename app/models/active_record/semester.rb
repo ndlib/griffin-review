@@ -1,7 +1,5 @@
 class Semester < ActiveRecord::Base
 
-  has_many :requests
-
   validates :code, :full_name, :date_begin, :date_end, :presence => true
   validates :code, :uniqueness => true
 
@@ -26,10 +24,6 @@ class Semester < ActiveRecord::Base
                Date.today, Date.today, # current semester
                Date.today + 3.months, Date.today + 6.months # next semester
               )
-  end
-
-  def pending_requests
-    self.requests.where(:workflow_state != 'completed')
   end
 
 
