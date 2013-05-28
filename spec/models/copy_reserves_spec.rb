@@ -10,8 +10,8 @@ describe CopyReserves do
     stub_courses!
     reserves = UserCourseListing.new(student_user, semester.code)
 
-    @from_course = reserves.course('current_22557')
-    @to_course = reserves.course('current_20334')
+    @from_course = reserves.course('current_normalclass_100')
+    @to_course = reserves.course('current_supersection_100')
 
     @copy_course = CopyReserves.new(@from_course, @to_course)
   end

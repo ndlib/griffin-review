@@ -5,9 +5,11 @@
   <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
 <% end %>
 
+
 <% breadcrumb([ 'Courses ']) %>
 
 <% if @user_course_listing.has_enrolled_courses? && @user_course_listing.has_instructed_courses? %>
+
   <ul class="nav nav-tabs">
     <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
     <li><a href="#instructed" data-toggle="tab">Courses I am Teaching</a></li>
@@ -18,13 +20,13 @@
 
   <% if @user_course_listing.has_enrolled_courses? %>
     <div class="tab-pane active" id="enrolled">
-
       <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.courses_with_reserves } %>
 
     </div>
   <% end %>
 
   <% if @user_course_listing.has_instructed_courses? %>
+
     <div class="tab-pane <%= !@user_course_listing.has_enrolled_courses? ? 'active' : '' %>" id="instructed">
       <form class="well form-search">
         <label>Semester: <select name="semester" class="search_select"><%= options_from_collection_for_select(@user_course_listing.all_semesters, :code, :name, @user_course_listing.semester.code) %></select></label>

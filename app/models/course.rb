@@ -1,81 +1,41 @@
 class Course
 
-  attr_accessor :title, :instructors, :cross_listings, :semester_code, :sections
-
-  def initialize(attributes = {})
+  def initialize(attributes)
     @attributes = attributes
-
-    self.title = attributes['title']
-    self.instructors= attributes['instructors']
-    self.semester_code = attributes['term_prefix']
   end
 
 
-  def id
-    @attributes['term_crn']
-  end
-
-
-  def supersection_id
-    @attributes['supersection_id']
-  end
-
-
-  def has_supersection?
-    (id != supersection_id && !supersection_id.nil?)
-  end
-
-
-  def students
-    []
-  end
-
-
-  def instructor_name
-    "#{self.instructors.first['first_name']} #{self.instructors.first['last_name']}"
-  end
-
-
-  def semester
-
-  end
-
-
-  def cross_list_id
-    @attributes['crosslist_id']
-  end
-
-
-  def has_cross_listings?
-    cross_listings.size > 0
-  end
-
-
-  def cross_listings
-    @cross_listings ||= (@attributes['crosslists'] || []).collect { | c | Course.new(c) }
-  end
-
-
-  def join_to_supersection(course)
-    supersections
-    if !@supersections.include?(course)
-      @supersections << course
+  def self.factory(attributes = {})
+    if attributes.has_key?('sections')
+      InstructedCourse.new(attributes)
+    else
+      Course.new(attributes)
     end
   end
 
 
-  def supersections
-    @supersections ||= [ self ]
+  def id
+    @attributes['course_id']
   end
 
 
-  def supersection_course_ids
-    supersections.collect { | s | s.id }
+  def reserve_id
+    "#{self.crosslist_id}-#{self.section_group_id}"
   end
 
 
-  def supersection_section_ids
-    supersections.collect { | s | s.section }
+  def crosslist_id
+    @attributes['crosslist_id']
+  end
+
+
+  def section_group_id
+    @attributes['section_group_id']
+  end
+
+
+  def title
+    @attributes['course_title']
   end
 
 
@@ -84,8 +44,28 @@ class Course
   end
 
 
-  def display_supersection_section_ids
-    supersection_section_ids.join(", ")
+  def student_netids
+    self.section['enrollments']
+  end
+
+
+  def instructor_name
+    "#{self.instructors.first}"
+  end
+
+
+  def instructors
+    self.section['instructors']
+  end
+
+
+  def term_code
+    self.section['term']
+  end
+
+
+  def section_number
+    self.section['section_number']
   end
 
 
@@ -109,27 +89,6 @@ class Course
   def reserve(id)
     reserves[id.to_i - 1]
   end
-
-
-  def new_reserve(*args)
-    args[0] ||= {}
-    args[0][:course] = self
-
-    Reserve.new(*args)
-  end
-
-
-  def new_instructor_request(*args)
-    raise "fix"
-    InstructorReserveRequest.new(self.new_reserve(*args), self.current_user)
-  end
-
-
-  def get_reserve(id)
-    raise "fix"
-    GetReserve.new(self.reserve(id), self.current_user)
-  end
-
 
 
   def self.reserve_test_data(course)

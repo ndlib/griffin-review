@@ -18,22 +18,22 @@ describe CourseApi do
 
     it "returns the students enrolled courses for the current semseter" do
       courses = course_api.enrolled_courses('student', 'current')
-      test_result_has_course_ids(courses, ['current_20334', 'current_22555', 'current_22557', 'current_21188', 'current_20113', 'current_24550', 'current_25426', 'current_28873', 'current_29157', 'current_21015'])
+      test_result_has_course_ids(courses, ['current_normalclass_100', 'current_supersection_100'])
     end
 
     it "returns the students enrolled courses for the previous semseter" do
       courses = course_api.enrolled_courses('student', 'previous')
-      test_result_has_course_ids(courses, ['previous_11389', 'previous_12574', 'previous_12548', 'previous_18985', 'previous_12777', 'previous_14389', 'previous_11640'])
+      test_result_has_course_ids(courses, ["previous_ACCT_20200", "previous_AFST_20476", "previous_BAET_20300"])
     end
 
     it "returns the inst_stu's enrolled courses for the current semester" do
       courses = course_api.enrolled_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ['current_29898'])
+      test_result_has_course_ids(courses, ["current_ACMS_98698"])
     end
 
     it "returns the inst_stu's enrolled courses for the previous semester" do
       courses = course_api.enrolled_courses('inst_stu', 'previous')
-      test_result_has_course_ids(courses, ['previous_19745', 'previous_19591', 'previous_20066'])
+      test_result_has_course_ids(courses, ["previous_ACMS_60882", "previous_ACMS_60890", "previous_ACMS_70870"])
     end
 
     it "returns the instructors enrolled courses for the current semester" do
@@ -60,69 +60,39 @@ describe CourseApi do
 
     it "returns the inst_stu's instructed courses for the current semester" do
       courses = course_api.instructed_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ['current_28969', 'current_28972', 'current_29901'])
+      test_result_has_course_ids(courses, ["current_ACMS_10145"])
     end
 
 
     it "returns the inst_stu's instructed courses for the previous semester" do
       courses = course_api.instructed_courses('inst_stu', 'previous')
-      test_result_has_course_ids(courses, ['previous_18446', 'previous_18448'])
+      test_result_has_course_ids(courses, ["previous_ACMS_10141", "previous_ACMS_10145"])
     end
 
 
     it "returns the instructors instructed courses for the current semester" do
       courses = course_api.instructed_courses('instructor', 'current')
-      test_result_has_course_ids(courses, ['current_25823', 'current_26315'])
+      test_result_has_course_ids(courses, ["current_ACCT_20200"])
    end
 
 
     it "returns the instructors instructed courses for the previous semester" do
       courses = course_api.instructed_courses('instructor', 'previous')
-      test_result_has_course_ids(courses, ['previous_16398', 'previous_16402'])
+      test_result_has_course_ids(courses, ["previous_ACCT_20100"])
     end
 
-
-    describe "supersections" do
-
-      it "combines supersections into one course in the result" do
-        #courses = course_api.instructed_courses('supersections', 'current')
-        #courses.size.should == 6
-        #courses[4].has_supersection?.should be_true
-      end
-
-    end
 
 
     describe "cross_listings" do
       it "combines the corss listed classes into one result" do
-        #courses = course_api.instructed_courses('crosslisting', 'current')
-        #courses.size.should == 1
-        #courses.first.cross_listings.first.title.should == "current_BAUG_20001"
+        courses = course_api.instructed_courses('instructor', 'previous')
 
-        #course = course_api.get(courses.first.cross_listings.first.id, 'crosslisting')
-        #course.cross_listings.first.title.should == courses.first.title
-      end
-
-    end
-  end
-
-
-  describe "get" do
-    describe "supersections" do
-
-      it "returns all the supersection sections associated with the course" do
-        #course = course_api.get('supersections', 'current_29781')
-        #course.supersection_course_ids.should == ["current_29781", "current_29780", "current_29782", "current_29783"]
-      end
-    end
-
-
-    describe "cross_listings" do
-      it "returns the classes cross listed with the course" do
-
+        courses.first.cross_listings.first.id.should == "previous_ACCT_20100"
+        courses.first.cross_listings.last.id.should == "previous_BAUG_20001"
       end
     end
   end
+
 
 
   def stub_courses!

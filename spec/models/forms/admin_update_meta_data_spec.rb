@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 Reserve
 
 describe AdminUpdateMetaData do
@@ -6,7 +7,8 @@ describe AdminUpdateMetaData do
   before(:each) do
     stub_courses!
 
-    @reserve = BookReserve.new_request(Course.new)
+    @course = CourseApi.new.get('instructor', 'current_ACCT_20200')
+    @reserve = Course.reserve_test_data(@course)[6]
 
     @update_meta_data = AdminUpdateMetaData.new(@reserve)
   end
@@ -68,7 +70,35 @@ describe AdminUpdateMetaData do
 
       @update_meta_data.should have(1).error_on(:journal_title)
     end
+  end
 
+
+  describe "workflow_state" do
+
+    it "updates checks ensure_state_is_inprogress! when the object is loaded." do
+      AdminUpdateMetaData.any_instance.should_receive(:ensure_state_is_inprogress!)
+      AdminUpdateMetaData.new(@reserve)
+    end
+
+
+    it "updates the reserve to be in progress if it is new" do
+      reserve = Course.reserve_test_data(@course)[6]
+      reserve.id = 11
+
+      reserve.workflow_state.should == "new"
+
+      AdminUpdateMetaData.new(reserve)
+      reserve.workflow_state.should == "inprocess"
+    end
+
+
+    it "does not update the workflow_state if it is available " do
+      reserve = Course.reserve_test_data(@course)[1]
+      reserve.workflow_state.should == "available"
+
+      AdminUpdateMetaData.new(reserve)
+      reserve.workflow_state.should == "available"
+    end
 
   end
 

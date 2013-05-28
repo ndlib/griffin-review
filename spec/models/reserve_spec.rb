@@ -181,6 +181,13 @@ describe Reserve do
     end
 
 
+    it "can be restarted" do
+      @reserve.complete!
+      @reserve.restart!
+      @reserve.workflow_state.should == "inprocess"
+    end
+
+
     it "can be completed from inprocess" do
       @reserve.start!
       @reserve.complete!

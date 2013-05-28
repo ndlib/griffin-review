@@ -11,12 +11,12 @@ class Permission
 
 
   def current_user_instructs_course?(course)
-    !course_listing(course.semester_code).instructed_courses.select { | c | c.id == course.id }.empty?
+    !course_listing(course.term_code).instructed_courses.select { | c | c.id == course.id }.empty?
   end
 
 
   def current_user_enrolled_in_course?(course)
-    !course_listing(course.semester_code).enrolled_courses.select { | c | c.id == course.id }.empty?
+    !course_listing(course.term_code).enrolled_courses.select { | c | c.id == course.id }.empty?
   end
 
 

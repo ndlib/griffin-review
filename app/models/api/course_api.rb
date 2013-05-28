@@ -50,14 +50,29 @@ class CourseApi
       api_result.each do | c |
         result << new_course(c)
       end
-      parse_supersections(result)
+#      parse_supersections(result)
 
-      result
+      parse_crosslistings(result)
     end
 
 
     def new_course(args)
-      Course.new(args)
+      Course.factory(args)
+    end
+
+
+    def parse_crosslistings(courses)
+      course_to_cross = {}
+
+      courses.each do | c |
+        if course_to_cross.has_key?(c.crosslist_id)
+          course_to_cross[c.crosslist_id].add_crosslisted_course(c)
+        else
+          course_to_cross[c.crosslist_id] = c
+        end
+      end
+
+      course_to_cross.values
     end
 
 
@@ -77,26 +92,8 @@ class CourseApi
 
 
     def reject_duplicates(courses)
-      ret = reject_duplicate_supersections(courses)
-      reject_duplicate_cross_listings(ret)
-    end
-
-
-    def reject_duplicate_supersections(courses)
-      ret = []
-      included_supersection_ids = []
-      courses.each do | c |
-        if c.has_supersection?
-          if !included_supersection_ids.include?(c.supersection_id)
-            ret << c
-            included_supersection_ids << c.supersection_id
-          end
-        else
-          ret << c
-        end
-      end
-
-      return ret
+      #ret = reject_duplicate_supersections(courses)
+      reject_duplicate_cross_listings(courses)
     end
 
 

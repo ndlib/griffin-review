@@ -22,18 +22,32 @@ class Reserve
       transition [:new, :inprocess] => :available
     end
 
+
     event :remove do
       transition [:new, :inprocess, :available] => :removed
     end
 
+
     event :start do
-      transition [:new, :available] => :inprocess
+      transition [:new] => :inprocess
+    end
+
+
+    event :restart do
+      transition [:available] => :inprocess
     end
 
     state :new
     state :inprocess
     state :available
     state :removed
+  end
+
+
+  def ensure_state_is_inprogress!
+    if self.start
+      self.save!
+    end
   end
 
 
@@ -64,6 +78,8 @@ class Reserve
     item.save!
 
     request.item = item
+    request.course_id = course.id
+
     request.save!
   end
 
@@ -151,16 +167,16 @@ end
 class BookReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, course: course, workflow_state: "available", requestor: "Bob Bobbers", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', nd_meta_data_id: "book")
+    self.new( id: id, course: course, workflow_state: "available", requestor_netid: "Bob Bobbers", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', nd_meta_data_id: "book")
   end
 
 
   def self.new_request(id = 1, course = nil)
-    self.new( id: id, course: course, workflow_state: "new", requestor: "New Requestor", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
+    self.new( id: id, course: course, workflow_state: "new", requestor_netid: "New Requestor", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
   end
 
   def self.awaiting_request(id = 1, course = nil)
-    self.new( id: id, course: course, workflow_state: "awaiting cataloging", requestor: "Awaiting Requestor", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
+    self.new( id: id, course: course, workflow_state: "awaiting cataloging", requestor_netid: "Awaiting Requestor", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
   end
 
   def approval_required?
@@ -183,15 +199,15 @@ end
 class BookChapterReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, course: course, fair_use: "ADFADF", workflow_state: "available", requestor: "Jaron Kennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+    self.new( id: id, course: course, fair_use: "ADFADF", workflow_state: "available", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
   def self.new_request(id = 1, course = nil)
-    self.new( id: id, course: course, workflow_state: "new", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
+    self.new( id: id, course: course, workflow_state: "new", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", file: "/uploads/test.pdf")
   end
 
   def self.awaiting_request(id = 1, course = nil)
-    self.new( id: id, course: course, workflow_state: "awaiting digitization", nd_meta_data_id: "discovery", requestor: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7")
+    self.new( id: id, course: course, workflow_state: "awaiting digitization", nd_meta_data_id: "discovery", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7")
   end
 
 
@@ -226,12 +242,12 @@ end
 class JournalReserve < Reserve
 
   def self.test_file_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
+    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", file: "/uploads/test.pdf")
   end
 
 
   def self.test_url_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
+    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
   end
 
 
@@ -264,17 +280,17 @@ end
 
 class VideoReserve < Reserve
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
   def self.new_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "awaiting digitization", fair_use: "ADFADF", course: course, requestor: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( id: id, workflow_state: "awaiting digitization", fair_use: "ADFADF", course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
   end
 
 
   def self.awaiting_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "new", course: course, requestor: "Prof 9", needed_by: 8.days.from_now, title: "Return of the Jedi", creator: 'George L', length: "42:33 20 min.")
+    self.new( id: id, workflow_state: "new", course: course, requestor_netid: "Prof 9", needed_by: 8.days.from_now, title: "Return of the Jedi", creator: 'George L', length: "42:33 20 min.")
   end
 
 
@@ -309,7 +325,7 @@ end
 class AudioReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
-    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+    self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
   end
 
 

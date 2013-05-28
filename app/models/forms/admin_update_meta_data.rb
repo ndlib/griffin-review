@@ -17,6 +17,8 @@ class AdminUpdateMetaData
   def initialize(reserve, request_attributes = {})
     @reserve = reserve
     self.attributes = request_attributes
+
+    ensure_state_is_inprogress!
   end
 
 
@@ -48,6 +50,7 @@ class AdminUpdateMetaData
 
 
     def ensure_state_is_inprogress!
+      reserve.ensure_state_is_inprogress!
     end
 
 

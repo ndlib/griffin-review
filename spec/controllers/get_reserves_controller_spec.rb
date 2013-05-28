@@ -21,7 +21,7 @@ describe GetReservesController do
       end
 
       it "renders the view if the course listing requires copyright acceptance" do
-        get :show, id: 1, course_id: "current_22557"
+        get :show, id: 1, course_id: "current_normalclass_100"
         response.should render_template("show")
       end
 
@@ -30,14 +30,14 @@ describe GetReservesController do
 
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
 
-        get :show, id: 1, course_id: "current_22557", accept_terms_of_service: 1
+        get :show, id: 1, course_id: "current_normalclass_100", accept_terms_of_service: 1
       end
 
       it "redirects if the copyright acceptance has has been accepted and it is a redirect item" do
         BookReserve.any_instance.stub(:url).and_return("http://www.google.com")
         BookReserve.any_instance.stub(:file).and_return(nil)
 
-        get :show, id: 1, course_id: "current_22557", accept_terms_of_service: 1
+        get :show, id: 1, course_id: "current_normalclass_100", accept_terms_of_service: 1
 
         response.should redirect_to("http://www.google.com")
       end
@@ -53,14 +53,14 @@ describe GetReservesController do
         BookReserve.any_instance.stub(:file).and_return("FILE")
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
 
-        get :show, id: 1, course_id: "current_22557"
+        get :show, id: 1, course_id: "current_normalclass_100"
       end
 
       it "redirects if the file is a redierect item" do
         BookReserve.any_instance.stub(:url).and_return("http://www.google.com")
         BookReserve.any_instance.stub(:file).and_return(nil)
 
-        get :show, id: 1, course_id: "current_22557"
+        get :show, id: 1, course_id: "current_normalclass_100"
         response.should redirect_to("http://www.google.com")
       end
     end

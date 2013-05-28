@@ -110,7 +110,7 @@ class InstructorReserveRequest
       reserve.attributes = self.attributes.reject { | key, value | key == :type }
 
       reserve.requestor_netid = @current_user.username
-      reserve.course_id = @course.id
+      reserve.course = @course
 
       reserve.save!
     end

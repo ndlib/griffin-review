@@ -20,9 +20,6 @@ describe Permission do
       reserves = UserCourseListing.new(instructor_user, semester_code)
       course = reserves.instructed_courses.first
 
-      puts semester_code
-      puts course.semester_code
-
       perm.current_user_instructs_course?(course).should be_true
     end
 

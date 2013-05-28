@@ -18,12 +18,12 @@ class ReservesAdminApp
 
 
   def all_reserves
-    Course.reserve_test_data(Course.new).collect { | r | AdminReserve.new(r) }
+    Course.reserve_test_data(Course.factory).collect { | r | AdminReserve.new(r) }
   end
 
 
   def reserve(id)
-    AdminReserve.new(Course.reserve_test_data(Course.new)[id.to_i - 1])
+    AdminReserve.new(Course.reserve_test_data(Course.factory)[id.to_i - 1])
   end
 
 

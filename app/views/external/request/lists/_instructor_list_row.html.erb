@@ -13,6 +13,6 @@
     </ul>
     <a href="#topic_form" data-toggle="modal" class="add_topic">Edit Topics</a>
   </td>
-  <td><%= object.status.titleize %>
+  <td><%= object.workflow_state.titleize %>
   <td><%= check_box_tag 'copy', '1', false, class: "copy" %></td>
 </tr>

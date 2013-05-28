@@ -6,7 +6,7 @@ describe InstructorReserveRequest do
   let(:user) { mock(User, :username => 'instructor') }
   let(:course_api) { CourseApi.new }
 
-  let(:course) { course_api.get(user.username, 'current_25823') }
+  let(:course) { course_api.get(user.username, 'current_ACCT_20200') }
 
   before(:each) do
     stub_courses!

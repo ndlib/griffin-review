@@ -11,12 +11,14 @@
     <% instructed_courses.each do | course | %>
     <tr>
       <td>
-        <a href="<%= course_path(course.id) %>"><%= h course.title %></a><br>
-        <% course.cross_listings.each do | listing | %>
-          <%= h listing.title %>
-        <% end %>
+        <a href="<%= course_path(course.id) %>"><%= h course.title %></a>
+        <ul>
+          <%course.crosslisted_course_ids.each do | cid | %>
+            <li><%= raw cid %></li>
+          <% end %>
+        </ul>
       </td>
-      <td><%= h course.display_supersection_section_ids %></td>
+      <td><%= h course.section_numbers.join(", ") %></td>
       <td><%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %></td>
     </tr>
     <% end %>
