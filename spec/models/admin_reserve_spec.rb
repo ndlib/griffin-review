@@ -39,24 +39,6 @@ describe AdminReserve do
   end
 
 
-  describe "#set_nd_record_id" do
-
-    it "sets the id" do
-      reserve = Reserve.new(:nd_meta_data_id => nil)
-      admin_reserve = AdminReserve.new(reserve)
-
-      admin_reserve.set_nd_meta_data_id("IDID")
-      admin_reserve.nd_meta_data_id.should == "IDID"
-    end
-
-
-    it "sets the url if the record has an electronic copy url and type allows it"
-
-
-    it " does not set the url if the record has an electronic copy and the type does not allow it."
-  end
-
-
   describe "#has_internal_metadata?" do
 
     it "returns true if the metadata has been typed in for the record"

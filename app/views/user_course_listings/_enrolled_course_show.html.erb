@@ -1,5 +1,5 @@
 <div class="table_filter">
-  <label>Filter by Topic: <select class="topic_filter"><option></option><%= options_for_select(course.all_tags) %></select></label>
+  <label> <select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_tags) %></select></label>
 </div>
 
 <% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
@@ -7,7 +7,6 @@
   <thead>
     <tr>
       <th>Reserve</th>
-      <th></th>
       <th class="topic_row"></th>
     </tr>
   </thead>

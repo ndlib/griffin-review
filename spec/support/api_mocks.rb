@@ -20,4 +20,9 @@ module ApiMocks
       ActiveSupport::JSON.decode(contents)["records"].first
     end
   end
+
+
+  def mock_reserve(request, item)
+
+  end
 end

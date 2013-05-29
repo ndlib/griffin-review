@@ -6,10 +6,6 @@ describe JournalReserve do
   let(:listing) { JournalReserve.new(title: "title", creator: "Author", length:"33-44", file: "File" ) }
 
 
-  it "has a listing partial" do
-    listing.list_partial.should == 'external/request/lists/journal_listing'
-  end
-
 
   it "has a css class to identify this" do
     listing.css_class.should == 'record-article'

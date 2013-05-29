@@ -27,9 +27,10 @@ class AdminUpdateMetaData
   end
 
 
-  def set_meta_data
+  def save_meta_data
     if valid?
-      persist!
+      puts @reserve.class
+      @reserve.save!
       true
     else
       false
@@ -55,6 +56,7 @@ class AdminUpdateMetaData
 
 
     def persist!
+      puts @reserve.class
 
     end
 

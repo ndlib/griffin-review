@@ -3,6 +3,11 @@
 describe Reserve do
 
   let(:course_listing) { Reserve.new() }
+  let(:course_api) { CourseApi.new }
+
+  before(:each) do
+    stub_courses!
+  end
 
   describe "attribute fields" do
 
@@ -215,4 +220,22 @@ describe Reserve do
     end
   end
 
+
+  describe "presistance" do
+    before(:each) do
+      @reserve = Reserve.new
+    end
+
+    it "addes the course reserve id to the reserve record" do
+      @reserve.course = course_api.get('instructor', 'current_ACCT_20200')
+      @reserve.attributes = { }
+    end
+
+    it "raises invalid record if the record is not valid" do
+      @reserve.course = course_api.get('instructor', 'current_ACCT_20200')
+      lambda {
+        @reserve.save!
+      }.should raise_error
+    end
+  end
 end

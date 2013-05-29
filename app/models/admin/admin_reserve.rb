@@ -10,17 +10,18 @@ class AdminReserve
   delegate :length, :nd_meta_data_id, :library, :publisher, :requestor, :workflow_state, :creator_contributor, :css_class, :link_to_get_listing?, :to => :reserve
   delegate :fair_use, :details, :publisher_provider, :available_library, :is_available?, :availability, :type, :to => :reserve
 
+  delegate :save!, to: :reserve
+  delegate :ensure_state_is_inprogress!, :overwrite_nd_meta_data=, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :reserve
+
 
   def initialize(reserve)
     @reserve = reserve
   end
 
 
-
   def data_complete?
     !needs_meta_data? && !needs_external_source? && !needs_fair_use?
   end
-
 
 
   def needs_external_source?
@@ -43,18 +44,6 @@ class AdminReserve
   end
 
 
-  def set_resource_url(url)
-
-  end
-
-
-  def upload_pdf
-
-  end
-
-
-
-
   def needs_meta_data?
     !has_nd_record_id? && !has_internal_metadata?
   end
@@ -67,22 +56,6 @@ class AdminReserve
 
   def has_internal_metadata?
     false
-  end
-
-
-  def set_meta_data(data)
-    if data.size > 0
-      @reserve.nd_meta_data_id = nil
-    end
-
-    @reserve.attributes = data
-  end
-
-
-  def set_nd_meta_data_id(nd_meta_data_id)
-    @reserve.nd_meta_data_id = nd_meta_data_id
-
-    # if it does not have a url and the item can have a url and the discovery system has an electronic copy use it.
   end
 
 

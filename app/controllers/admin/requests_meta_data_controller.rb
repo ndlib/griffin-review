@@ -3,17 +3,17 @@ class Admin::RequestsMetaDataController  < ApplicationController
   layout 'admin'
 
   def edit
-    @request = reserves.reserve(params[:id])
+    @request = AdminUpdateMetaData.new(reserve)
   end
 
 
   def update
-    @request = reserves.reserve(params[:id])
+    @request = AdminUpdateMetaData.new(reserve, params[:admin_reserve])
 
-    if (@request.needs_external_source?)
-      redirect_to edit_resource_path(@request.id)
-    else
+    if @request.save_meta_data
       redirect_to requests_path(@request.id, :filter => @request.status)
+    else
+      render :edit
     end
   end
 
@@ -24,4 +24,8 @@ class Admin::RequestsMetaDataController  < ApplicationController
       @reserves ||= ::ReservesAdminApp.new(params[:semester], "current_user")
     end
 
+
+    def reserve
+      reserves.reserve(params[:id])
+    end
 end

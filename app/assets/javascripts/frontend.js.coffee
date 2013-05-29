@@ -9,10 +9,6 @@ jQuery ($) ->
       bLengthChange: false
       aoColumnDefs: [
         bVisible: false
-        aTargets: [2]
-      ,
-        bSortable: false
-        bSearchable: false
         aTargets: [1]
       ]
     )
@@ -27,10 +23,6 @@ jQuery ($) ->
       aoColumnDefs: [
         bVisible: true
         aTargets: [2]
-      ,
-        bSortable: false
-        bSearchable: false
-        aTargets: [1]
       ]
     )
  #   oTable.fnFilter($('li.active a[data-toggle="tab"]').attr('filter'), 3, true, false, false)

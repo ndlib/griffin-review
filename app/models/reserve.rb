@@ -75,12 +75,14 @@ class Reserve
 
 
   def save!
-    item.save!
+    ActiveRecord::Base.transaction do
+      item.save!
 
-    request.item = item
-    request.course_id = course.id
+      request.item = item
+      request.course_id = course.reserve_id
 
-    request.save!
+      request.save!
+    end
   end
 
 
@@ -211,12 +213,6 @@ class BookChapterReserve < Reserve
   end
 
 
-
-  def list_partial
-    'external/request/lists/book_chapter_listing'
-  end
-
-
   def approval_required?
     return true
   end
@@ -249,12 +245,6 @@ class JournalReserve < Reserve
   def self.test_url_request(id = 1, course = nil)
     self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
   end
-
-
-  def list_partial
-    'external/request/lists/journal_listing'
-  end
-
 
   def approval_required?
     return self.file.present?
@@ -294,11 +284,6 @@ class VideoReserve < Reserve
   end
 
 
-  def list_partial
-    'external/request/lists/video_listing'
-  end
-
-
   def approval_required?
     return true
   end
@@ -326,11 +311,6 @@ class AudioReserve < Reserve
 
   def self.test_request(id = 1, course = nil)
     self.new( id: id, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
-  end
-
-
-  def list_partial
-    'external/request/lists/audio_listing'
   end
 
 

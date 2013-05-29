@@ -8,7 +8,7 @@ describe AdminUpdateMetaData do
     stub_courses!
 
     @course = CourseApi.new.get('instructor', 'current_ACCT_20200')
-    @reserve = Course.reserve_test_data(@course)[6]
+    @reserve = AdminReserve.new(Course.reserve_test_data(@course)[6])
 
     @update_meta_data = AdminUpdateMetaData.new(@reserve)
   end
@@ -102,4 +102,29 @@ describe AdminUpdateMetaData do
 
   end
 
+
+  describe "presistance" do
+
+    it "returns true if the update is valid" do
+      @update_meta_data.stub!(:valid?).and_return(true)
+
+      @update_meta_data.save_meta_data.should be_true
+    end
+
+    it "returns false if the udates is invalid" do
+      @update_meta_data.stub!(:valid?).and_return(false)
+
+      @update_meta_data.save_meta_data.should be_false
+
+    end
+
+    it "calls save! on the reserve " do
+      @update_meta_data.stub!(:valid?).and_return(true)
+
+      AdminReserve.any_instance.should_receive(:save!)
+      @update_meta_data.save_meta_data
+    end
+
+
+  end
 end
