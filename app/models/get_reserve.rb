@@ -2,9 +2,8 @@ class GetReserve
 
   attr_accessor :reserve, :current_user, :term_of_service_approved
 
-  def initialize(reserve, current_user)
+  def initialize(reserve)
     @reserve = reserve
-    @current_user = current_user
     @term_of_service_approved = false
   end
 
@@ -36,6 +35,11 @@ class GetReserve
 
   def redirect_to_listing?
     redirect_uri.present?
+  end
+
+
+  def link_to_listing?
+    download_listing? || redirect_to_listing?
   end
 
 

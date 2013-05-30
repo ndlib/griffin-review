@@ -107,7 +107,7 @@ class InstructorReserveRequest
 
 
     def persist!
-      reserve.attributes = self.attributes.reject { | key, value | key == :type }
+      reserve.attributes = self.attributes
 
       reserve.requestor_netid = @current_user.username
       reserve.course = @course

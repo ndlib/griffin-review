@@ -37,7 +37,6 @@ gem 'net-ldap'
 # form generation
 gem 'simple_form'
 gem 'nested_form'
-gem 'rails3-jquery-autocomplete'
 
 # model validation
 gem 'validates_timeliness', '~> 3.0'
@@ -91,8 +90,6 @@ group :test do
     gem 'guard-spork'
     gem 'guard-shell'
 
-    gem "rb-readline"
-
     gem 'vcr'
     gem 'webmock'
 end
@@ -104,7 +101,9 @@ gem 'rails-backbone'
 
 group :development, :test do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
+  gem 'rb-readline', '~> 0.4.2' # specified to this version becase 0.5.0 was not working with pry in ruby 1.9.3
 end
+
 
 # Gems used only for assets and not required
 # in production environments by default.

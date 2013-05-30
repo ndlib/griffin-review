@@ -112,5 +112,5 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
   FactoryGirl.reload
-  Griffin::Application.reload_routes!
+  Rails.application.reload_routes!
 end

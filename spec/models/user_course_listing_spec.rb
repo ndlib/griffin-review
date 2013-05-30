@@ -114,8 +114,8 @@ describe UserCourseListing do
       ps = previous_semester
       cs = semester
 
-      reserves.all_semesters.first.should == cs
-      reserves.all_semesters.last.should == ps
+      reserves.all_semesters.first.id.should == cs.id
+      reserves.all_semesters.last.id.should == ps.id
     end
   end
 
@@ -128,7 +128,7 @@ describe UserCourseListing do
       cs = semester
 
       reserve = UserCourseListing.new("current_user")
-      reserve.semester.should == cs
+      reserve.semester.id.should == cs.id
     end
 
 
@@ -138,7 +138,7 @@ describe UserCourseListing do
       cs = semester
 
       reserve = UserCourseListing.new("current_user", ps.code)
-      reserve.semester.should == ps
+      reserve.semester.id.should == ps.id
     end
   end
 

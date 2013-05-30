@@ -238,4 +238,14 @@ describe Reserve do
       }.should raise_error
     end
   end
+
+
+  describe "new" do
+    it "can take the database request object to decorate" do
+      req = FactoryGirl.create(:generic_request)
+      reserve = Reserve.new(request: req)
+
+      reserve.requestor_netid.should == req.requestor_netid
+    end
+  end
 end

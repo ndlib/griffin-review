@@ -1,11 +1,55 @@
 class Item < ActiveRecord::Base
-#  attr_accessible :description, :item_type_id, :name, :basic_metadata_attributes, :technical_metadata_attributes
 
-#  validates :name, :item_type, :description, :presence => true
+  has_many :requests
 
-#  belongs_to :item_type
-#  has_many :technical_metadata, :dependent => :destroy, :class_name => "TechnicalMetadata"
-#  has_many :basic_metadata, :dependent => :destroy, :class_name => "BasicMetadata"
+  validates :title, :type, presence: true
 
-#  accepts_nested_attributes_for :basic_metadata, :technical_metadata, :allow_destroy => true
+
+  def title
+    use_discovery_api? ? discovery_record.title : self[:title]
+  end
+
+  def creator_contributor
+    use_discovery_api? ? discovery_record.creator_contributor : self.creator
+  end
+
+
+  def publisher_provider
+    use_discovery_api? ? discovery_record.publisher_provider : self.journal_title
+  end
+
+
+  def details
+    use_discovery_api? ? discovery_record.details : ""
+  end
+
+
+  def availability
+    use_discovery_api? ? discovery_record.availability : ""
+  end
+
+
+  def available_library
+    use_discovery_api? ? discovery_record.available_library : ""
+  end
+
+
+  def is_available?
+    (self.availability.strip == 'Available')
+  end
+
+
+  private
+
+    def use_discovery_api?
+      nd_meta_data_id.present? && !overwrite_nd_meta_data?
+    end
+
+
+    def discovery_record
+      if use_discovery_api?
+        @discovery_record ||= DiscoveryApi.search_by_ids(nd_meta_data_id).first
+      end
+    end
+
 end

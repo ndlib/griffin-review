@@ -90,7 +90,6 @@ describe AdminReserve do
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.stub!(:can_have_url?).and_return(true)
-      puts admin_reserve.can_have_url?
 
       admin_reserve.needs_external_source?.should be_false
     end
@@ -101,7 +100,8 @@ describe AdminReserve do
   describe "#can_have_uploaded_file?" do
 
     it "returns true if the type of the request is a book chapter" do
-      reserve = BookChapterReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('BookChapterReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_uploaded_file?.should be_true
@@ -109,7 +109,8 @@ describe AdminReserve do
 
 
     it "returns true if the type of the request is an article " do
-      reserve = JournalReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('JournalReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_uploaded_file?.should be_true
@@ -117,7 +118,8 @@ describe AdminReserve do
 
 
     it "returns false if the type is a book" do
-      reserve = BookReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('BookReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_uploaded_file?.should be_false
@@ -125,7 +127,8 @@ describe AdminReserve do
 
 
     it "returns false if the type is a video" do
-      reserve = VideoReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('VideoReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_uploaded_file?.should be_false
@@ -133,7 +136,8 @@ describe AdminReserve do
     end
 
     it "returns false if the tyoe is an article" do
-      reserve = AudioReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('AudioReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_uploaded_file?.should be_false
@@ -145,7 +149,8 @@ describe AdminReserve do
   describe "#can_have_url?" do
 
     it "returns false if the type of the request is a book chapter" do
-      reserve = BookChapterReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('BookChapterReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_url?.should be_false
@@ -153,7 +158,8 @@ describe AdminReserve do
 
 
     it "returns true if the type of the request is an article " do
-      reserve = JournalReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('JournalReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_url?.should be_true
@@ -161,7 +167,8 @@ describe AdminReserve do
 
 
     it "returns false if the type is a book" do
-      reserve = BookReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('BookReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_url?.should be_false
@@ -169,7 +176,8 @@ describe AdminReserve do
 
 
     it "returns true if the type is a video" do
-      reserve = VideoReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('VideoReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_url?.should be_true
@@ -177,8 +185,8 @@ describe AdminReserve do
     end
 
     it "returns true if the tyoe is an article" do
-      reserve = AudioReserve.new
-
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('AudioReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.can_have_url?.should be_true
@@ -223,7 +231,8 @@ describe AdminReserve do
   describe "should_have_fair_use?" do
 
     it "returns true is the type of the request is a book chapter" do
-      reserve = BookChapterReserve.new
+      reserve = Reserve.new()
+      reserve.stub!(:type).and_return('BookChapterReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_true
@@ -231,7 +240,8 @@ describe AdminReserve do
 
 
     it "returns true is the type of the request is a journal with a file attached" do
-      reserve = JournalReserve.new(:file => 'file')
+      reserve = Reserve.new(:file => 'file')
+      reserve.stub!(:type).and_return('JournalReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_true
@@ -239,7 +249,7 @@ describe AdminReserve do
 
 
     it "returns true if the type is a video" do
-      reserve = VideoReserve.new()
+      reserve = VideoReserve.new(:type => 'VideoReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_true
@@ -247,7 +257,7 @@ describe AdminReserve do
 
 
     it "returns true if the tyoe is an audio" do
-      reserve = AudioReserve.new()
+      reserve = AudioReserve.new(:type => 'AudioReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_true
@@ -255,7 +265,7 @@ describe AdminReserve do
 
 
     it "returns false if the type is a journal with a url" do
-      reserve = JournalReserve.new(:url => 'url')
+      reserve = JournalReserve.new(:url => 'url', :type => 'JournalReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_false
@@ -263,7 +273,7 @@ describe AdminReserve do
 
 
     it "returns false if the type is a book" do
-      reserve = BookReserve.new()
+      reserve = BookReserve.new(:type => 'BookReserve')
 
       admin_reserve = AdminReserve.new(reserve)
       admin_reserve.should_have_fair_use?.should be_false

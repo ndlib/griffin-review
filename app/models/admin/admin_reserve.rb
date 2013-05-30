@@ -35,12 +35,12 @@ class AdminReserve
 
 
   def can_have_uploaded_file?
-    [BookChapterReserve, JournalReserve].include?(@reserve.class)
+    ['BookChapterReserve', 'JournalReserve'].include?(@reserve.type)
   end
 
 
   def can_have_url?
-    [JournalReserve, VideoReserve, AudioReserve].include?(@reserve.class)
+    ['JournalReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type)
   end
 
 
@@ -69,9 +69,9 @@ class AdminReserve
 
 
   def should_have_fair_use?
-    return true if [BookChapterReserve, VideoReserve, AudioReserve].include?(@reserve.class)
+    return true if ['BookChapterReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type)
 
-    return true if JournalReserve == @reserve.class && @reserve.file.present?
+    return true if 'JournalReserve' == @reserve.type && @reserve.file.present?
 
     return false
   end
