@@ -72,17 +72,17 @@ class Course
   def all_tags
     @all_tags = []
     reserves.each{ | r | @all_tags = @all_tags + r.tags }
-    @all_tags.uniq!
+    @all_tags.uniq
   end
 
 
   def reserves
-    self.class.reserve_test_data(self)
+    reserve_search.instructor_reserves_for_course(self)
   end
 
 
   def published_reserves
-    self.class.reserve_test_data(self).select { | r | r.workflow_state == 'available' }
+    reserve_search.student_reserves_for_course(self)
   end
 
 
@@ -114,5 +114,12 @@ class Course
   def self.get_semester_from(course_id)
     course_id.split('_')[0]
   end
+
+
+  private
+
+    def reserve_search
+      @reserve_search ||= ReserveSearch.new
+    end
 
 end

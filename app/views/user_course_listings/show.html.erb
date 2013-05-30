@@ -2,6 +2,8 @@
   <h1><%= h @course.title %> <small><%= h @course.instructor_name %></small></h1>
 <% end %>
 
+<%= render partial: 'table_filter', locals: { course: @course } %>
+
 <% if @permission.current_user_enrolled_in_course?(@course) %>
   <%= render partial: 'enrolled_course_show', locals: { course: @course } %>
 <% elsif @permission.current_user_instructs_course?(@course) %>

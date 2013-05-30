@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
 
   validates :title, :type, presence: true
 
+  self.inheritance_column = nil
 
   def title
     use_discovery_api? ? discovery_record.title : self[:title]

@@ -44,8 +44,8 @@ class Reserve
   end
 
 
-  def self.factory(request)
-    self.new(request)
+  def self.factory(request, course)
+    self.new(request: request, course: course)
   end
 
 

@@ -1,0 +1,7 @@
+
+<% if course.all_tags.present? %>
+<div class="table_filter">
+  <label><select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_tags) %></select></label>
+</div>
+
+<% end %>
