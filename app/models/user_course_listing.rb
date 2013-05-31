@@ -54,7 +54,7 @@ class UserCourseListing
   def courses_with_reserves()
     #res = []
     #i = 0
-    course_api.enrolled_courses(@user.username, current_semester.code).each
+    course_api.enrolled_courses(@user.username, current_semester.code).reject { | c | c.published_reserves.empty? }
     # do | c |
     #  if i % 2 == 1
     #    res << c
@@ -68,7 +68,7 @@ class UserCourseListing
   def instructed_courses_with_reserves()
     #res = []
     #i = 0
-    course_api.instructed_courses(@user.username, @semester.code).each
+    course_api.instructed_courses(@user.username, @semester.code).reject { | c | c.reserves.empty? }
     # do | c |
     #  if i % 2 == 1
     #    res << c

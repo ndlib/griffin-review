@@ -67,8 +67,12 @@ describe Course do
 
   describe "reserves" do
 
-    it "returns all the reserves associated with the course" do
-      @course.reserves.size.should == 12
+    it "returns all the reserves associated with the course reguardless of state" do
+      mock_reserve FactoryGirl.create(:request, :new, course_id: @course.reserve_id), @course
+      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @course.reserve_id), @course
+      mock_reserve FactoryGirl.create(:request, :available, course_id: @course.reserve_id), @course
+
+      @course.reserves.size.should == 3
     end
   end
 
@@ -76,7 +80,11 @@ describe Course do
   describe "published_reserves" do
 
     it "returns only the published reserves" do
-      @course.published_reserves.size.should == 6
+      mock_reserve FactoryGirl.create(:request, :new, course_id: @course.reserve_id), @course
+      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @course.reserve_id), @course
+      mock_reserve FactoryGirl.create(:request, :available, course_id: @course.reserve_id), @course
+
+      @course.published_reserves.size.should == 1
 
       @course.published_reserves.each do | r |
         r.workflow_state.should == 'available'

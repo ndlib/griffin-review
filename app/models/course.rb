@@ -77,12 +77,12 @@ class Course
 
 
   def reserves
-    reserve_search.instructor_reserves_for_course(self)
+    @reserves ||= reserve_search.instructor_reserves_for_course(self)
   end
 
 
   def published_reserves
-    reserve_search.student_reserves_for_course(self)
+    @published_reserves ||= reserve_search.student_reserves_for_course(self)
   end
 
 

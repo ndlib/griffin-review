@@ -35,12 +35,16 @@ describe ReservesAdminApp do
   describe "#reserve" do
 
     it "decorates reseres with the admin reserve " do
-      @reserves_admin.reserve(1).class.should == AdminReserve
+      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+
+      @reserves_admin.reserve(reserve.id).class.should == AdminReserve
     end
 
 
     it "searchs for the reserve by id" do
-      @reserves_admin.reserve(2).id.should == 2
+      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+
+      @reserves_admin.reserve(reserve.id).id.should == reserve.id
     end
   end
 end

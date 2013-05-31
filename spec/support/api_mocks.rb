@@ -24,7 +24,7 @@ module ApiMocks
   end
 
 
-  def mock_reserve(request, item)
-
+  def mock_reserve(request, course)
+    Reserve.factory(request, course)
   end
 end

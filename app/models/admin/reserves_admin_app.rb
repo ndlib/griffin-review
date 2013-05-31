@@ -23,7 +23,7 @@ class ReservesAdminApp
 
 
   def reserve(id)
-    AdminReserve.new(Course.reserve_test_data(Course.factory)[id.to_i - 1])
+    AdminReserve.new(reserve_search.get(id, self))
   end
 
 
@@ -46,5 +46,9 @@ class ReservesAdminApp
 
   private
 
+
+  def reserve_search
+      @reserve_search ||= ReserveSearch.new
+    end
 
 end

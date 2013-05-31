@@ -51,7 +51,11 @@ describe UserCourseListing do
 
     it "returns a list of courses that have reserves for the current user" do
       reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.instructed_courses_with_reserves.size.should == 0
+
+      course = reserves.instructed_courses.first
+      mock_reserve FactoryGirl.create(:request, :new, course_id: course.reserve_id), course
+
+      reserves.instructed_courses_with_reserves.size.should == 1
     end
 
     it "returns a list of instructed couses for the semester setup in reserves"
@@ -72,6 +76,10 @@ describe UserCourseListing do
 
     it "returns a list of courses that have reserves for the current user" do
       reserves = UserCourseListing.new(student_user, semester.code)
+
+      course = reserves.enrolled_courses.first
+      mock_reserve FactoryGirl.create(:request, :available, course_id: course.reserve_id), course
+
       reserves.courses_with_reserves.size.should == 1
     end
 
