@@ -1,6 +1,8 @@
 module ApiMocks
 
   def stub_courses!
+
+    puts 'stubbing !!'
     API::Person.stub!(:courses) do  | netid, semester |
       path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
       file = File.open(path, "rb")

@@ -11,10 +11,10 @@ describe "Student Frontend Access" do
     u = FactoryGirl.create(:student)
     login_as u
 
-    @user_course_listing = UserCourseListing.new(u)
-    @test_course = @user_course_listing.courses_with_reserves.first
-    @file_reserve = @test_course.reserve(3)
-    @url_reserve = @test_course.reserve(4)
+    @test_course = CourseApi.new.get(u.username, "current_normalclass_100")
+
+    @file_reserve = Reserve.factory(FactoryGirl.create(:request, :available, :book_chapter, :course_id => @test_course.reserve_id), @test_course)
+    @url_reserve  = Reserve.factory(FactoryGirl.create(:request, :available, :video, :course_id => @test_course.reserve_id), @test_course)
   end
 
 
@@ -29,7 +29,7 @@ describe "Student Frontend Access" do
 
   it "allows the student to download a class resource" do
     visit course_path(@test_course.id)
-
+    binding.pry
     click_link(@file_reserve.title)
   end
 

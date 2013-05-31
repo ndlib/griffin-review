@@ -23,6 +23,8 @@ gem 'devise_cas_authenticatable'
 # exception logging
 gem 'airbrake'
 
+gem 'acts-as-taggable-on'
+
 # workflow functionality
 gem 'workflow', '0.8.1'
 

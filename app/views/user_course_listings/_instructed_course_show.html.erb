@@ -1,9 +1,4 @@
-
-<% content_for(:content_title_links) do %>
-  <a href="<%= new_course_reserve_path(course.id) %>" class="btn btn-primary">Request Material</a>
-<% end %>
-
-
+<% if reserves.size > 0 %>
 <table class="table table-striped find-resources instructor_datatable datatable">
   <thead>
     <tr>
@@ -14,11 +9,17 @@
     </tr>
   </thead>
   <tbody>
-    <% course.reserves.each do | reserve | %>
+    <% reserves.each do | reserve | %>
       <%= render :partial => '/external/request/lists/instructor_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p class="alert">
+    <strong>There are no reserves requested for this class. </strong><br>
+    <a href="<%= new_course_reserve_path(course.id) %>">Request Material</a>
+  </p>
+<% end %>
 
 <div class="modal hide" id="topic_form">
   <div class="modal-header">

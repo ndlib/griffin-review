@@ -2,11 +2,19 @@
   <h1><%= h @course.title %> <small><%= h @course.instructor_name %></small></h1>
 <% end %>
 
+<% breadcrumb([ link_to('Courses', courses_path), @course.title ]) %>
+
 <%= render partial: 'table_filter', locals: { course: @course } %>
 
 <% if @permission.current_user_enrolled_in_course?(@course) %>
-  <%= render partial: 'enrolled_course_show', locals: { course: @course } %>
+  <%= render partial: 'enrolled_course_show', locals: { reserves: @course.published_reserves } %>
+
 <% elsif @permission.current_user_instructs_course?(@course) %>
-  <%= render partial: 'instructed_course_show', locals: { course: @course } %>
+
+  <% content_for(:content_title_links) do %>
+    <a href="<%= new_course_reserve_path(@course.id) %>" class="btn btn-primary">Request Material</a>
+  <% end %>
+
+  <%= render partial: 'instructed_course_show', locals: { reserves: @course.reserves, course: @course } %>
   <%= render partial: 'copy_form', locals: { course: @course, instructed_courses: @user_course_listing.instructed_courses } %>
 <% end %>

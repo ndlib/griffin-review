@@ -242,7 +242,7 @@ describe Reserve do
 
   describe "new" do
     it "can take the database request object to decorate" do
-      req = FactoryGirl.create(:generic_request)
+      req = FactoryGirl.create(:request)
       reserve = Reserve.new(request: req)
 
       reserve.requestor_netid.should == req.requestor_netid

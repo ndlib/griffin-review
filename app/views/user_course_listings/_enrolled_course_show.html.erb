@@ -1,5 +1,4 @@
-
-<% # breadcrumb([ link_to('Courses', 'student_courses'), 'Course 1']) %>
+<% if reserves.size > 0 %>
 <table class="table table-striped find-resources student_datatable datatable">
   <thead>
     <tr>
@@ -8,8 +7,13 @@
     </tr>
   </thead>
   <tbody>
-    <% course.published_reserves.each do | reserve | %>
+    <% reserves.each do | reserve | %>
       <%= render :partial => '/external/request/lists/student_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p class="alert">
+  This class does not currently have any reserves.<br />  If you were expecting to find reserves it could be that the reserves have not finished being setup.
+</p>
+<% end %>

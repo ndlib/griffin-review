@@ -87,7 +87,7 @@ class Course
 
 
   def reserve(id)
-    reserves[id.to_i - 1]
+    reserve_search.get(id, self)
   end
 
 
@@ -95,18 +95,18 @@ class Course
     Reserve
 
     [
-      BookReserve.test_request(1, course),
-      BookChapterReserve.test_request(2, course),
-      JournalReserve.test_file_request(3, course),
-      JournalReserve.test_url_request(4, course),
-      VideoReserve.test_request(5, course),
-      AudioReserve.test_request(6, course),
-      BookReserve.new_request(7, course),
-      BookReserve.awaiting_request(8, course),
-      BookChapterReserve.new_request(9, course),
-      BookChapterReserve.awaiting_request(10, course),
-      VideoReserve.awaiting_request(11, course),
-      VideoReserve.new_request(12, course),
+      BookReserve.test_request(course),
+      BookChapterReserve.test_request(course),
+      JournalReserve.test_file_request(course),
+      JournalReserve.test_url_request(course),
+      VideoReserve.test_request(course),
+      AudioReserve.test_request(course),
+      BookReserve.new_request(course),
+      BookReserve.awaiting_request(course),
+      BookChapterReserve.new_request(course),
+      BookChapterReserve.awaiting_request(course),
+      VideoReserve.awaiting_request(course),
+      VideoReserve.new_request(course),
     ]
   end
 
@@ -115,6 +115,10 @@ class Course
     course_id.split('_')[0]
   end
 
+
+  def default_course_data!
+    Course.reserve_test_data(self).map { | r | r.save! }
+  end
 
   private
 

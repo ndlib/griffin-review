@@ -47,4 +47,20 @@ describe ReserveSearch do
 
   end
 
+  describe :get do
+
+    it "gets the reserve with the id " do
+      reserve_search = ReserveSearch.new
+      reserve_search.get(@inprogress_reserve.id, @course).id.should == @inprogress_reserve.id
+    end
+
+
+    it "raises and error if the reserve is not found" do
+      lambda {
+        reserve_search = ReserveSearch.new
+        reserve_search.get(2342342, @course)
+      }.should raise_error
+    end
+  end
+
 end

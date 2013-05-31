@@ -8,6 +8,11 @@ class ReserveSearch
   end
 
 
+  def get(id, course)
+    load_in_reserve(@relation.find(id), course)
+  end
+
+
   def instructor_reserves_for_course(course)
     @relation.
         includes(:item).

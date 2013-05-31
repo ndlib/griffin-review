@@ -2,36 +2,49 @@ require 'faker'
 
 FactoryGirl.define do
 
-  factory :generic_request, :class => Request do
+  factory :request do
     needed_by Date.today + 2.weeks
     sequence(:title) { |n| "Request Title #{n}" }
-    sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
     course_id "adsfdasadfs"
     requestor_netid "netid"
-    item FactoryGirl.create(:item)
+    association(:item)
     note { Faker::Lorem.paragraph }
   end
 
-
-  factory :new_request, :class => Request do
-    needed_by Date.today + 2.weeks
-    sequence(:title) { |n| "Request Title #{n}" }
-    sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
-    course_id "adsfdasadfs"
-    requestor_netid "netid"
-    item FactoryGirl.create(:item)
-    note { Faker::Lorem.paragraph }
+  trait :new do
     workflow_state "new"
   end
 
-  factory :inprocess_request do
-    needed_by Date.today + 2.weeks
-    sequence(:title) { |n| "Request Title #{n}" }
-    sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
-    course_id "adsfdasadfs"
-    requestor_netid "netid"
-    item FactoryGirl.create(:item)
-    note { Faker::Lorem.paragraph }
-    workflow_state "new"
+  trait :inprocess do
+    workflow_state "inprocess"
   end
+
+  trait :available do
+    workflow_state "available"
+  end
+
+  trait :book do
+    association(:item, factory: :item_book)
+  end
+
+  trait :book_chapter do
+    association(:item, factory: :item_book_chapter)
+  end
+
+  trait :journal_file do
+    association(:item, factory: :item_journal_file)
+  end
+
+  trait :journal_url do
+    association(:item, factory: :item_journal_url)
+  end
+
+  trait :video do
+    association(:item, factory: :item_video)
+  end
+
+  trait :audio do
+    association(:item, factory: :item_audio)
+  end
+
 end
