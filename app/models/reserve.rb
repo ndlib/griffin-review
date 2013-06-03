@@ -93,7 +93,7 @@ class Reserve
 
 
   def set_topics!(topics)
-    request.topics_list = topics
+    request.topic_list = topics
     save!
   end
 
@@ -101,7 +101,6 @@ class Reserve
   def topics
     request.topics
   end
-
 
 
   def tags

@@ -1,0 +1,33 @@
+<% topic_form = InstructorTopicsForm.new(current_user, reserve) %>
+<div class="modal hide" id="topic_form<%= reserve.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Topic</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for reserve, url: course_reserve_topic_path(reserve.course.id, reserve.id), :method => 'put' do | f | %>
+      <fieldset class="topic_list">
+        <legend>Topics</legend>
+        <% topic_form.available_topics.each do | topic | %>
+          <label class="checkbox">
+            <input name="topics[]" type="checkbox" value="<%= topic %>" <%= topic_form.topic_checked?(topic) ? 'checked="true"' : '' %>><%= topic %>
+          </label>
+        <% end %>
+      </fieldset>
+
+      <fieldset>
+        <p class="topic-form-error alert alert-error" style="display:none;">
+          You need to specify a topic to add.
+        </p>
+
+        <legend>New Topic</legend>
+
+        <label><input type="text" class="add_topic_input"> <a href="#" class="btn add_topic_button">Add</a></label>
+      </fieldset>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary topic_form_save">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>

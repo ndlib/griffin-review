@@ -16,6 +16,21 @@ class InstructorTopicsForm
   end
 
 
+  def available_topics
+    @reserve.course.all_topics
+  end
+
+
+  def topic_checked?(topic)
+    @reserve.topics.include?(topic)
+  end
+
+
+  def current_topics
+    @reserve.topics
+  end
+
+
   def save_topics
     if valid?
       persist!
@@ -29,7 +44,7 @@ class InstructorTopicsForm
   private
 
   def persist!
-    @reserve.set_topics!(self.topcs)
+    @reserve.set_topics!(self.topics)
   end
 
 end

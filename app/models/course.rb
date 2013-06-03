@@ -69,9 +69,9 @@ class Course
   end
 
 
-  def all_tags
+  def all_topics
     @all_tags = []
-    reserves.each{ | r | @all_tags = @all_tags + r.tags }
+    reserves.each{ | r | @all_tags = @all_tags + r.topics }
     @all_tags.uniq
   end
 

@@ -20,12 +20,7 @@ jQuery ($) ->
       sPaginationType: "bootstrap"
       iDisplayLength: 1000
       bLengthChange: false
-      aoColumnDefs: [
-        bVisible: true
-        aTargets: [2]
-      ]
     )
- #   oTable.fnFilter($('li.active a[data-toggle="tab"]').attr('filter'), 3, true, false, false)
 
 
   setupTableFilters = () ->
@@ -33,18 +28,10 @@ jQuery ($) ->
     if oTable.size() == 0
       return
 
-    $('a[data-toggle="tab"]').on('shown', ->
-      oTable = $(".datatable").dataTable()
-      oTable.fnFilter($(this).attr('filter'), 3, true, false, false)
-    )
-
     $('.dataTables_filter').append $('.table_filter').html()
 
     $('.topic_filter').change ->
-      oTable.fnFilter($(this).val(), 2, true, false, false)
-
-    $('.status_filter').change ->
-      oTable.fnFilter($(this).val(), 3, true, false, false)
+      oTable.fnFilter($(this).val(), 1, true, false, false)
 
     input = $('.dataTables_filter').addClass('well').find('input')
     input.attr('placeholder', "Author name or Title")
@@ -80,9 +67,27 @@ jQuery ($) ->
 
 
 
-  $(document).on 'click', "#add_topic_button", ->
-    $("#topic_list").append "<label class=\"checkbox\"><input type=\"checkbox\" checked=\"true\"> New Topic</label>"
+  $(document).on 'click', ".add_topic_button", ->
+    name = $('.add_topic_input').val()
+    if name
+      field = "<label class=\"checkbox\"><input name=\"topics[]\" type=\"checkbox\" value=\"#{name}\" checked=\"true\">#{name}</label>"
+      $(this).parents('.modal-body').find(".topic_list").append field
+      $(this).parents('.modal-body').find('.topic-form-error').hide()
+    else
+      $(this).parents('.modal-body').find('.topic-form-error').show()
 
+    false
+
+  $(document).on 'click', '.topic_form_save', ->
+    form = $(this).parents('.modal').find('form')
+    $.post form.attr('action'),
+      form.serialize()
+    , ((data) ->
+        alert(data)
+    ), 'json'
+
+
+    false
 
   $(document).on 'change', ".copy",  ->
     txt = $(this).parents("tr").find(".title").text()

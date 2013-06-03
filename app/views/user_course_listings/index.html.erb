@@ -14,6 +14,10 @@
     <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
     <li><a href="#instructed" data-toggle="tab">Courses I am Teaching</a></li>
   </ul>
+<% else %>
+  <p class="alert">
+    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not finished being setup.
+  </p>
 <% end %>
 
 <div class="tab-content">
@@ -41,4 +45,6 @@
 
     </div>
   <% end %>
+
+
 </div>

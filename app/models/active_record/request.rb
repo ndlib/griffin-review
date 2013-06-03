@@ -7,7 +7,4 @@ class Request < ActiveRecord::Base
 
   acts_as_taggable_on :topics
 
-  def requestor
-    "Bob Bobbers"
-  end
 end

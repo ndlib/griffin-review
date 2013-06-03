@@ -1,7 +1,7 @@
 
-<% if course.all_tags.present? %>
+<% if course.all_topics.present? %>
 <div class="table_filter">
-  <label><select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_tags) %></select></label>
+  <label><select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_topics) %></select></label>
 </div>
 
 <% end %>

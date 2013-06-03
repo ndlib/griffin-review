@@ -5,7 +5,6 @@ class UserCourseListing
     @user = current_user
 
     if semester_code
-      puts semester_code
       @semester = Semester.semester_for_code(semester_code)
     else
       @semester = self.current_semester
@@ -37,7 +36,7 @@ class UserCourseListing
 
 
   def has_enrolled_courses?
-    !course_api.enrolled_courses(@user.username, current_semester.code).empty?
+    !courses_with_reserves().empty?
   end
 
 
