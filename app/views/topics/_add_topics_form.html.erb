@@ -5,7 +5,7 @@
     <h3>Add Topic</h3>
   </div>
   <div class="modal-body">
-    <%= form_for reserve, url: course_reserve_topic_path(reserve.course.id, reserve.id), :method => 'put' do | f | %>
+    <%= form_for reserve, url: course_reserve_topic_path(reserve.course.id, reserve.id), :method => 'put', html: { :class => 'add_topic_form' } do | f | %>
       <fieldset class="topic_list">
         <legend>Topics</legend>
         <% topic_form.available_topics.each do | topic | %>

@@ -7,10 +7,13 @@ class TopicsController < ApplicationController
     if @topic_form.save_topics
       respond_to do |format|
         format.html { redirect_to(course_path(course.id)) }
-        format.js { render :json => @topic_form.current_topics }
+        format.js { render :json => { id: params[:id], topics: @topic_form.current_topics } }
       end
     else
-
+      respond_to do |format|
+        format.html { redirect_to(course_path(course.id), :error => "Server error unable to update topics") }
+        format.js { render :json => { id: params[:id], error: "Server error unable to update topics" } }
+      end
     end
   end
 

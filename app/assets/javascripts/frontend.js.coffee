@@ -31,6 +31,7 @@ jQuery ($) ->
     $('.dataTables_filter').append $('.table_filter').html()
 
     $('.topic_filter').change ->
+      debugger
       oTable.fnFilter($(this).val(), 1, true, false, false)
 
     input = $('.dataTables_filter').addClass('well').find('input')
@@ -68,26 +69,41 @@ jQuery ($) ->
 
 
   $(document).on 'click', ".add_topic_button", ->
-    name = $('.add_topic_input').val()
+    name = $(this).parent().find('.add_topic_input').val()
     if name
-      field = "<label class=\"checkbox\"><input name=\"topics[]\" type=\"checkbox\" value=\"#{name}\" checked=\"true\">#{name}</label>"
-      $(this).parents('.modal-body').find(".topic_list").append field
+      field = "<label class=\"checkbox\"><input name=\"topics[]\" type=\"checkbox\" value=\"#{name}\">#{name}</label>"
+      $('.add_topic_form').find(".topic_list").append field
+      $(this).parents('.modal-body').find(".topic_list input[value=\"#{name}\"]").attr('checked', 'true')
       $(this).parents('.modal-body').find('.topic-form-error').hide()
+
+      if $('.topic_filter')
+        $('.topic_filter').append "<option value=\"#{name}\">#{name}</option>"
+
     else
       $(this).parents('.modal-body').find('.topic-form-error').show()
 
     false
+
 
   $(document).on 'click', '.topic_form_save', ->
     form = $(this).parents('.modal').find('form')
     $.post form.attr('action'),
       form.serialize()
     , ((data) ->
-        alert(data)
+        $('.loading_image').remove()
+        if data['topics']
+          for topic in data['topics']
+            $("ul.topics#{data['id']}").append("<li>#{topic['name']}</li>")
+        else
+          $("ul.topics#{data['id']}").append("<li><p class=\"alert alert-error\">#{data['error']}</p></li>")
     ), 'json'
 
+    $(this).parents('.topic_cell').find('ul').children().remove();
+    $(this).parents('.topic_cell').prepend("<img class=\"loading_image\" src=\"/assets/ajax-bar-loader.gif\" >")
+    $(this).parents('.modal').modal('hide')
 
     false
+
 
   $(document).on 'change', ".copy",  ->
     txt = $(this).parents("tr").find(".title").text()

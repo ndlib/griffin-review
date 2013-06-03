@@ -31,6 +31,19 @@ class ReserveSearch
         collect { | r | load_in_reserve(r, course)}
   end
 
+
+  def new_and_inprocess_reserves_for_semester(semester)
+  end
+
+
+  def complete_reserves_for_semester(semester)
+  end
+
+
+  def all_reserves_for_semester(semester)
+  end
+
+
   private
 
   def load_in_reserve(request, course)
