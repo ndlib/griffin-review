@@ -149,25 +149,4 @@ describe UserCourseListing do
       reserve.semester.id.should == ps.id
     end
   end
-
-
-  describe :copy_course_listings do
-
-    it "returns a copy course listing" do
-      reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.copy_course_listing("current_normalclass_100", "current_25823").class.should == CopyReserves
-    end
-  end
-
-
-  def stub_courses!
-    API::Person.stub!(:courses) do  | netid, semester |
-      path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
-      file = File.open(path, "rb")
-      contents = file.read
-
-      ActiveSupport::JSON.decode(contents)["people"].first
-    end
-  end
-
 end

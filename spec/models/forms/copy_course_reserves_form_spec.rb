@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CopyReserves do
+describe CopyCourseReservesForm do
 
   let(:student_user) { mock(User, :username => 'student') }
 
@@ -13,7 +13,7 @@ describe CopyReserves do
     @from_course = reserves.course('current_normalclass_100')
     @to_course = reserves.course('current_supersection_100')
 
-    @copy_course = CopyReserves.new(@from_course, @to_course)
+    @copy_course = CopyCourseReservesForm.new(@from_course, @to_course)
   end
 
 

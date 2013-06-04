@@ -22,14 +22,6 @@ class UserCourseListing
   end
 
 
-  def copy_course_listing(from_course_id, to_course_id)
-    from_course = self.course(from_course_id)
-    to_course = self.course(to_course_id)
-
-    CopyReserves.new(from_course, to_course)
-  end
-
-
   def course(course_id)
     course_api.get(@user.username, course_id)
   end

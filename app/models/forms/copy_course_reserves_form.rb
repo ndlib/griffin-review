@@ -1,4 +1,4 @@
-class CopyReserves
+class CopyCourseReservesForm
 
   attr_accessor :from_course, :to_course
 
@@ -15,6 +15,16 @@ class CopyReserves
 
   def to_course_title
     @to_course.title
+  end
+
+
+  def current_semester_courses
+
+  end
+
+
+  def previous_semester_courses
+
   end
 
 

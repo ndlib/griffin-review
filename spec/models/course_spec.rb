@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Course do
 
   let(:username) { 'student' }
-  let(:semester_code) { FactoryGirl.create(:semester).code }
+  let(:semester) { FactoryGirl.create(:semester) }
   let(:course_api) { CourseApi.new }
 
 
@@ -61,6 +61,21 @@ describe Course do
     @course.respond_to?(:section_group_id).should be_true
     @course.section_group_id.should == "current_11389"
   end
+
+
+  it "has a term_code" do
+    @course.respond_to?(:term_code).should be_true
+    @course.term_code.should == 'current'
+  end
+
+
+  it "gets the current semester for a course" do
+    semester
+
+    @course.respond_to?(:semester).should be_true
+    @course.semester.should == semester
+  end
+
 
   it "can decide if it has reserves or not"
 
