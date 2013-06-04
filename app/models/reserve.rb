@@ -8,8 +8,8 @@ class Reserve
   delegate :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :file=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, to: :item
   delegate :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 
-  delegate :id, :workflow_state, :course_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
-  delegate :id=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
+  delegate :id, :semester, :workflow_state, :course_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
+  delegate :id=, :semester=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
 
   attr_accessor :course, :request
   attr_accessor :requestor_has_an_electronic_copy

@@ -8,7 +8,10 @@ describe AdminUpdateMetaData do
     stub_courses!
 
     @course = CourseApi.new.get('instructor', 'current_ACCT_20200')
-    @reserve = AdminReserve.new(Course.reserve_test_data(@course)[6])
+
+    r = Reserve.factory(FactoryGirl.create(:request), @course)
+
+    @reserve = AdminReserve.new(r)
 
     @update_meta_data = AdminUpdateMetaData.new(@reserve)
   end
@@ -82,8 +85,7 @@ describe AdminUpdateMetaData do
 
 
     it "updates the reserve to be in progress if it is new" do
-      reserve = Course.reserve_test_data(@course)[6]
-      reserve.id = 11
+      reserve = AdminReserve.new(Reserve.factory(FactoryGirl.create(:request, :new), @course))
 
       reserve.workflow_state.should == "new"
 

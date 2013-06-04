@@ -2,22 +2,23 @@ require 'spec_helper'
 
 describe ReserveSearch do
 
+  let(:semester) { FactoryGirl.create(:semester)}
   let(:course_api) { CourseApi.new }
 
   before(:each) do
     stub_courses!
     @course = course_api.get('student', "current_normalclass_100")
 
-    valid_params = { title: "aTitle", course: @course, requestor_netid: "bob", workflow_state: "new", type: 'BookReserve'}
+    valid_params = { title: "aTitle", course: @course, requestor_netid: "bob", workflow_state: "new", type: 'BookReserve', semester: semester}
     @new_reserve = Reserve.new(valid_params)
     @new_reserve.save!
 
-    valid_params = { title: "bTitle", course: @course, requestor_netid: "bob", workflow_state: "inprogress", type: 'BookReserve'}
+    valid_params = { title: "bTitle", course: @course, requestor_netid: "bob", workflow_state: "inprogress", type: 'BookReserve', semester: semester}
     @inprogress_reserve = Reserve.new(valid_params)
     @inprogress_reserve.save!
 
 
-    valid_params = { title: "cTitle", course: @course, requestor_netid: "bob", workflow_state: "available", type: 'BookReserve'}
+    valid_params = { title: "cTitle", course: @course, requestor_netid: "bob", workflow_state: "available", type: 'BookReserve', semester: semester}
     @available_reserve = Reserve.new(valid_params)
     @available_reserve.save!
   end
@@ -62,5 +63,12 @@ describe ReserveSearch do
       }.should raise_error
     end
   end
+
+
+  describe :new_and_inprocess_reserves_for_semester do
+
+  end
+
+
 
 end

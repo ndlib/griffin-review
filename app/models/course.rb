@@ -64,6 +64,11 @@ class Course
   end
 
 
+  def semester
+    @semeseter ||= Semester.semester_for_code(term_code)
+  end
+
+
   def section_number
     self.section['section_number']
   end

@@ -9,6 +9,7 @@ FactoryGirl.define do
     requestor_netid "netid"
     association(:item)
     note { Faker::Lorem.paragraph }
+    semester { Semester.current.first || FactoryGirl.create(:semester) }
   end
 
   trait :new do

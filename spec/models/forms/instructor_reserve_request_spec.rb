@@ -10,6 +10,8 @@ describe InstructorReserveRequest do
 
   before(:each) do
     stub_courses!
+
+    FactoryGirl.create(:semester)
     @instructor_reserve = InstructorReserveRequest.new(user, course)
   end
 
