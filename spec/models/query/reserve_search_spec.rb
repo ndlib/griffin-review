@@ -56,11 +56,10 @@ describe ReserveSearch do
     end
 
 
-    it "raises and error if the reserve is not found" do
-      lambda {
-        reserve_search = ReserveSearch.new
-        reserve_search.get(2342342, @course)
-      }.should raise_error
+    it "returns nil if the record is not found" do
+      reserve_search = ReserveSearch.new
+      reserve_search.get(2342342, @course).should be_nil
+
     end
   end
 

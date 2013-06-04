@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Semester do
 
   before(:all) do
-    @current_semester = Factory.build(:semester)
-    @next_semester = Factory.build(:semester, :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
-    @distant_semester = Factory.build(:semester, :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
-    @last_semester = Factory.build(:semester, :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
+    @current_semester = Factory.create(:semester, :code => 'code', :date_end => Date.today + 3.months)
+    @next_semester = Factory.create(:semester, :code => 'code1', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
+    @distant_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
+    @last_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
   end
 
   it do
@@ -35,5 +35,10 @@ describe Semester do
 #      Semester.proximates.should include(@last_semester, @current_semester, @next_semester)
 #      Semester.proximates.should_not include(@distant_semester)
     end
+  end
+
+
+  it "gets the next semester" do
+    @current_semester.next.should == @next_semester
   end
 end

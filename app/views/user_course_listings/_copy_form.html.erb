@@ -6,15 +6,12 @@
     <br />
     <select name="to_course" id="copy_to_select">
       <option>Copy to Course</option>
-      <%= options_from_collection_for_select(instructed_courses, :id, :title) %>
       <optgroup label="Current Semester">
-        <option>Course 1</option>
-        <option>Course 2</option>
+        <%= options_from_collection_for_select(CopyCourseReservesForm.current_semester_courses(current_user), :id, :title) %>
       </optgroup>
       <optgroup label="Next Semester">
-        <option>Course 3</option>
-        <option>Course 4</option>
-      </optgroup>
+        <%= options_from_collection_for_select(CopyCourseReservesForm.next_semester_courses(current_user), :id, :title) %>
+       </optgroup>
     </select>
     <div class="form-actions">
       <button type="submit" class="copy btn btn-primary">Copy Material</button>

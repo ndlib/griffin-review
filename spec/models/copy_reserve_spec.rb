@@ -20,7 +20,6 @@ describe CopyReserve do
   end
 
   it "makes a copy of the request" do
-
     new_reserve = @copy_reserve.copy
     new_reserve.id.should_not == @reserve.id
   end

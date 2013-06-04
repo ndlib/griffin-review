@@ -7,7 +7,7 @@ class CopyReservesController < ApplicationController
 
     @copy_course_listing = CopyCourseReservesForm.new(from_course, to_course)
 
-    if !@copy_course_listing.copy_items([])
+    if !@copy_course_listing.copy_items
 
     end
   end
