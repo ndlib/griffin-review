@@ -33,6 +33,12 @@ class ReserveSearch
 
 
   def new_and_inprocess_reserves_for_semester(semester)
+    @relation.
+        includes(:item).
+        where('requests.semster_id = ?', semester.id).
+        where('requests.workflow_state = ? || requests.workflow_state = ?', 'new', 'inprocess').
+        order('needed_by').
+        collect { | r | load_in_reserve(r, course) }
   end
 
 

@@ -1,7 +1,3 @@
-
-<% if course.all_topics.present? %>
 <div class="table_filter">
-  <label><select class="topic_filter"><option>Topics</option><%= options_for_select(course.all_topics) %></select></label>
+  <label><select style="<%= course.all_topics.empty? ? 'display:none;' : '' %>" class="topic_filter"><option>Topics</option><%= options_for_select(course.all_topics) %></select></label>
 </div>
-
-<% end %>

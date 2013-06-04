@@ -45,3 +45,11 @@
   border: 4px black solid;
 }
 
+.topic_form .topic_list label {
+  display: block;
+}
+
+.topic_form .add_topic_input {
+  width: 75%;
+  height: 30px;
+}
