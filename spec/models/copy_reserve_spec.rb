@@ -36,4 +36,15 @@ describe CopyReserve do
     new_reserve.course.should == @to_course
   end
 
+  it "does not copy tags" do
+    @reserve.set_topics!('topic1')
+
+    new_reserve = @copy_reserve.copy
+    new_reserve.topics.should == []
+  end
+
+  it "does not copy the item" do
+    new_reserve = @copy_reserve.copy
+    new_reserve.item.id.should == @reserve.item.id
+  end
 end

@@ -5,7 +5,7 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(from_course)
     check_instructor_permissions!(to_course)
 
-    @copy_course_listing = CopyCourseReservesForm.new(from_course, to_course)
+    @copy_course_listing = CopyCourseReservesForm.new(from_course, to_course, params)
 
     if !@copy_course_listing.copy_items
 

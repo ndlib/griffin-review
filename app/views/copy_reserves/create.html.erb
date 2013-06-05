@@ -8,9 +8,9 @@
       <dt>Copied:</dt>
       <dd>
         <ul>
-          <li>Item 2</li>
-          <li>Item 6</li>
-          <li>Something Else</li>
+          <% @copy_course_listing.copied_items.each do | item | %>
+            <li><%= item.title %></li>
+          <% end %>
         </ul>
       </dd>
       <dt>From:</dt><dd> <%= link_to h(@copy_course_listing.from_course_title), course_path(@copy_course_listing.to_course.id)  %></dd>

@@ -7,7 +7,7 @@
   </td>
   <td><%= object.workflow_state.titleize %></td>
   <td>
-    <%= check_box_tag 'copy', '1', false, class: "copy" %>
+    <%= check_box_tag 'copy', object.id, false, class: "copy" %>
     <%= render partial: '/topics/add_topics_form', locals: { reserve: object } %>
   </td>
 </tr>
