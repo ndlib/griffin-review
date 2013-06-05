@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531160229) do
+ActiveRecord::Schema.define(:version => 20130605133002) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -143,6 +143,13 @@ ActiveRecord::Schema.define(:version => 20130531160229) do
   end
 
   add_index "test_requests", ["type"], :name => "index_test_requests_on_type"
+
+  create_table "user_course_exceptions", :force => true do |t|
+    t.string "netid"
+    t.string "role"
+  end
+
+  add_index "user_course_exceptions", ["netid"], :name => "index_user_course_exceptions_on_netid"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

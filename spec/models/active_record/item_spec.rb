@@ -11,9 +11,7 @@ describe Item do
     it "requires a type" do
       Item.new.should have(1).error_on(:type)
     end
-
   end
-
 
 
   it "uses the api search service to find items with an nd_meta_data_id" do
