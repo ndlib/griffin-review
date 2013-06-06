@@ -15,7 +15,7 @@ class Course
 
 
   def id
-    @attributes['course_id']
+    @attributes['course_id'] || "#{@attributes['term_prefix']}_#{@attributes['alpha_prefix']}_#{@attributes['number']}"
   end
 
 
@@ -58,6 +58,10 @@ class Course
     self.section['instructors']
   end
 
+
+  def primary_instructor
+
+  end
 
   def term_code
     self.section['term']
@@ -124,6 +128,7 @@ class Course
   def default_course_data!
     Course.reserve_test_data(self).map { | r | r.save! }
   end
+
 
   private
 

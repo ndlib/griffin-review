@@ -10,6 +10,24 @@ module ApiMocks
 
       ActiveSupport::JSON.decode(contents)["people"].first
     end
+
+    API::SearchCourse.stub!(:course_id) do | course_id |
+      path = File.join(Rails.root, "spec/fixtures/json_save/", "#{course_id}.json")
+      file = File.open(path, "rb")
+      contents = file.read
+
+      ActiveSupport::JSON.decode(contents)
+    end
+
+    API::SearchCourse.stub!(:course_by_section_id) do | term_code, section_id |
+      path = File.join(Rails.root, "spec/fixtures/json_save/course_by_section", "#{term_code}-#{section_id}.json")
+
+      file = File.open(path, "rb")
+      contents = file.read
+
+      ActiveSupport::JSON.decode(contents)
+    end
+
   end
 
 

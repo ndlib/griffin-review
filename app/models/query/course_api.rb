@@ -25,8 +25,14 @@ class CourseApi
   end
 
 
-  private
+  def get_by_section(semester_id, section_id)
+    course = API::SearchCourse.course_by_section_id(semester_id, section_id)
 
+    new_course(course)
+  end
+
+
+  private
 
     def load_api_courses(netid, semester_id)
       @result ||= {}
@@ -41,6 +47,8 @@ class CourseApi
 
       @result[netid][semester_id]['enrolled_course_objects'] = parse_api_result_to_objs(@result[netid][semester_id]['enrolled_courses']) || []
       @result[netid][semester_id]['instructed_course_objects'] = parse_api_result_to_objs(@result[netid][semester_id]['instructed_courses']) || []
+
+      add_course_exceptions(netid, semester_id)
     end
 
 
@@ -50,7 +58,6 @@ class CourseApi
       api_result.each do | c |
         result << new_course(c)
       end
-#      parse_supersections(result)
 
       parse_crosslistings(result)
     end
@@ -75,4 +82,23 @@ class CourseApi
       course_to_cross.values
     end
 
+
+    def add_course_exceptions(netid, semester_id)
+      UserCourseException.user_course_exceptions(netid, semester_id).each do | course_exception |
+        parse_course_exception_to_object(course_exception, netid, semester_id)
+      end
+    end
+
+
+    def parse_course_exception_to_object(course_exception, netid, semester_id)
+      course = get_by_section(semester_id, course_exception.section_id)
+
+      if course_exception.student?
+        @result[netid][semester_id]['enrolled_course_objects'] << course
+      elsif course_exception.instructor?
+        @result[netid][semester_id]['instructed_course_objects'] << course
+      else
+        raise "invalid course role"
+      end
+    end
 end
