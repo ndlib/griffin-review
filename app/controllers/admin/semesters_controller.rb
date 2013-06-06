@@ -1,7 +1,5 @@
 class Admin::SemestersController < ApplicationController
 
-  layout 'admin'
-
   def index
     @semesters = Semester.cronologial
   end

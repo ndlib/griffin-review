@@ -13,7 +13,7 @@ class InstructedCourse  < Course
 
 
   def instructor_name
-    "#{self.instructors.first}"
+    "#{self.instructors.first['first_name']} #{self.instructors.first['last_name']}"
   end
 
 

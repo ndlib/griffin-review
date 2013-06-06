@@ -1,7 +1,5 @@
 class Admin::CoursesController < ApplicationController
 
-  layout 'admin'
-
   def index
     @courses = false
 

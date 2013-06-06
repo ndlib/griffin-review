@@ -1,7 +1,5 @@
 class Admin::RequestsController  < ApplicationController
 
-  layout 'admin'
-
   def index
     reserves
 

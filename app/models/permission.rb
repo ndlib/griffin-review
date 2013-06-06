@@ -6,7 +6,7 @@ class Permission
 
 
   def current_user_is_administrator?
-    false
+    true
   end
 
 

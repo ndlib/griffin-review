@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Reserves</title>
+    <meta name="description" content="Information resources and collections of the Hesburgh Libraries, University of Notre Dame." />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+
+    <%= stylesheet_link_tag    "hesburgh_assets/admin/1.0/", :media => "all" %>
+    <!--[if lte IE 9]>
+      <%= stylesheet_link_tag    "hesburgh_assets/admin/1.0/ie.css", :media => "all" %>
+    <![endif]-->
+    <%= stylesheet_link_tag    "sakai", :media => "all" %>
+
+    <%= javascript_include_tag "hesburgh_assets/admin/1.0/" %>
+    <%= javascript_include_tag "application" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <div class="row content">
+    <div class="frame">
+      <div class="row menu">
+        <div class="twelve columns">
+          <%= sakai_top_nav() %>
+        </div>
+      </div>
+
+      <div class="twelve columns">
+        <% if content_for?(:content_title_links) %>
+          <div class="pull-right">
+            <%= content_for(:content_title_links) %>
+          </div>
+        <% end %>
+        <%= content_for(:content_title) %>
+
+        <%= yield %>
+      </div>
+    </div>
+
+  </body>
+</html>
+

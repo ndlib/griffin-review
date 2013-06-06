@@ -1,5 +1,6 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
+    <a class="brand" href="/">Reserves</a>
     <ul class="nav">
       <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
       <% if user_course_listing.has_enrolled_courses? %>
@@ -21,6 +22,11 @@
             <% end %>
           </ul>
         </li>
+      <% end %>
+      <% if permission.current_user_is_administrator? %>
+        <li><%= link_to "Requests", requests_path() %></li>
+        <li><%= link_to "Courses", admin_courses_path() %></li>
+        <li><%= link_to "Semesters", semesters_path() %></li>
       <% end %>
     </ul>
     <div class="pull-right">

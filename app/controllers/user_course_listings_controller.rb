@@ -1,5 +1,7 @@
 class UserCourseListingsController < ApplicationController
 
+  layout :determine_layout, :only => :show
+
   def index
     user_course_listing
   end

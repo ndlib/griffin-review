@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def determine_layout
+      params[:sakai] == '1' ? 'sakai' : 'application'
+    end
+
     def permission
       @permission ||= Permission.new(current_user)
     end

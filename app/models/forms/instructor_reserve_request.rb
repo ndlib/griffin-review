@@ -65,7 +65,7 @@ class InstructorReserveRequest
 
 
   def reserve
-    @reserve ||= reserve_class.new
+    @reserve ||= Reserve.new
   end
 
 

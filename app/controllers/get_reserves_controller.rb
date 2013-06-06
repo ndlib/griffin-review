@@ -1,5 +1,7 @@
 class GetReservesController < ApplicationController
 
+  layout :determine_layout
+
 
   def show
     check_view_permissions!(course)
