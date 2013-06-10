@@ -19,31 +19,31 @@ describe UserCourseListing do
     it "returns a course the student belongs to" do
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("current_normalclass_100").title.should == "Accountancy I"
-      reserves.course("current_normalclass_100").instructor_name.should == "fagostin"
+      reserves.course("current_ACCT_20200").title.should == "Accountancy II"
+      reserves.course("current_ACCT_20200").instructor_name.should == "William Schmuhl"
     end
+
 
     it "returns nil if the user is not a part of the class" do
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("current_2234").should be_nil
+      reserves.course("previous_ACMS_60882").should be_nil
     end
 
 
     it "returns the course even if the course is not in the current semester passed" do
       reserves = UserCourseListing.new(student_user, semester.code)
-      reserves.course("current_normalclass_100").should_not be_nil
+      reserves.course("current_ACCT_20200").should_not be_nil
 
       prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
-      prev_reserves.course("current_normalclass_100").should_not be_nil
+      prev_reserves.course("previous_ACMS_60882").should_not be_nil
     end
 
 
     it "returns instructed courses from the semester passed in" do
       reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.course("current_ACCT_20200").should_not be_nil
+      reserves.course("previous_ACMS_60882").should_not be_nil
     end
-
   end
 
 

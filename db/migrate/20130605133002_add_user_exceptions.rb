@@ -5,11 +5,12 @@ class AddUserExceptions < ActiveRecord::Migration
     create_table :user_course_exceptions, force: true do | t |
       t.string :netid
       t.string :role
-      t.string :section_id
-      t.string :semester_code
+      t.string :section_group_id
+      t.string :term
     end
 
-    add_index :user_course_exceptions, [ :netid, :semester_code ]
+    add_index :user_course_exceptions, [ :section_group_id, :term, :role ], name: 'uce_search_index'
+    add_index :user_course_exceptions, [ :netid, :term ]
   end
 
 

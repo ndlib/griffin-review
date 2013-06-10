@@ -38,8 +38,13 @@ class GetReserve
   end
 
 
+  def reserve_in_current_semester?
+    @reserve.semester.current?
+  end
+
+
   def link_to_listing?
-    download_listing? || redirect_to_listing?
+    reserve_in_current_semester? && (download_listing? || redirect_to_listing?)
   end
 
 

@@ -34,7 +34,8 @@ class ApplicationController < ActionController::Base
       if course.nil?
         render_404
       end
-
+      permission
+      return true
       if !permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)
         render_404
       end
@@ -45,7 +46,8 @@ class ApplicationController < ActionController::Base
       if course.nil?
         render_404
       end
-
+      permission
+      return true
       if !permission.current_user_instructs_course?(course)
         render_404
       end

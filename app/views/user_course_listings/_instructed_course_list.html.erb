@@ -19,7 +19,11 @@
         </ul>
       </td>
       <td><%= h course.section_numbers.join(", ") %></td>
-      <td><%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %></td>
+      <td>
+        <% if CreateNewReservesPolicy.new(course).can_create_new_reserves? %>
+          <%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

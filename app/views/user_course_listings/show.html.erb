@@ -12,7 +12,9 @@
 <% elsif @permission.current_user_instructs_course?(@course) %>
 
   <% content_for(:content_title_links) do %>
-    <a href="<%= new_course_reserve_path(@course.id) %>" class="btn btn-primary">Request Material</a>
+    <% if CreateNewReservesPolicy.new(course).can_create_new_reserves? %>
+      <a href="<%= new_course_reserve_path(@course.id) %>" class="btn btn-primary">Request Material</a>
+    <% end %>
   <% end %>
 
   <%= render partial: 'instructed_course_show', locals: { reserves: @course.reserves, course: @course } %>

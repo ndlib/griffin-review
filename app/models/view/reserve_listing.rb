@@ -15,8 +15,9 @@ class ReserveListing
 
 
   def link_to_get_listing?
-    GetReserve.new(self).link_to_listing?
+    GetReserve.new(@reserve).link_to_listing?
   end
+
 
 
 end

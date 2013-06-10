@@ -19,6 +19,7 @@ describe CourseApi do
 
     it "returns the students enrolled courses for the current semseter" do
       courses = course_api.enrolled_courses('student', 'current')
+      display_course_ids(courses)
       test_result_has_course_ids(courses, ['current_normalclass_100', 'current_supersection_100'])
     end
 
@@ -94,7 +95,12 @@ describe CourseApi do
     end
   end
 
+  describe :get do
+    it "returns the course specified" do
 
+    end
+
+  end
 
   describe "course exceptions" do
 
@@ -130,5 +136,9 @@ describe CourseApi do
     courses.each do | course |
       valid_ids.include?(course.id).should be_true
     end
+  end
+
+  def display_course_ids(courses)
+    puts courses.collect { | c | c.id }.inspect
   end
 end

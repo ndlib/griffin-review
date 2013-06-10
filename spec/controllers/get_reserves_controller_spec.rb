@@ -45,6 +45,17 @@ describe GetReservesController do
 
         response.should redirect_to("http://www.google.com")
       end
+
+
+      it "renders a 404 if the reserve is not in the current semester" do
+        previous_course = CourseApi.new.get("student", "previous_ACCT_20200")
+        request = FactoryGirl.create(:request, :available, :book_chapter, :previous_semester)
+        previous_reserve = Reserve.factory(request, previous_course)
+
+        lambda {
+          get :show, id: previous_reserve.id, course_id: previous_course.id
+        }.should raise_error ActionController::RoutingError
+      end
     end
 
 

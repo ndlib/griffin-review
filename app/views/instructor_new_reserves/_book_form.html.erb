@@ -7,7 +7,7 @@
   <%= f.input :creator, :required => true %>
 
   <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
-    <%= f.input_field :needed_by, as: "string", class: 'datepicker span2' %>
+    <%= f.input_field :needed_by, as: "string", id: "book_needed_by_id", class: 'datepicker span2' %>
   <% end %>
 
   <%= f.input :number_of_copies do %>

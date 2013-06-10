@@ -13,11 +13,15 @@ module ApiMocks
 
 
     API::SearchCourse.stub!(:course_id) do | course_id |
-      path = File.join(Rails.root, "spec/fixtures/json_save/", "#{course_id}.json")
-      file = File.open(path, "rb")
-      contents = file.read
+      begin
+        path = File.join(Rails.root, "spec/fixtures/json_save/get_course", "#{course_id}.json")
+        file = File.open(path, "rb")
+        contents = file.read
 
-      ActiveSupport::JSON.decode(contents)
+        ActiveSupport::JSON.decode(contents)
+      rescue Errno::ENOENT
+        ""
+      end
     end
 
 

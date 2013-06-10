@@ -18,6 +18,16 @@ class Semester < ActiveRecord::Base
   end
 
 
+  def current?
+    date_begin <= Date.today && date_end >= Date.today
+  end
+
+
+  def future?
+    date_begin > Date.today
+  end
+
+
   def next
     Semester.where('date_begin >= ?', self.date_end).first
   end

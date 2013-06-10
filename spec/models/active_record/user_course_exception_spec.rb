@@ -17,12 +17,16 @@ describe Item do
     end
 
 
-    it "requires a semester_code" do
-      UserCourseException.new.should have(1).error_on(:semester_code)
+    it "requires a term" do
+      UserCourseException.new.should have(1).error_on(:term)
+    end
+
+    it "requires a term" do
+      UserCourseException.new.should have(1).error_on(:section_group_id)
     end
 
 
-    it "requires the role is either a student or instructor " do
+    it "requires the role is either a enrollment or instructor " do
       [
         'adfasf',
         '32423423',
@@ -38,7 +42,7 @@ describe Item do
   describe :user_course_exceptions do
 
     it "returns all the exceptions for the netid " do
-      UserCourseException.create_student_exception!("course_id", semester.id , "netid")
+      UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
       UserCourseException.create_instructor_exception!("course_id", semester.id, "netid")
       UserCourseException.create_instructor_exception!("course_id", semester.id, "other_netid")
 
@@ -47,7 +51,7 @@ describe Item do
 
 
     it "returns all the exceptions for the semester" do
-      UserCourseException.create_student_exception!("course_id", semester.id , "netid")
+      UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
       UserCourseException.create_instructor_exception!("course_id", semester.id, "netid")
       UserCourseException.create_instructor_exception!("course_id", previous_semester.id, "netid")
 
@@ -57,11 +61,11 @@ describe Item do
   end
 
 
-  describe :create_student_exception! do
+  describe :create_enrollment_exception! do
 
     it "saves with valid params" do
       lambda {
-        UserCourseException.create_student_exception!("course_id", semester.id , "netid")
+        UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
       }.should_not raise_error
     end
   end

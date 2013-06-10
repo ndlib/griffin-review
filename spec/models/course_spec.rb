@@ -9,13 +9,14 @@ describe Course do
 
   before(:each) do
     stub_courses!
-    @course = course_api.get(username, "current_normalclass_100")
+    # "current_21258_20334_20452_20237"
+    @course = course_api.get(username, "current_ACCT_20200")
   end
 
 
   it "has an id / crn " do
     @course.respond_to?(:id).should be_true
-    @course.id.should == "current_normalclass_100"
+    @course.id.should == "current_ACCT_20200"
   end
 
   it "has a reserve_id" do
@@ -30,42 +31,100 @@ describe Course do
 
   it "has a title" do
     @course.respond_to?(:title).should be_true
-    @course.title.should == "Accountancy I"
+    @course.title.should == "Accountancy II"
   end
 
 
   it "has an instructor_name" do
     @course.respond_to?(:instructor_name).should be_true
-    @course.instructor_name.should == 'fagostin'
+    @course.instructor_name.should == "William Schmuhl"
   end
 
 
-  it "has a section_number " do
-    @course.respond_to?(:section_number).should be_true
-    @course.section_number.should == 2
-  end
-
-
-  it "has a section" do
-    @course.respond_to?(:section).should be_true
+  it "has a section_numbers " do
+    @course.respond_to?(:section_numbers).should be_true
+    @course.section_numbers.should == [1, 2, 6, 9]
   end
 
 
   it "has a crosslist_id" do
     @course.respond_to?(:crosslist_id).should be_true
-    @course.crosslist_id.should == "current_BP"
+    @course.crosslist_id.should == "current_21258_20334_20452_20237"
   end
 
 
   it "has a section group id" do
     @course.respond_to?(:section_group_id).should be_true
-    @course.section_group_id.should == "current_11389"
+    @course.section_group_id.should == "current_21258_20334_20452_20237"
   end
 
 
   it "has a term_code" do
-    @course.respond_to?(:term_code).should be_true
-    @course.term_code.should == 'current'
+    @course.respond_to?(:term).should be_true
+    @course.term.should == 'current'
+  end
+
+
+  describe :enrollments do
+
+    it "lists has an enrollment_netids" do
+      @course.respond_to?(:enrollment_netids).should be_true
+    end
+
+
+    it "merges all the sections together for the net ids call" do
+      total_size = @course.sections.collect{ | s | s['enrollments']}.flatten.size
+      @course.enrollment_netids.size.should == total_size
+    end
+
+
+    it "adds in the students who have exceptions " do
+      @course.add_enrollment_exception!('netid')
+      @course.enrollment_netids.include?('netid').should be_true
+    end
+  end
+
+
+  describe :instructors do
+
+    it "lists all the instructors for a course" do
+      @course.respond_to?(:instructors).should be_true
+    end
+
+
+    it "merges all the sections together " do
+      @course.attributes['sections'][1]['instructors'] << {
+          "id"=>"newnetid",
+            "identifier_contexts"=>{"ldap"=>"uid", "staff_directory"=>"email"},
+            "identifier"=>"by_netid",
+            "netid"=>"newnetid",
+            "first_name"=>"New",
+            "last_name"=>"Guy",
+            "full_name"=>"New Guy",
+            "ndguid"=>"otherguid",
+            "position_title"=>"Associate Professional Specialist",
+            "campus_department"=>"Accountancy",
+            "primary_affiliation"=>"Staff"
+      }
+
+      @course.instructors[1]['netid'].should == 'newnetid'
+    end
+
+
+    it "removes duplicates" do
+      @course.attributes['sections'][0]['instructors'][0]['netid'].should == "wschmuhl"
+      @course.attributes['sections'][1]['instructors'][0]['netid'].should == "wschmuhl"
+
+      @course.instructors.reject { | i | i['netid'] != "wschmuhl" }.size.should == 1
+    end
+
+
+    it "adds in instructors who have exceptions" do
+      @course.add_instructor_exception!('netid')
+      @course.instructors.reject { | i | i['netid'] != 'netid'}.size.should == 1
+    end
+
+
   end
 
 
@@ -107,5 +166,13 @@ describe Course do
     end
   end
 
+
+  describe :get_term_from_course do
+
+    it "returns the term from the code" do
+      Course.get_semester_from("term_adsf_asdfasd_adsfasd_adsfasd_234234").should == 'term'
+    end
+
+  end
 
 end

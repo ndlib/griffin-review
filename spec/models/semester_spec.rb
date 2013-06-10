@@ -41,4 +41,21 @@ describe Semester do
   it "gets the next semester" do
     @current_semester.next.should == @next_semester
   end
+
+
+
+  it "can determine if it is the current semester" do
+    @current_semester.current?.should be_true
+    @next_semester.current?.should be_false
+    @distant_semester.current?.should be_false
+    @last_semester.current?.should be_false
+  end
+
+
+  it "can determine if it is in the future" do
+    @current_semester.current?.should be_false
+    @next_semester.current?.should be_true
+    @distant_semester.current?.should be_true
+    @last_semester.current?.should be_false
+  end
 end

@@ -8,7 +8,7 @@
   <%= f.input :creator, :required => true %>
 
   <%= f.input :needed_by do %>
-    <%= f.input_field :needed_by, as: "string", class: 'datepicker span2' %>
+    <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker span2' %>
   <% end %>
 
   <%= library_select_form(f) %>

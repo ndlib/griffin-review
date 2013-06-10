@@ -119,6 +119,7 @@ describe GetReserve do
     it "returns true if the listing requires a download" do
       @get_reserve.stub!(:download_listing?).and_return(true)
       @get_reserve.stub!(:redirect_to_listing?).and_return(false)
+      @get_reserve.stub!(:reserve_in_current_semester?).and_return(true)
 
       @get_reserve.link_to_listing?.should be_true
     end
@@ -126,6 +127,7 @@ describe GetReserve do
     it "returns true if the listing requires a redirect"  do
       @get_reserve.stub!(:download_listing?).and_return(false)
       @get_reserve.stub!(:redirect_to_listing?).and_return(true)
+      @get_reserve.stub!(:reserve_in_current_semester?).and_return(true)
 
       @get_reserve.link_to_listing?.should be_true
     end
@@ -133,10 +135,18 @@ describe GetReserve do
     it "returns false if the listing does not require either a download or a redirect" do
       @get_reserve.stub!(:download_listing?).and_return(false)
       @get_reserve.stub!(:redirect_to_listing?).and_return(false)
+      @get_reserve.stub!(:reserve_in_current_semester?).and_return(true)
 
       @get_reserve.link_to_listing?.should be_false
     end
 
+    it "returns false if the reserve is not in the current semester" do
+      @get_reserve.stub!(:download_listing?).and_return(true)
+      @get_reserve.stub!(:redirect_to_listing?).and_return(false)
+      @get_reserve.stub!(:reserve_in_current_semester?).and_return(false)
+
+      @get_reserve.link_to_listing?.should be_false
+    end
   end
 
 end

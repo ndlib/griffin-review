@@ -17,18 +17,26 @@ class CourseApi
   end
 
 
-  def get(netid, course_id)
-    semester_id = Course.get_semester_from(course_id)
-    load_api_courses(netid, semester_id)
+  def get(course_id)
+    # netid,
+    #semester_id = Course.get_semester_from(course_id)
+    # load_api_courses(netid, semester_id)
+
+    res = API::SearchCourse.course_id(course_id)
+    if res
+      return new_course(res['section_groups'].first)
+    else
+      return nil
+    end
+
+    res = find_section_group_for_netid(res, netid, course_id)
+    if res
+      return new_course(res)
+    else
+      return nil
+    end
 
     (@result[netid][semester_id]['instructed_course_objects'] + @result[netid][semester_id]['enrolled_course_objects']).select { | c | c.id == course_id }.first
-  end
-
-
-  def get_by_section(semester_id, section_id)
-    course = API::SearchCourse.course_by_section_id(semester_id, section_id)
-
-    new_course(course)
   end
 
 
@@ -56,7 +64,7 @@ class CourseApi
       result = []
 
       api_result.each do | c |
-        result << new_course(c)
+        result << new_course(c['section_groups'])
       end
 
       parse_crosslistings(result)
@@ -100,5 +108,25 @@ class CourseApi
       else
         raise "invalid course role"
       end
+    end
+
+
+    def find_section_group_for_netid(res, netid, course_id)
+      return false if res.empty?
+
+      res['section_groups'].each do | section_group |
+
+        section_group['sections'].each do | section |
+          if section['enrollments'].include?(netid) || section['instructors'].collect{ | s | s['netid']}.include?(netid)
+            return section_group
+          end
+        end
+      end
+
+      if UserCourseException.user_course_exceptions(netid, res['section_groups'].first['sections'].first['term']).where(section_group_id: course_id).size > 0
+        return res['section_groups'].first
+      end
+
+      false
     end
 end

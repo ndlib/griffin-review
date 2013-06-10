@@ -1,4 +1,6 @@
 class Course
+  attr_accessor :attributes, :crosslistings
+
 
   def initialize(attributes)
     @attributes = attributes
@@ -6,16 +8,18 @@ class Course
 
 
   def self.factory(attributes = {})
-    if attributes.has_key?('sections')
-      InstructedCourse.new(attributes)
-    else
-      Course.new(attributes)
-    end
+    Course.new(attributes)
   end
 
 
   def id
-    @attributes['course_id'] || "#{@attributes['term_prefix']}_#{@attributes['alpha_prefix']}_#{@attributes['number']}"
+    # self.section_group_id
+    self.course_triple
+  end
+
+
+  def course_triple
+    sections.first['course_triple']
   end
 
 
@@ -35,46 +39,63 @@ class Course
 
 
   def title
-    @attributes['course_title']
+    sections.first['course_title']
   end
 
 
-  def section
-    @attributes['section']
+  def sections
+    @attributes['sections']
   end
 
 
-  def student_netids
-    self.section['enrollments']
+  def add_enrollment_exception!(netid)
+    UserCourseException.create_enrollment_exception!(self.id, self.term, netid)
+  end
+
+
+  def enrollment_netids
+    @enrollments ||= (
+        sections.collect{ | s | s['enrollments']}.flatten +
+        exception_enrollment_netids
+      )
   end
 
 
   def instructor_name
-    "#{self.instructors.first}"
-  end
-
-
-  def instructors
-    self.section['instructors']
+    "#{primary_instructor['first_name']} #{primary_instructor['last_name']}"
   end
 
 
   def primary_instructor
-
+    @attributes['primary_instructor']
   end
 
-  def term_code
-    self.section['term']
+
+  def instructors
+    @instructors ||= (
+            sections.collect{ | s | s['instructors'] }.flatten.uniq{|x| x['netid']} +
+            exception_instructors
+        )
+  end
+
+
+  def add_instructor_exception!(netid)
+    UserCourseException.create_instructor_exception!(self.id, self.term, netid)
+  end
+
+
+  def term
+    sections.first['term']
   end
 
 
   def semester
-    @semeseter ||= Semester.semester_for_code(term_code)
+    @semeseter ||= Semester.semester_for_code(term)
   end
 
 
-  def section_number
-    self.section['section_number']
+  def section_numbers
+    sections.collect { | s | s['section_number']}
   end
 
 
@@ -97,6 +118,11 @@ class Course
 
   def reserve(id)
     reserve_search.get(id, self)
+  end
+
+
+  def default_course_data!
+    Course.reserve_test_data(self).map { | r | r.save! }
   end
 
 
@@ -125,8 +151,19 @@ class Course
   end
 
 
-  def default_course_data!
-    Course.reserve_test_data(self).map { | r | r.save! }
+  def crosslistings
+    @crosslistings ||= [self]
+  end
+
+
+  def add_crosslisted_course(course)
+    @crosslistings ||= [self]
+    @crosslistings << course
+  end
+
+
+  def crosslisted_course_ids
+    crosslistings.collect { | c | c.course_triple }
   end
 
 
@@ -136,4 +173,13 @@ class Course
       @reserve_search ||= ReserveSearch.new
     end
 
+
+    def exception_enrollment_netids
+      UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid }
+    end
+
+
+    def exception_instructors
+      UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | i | { 'id' => i.netid, 'netid' => i.netid } }
+    end
 end

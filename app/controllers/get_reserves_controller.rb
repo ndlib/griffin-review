@@ -8,6 +8,7 @@ class GetReservesController < ApplicationController
 
     @get_reserve = GetReserve.new(course.reserve(params[:id]))
 
+    check_reserve_is_in_current_semester!(@get_reserve)
     check_and_process_term_of_service_approval!(@get_reserve)
 
     send_or_redirect_if_approved!(@get_reserve)
@@ -29,6 +30,13 @@ class GetReservesController < ApplicationController
     def check_and_process_term_of_service_approval!(get_reserve)
       if params['accept_terms_of_service']
         get_reserve.approve_terms_of_service!
+      end
+    end
+
+
+    def check_reserve_is_in_current_semester!(get_reserve)
+      if !get_reserve.reserve_in_current_semester?
+        render_404
       end
     end
 

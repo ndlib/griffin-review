@@ -1,27 +1,42 @@
 class UserCourseException < ActiveRecord::Base
 
-  validates :netid, :role, :semester_code, presence: true
-  validates :role, inclusion: { in: %w(student instructor) }
+  validates :section_group_id, :netid, :role, :term, presence: true
+  validates :role, inclusion: { in: %w(enrollment instructor) }
 
 
-  def self.create_student_exception!(section_id, semester_code, netid)
-    self.new(section_id: section_id, semester_code: semester_code, netid: netid, role: 'student').save!
+  def self.create_enrollment_exception!(section_group_id, term, netid)
+    self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'enrollment').save!
   end
 
 
-  def self.create_instructor_exception!(section_id, semester_code, netid)
-    self.new(section_id: section_id, semester_code: semester_code, netid: netid, role: 'instructor').save!
+  def self.create_instructor_exception!(section_group_id, term, netid)
+    self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'instructor').save!
   end
 
 
-  def self.user_course_exceptions(netid, semester_code)
+  def self.user_course_exceptions(netid, term)
     where(netid: netid).
-    where(semester_code: semester_code)
+    where(term: term)
   end
 
 
-  def student?
-    role == "student"
+  def self.course_instructor_exceptions(section_group_id, term)
+    where(section_group_id: section_group_id).
+    where(term: term).
+    where(role: 'instructor')
+  end
+
+
+  def self.course_enrollment_exceptions(section_group_id, term)
+    where(section_group_id: section_group_id).
+    where(term: term).
+    where(role: 'enrollment')
+  end
+
+
+
+  def enrollment?
+    role == "enrollment"
   end
 
 

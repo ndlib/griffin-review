@@ -48,4 +48,8 @@ FactoryGirl.define do
     association(:item, factory: :item_audio)
   end
 
+  trait :previous_semester do
+    semester { FactoryGirl.create(:previous_semester) }
+  end
+
 end

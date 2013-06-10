@@ -20,4 +20,13 @@ module ApplicationHelper
   def permission
     @permission ||= Permission.new(current_user)
   end
+
+
+  def new_instructor_reserve(type)
+    if @request_reserve && @request_reserve.type == type
+      return @request_reserve
+    else
+      @new_reserve
+    end
+  end
 end
