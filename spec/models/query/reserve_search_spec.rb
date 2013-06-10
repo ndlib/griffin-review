@@ -7,7 +7,7 @@ describe ReserveSearch do
 
   before(:each) do
     stub_courses!
-    @course = course_api.get('student', "current_normalclass_100")
+    @course = course_api.get("current_multisection_crosslisted")
 
     valid_params = { title: "aTitle", course: @course, requestor_netid: "bob", workflow_state: "new", type: 'BookReserve', semester: semester}
     @new_reserve = Reserve.new(valid_params)

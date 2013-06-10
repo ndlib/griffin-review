@@ -7,7 +7,7 @@ describe AdminUpdateMetaData do
   before(:each) do
     stub_courses!
 
-    @course = CourseApi.new.get('instructor', 'current_ACCT_20200')
+    @course = CourseApi.new.get('current_multisection_crosslisted')
 
     r = Reserve.factory(FactoryGirl.create(:request), @course)
 

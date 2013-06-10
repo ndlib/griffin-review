@@ -23,7 +23,11 @@ class UserCourseListing
 
 
   def course(course_id)
-    course_api.get(@user.username, course_id)
+    c = course_api.get(course_id)
+
+    return nil if c.nil? || (!c.enrollment_netids.include?(@user.username) && !c.instructor_netids.include?(@user.username))
+
+    c
   end
 
 

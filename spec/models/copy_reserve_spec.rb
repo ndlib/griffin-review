@@ -11,8 +11,8 @@ describe CopyReserve do
     FactoryGirl.create(:semester)
     FactoryGirl.create(:previous_semester)
 
-    @from_course = course_api.get('student', 'previous_ACCT_20200')
-    @to_course = course_api.get('student', 'current_normalclass_100')
+    @from_course = course_api.get('previous_multisection')
+    @to_course = course_api.get('current_multisection_crosslisted')
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
 

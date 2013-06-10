@@ -227,12 +227,18 @@ describe Reserve do
     end
 
     it "addes the course reserve id to the reserve record" do
-      @reserve.course = course_api.get('instructor', 'current_ACCT_20200')
-      @reserve.attributes = { }
+      request = FactoryGirl.create(:request)
+      course = course_api.get( 'current_multisection_crosslisted')
+      reserve = Reserve.factory(request, course)
+      reserve.save!
+
+      reserve.course_id.should == course.reserve_id
+
+
     end
 
     it "raises invalid record if the record is not valid" do
-      @reserve.course = course_api.get('instructor', 'current_ACCT_20200')
+      @reserve.course = course_api.get('current_multisection_crosslisted')
       lambda {
         @reserve.save!
       }.should raise_error

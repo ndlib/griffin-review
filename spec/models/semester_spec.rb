@@ -53,9 +53,9 @@ describe Semester do
 
 
   it "can determine if it is in the future" do
-    @current_semester.current?.should be_false
-    @next_semester.current?.should be_true
-    @distant_semester.current?.should be_true
-    @last_semester.current?.should be_false
+    @current_semester.future?.should be_false
+    @next_semester.future?.should be_true
+    @distant_semester.future?.should be_true
+    @last_semester.future?.should be_false
   end
 end

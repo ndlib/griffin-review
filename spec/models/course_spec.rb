@@ -9,14 +9,14 @@ describe Course do
 
   before(:each) do
     stub_courses!
-    # "current_21258_20334_20452_20237"
-    @course = course_api.get(username, "current_ACCT_20200")
+    # "current_multisection_crosslisted"
+    @course = course_api.get("current_multisection_crosslisted")
   end
 
 
   it "has an id / crn " do
     @course.respond_to?(:id).should be_true
-    @course.id.should == "current_ACCT_20200"
+    @course.id.should == "current_multisection_crosslisted"
   end
 
   it "has a reserve_id" do
@@ -31,7 +31,7 @@ describe Course do
 
   it "has a title" do
     @course.respond_to?(:title).should be_true
-    @course.title.should == "Accountancy II"
+    @course.title.should == "Accountancy I"
   end
 
 
@@ -43,19 +43,19 @@ describe Course do
 
   it "has a section_numbers " do
     @course.respond_to?(:section_numbers).should be_true
-    @course.section_numbers.should == [1, 2, 6, 9]
+    @course.section_numbers.should == [10, 11, 12, 13]
   end
 
 
   it "has a crosslist_id" do
     @course.respond_to?(:crosslist_id).should be_true
-    @course.crosslist_id.should == "current_21258_20334_20452_20237"
+    @course.crosslist_id.should == "current_BY_M3_CE_CF"
   end
 
 
   it "has a section group id" do
     @course.respond_to?(:section_group_id).should be_true
-    @course.section_group_id.should == "current_21258_20334_20452_20237"
+    @course.section_group_id.should == "current_multisection_crosslisted"
   end
 
 

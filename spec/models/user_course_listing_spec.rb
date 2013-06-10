@@ -17,33 +17,32 @@ describe UserCourseListing do
   describe :course do
 
     it "returns a course the student belongs to" do
+      Course.any_instance.stub(:enrollment_netids).and_return([student_user.username])
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("current_ACCT_20200").title.should == "Accountancy II"
-      reserves.course("current_ACCT_20200").instructor_name.should == "William Schmuhl"
+      reserves.course("current_multisection_crosslisted").title.should == "Accountancy I"
+      reserves.course("current_multisection_crosslisted").instructor_name.should == "William Schmuhl"
     end
 
 
     it "returns nil if the user is not a part of the class" do
+      Course.any_instance.stub(:enrollment_netids).and_return(['othernetid', 'somenetid'])
       reserves = UserCourseListing.new(student_user, semester.code)
 
-      reserves.course("previous_ACMS_60882").should be_nil
+      reserves.course("current_multisection_crosslisted").should be_nil
     end
 
 
     it "returns the course even if the course is not in the current semester passed" do
+      Course.any_instance.stub(:enrollment_netids).and_return([student_user.username])
+
       reserves = UserCourseListing.new(student_user, semester.code)
-      reserves.course("current_ACCT_20200").should_not be_nil
+      reserves.course("previous_multisection").should_not be_nil
 
       prev_reserves = UserCourseListing.new(student_user, previous_semester.code)
-      prev_reserves.course("previous_ACMS_60882").should_not be_nil
+      prev_reserves.course("previous_multisection").should_not be_nil
     end
 
-
-    it "returns instructed courses from the semester passed in" do
-      reserves = UserCourseListing.new(instructor_user, semester.code)
-      reserves.course("previous_ACMS_60882").should_not be_nil
-    end
   end
 
 
@@ -101,7 +100,7 @@ describe UserCourseListing do
 
     it "returns all the courses the current user is enrolled in" do
       reserves = UserCourseListing.new(student_user, semester.code)
-      reserves.enrolled_courses.size.should == 2
+      reserves.enrolled_courses.size.should == 11
     end
 
 
@@ -147,6 +146,35 @@ describe UserCourseListing do
 
       reserve = UserCourseListing.new("current_user", ps.code)
       reserve.semester.id.should == ps.id
+    end
+  end
+
+
+
+    describe "course exceptions" do
+
+    it "merges student exceptions into the student couse list" do
+      UserCourseException.create_enrollment_exception!('18879', semester.code, 'student')
+
+      courses = course_api.enrolled_courses('student', 'current')
+      test_result_has_course_ids(courses, ['current_normalclass_100', 'current_supersection_100', 'current_HIST_32350'])
+    end
+
+
+    it "mergers instructor exceptions into the instructor course list" do
+      UserCourseException.create_instructor_exception!('18879', semester.code, 'instructor')
+
+      courses = course_api.instructed_courses('instructor', 'current')
+      test_result_has_course_ids(courses, ['current_ACCT_20200', 'current_HIST_32350' ])
+    end
+
+
+    it "creates a course object for the passed in course" do
+      UserCourseException.create_instructor_exception!('18879', semester.code, 'instructor')
+
+      courses = course_api.instructed_courses('instructor', 'current')
+
+      courses.last.class.should == Course
     end
   end
 end

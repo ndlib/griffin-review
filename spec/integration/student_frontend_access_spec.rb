@@ -11,10 +11,11 @@ describe "Student Frontend Access" do
     u = FactoryGirl.create(:student)
     login_as u
 
-    @test_course = CourseApi.new.get(u.username, "current_normalclass_100")
+    @test_course = CourseApi.new.get('current_multisection_crosslisted')
 
-    @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter, :course_id => @test_course.reserve_id), @test_course
-    @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video, :course_id => @test_course.reserve_id), @test_course
+    UserCourseListing.any_instance.stub(:courses_with_reserves).and_return([@test_course])
+    UserCourseListing.any_instance.stub(:course).and_return(@test_course)
+
   end
 
 
@@ -28,13 +29,17 @@ describe "Student Frontend Access" do
 
 
   it "allows the student to download a class resource" do
-    visit course_path(@test_course.id)
+    @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter, :course_id => @test_course.reserve_id), @test_course
+    Course.any_instance.stub(:published_reserves).and_return([@file_reserve])
 
+    visit course_path(@test_course.id)
     click_link(@file_reserve.title)
   end
 
 
   it "allows the student to retreive a link resource" do
+    @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video, :course_id => @test_course.reserve_id), @test_course
+
     visit course_path(@test_course.id)
 
     ActionController::Base.any_instance.should_receive(:redirect_to)

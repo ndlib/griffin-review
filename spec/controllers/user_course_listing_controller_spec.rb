@@ -37,13 +37,13 @@ describe UserCourseListingsController do
     describe :show do
 
       it "returns a successful response" do
-        get :show, id: "current_normalclass_100"
+        get :show, id: "current_multisection_crosslisted"
         response.should be_success
       end
 
 
       it "passes course to the view" do
-        get :show, id: "current_normalclass_100"
+        get :show, id: "current_multisection_crosslisted"
 
         assigns(:course).should_not be_nil
         assigns(:course).class.should == Course
@@ -77,7 +77,7 @@ describe UserCourseListingsController do
     describe :show do
       it "returns 404 if the course is not attached to the current user" do
         lambda {
-          get :show, id: "current_normalclass_100"
+          get :show, id: "current_multisection_crosslisted"
         }.should raise_error(ActionController::RoutingError)
       end
 

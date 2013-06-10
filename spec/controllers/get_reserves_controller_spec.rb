@@ -11,7 +11,7 @@ describe GetReservesController do
     u = FactoryGirl.create(:student)
     sign_in u
 
-    @course = CourseApi.new.get(u.username, "current_normalclass_100")
+    @course = CourseApi.new.get("current_multisection_crosslisted")
 
     request = FactoryGirl.create(:request, :available, :book_chapter)
     @reserve = Reserve.factory(request, @course)
@@ -48,7 +48,7 @@ describe GetReservesController do
 
 
       it "renders a 404 if the reserve is not in the current semester" do
-        previous_course = CourseApi.new.get("student", "previous_ACCT_20200")
+        previous_course = CourseApi.new.get("previous_multisection")
         request = FactoryGirl.create(:request, :available, :book_chapter, :previous_semester)
         previous_reserve = Reserve.factory(request, previous_course)
 

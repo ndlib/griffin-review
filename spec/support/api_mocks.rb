@@ -20,7 +20,7 @@ module ApiMocks
 
         ActiveSupport::JSON.decode(contents)
       rescue Errno::ENOENT
-        ""
+        nil
       end
     end
 

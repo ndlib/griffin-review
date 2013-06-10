@@ -13,8 +13,8 @@ class Course
 
 
   def id
-    # self.section_group_id
-    self.course_triple
+    self.section_group_id
+    # self.course_triple
   end
 
 
@@ -34,7 +34,7 @@ class Course
 
 
   def section_group_id
-    @attributes['section_group_id']
+    @attributes['section_group_id'] || @attributes['section_groups'].first['section_group_id']
   end
 
 
@@ -76,6 +76,11 @@ class Course
             sections.collect{ | s | s['instructors'] }.flatten.uniq{|x| x['netid']} +
             exception_instructors
         )
+  end
+
+
+  def instructor_netids
+    instructors.collect { | c | c['netid'] }
   end
 
 

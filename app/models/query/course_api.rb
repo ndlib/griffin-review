@@ -24,7 +24,7 @@ class CourseApi
 
     res = API::SearchCourse.course_id(course_id)
     if res
-      return new_course(res['section_groups'].first)
+      return new_course(res['section_groups'])
     else
       return nil
     end
