@@ -39,24 +39,37 @@ class ReserveSearch
   def new_and_inprocess_reserves_for_semester(semester)
     @relation.
         includes(:item).
-        where('requests.semster_id = ?', semester.id).
+        where('requests.semester_id  = ?', semester.id).
         where('requests.workflow_state = ? || requests.workflow_state = ?', 'new', 'inprocess').
         order('needed_by').
-        collect { | r | load_in_reserve(r, course) }
+        collect { | r | load_in_reserve(r, false) }
   end
 
 
-  def complete_reserves_for_semester(semester)
+  def available_reserves_for_semester(semester)
+    @relation.
+        includes(:item).
+        where('requests.semester_id  = ?', semester.id).
+        where('requests.workflow_state = ? ', 'available').
+        order('needed_by').
+        collect { | r | load_in_reserve(r, false) }
   end
 
 
   def all_reserves_for_semester(semester)
+    @relation.
+        includes(:item).
+        where('requests.semester_id  = ?', semester.id).
+        order('needed_by').
+        collect { | r | load_in_reserve(r, false) }
   end
 
 
   private
 
   def load_in_reserve(request, course)
+    course = course ? course : request.course
+
     Reserve.factory(request, course)
   end
 

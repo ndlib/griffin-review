@@ -1,14 +1,19 @@
 
 class ReservesAdminApp
 
-  def initialize(semester, current_user)
-    @semester = semester
+  def initialize(current_user, semester_code = false)
+    if semester_code
+      @semester = Semester.semester_for_code(semester_code)
+    else
+      @semester = Semester.current.first
+    end
+
     @current_user = current_user
   end
 
 
   def in_complete_reserves
-    all_reserves.select { | r | r.workflow_state != 'complete' }
+    reserve_search.new_and_inprocess_reserves_for_semester(@semester)
   end
 
 
@@ -18,7 +23,7 @@ class ReservesAdminApp
 
 
   def all_reserves
-    Course.reserve_test_data(Course.factory).collect { | r | AdminReserve.new(r) }
+    reserve_search.new_and_inprocess_reserves_for_semester(@semester)
   end
 
 

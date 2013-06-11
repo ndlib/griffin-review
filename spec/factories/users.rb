@@ -37,4 +37,13 @@ FactoryGirl.define do
     u.display_name { Faker::Name.name }
     u.email { Faker::Internet.safe_email }
   end
+
+
+  factory :admin_user, class: 'User' do |u|
+    u.first_name { Faker::Name.first_name }
+    u.last_name { Faker::Name.last_name }
+    u.display_name { Faker::Name.name }
+    u.email { Faker::Internet.safe_email }
+    u.username { Faker::Internet.user_name }
+  end
 end

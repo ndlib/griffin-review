@@ -121,6 +121,11 @@ class Reserve
   def self.generate_test_data_for_course(course)
 
   end
+
+
+  def course
+    @course ||= CourseApi.new.get(self.course_id)
+  end
 end
 
 
