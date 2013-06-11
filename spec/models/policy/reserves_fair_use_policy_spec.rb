@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'spec_helper'
 
-
-describe ReserveFairUsePolicy
+describe ReserveFairUsePolicy do
 
 
   describe "#fair_use_complete?"  do
@@ -86,4 +86,6 @@ describe ReserveFairUsePolicy
 
       policy.requires_fair_use?.should be_false
     end
+
+  end
 end
