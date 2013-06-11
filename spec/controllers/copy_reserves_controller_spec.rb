@@ -21,13 +21,17 @@ describe CopyReservesController do
     describe :create do
 
       it "returns a successful response" do
-        post :create, :course_id => "current_ACCT_20200", :to_course => "previous_ACCT_20100"
+        CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
+
+        post :create, :course_id => "current_multisection_crosslisted", :to_course => "previous_multisection"
         response.should be_success
       end
 
 
       it "sets a copy_requests variable" do
-        post :create, :course_id => "current_ACCT_20200", :to_course => "previous_ACCT_20100"
+        CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
+
+        post :create, :course_id => "current_multisection_crosslisted", :to_course => "previous_multisection"
         assigns(:copy_course_listing).should be_true
       end
 

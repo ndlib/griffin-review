@@ -149,32 +149,4 @@ describe UserCourseListing do
     end
   end
 
-
-
-    describe "course exceptions" do
-
-    it "merges student exceptions into the student couse list" do
-      UserCourseException.create_enrollment_exception!('18879', semester.code, 'student')
-
-      courses = course_api.enrolled_courses('student', 'current')
-      test_result_has_course_ids(courses, ['current_normalclass_100', 'current_supersection_100', 'current_HIST_32350'])
-    end
-
-
-    it "mergers instructor exceptions into the instructor course list" do
-      UserCourseException.create_instructor_exception!('18879', semester.code, 'instructor')
-
-      courses = course_api.instructed_courses('instructor', 'current')
-      test_result_has_course_ids(courses, ['current_ACCT_20200', 'current_HIST_32350' ])
-    end
-
-
-    it "creates a course object for the passed in course" do
-      UserCourseException.create_instructor_exception!('18879', semester.code, 'instructor')
-
-      courses = course_api.instructed_courses('instructor', 'current')
-
-      courses.last.class.should == Course
-    end
-  end
 end

@@ -19,14 +19,18 @@ describe InstructorNewReservesController do
     describe :new do
 
       it "returns a successful response" do
-        get :new, :course_id => "current_ACCT_20200"
+        InstructorNewReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
+
+        get :new, :course_id => "current_multisection_crosslisted"
         response.should be_success
       end
 
 
       it "sets a course variable" do
-        get :new, :course_id => "current_ACCT_20200"
-        assigns(:request_reserve).should be_true
+        InstructorNewReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
+
+        get :new, :course_id => "current_multisection_crosslisted"
+        assigns(:new_reserve).should be_true
       end
 
     end
@@ -36,16 +40,18 @@ describe InstructorNewReservesController do
 
       it "redirects on a successful create" do
         InstructorReserveRequest.any_instance.stub(:make_request).and_return(true)
+        InstructorNewReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
-        post :create, :course_id => "current_ACCT_20200", :instructor_reserve_request => {}
+        post :create, :course_id => "current_multisection_crosslisted", :instructor_reserve_request => {}
         response.should be_redirect
       end
 
 
       it "renders the new action if the form is not valid" do
         InstructorReserveRequest.any_instance.stub(:make_request).and_return(false)
+        InstructorNewReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
-        post :create, :course_id => "current_ACCT_20200", :instructor_reserve_request => {}
+        post :create, :course_id => "current_multisection_crosslisted", :instructor_reserve_request => {}
         response.should render_template("new")
       end
     end
@@ -61,7 +67,7 @@ describe InstructorNewReservesController do
 
       it "denies access" do
         lambda {
-          get :new, :course_id => "current_ACCT_20200"
+          get :new, :course_id => "current_multisection_crosslisted"
         }.should raise_error(ActionController::RoutingError)
       end
     end
@@ -69,7 +75,7 @@ describe InstructorNewReservesController do
     describe :create do
       it "denies access" do
         lambda {
-          post :create, :course_id => "current_ACCT_20200", :instructor_reserve_request => {}
+          post :create, :course_id => "current_multisection_crosslisted", :instructor_reserve_request => {}
         }.should raise_error(ActionController::RoutingError)
       end
     end

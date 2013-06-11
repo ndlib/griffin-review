@@ -22,7 +22,7 @@ class CourseApi
     #semester_id = Course.get_semester_from(course_id)
     # load_api_courses(netid, semester_id)
 
-    res = API::SearchCourse.course_id(course_id)
+    res = course_api.course_id(course_id)
     if res
       return new_course(res['section_groups'])
     else
@@ -99,9 +99,11 @@ class CourseApi
 
 
     def parse_course_exception_to_object(course_exception, netid, semester_id)
-      course = get_by_section(semester_id, course_exception.section_id)
+      course = self.get(course_exception.section_group_id)
 
-      if course_exception.student?
+      return if course.nil?
+
+      if course_exception.enrollment?
         @result[netid][semester_id]['enrolled_course_objects'] << course
       elsif course_exception.instructor?
         @result[netid][semester_id]['instructed_course_objects'] << course
@@ -128,5 +130,10 @@ class CourseApi
       end
 
       false
+    end
+
+
+    def course_api
+      API::CourseSearchApi
     end
 end

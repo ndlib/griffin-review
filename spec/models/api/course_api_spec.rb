@@ -104,6 +104,33 @@ describe CourseApi do
 
 
 
+  describe "course exceptions" do
+
+    it "merges student exceptions into the student couse list" do
+      UserCourseException.create_enrollment_exception!('current_multisection_crosslisted', semester.code, 'student')
+
+      courses = course_api.enrolled_courses('student', 'current')
+      courses.last.id.should == "current_multisection_crosslisted"
+    end
+
+
+    it "mergers instructor exceptions into the instructor course list" do
+      UserCourseException.create_instructor_exception!('current_multisection_crosslisted', semester.code, 'instructor')
+
+      courses = course_api.instructed_courses('instructor', 'current')
+      courses.last.id.should == "current_multisection_crosslisted"
+    end
+
+
+    it "creates a course object for the passed in course" do
+      UserCourseException.create_instructor_exception!('current_multisection_crosslisted', semester.code, 'instructor')
+
+      courses = course_api.instructed_courses('instructor', 'current')
+
+      courses.last.class.should == Course
+    end
+  end
+
   def test_result_has_course_ids(courses, valid_ids)
     courses.size.should == valid_ids.size
 

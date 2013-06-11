@@ -1,5 +1,5 @@
 module API
-  class SearchCourse < Base
+  class CourseSearchApi < Base
     BASE_PATH = "/1.0/resources/courses/"
 
 
