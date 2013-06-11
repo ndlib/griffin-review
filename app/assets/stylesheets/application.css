@@ -39,3 +39,6 @@
   width: 75%;
   height: 30px;
 }
+
+.complete_text { color: #468847;}
+.missing_text { color: #f89406;}

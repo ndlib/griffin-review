@@ -18,12 +18,12 @@ class ReservesAdminApp
 
 
   def completed_reserves
-    all_reserves.select { | r | r.workflow_state == 'complete' }
+    reserve_search.available_reserves_for_semester(@semester)
   end
 
 
   def all_reserves
-    reserve_search.new_and_inprocess_reserves_for_semester(@semester)
+    reserve_search.all_reserves_for_semester(@semester)
   end
 
 

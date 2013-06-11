@@ -2,25 +2,27 @@ jQuery ($) ->
 
 
   setupStudentDatatable = () ->
-    # For student table
-    oTable = $(".student_datatable").dataTable(
-      sPaginationType: "bootstrap"
-      iDisplayLength: 1000
-      bLengthChange: false
-      aoColumnDefs: [
-        bVisible: false
-        aTargets: [1]
-      ]
-    )
+    if $(".student_datatable").size() > 0
+      # For student table
+      oTable = $(".student_datatable").dataTable(
+        sPaginationType: "bootstrap"
+        iDisplayLength: 1000
+        bLengthChange: false
+        aoColumnDefs: [
+          bVisible: false
+          aTargets: [1]
+        ]
+      )
 
 
   setupInstructorDatatable = () ->
-    # For instructor table
-    oTable = $(".instructor_datatable").dataTable(
-      sPaginationType: "bootstrap"
-      iDisplayLength: 1000
-      bLengthChange: false
-    )
+    if $(".instructor_datatable").size() > 0
+      # For instructor table
+      oTable = $(".instructor_datatable").dataTable(
+        sPaginationType: "bootstrap"
+        iDisplayLength: 1000
+        bLengthChange: false
+      )
 
 
   setupTableFilters = () ->
@@ -59,12 +61,6 @@ jQuery ($) ->
 
 
     input.focus()
-
-
-  setupStudentDatatable()
-  setupInstructorDatatable()
-  setupTableFilters()
-
 
 
   $(document).on 'click', ".add_topic_button", ->
@@ -137,3 +133,64 @@ jQuery ($) ->
       $(this).parents('div.controls').find('div.has_electronic_copy').hide()
 
   $('.datepicker').datepicker()
+
+
+  $('#full_meta_data').hide()
+
+  $('.show_full_meta_data').click ->
+    $('#full_meta_data').show()
+    $('#discovery_meta_data').hide()
+
+
+  setupAdminDatatable = () ->
+    # For admin table
+    if $(".admin_datatable").size() > 0
+      oTable = $(".admin_datatable").dataTable(
+        sPaginationType: "bootstrap"
+        iDisplayLength: 1000
+        bLengthChange: false
+        aoColumnDefs: [
+          bVisible: false
+          bSortable: false
+          bSearchable: false
+          aTargets: [7]
+        ,
+          bSortable: false
+          bSearchable: false
+          aTargets: [1]
+        ]
+      )
+
+      if $('li.active a.tab').attr('filter') != "all" && $('li.active a.tab').attr('filter') != "complete"
+        oTable.fnFilter($('li.active a.tab').attr('filter'), 7, true, false, false)
+
+
+      $('a[data-toggle="tab"]').on('shown', ->
+        if oTable.size() == 0
+          return
+
+        oTable.fnFilter($(this).attr('filter'), 7, true, false, false)
+      )
+
+
+
+  setupMetaDataForm = () ->
+    $('#admin_reserve_title').keyup ->
+      $('.title').html($(this).val())
+
+    $('#admin_reserve_creator').keyup ->
+      $('.author').html($(this).val())
+
+
+    $('#admin_reserve_publisher').keyup ->
+      $('.publisher').html($(this).val())
+
+
+
+
+  setupMetaDataForm()
+  setupAdminDatatable()
+  setupStudentDatatable()
+  setupInstructorDatatable()
+  setupTableFilters()
+
