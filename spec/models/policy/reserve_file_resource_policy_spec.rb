@@ -16,9 +16,9 @@ describe ReserveFileResourcePolicy do
 
     it "returns true if the type of the request is an article " do
       reserve = mock_reserve FactoryGirl.create(:request, :journal_file), nil
-      policy = AdminReserve.new(reserve)
+      policy = ReserveFileResourcePolicy.new(reserve)
 
-      policy.can_have_uploaded_file?.should be_true
+      policy.can_have_file_resource?.should be_true
     end
 
 
