@@ -1,4 +1,12 @@
-<% if reserves.size > 0 %>
+<% content_for(:content_title_links) do %>
+  <% if user_course_show.can_have_new_reserves? %>
+    <a href="<%= new_course_reserve_path(@can_have_new_reserves.course_id) %>" class="btn btn-primary">Request Material</a>
+  <% end %>
+<% end %>
+
+<%= render partial: 'copy_form', locals: { course: user_course_show.course } %>
+
+<% if user_course_show.reserves.size > 0 %>
 <table class="table table-striped find-resources instructor_datatable datatable">
   <thead>
     <tr>
@@ -9,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <% reserves.each do | reserve | %>
+    <% user_course_show.reserves.each do | reserve | %>
       <%= render :partial => '/external/request/lists/instructor_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>

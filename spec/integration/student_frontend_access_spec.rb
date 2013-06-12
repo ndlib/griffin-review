@@ -14,7 +14,7 @@ describe "Student Frontend Access" do
     @test_course = CourseSearch.new.get('current_multisection_crosslisted')
 
     UserCourseListing.any_instance.stub(:courses_with_reserves).and_return([@test_course])
-    UserCourseListing.any_instance.stub(:course).and_return(@test_course)
+    UserCourseShow.any_instance.stub(:get_course).and_return(@test_course)
 
   end
 

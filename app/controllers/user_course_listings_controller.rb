@@ -8,8 +8,8 @@ class UserCourseListingsController < ApplicationController
 
 
   def show
-    @course = user_course_listing.course(params[:id])
-    check_view_permissions!(@course)
+    @user_course_show = UserCourseShow.new(current_user, params)
+    check_view_permissions!(@user_course_show.course)
   end
 
 

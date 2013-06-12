@@ -16,7 +16,7 @@ class Permission
 
 
   def current_user_enrolled_in_course?(course)
-    course_in_current_semester? && UserRoleInCoursePolicy.new(course, @current_user).user_enrolled_in_course?
+    course_in_current_semester?(course) && UserRoleInCoursePolicy.new(course, @current_user).user_enrolled_in_course?
   end
 
 

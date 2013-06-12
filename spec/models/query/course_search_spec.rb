@@ -96,9 +96,18 @@ describe CourseSearch do
 
   describe :get do
     it "returns the course specified" do
-
+      course_search.get('current_multisection_crosslisted').id.should == "current_multisection_crosslisted"
     end
 
+
+    it "returns courses from past semesters" do
+      course_search.get('previous_multisection').id.should == "previous_multisection"
+    end
+
+
+    it "returns nil if the course is not found" do
+      course_search.get('afafasfafadfafadsffd').should be_nil
+    end
   end
 
 
@@ -131,6 +140,7 @@ describe CourseSearch do
     end
   end
 
+
   def test_result_has_course_ids(courses, valid_ids)
     courses.size.should == valid_ids.size
 
@@ -138,6 +148,7 @@ describe CourseSearch do
       valid_ids.include?(course.id).should be_true
     end
   end
+
 
   def display_course_ids(courses)
     puts courses.collect { | c | c.id }.inspect

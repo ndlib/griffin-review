@@ -45,8 +45,8 @@ describe UserCourseListingsController do
       it "passes course to the view" do
         get :show, id: "current_multisection_crosslisted"
 
-        assigns(:course).should_not be_nil
-        assigns(:course).class.should == Course
+        assigns(:user_course_show).should_not be_nil
+        assigns(:user_course_show).class.should == UserCourseShow
       end
 
 
