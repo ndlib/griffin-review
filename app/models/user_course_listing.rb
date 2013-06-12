@@ -24,8 +24,9 @@ class UserCourseListing
 
   def course(course_id)
     c = course_search.get(course_id)
+    policy = UserRoleInCoursePolicy.new(c, @user)
 
-    return nil if c.nil? || (!c.enrollment_netids.include?(@user.username) && !c.instructor_netids.include?(@user.username))
+    return nil if c.nil? || (!policy.user_enrolled_in_course? && !policy.user_instructs_course?)
 
     c
   end

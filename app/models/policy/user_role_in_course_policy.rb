@@ -1,0 +1,18 @@
+class UserRoleInCoursePolicy
+
+  def initialize(course, user)
+    @course = course
+    @user = user
+  end
+
+
+  def user_enrolled_in_course?
+    @course.enrollment_netids.include?(@user.username)
+  end
+
+
+  def user_instructs_course?
+    @course.instructor_netids.include?(@user.username)
+  end
+
+end
