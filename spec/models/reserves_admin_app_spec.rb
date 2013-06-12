@@ -3,14 +3,21 @@ require 'spec_helper'
 describe ReservesAdminApp do
 
   before(:each) do
-    @reserves_admin = ReservesAdminApp.new('semester', 'current_user')
+    FactoryGirl.create(:semester)
+    @reserves_admin = ReservesAdminApp.new(mock(User))
   end
 
   describe "#in_complete_reserves" do
 
+    before(:each) do
+      mock_reserve FactoryGirl.create(:request, :available), mock(Course)
+      mock_reserve FactoryGirl.create(:request, :new), mock(Course)
+      mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+    end
+
     it "only returns reserves that are not complete" do
       @reserves_admin.in_complete_reserves.each do | reserve |
-        reserve.workflow_state.should_not == 'complete'
+        reserve.workflow_state.should_not == 'available'
       end
     end
 
