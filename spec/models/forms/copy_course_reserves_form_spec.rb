@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CopyCourseReservesForm do
 
   let(:user) { mock(User, :username => 'instructor') }
-  let(:course_api) { CourseApi.new }
+  let(:course_search) { CourseSearch.new }
 
   before(:each) do
     stub_courses!
@@ -11,8 +11,8 @@ describe CopyCourseReservesForm do
     semester = FactoryGirl.create(:semester)
     FactoryGirl.create(:next_semester)
 
-    @from_course = course_api.get('previous_multisection')
-    @to_course = course_api.get('current_multisection_crosslisted')
+    @from_course = course_search.get('previous_multisection')
+    @to_course = course_search.get('current_multisection_crosslisted')
 
     @copy_course = CopyCourseReservesForm.new(@from_course, @to_course)
   end

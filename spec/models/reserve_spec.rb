@@ -3,7 +3,7 @@
 describe Reserve do
 
   let(:course_listing) { Reserve.new() }
-  let(:course_api) { CourseApi.new }
+  let(:course_search) { CourseSearch.new }
 
   before(:each) do
     stub_courses!
@@ -228,7 +228,7 @@ describe Reserve do
 
     it "addes the course reserve id to the reserve record" do
       request = FactoryGirl.create(:request)
-      course = course_api.get( 'current_multisection_crosslisted')
+      course = course_search.get( 'current_multisection_crosslisted')
       reserve = Reserve.factory(request, course)
       reserve.save!
 
@@ -238,7 +238,7 @@ describe Reserve do
     end
 
     it "raises invalid record if the record is not valid" do
-      @reserve.course = course_api.get('current_multisection_crosslisted')
+      @reserve.course = course_search.get('current_multisection_crosslisted')
       lambda {
         @reserve.save!
       }.should raise_error

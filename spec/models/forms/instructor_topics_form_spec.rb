@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe InstructorTopicsForm do
   let(:user) { mock(User, :username => 'instructor') }
-  let(:course_api) { CourseApi.new }
-  let(:course) { course_api.get('current_multisection_crosslisted') }
+  let(:course_search) { CourseSearch.new }
+  let(:course) { course_search.get('current_multisection_crosslisted') }
 
   before(:each) do
     stub_courses!

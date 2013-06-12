@@ -11,7 +11,7 @@ describe "Student Frontend Access" do
     u = FactoryGirl.create(:student)
     login_as u
 
-    @test_course = CourseApi.new.get('current_multisection_crosslisted')
+    @test_course = CourseSearch.new.get('current_multisection_crosslisted')
 
     UserCourseListing.any_instance.stub(:courses_with_reserves).and_return([@test_course])
     UserCourseListing.any_instance.stub(:course).and_return(@test_course)

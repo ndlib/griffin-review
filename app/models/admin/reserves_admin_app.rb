@@ -33,7 +33,7 @@ class ReservesAdminApp
 
 
   def netid_instructed_courses(netid, semester)
-    ca = CourseApi.new
+    ca = CourseSearch.new
     ca.instructed_courses(netid, semester)
   end
 
@@ -44,8 +44,8 @@ class ReservesAdminApp
 
 
   def course(id, netid)
-    course_api = CourseApi.new
-    course_api.get(netid, id)
+    course_search = CourseSearch.new
+    course_search.get(netid, id)
   end
 
 

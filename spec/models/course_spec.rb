@@ -4,13 +4,13 @@ describe Course do
 
   let(:username) { 'student' }
   let(:semester) { FactoryGirl.create(:semester) }
-  let(:course_api) { CourseApi.new }
+  let(:course_search) { CourseSearch.new }
 
 
   before(:each) do
     stub_courses!
     # "current_multisection_crosslisted"
-    @course = course_api.get("current_multisection_crosslisted")
+    @course = course_search.get("current_multisection_crosslisted")
   end
 
 

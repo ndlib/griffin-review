@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CopyReserve do
 
   let(:semester) { FactoryGirl.create(:semester) }
-  let(:course_api) { CourseApi.new }
+  let(:course_search) { CourseSearch.new }
 
   before(:each) do
     stub_courses!
@@ -11,8 +11,8 @@ describe CopyReserve do
     FactoryGirl.create(:semester)
     FactoryGirl.create(:previous_semester)
 
-    @from_course = course_api.get('previous_multisection')
-    @to_course = course_api.get('current_multisection_crosslisted')
+    @from_course = course_search.get('previous_multisection')
+    @to_course = course_search.get('current_multisection_crosslisted')
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
 

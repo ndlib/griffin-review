@@ -5,11 +5,11 @@ describe ReserveSearch do
   let(:semester) { FactoryGirl.create(:semester)}
   let(:previous_semester) { FactoryGirl.create(:previous_semester)}
 
-  let(:course_api) { CourseApi.new }
+  let(:course_search) { CourseSearch.new }
 
   before(:each) do
     stub_courses!
-    @course = course_api.get("current_multisection_crosslisted")
+    @course = course_search.get("current_multisection_crosslisted")
   end
 
   describe :student_and_instructor_requests do

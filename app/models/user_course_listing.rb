@@ -23,7 +23,7 @@ class UserCourseListing
 
 
   def course(course_id)
-    c = course_api.get(course_id)
+    c = course_search.get(course_id)
 
     return nil if c.nil? || (!c.enrollment_netids.include?(@user.username) && !c.instructor_netids.include?(@user.username))
 
@@ -37,19 +37,19 @@ class UserCourseListing
 
 
   def has_instructed_courses?
-    !course_api.instructed_courses(@user.username, @semester.code).empty?
+    !course_search.instructed_courses(@user.username, @semester.code).empty?
   end
 
 
   def enrolled_courses
-    course_api.enrolled_courses(@user.username, current_semester.code)
+    course_search.enrolled_courses(@user.username, current_semester.code)
   end
 
 
   def courses_with_reserves()
     #res = []
     #i = 0
-    course_api.enrolled_courses(@user.username, current_semester.code).reject { | c | c.published_reserves.empty? }
+    course_search.enrolled_courses(@user.username, current_semester.code).reject { | c | c.published_reserves.empty? }
     # do | c |
     #  if i % 2 == 1
     #    res << c
@@ -63,7 +63,7 @@ class UserCourseListing
   def instructed_courses_with_reserves()
     #res = []
     #i = 0
-    course_api.instructed_courses(@user.username, @semester.code).reject { | c | c.reserves.empty? }
+    course_search.instructed_courses(@user.username, @semester.code).reject { | c | c.reserves.empty? }
     # do | c |
     #  if i % 2 == 1
     #    res << c
@@ -75,14 +75,14 @@ class UserCourseListing
 
 
   def instructed_courses
-    course_api.instructed_courses(@user.username, @semester.code)
+    course_search.instructed_courses(@user.username, @semester.code)
   end
 
 
   private
 
-    def course_api
-      @course_api ||= CourseApi.new
+    def course_search
+      @course_search ||= CourseSearch.new
     end
 
 end

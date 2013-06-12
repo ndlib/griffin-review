@@ -1,4 +1,4 @@
-class CourseApi
+class CourseSearch
 
   def enrolled_courses(netid, semester_id)
     load_api_courses(netid, semester_id)

@@ -124,7 +124,7 @@ class Reserve
 
 
   def course
-    @course ||= CourseApi.new.get(self.course_id)
+    @course ||= CourseSearch.new.get(self.course_id)
   end
 end
 

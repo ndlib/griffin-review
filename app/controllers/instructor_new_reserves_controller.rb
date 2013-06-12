@@ -37,7 +37,7 @@ class InstructorNewReservesController < ApplicationController
 
 
     def course
-      @course ||= CourseApi.new.get(params[:course_id])
+      @course ||= CourseSearch.new.get(params[:course_id])
     end
 
 
