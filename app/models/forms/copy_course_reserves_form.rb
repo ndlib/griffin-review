@@ -48,9 +48,13 @@ class CopyCourseReservesForm
 
     @copied_items = []
     @request_attributes[:reserve_ids].each do | rid |
-      reserve = reserve_search.get(rid, @from_course)
-      if reserve
-        @copied_items << CopyReserve.new(@to_course, reserve).copy
+      begin
+        reserve = reserve_search.get(rid, @from_course)
+        if reserve
+          @copied_items << CopyReserve.new(@to_course, reserve).copy
+        end
+      rescue ActiveRecord::RecordNotFound
+        # skip missing items
       end
     end
 
