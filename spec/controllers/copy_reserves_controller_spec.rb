@@ -23,7 +23,7 @@ describe CopyReservesController do
       it "returns a successful response" do
         CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
-        post :create, :course_id => "current_multisection_crosslisted", :to_course => "previous_multisection"
+        post :create, :course_id => "previous_multisection", :to_course_id => "current_multisection_crosslisted"
         response.should be_success
       end
 
@@ -31,7 +31,7 @@ describe CopyReservesController do
       it "sets a copy_requests variable" do
         CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
-        post :create, :course_id => "current_multisection_crosslisted", :to_course => "previous_multisection"
+        post :create, :course_id => "previous_multisection", :to_course_id => "current_multisection_crosslisted"
         assigns(:copy_course_listing).should be_true
       end
 
@@ -51,7 +51,7 @@ describe CopyReservesController do
 
       it "denies students access" do
         lambda {
-          post :create, :course_id => "current_25823", :to_course => "current_26315"
+          post :create, :course_id => "current_25823", :to_course_id=> "current_26315"
         }.should raise_error(ActionController::RoutingError)
       end
     end

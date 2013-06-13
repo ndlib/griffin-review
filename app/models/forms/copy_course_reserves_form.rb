@@ -1,11 +1,16 @@
 class CopyCourseReservesForm
+  include ModelErrorTrapping
+  include GetCourse
 
   attr_accessor :from_course, :to_course
 
-  def initialize(from_course, to_course, request_attributes = {})
-    @from_course = from_course
-    @to_course   = to_course
-    @request_attributes = request_attributes
+  def initialize(current_user, params)
+    @from_course = get_course(params[:course_id])
+    @to_course   = get_course(params[:to_course_id])
+
+    @items_to_copy = params[:reserve_ids]
+
+    validate_inputs!
   end
 
 
@@ -42,12 +47,12 @@ class CopyCourseReservesForm
 
 
   def copy_items()
-    return [] if !@request_attributes[:reserve_ids]
+    return [] if !@items_to_copy
 
     reserve_search = ReserveSearch.new
 
     @copied_items = []
-    @request_attributes[:reserve_ids].each do | rid |
+    @items_to_copy.each do | rid |
       begin
         reserve = reserve_search.get(rid, @from_course)
         if reserve
@@ -60,4 +65,21 @@ class CopyCourseReservesForm
 
     return @copied_items
   end
+
+
+  def to_course_can_have_new_reserves?
+    CreateNewReservesPolicy.new(@to_course).can_create_new_reserves?
+  end
+
+  private
+
+    def validate_inputs!
+      if @from_course.nil? || @to_course.nil?
+        render_404
+      end
+
+      if !to_course_can_have_new_reserves?
+        render_404
+      end
+    end
 end
