@@ -4,15 +4,18 @@ Reserve
 describe InstructorReserveRequest do
 
   let(:user) { mock(User, :username => 'instructor') }
-  let(:course_search) { CourseSearch.new }
+  let(:semester) { FactoryGirl.create(:semester)}
 
-  let(:course) { course_search.get('current_multisection_crosslisted') }
 
   before(:each) do
-    stub_courses!
+    @course = mock(Course, :id => "course_id", :title => 'title', :instructor_name => 'name')
+    @course.stub!(:semester).and_return(semester)
+    @course.stub!(:reserve_id).and_return('reserve_id')
 
-    FactoryGirl.create(:semester)
-    @instructor_reserve = InstructorReserveRequest.new(user, course)
+    basic_params = { :course_id => @course.id }
+
+    InstructorReserveRequest.any_instance.stub(:get_course).with("course_id").and_return(@course)
+    @instructor_reserve = InstructorReserveRequest.new(user, basic_params)
   end
 
 
@@ -129,25 +132,26 @@ describe InstructorReserveRequest do
   describe "make_request" do
 
     it "creates the reserve with valid params" do
-      valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }
+      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" } }
 
-      @instructor_reserve = InstructorReserveRequest.new(user, course, valid_atts)
+
+      @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)
       @instructor_reserve.make_request.should be_true
     end
 
 
     it "does not create a reserve when there are not valid params" do
-      invalid_atts = {'title' => "title", type: "BookReserve" }
+      invalid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve" } }
 
-      @instructor_reserve = InstructorReserveRequest.new(user, course, invalid_atts)
+      @instructor_reserve = InstructorReserveRequest.new(user, invalid_atts)
       @instructor_reserve.make_request.should be_false
     end
 
 
     it "starts the reserve out in the new workflow_state" do
-      valid_atts = {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" }
+      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" } }
 
-      @instructor_reserve = InstructorReserveRequest.new(user, course, valid_atts)
+      @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)
       @instructor_reserve.make_request
 
       @instructor_reserve.reserve.workflow_state == "new"

@@ -10,6 +10,7 @@ describe UserCourseShow do
     @user_course_show = UserCourseShow.new(user, {:id => "course_id"})
   end
 
+
   it "raises an error if the course is not found" do
     UserCourseShow.any_instance.stub(:get_course).with("not_a_course_id").and_return(nil)
 

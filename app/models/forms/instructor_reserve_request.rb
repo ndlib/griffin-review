@@ -27,10 +27,13 @@ class InstructorReserveRequest
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
   validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current } }
 
-  def initialize(current_user, course, request_attributes = {})
+  def initialize(current_user, params)
     @current_user = current_user
-    @course = course
-    self.attributes = request_attributes
+    @course = get_course(params[:course_id])
+
+    self.attributes = params[:instructor_reserve_request] || {}
+
+    validate_inputs!
   end
 
 
@@ -94,6 +97,10 @@ class InstructorReserveRequest
   end
 
 
+  def course_can_create_new_reserve?
+    CreateNewReservesPolicy.new(course).can_create_new_reserves?
+  end
+
 
   private
 
@@ -117,5 +124,26 @@ class InstructorReserveRequest
       reserve.save!
     end
 
+
+    def get_course(id)
+      course_search.get(id)
+    end
+
+
+    def course_search
+      @course_search ||= CourseSearch.new
+    end
+
+
+    def validate_inputs!
+      if @course.nil? || !course_can_create_new_reserve?
+        render_404
+      end
+    end
+
+
+    def render_404
+      raise ActionController::RoutingError.new('Not Found')
+    end
 
 end
