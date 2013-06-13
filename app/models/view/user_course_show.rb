@@ -1,4 +1,6 @@
 class UserCourseShow
+  include ModelErrorTrapping
+  include GetCourse
 
   attr_accessor :course, :current_user
 
@@ -56,25 +58,11 @@ class UserCourseShow
 
   private
 
-    def get_course(id)
-      course_search.get(id)
-    end
-
-
-    def course_search
-      @course_search ||= CourseSearch.new
-    end
-
-
     def validate_inputs!
       if @course.nil?
         render_404
       end
     end
 
-
-    def render_404
-      raise ActionController::RoutingError.new('Not Found')
-    end
 
 end

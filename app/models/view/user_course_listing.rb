@@ -1,4 +1,6 @@
 class UserCourseListing
+  include ModelErrorTrapping
+
   attr_accessor :semester
 
   def initialize(current_user, semester_code = false)

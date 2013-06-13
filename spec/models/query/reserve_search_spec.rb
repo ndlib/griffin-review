@@ -56,7 +56,9 @@ describe ReserveSearch do
 
       it "returns nil if the record is not found" do
         reserve_search = ReserveSearch.new
-        reserve_search.get(2342342, @course).should be_nil
+        lambda {
+          reserve_search.get(2342342, @course)
+        }.should raise_error ActiveRecord::RecordNotFound
 
       end
     end

@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
 
 
   def update
-    @topic_form = InstructorTopicsForm.new(current_user, course.reserve(params[:id]), params)
+    @topic_form = InstructorTopicsForm.new(current_user, params)
 
     if @topic_form.save_topics
       respond_to do |format|
@@ -18,14 +18,4 @@ class TopicsController < ApplicationController
   end
 
 
-  private
-
-    def user_course_listing
-      @user_course_listing ||= UserCourseListing.new(current_user)
-    end
-
-
-    def course
-      @course ||= user_course_listing.course(params['course_id'])
-    end
 end

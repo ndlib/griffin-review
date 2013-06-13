@@ -1,5 +1,7 @@
 class InstructorTopicsForm
   include Virtus
+  include ModelErrorTrapping
+  include GetCourse
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -9,10 +11,17 @@ class InstructorTopicsForm
 
   attribute :topics, String
 
-  def initialize(current_user, reserve, request_attributes = {} )
+  def initialize(current_user, params)
     @current_user = current_user
-    @reserve = reserve
-    self.attributes = request_attributes
+
+    # this code exists to make sure that the sideeffect that is a not found raise is placed somewhere where someone will look.
+    begin
+      @reserve = get_course(params[:course_id]).reserve(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      raise e
+    end
+
+    self.topics = params[:topics]
   end
 
 
@@ -43,8 +52,27 @@ class InstructorTopicsForm
 
   private
 
-  def persist!
-    @reserve.set_topics!(self.topics)
-  end
+    def persist!
+      @reserve.set_topics!(self.topics)
+    end
+
+
+    def get_course(id)
+      course_search.get(id)
+    end
+
+
+    def course_search
+      @course_search ||= CourseSearch.new
+    end
+
+
+    def validate_inputs!
+      if @course.nil?
+        render_404
+      end
+    end
+
+
 
 end

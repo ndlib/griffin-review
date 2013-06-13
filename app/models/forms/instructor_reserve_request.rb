@@ -1,5 +1,7 @@
 class InstructorReserveRequest
   include Virtus
+  include ModelErrorTrapping
+  include GetCourse
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -125,25 +127,11 @@ class InstructorReserveRequest
     end
 
 
-    def get_course(id)
-      course_search.get(id)
-    end
-
-
-    def course_search
-      @course_search ||= CourseSearch.new
-    end
-
 
     def validate_inputs!
       if @course.nil? || !course_can_create_new_reserve?
         render_404
       end
-    end
-
-
-    def render_404
-      raise ActionController::RoutingError.new('Not Found')
     end
 
 end

@@ -9,11 +9,7 @@ class ReserveSearch
 
 
   def get(id, course)
-    begin
-      load_in_reserve(@relation.find(id), course)
-    rescue ActiveRecord::RecordNotFound
-      nil
-    end
+    load_in_reserve(@relation.find(id), course)
   end
 
 
