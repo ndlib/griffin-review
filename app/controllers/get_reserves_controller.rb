@@ -4,9 +4,8 @@ class GetReservesController < ApplicationController
 
 
   def show
-    check_view_permissions!(course)
-
-    @get_reserve = GetReserve.new(course.reserve(params[:id]))
+    @get_reserve = GetReserve.new(current_user, params)
+    check_view_permissions!(@get_reserve.course)
 
     check_reserve_is_in_current_semester!(@get_reserve)
     check_and_process_term_of_service_approval!(@get_reserve)

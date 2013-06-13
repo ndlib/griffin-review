@@ -15,7 +15,7 @@ class ReserveListing
 
 
   def link_to_get_listing?
-    GetReserve.new(@reserve).link_to_listing?
+    ReserveCanBeLinkedToPolicy.new(@reserve).can_be_linked_to?
   end
 
 

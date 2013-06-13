@@ -1,10 +1,16 @@
 class GetReserve
+  include ModelErrorTrapping
+  include GetCourse
 
   attr_accessor :reserve, :current_user, :term_of_service_approved
 
-  def initialize(reserve)
-    @reserve = reserve
+  def initialize(current_user, params)
+    @current_user = current_user
+    @reserve = get_course(params[:course_id]).reserve(params[:id])
+
     @term_of_service_approved = false
+
+    validate_input!
   end
 
 
@@ -44,7 +50,7 @@ class GetReserve
 
 
   def link_to_listing?
-    reserve_in_current_semester? && (download_listing? || redirect_to_listing?)
+    ReserveCanBeLinkedToPolicy.new(@reserve).can_be_linked_to?
   end
 
 
@@ -56,5 +62,14 @@ class GetReserve
   def redirect_uri
     @reserve.url
   end
+
+
+  private
+
+    def validate_input!
+      if !reserve_in_current_semester?
+        render_404
+      end
+    end
 
 end
