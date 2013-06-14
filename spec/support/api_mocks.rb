@@ -2,7 +2,6 @@ module ApiMocks
 
   def stub_courses!
 
-    puts 'stubbing !!'
     API::Person.stub!(:courses) do  | netid, semester |
       begin
         path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
@@ -29,16 +28,6 @@ module ApiMocks
       rescue Errno::ENOENT
         nil
       end
-    end
-
-
-    API::CourseSearchApi.stub!(:course_by_section_id) do | term_code, section_id |
-      path = File.join(Rails.root, "spec/fixtures/json_save/course_by_section", "#{term_code}-#{section_id}.json")
-
-      file = File.open(path, "rb")
-      contents = file.read
-
-      ActiveSupport::JSON.decode(contents)
     end
 
   end
