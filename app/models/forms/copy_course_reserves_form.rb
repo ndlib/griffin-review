@@ -30,16 +30,14 @@ class CopyCourseReservesForm
 
 
   def self.current_semester_courses(current_user)
-    ucl = UserCourseListing.new(current_user, Semester.current.first.code)
-    ucl.instructed_courses
+    CourseSearch.new.instructed_courses(current_user.username, Semester.current.first.code)
   end
 
 
   def self.next_semester_courses(current_user)
     next_semester = Semester.current.first.next
     if next_semester
-      ucl = UserCourseListing.new(current_user, next_semester.code)
-      ucl.instructed_courses
+      CourseSearch.new.instructed_courses(current_user.username, next_semester.code)
     else
       []
     end
@@ -82,4 +80,5 @@ class CopyCourseReservesForm
         render_404
       end
     end
+
 end

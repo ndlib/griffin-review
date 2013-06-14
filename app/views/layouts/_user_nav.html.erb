@@ -3,21 +3,21 @@
     <a class="brand" href="/">Reserves</a>
     <ul class="nav">
       <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
-      <% if user_course_listing.has_enrolled_courses? %>
+      <% if user_course_listing.show_enrolled_courses? %>
         <li class="dropdown">
           <%= link_to raw("Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
-            <% user_course_listing.courses_with_reserves.each do | course | %>
+            <% user_course_listing.enrolled_courses.each do | course | %>
               <li><%= link_to h(course.title), course_path(course.id) %></li>
             <% end %>
           </ul>
         </li>
       <% end %>
-      <% if user_course_listing.has_instructed_courses? %>
+      <% if user_course_listing.show_instructed_courses? %>
         <li class="dropdown">
           <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
-            <% user_course_listing.instructed_courses.each do | course | %>
+            <% user_course_listing.current_instructed_courses.each do | course | %>
               <li><%= link_to h(course.title), course_path(course.id) %></li>
             <% end %>
           </ul>

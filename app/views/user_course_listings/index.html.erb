@@ -8,7 +8,7 @@
 
 <% breadcrumb([ 'Courses ']) %>
 
-<% if @user_course_listing.has_enrolled_courses? && @user_course_listing.has_instructed_courses? %>
+<% if @user_course_listing.show_both_enrolled_and_instructed_courses? %>
 
   <ul class="nav nav-tabs">
     <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
@@ -18,33 +18,27 @@
 
 <div class="tab-content">
 
-  <% if @user_course_listing.has_enrolled_courses? %>
+  <% if @user_course_listing.show_enrolled_courses? %>
     <div class="tab-pane active" id="enrolled">
-      <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.courses_with_reserves } %>
-
+      <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.enrolled_courses } %>
     </div>
   <% end %>
 
-  <% if @user_course_listing.has_instructed_courses? %>
+  <% if @user_course_listing.show_instructed_courses? %>
 
-    <div class="tab-pane <%= !@user_course_listing.has_enrolled_courses? ? 'active' : '' %>" id="instructed">
-      <form class="well form-search">
-        <label>Semester: <select name="semester" class="search_select"><%= options_from_collection_for_select(@user_course_listing.all_semesters, :code, :name, @user_course_listing.semester.code) %></select></label>
-      </form>
-      <script type="text/javascript">
-        $('.search_select').change(function () {
-          $(this).parents('form').submit();
-        });
-      </script>
+    <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.current_instructed_courses, title: @user_course_listing.current_semester_title } %>
 
-      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
+    <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.upcoming_instructed_courses,title: @user_course_listing.upcoming_semester_title } %>
+
+
+    <p><%= link_to "Go to course archive", '#', class: 'btn btn-link' %></p>
 
     </div>
   <% end %>
 </div>
 
-<% if !@user_course_listing.has_enrolled_courses? && !@user_course_listing.has_instructed_courses? %>
+<% if @user_course_listing.has_no_courses? %>
   <p class="alert">
-    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not finished being setup.
+    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
   </p>
 <% end %>

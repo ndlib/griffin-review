@@ -1,4 +1,6 @@
+<h2><%= title %></h2>
 
+<% if instructed_courses.size > 0 %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -28,3 +30,8 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+ <p class="alert">
+    You do not currently have any courses for this semester.  It could just be that the courses have not been published to the reserve tool yet.  Please check back later.
+  </p>
+<% end %>

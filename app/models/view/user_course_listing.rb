@@ -3,14 +3,8 @@ class UserCourseListing
 
   attr_accessor :semester
 
-  def initialize(current_user, semester_code = false)
+  def initialize(current_user)
     @user = current_user
-
-    if semester_code
-      @semester = Semester.semester_for_code(semester_code)
-    else
-      @semester = self.current_semester
-    end
   end
 
 
@@ -24,61 +18,63 @@ class UserCourseListing
   end
 
 
-  def course(course_id)
-    c = course_search.get(course_id)
-    policy = UserRoleInCoursePolicy.new(c, @user)
-
-    return nil if c.nil? || (!policy.user_enrolled_in_course? && !policy.user_instructs_course?)
-
-    c
+  def next_semester
+    current_semester.next
   end
 
 
-  def has_enrolled_courses?
-    !courses_with_reserves().empty?
+  def current_semester_title
+    current_semester.full_name
   end
 
 
-  def has_instructed_courses?
-    !course_search.instructed_courses(@user.username, @semester.code).empty?
+  def upcoming_semester_title
+    next_semester.full_name
+  end
+
+
+  def show_both_enrolled_and_instructed_courses?
+    show_enrolled_courses? && show_instructed_courses?
+  end
+
+
+  def show_enrolled_courses?
+    !enrolled_courses.empty?
+  end
+
+
+  def show_instructed_courses?
+    show_current_instructed_courses? || show_upcoming_instructed_courses?
+  end
+
+
+  def show_current_instructed_courses?
+    !current_instructed_courses.empty?
+  end
+
+
+  def show_upcoming_instructed_courses?
+    !upcoming_instructed_courses.empty?
+  end
+
+
+  def has_no_courses?
+    !show_enrolled_courses? && !show_instructed_courses?
   end
 
 
   def enrolled_courses
-    course_search.enrolled_courses(@user.username, current_semester.code)
+    @enrolled_courses ||= course_search.enrolled_courses(@user.username, current_semester.code).reject { | c | c.published_reserves.empty? }
   end
 
 
-  def courses_with_reserves()
-    #res = []
-    #i = 0
-    course_search.enrolled_courses(@user.username, current_semester.code).reject { | c | c.published_reserves.empty? }
-    # do | c |
-    #  if i % 2 == 1
-    #    res << c
-    #  end
-    #  i += 1
-    #end
-    #res
+  def current_instructed_courses
+    @current_instructed_courses ||=  course_search.instructed_courses(@user.username, current_semester.code)
   end
 
 
-  def instructed_courses_with_reserves()
-    #res = []
-    #i = 0
-    course_search.instructed_courses(@user.username, @semester.code).reject { | c | c.reserves.empty? }
-    # do | c |
-    #  if i % 2 == 1
-    #    res << c
-    #  end
-    #  i += 1
-    #end
-    #res
-  end
-
-
-  def instructed_courses
-    course_search.instructed_courses(@user.username, @semester.code)
+  def upcoming_instructed_courses
+    @upcoming_instruced_courses ||= course_search.instructed_courses(@user.username, next_semester.code)
   end
 
 

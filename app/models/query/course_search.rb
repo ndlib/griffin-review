@@ -28,15 +28,6 @@ class CourseSearch
     else
       return nil
     end
-
-    res = find_section_group_for_netid(res, netid, course_id)
-    if res
-      return new_course(res)
-    else
-      return nil
-    end
-
-    (@result[netid][semester_id]['instructed_course_objects'] + @result[netid][semester_id]['enrolled_course_objects']).select { | c | c.id == course_id }.first
   end
 
 

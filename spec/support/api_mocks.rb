@@ -4,11 +4,18 @@ module ApiMocks
 
     puts 'stubbing !!'
     API::Person.stub!(:courses) do  | netid, semester |
-      path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
-      file = File.open(path, "rb")
-      contents = file.read
+      begin
+        path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
+        file = File.open(path, "rb")
+        contents = file.read
 
-      ActiveSupport::JSON.decode(contents)["people"].first
+        ActiveSupport::JSON.decode(contents)["people"].first
+      rescue Errno::ENOENT
+        {
+          'enrolled_courses' => [],
+          'instructed_courses' => []
+        }
+      end
     end
 
 
