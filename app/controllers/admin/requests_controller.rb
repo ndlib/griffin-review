@@ -1,15 +1,7 @@
 class Admin::RequestsController  < ApplicationController
 
   def index
-    reserves
-
-    if params[:filter] == 'complete'
-      @reserve_list = reserves.completed_reserves
-    elsif params[:filter] == 'all'
-      @reserve_list = reserves.all_reserves
-    else
-      @reserve_list = reserves.in_complete_reserves
-    end
+    @admin_request_listing = AdminRequestListing.new(current_user, params)
   end
 
 

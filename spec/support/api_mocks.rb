@@ -45,6 +45,13 @@ module ApiMocks
 
 
   def mock_reserve(request, course)
+    if !course.nil?
+      request.course_id = course.id
+      request.crosslist_id = course.crosslist_id
+      request.save!
+    end
+
     Reserve.factory(request, course)
   end
+
 end

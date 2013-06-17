@@ -16,7 +16,11 @@ class InstructorTopicsForm
 
     # this code exists to make sure that the sideeffect that is a not found raise is placed somewhere where someone will look.
     begin
-      @reserve = get_course(params[:course_id]).reserve(params[:id])
+      if params[:reserve]
+        @reserve = params[:reserve]
+      else
+        @reserve = get_course(params[:course_id]).reserve(params[:id])
+      end
     rescue ActiveRecord::RecordNotFound => e
       raise e
     end
@@ -55,17 +59,6 @@ class InstructorTopicsForm
     def persist!
       @reserve.set_topics!(self.topics)
     end
-
-
-    def get_course(id)
-      course_search.get(id)
-    end
-
-
-    def course_search
-      @course_search ||= CourseSearch.new
-    end
-
 
     def validate_inputs!
       if @course.nil?

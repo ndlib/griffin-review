@@ -232,7 +232,7 @@ describe Reserve do
       reserve = Reserve.factory(request, course)
       reserve.save!
 
-      reserve.course_id.should == course.reserve_id
+      reserve.course_id.should == course.id
 
 
     end

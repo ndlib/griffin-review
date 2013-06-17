@@ -10,9 +10,9 @@ describe ReservesAdminApp do
   describe "#in_complete_reserves" do
 
     before(:each) do
-      mock_reserve FactoryGirl.create(:request, :available), mock(Course)
-      mock_reserve FactoryGirl.create(:request, :new), mock(Course)
-      mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+      mock_reserve FactoryGirl.create(:request, :available), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
+      mock_reserve FactoryGirl.create(:request, :new), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
+      mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
     end
 
     it "only returns reserves that are not complete" do
@@ -42,14 +42,14 @@ describe ReservesAdminApp do
   describe "#reserve" do
 
     it "decorates reseres with the admin reserve " do
-      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
 
       @reserves_admin.reserve(reserve.id).class.should == AdminReserve
     end
 
 
     it "searchs for the reserve by id" do
-      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course)
+      reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
 
       @reserves_admin.reserve(reserve.id).id.should == reserve.id
     end

@@ -74,6 +74,10 @@ class UserCourseListing
 
 
   def upcoming_instructed_courses
+    if !next_semester
+      return []
+    end
+
     @upcoming_instruced_courses ||= course_search.instructed_courses(@user.username, next_semester.code)
   end
 

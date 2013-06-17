@@ -1,4 +1,4 @@
-<% topic_form = InstructorTopicsForm.new(current_user, reserve) %>
+<% topic_form = InstructorTopicsForm.new(current_user, {reserve: reserve}) %>
 <div class="modal hide topic_form" id="topic_form<%= reserve.id %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>

@@ -118,7 +118,6 @@ class InstructorReserveRequest
     def persist!
       reserve.attributes = self.attributes
 
-
       reserve.requestor_netid = @current_user.username
       reserve.course = @course
       reserve.semester = @course.semester

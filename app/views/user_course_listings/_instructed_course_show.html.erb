@@ -1,6 +1,6 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
-    <a href="<%= new_course_reserve_path(@can_have_new_reserves.course_id) %>" class="btn btn-primary">Request Material</a>
+    <a href="<%= new_course_reserve_path(user_course_show.course_id) %>" class="btn btn-primary">Request Material</a>
   <% end %>
 <% end %>
 
@@ -25,7 +25,7 @@
 <% else %>
   <p class="alert">
     <strong>There are no reserves requested for this class. </strong><br>
-    <a href="<%= new_course_reserve_path(course.id) %>">Request Material</a>
+    <a href="<%= new_course_reserve_path(user_course_show.course_id) %>">Request Material</a>
   </p>
 <% end %>
 

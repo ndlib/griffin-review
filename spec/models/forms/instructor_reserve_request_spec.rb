@@ -8,7 +8,7 @@ describe InstructorReserveRequest do
 
 
   before(:each) do
-    @course = mock(Course, :id => "course_id", :title => 'title', :instructor_name => 'name')
+    @course = mock(Course, :id => "course_id", :title => 'title', :instructor_name => 'name', :crosslist_id => 'crosslist_id')
     @course.stub!(:semester).and_return(semester)
     @course.stub!(:reserve_id).and_return('reserve_id')
 

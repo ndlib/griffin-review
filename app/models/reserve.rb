@@ -68,6 +68,15 @@ class Reserve
   end
 
 
+  def requestor_name
+    u = User.where(:username => self.requestor_netid).first
+    if !u
+      return ""
+    end
+
+    u.display_name
+  end
+
   def request
     @request ||= Request.new
   end
@@ -78,7 +87,8 @@ class Reserve
       item.save!
 
       request.item = item
-      request.course_id = course.reserve_id
+      request.course_id = course.id
+      request.crosslist_id = course.crosslist_id
 
       request.save!
     end

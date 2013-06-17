@@ -1,5 +1,5 @@
 <% content_for(:content_title) do %>
-  <h1>Request New Material <small><%= h @course.title %></small></h1>
+  <h1>Request New Material <small><%= h @new_reserve.course.title %></small></h1>
 <% end %>
 
 <div class="btn-group well" data-toggle="buttons-radio">
@@ -13,7 +13,7 @@
   </p>
 
   <div>
-    <%= link_to 'Cancel', course_path(@course.id), :id => 'cancel_button', :class => "btn btn-danger" %>
+    <%= link_to 'Cancel', course_path(@new_reserve.course.id), :id => 'cancel_button', :class => "btn btn-danger" %>
   </div>
 </div>
 

@@ -19,11 +19,11 @@
     <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work. ", rows: 5 %>
   <% end %>
 
-  <%= f.input :library, as: "hidden", value: 'Hesburgh' %>
+  <%= hidden_field_tag 'instructor_reserve_request[library]', 'Hesburgh' %>
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'VideoReserve' %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
-    <%= link_to 'Cancel', course_path(@course.id), :class => "btn btn-danger" %>
+    <%= link_to 'Cancel', course_path(object.course.id), :class => "btn btn-danger" %>
   </div>
 <% end %>

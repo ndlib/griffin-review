@@ -16,7 +16,7 @@ class AdminReserveListing
 
 
   def requestor
-    @reserve.requestor_netid
+    @reserve.requestor_name
   end
 
 

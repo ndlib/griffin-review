@@ -10,9 +10,9 @@
     </li>
     <li class="<%= filter.awaiting_css_class %>">
       <% if filter.awaiting? || filter.new? %>
-        <a class="tab" data-toggle="tab" filter="awaiting" href="#2">Awaiting Action</a>
+        <a class="tab" data-toggle="tab" filter="inprocess" href="#2">In process</a>
       <% else %>
-        <a class="tab" filter="awaiting" href="<%= requests_path(:filter => 'awaiting') %>">Awaiting Action</a>
+        <a class="tab" filter="inprocess" href="<%= requests_path(:filter => 'awaiting') %>">In process</a>
       <% end %>
     </li>
     <li class="<%= filter.complete_css_class %>">

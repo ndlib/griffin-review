@@ -23,8 +23,10 @@ class CourseSearch
     # load_api_courses(netid, semester_id)
 
     res = course_api.course_id(course_id)
+    res = search_for_section_group(res, course_id)
+
     if res
-      return new_course(res['section_groups'])
+      return new_course(res)
     else
       return nil
     end
@@ -123,6 +125,23 @@ class CourseSearch
       false
     end
 
+
+    def search_for_section_group(res, id)
+      if !res
+        return nil
+      end
+      if res['section_groups'].is_a?(Hash)
+        return res['section_groups']
+      else
+        res['section_groups'].each do | sg |
+          if sg['section_group_id'] == id
+            return sg
+          end
+        end
+
+        return nil
+      end
+    end
 
     def course_api
       API::CourseSearchApi

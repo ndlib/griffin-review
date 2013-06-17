@@ -15,9 +15,9 @@ describe ReserveSearch do
   describe :student_and_instructor_requests do
 
     before(:each) do
-      @new_reserve       = mock_reserve FactoryGirl.create(:request, :new, :book, :course_id => @course.reserve_id), @course
-      @inprogress_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :book, :course_id => @course.reserve_id), @course
-      @available_reserve = mock_reserve FactoryGirl.create(:request, :available, :book, :course_id => @course.reserve_id), @course
+      @new_reserve       = mock_reserve FactoryGirl.create(:request, :new, :book), @course
+      @inprogress_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :book), @course
+      @available_reserve = mock_reserve FactoryGirl.create(:request, :available, :book), @course
     end
 
 

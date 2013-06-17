@@ -5,7 +5,8 @@ FactoryGirl.define do
   factory :request do
     needed_by Date.today + 2.weeks
     sequence(:title) { |n| "Request Title #{n}" }
-    course_id "adsfdasadfs"
+    course_id "course_id"
+    crosslist_id "crosslist_id"
     requestor_netid "netid"
     association(:item)
     note { Faker::Lorem.paragraph }

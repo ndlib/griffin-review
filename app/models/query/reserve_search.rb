@@ -16,7 +16,7 @@ class ReserveSearch
   def instructor_reserves_for_course(course)
     @relation.
         includes(:item).
-        where('course_id = ? ', course.reserve_id).
+        where('crosslist_id = ? ', course.crosslist_id).
         order('items.title').
         collect { | r | load_in_reserve(r, course)}
   end
@@ -25,7 +25,7 @@ class ReserveSearch
   def student_reserves_for_course(course)
     @relation.
         includes(:item).
-        where('course_id = ? ', course.reserve_id).
+        where('crosslist_id = ? ', course.crosslist_id).
         where('requests.workflow_state = ?', 'available').
         order('items.title').
         collect { | r | load_in_reserve(r, course)}

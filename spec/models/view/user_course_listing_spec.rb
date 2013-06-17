@@ -33,6 +33,13 @@ describe UserCourseListing do
       reserves.upcoming_instructed_courses.size.should == 1
       reserves.upcoming_instructed_courses.first.id.should == "next_25823"
     end
+
+
+    it "returns an empty array if there is no next semester" do
+      reserves = UserCourseListing.new(instructor_user)
+      reserves.upcoming_instructed_courses.should == []
+    end
+
   end
 
 
