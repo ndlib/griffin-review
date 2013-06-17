@@ -6,31 +6,7 @@
   <a href="#filter_form" data-toggle="modal">Filter Request Results</a>
 <% end %>
 
-
-<div class="tabbable tabs-top">
-  <ul class="nav nav-tabs">
-    <li class="<%= params[:filter].nil? || params[:filter] == 'new' ? 'active' : '' %>">
-      <% if !params[:filter] || params[:filter] == 'awaiting' %>
-        <a class="tab" data-toggle="tab" filter="new" href="#1">New</a>
-      <% else %>
-        <a class="tab" filter="new" href="<%= requests_path() %>">New</a>
-      <% end %>
-    </li>
-    <li class="<%= params[:filter] == 'awaiting' ? 'active' : '' %>">
-      <% if !params[:filter] || params[:filter] == 'awaiting' %>
-        <a class="tab" data-toggle="tab" filter="awaiting" href="#2">Awaiting Action</a>
-      <% else %>
-        <a class="tab" filter="awaiting" href="<%= requests_path(:filter => 'awaiting') %>">Awaiting Action</a>
-      <% end %>
-    </li>
-    <li class="<%= params[:filter] == 'complete' ? 'active' : '' %>">
-      <a class="tab" filter="complete" data-toggle="link_tab" href="<%= requests_path(:filter => 'complete') %>">Completed</a>
-    </li>
-    <li class="<%= params[:filter] == 'all' ? 'active' : '' %>">
-      <a class="tab" data-toggle="link_tab" filter="all" href="<%= requests_path(:filter => 'all') %>">All</a>
-    </li>
-  </ul>
-</div>
+<%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
 
 <form class="table_filter">
   <select>
@@ -53,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @reserve_list.each do | reserve | %>
+    <% @admin_request_listing.reserves.each do | reserve | %>
       <%= render :partial => '/external/request/lists/admin_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>

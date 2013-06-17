@@ -4,7 +4,7 @@ module API
 
 
     def self.course_id(course_id)
-      get_json("by_course_triple/#{course_id}")
+      get_json("by_section_group/#{course_id}")
     end
 
 

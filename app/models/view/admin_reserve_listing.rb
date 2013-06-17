@@ -10,6 +10,11 @@ class AdminReserveListing
   end
 
 
+  def button
+    @button ||= AdminEditButton.new(@reserve)
+  end
+
+
   def requestor
     @reserve.requestor_netid
   end

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Semester do
 
   before(:all) do
-    @current_semester = Factory.create(:semester, :code => 'code', :date_end => Date.today + 3.months)
-    @next_semester = Factory.create(:semester, :code => 'code1', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
-    @distant_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
-    @last_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
+    @current_semester = Factory.create(:semester, :code => 'code', :date_end => Date.today + 90.days)
+    @next_semester = Factory.create(:semester, :code => 'code1', :date_begin => Date.today + 91.days, :date_end => Date.today + 290.days)
+    @distant_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 291.days, :date_end => Date.today + 490.days)
+    @last_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today - 6.months, :date_end => Date.today - 1.days)
   end
 
   it do
@@ -17,12 +17,15 @@ describe Semester do
     @current_semester.full_name.should_not be_nil
     @current_semester.code.should_not be_nil
   end
+
+
   it "should report an error if code or full name are blank" do
     @bad_semester = Factory.build(:semester, :code=> '', :full_name => '')
     @bad_semester.code = ''
     @bad_semester.should have_at_least(1).error_on(:full_name)
     @bad_semester.should have_at_least(1).error_on(:code)
   end
+
 
   context "which is proximate" do
     it "should be the current or one of next two future semesters" do
@@ -42,6 +45,13 @@ describe Semester do
     @current_semester.next.should == @next_semester
   end
 
+
+  it "can get all the semesters before a semster " do
+    semesters = Semester.semesters_before_semester(@next_semester)
+    semesters.size.should == 2
+    semesters.include?(@current_semester).should be_true
+    semesters.include?(@last_semester).should be_true
+  end
 
 
   it "can determine if it is the current semester" do
