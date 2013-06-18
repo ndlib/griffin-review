@@ -7,12 +7,11 @@ describe GetReserve do
 
     semester = FactoryGirl.create(:semester)
 
-    @course = mock(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :reserve_id => 'from_reserve_id')
+    @course = mock(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
     GetReserve.any_instance.stub(:get_course).with(@course.id).and_return(@course)
 
-    @reserve = mock(Reserve, id: 1)
-    @reserve.stub!(:semester).and_return(semester)
-    @course.stub!(:reserve).with(@reserve.id).and_return(@reserve)
+    @reserve =  mock_reserve FactoryGirl.create(:request, :book_chapter), @course
+    @course.stub(:reserve).with(@reserve.id).and_return(@reserve)
 
     @valid_params = { course_id: @course.id, id: @reserve.id }
   end
@@ -53,7 +52,7 @@ describe GetReserve do
     end
 
     it "returns false if the listing should not download a file"  do
-      @reserve.stub!(:file).and_return(nil)
+      @reserve.pdf.clear
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.download_listing?.should be_false
@@ -64,10 +63,8 @@ describe GetReserve do
   describe :download_file_path do
 
     it "returns the path the to file for download" do
-      @reserve.stub!(:file).and_return("FILE")
-
       gcl = GetReserve.new(@user, @valid_params)
-      gcl.download_file_path.include?("FILE").should be_true
+      gcl.download_file_path.include?(@reserve.pdf.path).should be_true
     end
 
   end

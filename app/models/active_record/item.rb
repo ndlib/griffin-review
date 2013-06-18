@@ -6,6 +6,9 @@ class Item < ActiveRecord::Base
 
   self.inheritance_column = nil
 
+  has_attached_file :pdf
+
+
   def title
     use_discovery_api? ? discovery_record.title : self[:title]
   end

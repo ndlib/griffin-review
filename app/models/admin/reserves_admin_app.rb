@@ -28,7 +28,7 @@ class ReservesAdminApp
 
 
   def reserve(id)
-    AdminReserve.new(reserve_search.get(id, self))
+    reserve_search.get(id, self)
   end
 
 

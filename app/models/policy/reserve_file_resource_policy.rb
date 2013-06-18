@@ -13,6 +13,11 @@ class ReserveFileResourcePolicy
 
 
   def has_file_resource?
-    can_have_file_resource? && @reserve.file.present?
+    can_have_file_resource? && @reserve.pdf.present?
+  end
+
+
+  def reserve_file_path
+    @reserve.pdf.path
   end
 end

@@ -44,7 +44,7 @@ describe ReservesAdminApp do
     it "decorates reseres with the admin reserve " do
       reserve = mock_reserve FactoryGirl.create(:request, :inprocess), mock(Course, id: 'id', crosslist_id: 'crosslist_id')
 
-      @reserves_admin.reserve(reserve.id).class.should == AdminReserve
+      @reserves_admin.reserve(reserve.id).class.should == Reserve
     end
 
 

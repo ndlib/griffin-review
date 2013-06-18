@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'spec_helper'
 
 describe ReserveFairUsePolicy do
 
@@ -18,7 +17,6 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      admin_reserve = AdminReserve.new(reserve)
       policy.stub!(:requires_fair_use?).and_return(false)
 
       policy.fair_use_complete?.should be_true

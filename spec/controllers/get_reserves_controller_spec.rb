@@ -14,7 +14,9 @@ describe GetReservesController do
     @course = CourseSearch.new.get("current_multisection_crosslisted")
 
     request = FactoryGirl.create(:request, :available, :book_chapter)
-    @reserve = Reserve.factory(request, @course)
+    @reserve = mock_reserve request, @course
+
+    @url_reserve = mock_reserve FactoryGirl.create(:request, :available, :video), @course
   end
 
   describe :show do
@@ -30,20 +32,15 @@ describe GetReservesController do
       end
 
       it "downloads the item if the copyright accepetance has been accepted and it is a download item" do
-        Reserve.any_instance.stub(:file).and_return("FILE")
-
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
 
         get :show, id: @reserve.id, course_id: @course.id, accept_terms_of_service: 1
       end
 
       it "redirects if the copyright acceptance has has been accepted and it is a redirect item" do
-        Reserve.any_instance.stub(:url).and_return("http://www.google.com")
-        Reserve.any_instance.stub(:file).and_return(nil)
+        get :show, id: @url_reserve.id, course_id: @course.id, accept_terms_of_service: 1
 
-        get :show, id: @reserve.id, course_id: @course.id, accept_terms_of_service: 1
-
-        response.should redirect_to("http://www.google.com")
+        response.should redirect_to(@url_reserve.url)
       end
 
 
@@ -65,18 +62,14 @@ describe GetReservesController do
       end
 
       it "downloads the file if it is a downloaded item " do
-        Reserve.any_instance.stub(:file).and_return("FILE")
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
 
         get :show, id: @reserve.id, course_id: @course.id
       end
 
       it "redirects if the file is a redierect item" do
-        Reserve.any_instance.stub(:url).and_return("http://www.google.com")
-        Reserve.any_instance.stub(:file).and_return(nil)
-
-        get :show, id: @reserve.id, course_id: @course.id
-        response.should redirect_to("http://www.google.com")
+        get :show, id: @url_reserve.id, course_id: @course.id
+        response.should redirect_to(@url_reserve.url)
       end
     end
   end

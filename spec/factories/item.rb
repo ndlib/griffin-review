@@ -14,14 +14,14 @@ FactoryGirl.define do
   factory :item_book_chapter, class: Item do
     title "book chapter reserve"
     type "BookChapterReserve"
-    file "/spec/fixtures/downloaded_fixture_file.txt"
+    pdf { fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf') }
   end
 
 
   factory :item_journal_file, class: Item do
     title "jourlnal file reserve"
     type "JournalReserve"
-    file "/spec/fixtures/downloaded_fixture_file.txt"
+    pdf { fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf') }
   end
 
 

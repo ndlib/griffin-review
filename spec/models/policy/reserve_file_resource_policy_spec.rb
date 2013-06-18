@@ -74,6 +74,7 @@ describe ReserveFileResourcePolicy do
     it "returns false if the reserve does not have a file but can have a file attached" do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       reserve.stub!(:file).and_return(nil)
+      reserve.pdf.clear
 
       policy = ReserveFileResourcePolicy.new(reserve)
       policy.stub!(:can_have_file_resource?).and_return(true)
@@ -84,7 +85,7 @@ describe ReserveFileResourcePolicy do
 
     it "returns false if the reserve does not  have a file and cannot have files attached" do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
-      reserve.stub!(:file).and_return("file")
+      reserve.pdf.clear
 
       policy = ReserveFileResourcePolicy.new(reserve)
       policy.stub!(:can_have_file_resource?).and_return(false)

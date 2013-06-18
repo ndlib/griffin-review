@@ -7,7 +7,10 @@ class AlterItemTable < ActiveRecord::Migration
     add_column :items, :nd_meta_data_id, :string
     add_column :items, :overwrite_nd_meta_data, :boolean
     add_column :items, :length, :string
-    add_column :items, :file, :string
+    add_column :items, :pdf_file_name, :string
+    add_column :items, :pdf_file_size, :string
+    add_column :items, :pdf_content_type, :string
+    add_column :items, :pdf_updated_at, :string
     add_column :items, :url, :string
     add_column :items, :type, :string
     add_column :items, :publisher, :string

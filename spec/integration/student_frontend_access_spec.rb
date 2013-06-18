@@ -34,7 +34,7 @@ describe "Student Frontend Access" do
 
 
     it "allows the student to download a class resource" do
-      @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter, :course_id => @test_course.reserve_id), @test_course
+      @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @test_course
       Course.any_instance.stub(:published_reserves).and_return([@file_reserve])
 
       visit course_path(@test_course.id)
@@ -43,7 +43,7 @@ describe "Student Frontend Access" do
 
 
     it "allows the student to retreive a link resource" do
-      @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video, :course_id => @test_course.reserve_id), @test_course
+      @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video), @test_course
 
       visit course_path(@test_course.id)
 

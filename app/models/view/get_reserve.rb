@@ -35,7 +35,7 @@ class GetReserve
 
 
   def download_listing?
-    @reserve.file.present?
+    ReserveFileResourcePolicy.new(@reserve).has_file_resource?
   end
 
 
@@ -55,7 +55,7 @@ class GetReserve
 
 
   def download_file_path
-    "#{Rails.root}/#{@reserve.file}"
+    ReserveFileResourcePolicy.new(@reserve).reserve_file_path
   end
 
 
