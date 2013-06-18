@@ -8,3 +8,4 @@ doc/api/
 doc/app/
 .sass-cache/
 config/database.yml
+uploads/pdfs

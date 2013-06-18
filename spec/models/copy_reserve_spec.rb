@@ -33,8 +33,12 @@ describe CopyReserve do
 
   it "changes the course to the new course" do
     new_reserve = @copy_reserve.copy
+
     new_reserve.course.should == @to_course
+    new_reserve.course_id.should == @to_course.id
+    new_reserve.crosslist_id.should == @to_course.crosslist_id
   end
+
 
   it "does not copy tags" do
     @reserve.set_topics!('topic1')

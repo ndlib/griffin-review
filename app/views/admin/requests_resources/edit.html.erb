@@ -7,7 +7,7 @@
  <div class="span6">
     <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
       <% if @request.show_file_upload_form? %>
-        <%= f.input :file, :label => 'Upload a pdf', :as => :file %>
+        <%= f.input :pdf, :label => 'Upload a pdf', :as => :file %>
 
       <% elsif @request.show_url_form? %>
         <%= f.input :url, :label => 'Link to external site' %>

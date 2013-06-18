@@ -29,6 +29,9 @@ class UserCourseListing
 
 
   def upcoming_semester_title
+    if next_semester.nil?
+      return ""
+    end
     next_semester.full_name
   end
 
@@ -55,6 +58,16 @@ class UserCourseListing
 
   def show_upcoming_instructed_courses?
     !upcoming_instructed_courses.empty?
+  end
+
+
+  def has_current_semester?
+    !current_semester.nil?
+  end
+
+
+  def has_next_semester?
+    !next_semester.nil?
   end
 
 

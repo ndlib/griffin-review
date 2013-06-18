@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
 
   self.inheritance_column = nil
 
-  has_attached_file :pdf
+  has_attached_file :pdf, { :path => ":rails_root/uploads/pdfs/:id/:filename" }
 
 
   def title

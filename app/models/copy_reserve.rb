@@ -10,7 +10,9 @@ class CopyReserve
   def copy
     new_request = @reserve.request.dup
 
-    new_request.course_id = @course_to.reserve_id
+    new_request.course_id = @course_to.id
+    new_request.crosslist_id = @course_to.crosslist_id
+
     new_request.semester  = @course_to.semester
     new_request.topics    = []
     new_request.save!

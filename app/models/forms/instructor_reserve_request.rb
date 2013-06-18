@@ -21,6 +21,7 @@ class InstructorReserveRequest
   attribute :library, String
   attribute :number_of_copies, Integer
   attribute :type, String
+  attribute :pdf, String
 
   validates :title, :needed_by, :library, :presence => true
   validates :creator, :presence => true, :if => :creator_required?
