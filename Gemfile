@@ -53,6 +53,8 @@ gem "state_machine"
 
 gem 'virtus'
 
+gem "paperclip"
+
 # development only
 group :development do
     gem 'pry-rails'
