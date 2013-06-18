@@ -1,9 +1,8 @@
 class Admin::RequestsResourcesController  < ApplicationController
 
-  layout 'admin'
 
   def edit
-    @request = reserves.reserve(params[:id])
+    @request = AdminUpdateResource.new(current_user, params)
   end
 
 
