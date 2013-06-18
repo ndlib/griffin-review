@@ -2,17 +2,17 @@
 <div class="tabbable tabs-top">
   <ul class="nav nav-tabs">
     <li class="<%= filter.new_css_class %>">
-      <% if filter.awaiting? || filter.new? %>
+      <% if filter.inprocess? || filter.new? %>
         <a class="tab" data-toggle="tab" filter="new" href="#1">New</a>
       <% else %>
         <a class="tab" filter="new" href="<%= requests_path() %>">New</a>
       <% end %>
     </li>
-    <li class="<%= filter.awaiting_css_class %>">
-      <% if filter.awaiting? || filter.new? %>
+    <li class="<%= filter.inprocess_css_class %>">
+      <% if filter.inprocess? || filter.new? %>
         <a class="tab" data-toggle="tab" filter="inprocess" href="#2">In process</a>
       <% else %>
-        <a class="tab" filter="inprocess" href="<%= requests_path(:filter => 'awaiting') %>">In process</a>
+        <a class="tab" filter="inprocess" href="<%= requests_path(:filter => 'inprocess') %>">In process</a>
       <% end %>
     </li>
     <li class="<%= filter.complete_css_class %>">

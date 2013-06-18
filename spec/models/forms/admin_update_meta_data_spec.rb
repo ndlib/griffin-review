@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-Reserve
-
 describe AdminUpdateMetaData do
 
   before(:each) do

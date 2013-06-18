@@ -55,7 +55,6 @@ class AdminUpdateMetaData
   end
 
 
-
   private
 
     def requires_nd_meta_data_id?

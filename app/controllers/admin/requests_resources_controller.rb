@@ -7,8 +7,13 @@ class Admin::RequestsResourcesController  < ApplicationController
 
 
   def update
-    @request = reserves.reserve(params[:id])
-    redirect_to requests_path(@request.id, :filter => @request.status)
+    @request = AdminUpdateResource.new(current_user, params)
+
+    if @request.save_resource
+      redirect_to requests_path(:filter => @request.workflow_state)
+    else
+      render 'edit'
+    end
   end
 
   protected

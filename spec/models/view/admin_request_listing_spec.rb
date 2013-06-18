@@ -19,10 +19,10 @@ describe UserArchiveCourseListing do
   end
 
 
-  it "gets incomplete listings when the filter is awaiting" do
+  it "gets incomplete listings when the filter is inprocess" do
     ReserveSearch.any_instance.should_receive(:new_and_inprocess_reserves_for_semester)
 
-    arl = AdminRequestListing.new(user, {filter: 'awaiting' })
+    arl = AdminRequestListing.new(user, {filter: 'inprocess' })
     arl.reserves
   end
 

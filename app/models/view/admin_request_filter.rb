@@ -16,8 +16,8 @@ class AdminRequestFilter
   end
 
 
-  def awaiting?
-    @filter == 'awaiting'
+  def inprocess?
+    @filter == 'inprocess'
   end
 
 
@@ -36,8 +36,8 @@ class AdminRequestFilter
   end
 
 
-  def awaiting_css_class
-    awaiting? ? 'active' : ''
+  def inprocess_css_class
+    inprocess? ? 'active' : ''
   end
 
 
@@ -59,7 +59,7 @@ class AdminRequestFilter
   private
 
     def validate!
-      if !['new', 'awaiting', 'complete', 'all'].include?(@filter)
+      if !['new', 'inprocess', 'complete', 'all'].include?(@filter)
         raise "Invalid filter passed to #{self.class}"
       end
     end

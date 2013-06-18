@@ -8,12 +8,12 @@ describe AdminRequestFilter do
     it "sets the new params" do
       arf = AdminRequestFilter.new('new')
       arf.new?.should be_true
-      arf.awaiting?.should be_false
+      arf.inprocess?.should be_false
       arf.complete?.should be_false
       arf.all?.should be_false
 
       arf.new_css_class.should == "active"
-      arf.awaiting_css_class.should == ""
+      arf.inprocess_css_class.should == ""
       arf.complete_css_class.should == ""
       arf.all_css_class.should == ""
 
@@ -23,21 +23,21 @@ describe AdminRequestFilter do
   end
 
 
-  describe "awaiting" do
+  describe "inprocess" do
 
-    it "sets the awaiting params" do
-      arf = AdminRequestFilter.new('awaiting')
+    it "sets the inprocess params" do
+      arf = AdminRequestFilter.new('inprocess')
       arf.new?.should be_false
-      arf.awaiting?.should be_true
+      arf.inprocess?.should be_true
       arf.complete?.should be_false
       arf.all?.should be_false
 
       arf.new_css_class.should == ""
-      arf.awaiting_css_class.should == "active"
+      arf.inprocess_css_class.should == "active"
       arf.complete_css_class.should == ""
       arf.all_css_class.should == ""
 
-      "#{arf}".should == "awaiting"
+      "#{arf}".should == "inprocess"
     end
   end
 
@@ -47,12 +47,12 @@ describe AdminRequestFilter do
     it "sets the complete params" do
       arf = AdminRequestFilter.new('complete')
       arf.new?.should be_false
-      arf.awaiting?.should be_false
+      arf.inprocess?.should be_false
       arf.complete?.should be_true
       arf.all?.should be_false
 
       arf.new_css_class.should == ""
-      arf.awaiting_css_class.should == ""
+      arf.inprocess_css_class.should == ""
       arf.complete_css_class.should == "active"
       arf.all_css_class.should == ""
 
@@ -65,12 +65,12 @@ describe AdminRequestFilter do
     it "sets the all params" do
       arf = AdminRequestFilter.new('all')
       arf.new?.should be_false
-      arf.awaiting?.should be_false
+      arf.inprocess?.should be_false
       arf.complete?.should be_false
       arf.all?.should be_true
 
       arf.new_css_class.should == ""
-      arf.awaiting_css_class.should == ""
+      arf.inprocess_css_class.should == ""
       arf.complete_css_class.should == ""
       arf.all_css_class.should == "active"
 

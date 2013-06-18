@@ -19,5 +19,4 @@ class ReserveListing
   end
 
 
-
 end

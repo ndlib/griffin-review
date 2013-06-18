@@ -20,4 +20,6 @@ class ReserveFileResourcePolicy
   def reserve_file_path
     @reserve.pdf.path
   end
+
+
 end

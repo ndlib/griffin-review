@@ -10,7 +10,7 @@ class AdminRequestListing
 
 
   def reserves
-    if @filter.new? || @filter.awaiting?
+    if @filter.new? || @filter.inprocess?
       in_complete_reserves
     elsif @filter.complete?
       completed_reserves
