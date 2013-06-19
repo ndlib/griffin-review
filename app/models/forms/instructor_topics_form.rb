@@ -54,6 +54,11 @@ class InstructorTopicsForm
   end
 
 
+  def is_editable?
+    ReserveIsEditablePolicy.new(@reserve).is_editable?
+  end
+
+
   private
 
     def persist!

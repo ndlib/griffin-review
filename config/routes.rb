@@ -95,6 +95,10 @@ Griffin::Application.routes.draw do
     resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
   end
 
+
+  resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
+
+
   scope '/admin' do
     resources :requests, controller: 'admin/requests'
     resources :meta_datas, controller: 'admin/requests_meta_data'

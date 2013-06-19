@@ -89,6 +89,7 @@ class Reserve
       request.item = item
       request.course_id = course.id
       request.crosslist_id = course.crosslist_id
+      request.semester_id = course.semester.id
 
       request.save!
     end
@@ -136,6 +137,7 @@ class Reserve
   def course
     @course ||= CourseSearch.new.get(self.course_id)
   end
+
 end
 
 

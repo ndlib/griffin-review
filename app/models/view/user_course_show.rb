@@ -56,6 +56,11 @@ class UserCourseShow
   end
 
 
+  def current_or_future_semester?
+    @course.semester.current? || @course.semester.future?
+  end
+
+
   private
 
     def validate_inputs!

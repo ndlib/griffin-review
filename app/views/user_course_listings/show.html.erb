@@ -2,7 +2,11 @@
   <h1><%= h @user_course_show.title %> <small><%= h @user_course_show.instructor_name %></small></h1>
 <% end %>
 
-<% breadcrumb([ link_to('Courses', courses_path), @user_course_show.title ]) %>
+<% if @user_course_show.current_or_future_semester? %>
+  <% breadcrumb([ link_to('Courses', courses_path), @user_course_show.title ]) %>
+<% else %>
+  <% breadcrumb([ link_to('Courses', courses_path), link_to('Archived Courses', archived_courses_path), @user_course_show.title ]) %>
+<% end %>
 
 <%= render partial: 'table_filter', locals: { course: @user_course_show.course } %>
 

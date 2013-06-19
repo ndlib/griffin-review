@@ -5,7 +5,7 @@ class Semester < ActiveRecord::Base
 
   scope :cronologial, order("date_begin desc")
   scope :current, where("date_begin <= ? AND date_end >= ?", Time.zone.now, Time.zone.now)
-  scope :previous, lambda { | date |  where('date_end < ? ', date) }
+  scope :previous, lambda { | date |  where('date_end <= ? ', date) }
   # default_scope where('date_begin >= ?', Date.today << 6)
 
   def name

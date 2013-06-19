@@ -19,4 +19,9 @@ class ReserveListing
   end
 
 
+  def is_editable?
+    ReserveIsEditablePolicy.new(@reserve).is_editable?
+  end
+
+
 end

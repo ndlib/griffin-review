@@ -120,8 +120,7 @@ class InstructorReserveRequest
       reserve.attributes = self.attributes
 
       reserve.requestor_netid = @current_user.username
-      reserve.course = @course
-      reserve.semester = @course.semester
+      reserve.course          = @course
 
       reserve.save!
     end
