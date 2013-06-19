@@ -20,6 +20,9 @@
             <% user_course_listing.current_instructed_courses.each do | course | %>
               <li><%= link_to h(course.title), course_path(course.id) %></li>
             <% end %>
+            <% user_course_listing.upcoming_instructed_courses.each do | course | %>
+              <li><%= link_to h(course.title), course_path(course.id) %></li>
+            <% end %>
           </ul>
         </li>
       <% end %>
