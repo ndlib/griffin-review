@@ -4,10 +4,7 @@
   </td>
   <td class="topic_cell">
     <%= render partial: '/topics/topic_edit_link', locals: { object: object } %>
-  </td>
-  <td><%= object.workflow_state.titleize %></td>
-  <td>
-    <%= check_box_tag 'copy', object.id, false, class: "copy" %>
     <%= render partial: '/topics/add_topics_form', locals: { reserve: object } %>
   </td>
+  <td><%= object.workflow_state.titleize %></td>
 </tr>

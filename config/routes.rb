@@ -80,7 +80,7 @@ Griffin::Application.routes.draw do
     get 'new', :as => 'new_video_request'
     get 'video_request_multi_status', :as => 'video_request_multi_status', :path => '/multiple/status'
     get 'video_request_status', :as => 'video_request_status', :path => '/:r_id/status'
-    post 'create', :path => '', :as => 'video_request'
+    post 'create', :path => 'copy', :as => 'video_request'
   end
 
 
@@ -91,7 +91,11 @@ Griffin::Application.routes.draw do
   resources :courses, controller: 'user_course_listings', only: [ 'index', 'show' ] do
     resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
     resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
-    resources :copy_reserves, :path => 'copy', only: [ 'create' ]
+    # resources :copy_reserves, :path => 'copy', only: [ 'create' ]
+    match 'copy' => 'copy_reserves#copy_step1', as: :copy_step1
+    match 'copy/:from_course_id' => 'copy_reserves#copy_step2', as: :copy_step2
+    match 'copy/:from_course_id/copy' => 'copy_reserves#copy', :via => :post, as: :copy
+
     resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
   end
 

@@ -1,26 +1,30 @@
 class CopyCourseReservesForm
   include ModelErrorTrapping
-  include GetCourse
 
   attr_accessor :from_course, :to_course
 
   def initialize(current_user, params)
-    @from_course = get_course(params[:course_id])
-    @to_course   = get_course(params[:to_course_id])
+    @to_course = get_course(params[:course_id])
+
+    if params.has_key?(:from_course_id)
+      @from_course   = get_course(params[:from_course_id])
+    end
 
     @items_to_copy = params[:reserve_ids]
+
+    @user = current_user
 
     validate_inputs!
   end
 
 
   def from_course_title
-    @from_course.title
+    "#{@from_course.title} - #{@from_course.semester.full_name}"
   end
 
 
   def to_course_title
-    @to_course.title
+    "#{@to_course.title} - #{@to_course.semester.full_name}"
   end
 
 
@@ -29,18 +33,34 @@ class CopyCourseReservesForm
   end
 
 
-  def self.current_semester_courses(current_user)
-    CourseSearch.new.instructed_courses(current_user.username, Semester.current.first.code)
+  def all_semesters
+    Semester.cronologial
   end
 
 
-  def self.next_semester_courses(current_user)
-    next_semester = Semester.current.first.next
-    if next_semester
-      CourseSearch.new.instructed_courses(current_user.username, next_semester.code)
-    else
-      []
-    end
+  def step1?
+    @from_course.nil? && @to_course.present?
+  end
+
+
+  def step2?
+    @from_course.present? && @to_course.present?
+  end
+
+
+  def copy_from_reserves
+    @from_course.reserves
+  end
+
+
+  def semester_instructed_courses_with_reserves(semester)
+    @semester_courses ||= {}
+    @semester_courses[semester.code] ||= CourseSearch.new.instructed_courses(@user.username, semester.code).reject { | c | c.reserves.empty? }
+  end
+
+
+  def semester_has_courses?(semester)
+    (semester_instructed_courses_with_reserves(semester).size > 0)
   end
 
 
@@ -71,12 +91,25 @@ class CopyCourseReservesForm
 
   private
 
-    def validate_inputs!
-      if @from_course.nil? || @to_course.nil?
+    def get_course(id)
+      c = course_search.get(id)
+
+      if c.nil?
         render_404
       end
 
-      if !to_course_can_have_new_reserves?
+      c
+    end
+
+
+    def course_search
+      @course_search ||= CourseSearch.new
+    end
+
+
+    def validate_inputs!
+
+      if @to_course && !to_course_can_have_new_reserves?
         render_404
       end
     end

@@ -1,10 +1,9 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
     <a href="<%= new_course_reserve_path(user_course_show.course_id) %>" class="btn btn-primary">Request Material</a>
+    <a href="<%= course_copy_step1_path(user_course_show.course_id) %>" class="btn btn-primary">Copy Material</a>
   <% end %>
 <% end %>
-
-<%= render partial: 'copy_form', locals: { course: user_course_show.course } %>
 
 <% if user_course_show.reserves.size > 0 %>
 <table class="table table-striped find-resources instructor_datatable datatable">
@@ -13,7 +12,6 @@
       <th>Reserve</th>
       <th class="topic_row">Topics</th>
       <th>Status</th>
-      <th>Copy</th>
     </tr>
   </thead>
   <tbody>

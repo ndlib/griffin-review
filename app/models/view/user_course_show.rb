@@ -30,6 +30,16 @@ class UserCourseShow
   end
 
 
+  def semester_name
+    @course.semester.full_name
+  end
+
+
+  def sections
+    @course.section_numbers.join(", ")
+  end
+
+
   def instructs_course?
     @instructs_course ||= UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course?
   end

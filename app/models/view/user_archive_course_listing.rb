@@ -31,8 +31,6 @@ class UserArchiveCourseListing
   end
 
 
-
-
   private
 
     def course_search

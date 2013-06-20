@@ -24,13 +24,13 @@ class ApplicationController < ActionController::Base
       params[:sakai] == '1' ? 'sakai' : 'application'
     end
 
+
     def permission
       @permission ||= Permission.new(current_user)
     end
 
 
     def check_view_permissions!(course)
-
       if course.nil?
         render_404
       end

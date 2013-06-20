@@ -18,6 +18,6 @@
     </dl>
   </p>
   <p>
-    <%= link_to "Continue to #{@copy_course_listing.to_course_title}", course_path(@copy_course_listing.from_course.id), class: 'btn btn-large' %>
+    <%= link_to "Continue to #{@copy_course_listing.to_course_title}", course_path(@copy_course_listing.to_course.id), class: 'btn btn-large' %>
   </p>
 </div>

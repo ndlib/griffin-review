@@ -1,4 +1,4 @@
-<h4><%= title %></h4>
+<h3><%= title %></h3>
 
 <% if instructed_courses.size > 0 %>
 <table class="table table-striped instructed_courses">
@@ -6,14 +6,13 @@
     <tr>
       <th>Course</th>
       <th>Sections</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <% instructed_courses.each do | course | %>
     <tr>
       <td>
-        <a href="<%= course_path(course.id) %>"><%= h course.title %></a>
+        <a href="<%= course_copy_step2_path(to_course.id, course.id) %>"><%= h course.title %></a>
         <ul>
           <% course.crosslisted_course_ids.each do | cid | %>
             <li><%= raw cid %></li>
@@ -21,11 +20,6 @@
         </ul>
       </td>
       <td><%= h course.section_numbers.join(", ") %></td>
-      <td>
-        <% if CreateNewReservesPolicy.new(course).can_create_new_reserves? %>
-          <%= link_to 'Request Material', new_course_reserve_path(course.id), class: 'btn btn-primary' %>
-        <% end %>
-      </td>
     </tr>
     <% end %>
   </tbody>
