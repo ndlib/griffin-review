@@ -14,7 +14,6 @@ class Course
 
   def id
     self.section_group_id
-    # self.course_triple
   end
 
 

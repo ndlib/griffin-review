@@ -13,4 +13,12 @@ class UserCourseListingsController < ApplicationController
   end
 
 
+  def create
+    course = CourseSearch.new.get(params[:course_id])
+
+    Reserve.generate_test_data_for_course(course)
+
+    redirect_to course_path(course.id)
+  end
+
 end

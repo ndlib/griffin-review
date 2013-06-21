@@ -88,7 +88,7 @@ Griffin::Application.routes.draw do
 
   match "login", :controller => 'development_login', :action => 'login'
 
-  resources :courses, controller: 'user_course_listings', only: [ 'index', 'show' ] do
+  resources :courses, controller: 'user_course_listings', only: [ 'index', 'show', 'create' ] do
     resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
     resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
     # resources :copy_reserves, :path => 'copy', only: [ 'create' ]

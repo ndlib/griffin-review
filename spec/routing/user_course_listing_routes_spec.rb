@@ -32,9 +32,9 @@ describe 'User Course Routes' do
   end
 
 
-  it "should not route to the create " do
-    { :post => "/courses" }.should_not be_routable
-  end
+#  it "should not route to the create " do
+#    { :post => "/courses" }.should_not be_routable
+#  end
 
 
   it "should not route the update" do

@@ -31,8 +31,8 @@ describe Reserve do
     end
 
 
-    it "has a file" do
-      course_listing.respond_to?(:file).should be_true
+    it "has a pdf" do
+      course_listing.respond_to?(:pdf).should be_true
     end
 
 
