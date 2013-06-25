@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+=begin
 describe "Video Workflow Integration" do
 
   before(:all) do
@@ -23,7 +24,7 @@ describe "Video Workflow Integration" do
 
   describe "Change video workflow state and attributes via edit screen" do
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -87,11 +88,11 @@ describe "Video Workflow Integration" do
 
   describe "Utilize ajax information tools", :js => true do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -105,11 +106,11 @@ describe "Video Workflow Integration" do
 
   describe "Access initial workflow list" do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -123,11 +124,11 @@ describe "Video Workflow Integration" do
 
   describe "View requester information for individual request" do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -138,14 +139,14 @@ describe "Video Workflow Integration" do
       page.should have_content(@request_b.user.display_name)
     end
   end
-  
+
   describe "Transition item to digitized state" do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -163,11 +164,11 @@ describe "Video Workflow Integration" do
 
   describe "Transition item to awaiting acquisitions workflow state" do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -184,3 +185,4 @@ describe "Video Workflow Integration" do
   end
 
 end
+=end

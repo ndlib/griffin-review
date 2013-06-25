@@ -2,31 +2,55 @@ require 'faker'
 
 FactoryGirl.define do
 
-  factory :generic_request, :class => Request do
+  factory :request do
     needed_by Date.today + 2.weeks
     sequence(:title) { |n| "Request Title #{n}" }
-    sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
-    repeat_request false
-    library_owned false
-    language 'English'
-    subtitles true
-    extent 'all'
-    cms 'vista_concourse'
+    course_id "course_id"
+    crosslist_id "crosslist_id"
+    requestor_netid "netid"
+    association(:item)
     note { Faker::Lorem.paragraph }
+    semester { Semester.current.first || FactoryGirl.create(:semester) }
   end
 
-  factory :administrative_request, :class => AdministrativeRequest do
-    needed_by Date.today + 2.weeks
-    sequence(:title) { |n| "Request Title #{n}" }
-    sequence(:course) { |n| "FA12 BUS 300#{n} 01" }
-    repeat_request false
-    library_owned false
-    language 'English'
-    subtitles true
-    extent 'all'
-    user_name Faker::Name.name
-    cms 'vista_concourse'
-    note { Faker::Lorem.paragraph }
+  trait :new do
+    workflow_state "new"
+  end
+
+  trait :inprocess do
+    workflow_state "inprocess"
+  end
+
+  trait :available do
+    workflow_state "available"
+  end
+
+  trait :book do
+    association(:item, factory: :item_book)
+  end
+
+  trait :book_chapter do
+    association(:item, factory: :item_book_chapter)
+  end
+
+  trait :journal_file do
+    association(:item, factory: :item_journal_file)
+  end
+
+  trait :journal_url do
+    association(:item, factory: :item_journal_url)
+  end
+
+  trait :video do
+    association(:item, factory: :item_video)
+  end
+
+  trait :audio do
+    association(:item, factory: :item_audio)
+  end
+
+  trait :previous_semester do
+    semester { FactoryGirl.create(:previous_semester) }
   end
 
 end

@@ -1,0 +1,12 @@
+<div id="copy-overlay">
+  <%= form_tag course_copy_path(to_course.id, from_course.id), :method => 'post' do %>
+    <h4>Copy Material to a New Course</h4>
+    <ul id="">
+    </ul>
+    <br />
+    <div class="form-actions">
+      <button type="submit" class="copy btn btn-primary">Copy Material</button>
+      <button class="cancel btn">Cancel</button>
+    </div>
+  <% end %>
+</div>

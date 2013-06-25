@@ -1,0 +1,44 @@
+/*
+*= require search
+*= require jquery-ui-1.10.2.custom
+*/
+
+.page-header h1 { margin-bottom: 0; }
+.page-header { margin-top: 0;}
+
+
+.dataTables_filter input { height: 30px;}
+.dataTables_info { display: none;}
+.dataTables_paginate { display: none;}
+
+.instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
+
+.table_filter { display: none; }
+
+.has_electronic_copy {
+  display: none;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#copy-overlay {
+  display: none;
+  padding: 25px 25px 5px 25px;
+  position: fixed;
+  right: 10px;
+  bottom: 0px;
+  background-color: white;
+  border: 4px black solid;
+}
+
+.topic_form .topic_list label {
+  display: block;
+}
+
+.topic_form .add_topic_input {
+  width: 75%;
+  height: 30px;
+}
+
+.complete_text { color: #468847;}
+.missing_text { color: #f89406;}

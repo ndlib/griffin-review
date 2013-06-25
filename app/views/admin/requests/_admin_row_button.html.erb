@@ -1,0 +1,16 @@
+<div class="btn-group">
+  <button class="btn btn-mini <%= !button.complete? ? 'btn-warning' : 'btn-success' %>">Edit</button>
+  <button class="btn btn-mini dropdown-toggle <%= !button.complete? ? 'btn-warning' : 'btn-success' %>" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to raw("<i class=\"#{button.meta_data_css_class}\"></i> Meta Data"), edit_meta_data_path(button.reserve_id) %> </li>
+    <%  if button.requires_external_resource? %>
+      <li><%= link_to raw("<i class=\"#{button.external_resource_css_class}\"></i> External Resource"), edit_resource_path(button.reserve_id) %></li>
+    <% end %>
+
+    <% if button.requires_fair_use? %>
+      <li><%= link_to raw("<i class=\"#{button.fair_use_css_class}\"></i> Fair Use"), edit_resource_path(button.reserve_id) %></li>
+    <% end %>
+  </ul>
+</div>

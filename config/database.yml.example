@@ -1,0 +1,67 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+# #
+# # Install the MySQL driver:
+# #   gem install mysql2
+# #
+# # And be sure to use new-style password hashing:
+# #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+# # Shared settings
+
+mysql_settings: &mysql_settings
+  adapter:   mysql2
+  encoding:  utf8
+  reconnect: true
+  pool:      5
+
+local_user: &local_user
+  <<: *mysql_settings
+  username: griffin
+  password: griffin
+  host:     localhost
+
+rails_user: &rails_user
+  <<: *mysql_settings
+  username: rails
+  password: R4ils_d9t9
+
+# Environments
+
+development:
+  <<: *local_user
+  database: reserves_development
+
+pre_production:
+  <<: *rails_user
+  database: reserves_pprd
+  host: dbpprd.library.nd.edu
+
+production:
+  <<: *rails_user
+  database: reserves_prod
+  host: dbprod.library.nd.edu
+
+# External data sources
+open_reserves_prod:
+  <<: *rails_user
+  host: dbpprd.library.nd.edu
+  database: open_reserves_pprd
+
+open_reserves_pprd:
+  <<: *rails_user
+  host: dbpprd.library.nd.edu
+  database: open_reserves_pprd
+
+open_reserves_development:
+  <<: *local_user
+  database: open_reserves
+
+open_reserves_test:
+  <<: *local_user
+  database: open_reserves_test
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  <<: *local_user
+  database: reserves_test

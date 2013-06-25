@@ -3,7 +3,7 @@ Griffin::Application.routes.draw do
   devise_for :users
 
   ############################
-  # Administrative Functions # 
+  # Administrative Functions #
   ############################
   namespace :admin do
     resources :role
@@ -68,25 +68,11 @@ Griffin::Application.routes.draw do
         put 'update', :action => 'update_metadata_attribute', :as => nil
         delete 'destroy', :action => 'destroy_metadata_attribute'
     end
-    resource :semester, :controller => 'admin', :only => :none do
-      collection do
-        get 'all', :action => 'show_all_semesters'
-        get 'new', :action => 'new_semester', :as => 'new', :path => '/new'
-        post 'create', :action => 'create_semester', :as => nil, :path => '/create'
-        get 'active', :action => 'show_proximate_semesters'
-      end
-    end
-    resources :semester, :controller => 'admin', :only => :none do
-      get 'edit', :action => 'edit_semester', :as => 'edit'
-      put 'update', :action => 'update_semester', :as => nil
-      get 'show', :action => 'show_semester', :as => '', :path => ''
-    end
   end
 
   ###########################
   # External User Functions #
   ###########################
-  root :to => 'external#index'
   scope '/', :controller => 'external' do
     get 'not_authorized', :as => 'external_not_authorized', :path => 'not-authorized'
   end
@@ -94,7 +80,36 @@ Griffin::Application.routes.draw do
     get 'new', :as => 'new_video_request'
     get 'video_request_multi_status', :as => 'video_request_multi_status', :path => '/multiple/status'
     get 'video_request_status', :as => 'video_request_status', :path => '/:r_id/status'
-    post 'create', :path => '', :as => 'video_request'
+    post 'create', :path => 'copy', :as => 'video_request'
   end
+
+
+  root :to => 'user_course_listings#index'
+
+  match "login", :controller => 'development_login', :action => 'login'
+
+  resources :courses, controller: 'user_course_listings', only: [ 'index', 'show', 'create' ] do
+    resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
+    resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
+    # resources :copy_reserves, :path => 'copy', only: [ 'create' ]
+    match 'copy' => 'copy_reserves#copy_step1', as: :copy_step1
+    match 'copy/:from_course_id' => 'copy_reserves#copy_step2', as: :copy_step2
+    match 'copy/:from_course_id/copy' => 'copy_reserves#copy', :via => :post, as: :copy
+
+    resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
+  end
+
+
+  resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
+
+
+  scope '/admin' do
+    resources :requests, controller: 'admin/requests'
+    resources :meta_datas, controller: 'admin/requests_meta_data'
+    resources :resources, controller: 'admin/requests_resources'
+    resources :admin_courses, controller: 'admin/courses'
+    resources :semesters, controller: 'admin/semesters'
+  end
+
 
 end

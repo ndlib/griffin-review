@@ -1,21 +1,15 @@
 Griffin::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  
+
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
   # Generate digests for assets URLs
-  config.assets.digest = true
-
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.digest = false
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = Rails.root.join("public/assets")
- 
+
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -29,7 +23,7 @@ Griffin::Application.configure do
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
-   
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
@@ -43,7 +37,7 @@ Griffin::Application.configure do
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
-  
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   #config.force_ssl = true
 
@@ -55,7 +49,7 @@ Griffin::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
   # Action mailer settings
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { :host => "localhost" }
@@ -64,4 +58,8 @@ Griffin::Application.configure do
   config.ldap_lookup_flag = true
   config.reserves_upload_path = '/shared/data/reserves_files'
   config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
+
+  config.api_url = "https://apipprd.library.nd.edu/"
+  config.api_token = "SCSGYmwqLqSyBTmxCQgM"
+
 end

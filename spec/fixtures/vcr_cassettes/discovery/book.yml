@@ -1,0 +1,591 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/search/catalog.json?auth_token=SCSGYmwqLqSyBTmxCQgM&q=book
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 01 May 2013 17:53:36 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - ae98b49d1b2dc4c007de462877e034bb
+      X-Runtime:
+      - '0.064021'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '75892'
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: US-ASCII
+      string: ! '{"size":99754,"display_size":"99,754","search_term":"book","search_scope":"catalog","search_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1","google_books":{"ids":{"OCLC:05283301":"ndu_aleph001372463","OCLC:03919942":"dedupmrg74254626","OCLC:00382590":"dedupmrg75795519","OCLC:06715359":"dedupmrg72984074","OCLC:00741667":"ndu_aleph000602929","OCLC:31136872":"ndu_aleph003366556","OCLC:71194494":"dedupmrg16831904"},"url":"http://books.google.com/books?bibkeys=OCLC%3A05283301%2COCLC%3A03919942%2COCLC%3A00382590%2COCLC%3A06715359%2COCLC%3A00741667%2COCLC%3A31136872%2COCLC%3A71194494&callback=googleBooksCallback&jscmd=viewapi"},"records":[{"id":"ndu_aleph001368481","type":"book","oclc":"05283301","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"Book.","creator_contributor":"Ronnie
+        Wathen 1934-.","publisher_provider":"s.l. : s.n. 1968","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (PR 6073 .A83 B6 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph001368481&indx=1"},"holdings":[{"record_id":"ndu_aleph001368481","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(PR 6073 .A83 B6 )","availability_status_code":"check_holdings","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Wathen,
+        Ronnie","aufirst":"Ronnie,","aulast":"Wathen","btitle":"Book.","date":"1968","genre":"book","pub":"s.n."},"primo":{"control":{"sourcerecordid":"001368481","sourceid":"ndu_aleph","recordid":"ndu_aleph001368481","originalsourceid":"NDU01","ilsapiid":"NDU01001368481","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"Book.","creator":"Ronnie
+        Wathen 1934-.","publisher":"s.l. : s.n.","creationdate":"1968","availlibrary":"$$INDU$$LHESB$$1General
+        Collection$$2(PR 6073 .A83 B6 )$$Scheck_holdings$$XNDU50$$YHESB$$ZGEN","lds02":"ndu_aleph001368481","availinstitution":"$$INDU$$Scheck_holdings","availpnx":"available"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog","thumbnail":"$$Tgoogle_thumb","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":["$$Taleph_holdings$$INDU","$$Taleph_holdings"],"linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","linktouc":"$$Tworldcat_oclc$$Eworldcat","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["Ronnie,  Wathen  1934-.","Wathen,
+        R"],"title":"Book.","general":["s.n.,","(OCoLC)05283301","05283301","AGF9045","AllDocuments"],"sourceid":"ndu_aleph","recordid":["ndu_aleph001368481","001368481","1368481"],"creationdate":"1968","searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"lsr01":["HESB
+        GEN","HESB General Collection"],"lsr02":"Wathen, Ronnie,","lsr05":["PR 6073
+        .A83 B6","PR6073.A83B6","PR6073 .A83 B6 :"],"lsr06":"s.n.,"},"sort":{"title":"Book.","creationdate":"1968","author":"Wathen,
+        Ronnie, 1934-."},"facets":{"language":"und","creationdate":"1968","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":"Wathen,
+        R","library":"HESB","frbrgroupid":"74324592","frbrtype":"6"},"dedup":{"t":"1","c3":"book","c4":"1968","f5":"book","f6":"1968","f7":"book","f10":"s
+        n","f11":"wathen ronnie 1934"},"frbr":{"t":"1","k1":"$$Kwathen ronnie 1934$$AA","k3":"$$Kbook$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
+        Item"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Wathen","aufirst":"Ronnie,","au":"Wathen,
+        Ronnie","btitle":"Book.","date":"1968","risdate":"1968.","format":"book","genre":"book","ristype":"BOOK","cop":"s.l.","pub":"s.n.","oclcid":"05283301"}}},{"id":"ndu_aleph001372463","type":"book","oclc":"05283301","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"Book","creator_contributor":"R.
+        J. Wathen","publisher_provider":"s.l. : s.n. 1968","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (PR 6073 .A83 B6 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph001372463&indx=2"},"holdings":[{"record_id":"ndu_aleph001372463","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(PR 6073 .A83 B6 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Wathen,
+        R. J","aufirst":"R. J.","aulast":"Wathen","btitle":"Book","date":"1968","genre":"book","pub":"s.n.]"},"primo":{"control":{"sourcerecordid":"001372463","sourceid":"ndu_aleph","recordid":"ndu_aleph001372463","originalsourceid":"NDU01","ilsapiid":"NDU01001372463","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"Book","creator":"R.
+        J. Wathen","publisher":"s.l. : s.n.","creationdate":"1968","format":"32 p.
+        ; 25 cm..","language":"eng","availlibrary":"$$INDU$$LHESB$$1General Collection$$2(PR
+        6073 .A83 B6 )$$Savailable$$31$$40$$5N$$60$$XNDU50$$YHESB$$ZGEN","lds02":"ndu_aleph001372463","availinstitution":"$$INDU$$Savailable","availpnx":"available"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog","thumbnail":"$$Tgoogle_thumb","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":["$$Taleph_holdings$$INDU","$$Taleph_holdings"],"linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","linktouc":"$$Tworldcat_oclc$$Eworldcat","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["R.
+        J.  Wathen","Wathen, R","Ronnie Wathen."],"title":"Book /","general":["s.n.],","(OCoLC)05283301","05283301","AGG3207","AllDocuments"],"sourceid":"ndu_aleph","recordid":["ndu_aleph001372463","001372463","1372463"],"creationdate":"1968","searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"lsr01":["HESB
+        GEN","HESB General Collection"],"lsr02":"Wathen, R. J.","lsr05":["PR 6073
+        .A83 B6","PR6073.A83B6","PR6073 .A83 B6 :"],"lsr06":"s.n.],"},"sort":{"title":"Book
+        /","creationdate":"1968","author":"Wathen, R. J."},"facets":{"language":"eng","creationdate":"1968","toplevel":"available","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":"Wathen,
+        R","library":"HESB","classificationlcc":"P - Language and literature.\u2013English
+        literature","frbrgroupid":"74327157","frbrtype":"6"},"dedup":{"t":"1","c3":"book","c4":"1968","f5":"book","f6":"1968","f7":"book","f8":"xx","f9":"32
+        p. ;","f10":"s n","f11":"wathen r j"},"frbr":{"t":"1","k1":"$$Kwathen r j$$AA","k3":"$$Kbook$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
+        Item"},"enrichment":{"classificationlcc":"PR 6073 .A83 B6"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Wathen","aufirst":"R.
+        J.","au":"Wathen, R. J","btitle":"Book","date":"1968","risdate":"1968.","format":"book","genre":"book","ristype":"BOOK","cop":"s.l.","pub":"s.n.]","oclcid":"05283301"}}},{"id":"dedupmrg74254626","type":"journal","oclc":"03919942","lccn":"2010202872","physical":true,"physical_available":true,"electronic":true,"fulltext_available":true,"display":{"type":"Journal","title":"American
+        book review","publisher_provider":"New York : R. Sukenick; Victoria, TX :
+        American Book Review 1977","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library Current Periodicals&nbsp;General Collection (Z 1219
+        .A43 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg74254626&indx=3","fulltext_url":"http://findtext.library.nd.edu:8889/ndu%5Flocal?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fen?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fenc=info:ofi/enc:UTF-8&rfr%5Fid=info:sid/sfxit.com:opac%5F856&url%5Fctx%5Ffmt=info:ofi/fmt:kev:mtx:ctx&sfx.ignore%5Fdate%5Fthreshold=1&rft.object%5Fid=954925476485&svc%5Fval%5Ffmt=info:ofi/fmt:kev:mtx:sch%5Fsvc&","fulltext_url_name":"Access
+        Online"},"holdings":[{"record_id":"ndlaw_iii.b18511715","institution":"Kresge
+        Law Library","short_institution_name":"NDLAW","library":"NDLAW","institution_code":"NDLAW","library_code":"NDLAW","collection":"General
+        Collection","call_number":"(Internet )","availability_status_code":"check_holdings"},{"record_id":"ndu_aleph001369443","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"Current
+        Periodicals&nbsp;General Collection","call_number":"(Z 1219 .A43 )","availability_status_code":"available","number_of_items":"0","multi_volume":"Y","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"CPC","source_sublocation_code":"GEN"}],"openurl":{"date":"1977","eissn":"0149-9408","genre":"journal","issn":"2153-4578","jtitle":"American
+        book review","pub":"American Book Review","stitle":"Am. book rev."},"primo":{"control":{"sourcerecordid":["$$V002170676$$Ondu_aleph002170676","$$V.b18511715$$Ondlaw_iii.b18511715","$$V001369443$$Ondu_aleph001369443"],"sourceid":["$$Vndu_aleph$$Ondu_aleph002170676","$$Vndlaw_iii$$Ondlaw_iii.b18511715","$$Vndu_aleph$$Ondu_aleph001369443"],"recordid":"dedupmrg74254626","originalsourceid":["$$VNDU01$$Ondu_aleph002170676","$$VXNDA$$Ondlaw_iii.b18511715","$$VNDU01$$Ondu_aleph001369443"],"addsrcrecordid":"$$Vb1851171$$Ondlaw_iii.b18511715","sourceformat":["$$VMARC21$$Ondu_aleph002170676","$$VMARC
+        Exchange$$Ondlaw_iii.b18511715","$$VMARC21$$Ondu_aleph001369443"],"sourcesystem":["$$VAleph$$Ondu_aleph002170676","$$VOther$$Ondlaw_iii.b18511715","$$VAleph$$Ondu_aleph001369443"],"ilsapiid":["$$VNDU01002170676$$Ondu_aleph002170676","$$VNDU01001369443$$Ondu_aleph001369443"]},"display":{"type":"journal","title":"American
+        book review","publisher":"New York : R. Sukenick; Victoria, TX : American
+        Book Review","creationdate":"1977","format":["Bimonthly","Print began with
+        v. 1 in Dec. 1977."],"identifier":"$$CISSN $$V2153-4578; $$CISSN $$V0149-9408","subject":"American
+        literature -- 20th century -- Book reviews -- Periodicals","description":"Abstract:
+        ABR specializes in reviews of frequently neglected published works of fiction,
+        poetry, and literary and cultural criticism from small, regional, university,
+        ethnic, avant-garde, and women''s presses.","language":"eng","relation":"$$Cvar_title
+        $$VABR","source":"$$Vndlaw_iii$$Ondlaw_iii.b18511715","availlibrary":["$$INDLAW$$LNDLAW$$1General
+        Collection$$2(Internet )$$Scheck_holdings$$Ondlaw_iii.b18511715","$$INDU$$LHESB$$1Current
+        Periodicals&nbsp;General Collection$$2(Z 1219 .A43 )$$Savailable$$36$$40$$5Y$$60$$XNDU50$$YCPC$$ZGEN$$Ondu_aleph001369443"],"availinstitution":["$$INDU$$Savailable","$$INDLAW$$Scheck_holdings"],"availpnx":"available","lds01":["SFX
+        MARCIt Record","Published: IL : Publications Unit, <2004->","1"],"lds02":["ndu_aleph002170676","ndlaw_iii.b18511715","ndu_aleph001369443"]},"links":{"linktoholdings":["$$V$$Taleph_holdings$$Ondu_aleph002170676","$$V$$Tlaw_holdings$$INDLAW$$Ondlaw_iii.b18511715","$$V$$Taleph_holdings$$INDU$$Ondu_aleph001369443","$$V$$Taleph_holdings$$Ondu_aleph001369443"],"linktoholdsnotexist":["$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph002170676","$$V$$Tlaw_holdings_not_in_user_institution$$Ondlaw_iii.b18511715","$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph001369443"],"backlink":["$$V$$Taleph_backlink$$DNotre
+        Dame Catalog [electronic resource].$$Ondu_aleph002170676","$$V$$Tlaw_backlink$$Ebacklink_ndl$$Ondlaw_iii.b18511715","$$V$$Taleph_backlink$$DNotre
+        Dame Catalog$$Ondu_aleph001369443"],"linktorsrc":["$$V$$Uhttp://findtext.library.nd.edu:8889/ndu%5Flocal?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fen?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fenc=info:ofi/enc:UTF-8&rfr%5Fid=info:sid/sfxit.com:opac%5F856&url%5Fctx%5Ffmt=info:ofi/fmt:kev:mtx:ctx&sfx.ignore%5Fdate%5Fthreshold=1&rft.object%5Fid=954925476485&svc%5Fval%5Ffmt=info:ofi/fmt:kev:mtx:sch%5Fsvc&$$DNotre
+        Dame Online Access$$Ondu_aleph002170676","$$V$$Elinktorsrc_ndlcat$$Uhttp://innopac.law.nd.edu/record=b1851171$$Ondlaw_iii.b18511715"],"openurl":["$$V$$Topenurl_journal$$Ondu_aleph002170676","$$V$$Topenurl_journal$$Ondlaw_iii.b18511715","$$V$$Topenurl_journal$$Ondu_aleph001369443"],"openurlfulltext":["$$V$$Topenurlfull_journal$$Ondu_aleph002170676","$$V$$Topenurlfull_journal$$Ondlaw_iii.b18511715","$$V$$Topenurlfull_journal$$Ondu_aleph001369443"],"linktouc":"$$Tworldcat_oclc$$Eworldcat","thumbnail":"$$Tgoogle_thumb","lln01":"$$Tfindit_link"},"search":{"title":["American
+        book review","The American book review","The American book review."],"description":"ABR
+        specializes in reviews of frequently neglected published works of fiction,
+        poetry, and literary and cultural criticism from small, regional, university,
+        ethnic, avant-garde, and women''s presses.","general":["American Book Review","SFX
+        MARCIt Record","(SFX)954925476485","954925476485","R. Sukenick]","03371840","[electronic
+        resource].","(WaSeSS)ssj0004496","ssj0004496","AllDocuments","AGG0057","(OCoLC)03919942","03919942","Published:
+        IL : Publications Unit, <2004->"],"sourceid":["ndu_aleph","ndlaw_iii"],"recordid":["ndu_aleph002170676","002170676","2170676","ndlaw_iii.b18511715",".b18511715","ndu_aleph001369443","001369443","1369443"],"issn":["2153-4578","0149-9408","21534578","01499408"],"addtitle":"American
+        book review","searchscope":["ndu_aleph","NDU","ndlaw_iii","NDLAW"],"scope":["ndu_aleph","NDU","ndlaw_iii","NDLAW","CPC"],"lsr06":["American
+        Book Review","R. Sukenick]"],"creatorcontrib":"EBSCO Publishing (Firm)","subject":["American
+        literature 20th century Book reviews Periodicals.","Electronic journals."],"creationdate":["1977","9999"],"alttitle":["American
+        book review (Online)","Am. book rev.","ABR"],"lsr04":"American book review
+        (Online)","lsr05":["Internet","Z 1219 .A43","Z1219.A43","Z1219 .A43 :"],"lsr01":["CPC
+        GEN","CPC General Collection"],"lsr07":"The American book review"},"sort":{"title":"American
+        book review","creationdate":"1977"},"facets":{"language":"eng","creationdate":"1977","topic":"American
+        literature\u201320th century\u2013Book reviews\u2013Periodicals","prefilter":["journals","print"],"rsrctype":["journals","print"],"creatorcontrib":"EBSCO
+        Publishing (Firm)","genre":["Book reviews Periodicals","Electronic journals"],"library":["NDLAW","HESB"],"toplevel":["online_resources","available"],"classificationlcc":"Z
+        - Bibliography. Library science. Information resources (general).","frbrgroupid":"76414117","frbrtype":"6"},"dedup":{"t":"2","c1":"2010202872","c2":"2153-4578;0149-9408","c3":"americanbookreview","c4":"new","f3":"21534578","f4":"01499408","f6":"1977","f7":"american
+        book review","f8":"american book review","f9":"nyu","f10":"new"},"frbr":{"t":"1","k2":"$$Kamerican
+        book review online$$ATO","k3":"$$Kamerican book review$$AT"},"delivery":{"institution":["$$VNDU$$Ondu_aleph002170676","$$VNDLAW$$Ondlaw_iii.b18511715","$$VNDU$$Ondu_aleph001369443"],"delcategory":["$$VSFX
+        Resource$$Ondu_aleph002170676","$$VOnline Resource$$Ondlaw_iii.b18511715","$$VPhysical
+        Item$$Ondu_aleph001369443"]},"ranking":{"booster1":"1","booster2":"1"},"addata":{"jtitle":["American
+        book review","The American book review","The American book review."],"issn":["2153-4578","0149-9408"],"eissn":"0149-9408","abstract":"ABR
+        specializes in reviews of frequently neglected published works of fiction,
+        poetry, and literary and cultural criticism from small, regional, university,
+        ethnic, avant-garde, and women''s presses.","cop":["Victoria, TX","New York"],"pub":["American
+        Book Review","R. Sukenick]"],"objectid":"954925476485","lccn":["2010202872","sc
+        79002812"],"stitle":"Am. book rev.","addtitle":"ABR","date":"1977","risdate":"1977","format":"journal","genre":"journal","ristype":"JOUR","oclcid":"03919942"}}},{"id":"dedupmrg75795519","type":"book","oclc":"00382590","lccn":"56005128","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
+        enigma of the Bay Psalm book.","creator_contributor":"Zolt\u00e1n Haraszti
+        1892-1980.","publisher_provider":"Chicago University of Chicago Press 1956","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (BS 1440 .B342 1956 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg75795519&indx=4"},"holdings":[{"record_id":"smc_aleph000077470","institution":"Saint
+        Mary''s College","short_institution_name":"Saint Mary''s","library":"Saint
+        Mary''s College","institution_code":"SMC","library_code":"SMC","collection":"Rare
+        Book Room","call_number":"(BS 1440 .B35 H2 1956 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"0","source_institution_code":"SMC50","source_library_code":"SMC","source_sublocation_code":"RBR"},{"record_id":"ndu_aleph000000911","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(BS 1440 .B342 1956 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"2","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"},{"record_id":"ndu_aleph000000911","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"Special
+        Coll.&nbsp;Rare Books Medium","call_number":"(BS 1440 .B4 1640a commentary
+        )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"RARE","source_sublocation_code":"RB4ME"},{"record_id":"bci_aleph000024356","institution":"Bethel
+        College","short_institution_name":"BCI","library":"BCI","institution_code":"BCI","library_code":"BCI","collection":"Main
+        Collection","call_number":"(BS 1440 .B415 H3 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"1","source_institution_code":"BCI50","source_library_code":"BCI","source_sublocation_code":"MAIN"}],"openurl":{"au":"Haraszti,
+        Zolt\u00e1n","aufirst":"Zolt\u00e1n,","aulast":"Haraszti","btitle":"The enigma
+        of the Bay Psalm book.","date":"1956","genre":"book","pub":"University of
+        Chicago Press"},"primo":{"control":{"sourcerecordid":["$$V000077470$$Osmc_aleph000077470","$$V000000911$$Ondu_aleph000000911","$$V000024356$$Obci_aleph000024356"],"sourceid":["$$Vsmc_aleph$$Osmc_aleph000077470","$$Vndu_aleph$$Ondu_aleph000000911","$$Vbci_aleph$$Obci_aleph000024356"],"recordid":"dedupmrg75795519","originalsourceid":["$$VSMC01$$Osmc_aleph000077470","$$VNDU01$$Ondu_aleph000000911","$$VBCI01$$Obci_aleph000024356"],"sourceformat":["$$VMARC21$$Osmc_aleph000077470","$$VMARC21$$Ondu_aleph000000911","$$VMARC21$$Obci_aleph000024356"],"sourcesystem":["$$VAleph$$Osmc_aleph000077470","$$VAleph$$Ondu_aleph000000911","$$VAleph$$Obci_aleph000024356"],"ilsapiid":["$$VSMC01000077470$$Osmc_aleph000077470","$$VNDU01000000911$$Ondu_aleph000000911","$$VBCI01000024356$$Obci_aleph000024356"]},"display":{"type":"book","title":"The
+        enigma of the Bay Psalm book.","creator":"Zolt\u00e1n Haraszti 1892-1980.","publisher":"Chicago
+        University of Chicago Press","creationdate":"1956","format":"xiii, 143 p.
+        port., facsims. 20 cm..","subject":["Bible. O.T. Psalms. English Bay Psalm
+        book -- Paraphrases","Bay Psalm book"],"language":"eng","availlibrary":["$$ISMC$$LSMC$$1Rare
+        Book Room$$2(BS 1440 .B35 H2 1956 )$$Savailable$$31$$40$$5N$$60$$XSMC50$$YSMC$$ZRBR$$Osmc_aleph000077470","$$INDU$$LHESB$$1General
+        Collection$$2(BS 1440 .B342 1956 )$$Savailable$$31$$40$$5N$$62$$XNDU50$$YHESB$$ZGEN$$Ondu_aleph000000911","$$INDU$$LHESB$$1Special
+        Coll.&nbsp;Rare Books Medium$$2(BS 1440 .B4 1640a commentary )$$Savailable$$31$$40$$5N$$60$$XNDU50$$YRARE$$ZRB4ME$$Ondu_aleph000000911","$$IBCI$$LBCI$$1Main
+        Collection$$2(BS 1440 .B415 H3 )$$Savailable$$31$$40$$5N$$61$$XBCI50$$YBCI$$ZMAIN$$Obci_aleph000024356"],"availinstitution":["$$INDU$$Savailable","$$IBCI$$Savailable","$$ISMC$$Savailable"],"availpnx":"available","lds01":["Companion
+        volume to The Bay Psalm book, a facsimile reprint of the first edition of
+        1640, published in 1956.","Companion volume to The Bay Psalm book, a facsimile
+        reprint of the first edition of 1640, published in 1956.","Bibliographical
+        references included in \"Notes\" (p. 119-139)","Ownership History: Purchased
+        from Peter May (Southwell, Nottinghamshire, England) in March 2012. (Special
+        Coll. book)","Companion volume to The Bay Psalm book, a facsimile reprint
+        of the first edition of 1640, published in 1956.","10-18-62 5.00"],"lds02":["smc_aleph000077470","ndu_aleph000000911","bci_aleph000024356"],"lds03":"The
+        Puritans'' need for a new translation -- The jingle of Thomas Shepard -- John
+        Cotton -- not Richard Mather -- The New England Psalm Book -- Problems for
+        the scholar -- Experiments in textual analysis -- The search for authorship
+        -- The psalm-singing of the Puritans -- The printing of the Bay Psalm Book
+        -- The extant copies -- A transcript by Cotton -- Who was Richard Lyon? --
+        The draft of the preface."},"links":{"linktoholdings":["$$V$$Taleph_holdings$$ISMC$$Osmc_aleph000077470","$$V$$Taleph_holdings$$Osmc_aleph000077470","$$V$$Taleph_holdings$$INDU$$Ondu_aleph000000911","$$V$$Taleph_holdings$$Ondu_aleph000000911","$$V$$Taleph_holdings$$IBCI$$Obci_aleph000024356","$$V$$Taleph_holdings$$Obci_aleph000024356"],"linktoholdsnotexist":["$$V$$Taleph_holdings_not_in_user_institution$$Osmc_aleph000077470","$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph000000911","$$V$$Taleph_holdings_not_in_user_institution$$Obci_aleph000024356"],"backlink":["$$V$$Taleph_backlink$$DSaint
+        Mary''s Catalog$$Osmc_aleph000077470","$$V$$Taleph_backlink$$DNotre Dame Catalog$$Ondu_aleph000000911","$$V$$Taleph_backlink$$DBethel
+        Catalog$$Obci_aleph000024356"],"openurl":["$$V$$Topenurl_journal$$Osmc_aleph000077470","$$V$$Topenurl_journal$$Ondu_aleph000000911","$$V$$Topenurl_journal$$Obci_aleph000024356"],"openurlfulltext":["$$V$$Topenurlfull_journal$$Osmc_aleph000077470","$$V$$Topenurlfull_journal$$Ondu_aleph000000911","$$V$$Topenurlfull_journal$$Obci_aleph000024356"],"linktouc":["$$Tworldcat_oclc$$Eworldcat","$$Tworldcat_oclc$$Eworldcat","$$Tworldcat_oclc$$Eworldcat"],"thumbnail":"$$Tgoogle_thumb","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["Zolt\u00e1n,  Haraszti  1892-1980.","Haraszti,
+        Z","by Zolt\u00e1n Haraszti.","Peter May Psalms Limited Editions Collection
+        (University of Notre Dame. Library)","Zoltan,  Haraszti  1892-1980."],"title":["The
+        enigma of the Bay Psalm book.","The enigma of the Bay Psalm book /"],"subject":["Bible.
+        O.T. Psalms. English Paraphrases Bay Psalm book.","Bay Psalm book.","The bay
+        psalm book.","Bay Psalm Book","Bible. O.T. Psalms. English. Bay Psalm book","Whole
+        booke of Psalmes faithfully translated into English metre","Bible. Psalms.
+        English. Bay Psalm book"],"general":["University of Chicago Press","(OCoLC)00382590","00382590","AllDocuments","Companion
+        volume to The Bay Psalm book, a facsimile reprint of the first edition of
+        1640, published in 1956.","University of Chicago Press,","AAA0934","Bibliographical
+        references included in \"Notes\" (p. 119-139)","Purchased from Peter May (Southwell,
+        Nottinghamshire, England) in March 2012. (Special Coll. book)","10-18-62 5.00","AAC5954"],"sourceid":["smc_aleph","ndu_aleph","bci_aleph"],"recordid":["smc_aleph000077470","000077470","77470","ndu_aleph000000911","000000911","911","bci_aleph000024356","000024356","24356"],"creationdate":"1956","addtitle":["Bible.
+        O.T. Psalms. English. 1640. Paraphrases. Bay Psalm book.","Enigma of the Bay
+        Psalm book."],"searchscope":["smc_aleph","SMC","ndu_aleph","NDU","bci_aleph","BCI"],"scope":["SMC","smc_aleph","HESB","RARE","ndu_aleph","NDU","BCI","bci_aleph"],"lsr01":["SMC
+        RBR","SMC Rare Book Room","HESB GEN","HESB General Collection","RARE RB4ME","RARE
+        Rare Books Medium","BCI MAIN","BCI Main Collection"],"lsr02":["Haraszti, Zolt\u00e1n,","Haraszti,
+        Zoltan,"],"lsr04":"Bible. O.T. Psalms. English. 1640. Paraphrases. Bay Psalm
+        book.","lsr05":["BS 1440 .B35 H2 1956","BS1440.B35H21956","BS1440 .B35 H2
+        1956 :","BS 1440 .B342 1956","BS 1440 .B4 1640a commentary","BS1440.B3421956","BS1440.B41640acommentary","BS","BS1440
+        .B342 1956 :1440 .B4 1640a commentary :","BS 1440 .B415 H3","BS1440.B415H3","BS1440
+        .B415 H3 :"],"lsr06":["University of Chicago Press","University of Chicago
+        Press,"],"description":"An examination of the first book ever written and
+        printed in America after the Puritans of arrived at Massachusetts Bay (1620).
+        The volume...[is] an expression of the colony''s own brand of Calvinism--as
+        a gesture designed to demonstrate that its people were congregationalists
+        and, at the same time, loyal members of the Church of England.","toc":"The
+        Puritans'' need for a new translation -- The jingle of Thomas Shepard -- John
+        Cotton -- not Richard Mather -- The New England Psalm Book -- Problems for
+        the scholar -- Experiments in textual analysis -- The search for authorship
+        -- The psalm-singing of the Puritans -- The printing of the Bay Psalm Book
+        -- The extant copies -- A transcript by Cotton -- Who was Richard Lyon? --
+        The draft of the preface.","lsr07":["Haraszti The enigma of the Bay Psalm
+        book","The enigma of the Bay Psalm book Haraszti"]},"sort":{"title":"enigma
+        of the Bay Psalm book.","creationdate":"1956","author":"Haraszti, Zolt\u00e1n,
+        1892-1980."},"facets":{"language":"eng","creationdate":"1956","topic":["Bible.
+        O.T. Psalms. English Bay Psalm book\u2013Paraphrases","Bay Psalm book","Bible.
+        Psalms. English. Bay Psalm book"],"toplevel":"available","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":["Haraszti,
+        Z","Peter May Psalms Limited Editions Collection (University of Notre Dame.
+        Library)"],"library":["SMC","HESB","BCI"],"lfc04":"Bible. O.T. Psalms. Bay
+        Psalm book.","classificationlcc":"B - Philosophy. Psychology. Religion\u2013The
+        Bible","frbrgroupid":"76743108","frbrtype":"6"},"dedup":{"t":"1","c1":"56005128","c3":"enigmaofthebaypsalmbook","c4":"1956","f1":"56005128","f5":"enigmaofthebaypsalmbook","f6":"1956","f7":"enigma
+        of the bay psalm book","f8":"ilu","f9":"xiii, 143 p.","f10":"university of
+        chicago press","f11":"haraszti zoltan 1892 1980"},"frbr":{"t":"1","k1":"$$Kharaszti
+        zoltan 1892 1980$$AA","k3":"$$Kenigma of the bay psalm book$$AT"},"delivery":{"institution":["$$VSMC$$Osmc_aleph000077470","$$VNDU$$Ondu_aleph000000911","$$VBCI$$Obci_aleph000024356"],"delcategory":["$$VPhysical
+        Item$$Osmc_aleph000077470","$$VPhysical Item$$Ondu_aleph000000911","$$VPhysical
+        Item$$Obci_aleph000024356"]},"enrichment":{"classificationlcc":"BS 1440 .B35"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Haraszti","aufirst":["Zolt\u00e1n,","Zoltan,"],"au":["Haraszti,
+        Zolt\u00e1n","Haraszti, Zoltan"],"btitle":["The enigma of the Bay Psalm book.","The
+        enigma of the Bay Psalm book"],"date":"1956","risdate":"[1956]","format":"book","genre":"book","ristype":"BOOK","notes":["Bibliographical
+        references included in \"Notes\" (p.119-139)","Bibliographical references
+        included in \"Notes\" (p. 119-139)."],"cop":["Chicago","Chicago]"],"pub":"University
+        of Chicago Press","oclcid":"00382590","lccn":"56005128","abstract":"An examination
+        of the first book ever written and printed in America after the Puritans of
+        arrived at Massachusetts Bay (1620). The volume...[is] an expression of the
+        colony''s own brand of Calvinism--as a gesture designed to demonstrate that
+        its people were congregationalists and, at the same time, loyal members of
+        the Church of England."}}},{"id":"dedupmrg72984074","type":"journal","oclc":"06715359","lccn":"30005988","physical":true,"physical_available":true,"electronic":true,"fulltext_available":true,"display":{"type":"Journal","title":"The
+        horn book magazine","publisher_provider":"Boston : Horn Book 1945-","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (Z 1037 .A1 H783 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg72984074&indx=5","fulltext_url":"http://findtext.library.nd.edu:8889/ndu%5Flocal?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fenc=info:ofi/enc:UTF-8&rfr%5Fid=info:sid/sfxit.com:opac%5F856&url%5Fctx%5Ffmt=info:ofi/fmt:kev:mtx:ctx&sfx.ignore%5Fdate%5Fthreshold=1&rft.object%5Fid=962824865026&svc%5Fval%5Ffmt=info:ofi/fmt:kev:mtx:sch%5Fsvc&","fulltext_url_name":"Access
+        Online"},"holdings":[{"record_id":"ndu_aleph000813381","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(Z 1037 .A1 H783 )","availability_status_code":"available","number_of_items":"0","multi_volume":"Y","number_of_loans":"1","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"},{"record_id":"smc_aleph000138133","institution":"Saint
+        Mary''s College","short_institution_name":"Saint Mary''s","library":"Saint
+        Mary''s College","institution_code":"SMC","library_code":"SMC","collection":"Periodicals","call_number":"(Shelved
+        by title )","availability_status_code":"check_holdings","multi_volume":"Y","source_institution_code":"SMC50","source_library_code":"SMC","source_sublocation_code":"PER"},{"record_id":"bci_aleph000038719","institution":"Bethel
+        College","short_institution_name":"BCI","library":"BCI","institution_code":"BCI","library_code":"BCI","collection":"Periodicals","call_number":"(Shelved
+        by title )","availability_status_code":"available","number_of_items":"0","multi_volume":"Y","number_of_loans":"0","source_institution_code":"BCI50","source_library_code":"BCI","source_sublocation_code":"PER"},{"record_id":"ndlaw_iii.b1856186x","institution":"Kresge
+        Law Library","short_institution_name":"NDLAW","library":"NDLAW","institution_code":"NDLAW","library_code":"NDLAW","collection":"General
+        Collection","call_number":"(Internet )","availability_status_code":"check_holdings"}],"openurl":{"date":"1945","genre":"journal","issn":"0018-5078","jtitle":"The
+        horn book magazine","pub":"Horn Book]","stitle":"Horn book mag."},"primo":{"control":{"sourcerecordid":["$$V002173018$$Ondu_aleph002173018","$$V000813381$$Ondu_aleph000813381","$$V000138133$$Osmc_aleph000138133","$$V000038719$$Obci_aleph000038719","$$V.b1856186x$$Ondlaw_iii.b1856186x"],"sourceid":["$$Vndu_aleph$$Ondu_aleph002173018","$$Vndu_aleph$$Ondu_aleph000813381","$$Vsmc_aleph$$Osmc_aleph000138133","$$Vbci_aleph$$Obci_aleph000038719","$$Vndlaw_iii$$Ondlaw_iii.b1856186x"],"recordid":"dedupmrg72984074","originalsourceid":["$$VNDU01$$Ondu_aleph002173018","$$VNDU01$$Ondu_aleph000813381","$$VSMC01$$Osmc_aleph000138133","$$VBCI01$$Obci_aleph000038719","$$VXNDA$$Ondlaw_iii.b1856186x"],"addsrcrecordid":"$$Vb1856186$$Ondlaw_iii.b1856186x","sourceformat":["$$VMARC21$$Ondu_aleph002173018","$$VMARC21$$Ondu_aleph000813381","$$VMARC21$$Osmc_aleph000138133","$$VMARC21$$Obci_aleph000038719","$$VMARC
+        Exchange$$Ondlaw_iii.b1856186x"],"sourcesystem":["$$VAleph$$Ondu_aleph002173018","$$VAleph$$Ondu_aleph000813381","$$VAleph$$Osmc_aleph000138133","$$VAleph$$Obci_aleph000038719","$$VOther$$Ondlaw_iii.b1856186x"],"ilsapiid":["$$VNDU01002173018$$Ondu_aleph002173018","$$VNDU01000813381$$Ondu_aleph000813381","$$VSMC01000138133$$Osmc_aleph000138133","$$VBCI01000038719$$Obci_aleph000038719"]},"display":{"type":"journal","title":"The
+        horn book magazine","publisher":"Boston : Horn Book","creationdate":"1945-","format":["Six
+        no. a year","Began with [Vol. 21, no. 3] (May-June 1945)-"],"identifier":"$$CISSN
+        $$V0018-5078","subject":"Children''s literature -- Bibliography -- Periodicals","language":"eng","relation":"$$Cearlier_title
+        $$VHorn book (Boston, Mass. : 1944)","unititle":"Horn book magazine (Boston,
+        Mass. : 1945 : Online)","source":"$$Vndlaw_iii$$Ondlaw_iii.b1856186x","availlibrary":["$$INDU$$LHESB$$1General
+        Collection$$2(Z 1037 .A1 H783 )$$Savailable$$35$$40$$5Y$$61$$XNDU50$$YHESB$$ZGEN$$Ondu_aleph000813381","$$ISMC$$LSMC$$1Periodicals$$2(Shelved
+        by title )$$Scheck_holdings$$5Y$$XSMC50$$YSMC$$ZPER$$Osmc_aleph000138133","$$IBCI$$LBCI$$1Periodicals$$2(Shelved
+        by title )$$Savailable$$364$$40$$5Y$$60$$XBCI50$$YBCI$$ZPER$$Obci_aleph000038719","$$INDLAW$$LNDLAW$$1General
+        Collection$$2(Internet )$$Scheck_holdings$$Ondlaw_iii.b1856186x"],"availinstitution":["$$INDU$$Savailable","$$INDLAW$$Scheck_holdings","$$IBCI$$Savailable","$$ISMC$$Scheck_holdings"],"availpnx":"available","lds01":["Title
+        from cover.","SFX MARCIt Record","Title from cover.","Index/Finding Aid: 1924-1989.
+        1 v."],"lds02":["ndu_aleph002173018","ndu_aleph000813381","smc_aleph000138133","bci_aleph000038719","ndlaw_iii.b1856186x"]},"links":{"linktoholdings":["$$V$$Taleph_holdings$$Ondu_aleph002173018","$$V$$Taleph_holdings$$INDU$$Ondu_aleph000813381","$$V$$Taleph_holdings$$Ondu_aleph000813381","$$V$$Taleph_holdings$$ISMC$$Osmc_aleph000138133","$$V$$Taleph_holdings$$Osmc_aleph000138133","$$V$$Taleph_holdings$$IBCI$$Obci_aleph000038719","$$V$$Taleph_holdings$$Obci_aleph000038719","$$V$$Tlaw_holdings$$INDLAW$$Ondlaw_iii.b1856186x"],"linktoholdsnotexist":["$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph002173018","$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph000813381","$$V$$Taleph_holdings_not_in_user_institution$$Osmc_aleph000138133","$$V$$Taleph_holdings_not_in_user_institution$$Obci_aleph000038719","$$V$$Tlaw_holdings_not_in_user_institution$$Ondlaw_iii.b1856186x"],"backlink":["$$V$$Taleph_backlink$$DNotre
+        Dame Catalog [electronic resource].$$Ondu_aleph002173018","$$V$$Taleph_backlink$$DNotre
+        Dame Catalog$$Ondu_aleph000813381","$$V$$Taleph_backlink$$DSaint Mary''s Catalog$$Osmc_aleph000138133","$$V$$Taleph_backlink$$DBethel
+        Catalog$$Obci_aleph000038719","$$V$$Tlaw_backlink$$Ebacklink_ndl$$Ondlaw_iii.b1856186x"],"linktorsrc":["$$V$$Uhttp://findtext.library.nd.edu:8889/ndu%5Flocal?url%5Fver=Z39.88-2004&ctx%5Fver=Z39.88-2004&ctx%5Fenc=info:ofi/enc:UTF-8&rfr%5Fid=info:sid/sfxit.com:opac%5F856&url%5Fctx%5Ffmt=info:ofi/fmt:kev:mtx:ctx&sfx.ignore%5Fdate%5Fthreshold=1&rft.object%5Fid=962824865026&svc%5Fval%5Ffmt=info:ofi/fmt:kev:mtx:sch%5Fsvc&$$DNotre
+        Dame Online Access$$Ondu_aleph002173018","$$V$$Elinktorsrc_ndlcat$$Uhttp://innopac.law.nd.edu/record=b1856186$$Ondlaw_iii.b1856186x"],"openurl":["$$V$$Topenurl_journal$$Ondu_aleph002173018","$$V$$Topenurl_journal$$Ondu_aleph000813381","$$V$$Topenurl_journal$$Osmc_aleph000138133","$$V$$Topenurl_journal$$Obci_aleph000038719","$$V$$Topenurl_journal$$Ondlaw_iii.b1856186x"],"openurlfulltext":["$$V$$Topenurlfull_journal$$Ondu_aleph002173018","$$V$$Topenurlfull_journal$$Ondu_aleph000813381","$$V$$Topenurlfull_journal$$Osmc_aleph000138133","$$V$$Topenurlfull_journal$$Obci_aleph000038719","$$V$$Topenurlfull_journal$$Ondlaw_iii.b1856186x"],"linktouc":["$$Tworldcat_oclc$$Eworldcat","$$Tworldcat_oclc$$Eworldcat","$$Tworldcat_oclc$$Eworldcat"],"thumbnail":"$$Tgoogle_thumb","lln01":"$$Tfindit_link"},"search":{"title":["The
+        horn book magazine","The horn book magazine."],"general":["Horn Book],","[electronic
+        resource].","SFX MARCIt Record","(SFX)962824865026","962824865026","Horn Book,
+        Inc.],","(OCoLC)06715359","06715359","ADR8227","AllDocuments","Title from
+        cover.","022-C-140 NYG 0318672 MULS","(WaSeSS)ssj0001848","ssj0001848"],"recordid":["ndu_aleph002173018","002173018","2173018","ndu_aleph000813381","000813381","813381","smc_aleph000138133","000138133","138133","bci_aleph000038719","000038719","38719","ndlaw_iii.b1856186x",".b1856186x"],"alttitle":["Horn
+        book magazine (Boston, Mass. : 1945 : Online)","Horn book magazine (Boston,
+        Mass. : 1945)","Horn book mag. (1945)"],"lsr04":["Horn book magazine (Boston,
+        Mass. : 1945 : Online)","Horn book magazine (Boston, Mass. : 1945)"],"lsr06":["Horn
+        Book],","Horn Book, Inc.],"],"subject":["Children''s literature Bibliography
+        Periodicals.","Electronic journals."],"sourceid":["ndu_aleph","smc_aleph","bci_aleph","ndlaw_iii"],"issn":["0018-5078","00185078"],"creationdate":["1945","9999"],"addtitle":"Horn
+        book (Boston, Mass. : 1944)","searchscope":["ndu_aleph","NDU","smc_aleph","SMC","bci_aleph","BCI","ndlaw_iii","NDLAW"],"scope":["HESB","ndu_aleph","NDU","SMC","smc_aleph","BCI","bci_aleph","ndlaw_iii","NDLAW"],"lsr01":["HESB
+        GEN","HESB General Collection","SMC PER","SMC Periodicals","BCI PER","BCI
+        Periodicals"],"lsr05":["Z 1037 .A1 H783","Z1037.A1H783","Z1037 .A1 H783 :","Shelved
+        by title","Shelvedbytitle","Shelvedby title :","Internet"],"lsr07":"The horn
+        book magazine","creatorcontrib":"EBSCO Publishing (Firm)"},"sort":{"title":"Horn
+        book magazine (Boston, Mass. : 1945 : Online)","creationdate":"1945"},"facets":{"toplevel":["online_resources","available"],"lfc04":["Horn
+        book magazine (Boston, Mass. : 1945 : Online)","Horn book magazine (Boston,
+        Mass. : 1945)"],"language":"eng","creationdate":"1945","topic":"Children''s
+        literature\u2013Bibliography\u2013Periodicals","prefilter":["journals","print"],"rsrctype":["journals","print"],"library":["HESB","SMC","BCI","NDLAW"],"classificationlcc":"Z
+        - Bibliography. Library science. Information resources (general).","creatorcontrib":"EBSCO
+        Publishing (Firm)","genre":["Bibliography Periodicals","Electronic journals"],"frbrgroupid":"76503288","frbrtype":"6"},"dedup":{"t":"2","c2":"0018-5078","c3":"hornbookmagazine","c4":"boston","f3":"00185078","f4":"00185078","f6":"1945","f7":"horn
+        book magazine","f8":"horn book magazine","f9":"mau","f10":"boston","f11":"horn
+        book magazine boston mass 1945 online"},"frbr":{"k2":["$$Khorn book magazine
+        boston mass 1945 online$$ATO","$$Khorn book magazine boston mass 1945$$ATO"],"t":"1","k3":"$$Khorn
+        book magazine$$AT"},"delivery":{"institution":["$$VNDU$$Ondu_aleph002173018","$$VNDU$$Ondu_aleph000813381","$$VSMC$$Osmc_aleph000138133","$$VBCI$$Obci_aleph000038719","$$VNDLAW$$Ondlaw_iii.b1856186x"],"delcategory":["$$VSFX
+        Resource$$Ondu_aleph002173018","$$VPhysical Item$$Ondu_aleph000813381","$$VPhysical
+        Item$$Osmc_aleph000138133","$$VPhysical Item$$Obci_aleph000038719","$$VOnline
+        Resource$$Ondlaw_iii.b1856186x"]},"ranking":{"booster1":"1","booster2":"1"},"addata":{"jtitle":["The
+        horn book magazine","The horn book magazine."],"pub":["Horn Book]","Horn Book,
+        Inc.]"],"objectid":"962824865026","stitle":"Horn book mag.","date":"1945","risdate":"1945-","issn":"0018-5078","format":"journal","genre":"journal","ristype":"JOUR","cop":"Boston","oclcid":"06715359","lccn":"30005988"}}},{"id":"ndu_aleph000602929","type":"book","oclc":"00741667","lccn":"73174955","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
+        British book trade from Caxton to the present day; a bibliographical guide
+        based on the libraries of the National Book League and St. Bride Institute","creator_contributor":"Robin
+        Myers fl. 1967- National Book League, London. Library. St. Bride Foundation
+        Institute, London. Library.","publisher_provider":"London Deutsch in association
+        with the National Book League 1973","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (Z 324 .M9 )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph000602929&indx=6"},"holdings":[{"record_id":"ndu_aleph000602929","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(Z 324 .M9 )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"}],"openurl":{"au":"Myers,
+        Robin","aufirst":"Robin,","aulast":"Myers","btitle":"The British book trade
+        from Caxton to the present day; a bibliographical guide based on the libraries
+        of the National Book League and St. Bride Institute","date":"1973","genre":"book","isbn":"0233963537","pub":"Deutsch
+        in association with the National Book League"},"primo":{"control":{"sourcerecordid":"000602929","sourceid":"ndu_aleph","recordid":"ndu_aleph000602929","originalsourceid":"NDU01","ilsapiid":"NDU01000602929","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"The
+        British book trade from Caxton to the present day; a bibliographical guide
+        based on the libraries of the National Book League and St. Bride Institute","creator":"Robin
+        Myers fl. 1967-","contributor":["National Book League, London. Library.","St.
+        Bride Foundation Institute, London. Library."],"publisher":"London Deutsch
+        in association with the National Book League","creationdate":"1973","format":"xv,
+        405 p. illus. 24 cm..","identifier":"$$CISBN $$V0233963537","subject":"Book
+        industries and trade -- Great Britain -- Bibliography","language":"eng","relation":"$$Cseries
+        $$VGrafton book","availlibrary":"$$INDU$$LHESB$$1General Collection$$2(Z 324
+        .M9 )$$Savailable$$31$$40$$5N$$60$$XNDU50$$YHESB$$ZGEN","lds02":"ndu_aleph000602929","availinstitution":"$$INDU$$Savailable","availpnx":"available"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog","thumbnail":["$$Tamazon_thumb","$$Tsyndetics_thumb","$$Tgoogle_thumb"],"linktoabstract":"$$Tsyndetics_abstract$$Elinktoabstract","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":["$$Taleph_holdings$$INDU","$$Taleph_holdings"],"linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","linktouc":"$$Tworldcat_isbn$$Eworldcat","linktoexcerpt":"$$Tsyndetics_excerpt$$Elinktoexcerpt","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["Robin,  Myers  fl.
+        1967-","Myers, R","National Book League, London. Library.","St. Bride Foundation
+        Institute, London. Library."],"title":"The British book trade from Caxton
+        to the present day; a bibliographical guide based on the libraries of the
+        National Book League and St. Bride Institute","subject":"Book industries and
+        trade Great Britain Bibliography.","general":["Deutsch in association with
+        the National Book League","(OCoLC)00741667","00741667","ACQ0668","AllDocuments"],"sourceid":"ndu_aleph","recordid":["ndu_aleph000602929","000602929","602929"],"isbn":"0233963537","creationdate":"1973","addtitle":"Grafton
+        book","searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"lsr01":["HESB
+        GEN","HESB General Collection"],"lsr02":"Myers, Robin,","lsr03":"Grafton book","lsr05":["Z
+        324 .M9","Z324.M9","Z324 .M9 :"],"lsr06":"Deutsch in association with the
+        National Book League"},"sort":{"title":"British book trade from Caxton to
+        the present day; a bibliographical guide based on the libraries of the National
+        Book League and St. Bride Institute","creationdate":"1973","author":"Myers,
+        Robin, fl. 1967-"},"facets":{"language":"eng","creationdate":"1973","topic":"Book
+        industries and trade\u2013Great Britain\u2013Bibliography","toplevel":"available","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":["Myers,
+        R","National Book League, London. Library","St. Bride Foundation Institute,
+        London. Library"],"library":"HESB","classificationlcc":"Z - Bibliography.
+        Library science. Information resources (general).\u2013Book industries and
+        trade\u2013Bookselling and publishing","frbrgroupid":"73810143","frbrtype":"6"},"dedup":{"t":"1","c1":"73174955","c2":"0233963537","c3":"britishbooktradefromeinstitute","c4":"1973","f1":"73174955","f3":"0233963537","f5":"britishbooktradefromeinstitute","f6":"1973","f7":"british
+        book trade from caxton to the present day a bibliographical guide based on
+        the libraries of the national book league and st bride institute","f8":"enk","f9":"xv,
+        405 p.","f10":"deutsch in association with the national book league","f11":"myers
+        robin fl 1967"},"frbr":{"t":"1","k1":"$$Kmyers robin fl 1967$$AA","k3":"$$Kbritish
+        book trade from caxton to the present day a bibliographical guide based on
+        the libraries of the national book league and st bride institute$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
+        Item"},"enrichment":{"classificationlcc":"Z 324"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Myers","aufirst":"Robin,","au":"Myers,
+        Robin","btitle":"The British book trade from Caxton to the present day; a
+        bibliographical guide based on the libraries of the National Book League and
+        St. Bride Institute","seriestitle":"Grafton book","date":"1973","risdate":"[1973]","isbn":"0233963537","format":"book","genre":"book","ristype":"BOOK","cop":"London","pub":"Deutsch
+        in association with the National Book League","oclcid":"00741667","lccn":"73174955"}}},{"id":"ndu_aleph003366556","type":"book","oclc":"31136872","physical":true,"physical_available":false,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"A
+        book of Gaelic airs for Una''s melodeon","creator_contributor":"Una Jeffers
+        1884 or 1885-1950. Robinson Jeffers 1887-1962. Dave Oliphant Ward Ritchie
+        1905-1996. Book Club of California.","publisher_provider":"San Francisco,
+        Calif. : The Book Club of California 1989","availability":"Not Available","available_library":"Notre
+        Dame, Hesburgh Library Music Collection (2nd Floor) "},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph003366556&indx=7"},"holdings":[{"record_id":"ndu_aleph003366556","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"Music
+        Collection (2nd Floor)","call_number":null,"availability_status_code":"unavailable","number_of_items":"1","multi_volume":"N","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"MUS"}],"openurl":{"au":"Jeffers,
+        Una","aufirst":"Una,","aulast":"Jeffers","btitle":"A book of Gaelic airs for
+        Una''s melodeon","date":"1989","genre":"book","pub":"The Book Club of California"},"primo":{"control":{"sourcerecordid":"003366556","sourceid":"ndu_aleph","recordid":"ndu_aleph003366556","originalsourceid":"NDU01","ilsapiid":"NDU01003366556","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"A
+        book of Gaelic airs for Una''s melodeon","creator":"Una Jeffers 1884 or 1885-1950.","contributor":["Robinson
+        Jeffers 1887-1962.","Dave Oliphant","Ward Ritchie 1905-1996.","Book Club of
+        California."],"publisher":"San Francisco, Calif. : The Book Club of California","creationdate":"1989","format":"173
+        p. : ill. ; 21 x 32 cm..","subject":"Songs, Scottish Gaelic -- Ireland","description":"Facsimile
+        reprint of a manuscript book of music, words, and illustrations to accompany
+        to the songs.","language":"eng","relation":"$$Cseries $$VPublication (Book
+        Club of California) ; no. 191.","availlibrary":"$$INDU$$LHESB$$1Music Collection
+        (2nd Floor)$$Sunavailable$$31$$41$$5N$$60$$XNDU50$$YHESB$$ZMUS","lds01":["Printed
+        in an edition of 500 copies--Colophon.","\"This book was designed by Ward
+        Ritchie ...\"--Colophon."],"lds02":"ndu_aleph003366556","availinstitution":"$$INDU$$Sunavailable","availpnx":"unavailable"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog","thumbnail":"$$Tgoogle_thumb","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":["$$Taleph_holdings$$INDU","$$Taleph_holdings"],"linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","linktouc":"$$Tworldcat_oclc$$Eworldcat","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["Una,  Jeffers  1884
+        or 1885-1950.","Jeffers, U","collected by Una Jeffers ; illustrated by Robinson
+        Jeffers ; introduction by Dave Oliphant.","Robinson,  Jeffers  1887-1962.","Dave  Oliphant","Ward,  Ritchie  1905-1996.","Jeffers,
+        R","Oliphant, D","Ritchie, W","Book Club of California.","Jeffers, John Robinson,
+        1887-1962","Book Club of California, San Francisco.","Call, Una, 1884 or 1885-1950","Kuster,
+        Una Call, 1884 or 1885-1950","Jeffers, Una, 1884 or 5-1950"],"title":"A book
+        of Gaelic airs for Una''s melodeon /","description":"Facsimile reprint of
+        a manuscript book of music, words, and illustrations to accompany to the songs.","subject":"Songs,
+        Scottish Gaelic Ireland.","general":["The Book Club of California,","(OCoLC)31136872","31136872","AllDocuments","Printed
+        in an edition of 500 copies--Colophon.","\"This book was designed by Ward
+        Ritchie ...\"--Colophon."],"sourceid":"ndu_aleph","recordid":["ndu_aleph003366556","003366556","3366556"],"creationdate":"1989","addtitle":["Publication
+        / Book Club of California ; no. 191","Publication (Book Club of California)
+        ; no. 191."],"searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"lsr01":["HESB
+        MUS","HESB Music Collection (2nd Floor)"],"lsr02":"Jeffers, Una,","lsr03":["Publication
+        / Book Club of California ; no. 191","Publication (Book Club of California)
+        ; no. 191."],"lsr06":"The Book Club of California,","lsr07":["Jeffers Jeffers
+        Oliphant Ritchie A book of Gaelic airs for Una s melodeon","A book of Gaelic
+        airs for Una s melodeon Jeffers Jeffers Oliphant Ritchie"]},"sort":{"title":"book
+        of Gaelic airs for Una''s melodeon /","creationdate":"1989","author":"Jeffers,
+        Una, 1884 or 1885-1950."},"facets":{"language":"eng","creationdate":"1989","topic":"Songs,
+        Scottish Gaelic\u2013Ireland","prefilter":["books","print"],"rsrctype":["books","print"],"creatorcontrib":["Jeffers,
+        U","Jeffers, R","Oliphant, D","Ritchie, W","Book Club of California"],"library":"HESB","lfc03":"Publication
+        (Book Club of California)","frbrgroupid":"87062776","frbrtype":"6"},"dedup":{"t":"1","c3":"bookofgaelicairsforuasmelodeon","c4":"1989","f5":"bookofgaelicairsforuasmelodeon","f6":"1989","f7":"book
+        of gaelic airs for unas melodeon","f8":"cau","f9":"173 p. :","f10":"the book
+        club of california","f11":"jeffers una 1884 or 1885 1950"},"frbr":{"t":"1","k1":"$$Kjeffers
+        una 1884 or 1885 1950$$AA","k3":"$$Kbook of gaelic airs for una''s melodeon$$AT"},"delivery":{"institution":"NDU","delcategory":"Physical
+        Item"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Jeffers","aufirst":"Una,","au":"Jeffers,
+        Una","addau":["Jeffers, Robinson","Oliphant, Dave","Ritchie, Ward"],"btitle":"A
+        book of Gaelic airs for Una''s melodeon","seriestitle":"Publication (Book
+        Club of California) ; no. 191","date":"1989","risdate":"1989.","format":"book","genre":"book","ristype":"BOOK","abstract":"Facsimile
+        reprint of a manuscript book of music, words, and illustrations to accompany
+        to the songs.","cop":"San Francisco, Calif.","pub":"The Book Club of California","oclcid":"31136872"}}},{"id":"dedupmrg16831904","type":"book","oclc":"71194494","physical":true,"physical_available":true,"electronic":false,"fulltext_available":false,"display":{"type":"Book","title":"The
+        Exeter book of Old English poetry","creator_contributor":"R. W Chambers [Raymond
+        Wilson], 1874-1942. Max F\u00f6rster 1869- Robin Flower 1881-1946. Exeter
+        Cathedral. Library.","publisher_provider":"London : Printed and published
+        for the Dean and Chapter of Exeter Cathedral by P. Lund, Humphries & Co. 1933","availability":"Available","available_library":"Notre
+        Dame, Hesburgh Library General Collection (PR 1490 .A1 1933a )"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg16831904&indx=8"},"holdings":[{"record_id":"ndu_aleph001773916","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"General
+        Collection","call_number":"(PR 1490 .A1 1933a )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"2","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"GEN"},{"record_id":"ndu_aleph002331888","institution":"University
+        of Notre Dame","short_institution_name":"Notre Dame","library":"Hesburgh Library","institution_code":"NDU","library_code":"HESB","collection":"Circulation
+        Desk","call_number":"(Electronic PR 1490 .A1 1933a )","availability_status_code":"available","number_of_items":"0","multi_volume":"N","number_of_loans":"0","source_institution_code":"NDU50","source_library_code":"HESB","source_sublocation_code":"RES"}],"openurl":{"aufirst":"R.
+        W.","aulast":"Chambers","btitle":"The Exeter book of Old English poetry","date":"1933","genre":"book","pub":"Printed
+        and published for the Dean and Chapter of Exeter Cathedral by P. Lund, Humphries
+        & Co."},"primo":{"control":{"sourcerecordid":["$$V001773916$$Ondu_aleph001773916","$$V002331888$$Ondu_aleph002331888"],"sourceid":["$$Vndu_aleph$$Ondu_aleph001773916","$$Vndu_aleph$$Ondu_aleph002331888"],"recordid":"dedupmrg16831904","originalsourceid":["$$VNDU01$$Ondu_aleph001773916","$$VNDU01$$Ondu_aleph002331888"],"sourceformat":["$$VMARC21$$Ondu_aleph001773916","$$VMARC21$$Ondu_aleph002331888"],"sourcesystem":["$$VAleph$$Ondu_aleph001773916","$$VAleph$$Ondu_aleph002331888"],"ilsapiid":["$$VNDU01001773916$$Ondu_aleph001773916","$$VNDU01002331888$$Ondu_aleph002331888"]},"display":{"type":"book","title":"The
+        Exeter book of Old English poetry","contributor":["R. W Chambers [Raymond
+        Wilson], 1874-1942.","Max F\u00f6rster 1869-","Robin Flower 1881-1946.","Exeter
+        Cathedral. Library."],"publisher":"London : Printed and published for the
+        Dean and Chapter of Exeter Cathedral by P. Lund, Humphries & Co.","creationdate":"1933","format":"94
+        p., ca. 270 p. : facsims..","subject":["Leofric, Bishop of Exeter, -1072","English
+        poetry -- Old English, ca. 450-1100","Manuscripts, English [Old] -- Facsimiles","Exeter
+        book"],"language":"ang","unititle":"Exeter book.","availlibrary":["$$INDU$$LHESB$$1General
+        Collection$$2(PR 1490 .A1 1933a )$$Savailable$$31$$40$$5N$$62$$XNDU50$$YHESB$$ZGEN$$Ondu_aleph001773916","$$INDU$$LHESB$$1Circulation
+        Desk$$2(Electronic PR 1490 .A1 1933a )$$Savailable$$31$$40$$5N$$60$$XNDU50$$YHESB$$ZRES$$Ondu_aleph002331888"],"availinstitution":"$$INDU$$Savailable","availpnx":"available","lds01":"\"Reproduced
+        and printed ... at the Country Press, Bradford ... Limited to twelve copies,
+        unnumbered and not for sale and two hundred and fifty copies, numbered and
+        for sale of which this is no. 128.\"","lds02":["ndu_aleph001773916","ndu_aleph002331888"],"lds03":"The
+        Exeter Book and its donor Leofric / by R.W. Chambers -- The donations of Leofric
+        to Exeter / by Max F\u00f6rster -- Modern study of the poetry of the Exeter
+        Book / by R.W. Chambers -- The preliminary matter of the Exeter Book / by
+        Max F\u00f6rster -- General description of the manuscript / by Max F\u00f6rster
+        -- Transcription of the damaged passages of the Exeter Book / by R.W. Chambers
+        and Robin Flower -- The script of the Exeter Book / by Robin Flower -- Collotype
+        facsimile of the Exeter Book.","version":"13"},"links":{"linktoholdings":["$$V$$Taleph_holdings$$INDU$$Ondu_aleph001773916","$$V$$Taleph_holdings$$Ondu_aleph001773916","$$V$$Taleph_holdings$$INDU$$Ondu_aleph002331888","$$V$$Taleph_holdings$$Ondu_aleph002331888"],"linktoholdsnotexist":["$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph001773916","$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph002331888"],"backlink":["$$V$$Taleph_backlink$$DNotre
+        Dame Catalog$$Ondu_aleph001773916","$$V$$Taleph_backlink$$DNotre Dame Catalog
+        [electronic resource]$$Ondu_aleph002331888"],"openurl":["$$V$$Topenurl_journal$$Ondu_aleph001773916","$$V$$Topenurl_journal$$Ondu_aleph002331888"],"openurlfulltext":["$$V$$Topenurlfull_journal$$Ondu_aleph001773916","$$V$$Topenurlfull_journal$$Ondu_aleph002331888"],"linktouc":["$$Tworldcat_oclc$$Eworldcat","$$Tworldcat_oclc$$Eworldcat"],"thumbnail":"$$Tgoogle_thumb","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["with
+        introductory chapters by R.W. Chambers, Max F\u00f6rster and Robin Flower.","R.
+        W.  Chambers  (Raymond Wilson), 1874-1942.","Max,  F\u00f6rster  1869-","Robin,  Flower  1881-1946.","Chambers,
+        R","F\u00f6rster, M","Flower, R","Exeter Cathedral. Library.","Flower, Robin
+        Ernest William, 1881-1946","Chambers, Raymond Wilson, 1874-1942","Chambers,
+        R. W. (Raymond Wilson), 1874-1942.","F\u00f6rster, Max, b. 1869"],"title":["The
+        Exeter book of Old English poetry /","The Exeter book of Old English poetry"],"subject":["Leofric,
+        Bishop of Exeter, -1072.","Exeter book.","English poetry Old English, ca.
+        450-1100.","Manuscripts, English (Old) Facsimiles.","Anglo-Saxon poetry","English
+        poetry, Old","Old English poetry","Exeter Dean and Chapter MS 3501","Codex
+        exoniensis","Exeterbuch","Manuscripts, English (Old) Facsimiles","Lefricus,
+        Bishop of Exeter, -1072","Leofric, Bp. of Exeter, d. 1072","Leofric, Bishop
+        of Exeter, d. 1072"],"general":["Printed and published for the Dean and Chapter
+        of Exeter Cathedral by P. Lund, Humphries & Co.,","(OCoLC)71194494","71194494","AllDocuments","\"Reproduced
+        and printed ... at the Country Press, Bradford ... Limited to twelve copies,
+        unnumbered and not for sale and two hundred and fifty copies, numbered and
+        for sale of which this is no. 128.\"","[electronic resource] /","(OCoLC)190872317","190872317"],"sourceid":"ndu_aleph","recordid":["ndu_aleph001773916","001773916","1773916","ndu_aleph002331888","002331888","2331888"],"toc":"The
+        Exeter Book and its donor Leofric / by R.W. Chambers -- The donations of Leofric
+        to Exeter / by Max F\u00f6rster -- Modern study of the poetry of the Exeter
+        Book / by R.W. Chambers -- The preliminary matter of the Exeter Book / by
+        Max F\u00f6rster -- General description of the manuscript / by Max F\u00f6rster
+        -- Transcription of the damaged passages of the Exeter Book / by R.W. Chambers
+        and Robin Flower -- The script of the Exeter Book / by Robin Flower -- Collotype
+        facsimile of the Exeter Book.","creationdate":"1933","addtitle":"Exeter book
+        of Old English poetry","searchscope":["ndu_aleph","NDU"],"scope":["HESB","ndu_aleph","NDU"],"alttitle":"Exeter
+        book.","lsr01":["HESB GEN","HESB General Collection","HESB RES","HESB Circulation
+        Desk"],"lsr04":"Exeter book.","lsr05":["PR 1490 .A1 1933a","PR1490.A11933a","PR1490
+        .A1 1933a :"],"lsr06":"Printed and published for the Dean and Chapter of Exeter
+        Cathedral by P. Lund, Humphries & Co.,","lsr07":["Chambers F\u00f6rster Flower
+        The Exeter book of Old English poetry","The Exeter book of Old English poetry
+        Chambers F\u00f6rster Flower"]},"sort":{"title":"Exeter book of Old English
+        poetry /","creationdate":"1933","author":"Chambers, R. W. (Raymond Wilson),
+        1874-1942."},"facets":{"language":["ang","eng"],"creationdate":"1933","topic":["Leofric,
+        Bishop of Exeter, -1072","Exeter book","English poetry\u2013Old English, ca.
+        450-1100","Manuscripts, English (Old)\u2013Facsimiles"],"toplevel":"available","prefilter":["books","print","electronic"],"rsrctype":["books","print"],"creatorcontrib":["Chambers,
+        R","F\u00f6rster, M","Flower, R","Exeter Cathedral. Library"],"library":"HESB","lfc04":"Exeter
+        book.","classificationlcc":"P - Language and literature.\u2013English literature","frbrgroupid":"73440096","frbrtype":"5"},"dedup":{"t":"1","c3":"exeterbookofoldenglishpoetry","c4":"1933","f5":"exeterbookofoldenglishpoetry","f6":"1933","f7":"exeter
+        book of old english poetry","f8":"enk","f9":"94 p., ca. 270 p. :","f10":"printed
+        and published for the dean and chapter of exeter cathedral by p lund humphries
+        co"},"frbr":{"t":"1","k1":["$$Kchambers r w raymond wilson 1874 1942$$AA","$$Kfoerster
+        max 1869$$AA","$$Kflower robin 1881 1946$$AA","$$Kexeter cathedral library$$AA"],"k2":"$$Kexeter
+        book$$ATO","k3":"$$Kexeter book of old english poetry$$AT"},"delivery":{"institution":["$$VNDU$$Ondu_aleph001773916","$$VNDU$$Ondu_aleph002331888"],"delcategory":["$$VPhysical
+        Item$$Ondu_aleph001773916","$$VPhysical Item$$Ondu_aleph002331888"]},"enrichment":{"classificationlcc":"PR
+        1490"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Chambers","aufirst":"R.
+        W.","addau":["Chambers, R. W","F\u00f6rster, Max","Flower, Robin"],"btitle":"The
+        Exeter book of Old English poetry","date":"1933","risdate":"1933.","format":"book","genre":"book","ristype":"BOOK","cop":"London","pub":"Printed
+        and published for the Dean and Chapter of Exeter Cathedral by P. Lund, Humphries
+        & Co.","oclcid":["71194494","190872317"]}}},{"id":"ndu_aleph002786765","type":"book","physical":false,"physical_available":false,"electronic":true,"fulltext_available":true,"display":{"type":"Book","title":"[The
+        book of Common-Prayer]","creator_contributor":"Church of England.","publisher_provider":"London?
+        : s.n. 1663?","availability":"Online access available"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph002786765&indx=9","fulltext_url":"http://proxy.library.nd.edu/login?url=http://gateway.proquest.com/openurl?ctx_ver=Z39.88-2003&res_id=xri:eebo&rft_val_fmt=&rft_id=xri:eebo:image:31410","fulltext_url_name":"Access
+        Online"},"holdings":[],"openurl":{"btitle":"[The book of Common-Prayer]","date":"1663","genre":"book","pub":"s.n."},"primo":{"control":{"sourcerecordid":"002786765","sourceid":"ndu_aleph","recordid":"ndu_aleph002786765","originalsourceid":"NDU01","ilsapiid":"NDU01002786765","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"[The
+        book of Common-Prayer]","creator":"Church of England.","publisher":"London?
+        : s.n.","creationdate":"1663?","format":"[156] p..","subject":["Church of
+        England. Book of common prayer -- Early works to 1800","Church of England
+        -- Prayers and devotions -- Early works to 1800","Prayers -- Early works to
+        1800","Psalters -- England -- Early works to 1800","Bible. Psalms -- Early
+        works to 1800"],"language":"eng","relation":["$$Cseries $$VEarly English books
+        online.","$$Cvar_title $$VLiturgies. Book of common prayer.","$$Cvar_title
+        $$VPsalter or Psalms of David."],"unititle":"Book of common prayer","lds01":["Signatures:
+        A-F\u00b9\u00b2 [-A1] G\u2076.","With an order to print on the final leaf
+        signed by Edw. Nicholas, dated \"the second day of May, in the fourteenth
+        year of Our Reign\" [i.e. 1663].","Bound and filmed preceeding Wing (2nd.
+        ed., 1994) B2276 and Wing (2nd. ed., 1994) B2493.","Imperfect; copy catologued
+        lacks title page.","Reproduction of the original in the British and Foreign
+        Bible Society."],"lds02":"ndu_aleph002786765","version":"480"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog [electronic resource]","linktorsrc":"$$Uhttp://proxy.library.nd.edu/login?url=http://gateway.proquest.com/openurl?ctx_ver=Z39.88-2003&res_id=xri:eebo&rft_val_fmt=&rft_id=xri:eebo:image:31410$$DNotre
+        Dame Online Access","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":"$$Taleph_holdings","linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["Church
+        of England.","Anglikanskai\u0361a t\u0361serkov\u02b9","Kirche von England","Anglican
+        Church","Ecclesia Anglicana"],"title":"[The book of Common-Prayer]","subject":["Church
+        of England. Book of common prayer Early works to 1800.","Church of England
+        Prayers and devotions Early works to 1800.","Bible. Psalms Early works to
+        1800.","Prayers Early works to 1800.","Psalters England Early works to 1800.","Prayers
+        Early works to 1800"],"general":["s.n.,","[electronic resource]","(UnM)99826998e","99826998e","AllDocuments","Signatures:
+        A-F\u00b9\u00b2 [-A1] G\u2076.","With an order to print on the final leaf
+        signed by Edw. Nicholas, dated \"the second day of May, in the fourteenth
+        year of Our Reign\" [i.e. 1663].","Bound and filmed preceeding Wing (2nd.
+        ed., 1994) B2276 and Wing (2nd. ed., 1994) B2493.","Imperfect; copy catologued
+        lacks title page.","Reproduction of the original in the British and Foreign
+        Bible Society."],"sourceid":"ndu_aleph","recordid":["ndu_aleph002786765","002786765","2786765"],"creationdate":"1663","addtitle":"Early
+        English books online.","searchscope":["ndu_aleph","NDU"],"scope":["ndu_aleph","NDU","ebook"],"alttitle":["Book
+        of common prayer","Liturgies. Book of common prayer.","Psalter or Psalms of
+        David."],"lsr03":"Early English books online.","lsr04":"Book of common prayer","lsr06":"s.n.,","lsr07":"The
+        book of Common Prayer"},"sort":{"title":"book of Common-Prayer]","creationdate":"1663","author":"Church
+        of England."},"facets":{"language":"eng","creationdate":"1663","topic":["Church
+        of England. Book of common prayer\u2013Early works to 1800","Church of England\u2013Prayers
+        and devotions\u2013Early works to 1800","Bible. Psalms\u2013Early works to
+        1800","Prayers\u2013Early works to 1800","Psalters\u2013England\u2013Early
+        works to 1800"],"toplevel":"online_resources","prefilter":["books","electronic"],"rsrctype":"books","creatorcontrib":"Church
+        of England","lfc03":"Early English books online","lfc04":"Book of common prayer","frbrgroupid":"73196838","frbrtype":"5"},"dedup":{"t":"1","c3":"bookofcommonprayer","c4":"1663","f5":"bookofcommonprayer","f6":"1663","f7":"book
+        of common prayer","f8":"enk","f9":"[156] p.","f10":"s n","f11":"church of
+        england"},"frbr":{"t":"1","k1":"$$Kchurch of england$$AA","k3":"$$Kbook of
+        common prayer$$AT"},"delivery":{"institution":"NDU","delcategory":"Online
+        Resource","resdelscope":"ndrestricted"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aucorp":"Church
+        of England","btitle":"[The book of Common-Prayer]","addtitle":"Liturgies.
+        Book of common prayer","seriestitle":"Early English books online","date":"1663","risdate":"1663?]","format":"book","genre":"book","ristype":"BOOK","cop":"London?","pub":"s.n."}}},{"id":"ndu_aleph002678941","type":"book","physical":false,"physical_available":false,"electronic":true,"fulltext_available":true,"display":{"type":"Book","title":"The
+        Common-prayer-book the best companion in the house & closet as well as in
+        the temple: or, A collection of prayers out of the liturgy of the Church of
+        England, most needful both for the whole family together, and for every single
+        person apart by himself With a particular office for the sacrament.","creator_contributor":"William
+        Howell 1656-1714. Church of England.","publisher_provider":"London : Printed
+        by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row 1708","availability":"Online
+        access available"},"links":{"detail_url":"http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cbook&tab=nd_campus&vid=NDU&vl%28freeText0%29=book&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=ndu_aleph002678941&indx=10","fulltext_url":"http://proxy.library.nd.edu/login?url=http://find.galegroup.com/ecco/infomark.do?contentSet=ECCOArticles&docType=ECCOArticles&bookId=1415000500&type=getFullCitation&tabID=T001&prodId=ECCO&docLevel=TEXT_GRAPHICS&version=1.0&source=library&userGroupName=nd_ref","fulltext_url_name":"Access
+        Online"},"holdings":[],"openurl":{"aufirst":"William,","aulast":"Howell","btitle":"The
+        Common-prayer-book the best companion in the house & closet as well as in
+        the temple: or, A collection of prayers out of the liturgy of the Church of
+        England, most needful both for the whole family together, and for every single
+        person apart by himself With a particular office for the sacrament.","date":"1708","genre":"book","pub":"Printed
+        by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row"},"primo":{"control":{"sourcerecordid":"002678941","sourceid":"ndu_aleph","recordid":"ndu_aleph002678941","originalsourceid":"NDU01","ilsapiid":"NDU01002678941","sourceformat":"MARC21","sourcesystem":"Aleph"},"display":{"type":"book","title":"The
+        Common-prayer-book the best companion in the house & closet as well as in
+        the temple: or, A collection of prayers out of the liturgy of the Church of
+        England, most needful both for the whole family together, and for every single
+        person apart by himself With a particular office for the sacrament.","contributor":["William
+        Howell 1656-1714.","Church of England."],"edition":"The eleventh edition..","publisher":"London
+        : Printed by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row","creationdate":"1708","format":"[12],
+        86; [4], 26 p. ; 8\u2070..","subject":"Church of England. Book of common prayer
+        -- Early works to 1800","language":"eng","unititle":"Common-prayer-book the
+        best companion to prepare communicants.","lds01":["Compiled by William Howell.","Includes
+        ''Prayers in the closet, for the use of all devout Christians'' with separate
+        title-page and pagination, but continuous register.","First published in 1686
+        as ''The common-prayer-book the best companion to prepare communicants'' (cf.
+        Wing H3130A).","Reproduction of original from British Library.","Cited in:
+        English Short Title Catalog, T231284."],"lds02":"ndu_aleph002678941","version":"14"},"links":{"openurl":"$$Topenurl_journal","backlink":"$$Taleph_backlink$$DNotre
+        Dame Catalog [electronic resource]","linktorsrc":"$$Uhttp://proxy.library.nd.edu/login?url=http://find.galegroup.com/ecco/infomark.do?contentSet=ECCOArticles&docType=ECCOArticles&bookId=1415000500&type=getFullCitation&tabID=T001&prodId=ECCO&docLevel=TEXT_GRAPHICS&version=1.0&source=library&userGroupName=nd_ref$$DNotre
+        Dame Online Access","openurlfulltext":"$$Topenurlfull_journal","linktoholdings":"$$Taleph_holdings","linktoholdsnotexist":"$$Taleph_holdings_not_in_user_institution","lln01":"$$Tfindit_link"},"search":{"creatorcontrib":["William,  Howell  1656-1714.","Howell,
+        W","Church of England.","Anglikanskai\u0361a t\u0361serkov\u02b9","Kirche
+        von England","Anglican Church","Ecclesia Anglicana"],"title":"The Common-prayer-book
+        the best companion in the house & closet as well as in the temple: or, A collection
+        of prayers out of the liturgy of the Church of England, most needful both
+        for the whole family together, and for every single person apart by himself
+        With a particular office for the sacrament.","subject":"Church of England.
+        Book of common prayer Early works to 1800.","general":["Printed by J.B. for
+        A. and J. Churchil, at the Black Swan in Pater-Noster-Row,","[electronic resource]
+        :","(CU-RivES)T231284","AllDocuments","Compiled by William Howell.","Includes
+        ''Prayers in the closet, for the use of all devout Christians'' with separate
+        title-page and pagination, but continuous register.","First published in 1686
+        as ''The common-prayer-book the best companion to prepare communicants'' (cf.
+        Wing H3130A).","Reproduction of original from British Library."],"sourceid":"ndu_aleph","recordid":["ndu_aleph002678941","002678941","2678941"],"creationdate":"1708","addtitle":["Eighteenth
+        century collections online.","Liturgies. Book of common prayer. Selections."],"searchscope":["ndu_aleph","NDU"],"scope":["ndu_aleph","NDU","ebook"],"alttitle":"Common-prayer-book
+        the best companion to prepare communicants.","lsr04":["Common-prayer-book
+        the best companion to prepare communicants.","Eighteenth century collections
+        online.","Liturgies. Book of common prayer. Selections."],"lsr06":"Printed
+        by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row,"},"sort":{"title":"Common-prayer-book
+        the best companion in the house & closet as well as in the temple: or, A collection
+        of prayers out of the liturgy of the Church of England, most needful both
+        for the whole family together, and for every single person apart by himself
+        With a particular office for the sacrament.","creationdate":"1708","author":"Howell,
+        William, 1656-1714."},"facets":{"language":"eng","creationdate":"1708","topic":"Church
+        of England. Book of common prayer\u2013Early works to 1800","toplevel":"online_resources","prefilter":["books","electronic"],"rsrctype":"books","creatorcontrib":["Howell,
+        W","Church of England"],"lfc04":["Common-prayer-book the best companion to
+        prepare communicants.","Eighteenth century collections online.","Liturgies.
+        Book of common prayer."],"frbrgroupid":"75536921","frbrtype":"5"},"dedup":{"t":"1","c3":"commonprayerbookthebesacrament","c4":"1708","f5":"commonprayerbookthebesacrament","f6":"1708","f7":"common
+        prayer book the best companion in the house closet as well as in the temple
+        or a collection of prayers out of the liturgy of the church of england most
+        needful both for the whole family together and for every single person apart
+        by himself with a particular office for the sacrament","f8":"enk","f9":"[12],
+        86; [4], 26 p. ;","f10":"printed by j b for a and j churchil at the black
+        swan in pater noster row"},"frbr":{"t":"1","k1":["$$Khowell william 1656 1714$$AA","$$Kchurch
+        of england$$AA"],"k2":"$$Kcommon prayer book the best companion to prepare
+        communicants$$ATO","k3":"$$Kcommon prayer book the best companion in the house
+        & closet as well as in the temple or a collection of prayers out of the liturgy
+        of the church of england most needful both for the whole family together and
+        for every single person apart by himself with a particular office for the
+        sacrament$$AT"},"delivery":{"institution":"NDU","delcategory":"Online Resource","resdelscope":"ndrestricted"},"ranking":{"booster1":"1","booster2":"1"},"addata":{"aulast":"Howell","aufirst":"William,","addau":"Howell,
+        William","btitle":"The Common-prayer-book the best companion in the house
+        & closet as well as in the temple: or, A collection of prayers out of the
+        liturgy of the Church of England, most needful both for the whole family together,
+        and for every single person apart by himself With a particular office for
+        the sacrament.","date":"1708","risdate":"1708.","format":"book","genre":"book","ristype":"BOOK","cop":"London","pub":"Printed
+        by J.B. for A. and J. Churchil, at the Black Swan in Pater-Noster-Row"}}}]}'
+    http_version: 
+  recorded_at: Wed, 01 May 2013 17:53:38 GMT
+recorded_with: VCR 2.4.0

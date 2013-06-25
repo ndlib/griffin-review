@@ -10,6 +10,8 @@ gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
 
+gem 'american_date'
+
 # db backends
 gem 'mysql2', "~> 0.3.11"
 
@@ -20,6 +22,8 @@ gem 'devise_cas_authenticatable'
 
 # exception logging
 gem 'airbrake'
+
+gem 'acts-as-taggable-on'
 
 # workflow functionality
 gem 'workflow', '0.8.1'
@@ -35,7 +39,6 @@ gem 'net-ldap'
 # form generation
 gem 'simple_form'
 gem 'nested_form'
-gem 'rails3-jquery-autocomplete'
 
 # so that activerecord is happy with US dates
 gem 'american_date'
@@ -48,6 +51,12 @@ gem 'therubyracer'
 
 # REST queries
 gem 'rest-client', "~> 1.6.7"
+
+gem "state_machine"
+
+gem 'virtus'
+
+gem "paperclip"
 
 # development only
 group :development do
@@ -88,8 +97,6 @@ group :test do
     gem 'guard-spork'
     gem 'guard-shell'
 
-    gem "rb-readline"
-
     gem 'vcr'
     gem 'webmock'
 end
@@ -101,7 +108,9 @@ gem 'rails-backbone'
 
 group :development, :test do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
+  gem 'rb-readline', '~> 0.4.2' # specified to this version becase 0.5.0 was not working with pry in ruby 1.9.3
 end
+
 
 # Gems used only for assets and not required
 # in production environments by default.

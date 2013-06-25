@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
 
   scope :non_administrator, :include => :roles, :conditions => ['roles.name != ?', 'Administrator']
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   # roles
   def has_role?(role_sym)
     roles.any? { |r| r.name.split.join.to_s.underscore.to_sym == role_sym }
@@ -30,17 +34,17 @@ class User < ActiveRecord::Base
   def requester_display
     "#{self.display_name} (#{self.username})"
   end
-  
+
   def self.get_affiliation(ldap_result)
     # This is engineered to get the most important affiliation in
     # LDAP for authorization purposes. The order of preference, if someone
-    # falls into multiple categories is: staff -> faculty -> graduate student 
+    # falls into multiple categories is: staff -> faculty -> graduate student
     # -> undergrad
-    
+
     total_affiliation = []
-    ldap_result[:edupersonalaffiliation].each {|a| total_affiliation.push(a.downcase)} 
-    ldap_result[:ndaffiliation].each {|a| total_affiliation.push(a.downcase)} 
-    ldap_result[:edupersonprimaryaffiliation].each {|a| total_affiliation.push(a.downcase)} 
+    ldap_result[:edupersonalaffiliation].each {|a| total_affiliation.push(a.downcase)}
+    ldap_result[:ndaffiliation].each {|a| total_affiliation.push(a.downcase)}
+    ldap_result[:edupersonprimaryaffiliation].each {|a| total_affiliation.push(a.downcase)}
     ldap_result[:ndprimaryaffiliation].each {|a| total_affiliation.push(a.downcase)}
     total_affiliation.flatten!
     secondary_affiliation = []
@@ -76,7 +80,7 @@ class User < ActiveRecord::Base
         final_affiliation = 'undergrad'
       end
     end
-   
+
     final_affiliation
   end
 

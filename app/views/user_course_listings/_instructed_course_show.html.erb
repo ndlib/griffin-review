@@ -1,0 +1,45 @@
+<% content_for(:content_title_links) do %>
+  <% if user_course_show.can_have_new_reserves? %>
+    <br><br><br>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle btn-large btn-primary" data-toggle="dropdown" href="#">
+          Add Material
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to raw("<i class=\"icon-plus\"></i>  New Material"), new_course_reserve_path(user_course_show.course_id) %></li>
+          <li><%= link_to raw("<i class=\"icon-share\"></i>  Copy Material"), course_copy_step1_path(user_course_show.course_id) %></li>
+        </ul>
+      </div>
+  <% end %>
+<% end %>
+
+
+<% if user_course_show.reserves.size > 0 %>
+  <table class="table table-striped find-resources instructor_datatable datatable">
+    <thead>
+      <tr>
+        <th>Reserve</th>
+        <th class="topic_row">Topics</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% user_course_show.reserves.each do | reserve | %>
+        <%= render :partial => '/external/request/lists/instructor_list_row', :locals => { object: reserve } %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert">
+    <strong>There are no reserves requested for this class. </strong><br>
+    <a href="<%= new_course_reserve_path(user_course_show.course_id) %>">Request Material</a>
+  </p>
+<% end %>
+
+<%= form_tag courses_path, :method => 'post' do | f | %>
+  <%= hidden_field_tag :course_id, user_course_show.course_id %>
+  <input type="submit" name="input" value="Add Default Data" />
+<% end %>
+
+

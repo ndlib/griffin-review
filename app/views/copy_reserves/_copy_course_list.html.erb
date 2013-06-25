@@ -1,0 +1,31 @@
+<h3><%= title %></h3>
+
+<% if instructed_courses.size > 0 %>
+<table class="table table-striped instructed_courses">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Sections</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% instructed_courses.each do | course | %>
+    <tr>
+      <td>
+        <a href="<%= course_copy_step2_path(to_course.id, course.id) %>"><%= h course.title %></a>
+        <ul>
+          <% course.crosslisted_course_ids.each do | cid | %>
+            <li><%= raw cid %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= h course.section_numbers.join(", ") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+ <p class="alert">
+    You do not currently have any courses for this semester.  It could just be that the courses have not been published to the reserve tool yet.  Please check back later.
+  </p>
+<% end %>

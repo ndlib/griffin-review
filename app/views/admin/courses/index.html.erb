@@ -1,0 +1,92 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Find Courses</h1></div>
+<% end %>
+<% content_for(:content_title_links) do %>
+
+<% end %>
+
+<% breadcrumb([ 'Find Courses ']) %>
+
+<form class="well form-search">
+  <p>
+    <label>
+      Instructor NetID
+      <input type="text" name="netid" value="<%= params[:netid] %>" />
+    </label>
+
+    Or
+    <label>
+      Course Title
+      <input type="text" name="course_title" value="<%= params[:course_title] %>" />
+    </label>
+  </p>
+  <p>
+    <label>
+      Semester <br>
+      <select name="semster_id" class="search_select"></select>
+    </label>
+  </p>
+  <p>
+    <button type="submit" class="btn">Continue</button>
+  </p>
+</form>
+
+<% if @courses %>
+
+  <% if @courses.size == 0 %>
+    <div class="alert">There are no courses for your search.</div>
+  <% else %>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Course Codes</th>
+          <th>Instructor</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @courses.each do | course | %>
+          <tr>
+            <td>
+              <%= link_to h(course.title), admin_course_path(course.id, netid: params[:netid]) %>
+            </td>
+            <td>
+            </td>
+            <td><%= h course.instructor_name %></td>
+            <td>
+              <%= link_to 'New Request', '#', class: "btn" %>
+              <%= link_to 'Copy From Course', admin_course_path(course.id), class: "btn" %>
+              <%= link_to 'Add Missing Student', '#add_user', class:'btn', "data-toggle"=>"modal" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end %>
+<% end %>
+
+<div id="add_user" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Add Missing User</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <label>
+        Netid
+        <input type="text" name="netid" />
+      </label>
+      <label>
+        Type
+        <select><option>Student</option><option>Instructor</option></select>
+      </label>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal" class="btn">Close</a>
+    <a href="#" data-dismiss="modal" class="btn btn-primary">Add</a>
+  </div>
+</div>

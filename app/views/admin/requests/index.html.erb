@@ -1,0 +1,73 @@
+<% content_for(:content_title) do %>
+  <h1>Requests</h1>
+<% end %>
+
+<% content_for(:content_title_links) do %>
+  <a href="#filter_form" data-toggle="modal">Filter Request Results</a>
+<% end %>
+
+<%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
+
+<form class="table_filter">
+  <select>
+    <option>Current Sememster</option>
+    <option>Future Semesters</option>
+  </select>
+</form>
+
+<table class="table table-striped find-resources admin_datatable datatable">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date Neeeded</th>
+      <th>Title</th>
+      <th>Requestor</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Fair Use</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @admin_request_listing.reserves.each do | reserve | %>
+      <%= render :partial => '/external/request/lists/admin_list_row', :locals => { object: reserve } %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<div class="modal hide" id="filter_form">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Filter Requests for</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset id="topic_list">
+        <legend>For Types</legend>
+        <label class="checkbox"><input type="checkbox"> Books</label>
+        <label class="checkbox"><input type="checkbox"> Book Chapters</label>
+        <label class="checkbox"><input type="checkbox"> Journal</label>
+        <label class="checkbox"><input type="checkbox"> Audio</label>
+        <label class="checkbox"><input type="checkbox"> Video</label>
+      </fieldset>
+
+      <fieldset id="topic_list">
+        <legend>For Library </legend>
+        <label class="checkbox"><input type="checkbox"> Hesburgh</label>
+        <label class="checkbox"><input type="checkbox"> Chem/Phys</label>
+        <label class="checkbox"><input type="checkbox"> BIC</label>
+        <label class="checkbox"><input type="checkbox"> Math</label>
+        <label class="checkbox"><input type="checkbox"> ...</label>
+      </fieldset>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+
+  </div>
+</div>

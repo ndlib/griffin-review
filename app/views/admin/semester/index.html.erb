@@ -1,8 +1,0 @@
-<div id="semesters"></div>
-
-<script type="text/javascript">
-  $(function() {
-    window.router = new Griffin.Routers.SemestersRouter({semesters: <%= @semesters.to_json.html_safe -%>});
-    Backbone.history.start();
-  });
-</script>

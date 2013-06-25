@@ -1,0 +1,55 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Courses</h1></div>
+<% end %>
+<% content_for(:help) do %>
+  <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
+<% end %>
+
+
+<% breadcrumb([ 'Courses ']) %>
+
+<% if @user_course_listing.show_both_enrolled_and_instructed_courses? %>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
+    <li><a href="#instructed" data-toggle="tab">Courses I am Teaching</a></li>
+  </ul>
+<% end %>
+
+
+<div class="tab-content">
+
+  <% if @user_course_listing.show_enrolled_courses? %>
+    <div class="tab-pane active" id="enrolled">
+      <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.enrolled_courses } %>
+    </div>
+  <% end %>
+
+  <% if @user_course_listing.show_instructed_courses? %>
+
+    <div class="tab-pane active" id="instructed">
+      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
+      <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
+    </div>
+  <% end %>
+</div>
+
+<% if @user_course_listing.has_no_courses? %>
+  <p class="alert">
+    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
+  </p>
+<% end %>
+
+<script src="http://www.apple.com/library/quicktime/scripts/ac_quicktime.js" language="JavaScript" type="text/javascript"></script>
+<script src="http://www.apple.com/library/quicktime/scripts/qtp_library.js" language="JavaScript" type="text/javascript"></script>
+<link href="http://www.apple.com/library/quicktime/stylesheets/qtp_library.css" rel="StyleSheet" type="text/css" />
+
+   <video
+      src="https://www.library.nd.edu/streaming/mov/VaticanVideoConference.mov">
+      <embed
+         scale="aspect"
+         name="plugin"
+         pluginspage="http://www.apple.com/quicktime/download/"
+         src="https://www.library.nd.edu/streaming/mov/VaticanVideoConference.mov"
+         type="video/quicktime">
+   </video>

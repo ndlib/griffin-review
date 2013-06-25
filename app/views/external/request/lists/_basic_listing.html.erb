@@ -1,0 +1,27 @@
+<tr>
+  <td>
+<div class="record record-book">
+  <div class="cover">
+    <div class="cover-image thumbnail"></div>
+    <div class="cover-type"></div>
+  </div>
+  <div class="summary">
+    <h2 class="title"><%= h object.title %></h2>
+    <h3 class="author"><%= h object.creator %></h3>
+    <p class="details"></p>
+    <p class="publisher"></p>
+    <p class="availability">
+      <span class="availability-library"></span>
+      <span class="availability-text"></span>
+      <span class="availability-link"></span>
+    </p>
+  </div>
+</div>
+  </td>
+  <td><%= simple_format(object.student_comments) %></td>
+  <td>
+    <%= h object.length %>
+  </td>
+  <td><%= object.tags.join(",") %></td>
+</tr>
+

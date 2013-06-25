@@ -1,0 +1,32 @@
+id: reserves
+name: Reserves
+owner: jhartzle
+developers:
+  - jhartzle
+  - rfox2
+purpose: >
+  To provide an web interface to request and retrieve electronic and book reserves.
+audience: >
+  Hesburgh and Branch staff, instructors, and students
+dependencies:
+  - api
+  - mysql
+  - assets
+  - cas
+hosts:
+  - reserves.library.nd.edu
+  - reservespprd.library.nd.edu
+  - library.nd.edu/reserves
+urls:
+  - http://reserves.library.nd.edu
+  - http://library.nd.edu/reserves
+  - http://jenkins.library.nd.edu/jenkins
+setup: >
+  Check out the repo.  rake db:create; rake db:migrate; rake db:test:prepare; rake db:seed;  guard.
+deploy: >
+  Login in to jenkins and run the "reserves" project.
+notes:
+last_review:
+  date: 2013-06-24
+reviewer: jhartzle
+

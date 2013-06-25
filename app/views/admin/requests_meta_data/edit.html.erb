@@ -1,0 +1,26 @@
+<% content_for(:content_title) do %>
+  <h1>Meta Data </h1>
+<% end %>
+
+
+<div class="row">
+ <div class="span6">
+    <%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
+
+      <% if !@show_files %>
+        <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
+      <% end %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+        <%= link_to 'Cancel', requests_path(:filter => @request.workflow_state), class: 'btn' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="span6 find-resources">
+    <%= render :partial => '/external/request/lists/list_record', locals: { object: @request } %>
+  </div>
+</div>
+

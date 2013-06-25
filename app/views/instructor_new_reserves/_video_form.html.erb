@@ -1,0 +1,29 @@
+
+<h3>2. Video Details </h3>
+
+<%= simple_form_for object, :html => {id: "video_form"}, :url => course_reserves_path() do |f| %>
+
+  <%= f.input :title %>
+  <%= f.input :creator, label: "Director or Publisher" %>
+
+  <%= f.input :needed_by do %>
+    <%= f.input_field :needed_by, as: "string", id: "video_needed_by_id", class: 'datepicker span2' %>
+  <% end %>
+
+
+  <%= f.input :length, label: "Clips" do %>
+    <%= f.input_field :length %>
+  <% end %>
+
+  <%= f.input :note, label: "Special Instuctions" do %>
+    <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work. ", rows: 5 %>
+  <% end %>
+
+  <%= hidden_field_tag 'instructor_reserve_request[library]', 'Hesburgh' %>
+  <%= hidden_field_tag 'instructor_reserve_request[type]', 'VideoReserve' %>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save", :class => 'btn-primary' %>
+    <%= link_to 'Cancel', course_path(object.course.id), :class => "btn btn-danger" %>
+  </div>
+<% end %>

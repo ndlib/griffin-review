@@ -35,12 +35,12 @@ class AdminController < ApplicationController
     @user = ldap.find('uid', user_record.username)
 
     respond_to do |format|
-      format.html { render :json => { 
-        :first_name => user_record.first_name, 
+      format.html { render :json => {
+        :first_name => user_record.first_name,
         :last_name => user_record.last_name
       }.to_json }
-      format.json { render :json => { 
-        :first_name => user_record.first_name, 
+      format.json { render :json => {
+        :first_name => user_record.first_name,
         :last_name => user_record.last_name
       }.to_json }
       format.js
@@ -192,13 +192,13 @@ class AdminController < ApplicationController
       format.json { head :ok }
     end
   end
-  
+
   def calculate_semester
-    
+
     time = Time.new
     year = time.year
     month = time.month
-    
+
     suffix = ''
     case month
     when 1..5
@@ -208,26 +208,9 @@ class AdminController < ApplicationController
     when 9..12
       suffix = 'F'
     end
-    
+
     year.to_s + suffix
 
-  end
-
-  private
-  def render_404(exception)
-    @not_found_path = exception.message
-    respond_to do |format|
-      format.html { render :template => 'errors/error_404', :layout => 'layouts/admin', :status => 404 }
-      format.all { render :nothing => true, :status => 404 }
-    end
-  end
-
-  def render_500(exception)
-    @error = exception
-    respond_to do |format|
-      format.html { render :template => 'errors/error_500', :layout => 'layouts/admin', :status => 500 }
-      format.all { render :nothing => true, :status => 500}
-    end
   end
 
 end

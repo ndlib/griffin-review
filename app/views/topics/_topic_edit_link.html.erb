@@ -1,0 +1,10 @@
+<% topic_form = InstructorTopicsForm.new(current_user, {reserve: object}) %>
+<ul class="topics<%= object.id %>">
+  <% object.topics.each do | topic  | %>
+    <li><%= h topic %></li>
+  <% end %>
+</ul>
+<% if topic_form.is_editable? %>
+  <a href="#topic_form<%= object.id %>" data-toggle="modal" class="add_topic">Edit Topics</a>
+<% end %>
+

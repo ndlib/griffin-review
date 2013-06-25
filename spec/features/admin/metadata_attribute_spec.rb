@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'ejs'
 
+=begin
 describe "Metadata Attribute Integration" do
   before(:all) do
     @media_admin_role = Factory.create(:media_admin_role)
@@ -12,11 +13,11 @@ describe "Metadata Attribute Integration" do
   end
   describe "Change metadata attribute parameters via edit screen" do
     before :all do
-      Capybara.default_wait_time = 5 
-      Capybara.current_driver = :selenium
+      Capybara.default_wait_time = 5
+      Capybara.current_driver = :rack_test
     end
     before :each do
-     login_as @media_admin_user 
+     login_as @media_admin_user
     end
     after :each do
       logout @media_admin_user
@@ -44,3 +45,4 @@ describe "Metadata Attribute Integration" do
     end
   end
 end
+=end

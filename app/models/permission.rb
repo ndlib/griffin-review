@@ -1,0 +1,30 @@
+class Permission
+
+  def initialize(current_user)
+    @current_user = current_user
+  end
+
+
+  def current_user_is_administrator?
+    true
+  end
+
+
+  def current_user_instructs_course?(course)
+    UserRoleInCoursePolicy.new(course, @current_user).user_instructs_course?
+  end
+
+
+  def current_user_enrolled_in_course?(course)
+    course_in_current_semester?(course) && UserRoleInCoursePolicy.new(course, @current_user).user_enrolled_in_course?
+  end
+
+
+  private
+
+
+    def course_in_current_semester?(course)
+      course.semester.current?
+    end
+
+end

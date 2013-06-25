@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/jdan/201210/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2013 19:20:13 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 97fd1a4308b9ce65364990dcc6e9f9ae
+      X-Runtime:
+      - '0.362043'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '4593'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWFlMWNhOTM3MTIwZGVlZjE2MzllNzlkOTY4N2JlNzA5BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--97092739bcb2c8e4937632c4f3e801eaff6daf9f;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"},"enrolled_courses":[{"term_crn":"201210_19745","crn":"19745","title":"201210_ACMS_60882","term_prefix":"201210","alpha_prefix":"ACMS","number":60882,"section":"01","instructors":[{"id":"jli7","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jli7","first_name":"Jiahan","last_name":"Li","full_name":"Jiahan
+        Li","ndguid":"nd.edu.ndrh3xh4","position_title":"Assistant Professor","campus_department":"Applied
+        Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"email":"jiahan.li@nd.edu","phone":"+1
+        574 631 2741","campus_address":"156 Hurley Hall&#10;Notre Dame, IN 46556"}}]},{"term_crn":"201210_19591","crn":"19591","title":"Statistical
+        Methods for Financial Risk Management","term_prefix":"201210","alpha_prefix":"ACMS","number":60890,"section":"01","instructors":[{"id":"jdelane1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdelane1","first_name":"James","last_name":"Delaney","full_name":"James
+        Delaney","ndguid":"nd.edu.ndwm7dx3","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"email":"james.delaney@nd.edu","phone":"+1
+        574 631 4882","campus_address":"152D Hurley Hall&#10;Notre Dame, IN 46556"}}]},{"term_crn":"201210_20066","crn":"20066","title":"Categorical/Discrete
+        Data Analysis","term_prefix":"201210","alpha_prefix":"ACMS","number":70870,"section":"01","instructors":[{"id":"jli9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jli9","first_name":"Jun","last_name":"Li","full_name":"Jun
+        Li","ndguid":"nd.edu.ndmn8fr7","position_title":"Assistant Professor","campus_department":"Applied
+        Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"email":"jun.li@nd.edu","phone":"+1
+        574 631 3429","campus_address":"171 Hurley Hall&#10;Notre Dame, IN 46556"}}]}],"instructed_courses":[{"term_crn":"201210_18446","crn":"18446","title":"Statistical
+        Reasoning in Politics","term_prefix":"201210","alpha_prefix":"ACMS","number":10141,"section":"01","instructors":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"ahuebne2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ahuebne2","first_name":"Alan","last_name":"Huebner","full_name":"Alan
+        Huebner","ndguid":"nd.edu.ndns4vj8","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"email":"Alan.Huebner.10@nd.edu","phone":"+1
+        574 631 6252","campus_address":"152C Hurley Bldg&#10;Notre Dame, IN 46556-4618"}}]},{"term_crn":"201210_18448","crn":"18448","title":"201210_ACMS_10145","term_prefix":"201210","alpha_prefix":"ACMS","number":10145,"section":"04","instructors":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"ahuebne2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ahuebne2","first_name":"Alan","last_name":"Huebner","full_name":"Alan
+        Huebner","ndguid":"nd.edu.ndns4vj8","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"email":"Alan.Huebner.10@nd.edu","phone":"+1
+        574 631 6252","campus_address":"152C Hurley Bldg&#10;Notre Dame, IN 46556-4618"}}]}]}]}'
+    http_version: 
+  recorded_at: Fri, 10 May 2013 19:20:14 GMT
+recorded_with: VCR 2.4.0

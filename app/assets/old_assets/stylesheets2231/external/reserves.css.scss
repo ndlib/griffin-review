@@ -1,0 +1,39 @@
+ .page-header h1 { margin-bottom: 0; }
+ .page-header { margin-top: 0;}
+
+.citations p {margin-bottom: 5px;}
+.citations .author {
+  font-weight: bold;
+  }
+
+.citations .author i {
+}
+
+.citations .title {
+  margin-left: 20px;
+}
+
+.citations .availability {
+  text-align: center;
+}
+.citations .availability strong {
+  font-size: 1.25em;
+}
+
+.citations .citation {
+  font-size: .75em;
+}
+
+ .nav-pills > .active > a, .nav-pills > .active > a:hover {
+background-image: -ms-linear-gradient(top, #8392A1, #304962);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8392A1), to(#304962));
+background-image: -webkit-linear-gradient(top, #8392A1, #304962);
+background-image: -o-linear-gradient(top, #8392A1, #304962);
+background-image: -moz-linear-gradient(top, #8392A1, #304962);
+background-image: linear-gradient(top, #8392A1, #304962);
+border-color: #304962 #304962 #003580;
+border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+filter: progid:dximagetransform.microsoft.gradient(startColorstr='#8392A1', endColorstr='#304962', GradientType=0);
+filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+
+}

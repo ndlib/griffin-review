@@ -1,0 +1,471 @@
+{
+size: 20,
+display_size: "20",
+search_term: "one flew over the cuckoo's Nest",
+search_scope: "catalog",
+search_url: "http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cone+flew+over+the+cuckoo%27s+Nest&tab=nd_campus&vid=NDU&vl%28freeText0%29=one+flew+over+the+cuckoo%27s+Nest&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&indx=1",
+google_books: {
+ids: {
+OCLC:50680229: "dedupmrg87375766",
+OCLC:00862459: "ndu_aleph001829494",
+OCLC:14514696: "ndu_aleph001422053",
+OCLC:24319310: "ndu_aleph000900096",
+OCLC:18163811: "dedupmrg20693214",
+OCLC:00189375: "ndu_aleph000233922",
+OCLC:757559612: "ndu_aleph003338214",
+OCLC:70069748: "ndu_aleph002984845",
+OCLC:81146911: "ndu_aleph002691858",
+OCLC:30891473: "dedupmrg15107929"
+},
+url: "http://books.google.com/books?bibkeys=OCLC%3A50680229%2COCLC%3A00862459%2COCLC%3A14514696%2COCLC%3A24319310%2COCLC%3A18163811%2COCLC%3A00189375%2COCLC%3A757559612%2COCLC%3A70069748%2COCLC%3A81146911%2COCLC%3A30891473&callback=googleBooksCallback&jscmd=viewapi"
+},
+records: [
+{
+id: "dedupmrg87375766",
+type: "video",
+oclc: "50680229",
+physical: true,
+physical_available: true,
+electronic: false,
+fulltext_available: false,
+display: {
+type: "Video",
+title: "One flew over the cuckoo's nest",
+creator_contributor: "Saul Zaentz Michael Douglas 1944- Milo�s Forman Bo Goldman 1932- Lawrence Hauben Jack Nicholson Louise Fletcher William Redfield 1927-1976. Scat Man Crothers Danny DeVito Christopher Lloyd 1938- Will Sampson 1933-1987. Brad Dourif 1950- Ken Kesey Warner Home Video [Firm] Fantasy Films [Firm]",
+publisher_provider: "Burbank, Calif. : Warner Home Video c2002",
+availability: "Available",
+available_library: "Notre Dame, Hesburgh Library Audio Center&nbsp;DVD (D 03126 )"
+},
+links: {
+detail_url: "http://onesearch.library.nd.edu/primo_library/libweb/action/dlDisplay.do?bulkSize=10&institution=NDU&onCampus=true&query=any%2Ccontains%2Cone+flew+over+the+cuckoo%27s+Nest&tab=nd_campus&vid=NDU&vl%28freeText0%29=one+flew+over+the+cuckoo%27s+Nest&search_scope=nd_campus&highlight=true&displayField=title&displayField=creator&docId=dedupmrg87375766&indx=1"
+},
+holdings: [
+{
+record_id: "ndlaw_iii.b17878378",
+institution: "Kresge Law Library",
+short_institution_name: "NDLAW",
+library: "NDLAW",
+institution_code: "NDLAW",
+library_code: "NDLAW",
+collection: "General Collection",
+call_number: "(PN1997 .O54 2002 )",
+availability_status_code: "check_holdings"
+},
+{
+record_id: "ndu_aleph002437589",
+institution: "University of Notre Dame",
+short_institution_name: "Notre Dame",
+library: "Hesburgh Library",
+institution_code: "NDU",
+library_code: "HESB",
+collection: "Audio Center&nbsp;DVD",
+call_number: "(D 03126 )",
+availability_status_code: "available",
+number_of_items: "0",
+multi_volume: "N",
+number_of_loans: "1",
+source_institution_code: "NDU50",
+source_library_code: "AUDIO",
+source_sublocation_code: "DVD"
+}
+],
+openurl: {
+aufirst: "Saul",
+aulast: "Zaentz",
+btitle: "One flew over the cuckoo's nest",
+date: "2002",
+genre: "unknown",
+isbn: "0790765144",
+pub: "Warner Home Video"
+},
+primo: {
+control: {
+sourcerecordid: [
+"$$V.b17878378$$Ondlaw_iii.b17878378",
+"$$V002437589$$Ondu_aleph002437589"
+],
+sourceid: [
+"$$Vndlaw_iii$$Ondlaw_iii.b17878378",
+"$$Vndu_aleph$$Ondu_aleph002437589"
+],
+recordid: "dedupmrg87375766",
+originalsourceid: [
+"$$VXNDA$$Ondlaw_iii.b17878378",
+"$$VNDU01$$Ondu_aleph002437589"
+],
+addsrcrecordid: "$$Vb1787837$$Ondlaw_iii.b17878378",
+sourceformat: [
+"$$VMARC Exchange$$Ondlaw_iii.b17878378",
+"$$VMARC21$$Ondu_aleph002437589"
+],
+sourcesystem: [
+"$$VOther$$Ondlaw_iii.b17878378",
+"$$VAleph$$Ondu_aleph002437589"
+],
+ilsapiid: "$$VNDU01002437589$$Ondu_aleph002437589"
+},
+display: {
+type: "video",
+title: "One flew over the cuckoo's nest",
+contributor: [
+"Saul Zaentz",
+"Michael Douglas 1944-",
+"Milo�s Forman",
+"Bo Goldman 1932-",
+"Lawrence Hauben",
+"Jack Nicholson",
+"Louise Fletcher",
+"William Redfield 1927-1976.",
+"Scat Man Crothers",
+"Danny DeVito",
+"Christopher Lloyd 1938-",
+"Will Sampson 1933-1987.",
+"Brad Dourif 1950-",
+"Ken Kesey",
+"Warner Home Video [Firm]",
+"Fantasy Films [Firm]"
+],
+edition: "Special ed., Widescreen..",
+publisher: "Burbank, Calif. : Warner Home Video",
+creationdate: "c2002",
+format: "2 videodiscs (ca. 133 min.) : sd., col. ; 4 3/4 in..",
+identifier: "$$CISBN$$V0790765144; $$CISBN$$V9780790765143",
+subject: [
+"Mentally ill -- Drama",
+"Video recordings for the hearing impaired"
+],
+description: "Contents: Disc A. Movie. Cast and crew information. Commentary. -- Disc B. Special features: Include "Making of" documentary (ca. 47 min.), additional scenes, theatrical trailer.",
+language: "eng;fre",
+source: "$$Vndlaw_iii$$Ondlaw_iii.b17878378",
+availlibrary: [
+"$$INDLAW$$LNDLAW$$1General Collection$$2(PN1997 .O54 2002 )$$Scheck_holdings$$Ondlaw_iii.b17878378",
+"$$INDU$$LHESB$$1Audio Center&nbsp;DVD$$2(D 03126 )$$Savailable$$31$$40$$5N$$61$$XNDU50$$YAUDIO$$ZDVD$$Ondu_aleph002437589"
+],
+availinstitution: [
+"$$INDU$$Savailable",
+"$$INDLAW$$Scheck_holdings"
+],
+availpnx: "available",
+lds01: [
+"Based on the novel by Ken Kesey.",
+"Originally released as a motion picture in 1975.",
+"Cat. no. "37463."",
+"Based on the novel by Ken Kesey.",
+"DVD ; Dolby digital."
+],
+lds02: [
+"ndlaw_iii.b17878378",
+"ndu_aleph002437589"
+],
+lds03: "Disc A. Movie. Cast and crew information. Commentary. -- Disc B. Special features: Include "Making of" documentary (ca. 47 min.), additional scenes, theatrical trailer."
+},
+links: {
+linktoholdings: [
+"$$V$$Tlaw_holdings$$INDLAW$$Ondlaw_iii.b17878378",
+"$$V$$Taleph_holdings$$INDU$$Ondu_aleph002437589",
+"$$V$$Taleph_holdings$$Ondu_aleph002437589"
+],
+linktoholdsnotexist: [
+"$$V$$Tlaw_holdings_not_in_user_institution$$Ondlaw_iii.b17878378",
+"$$V$$Taleph_holdings_not_in_user_institution$$Ondu_aleph002437589"
+],
+backlink: [
+"$$V$$Tlaw_backlink$$Ebacklink_ndl$$Ondlaw_iii.b17878378",
+"$$V$$Taleph_backlink$$DNotre Dame Catalog [videorecording]$$Ondu_aleph002437589"
+],
+openurl: [
+"$$V$$Topenurl_journal$$Ondlaw_iii.b17878378",
+"$$V$$Topenurl_journal$$Ondu_aleph002437589"
+],
+openurlfulltext: [
+"$$V$$Topenurlfull_journal$$Ondlaw_iii.b17878378",
+"$$V$$Topenurlfull_journal$$Ondu_aleph002437589"
+],
+linktoexcerpt: "$$Tsyndetics_excerpt$$Elinktoexcerpt",
+linktoabstract: "$$Tsyndetics_abstract$$Elinktoabstract",
+linktouc: [
+"$$Tworldcat_isbn$$Eworldcat",
+"$$Tworldcat_isbn$$Eworldcat"
+],
+thumbnail: [
+"$$Tamazon_thumb",
+"$$Tsyndetics_thumb",
+"$$Tgoogle_thumb"
+],
+lln01: "$$Tfindit_link"
+},
+search: {
+creatorcontrib: [
+"a Milos Forman film ; screenplay by Lawrence Hauben and Bo Goldman ; produced by Saul Zaentz &amp; Michael Douglas ; directed by Milos Forman.",
+"Director of photography, Haskell Wexler ; editors, Lynzee Klingman, Sheldon Kahn ; music, Jack Nitzsche.",
+"Jack Nicholson, Louise Fletcher, William Redfield, Scatman Crothers, Danny DeVito, Christopher Lloyd, Will Sampson, Brad Dourif.",
+"Saul Zaentz",
+"Michael, Douglas 1944-",
+"Milo�s Forman",
+"Bo, Goldman 1932-",
+"Lawrence Hauben",
+"Jack Nicholson",
+"Louise Fletcher",
+"William, Redfield 1927-1976.",
+"Scat Man Crothers",
+"Danny DeVito",
+"Christopher, Lloyd 1938-",
+"Will, Sampson 1933-1987.",
+"Brad, Dourif 1950-",
+"Ken Kesey",
+"Zaentz, S",
+"Douglas, M",
+"Forman, M",
+"Goldman, B",
+"Hauben, L",
+"Nicholson, J",
+"Fletcher, L",
+"Redfield, W",
+"Crothers, S",
+"DeVito, D",
+"Lloyd, C",
+"Sampson, W",
+"Dourif, B",
+"Kesey, K",
+"Warner Home Video (Firm)",
+"Fantasy Films (Firm)",
+"Fantasy Films presents a Milos Forman film ; screenplay by Lawrence Hauben and Bo Goldman ; produced by Saul Zaentz & Michael Douglas ; directed by Milos Forman.",
+"Miloš Forman",
+"Carruthers, Sherman",
+"Carruthers, Scat Man",
+"Carothers, Scat Man",
+"Scatman",
+"Cruthers, Benjamin Sherman",
+"Cruthers, Scatman",
+"Crothers, Benjamin Sherman",
+"Crothers, Scatman",
+"Crothers, Sherman",
+"Vito, Danny De",
+"De Vito, Danny",
+"Dourif, Bradford Claude, 1950-",
+"Nicholson, Jack, 1937-",
+"Nicholson, John Joseph",
+"Forman, Jan Tomas",
+"Форман, Милош",
+"Warner Bros. Warner Home Video (Firm)",
+"Sampson, Will, 1935-1987",
+"Sampson, Sonny, 1933-1987",
+"Sampson, William S., 1933-1987",
+"Kuskuna, 1933-1987",
+"Sampson, W. (Will Sampson), 1933-1987",
+"Samsogee, 1933-1987",
+"Owl Man, 1933-1987",
+"Goldman, Robert, 1932-"
+],
+title: "One flew over the cuckoo's nest",
+subject: [
+"Mentally ill Drama.",
+"Video recordings for the hearing impaired."
+],
+general: [
+"Warner Home Video,",
+"085393746322",
+"37463",
+"[videorecording] /",
+"(OCoLC)50680229",
+"50680229",
+"AllDocuments",
+"Originally released as a motion picture in 1975.",
+"Cat. no. "37463."",
+"Based on the novel by Ken Kesey."
+],
+sourceid: [
+"ndlaw_iii",
+"ndu_aleph"
+],
+recordid: [
+"ndlaw_iii.b17878378",
+".b17878378",
+"ndu_aleph002437589",
+"002437589",
+"2437589"
+],
+isbn: [
+"0790765144",
+"9780790765143"
+],
+toc: "Disc A. Movie. Cast and crew information. Commentary. -- Disc B. Special features: Include "Making of" documentary (ca. 47 min.), additional scenes, theatrical trailer.",
+creationdate: "2002",
+addtitle: [
+"One flew over the cuckoo's nest.",
+"Making of One flew over the cuckoo's nest."
+],
+searchscope: [
+"ndlaw_iii",
+"NDLAW",
+"ndu_aleph",
+"NDU"
+],
+scope: [
+"ndlaw_iii",
+"NDLAW",
+"AUDIO",
+"ndu_aleph",
+"NDU"
+],
+alttitle: "Fantasy Films presents.",
+lsr05: "PN1997",
+lsr06: "Warner Home Video,",
+description: "Tells the adventures of a free-spirited mental ward inmate whose rebelliousness pits him against the repressive head nurse, and whose charm wins him the loyalty of his fellow inmates.",
+lsr01: "AUDIO DVD",
+lsr07: [
+"Zaentz Douglas Forman Goldman Hauben Nicholson Fletcher Redfield Crothers DeVito Lloyd Sampson Dourif Kesey One flew over the cuckoo s nest",
+"One flew over the cuckoo s nest Zaentz Douglas Forman Goldman Hauben Nicholson Fletcher Redfield Crothers DeVito Lloyd Sampson Dourif Kesey"
+]
+},
+sort: {
+title: "One flew over the cuckoo's nest",
+creationdate: "2002",
+author: "Zaentz, Saul."
+},
+facets: {
+language: [
+"eng",
+"fre"
+],
+creationdate: "2002",
+topic: [
+"Mentally ill–Drama",
+"Video recordings for the hearing impaired"
+],
+collection: "XNDA",
+prefilter: [
+"videos",
+"dvd"
+],
+rsrctype: [
+"videos",
+"dvd"
+],
+creatorcontrib: [
+"Zaentz, S",
+"Douglas, M",
+"Forman, M",
+"Goldman, B",
+"Hauben, L",
+"Nicholson, J",
+"Fletcher, L",
+"Redfield, W",
+"Crothers, S",
+"DeVito, D",
+"Lloyd, C",
+"Sampson, W",
+"Dourif, B",
+"Kesey, K",
+"Warner Home Video (Firm)",
+"Fantasy Films (Firm)"
+],
+genre: "Drama",
+library: [
+"NDLAW",
+"HESB"
+],
+classificationlcc: "P - Language and literature.–Literature (General)",
+toplevel: "available",
+frbrgroupid: "87473338",
+frbrtype: "6"
+},
+dedup: {
+t: "1",
+c2: "0790765144;9780790765143",
+c3: "oneflewoverthecuckoosnest",
+c4: "2002",
+f3: "0790765144;9780790765143",
+f5: "oneflewoverthecuckoosnest;mp",
+f6: "2002",
+f7: "one flew over the cuckoos nestdvd",
+f8: "cau",
+f9: "2 videodiscs (ca. 133 min.) :",
+f10: "warner home video"
+},
+frbr: {
+t: "1",
+k1: [
+"$$Kzaentz saul$$AA",
+"$$Kdouglas michael 1944$$AA",
+"$$Kforman milo�s$$AA",
+"$$Kgoldman bo 1932$$AA",
+"$$Khauben lawrence$$AA",
+"$$Knicholson jack$$AA",
+"$$Kfletcher louise$$AA",
+"$$Kredfield william 1927 1976$$AA",
+"$$Kcrothers scat man$$AA",
+"$$Kdevito danny$$AA",
+"$$Klloyd christopher 1938$$AA",
+"$$Ksampson will 1933 1987$$AA",
+"$$Kdourif brad 1950$$AA",
+"$$Kkesey ken$$AA",
+"$$Kwarner home video firm$$AA",
+"$$Kfantasy films firm$$AA",
+"$$Kforman milos$$AA"
+],
+k3: "$$Kmotionpicture one flew over the cuckoo's nest$$AT"
+},
+delivery: {
+institution: [
+"$$VNDLAW$$Ondlaw_iii.b17878378",
+"$$VNDU$$Ondu_aleph002437589"
+],
+delcategory: [
+"$$VPhysical Item$$Ondlaw_iii.b17878378",
+"$$VPhysical Item$$Ondu_aleph002437589"
+]
+},
+enrichment: {
+classificationlcc: [
+"PN1997",
+".O54 2002"
+]
+},
+ranking: {
+booster1: "1",
+booster2: "1"
+},
+addata: {
+aulast: "Zaentz",
+aufirst: "Saul",
+addau: [
+"Zaentz, Saul",
+"Douglas, Michael",
+"Forman, Milo�s",
+"Goldman, Bo",
+"Hauben, Lawrence",
+"Nicholson, Jack",
+"Fletcher, Louise",
+"Redfield, William",
+"Crothers, Scat Man",
+"DeVito, Danny",
+"Lloyd, Christopher",
+"Sampson, Will",
+"Dourif, Brad",
+"Kesey, Ken",
+"Forman, Miloš"
+],
+btitle: "One flew over the cuckoo's nest",
+addtitle: "Fantasy Films presents",
+date: "2002",
+risdate: [
+"c2002.",
+"2002."
+],
+isbn: [
+"0790765144",
+"9780790765143"
+],
+format: "book",
+genre: "unknown",
+ristype: "VIDEO",
+cop: "Burbank, Calif.",
+pub: "Warner Home Video",
+oclcid: "50680229",
+abstract: "Tells the adventures of a free-spirited mental ward inmate whose rebelliousness pits him against the repressive head nurse, and whose charm wins him the loyalty of his fellow inmates."
+}
+}
+}
+]
+}

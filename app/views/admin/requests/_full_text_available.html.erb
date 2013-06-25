@@ -1,0 +1,13 @@
+<h4>Full Text Available</h4>
+
+<p>
+  Full text is available online.
+  <%= link_to "See Online Access", discovery_record.fulltext_url %>
+</p>
+
+<%= f.input :requestor_has_an_electronic_copy, label: false do %>
+  <%= f.input_field :requestor_has_an_electronic_copy, as: :boolean, inline_label: "Replace with an electronic copy.", label: false, class: 'has_electronic_copy_checkbox' %>
+  <div class="has_electronic_copy">
+    <%= f.input_field :file, as: 'file', label: 'Electronic Copy' %>
+  </div>
+<% end %>
