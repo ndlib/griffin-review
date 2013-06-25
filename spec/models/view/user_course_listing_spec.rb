@@ -15,6 +15,15 @@ describe UserCourseListing do
   end
 
 
+  describe :instructed_courses do
+    it "returns a list of both the current upcoming instructed courses" do
+      FactoryGirl.create(:next_semester)
+
+      reserves = UserCourseListing.new(instructor_user)
+      reserves.instructed_courses.size.should == 2
+    end
+  end
+
 
   describe :current_instructed_courses do
     it "returns all the instructed courses" do

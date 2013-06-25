@@ -46,6 +46,8 @@ class GetReservesController < ApplicationController
         if get_reserve.download_listing?
           send_file(get_reserve.download_file_path)
 
+          # send_file('/Users/jhartzle/Desktop/test.mov', :disposition => 'inline', :type => 'video/quicktime')
+
         elsif get_reserve.redirect_to_listing?
           redirect_to get_reserve.redirect_uri
         else

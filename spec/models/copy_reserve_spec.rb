@@ -40,6 +40,13 @@ describe CopyReserve do
   end
 
 
+  it "changes the state to new " do
+    new_reserve = @copy_reserve.copy
+
+    new_reserve.workflow_state == 'new'
+  end
+
+
   it "does not copy tags" do
     @reserve.set_topics!('topic1')
 

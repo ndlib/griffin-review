@@ -26,17 +26,10 @@
   <% end %>
 
   <% if @user_course_listing.show_instructed_courses? %>
-    <% if @user_course_listing.has_current_semester? %>
-      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.current_instructed_courses, title: @user_course_listing.current_semester_title } %>
-    <% end %>
 
-    <% if @user_course_listing.has_next_semester? %>
-      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.upcoming_instructed_courses,title: @user_course_listing.upcoming_semester_title } %>
-
-    <% end %>
-
-    <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
-
+    <div class="tab-pane active" id="instructed">
+      <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
+      <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
     </div>
   <% end %>
 </div>
@@ -46,3 +39,17 @@
     You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
   </p>
 <% end %>
+
+<script src="http://www.apple.com/library/quicktime/scripts/ac_quicktime.js" language="JavaScript" type="text/javascript"></script>
+<script src="http://www.apple.com/library/quicktime/scripts/qtp_library.js" language="JavaScript" type="text/javascript"></script>
+<link href="http://www.apple.com/library/quicktime/stylesheets/qtp_library.css" rel="StyleSheet" type="text/css" />
+
+   <video
+      src="https://www.library.nd.edu/streaming/mov/VaticanVideoConference.mov">
+      <embed
+         scale="aspect"
+         name="plugin"
+         pluginspage="http://www.apple.com/quicktime/download/"
+         src="https://www.library.nd.edu/streaming/mov/VaticanVideoConference.mov"
+         type="video/quicktime">
+   </video>

@@ -47,6 +47,20 @@ class Course
   end
 
 
+  def course_code
+    course_triple.gsub("#{term}_",'').gsub('_',' ')
+  end
+
+  def alpha_prefix
+    @attributes['alpha_prefix']
+  end
+
+
+  def number
+    @attributes['number']
+  end
+
+
   def add_enrollment_exception!(netid)
     UserCourseException.create_enrollment_exception!(self.id, self.term, netid)
   end
@@ -167,7 +181,8 @@ class Course
 
 
   def crosslisted_course_ids
-    crosslistings.collect { | c | c.course_triple }
+
+    crosslistings.collect { | c | c.course_code }
   end
 
 

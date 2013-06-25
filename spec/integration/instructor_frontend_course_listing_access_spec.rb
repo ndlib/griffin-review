@@ -32,12 +32,6 @@ describe "Instructor Frontend Course Listing Access" do
       end
     end
 
-
-    it "shows an alert message for the upcoming semester" do
-      visit root_path
-
-      page.should have_selector('p.alert')
-    end
   end
 
   describe :instructor_has_reserves_in_next_semester do
@@ -56,12 +50,6 @@ describe "Instructor Frontend Course Listing Access" do
       end
     end
 
-
-    it "shows an alert message for the upcoming semester" do
-      visit root_path
-
-      page.should have_selector('p.alert')
-    end
   end
 
 

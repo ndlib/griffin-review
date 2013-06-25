@@ -35,7 +35,7 @@ jQuery ($) ->
     $('.topic_filter').change ->
       oTable.fnFilter($(this).val(), 1, true, false, false)
 
-    input = $('.dataTables_filter').addClass('well').find('input')
+    input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
     input.attr('placeholder', "Author name or Title")
     input.attr('data-content', 'Type the title or author of the work you need.')
     input.attr('data-title', 'Search')

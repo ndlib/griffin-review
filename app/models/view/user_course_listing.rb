@@ -23,17 +23,15 @@ class UserCourseListing
   end
 
 
-  def current_semester_title
-    current_semester.full_name
+  def has_current_semester?
+    !current_semester.nil?
   end
 
 
-  def upcoming_semester_title
-    if next_semester.nil?
-      return ""
-    end
-    next_semester.full_name
+  def has_next_semester?
+    !next_semester.nil?
   end
+
 
 
   def show_both_enrolled_and_instructed_courses?
@@ -47,27 +45,7 @@ class UserCourseListing
 
 
   def show_instructed_courses?
-    show_current_instructed_courses? || show_upcoming_instructed_courses?
-  end
-
-
-  def show_current_instructed_courses?
-    !current_instructed_courses.empty?
-  end
-
-
-  def show_upcoming_instructed_courses?
-    !upcoming_instructed_courses.empty?
-  end
-
-
-  def has_current_semester?
-    !current_semester.nil?
-  end
-
-
-  def has_next_semester?
-    !next_semester.nil?
+    instructed_courses.size > 0
   end
 
 
@@ -81,13 +59,18 @@ class UserCourseListing
   end
 
 
+  def instructed_courses
+    @instructed_courses ||= current_instructed_courses + upcoming_instructed_courses
+  end
+
+
   def current_instructed_courses
     @current_instructed_courses ||=  course_search.instructed_courses(@user.username, current_semester.code)
   end
 
 
   def upcoming_instructed_courses
-    if !next_semester
+    if !has_next_semester?
       return []
     end
 
