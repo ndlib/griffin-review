@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605133002) do
+ActiveRecord::Schema.define(:version => 20130625191053) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -109,8 +109,9 @@ ActiveRecord::Schema.define(:version => 20130605133002) do
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "movie_directory"
   end
 
   create_table "taggings", :force => true do |t|
