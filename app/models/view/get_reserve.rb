@@ -64,6 +64,17 @@ class GetReserve
   end
 
 
+  def streaming_server_file?
+    ReserveUrlResourcePolicy.new(@reserve).streaming_server_redirect?
+  end
+
+
+  def mov_file_path
+    MovFileGenerator.new(@reserve).mov_file_path
+  end
+
+
+
   private
 
     def validate_input!

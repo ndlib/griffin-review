@@ -13,6 +13,11 @@ class ReserveUrlResourcePolicy
   end
 
 
+  def streaming_server_redirect?
+    ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
+  end
+
+
   def has_url_resource?
     can_have_url_resource? && @reserve.url.present?
   end

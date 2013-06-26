@@ -1,25 +1,54 @@
 class MovFileGenerator
 
+  FILE_REPLACEMENT_PATTERN = '{replaceurl}'
 
   def initialize(reserve)
     @reserve = reserve
   end
 
 
+  def mov_file_path
+    save_file
+
+    file_path
+  end
+
+
   def generate_file_text
-    sample_text.gsub('{urlgoeshere}', full_url)
+    url = full_url.encode('ASCII-8BIT')
+    binding.pry
+    sample_text.gsub(FILE_REPLACEMENT_PATTERN, url)
+  end
+
+
+  def save_file
+    f = File.open(file_path, 'w+b')
+    f.write(generate_file_text)
+    f.close
+  end
+
+
+  def file_path
+    path = File.join(Rails.root, "uploads/movs/", "#{@reserve.id}")
+    FileUtils.mkdir_p(path)
+
+    File.join(path, @reserve.url)
   end
 
 
   private
 
     def sample_text
-      File.read(sample_file).encode!('UTF-8', 'UTF-8', :invalid => :replace)
+      f = File.open(sample_file, 'r+b')
+      txt = f.read
+      f.close
+
+      txt
     end
 
 
     def full_url
-      "quicktime.nd.edu:80/LTL/#{@reserve.semester.movie_directory}/#{@reserve.url}"
+      "129.74.250.126:80/LTL/#{@reserve.semester.movie_directory}/#{@reserve.url}"
     end
 
 
