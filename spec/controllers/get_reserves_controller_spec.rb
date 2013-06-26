@@ -38,9 +38,11 @@ describe GetReservesController do
       end
 
       it "redirects if the copyright acceptance has has been accepted and it is a redirect item" do
-        get :show, id: @url_reserve.id, course_id: @course.id, accept_terms_of_service: 1
+        reserve = mock_reserve FactoryGirl.create(:request, :available, :journal_url), @course
 
-        response.should redirect_to(@url_reserve.url)
+        get :show, id: reserve.id, course_id: @course.id, accept_terms_of_service: 1
+
+        response.should be_redirect
       end
 
 
@@ -68,8 +70,10 @@ describe GetReservesController do
       end
 
       it "redirects if the file is a redierect item" do
-        get :show, id: @url_reserve.id, course_id: @course.id
-        response.should redirect_to(@url_reserve.url)
+        reserve = mock_reserve FactoryGirl.create(:request, :available, :journal_url), @course
+
+        get :show, id: reserve.id, course_id: @course.id
+        response.should redirect_to(reserve.url)
       end
     end
   end

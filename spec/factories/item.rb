@@ -35,14 +35,14 @@ FactoryGirl.define do
   factory :item_video, class: Item do
     title "video reserve"
     type "VideoReserve"
-    url "http://www.google.com"
+    url "movie.mov"
   end
 
 
   factory :item_audio, class: Item do
     title "audio reserve"
     type "VideoReserve"
-    url "http://www.google.com"
+    url "audio.mov"
   end
 
 
