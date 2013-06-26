@@ -200,7 +200,7 @@ class JournalReserve < Reserve
 
 
   def self.test_url_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com/")
+    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "HimesKeynote.mov")
   end
 
 end
@@ -208,12 +208,12 @@ end
 
 class VideoReserve < Reserve
   def self.test_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
   end
 
 
   def self.new_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "inprocess", fair_use: "ADFADF", course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "http://www.google.com/")
+    self.new( type: self.to_s, workflow_state: "inprocess", fair_use: "ADFADF", course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
   end
 
 
@@ -227,7 +227,7 @@ end
 class AudioReserve < Reserve
 
   def self.test_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "http://www.google.com/")
+    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "HimesKeynote.mov")
   end
 
 end
