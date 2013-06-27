@@ -6,21 +6,21 @@
 <% end %>
 
 
-<% # if @user_archive_course_listing.has_any_archived_instructed_courses? %>
-
-  <% @copy_course_listing.all_semesters.each do | semester | %>
-    <% if @copy_course_listing.semester_has_courses?(semester) %>
-      <%= render :partial => 'copy_course_list',
-            locals: {
-              instructed_courses: @copy_course_listing.semester_instructed_courses_with_reserves(semester),
-              to_course: @copy_course_listing.to_course,
-              title: semester.full_name }
-        %>
-    <% end %>
+<% found_items = false %>
+<% @copy_course_listing.all_semesters.each do | semester | %>
+  <% if @copy_course_listing.semester_has_courses?(semester) %>
+    <% found_items = true %>
+    <%= render :partial => 'copy_course_list',
+          locals: {
+            instructed_courses: @copy_course_listing.semester_instructed_courses_with_reserves(semester),
+            to_course: @copy_course_listing.to_course,
+            title: semester.full_name }
+      %>
   <% end %>
-<% # else %>
+<% end %>
 
+<% if !found_items %>
   <p class="alert">
     You do not have any archived courses that have reserves.
   </p>
-<% # end %>
+<% end %>
