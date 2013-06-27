@@ -46,10 +46,13 @@ class GetReservesController < ApplicationController
         if get_reserve.download_listing?
           send_file(get_reserve.download_file_path)
 
-          # send_file('/Users/jhartzle/Desktop/test.mov', :disposition => 'inline', :type => 'video/quicktime')
-
         elsif get_reserve.redirect_to_listing?
-          redirect_to get_reserve.redirect_uri
+
+          if get_reserve.streaming_server_file?
+            send_file(get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
+          else
+            redirect_to get_reserve.redirect_uri
+          end
         else
           raise "Attempt to get the resource of a listing that cannot be downloaded or redirected to. "
         end
