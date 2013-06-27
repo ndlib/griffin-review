@@ -2,7 +2,6 @@
   <div class="navbar-inner">
     <a class="brand" href="/">Reserves</a>
     <ul class="nav">
-      <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
       <% if user_course_listing.show_enrolled_courses? %>
         <li class="dropdown">
           <%= link_to raw("Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
@@ -26,6 +25,7 @@
           </ul>
         </li>
       <% end %>
+      <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
       <% if permission.current_user_is_administrator? %>
         <li><%= link_to "Requests", requests_path() %></li>
         <li><%= link_to "Courses", admin_courses_path() %></li>

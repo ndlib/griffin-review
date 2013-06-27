@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="btn-group well" data-toggle="buttons-radio">
-  <h3>1. What type of material do you need? </h3>
+  <h3>What type of material do you need? </h3>
   <p>
     <a href="#book" class="btn <%= (!@request_reserve.nil? && @request_reserve.book_request?) ? 'active' : '' %>" data-toggle="tab">Book</a>
     <a href="#book_chapter" class="btn <%= (@request_reserve && @request_reserve.book_chapter_request?) ? 'active' : '' %>" data-toggle="tab">Book Chapter</a>
@@ -12,33 +12,32 @@
     <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a -->
   </p>
 
-  <div>
-    <%= link_to 'Cancel', course_path(@new_reserve.course.id), :id => 'cancel_button', :class => "btn btn-danger" %>
+  <div class="pull-right">
+    <%= link_to 'Cancel Request', course_path(@new_reserve.course.id), :id => 'cancel_button', :class => "" %>
   </div>
 </div>
 
-<hr>
 
 <div class="row">
- <div class="span6">
-<div class="tab-content">
-  <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.book_request? ? 'active' : '' %>" id="book">
-    <%= render :partial => 'book_form', :locals => { object: new_instructor_reserve('BookReserve') } %>
-  </div>
-  <div class="tab-pane<%= !@request_reserve.nil? && @request_reserve.book_chapter_request? ? 'active' : '' %>" id="book_chapter">
-    <%= render :partial => 'book_chapter_form', :locals => { object: new_instructor_reserve('BookChapterReserve')  } %>
-  </div>
-  <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.article_request? ? 'active' : '' %>" id="article">
-    <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('ArticleReserve')  } %>
-  </div>
-  <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
-    <%= render :partial => 'video_form', :locals => { object: new_instructor_reserve('VideoReserve')  } %>
-  </div>
-  <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
-    <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
-  </div>
-</div>
+  <div class="span6">
+    <div class="tab-content">
+      <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.book_request? ? 'active' : '' %>" id="book">
+        <%= render :partial => 'book_form', :locals => { object: new_instructor_reserve('BookReserve') } %>
+      </div>
+      <div class="tab-pane<%= !@request_reserve.nil? && @request_reserve.book_chapter_request? ? 'active' : '' %>" id="book_chapter">
+        <%= render :partial => 'book_chapter_form', :locals => { object: new_instructor_reserve('BookChapterReserve')  } %>
+      </div>
+      <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.article_request? ? 'active' : '' %>" id="article">
+        <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('ArticleReserve')  } %>
+      </div>
+      <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
+        <%= render :partial => 'video_form', :locals => { object: new_instructor_reserve('VideoReserve')  } %>
+      </div>
+      <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
+        <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
+      </div>
 
+    </div>
   </div>
 </div>
 

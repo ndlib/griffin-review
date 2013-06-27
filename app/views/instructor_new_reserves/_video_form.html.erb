@@ -1,5 +1,5 @@
 
-<h3>2. Video Details </h3>
+<h3>Video Details </h3>
 
 <%= simple_form_for object, :html => {id: "video_form"}, :url => course_reserves_path() do |f| %>
 
@@ -24,6 +24,8 @@
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
-    <%= link_to 'Cancel', course_path(object.course.id), :class => "btn btn-danger" %>
+    <div class="pull-right">
+      <%= link_to 'Cancel', course_path(object.course.id) %>
+    </div>
   </div>
 <% end %>
