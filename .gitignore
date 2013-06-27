@@ -9,3 +9,4 @@ doc/app/
 .sass-cache/
 config/database.yml
 uploads/pdfs
+uploads/movs

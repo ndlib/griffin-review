@@ -10,7 +10,20 @@ class ReserveListing
 
 
   def css_class
-    "record-book"
+    case @reserve.type
+    when "BookReserve" 
+      "record-book"
+    when "BookChapterReserve"
+      "record-book"
+    when "JournalReserve"
+      "record-journal"
+    when "VideoReserve"
+      "record-video"
+    when "AudioReserve"
+      "record-audio"
+    else
+      "record-book"
+    end
   end
 
 

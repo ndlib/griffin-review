@@ -1,5 +1,6 @@
 class MovFileGenerator
 
+  FILE_REPLACEMENT_PATTERN = '{replaceurl}'
 
   def initialize(reserve)
     @reserve = reserve
@@ -14,12 +15,14 @@ class MovFileGenerator
 
 
   def generate_file_text
-    @text ||= sample_text + full_url
+    url = full_url.encode('ASCII-8BIT')
+    sample_text.gsub(FILE_REPLACEMENT_PATTERN, url)
   end
 
 
   def save_file
-    f = File.open(file_path, 'wb')
+    f = File.open(file_path, 'w+b')
+
     f.write(generate_file_text)
     f.close
   end
@@ -36,7 +39,8 @@ class MovFileGenerator
   private
 
     def sample_text
-      f = File.open(sample_file, 'rb')
+      f = File.open(sample_file, 'r+b')
+
       txt = f.read
       f.close
 
@@ -45,7 +49,7 @@ class MovFileGenerator
 
 
     def full_url
-      "quicktime.nd.edu:80/LTL/#{@reserve.semester.movie_directory}/#{@reserve.url}"
+      "129.74.250.126:80/LTL/#{@reserve.semester.movie_directory}/#{@reserve.url}"
     end
 
 

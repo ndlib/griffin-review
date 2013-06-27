@@ -46,8 +46,7 @@ describe "Student Frontend Access" do
       @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video), @test_course
 
       visit course_path(@test_course.id)
-
-      ActionController::Base.any_instance.should_receive(:redirect_to)
+      
       click_link(@url_reserve.title)
     end
 

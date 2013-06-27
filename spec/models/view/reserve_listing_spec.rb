@@ -46,15 +46,30 @@ describe ReserveListing do
       ReserveListing.new(Reserve.new).respond_to?(:css_class)
     end
 
-    it "sets the book class to ...."
+    it "sets the book class to when it is a book" do
+      r = mock(Reserve, :type => 'BookReserve')
+      ReserveListing.new(r).css_class.should == 'record-book'
+    end
 
-    it "sets the book chapter class to ...."
+    it "sets the book chapter class to correctly when it is a book chapter" do
+      r = mock(Reserve, :type => 'BookChapterReserve')
+      ReserveListing.new(r).css_class.should == 'record-book'      
+    end
 
-    it "sets the video class to ...."
+    it "sets the video class to correctly when it is a video" do
+      r = mock(Reserve, :type => 'VideoReserve')
+      ReserveListing.new(r).css_class.should == 'record-video'
+    end
 
-    it "sets the audio class to ...."
+    it "sets the audio class correctly when it is an audio reserve" do
+      r = mock(Reserve, :type => 'AudioReserve')
+      ReserveListing.new(r).css_class.should == 'record-audio'
+    end
 
-    it "sets the journal class to ...."
+    it "sets the journal class correctly when it is a journal" do
+      r = mock(Reserve, :type => 'JournalReserve')
+      ReserveListing.new(r).css_class.should == 'record-journal'
+    end
   end
 
 end
