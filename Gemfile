@@ -58,11 +58,13 @@ gem 'virtus'
 
 gem "paperclip"
 
+gem 'jquery-rails', '2.1.4'
+gem 'jquery-datatables-rails'
+
+
 # development only
 group :development do
-    gem 'pry-rails'
     gem 'looksee'
-    gem 'rspec-rails', '~> 2.12.0'
     gem 'rdoc'
     gem 'awesome_print'
     gem 'sextant'
@@ -70,11 +72,6 @@ end
 
 # testing
 group :test do
-	gem 'rspec', '~> 2.12.0'
-	gem 'rspec-core', '~> 2.12.0'
-	gem 'rspec-expectations', '~> 2.12.0'
-	gem 'rspec-mocks', '~> 2.12.0'
-    gem 'rspec-rails', '~> 2.12.0'
     gem 'json_spec'
     gem 'capybara'
     gem 'launchy', '~> 2.1.0'
@@ -101,12 +98,10 @@ group :test do
     gem 'webmock'
 end
 
-gem 'jquery-rails', '2.1.4'
-gem 'jquery-datatables-rails'
-gem 'rails-backbone'
 
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rb-readline', '~> 0.4.2' # specified to this version becase 0.5.0 was not working with pry in ruby 1.9.3
 end

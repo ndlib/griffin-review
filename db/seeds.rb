@@ -6,6 +6,6 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-Semester.create!( :full_name => 'Summer 2013', :code => '201300', :date_begin => 2.months.ago, :date_end => 1.month.from_now)
+#Semester.create!( :full_name => 'Summer 2013', :code => '201300', :date_begin => 2.months.ago, :date_end => 1.month.from_now)
 Semester.create!( :full_name => 'Spring 2013', :code => '201220', :date_begin => 5.months.ago, :date_end => 2.months.ago)
 Semester.create!( :full_name => 'Fall 2013', :code => '201310', :date_begin => 1.month.from_now, :date_end => 5.months.from_now)

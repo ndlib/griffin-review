@@ -9,7 +9,6 @@ describe MovFileGenerator do
     reserve.stub(:url).and_return('movie.mov')
 
     mfg = MovFileGenerator.new(reserve)
-    binding.pry
     mfg.generate_file_text.include?("rtsp://quicktime.nd.edu:80/LTL/movie_dir/movie.mov")
   end
 
