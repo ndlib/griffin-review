@@ -1,9 +1,9 @@
 class Admin::VideoWorkflowController < AdminController
 
   respond_to :json, :html
-  
-  autocomplete :video, :name, :full => true, :display_value => :video_display
-  autocomplete :user, :username, :extra_data => [:display_name], :display_value => :requester_display
+
+  #autocomplete :video, :name, :full => true, :display_value => :video_display
+  #autocomplete :user, :username, :extra_data => [:display_name], :display_value => :requester_display
 
   def new
     @r = AdministrativeRequest.new
@@ -60,7 +60,7 @@ class Admin::VideoWorkflowController < AdminController
   end
 
   def full_list
-    
+
     respond_to do |format|
       format.html { render :template => 'admin/video_workflow/list' }
     end
@@ -76,7 +76,7 @@ class Admin::VideoWorkflowController < AdminController
     end
 
     @type = params[:s_val]
-    
+
     respond_to do |format|
        format.html { render :partial => 'admin/video_workflow/request_list_table' }
     end
@@ -87,7 +87,7 @@ class Admin::VideoWorkflowController < AdminController
 
     @request = Request.find(params[:request_id])
     @metadata_attributes = MetadataAttribute.order('name ASC').all
-    
+
     respond_to do |format|
        format.html { render :partial => 'admin/video_workflow/technical_metadata' }
     end
@@ -103,7 +103,7 @@ class Admin::VideoWorkflowController < AdminController
     end
 
   end
-  
+
   def request_transition
     @request = Request.find(params[:request_id])
 
@@ -129,7 +129,7 @@ class Admin::VideoWorkflowController < AdminController
     respond_to do |format|
       transition_success ?  format.json { head :ok } : format.json { head :bad_request }
     end
-    
+
   end
 
   def destroy
@@ -153,7 +153,7 @@ class Admin::VideoWorkflowController < AdminController
   def destroy_technical_metadata
     @request = Request.find(params[:request_id])
     @tech_metadata = TechnicalMetadata.find(params[:tech_id])
-    
+
     respond_to do |format|
       if @tech_metadata.destroy
         format.json { render :json => {:id => @tech_metadata.id, :status => 'deleted'} }
@@ -205,7 +205,7 @@ class Admin::VideoWorkflowController < AdminController
   def request_tech
 
     @request = Request.find(params[:request_id])
-    
+
     respond_to do |format|
       format.js
     end
@@ -214,7 +214,7 @@ class Admin::VideoWorkflowController < AdminController
   def request_record
 
     @request = Request.find(params[:request_id])
-    
+
     # LDAP interface
     if (!@request.workflow_state_change_user.nil?)
       ldap = Ldap.new
@@ -241,12 +241,12 @@ class Admin::VideoWorkflowController < AdminController
     @requester = ldap.find('uid', requester_record.username)
 
     respond_to do |format|
-      format.html { render :json => { 
-        :first_name => requester_record.first_name, 
+      format.html { render :json => {
+        :first_name => requester_record.first_name,
         :last_name => requester_record.last_name
       }.to_json }
-      format.json { render :json => { 
-        :first_name => requester_record.first_name, 
+      format.json { render :json => {
+        :first_name => requester_record.first_name,
         :last_name => requester_record.last_name
       }.to_json }
       format.js
