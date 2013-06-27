@@ -1,10 +1,10 @@
-<h3><%= title %></h3>
-
 <% if instructed_courses.size > 0 %>
 <table class="table table-striped instructed_courses">
   <thead>
     <tr>
       <th>Course</th>
+      <th>Semester</th>
+      <th>Cross Listings</th>
       <th>Sections</th>
     </tr>
   </thead>
@@ -13,13 +13,17 @@
     <tr>
       <td>
         <a href="<%= course_copy_step2_path(to_course.id, course.id) %>"><%= h course.title %></a>
-        <ul>
-          <% course.crosslisted_course_ids.each do | cid | %>
-            <li><%= raw cid %></li>
-          <% end %>
-        </ul>
+      </td>
+      <td>
+        <%= h course.semester.full_name %>
+      </td>
+      <td>
+        <% course.crosslisted_course_ids.each do | cid | %>
+          <%= raw cid %><br>
+        <% end %>
       </td>
       <td><%= h course.section_numbers.join(", ") %></td>
+
     </tr>
     <% end %>
   </tbody>
