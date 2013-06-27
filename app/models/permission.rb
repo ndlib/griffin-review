@@ -6,7 +6,7 @@ class Permission
 
 
   def current_user_is_administrator?
-    true
+    ['rfox2', 'jhartzle'].include?(@current_user.username)
   end
 
 
