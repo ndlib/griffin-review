@@ -49,16 +49,12 @@ gem 'validates_timeliness', '~> 3.0'
 # Javascript runtime
 gem 'therubyracer'
 
-# REST queries
-gem 'rest-client', "~> 1.6.7"
-
 gem "state_machine"
 
 gem 'virtus'
 
 gem "paperclip"
 
-gem 'jquery-rails', '2.1.4'
 gem 'jquery-datatables-rails'
 
 

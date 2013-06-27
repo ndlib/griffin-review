@@ -344,7 +344,6 @@ DEPENDENCIES
   guard-spork
   hesburgh_assets!
   jquery-datatables-rails
-  jquery-rails (= 2.1.4)
   json
   json_spec
   launchy (~> 2.1.0)
@@ -358,7 +357,6 @@ DEPENDENCIES
   rb-fsevent
   rb-readline (~> 0.4.2)
   rdoc
-  rest-client (~> 1.6.7)
   rspec-rails
   rubycas-client
   sass-rails (~> 3.2.5)
