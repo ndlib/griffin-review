@@ -10,7 +10,7 @@
     <% end %>
 
     <% if button.requires_fair_use? %>
-      <li><%= link_to raw("<i class=\"#{button.fair_use_css_class}\"></i> Fair Use"), edit_resource_path(button.reserve_id) %></li>
+      <li><%= link_to raw("<i class=\"#{button.fair_use_css_class}\"></i> Fair Use"), edit_fair_use_path(button.reserve_id) %></li>
     <% end %>
   </ul>
 </div>

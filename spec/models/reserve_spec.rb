@@ -221,6 +221,24 @@ describe Reserve do
   end
 
 
+  describe :fair_use do
+
+    it "creates an empty fair use object when there isn't one " do
+      r = mock_reserve FactoryGirl.create(:request), nil
+      r.fair_use.new_record?.should be_true
+    end
+
+    it "returns the current fair use if there is one associated with the reserve" do
+      r = mock_reserve FactoryGirl.create(:request), nil
+      f = FairUse.new(request: r.request, user: mock_model(User, id: 1))
+      f.save!
+
+      r.fair_use.id.should == f.id
+    end
+
+  end
+
+
   describe "presistance" do
     before(:each) do
       @reserve = Reserve.new
@@ -253,5 +271,12 @@ describe Reserve do
 
       reserve.requestor_netid.should == req.requestor_netid
     end
+  end
+
+
+  describe "versioning" do
+
+    it "uses some sort of versionsing to keep track of history."
+
   end
 end

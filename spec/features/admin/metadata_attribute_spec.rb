@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ejs'
 
 =begin
 describe "Metadata Attribute Integration" do

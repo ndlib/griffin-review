@@ -55,7 +55,7 @@ class AdminEditButton
 
 
   def fair_use_css_class
-    external_resouce_comeplete? ? 'icon-ok' : ''
+    fair_use_complete? ? 'icon-ok' : ''
   end
 
 

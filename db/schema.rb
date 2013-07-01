@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627144841) do
+ActiveRecord::Schema.define(:version => 20130701193231) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(:version => 20130627144841) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
+
+  create_table "fair_use_questions", :force => true do |t|
+    t.text    "question"
+    t.boolean "active"
+    t.string  "category"
+    t.integer "ord"
+  end
+
+  add_index "fair_use_questions", ["ord"], :name => "index_fair_use_questions_on_ord"
+
+  create_table "fair_uses", :force => true do |t|
+    t.text     "fair_uses"
+    t.text     "comments"
+    t.string   "state"
+    t.integer  "user_id"
+    t.integer  "request_id"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "fair_uses", ["item_id"], :name => "index_fair_uses_on_item_id"
+  add_index "fair_uses", ["request_id"], :name => "index_fair_uses_on_request_id"
 
   create_table "item_types", :force => true do |t|
     t.string   "name"
@@ -177,5 +200,16 @@ ActiveRecord::Schema.define(:version => 20130627144841) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end

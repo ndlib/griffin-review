@@ -68,6 +68,11 @@ class Reserve
   end
 
 
+  def item_id
+    item.id
+  end
+
+
   def requestor_name
     u = User.where(:username => self.requestor_netid).first
     if !u
@@ -153,6 +158,10 @@ class Reserve
     @course ||= CourseSearch.new.get(self.course_id)
   end
 
+
+  def fair_use
+    @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
+  end
 end
 
 

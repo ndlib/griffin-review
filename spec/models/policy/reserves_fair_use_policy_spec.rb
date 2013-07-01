@@ -4,6 +4,7 @@ describe ReserveFairUsePolicy do
 
 
   describe "#fair_use_complete?"  do
+
     it "returns false if the reserve needs fair use but has not set it yet" do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveFairUsePolicy.new(reserve)
@@ -12,6 +13,7 @@ describe ReserveFairUsePolicy do
 
       policy.fair_use_complete?.should be_false
     end
+
 
     it "returns true if the reserve should not have fair use" do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
@@ -22,9 +24,10 @@ describe ReserveFairUsePolicy do
       policy.fair_use_complete?.should be_true
     end
 
+
     it "returns true if the reserve needs fair use and it has been set." do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
-      reserve.stub!(:fair_use).and_return(Object.new)
+      reserve.stub!(:fair_use).and_return(mock(FairUse, complete?: true))
 
       policy = ReserveFairUsePolicy.new(reserve)
       policy.stub!(:requires_fair_use?).and_return(true)

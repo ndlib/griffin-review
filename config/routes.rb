@@ -106,6 +106,7 @@ Griffin::Application.routes.draw do
   scope '/admin' do
     resources :requests, controller: 'admin/requests'
     resources :meta_datas, controller: 'admin/requests_meta_data'
+    resources :fair_use, controller: 'admin/requests_fair_use'
     resources :resources, controller: 'admin/requests_resources'
     resources :admin_courses, controller: 'admin/courses'
     resources :semesters, controller: 'admin/semesters'

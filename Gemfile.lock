@@ -191,6 +191,9 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    paper_trail (2.7.2)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -351,6 +354,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.11)
   nested_form
   net-ldap
+  paper_trail
   paperclip
   pry-rails
   rails (= 3.2.13)

@@ -16,7 +16,7 @@ class ReserveFairUsePolicy
 
 
   def fair_use_complete?
-    !requires_fair_use? || !@reserve.fair_use.nil?
+    !requires_fair_use? || @reserve.fair_use.complete?
   end
 
 end
