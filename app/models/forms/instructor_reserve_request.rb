@@ -107,8 +107,8 @@ class InstructorReserveRequest
   end
 
 
-  def instructor_name
-
+  def course_title
+    "#{@course.title} - #{@course.semester_name}"
   end
 
 

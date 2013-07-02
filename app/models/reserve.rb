@@ -108,6 +108,11 @@ class Reserve
   end
 
 
+  def check_set_complete!
+
+  end
+
+
   def set_topics!(topics)
     request.topic_list = topics
     save!

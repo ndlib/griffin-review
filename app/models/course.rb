@@ -107,6 +107,11 @@ class Course
   end
 
 
+  def semester_name
+    semester.full_name
+  end
+
+
   def semester
     @semeseter ||= Semester.semester_for_code(term)
   end

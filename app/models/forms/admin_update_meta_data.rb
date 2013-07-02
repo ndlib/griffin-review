@@ -26,7 +26,7 @@ class AdminUpdateMetaData
       self.attributes = params[:admin_reserve]
     end
 
-    ensure_state_is_inprogress!
+    @reserve.ensure_state_is_inprogress!
   end
 
 
@@ -42,7 +42,7 @@ class AdminUpdateMetaData
 
   def save_meta_data
     if valid?
-      @reserve.save!
+      persist!
       true
     else
       false
@@ -62,14 +62,9 @@ class AdminUpdateMetaData
     end
 
 
-    def ensure_state_is_inprogress!
-      reserve.ensure_state_is_inprogress!
-    end
-
-
     def persist!
-      puts @reserve.class
-
+      @reserve.check_set_complete!
+      @reserve.save!
     end
 
 

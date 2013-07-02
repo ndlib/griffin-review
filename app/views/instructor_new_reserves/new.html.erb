@@ -1,11 +1,9 @@
 <% content_for(:content_title) do %>
-  <div class="page-header">
-    <h1>Request New Material <small><%= h @new_reserve.course.title %></small></h1>
-    <p class="lead">
-      <%= @new_reserve.instructor_name %><br />
-      <small>Sections: <%= @new_reserve.sections %></small>
-    </p>
-  </div>
+  <h1>Request New Material <small><%= h @new_reserve.course_title %></small></h1>
+  <p class="lead">
+    <%= @new_reserve.instructor_name %><br />
+    <small>Sections: <%= @new_reserve.sections %></small>
+  </p>
 <% end %>
 
 <div class="six columns">

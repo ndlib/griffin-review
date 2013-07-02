@@ -27,7 +27,7 @@ class AdminFairUseForm
       self.attributes = params[:admin_fair_use_form]
     end
 
-    ensure_state_is_inprogress!
+    @reserve.ensure_state_is_inprogress!
   end
 
 
@@ -103,6 +103,8 @@ class AdminFairUseForm
       end
 
       @fair_use.save!
+
+      @reserve.check_set_complete!
     end
 
 

@@ -26,7 +26,7 @@ class AdminUpdateResource
 
     validate_input!
 
-    ensure_state_is_inprogress!
+    @reserve.ensure_state_is_inprogress!
   end
 
 
@@ -70,12 +70,8 @@ class AdminUpdateResource
       @reserve.pdf = pdf
       @reserve.url = url
 
+      @reserve.check_set_complete!
       @reserve.save!
-    end
-
-
-    def ensure_state_is_inprogress!
-      reserve.ensure_state_is_inprogress!
     end
 
 

@@ -76,7 +76,7 @@ describe AdminUpdateMetaData do
   describe "workflow_state" do
 
     it "updates checks ensure_state_is_inprogress! when the object is loaded." do
-      AdminUpdateMetaData.any_instance.should_receive(:ensure_state_is_inprogress!)
+      Reserve.any_instance.should_receive(:ensure_state_is_inprogress!)
       AdminUpdateMetaData.new(@user, { id: @reserve.id})
     end
 
