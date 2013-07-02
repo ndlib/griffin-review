@@ -41,11 +41,33 @@
 
     <%= f.input_field :comments, as: "text", placeholder: "Add any notes or distinctions to track for fair use. ", style: "width: 50%; height: 150px; " %>
 
+    <h3>Approval</h3>
+
+    <% if @request.state_transition_available?('approved', 'approve') %>
+      <label class="radio">
+        <input type="radio" name="admin_fair_use_form[event]"  value="approve" <%= @request.is_state?('approved') ? 'checked="true"' : '' %>>
+        <span class="label label-success">Approve</span> - Request is Fair Use.
+      </label>
+    <% end %>
+    <% if @request.state_transition_available?('denied', 'deny') %>
+      <label class="radio">
+        <input type="radio" name="admin_fair_use_form[event]" value="deny" <%= @request.is_state?('denied') ? 'checked="true"' : '' %>>
+        <span class="label label-warning">Reject</span> - Request is not Fair Use
+      </label>
+    <% end %>
+    <% if @request.state_transition_available?('awaiting_council', 'send_to_council') %>
+      <label class="radio">
+        <input type="radio" name="admin_fair_use_form[event]" value="send_to_council" <%= @request.is_state?('awaiting_council') ? 'checked="true"' : '' %>>
+        <span class="label label-info">Put on Hold</span> - Ask General Council
+      </label>
+    <% end %>
 
     <div class="form-actions">
       <%= f.button :submit, "Save", :class => 'btn-primary' %>
       <%= link_to 'Cancel', requests_path(:filter => @request.workflow_state) %>
     </div>
+
+
   </div>
 <% end %>
 

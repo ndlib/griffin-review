@@ -43,7 +43,6 @@ class AdminEditButton
   end
 
 
-
   def requires_fair_use?
     ReserveFairUsePolicy.new(@reserve).requires_fair_use?
   end

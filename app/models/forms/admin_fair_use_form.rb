@@ -12,6 +12,7 @@ class AdminFairUseForm
 
   attribute :comments, String
   attribute :checklist, Hash
+  attribute :event, String
 
 
   def initialize(current_user, params)
@@ -19,11 +20,11 @@ class AdminFairUseForm
     @fair_use = @reserve.fair_use
     @current_user = current_user
 
+    self.checklist = @fair_use.checklist
+    self.comments = @fair_use.comments
+
     if params[:admin_fair_use_form]
       self.attributes = params[:admin_fair_use_form]
-    else
-      self.checklist = @fair_use.checklist
-      self.comments = @fair_use.comments
     end
 
     ensure_state_is_inprogress!
@@ -75,6 +76,16 @@ class AdminFairUseForm
   end
 
 
+  def state_transition_available?(state, transition)
+    is_state?(state) || @fair_use.state_events.include?(transition.to_sym)
+  end
+
+
+  def is_state?(state)
+    @fair_use.state == state
+  end
+
+
   private
 
     def ensure_state_is_inprogress!
@@ -86,6 +97,10 @@ class AdminFairUseForm
       @fair_use.user_id = @current_user.id
       @fair_use.comments = self.comments
       @fair_use.checklist = self.checklist
+
+      if self.event
+        @fair_use.send(self.event)
+      end
 
       @fair_use.save!
     end

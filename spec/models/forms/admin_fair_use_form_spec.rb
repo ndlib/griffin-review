@@ -100,7 +100,7 @@ describe AdminFairUseForm do
   describe :persistance do
 
     it "saves its self with valid params" do
-      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => 1 }, comments: "comments" } } )
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
       afuf.save_fair_use.should be_true
     end
 
@@ -110,6 +110,30 @@ describe AdminFairUseForm do
       afuf.save_fair_use
       afuf.fair_use.user_id.should == user.id
     end
+
+
+    it "can run an event passed in " do
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { event: 'approve'} } )
+      afuf.save_fair_use
+      afuf.fair_use.state.should == "approved"
+    end
+
+
+    it "saves comments " do
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
+      afuf.save_fair_use
+
+      afuf.fair_use.comments.should == "comments"
+    end
+
+
+    it "saves checklists " do
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
+      afuf.save_fair_use
+
+      afuf.fair_use.checklist['1'].should == "true"
+    end
+
   end
 
 end

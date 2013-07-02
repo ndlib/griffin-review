@@ -36,9 +36,9 @@ class FairUse < ActiveRecord::Base
     new_fair_use = self.dup
 
     new_fair_use.comments = ""
-    new_fair_use.state = "update"
-    new_fair_use.request = new_request
-    new_fair_use.user = current_user
+    new_fair_use.state    = "update"
+    new_fair_use.request  = new_request
+    new_fair_use.user     = current_user
 
     new_fair_use.save!
 

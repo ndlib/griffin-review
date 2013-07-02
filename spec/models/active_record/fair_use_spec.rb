@@ -25,6 +25,7 @@ describe FairUse do
 
 
   describe :copy_to_new_request! do
+
     it "resets the comments " do
       f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
       nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
@@ -129,6 +130,7 @@ describe FairUse do
 
 
   describe :complete? do
+
     it "is comeplete if the state is approved" do
       FairUse.new(user_id: 1, state: "approved").complete?.should be_true
     end
