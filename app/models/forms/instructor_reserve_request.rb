@@ -9,6 +9,8 @@ class InstructorReserveRequest
 
   attr_accessor :course, :current_user
 
+  delegate :instructor_name, to: :course
+
   attribute :title, String
   attribute :publisher, String
   attribute :journal_title, String
@@ -102,6 +104,16 @@ class InstructorReserveRequest
 
   def course_can_create_new_reserve?
     CreateNewReservesPolicy.new(course).can_create_new_reserves?
+  end
+
+
+  def instructor_name
+
+  end
+
+
+  def sections
+    @course.section_numbers.join(", ")
   end
 
 

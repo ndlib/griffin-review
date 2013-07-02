@@ -1,7 +1,8 @@
 class CopyReserve
 
 
-  def initialize(course_to, reserve)
+  def initialize(current_user, course_to, reserve)
+    @user = current_user
     @course_to = course_to
     @reserve = reserve
   end
@@ -19,7 +20,9 @@ class CopyReserve
     new_request.topics    = []
     new_request.save!
 
-    Reserve.factory(new_request, @course_to)
+    @reserve.fair_use.copy_to_new_request!(new_request, @user)
+
+    new_request
   end
 
 end

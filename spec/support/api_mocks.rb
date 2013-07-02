@@ -44,6 +44,11 @@ module ApiMocks
   end
 
 
+  def stub_ssi!
+    ApplicationController.any_instance.stub(:include_ssi).and_return("SSI INCLUDE!!!!")
+  end
+
+
   def mock_reserve(request, course)
     if !course.nil?
       request.course_id = course.id

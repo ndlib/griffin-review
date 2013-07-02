@@ -42,3 +42,25 @@
 
 .complete_text { color: #468847;}
 .missing_text { color: #f89406;}
+
+.footer {
+    border-top: 1px solid #B7A765;
+    padding-top: 15px;
+    margin-top: 50px;
+    .columns {
+        text-align:center;
+    }
+    .three {
+        width:24%;
+    }
+    .six {
+        width:43%;
+    }
+    p {
+        font-size:12px;
+    }
+    img {
+        vertical-align: baseline;
+    }
+}
+

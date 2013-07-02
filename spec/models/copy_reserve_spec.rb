@@ -4,6 +4,7 @@ describe CopyReserve do
 
   let(:semester) { FactoryGirl.create(:semester) }
   let(:course_search) { CourseSearch.new }
+  let(:user) { mock_model(User, id: 1 )}
 
   before(:each) do
     stub_courses!
@@ -16,8 +17,9 @@ describe CopyReserve do
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
 
-    @copy_reserve = CopyReserve.new(@to_course, @reserve)
+    @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
   end
+
 
   it "makes a copy of the request" do
     new_reserve = @copy_reserve.copy
@@ -34,7 +36,6 @@ describe CopyReserve do
   it "changes the course to the new course" do
     new_reserve = @copy_reserve.copy
 
-    new_reserve.course.should == @to_course
     new_reserve.course_id.should == @to_course.id
     new_reserve.crosslist_id.should == @to_course.crosslist_id
   end
@@ -53,6 +54,7 @@ describe CopyReserve do
     new_reserve = @copy_reserve.copy
     new_reserve.topics.should == []
   end
+
 
   it "does not copy the item" do
     new_reserve = @copy_reserve.copy

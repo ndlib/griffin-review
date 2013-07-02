@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CopyCourseReservesForm do
 
-  let(:user) { mock(User, :username => 'instructor') }
+  let(:user) { mock_model(User, :id => 1, :username => 'instructor') }
   let(:course_search) { CourseSearch.new }
 
   before(:each) do
@@ -35,7 +35,6 @@ describe CopyCourseReservesForm do
   end
 
 
-
   describe :copy do
 
     it "is returns true when it is successful" do
@@ -47,7 +46,7 @@ describe CopyCourseReservesForm do
 
       reserves = @copy_course.copy_items()
       reserves.first.id.should_not == @reserve.id
-      reserves.first.title.should == @reserve.title
+      reserves.first.item.title.should == @reserve.item.title
     end
 
 
@@ -58,6 +57,7 @@ describe CopyCourseReservesForm do
       reserves = @copy_course.copy_items()
       reserves.should == []
     end
+
 
     it "skips if nothing is passed in" do
       valid_params = { course_id: @to_course.id, from_course_id: @from_course.id }
@@ -98,8 +98,6 @@ describe CopyCourseReservesForm do
     end
 
   end
-
-
 
 
   describe :validations do

@@ -6,6 +6,7 @@ describe "Student Frontend Access" do
     FactoryGirl.create(:semester)
     FactoryGirl.create(:next_semester)
 
+    stub_ssi!
     stub_courses!
     stub_discovery!
 
@@ -46,7 +47,7 @@ describe "Student Frontend Access" do
       @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video), @test_course
 
       visit course_path(@test_course.id)
-      
+
       click_link(@url_reserve.title)
     end
 

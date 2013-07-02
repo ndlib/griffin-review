@@ -74,7 +74,7 @@ class CopyCourseReservesForm
       begin
         reserve = reserve_search.get(rid, @from_course)
         if reserve
-          @copied_items << CopyReserve.new(@to_course, reserve).copy
+          @copied_items << CopyReserve.new(@user, @to_course, reserve).copy
         end
       rescue ActiveRecord::RecordNotFound
         # skip missing items
@@ -88,6 +88,7 @@ class CopyCourseReservesForm
   def to_course_can_have_new_reserves?
     CreateNewReservesPolicy.new(@to_course).can_create_new_reserves?
   end
+
 
   private
 
