@@ -4,6 +4,29 @@ require 'spec_helper'
 describe ReserveResourcePolicy do
 
 
+  describe :complete? do
+    it "returns true if the item cannot have resources" do
+      ReserveResourcePolicy.any_instance.stub(:can_have_resource?).and_return(false)
+
+      ReserveResourcePolicy.new(mock(Reserve)).complete?.should be_true
+    end
+
+    it "returns true if the item can have resources and it has a resource " do
+      ReserveResourcePolicy.any_instance.stub(:can_have_resource?).and_return(true)
+      ReserveResourcePolicy.any_instance.stub(:has_resource?).and_return(true)
+
+      ReserveResourcePolicy.new(mock(Reserve)).complete?.should be_true
+    end
+
+    it "returns false if the item can have resources and it does not have a resource" do
+      ReserveResourcePolicy.any_instance.stub(:can_have_resource?).and_return(true)
+      ReserveResourcePolicy.any_instance.stub(:has_resource?).and_return(false)
+
+      ReserveResourcePolicy.new(mock(Reserve)).complete?.should be_false
+    end
+  end
+
+
   describe "#can_have_file_resource?" do
 
     it "returns true if the type of the request is a book chapter" do

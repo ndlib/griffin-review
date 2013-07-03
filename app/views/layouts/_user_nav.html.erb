@@ -17,10 +17,10 @@
           <%= link_to raw("Instructed Courses <b class=\"caret\"></b>"), courses_path, "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu">
             <% user_course_listing.current_instructed_courses.each do | course | %>
-              <li><%= link_to "#{h(course.title)} - #{h(course.semester_name)}", course_path(course.id) %></li>
+              <li><%= link_to h(course.full_title), course_path(course.id) %></li>
             <% end %>
             <% user_course_listing.upcoming_instructed_courses.each do | course | %>
-              <li><%= link_to "#{h(course.title)} - #{h(course.semester_name)}", course_path(course.id) %></li>
+              <li><%= link_to h(course.full_title), course_path(course.id) %></li>
             <% end %>
           </ul>
         </li>

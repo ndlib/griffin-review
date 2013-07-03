@@ -33,7 +33,7 @@ class AdminReserveListing
   def fair_use_display
 
     if fair_use_policy.requires_fair_use?
-      if fair_use_policy.fair_use_complete?
+      if fair_use_policy.complete?
         return "<span class=\"complete_text\">Yes</span>"
       else
         return "<span class=\"missing_text\">Not Done</span>"

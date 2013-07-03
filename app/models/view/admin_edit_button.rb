@@ -17,7 +17,7 @@ class AdminEditButton
 
 
   def meta_data_complete?
-    ReserveMetaDataPolicy.new(@reserve).has_meta_data?
+    ReserveMetaDataPolicy.new(@reserve).complete?
   end
 
 
@@ -49,7 +49,7 @@ class AdminEditButton
 
 
   def fair_use_complete?
-    ReserveFairUsePolicy.new(@reserve).fair_use_complete?
+    ReserveFairUsePolicy.new(@reserve).complete?
   end
 
 

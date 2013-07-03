@@ -42,6 +42,11 @@ class Course
   end
 
 
+  def full_title
+    "#{title} - #{semester_name}"
+  end
+
+
   def sections
     @attributes['sections']
   end

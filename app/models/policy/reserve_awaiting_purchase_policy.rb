@@ -10,4 +10,8 @@ class ReserveAwaitingPurchasePolicy
     false
   end
 
+
+  def complete?
+    !awaiting_puchase?
+  end
 end

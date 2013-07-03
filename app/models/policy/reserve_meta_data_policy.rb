@@ -15,9 +15,8 @@ class ReserveMetaDataPolicy
   end
 
 
-  def has_meta_data?
+  def complete?
     @reserve.nd_meta_data_id.present? && !uses_internal_metadata?
   end
-
 
 end

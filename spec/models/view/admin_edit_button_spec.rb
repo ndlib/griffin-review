@@ -12,13 +12,13 @@ describe AdminEditButton do
 
   describe :meta_data_complete? do
     it "returns true if the meta data is complete" do
-      ReserveMetaDataPolicy.any_instance.stub(:has_meta_data?).and_return(true)
+      ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       AdminEditButton.new(@reserve).meta_data_complete?.should be_true
     end
 
 
     it "returns false if the meta data is not complete" do
-      ReserveMetaDataPolicy.any_instance.stub(:has_meta_data?).and_return(false)
+      ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(false)
       AdminEditButton.new(@reserve).meta_data_complete?.should be_false
     end
   end

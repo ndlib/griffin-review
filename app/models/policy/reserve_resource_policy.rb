@@ -5,6 +5,11 @@ class ReserveResourcePolicy
   end
 
 
+  def can_have_resource?
+    (can_have_file_resource? || can_have_url_resource?)
+  end
+
+
   def can_have_file_resource?
     return true if ['JournalReserve', 'BookChapterReserve'].include?(@reserve.type)
 
@@ -41,6 +46,16 @@ class ReserveResourcePolicy
 
   def can_be_linked_to?
     @reserve.semester.current? && ( has_file_resource? || has_url_resource? )
+  end
+
+
+  def has_resource?
+    has_url_resource? || has_file_resource?
+  end
+
+
+  def complete?
+    !can_have_resource? || has_resource?
   end
 
 end

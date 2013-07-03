@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ReserveFairUsePolicy do
 
 
-  describe "#fair_use_complete?"  do
+  describe "#complete?"  do
 
     it "returns false if the reserve needs fair use but has not set it yet" do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
@@ -11,7 +11,7 @@ describe ReserveFairUsePolicy do
 
       policy.stub!(:requires_fair_use?).and_return(true)
 
-      policy.fair_use_complete?.should be_false
+      policy.complete?.should be_false
     end
 
 
@@ -21,7 +21,7 @@ describe ReserveFairUsePolicy do
 
       policy.stub!(:requires_fair_use?).and_return(false)
 
-      policy.fair_use_complete?.should be_true
+      policy.complete?.should be_true
     end
 
 
@@ -32,7 +32,7 @@ describe ReserveFairUsePolicy do
       policy = ReserveFairUsePolicy.new(reserve)
       policy.stub!(:requires_fair_use?).and_return(true)
 
-      policy.fair_use_complete?.should be_true
+      policy.complete?.should be_true
     end
 
   end
