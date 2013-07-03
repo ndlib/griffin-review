@@ -30,7 +30,7 @@ describe UserArchiveCourseListing do
   it "gets complete only listings when the filter is complete" do
     ReserveSearch.any_instance.should_receive(:available_reserves_for_semester)
 
-    arl = AdminRequestListing.new(user, {filter: 'complete' })
+    arl = AdminRequestListing.new(user, {filter: 'available' })
     arl.reserves
   end
 

@@ -86,7 +86,10 @@ Griffin::Application.routes.draw do
 
   root :to => 'user_course_listings#index'
 
+  resources :masquerades, :only => [:new, :create, :destroy]
+
   match "login", :controller => 'development_login', :action => 'login'
+  match "cancel_masquerade", :controller => 'development_login', :action => 'cancel'
 
   resources :courses, controller: 'user_course_listings', only: [ 'index', 'show', 'create' ] do
     resources :get_reserves, as: 'get_reserve', only: [ 'show' ]

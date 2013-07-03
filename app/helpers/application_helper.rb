@@ -22,6 +22,11 @@ module ApplicationHelper
   end
 
 
+  def masquerade
+    @masquerade ||= Masquerade.new(self)
+  end
+
+
   def new_instructor_reserve(type)
     if @request_reserve && @request_reserve.type == type
       return @request_reserve

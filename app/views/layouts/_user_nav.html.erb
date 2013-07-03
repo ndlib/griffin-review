@@ -30,12 +30,19 @@
         <li><%= link_to "Requests", requests_path() %></li>
         <li><%= link_to "Courses", admin_courses_path() %></li>
         <li><%= link_to "Semesters", semesters_path() %></li>
+        <li><%= link_to "Masquerade", new_masquerade_path %></li>
       <% end %>
     </ul>
     <div class="pull-right">
-      <%= current_user.username %>
-      <a href="/login">Change User</a>
-      <%= content_for(:help) %>
+      <ul class="nav">
+
+      <% if masquerade.masquerading? %>
+        <li class="navbar-text">Masquerading as <%= current_user.name %></li>
+        <li><%= link_to 'Cancel', '/cancel_masquerade' %></li>
+      <% end %>
+
+      </ul>
+
     </div>
   </div>
 </div>

@@ -45,7 +45,7 @@ describe AdminRequestFilter do
   describe "complete" do
 
     it "sets the complete params" do
-      arf = AdminRequestFilter.new('complete')
+      arf = AdminRequestFilter.new('available')
       arf.new?.should be_false
       arf.inprocess?.should be_false
       arf.complete?.should be_true
@@ -56,7 +56,7 @@ describe AdminRequestFilter do
       arf.complete_css_class.should == "active"
       arf.all_css_class.should == ""
 
-      "#{arf}".should == "complete"
+      "#{arf}".should == "available"
     end
   end
 
