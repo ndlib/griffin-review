@@ -6,9 +6,9 @@ class ReserveIsCompletePolicy
 
 
   def complete?
-    ReserveFairUsePolicy.new(reserve).complete? &&
-    ReserveAwaitingPurchasePolicy.new(reserve).complete? &&
-    ReserveMetaDataPolicy.new(reserve).complete? &&
-    ReserveResourcePolicy.new(reserve).complete?
+    ReserveFairUsePolicy.new(@reserve).complete? &&
+    ReserveAwaitingPurchasePolicy.new(@reserve).complete? &&
+    ReserveMetaDataPolicy.new(@reserve).complete? &&
+    ReserveResourcePolicy.new(@reserve).complete?
   end
 end
