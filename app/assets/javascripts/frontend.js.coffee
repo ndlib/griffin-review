@@ -37,30 +37,31 @@ jQuery ($) ->
 
     input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
     input.attr('placeholder', "Author name or Title")
-    input.attr('data-content', 'Type the title or author of the work you need.')
-    input.attr('data-title', 'Search')
-    input.attr('data-placement', "top")
 
-    input.popover({ trigger: 'manual',  })
+    if ($('.show_popover_help').size() > 0)
+      input.attr('data-content', 'Type the title or author of the work you need.')
+      input.attr('data-title', 'Search')
+      input.attr('data-placement', "top")
 
-    input.focus ->
-      if ($(this).attr('data-popover-shown') != 'shown')
-        input = $(this)
+      input.popover({ trigger: 'manual',  })
 
-        setTimeout ( -> input.popover('show') ), 2000
-        input.attr('data-popover-shown', 'shown')
+      input.focus ->
+        if ($(this).attr('data-popover-shown') != 'shown')
+          input = $(this)
 
-      true
+          setTimeout ( -> input.popover('show') ), 2000
+          input.attr('data-popover-shown', 'shown')
+
+        true
+
+      input.blur ->
+        $(this).popover('hide')
+
+      input.keyup ->
+        $(this).popover('hide')
 
 
-    input.blur ->
-      $(this).popover('hide')
-
-    input.keyup ->
-      $(this).popover('hide')
-
-
-    input.focus()
+      input.focus()
 
 
   $(document).on 'click', ".add_topic_button", ->

@@ -134,6 +134,14 @@ describe AdminFairUseForm do
       afuf.fair_use.checklist['1'].should == "true"
     end
 
+
+    it "checks to seed if the item is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
+      afuf.save_fair_use
+    end
+
   end
 
 end

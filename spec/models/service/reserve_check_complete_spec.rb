@@ -1,6 +1,30 @@
 require "spec_helper"
 
-describe ReserveIsCompletePolicy
+describe ReserveCheckIsComplete
+
+  describe :check! do
+
+    it "updates the reserve status to complete if all the data is complete" do
+      reserve = mock_reserve(FactoryGirl.create(:request, :inprocess), mock(Course, id: 'course_id', crosslist_id: 'crosslist_id', semester: Semester.first))
+      rcic = ReserveCheckIsComplete.new(reserve)
+      rcic.stub!(:complete?).and_return(true)
+
+      rcic.check!
+      reserve.request.reload()
+      reserve.workflow_state.should == "available"
+    end
+
+    it "leaves the state where it is if the data is not complete" do
+      reserve = mock_reserve(FactoryGirl.create(:request, :inprocess), nil)
+      rcic = ReserveCheckIsComplete.new(reserve)
+      rcic.stub!(:complete?).and_return(false)
+
+      rcic.check!
+      reserve.request.reload()
+      reserve.workflow_state.should == "inprocess"
+    end
+  end
+
 
   describe :compete? do
 
@@ -11,7 +35,7 @@ describe ReserveIsCompletePolicy
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveIsCompletePolicy.new(mock(Reserve)).complete?.should be_true
+      ReserveCheckIsComplete.new(mock(Reserve)).complete?.should be_true
     end
 
 
@@ -22,7 +46,7 @@ describe ReserveIsCompletePolicy
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveIsCompletePolicy.new(mock(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(mock(Reserve)).complete?.should be_false
     end
 
 
@@ -33,7 +57,7 @@ describe ReserveIsCompletePolicy
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveIsCompletePolicy.new(mock(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(mock(Reserve)).complete?.should be_false
     end
 
 
@@ -44,7 +68,7 @@ describe ReserveIsCompletePolicy
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(false)
       ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveIsCompletePolicy.new(mock(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(mock(Reserve)).complete?.should be_false
     end
 
 
@@ -55,7 +79,7 @@ describe ReserveIsCompletePolicy
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ReserveResourcePolicy.any_instance.stub(:complete?).and_return(false)
 
-      ReserveIsCompletePolicy.new(mock(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(mock(Reserve)).complete?.should be_false
     end
 
 end

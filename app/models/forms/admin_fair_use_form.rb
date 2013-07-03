@@ -104,7 +104,7 @@ class AdminFairUseForm
 
       @fair_use.save!
 
-      @reserve.check_set_complete!
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

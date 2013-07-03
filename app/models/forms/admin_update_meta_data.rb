@@ -65,6 +65,8 @@ class AdminUpdateMetaData
     def persist!
       @reserve.check_set_complete!
       @reserve.save!
+
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

@@ -22,7 +22,7 @@ class AdminRequestFilter
 
 
   def complete?
-    @filter == 'complete'
+    @filter == 'available'
   end
 
 
@@ -59,7 +59,7 @@ class AdminRequestFilter
   private
 
     def validate!
-      if !['new', 'inprocess', 'complete', 'all'].include?(@filter)
+      if !['new', 'inprocess', 'available', 'all'].include?(@filter)
         raise "Invalid filter passed to #{self.class}"
       end
     end

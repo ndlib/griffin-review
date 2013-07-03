@@ -1,7 +1,16 @@
-class ReserveIsCompletePolicy
+class ReserveCheckIsComplete
+
 
   def initialize(reserve)
     @reserve = reserve
+  end
+
+
+  def check!
+    if @reserve.inprocess? && complete?
+      @reserve.complete
+      @reserve.save!
+    end
   end
 
 
