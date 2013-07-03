@@ -11,7 +11,7 @@ class ReserveListing
 
   def css_class
     case @reserve.type
-    when "BookReserve" 
+    when "BookReserve"
       "record-book"
     when "BookChapterReserve"
       "record-book"
@@ -28,7 +28,7 @@ class ReserveListing
 
 
   def link_to_get_listing?
-    ReserveCanBeLinkedToPolicy.new(@reserve).can_be_linked_to?
+    ReserveResourcePolicy.new(@reserve).can_be_linked_to?
   end
 
 

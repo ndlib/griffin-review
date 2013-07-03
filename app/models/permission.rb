@@ -22,7 +22,6 @@ class Permission
 
   private
 
-
     def course_in_current_semester?(course)
       course.semester.current?
     end

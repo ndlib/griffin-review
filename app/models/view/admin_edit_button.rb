@@ -27,14 +27,14 @@ class AdminEditButton
 
 
   def requires_external_resource?
-    ReserveFileResourcePolicy.new(@reserve).can_have_file_resource? ||
-    ReserveUrlResourcePolicy.new(@reserve).can_have_url_resource?
+    ReserveResourcePolicy.new(@reserve).can_have_file_resource? ||
+    ReserveResourcePolicy.new(@reserve).can_have_url_resource?
   end
 
 
   def external_resouce_comeplete?
-    ReserveFileResourcePolicy.new(@reserve).has_file_resource? ||
-    ReserveUrlResourcePolicy.new(@reserve).has_url_resource?
+    ReserveResourcePolicy.new(@reserve).has_file_resource? ||
+    ReserveResourcePolicy.new(@reserve).has_url_resource?
   end
 
 

@@ -124,13 +124,13 @@ describe GetReserve do
 
 
     it "returns true if the listing can be linked to" do
-      ReserveCanBeLinkedToPolicy.any_instance.stub(:can_be_linked_to?).and_return(true)
+      ReserveResourcePolicy.any_instance.stub(:can_be_linked_to?).and_return(true)
       @get_reserve.link_to_listing?.should be_true
     end
 
 
     it "returns false if cannot be linked to" do
-      ReserveCanBeLinkedToPolicy.any_instance.stub(:can_be_linked_to?).and_return(false)
+      ReserveResourcePolicy.any_instance.stub(:can_be_linked_to?).and_return(false)
       @get_reserve.link_to_listing?.should be_false
     end
 

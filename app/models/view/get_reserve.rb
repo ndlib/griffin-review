@@ -35,7 +35,7 @@ class GetReserve
 
 
   def download_listing?
-    ReserveFileResourcePolicy.new(@reserve).has_file_resource?
+    ReserveResourcePolicy.new(@reserve).has_file_resource?
   end
 
 
@@ -50,12 +50,12 @@ class GetReserve
 
 
   def link_to_listing?
-    ReserveCanBeLinkedToPolicy.new(@reserve).can_be_linked_to?
+    ReserveResourcePolicy.new(@reserve).can_be_linked_to?
   end
 
 
   def download_file_path
-    ReserveFileResourcePolicy.new(@reserve).reserve_file_path
+    ReserveResourcePolicy.new(@reserve).reserve_file_path
   end
 
 
@@ -65,7 +65,7 @@ class GetReserve
 
 
   def streaming_server_file?
-    ReserveUrlResourcePolicy.new(@reserve).streaming_server_redirect?
+    ReserveResourcePolicy.new(@reserve).streaming_server_redirect?
   end
 
 

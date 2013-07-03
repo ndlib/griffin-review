@@ -31,12 +31,12 @@ class AdminUpdateResource
 
 
   def show_file_upload_form?
-    ReserveFileResourcePolicy.new(reserve).can_have_file_resource?
+    ReserveResourcePolicy.new(reserve).can_have_file_resource?
   end
 
 
   def show_url_form?
-    ReserveUrlResourcePolicy.new(reserve).can_have_url_resource?
+    ReserveResourcePolicy.new(reserve).can_have_url_resource?
   end
 
 
@@ -53,8 +53,8 @@ class AdminUpdateResource
   private
 
     def validate_input!
-      fp = ReserveFileResourcePolicy.new(@reserve)
-      up = ReserveUrlResourcePolicy.new(@reserve)
+      fp = ReserveResourcePolicy.new(@reserve)
+      up = ReserveResourcePolicy.new(@reserve)
 
       if !fp.can_have_file_resource? && !up.can_have_url_resource?
         render_404
@@ -81,7 +81,7 @@ class AdminUpdateResource
 
 
     def pdf_cannot_have_a_value
-      policy = ReserveFileResourcePolicy.new(@reserve)
+      policy = ReserveResourcePolicy.new(@reserve)
       if !policy.can_have_file_resource? && pdf.present?
         errors.add(:pdf, "can't upload a file for this type.")
       end
@@ -89,7 +89,7 @@ class AdminUpdateResource
 
 
     def url_cannot_have_a_value
-      policy = ReserveUrlResourcePolicy.new(@reserve)
+      policy = ReserveResourcePolicy.new(@reserve)
       if !policy.can_have_url_resource? && url.present?
         errors.add(:url, "can't add a url for this type.")
       end
