@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701193231) do
+ActiveRecord::Schema.define(:version => 20130705165149) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20130701193231) do
     t.string   "url"
     t.string   "type"
     t.string   "publisher"
+    t.boolean  "on_order"
+    t.string   "details"
   end
 
   add_index "items", ["type"], :name => "index_items_on_type"

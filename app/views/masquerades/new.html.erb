@@ -8,15 +8,13 @@
 
 <div class="six columns">
 
-  <form action="<%= masquerades_path %>" method="post" class="form-inline">
+   <%= form_tag masquerades_path, class: "form-inline" do %>
 
     <label for="netid">Netid: </label>
     <input id="netid" type="text" name="username" class="span3">
     <button type="submit" class="btn">Go</button>
     <span class="help-block">Entering a netid and clicking go will allow you to experience the site as that user.</span>
-
-
-  </form>
+  <% end %>
 </div>
 <div class="six columns">
   <h4> Determine a netid </h4>

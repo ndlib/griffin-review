@@ -30,18 +30,14 @@
         <li><%= link_to "Requests", requests_path() %></li>
         <li><%= link_to "Courses", admin_courses_path() %></li>
         <li><%= link_to "Semesters", semesters_path() %></li>
-        <li><%= link_to "Masquerade", new_masquerade_path %></li>
+        <li><%= link_to "Masquerade", new_masquerades_path %></li>
       <% end %>
     </ul>
     <div class="pull-right">
-      <ul class="nav">
 
       <% if masquerade.masquerading? %>
-        <li class="navbar-text">Masquerading as <%= current_user.name %></li>
-        <li><%= link_to 'Cancel', '/cancel_masquerade' %></li>
+        <p class="navbar-text"><%= link_to raw("Stop Masquerading as #{current_user.name}"), cancel_masquerades_path, class: "masquerade_text" %></p>
       <% end %>
-
-      </ul>
 
     </div>
   </div>

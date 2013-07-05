@@ -6,12 +6,12 @@ class ReserveAwaitingPurchasePolicy
   end
 
 
-  def awaiting_puchase?
-    false
+  def awaiting_purchase?
+    @reserve.on_order
   end
 
 
   def complete?
-    !awaiting_puchase?
+    !awaiting_purchase?
   end
 end

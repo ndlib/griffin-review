@@ -25,7 +25,7 @@ class MasqueradesController < ApplicationController
   end
 
 
-  def destroy
+  def cancel
 
     m = Masquerade.new(self)
     if m.masquerading?

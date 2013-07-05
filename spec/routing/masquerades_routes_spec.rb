@@ -12,12 +12,6 @@ describe 'Masquerades Routes' do
   end
 
 
-  it "should not route to the destroy" do
-    { :delete => "/masquerades/id" }.should route_to(
-      action: "destroy", controller: "masquerades", id: 'id'
-    )
-  end
-
 
 #  fails because it thinks this is an id
   it "should not route to the new " do

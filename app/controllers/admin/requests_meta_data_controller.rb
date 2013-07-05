@@ -9,7 +9,7 @@ class Admin::RequestsMetaDataController  < ApplicationController
     @request = AdminUpdateMetaData.new(current_user, params)
 
     if @request.save_meta_data
-      redirect_to requests_path(@request.id, :filter => @request.status)
+      redirect_to requests_path(@request.id, :filter => @request.workflow_state)
     else
       render :edit
     end

@@ -13,17 +13,22 @@ class AdminUpdateMetaData
   attribute :publisher, String
   attribute :journal_title, String
   attribute :nd_meta_data_id, String
+  attribute :on_order, Boolean
 
   validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
   validates :title, :creator, :journal_title, presence: true, unless: :requires_nd_meta_data_id?
 
-  delegate :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
+  delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
 
   def initialize(current_user, params)
     @reserve = reserve_search.get(params[:id], nil)
 
-    if params[:admin_reserve]
-      self.attributes = params[:admin_reserve]
+    self.attributes.each_key do |key|
+      self.send("#{key}=", @reserve.send(key))
+    end
+
+    if params[:admin_update_meta_data]
+      self.attributes = params[:admin_update_meta_data]
     end
 
     @reserve.ensure_state_is_inprogress!
@@ -63,7 +68,8 @@ class AdminUpdateMetaData
 
 
     def persist!
-      @reserve.check_set_complete!
+      @reserve.attributes = self.attributes
+
       @reserve.save!
 
       ReserveCheckIsComplete.new(@reserve).check!

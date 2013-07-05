@@ -42,19 +42,13 @@ describe AdminEditButton do
   describe :complete do
 
     it "returns true if all the sub parts are true" do
-      AdminEditButton.any_instance.stub(:meta_data_complete?).and_return(true)
-      AdminEditButton.any_instance.stub(:external_resouce_comeplete?).and_return(true)
-      AdminEditButton.any_instance.stub(:fair_use_complete?).and_return(true)
-
+      ReserveCheckIsComplete.any_instance.stub(:complete?).and_return(true)
       AdminEditButton.new(@reserve).complete?.should be_true
     end
 
 
     it "returns false if one of the sub parts are not true" do
-      AdminEditButton.any_instance.stub(:meta_data_complete?).and_return(false)
-      AdminEditButton.any_instance.stub(:external_resouce_comeplete?).and_return(true)
-      AdminEditButton.any_instance.stub(:fair_use_complete?).and_return(true)
-
+      ReserveCheckIsComplete.any_instance.stub(:complete?).and_return(false)
       AdminEditButton.new(@reserve).complete?.should be_false
     end
   end

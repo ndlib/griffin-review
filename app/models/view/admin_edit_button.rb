@@ -12,7 +12,7 @@ class AdminEditButton
 
 
   def complete?
-    fair_use_complete? && meta_data_complete? &&  external_resouce_comeplete?
+    ReserveCheckIsComplete.new(@reserve).complete?
   end
 
 
@@ -27,14 +27,12 @@ class AdminEditButton
 
 
   def requires_external_resource?
-    ReserveResourcePolicy.new(@reserve).can_have_file_resource? ||
-    ReserveResourcePolicy.new(@reserve).can_have_url_resource?
+    ReserveResourcePolicy.new(@reserve).can_have_resource?
   end
 
 
   def external_resouce_comeplete?
-    ReserveResourcePolicy.new(@reserve).has_file_resource? ||
-    ReserveResourcePolicy.new(@reserve).has_url_resource?
+    ReserveResourcePolicy.new(@reserve).has_resource?
   end
 
 

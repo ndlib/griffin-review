@@ -10,7 +10,7 @@ describe AdminUpdateMetaData do
 
     @reserve = mock_reserve(FactoryGirl.create(:request), @course)
 
-    @params = { id: @reserve.id}
+    @params = { id: @reserve.id }
     @update_meta_data = AdminUpdateMetaData.new(@user, @params)
   end
 
@@ -38,7 +38,7 @@ describe AdminUpdateMetaData do
 
     it "requires title if overwrite_nd_meta_data is true" do
       Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(true)
-
+      @update_meta_data.title = nil
       @update_meta_data.should have(1).error_on(:title)
     end
 
@@ -110,7 +110,6 @@ describe AdminUpdateMetaData do
 
     it "returns true if the update is valid" do
       @update_meta_data.stub!(:valid?).and_return(true)
-
       @update_meta_data.save_meta_data.should be_true
     end
 

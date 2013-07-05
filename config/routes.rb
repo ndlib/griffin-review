@@ -2,6 +2,7 @@ Griffin::Application.routes.draw do
 
   devise_for :users
 
+
   ############################
   # Administrative Functions #
   ############################
@@ -86,10 +87,11 @@ Griffin::Application.routes.draw do
 
   root :to => 'user_course_listings#index'
 
-  resources :masquerades, :only => [:new, :create, :destroy]
+  resource :masquerades, :only => [:new, :create] do
+    get :cancel
+  end
 
   match "login", :controller => 'development_login', :action => 'login'
-  match "cancel_masquerade", :controller => 'development_login', :action => 'cancel'
 
   resources :courses, controller: 'user_course_listings', only: [ 'index', 'show', 'create' ] do
     resources :get_reserves, as: 'get_reserve', only: [ 'show' ]

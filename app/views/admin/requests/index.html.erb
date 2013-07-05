@@ -1,9 +1,11 @@
 <% content_for(:content_title) do %>
-  <h1>Requests</h1>
+  <div class="page-header">
+    <h1>Requests</h1>
+  </div>
 <% end %>
 
 <% content_for(:content_title_links) do %>
-  <a href="#filter_form" data-toggle="modal">Filter Request Results</a>
+  <a href="#filter_form" data-toggle="modal" class="btn btn-primary">Filter Request Results</a>
 <% end %>
 
 <%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
