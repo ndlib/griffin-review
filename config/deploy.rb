@@ -108,7 +108,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/bundle/config #{release_path}/.bundle/config"
     run "ln -nfs #{shared_path}/vendor/bundle #{release_path}/vendor/bundle"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config"
-    run "ln -nfs #{shared_path}/uploads/pdf #{release_path}/uploads/"
+    run "ln -nfs #{shared_path}/uploads/pdfs #{release_path}/uploads/"
     run "ln -nfs #{shared_path}/uploads/movs #{release_path}/uploads/"
   end
 
