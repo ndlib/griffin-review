@@ -31,7 +31,7 @@ Griffin::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -58,7 +58,7 @@ Griffin::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   # Action mailer settings
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = { :host => "reservespprd.library.nd.edu" }

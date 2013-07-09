@@ -109,7 +109,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/vendor/bundle #{release_path}/vendor/bundle"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config"
     run "ln -nfs #{shared_path}/uploads/pdf #{release_path}/uploads/"
-    run "ln -nfs #{shared_path}/uploads/mov #{release_path}/uploads/"
+    run "ln -nfs #{shared_path}/uploads/movs #{release_path}/uploads/"
   end
 
   desc "Spool up Passenger spawner to keep user experience speedy"
