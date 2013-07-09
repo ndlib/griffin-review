@@ -1,12 +1,7 @@
 class Admin::CoursesController < ApplicationController
 
   def index
-    @courses = false
-
-    if params[:netid]
-      @courses = reserves.netid_instructed_courses(params[:netid], '201210')
-    end
-
+    @admin_course_listing = AdminCourseListing.new(current_user, params)
   end
 
 

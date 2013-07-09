@@ -162,8 +162,8 @@ jQuery ($) ->
         ]
       )
 
-      if $('li.active a.tab').attr('filter') != "all" && $('li.active a.tab').attr('filter') != "complete"
-        oTable.fnFilter($('li.active a.tab').attr('filter'), 7, true, false, false)
+      if $('li.active > a.tab').attr('filter') != "complete"
+        oTable.fnFilter($('li.active > a.tab').attr('filter'), 7, true, false, false)
 
 
       $('a[data-toggle="tab"]').on('shown', ->

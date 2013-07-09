@@ -6,6 +6,8 @@
   </p>
 <% end %>
 
+<% breadcrumb([ link_to('Courses', courses_path), link_to(@new_reserve.course_title, course_path(@new_reserve.course.id)), 'Request New Material' ]) %>
+
 <div class="six columns">
 
   <div class="btn-group" data-toggle="buttons-radio">

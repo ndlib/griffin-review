@@ -35,23 +35,6 @@ describe UserArchiveCourseListing do
   end
 
 
-  it "gets all listings when the filter is all" do
-    ReserveSearch.any_instance.should_receive(:all_reserves_for_semester)
-
-    arl = AdminRequestListing.new(user, {filter: 'all' })
-    arl.reserves
-  end
-
-
-  it "defaults to the current semester if none is passed in" do
-    s = FactoryGirl.create(:semester)
-
-    arl = AdminRequestListing.new(user, {filter: 'all' })
-    arl.semester.id.should == s.id
-  end
-
-
-
   it "switches the semester to the one passed in" do
     FactoryGirl.create(:semester)
     s = FactoryGirl.create(:previous_semester)

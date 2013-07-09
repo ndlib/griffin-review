@@ -3,18 +3,14 @@
   <td>
     <%= render partial: '/admin/requests/admin_row_button', locals: { button: object.button } %>
   </td>
+  <td><%= object.request_date %></td>
   <td><%= object.needed_by %></td>
   <td><%= object.title %></td>
   <td><%= object.requestor %></td>
+  <td><%= object.course_title %></td>
   <td><%= object.type %></td>
   <td>
-    <%= object.workflow_state %>
-  </td>
-  <td>
-    <%= raw object.fair_use_display %>
-  </td>
-  <td>
-    <%= object.workflow_state %>
+    <%= object.missing_data %>
   </td>
 </tr>
 

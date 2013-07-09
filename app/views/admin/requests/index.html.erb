@@ -3,31 +3,27 @@
     <h1>Requests</h1>
   </div>
 <% end %>
-
 <% content_for(:content_title_links) do %>
   <a href="#filter_form" data-toggle="modal" class="btn btn-primary">Filter Request Results</a>
 <% end %>
 
-<%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
+<%
+breadcrumb(['Requests'])
+%>
 
-<form class="table_filter">
-  <select>
-    <option>Current Sememster</option>
-    <option>Future Semesters</option>
-  </select>
-</form>
+<%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
 
 <table class="table table-striped find-resources admin_datatable datatable">
   <thead>
     <tr>
       <th></th>
+      <th>Request Date</th>
       <th>Date Neeeded</th>
       <th>Title</th>
       <th>Requestor</th>
+      <th>Course</th>
       <th>Type</th>
-      <th>Status</th>
-      <th>Fair Use</th>
-      <th>Status</th>
+      <th>Missing Data</th>
     </tr>
   </thead>
   <tbody>
@@ -36,7 +32,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 
 <div class="modal hide" id="filter_form">

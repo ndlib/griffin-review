@@ -31,9 +31,9 @@
   </p>
 </form>
 
-<% if @courses %>
+<% if @admin_course_listing.has_searched? %>
 
-  <% if @courses.size == 0 %>
+  <% if !@admin_course_listing.has_results? %>
     <div class="alert">There are no courses for your search.</div>
   <% else %>
 
@@ -47,10 +47,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @courses.each do | course | %>
+        <% @admin_course_listing.search.each do | course | %>
           <tr>
             <td>
-              <%= link_to h(course.title), admin_course_path(course.id, netid: params[:netid]) %>
+              <%= link_to h(course.title), course_path(course.id) %>
             </td>
             <td>
             </td>

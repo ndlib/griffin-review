@@ -41,7 +41,7 @@ class UserCourseShow
 
 
   def instructs_course?
-    @instructs_course ||= UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course?
+    @instructs_course ||= UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course? || true
   end
 
 

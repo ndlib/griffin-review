@@ -11,7 +11,7 @@ class Permission
 
 
   def current_user_instructs_course?(course)
-    UserRoleInCoursePolicy.new(course, @current_user).user_instructs_course?
+    UserRoleInCoursePolicy.new(course, @current_user).user_instructs_course? || current_user_is_administrator?
   end
 
 

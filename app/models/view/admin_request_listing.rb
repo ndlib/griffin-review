@@ -10,14 +10,10 @@ class AdminRequestListing
 
 
   def reserves
-    if @filter.new? || @filter.inprocess?
-      in_complete_reserves
-    elsif @filter.complete?
+    if @filter.complete?
       completed_reserves
-    elsif @filter.all?
-      all_reserves
     else
-      raise 'reserve called with out filter'
+      in_complete_reserves
     end
   end
 

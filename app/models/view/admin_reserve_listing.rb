@@ -2,11 +2,16 @@ class AdminReserveListing
 
   attr_accessor :reserve
 
-  delegate :id, :title, :type, :workflow_state, to: :reserve
+  delegate :id, :title, :workflow_state, to: :reserve
 
 
   def initialize(reserve)
     @reserve = reserve
+  end
+
+
+  def request_date
+    @reserve.created_at.to_date.to_s(:short)
   end
 
 
@@ -30,23 +35,45 @@ class AdminReserveListing
   end
 
 
-  def fair_use_display
+  def course_title
+    reserve.course.title
+  end
 
-    if fair_use_policy.requires_fair_use?
-      if fair_use_policy.complete?
-        return "<span class=\"complete_text\">Yes</span>"
-      else
-        return "<span class=\"missing_text\">Not Done</span>"
-      end
-    else
-      return "<span class=\"complete_text\">Not Required</span>"
-    end
+
+  def type
+    reserve.type.gsub('Reserve', '')
+  end
+
+
+  def missing_data
+    ret = [self.workflow_state]
+    ret << 'fair_use' if !fair_use_policy.complete?
+    ret << 'meta_data' if !meta_data_policy.complete?
+    ret << 'resource' if !external_resource_policy.complete?
+    ret << 'on_order' if !awaiting_purchase_policy.complete?
+
+    ret.join(' ')
   end
 
 
   private
 
     def fair_use_policy
-      @fair_use_policy = ReserveFairUsePolicy.new(@reserve)
+      @fair_use_policy ||= ReserveFairUsePolicy.new(@reserve)
+    end
+
+
+    def meta_data_policy
+      @meta_data_policy ||= ReserveMetaDataPolicy.new(@reserve)
+    end
+
+
+    def external_resource_policy
+      @external_resource_policy ||= ReserveResourcePolicy.new(@reserve)
+    end
+
+
+    def awaiting_purchase_policy
+      @external_resource_policy ||= ReserveAwaitingPurchasePolicy.new(@reserve)
     end
 end

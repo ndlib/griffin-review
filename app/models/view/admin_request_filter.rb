@@ -7,17 +7,24 @@ class AdminRequestFilter
     end
 
     @filter = filter
-    validate!
+    validate_filter!(@filter)
   end
 
 
-  def new?
-    @filter == 'new'
+  def set?(filter)
+    validate_filter!(filter)
+    @filter == filter
+  end
+
+
+  def css_class(filter)
+    validate_filter!(filter)
+    set?(filter) ? 'active' : ''
   end
 
 
   def inprocess?
-    @filter == 'inprocess'
+    inprocess_filters.include?(@filter)
   end
 
 
@@ -26,29 +33,10 @@ class AdminRequestFilter
   end
 
 
-  def all?
-    @filter == 'all'
-  end
-
-
-  def new_css_class
-    new? ? 'active' : ''
-  end
-
-
   def inprocess_css_class
     inprocess? ? 'active' : ''
   end
 
-
-  def complete_css_class
-    complete? ? 'active' : ''
-  end
-
-
-  def all_css_class
-    all? ? 'active' : ''
-  end
 
 
   def to_s
@@ -58,8 +46,12 @@ class AdminRequestFilter
 
   private
 
-    def validate!
-      if !['new', 'inprocess', 'available', 'all'].include?(@filter)
+    def inprocess_filters
+      ['inprocess', 'meta_data', 'resource', 'fair_use', 'on_order']
+    end
+
+    def validate_filter!(filter)
+      if !['new', 'inprocess', 'meta_data', 'resource', 'fair_use', 'on_order', 'available'].include?(filter)
         raise "Invalid filter passed to #{self.class}"
       end
     end
