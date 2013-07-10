@@ -54,6 +54,6 @@ class MovFileGenerator
 
 
     def sample_file
-      File.join(Rails.root, 'uploads/movs', 'sample.mov')
+      File.join(Rails.root, 'uploads', 'sample.mov')
     end
 end

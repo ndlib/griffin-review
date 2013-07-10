@@ -25,7 +25,6 @@
           </ul>
         </li>
       <% end %>
-      <li><%= link_to "Library Home", "http://www.library.nd.edu" %></li>
       <% if permission.current_user_is_administrator? %>
         <li><%= link_to "Requests", requests_path() %></li>
         <li><%= link_to "Courses", admin_courses_path() %></li>
