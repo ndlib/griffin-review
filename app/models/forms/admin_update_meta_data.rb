@@ -71,8 +71,6 @@ class AdminUpdateMetaData
       @reserve.attributes = self.attributes
 
       @reserve.save!
-
-      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

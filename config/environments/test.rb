@@ -55,4 +55,6 @@ Griffin::Application.configure do
 
   config.api_url = "https://apipprd.library.nd.edu/"
   config.api_token = "SCSGYmwqLqSyBTmxCQgM"
+
+  config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
 end

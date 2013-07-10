@@ -70,10 +70,7 @@ class AdminUpdateResource
       @reserve.pdf = pdf
       @reserve.url = url
 
-      @reserve.check_set_complete!
       @reserve.save!
-
-      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

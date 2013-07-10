@@ -51,14 +51,6 @@ describe Reserve do
     end
 
 
-    describe :tags do
-
-      it "has tags" do
-        course_listing.respond_to?(:tags).should be_true
-      end
-    end
-
-
     describe :discovery do
 
       describe :title do
@@ -261,6 +253,22 @@ describe Reserve do
         @reserve.save!
       }.should raise_error
     end
+
+
+
+
+    it "checks to seed if the item is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+      FactoryGirl.create(:semester)
+
+      @reserve.course = course_search.get('current_multisection_crosslisted')
+      @reserve.title = "title"
+      @reserve.type = 'BookChapter'
+      @reserve.requestor_netid = "username"
+
+      @reserve.save!
+    end
+
   end
 
 

@@ -97,6 +97,8 @@ class Reserve
       request.semester_id = course.semester.id
 
       request.save!
+
+      ReserveCheckIsComplete.new(self).check!
     end
   end
 
@@ -108,11 +110,6 @@ class Reserve
   end
 
 
-  def check_set_complete!
-
-  end
-
-
   def set_topics!(topics)
     request.topic_list = topics
     save!
@@ -121,11 +118,6 @@ class Reserve
 
   def topics
     request.topics
-  end
-
-
-  def tags
-    ['topic 1']
   end
 
 
