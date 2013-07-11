@@ -10,4 +10,9 @@ class OpenCourse < OpenReserves
   def reserves
     open_items
   end
+
+
+  def instructor_name
+    "#{instructor_firstname} #{instructor_lastname}"
+  end
 end

@@ -47,9 +47,9 @@ class CopyOldReserve
       when 'book'
         copy_book
       when 'video'
-        "VideoReserve"
+        copy_video
       when 'music'
-        "AudioReserve"
+        copy_audio
       else
         raise "type not setup "
       end
@@ -81,8 +81,26 @@ class CopyOldReserve
     end
 
 
+
+    def copy_video
+      @new_request.type = "VideoReserve"
+      @new_request.nd_meta_data_id = @old_reserve.sourceId
+    end
+
+
+    def copy_audio
+      @new_request.type = "AudioReserve"
+      @new_request.nd_meta_data_id = @old_reserve.sourceId
+    end
+
+
     def get_old_file(filename)
-      File.open(File.join(old_file_path, filename))
+      if Rails.env == 'development'
+        File.open(File.join(Rails.root, 'uploads', 'test.pdf'))
+      else
+
+        File.open(File.join(old_file_path, filename))
+      end
     end
 
 

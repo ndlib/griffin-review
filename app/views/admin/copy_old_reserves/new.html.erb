@@ -1,0 +1,46 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Select Old Reserves Course to Copy to <small>to <%= @copy_old_course_reserve.to_course_title %></small></h1></div>
+<% end %>
+
+<%= form_tag(course_copy_old_reserves_path(@copy_old_course_reserve.to_course.id), method: :get, class: 'well') do %>
+
+  Term:
+  <select name="term">
+    <option></option>
+    <%= options_for_select(@copy_old_course_reserve.terms, params['term'], ) %>
+  </select>
+
+  <button class="btn">Go</button>
+<% end %>
+
+<% if @copy_old_course_reserve.has_courses_for_term? %>
+  <table class="table table-striped find-resources copy_old_reserve_datatable datatable">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Instructor</th>
+      <th>Id</th>
+      <th>Sections</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @copy_old_course_reserve.courses.each do | course | %>
+      <tr>
+        <td><%= h course.course_name %></td>
+        <td><%= h course.instructor_name %></td>
+        <td><%= h course.id %></td>
+        <td><%= h course.section_number %></td>
+        <td>
+          <%= form_tag(course_copy_old_reserves_path(@copy_old_course_reserve.to_course.id)) do %>
+            <%= hidden_field_tag :from_course_id, course.id %>
+            <button class="btn">Copy</button>
+          <% end %>
+
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>

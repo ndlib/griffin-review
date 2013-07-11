@@ -25,6 +25,22 @@ jQuery ($) ->
       )
 
 
+  setupCopyOldReserveDatatable = () ->
+    if $(".copy_old_reserve_datatable").size() > 0
+      oTable = $(".copy_old_reserve_datatable").dataTable(
+        sPaginationType: "bootstrap"
+        iDisplayLength: 1000
+        bLengthChange: false
+        aoColumnDefs: [
+          bVisible: true
+          bSortable: false
+          bSearchable: false
+          aTargets: [4]
+        ]
+      )
+
+
+
   setupTableFilters = () ->
     oTable = $(".datatable").dataTable()
     if oTable.size() == 0
@@ -193,5 +209,7 @@ jQuery ($) ->
   setupAdminDatatable()
   setupStudentDatatable()
   setupInstructorDatatable()
+  setupCopyOldReserveDatatable()
+
   setupTableFilters()
 

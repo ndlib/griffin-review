@@ -6,7 +6,8 @@ class CopyOldCourseReservesForm
   def initialize(current_user, params)
     @to_course_id = params[:course_id]
     @from_course_id = params[:from_course_id]
-
+    @term = params[:term]
+    @current_user = current_user
     validate_inputs!
   end
 
@@ -17,22 +18,51 @@ class CopyOldCourseReservesForm
   end
 
 
+  def to_course_title
+    "#{to_course.title} - #{to_course.semester.full_name}"
+  end
+
+
+  def terms
+    @terms ||= OpenCourse.connection.select('SELECT DISTINCT term from course').collect { | t | t['term'] }
+  end
+
+
+  def courses
+    if !@term.nil?
+      OpenCourse.where(term: @term)
+    else
+      []
+    end
+  end
+
+
+  def has_courses_for_term?
+    courses.size > 0
+  end
+
+
   def from_course
-    begin
-      @from_course ||= OpenCourse.find(@from_course_id)
-    rescue ActiveRecord::RecordNotFound
+    if @from_course_id
+      begin
+        @from_course ||= OpenCourse.find(@from_course_id)
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
+    else
       nil
     end
   end
 
 
   def copy!
+    @copied_items = []
 
     from_course.reserves.each do | old_reserve |
-
-
+      @copied_items << CopyOldReserve.new(@current_user, to_course, old_reserve).copy
     end
 
+    @copied_items
   end
 
 
@@ -61,10 +91,6 @@ class CopyOldCourseReservesForm
 
     def validate_inputs!
       if to_course.nil? || !to_course_can_have_new_reserves?
-        render_404
-      end
-
-      if from_course.nil?
         render_404
       end
     end

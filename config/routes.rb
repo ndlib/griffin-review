@@ -101,6 +101,10 @@ Griffin::Application.routes.draw do
     match 'copy/:from_course_id' => 'copy_reserves#copy_step2', as: :copy_step2
     match 'copy/:from_course_id/copy' => 'copy_reserves#copy', :via => :post, as: :copy
 
+
+    get 'copy_old_reserves', to: 'admin/copy_old_reserves#new'
+    post 'copy_old_reserves', to: 'admin/copy_old_reserves#create'
+
     resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
   end
 
@@ -115,6 +119,7 @@ Griffin::Application.routes.draw do
     resources :resources, controller: 'admin/requests_resources'
     resources :admin_courses, controller: 'admin/courses'
     resources :semesters, controller: 'admin/semesters'
+
   end
 
 

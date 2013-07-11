@@ -9,7 +9,6 @@ describe CopyReserve do
   describe :generic_copy do
     before(:each) do
       old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "journal" )
-
       @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
     end
 
@@ -116,11 +115,41 @@ describe CopyReserve do
   end
 
 
+
   describe :copy_video do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'video', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "" )
+      old_reserve = mock_model(OpenItem, item_type: 'video', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid' )
 
       @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+    end
+
+    it "sets the type correctly" do
+      @new_reserve.type.should == "VideoReserve"
+    end
+
+
+    it "sets the metadata id " do
+      @new_reserve.nd_meta_data_id.should == "sid"
+    end
+  end
+
+
+
+
+  describe :copy_music do
+    before(:each) do
+      old_reserve = mock_model(OpenItem, item_type: 'music', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid' )
+
+      @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+    end
+
+    it "sets the type correctly" do
+      @new_reserve.type.should == "AudioReserve"
+    end
+
+
+    it "sets the metadata id " do
+      @new_reserve.nd_meta_data_id.should == "sid"
     end
   end
 
