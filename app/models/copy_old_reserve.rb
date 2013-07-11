@@ -10,11 +10,8 @@ class CopyOldReserve
 
 
   def copy
-    # set data from one file to the other
+    copy_shared_fields!
     copy_item_by_type!
-
-    @new_request.workflow_state = 'new'
-    @new_request.requestor_netid = @user.username
 
     @new_request.save!
 
@@ -24,16 +21,31 @@ class CopyOldReserve
 
   private
 
+    def copy_shared_fields!
+      # shared data
+      @new_request.title = @old_reserve.title
+      @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
+      @new_request.journal_title = @old_reserve.journal_name
+      @new_request.length = @old_reserve.pages
+      @new_request.details = @old_reserve.display_note
+
+
+      @new_request.overwrite_nd_meta_data = true
+      @new_request.workflow_state = 'new'
+      @new_request.requestor_netid = @user.username
+    end
+
+
     def copy_item_by_type!
       case @old_reserve.item_type
       when 'chapter'
         copy_bookchapter
       when 'article'
-        "JournalReserve"
+        copy_journal
       when 'journal'
-        "JournalReserve"
+        copy_journal
       when 'book'
-        "BookReserve"
+        copy_book
       when 'video'
         "VideoReserve"
       when 'music'
@@ -45,15 +57,32 @@ class CopyOldReserve
     end
 
 
+    def copy_book
+      @new_request.type = "BookReserve"
+      @new_request.nd_meta_data_id = @old_reserve.sourceId
+    end
+
 
     def copy_bookchapter
-      @new_request.title = @old_reserve.title
-      @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
-      @new_request.details = @old_reserve.display_note
       @new_request.type = "BookChapterReserve"
-      @new_request.overwrite_nd_meta_data = true
 
-      @new_request.pdf = File.open(File.join(old_file_path, @old_reserve.location))
+      @new_request.pdf = get_old_file(@old_reserve.location)
+    end
+
+
+    def copy_journal
+      @new_request.type = "JournalReserve"
+
+      if @old_reserve.location.present?
+        @new_request.pdf = get_old_file(@old_reserve.location)
+      else
+        @new_request.url = @old_reserve.url
+      end
+    end
+
+
+    def get_old_file(filename)
+      File.open(File.join(old_file_path, filename))
     end
 
 
