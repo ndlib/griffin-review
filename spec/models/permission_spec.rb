@@ -59,8 +59,27 @@ describe Permission do
 
 
     it "returns false if the is no an admin" do
-       Permission.new(student_user, controller).current_user_is_administrator?.should be_false
+      Permission.new(student_user, controller).current_user_is_administrator?.should be_false
     end
+  end
+
+
+  describe :current_user_is_admin_in_masquerade? do
+
+    it "returns true if the masqing users is an admin " do
+      Masquerade.any_instance.stub(:masquerading?).and_return(true)
+      Masquerade.any_instance.stub(:original_user).and_return(admin_user)
+
+      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_true
+    end
+
+    it "returns false if the masqing users is not an admin" do
+      Masquerade.any_instance.stub(:masquerading?).and_return(true)
+      Masquerade.any_instance.stub(:original_user).and_return(instructor_user)
+
+      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_false
+    end
+
   end
 
 end
