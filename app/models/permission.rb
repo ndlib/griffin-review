@@ -1,12 +1,19 @@
 class Permission
 
-  def initialize(current_user)
+  def initialize(current_user, controller)
     @current_user = current_user
+    @controller = controller
   end
 
 
   def current_user_is_administrator?
-    ['rfox2', 'jhartzle', 'fboze'].include?(@current_user.username)
+    ['rfox2', 'jhartzle', 'fboze'].include?(@current_user.username) || @current_user.admin?
+  end
+
+
+  def current_user_is_admin_in_masquerade?
+    m = Masquerade.new(@controller)
+    m.masqurading? && m.original_user.admin?
   end
 
 

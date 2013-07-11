@@ -26,7 +26,11 @@ class AdminReserveListing
 
 
   def needed_by
-    @reserve.needed_by.to_date.to_s(:short)
+    if !@reserve.needed_by.nil?
+      @reserve.needed_by.to_date.to_s(:short)
+    else
+      "Not Entered"
+    end
   end
 
 

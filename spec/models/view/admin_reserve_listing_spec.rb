@@ -16,6 +16,11 @@ describe AdminReserveListing do
   end
 
 
+  it "catches if the needed_by date is nil" do |variable|
+    AdminReserveListing.new(Reserve.new).needed_by.should == "Not Entered"
+  end
+
+
   it "has a request date " do
     AdminReserveListing.new(Reserve.new).respond_to?(:request_date)
   end

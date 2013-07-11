@@ -18,7 +18,7 @@ module ApplicationHelper
 
 
   def permission
-    @permission ||= Permission.new(current_user)
+    @permission ||= Permission.new(current_user, self)
   end
 
 

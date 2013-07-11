@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
 
     def permission
-      @permission ||= Permission.new(current_user)
+      @permission ||= Permission.new(current_user, self)
     end
 
 

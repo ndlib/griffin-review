@@ -52,6 +52,12 @@ describe CopyCourseReservesForm do
   end
 
 
+  describe :term do
+
+
+  end
+
+
 
   describe :copy! do
 
