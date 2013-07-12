@@ -12,7 +12,7 @@
 
   <% @user_archive_course_listing.archived_semesters.each do | semester | %>
     <% if @user_archive_course_listing.semester_has_courses?(semester) %>
-      <%= render :partial => '/user_course_listings/instructed_course_list',
+      <%= render :partial => '/courses/instructed_course_list',
             locals: {
               instructed_courses: @user_archive_course_listing.semester_instructed_courses_with_reserves(semester),
               title: semester.full_name }

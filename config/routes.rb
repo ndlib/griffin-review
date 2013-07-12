@@ -85,7 +85,7 @@ Griffin::Application.routes.draw do
   end
 
 
-  root :to => 'user_course_listings#index'
+  root :to => 'courses#index'
 
   resource :masquerades, :only => [:new, :create] do
     get :cancel
@@ -93,11 +93,12 @@ Griffin::Application.routes.draw do
 
   match "login", :controller => 'development_login', :action => 'login'
 
-  resources :courses, controller: 'user_course_listings', only: [ 'index', 'show', 'create' ] do
-    resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
-    resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
+  resources :courses, only: [ 'index', 'create' ] do
+    # resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
+    #resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
     # resources :copy_reserves, :path => 'copy', only: [ 'create' ]
-    resources :reserves, controller: 'course_reserves'
+    resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
+
     match 'copy' => 'copy_reserves#copy_step1', as: :copy_step1
     match 'copy/:from_course_id' => 'copy_reserves#copy_step2', as: :copy_step2
     match 'copy/:from_course_id/copy' => 'copy_reserves#copy', :via => :post, as: :copy

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserCourseListingsController do
+describe CoursesController do
   let(:semester) { FactoryGirl.create(:semester) }
 
   before(:each) do

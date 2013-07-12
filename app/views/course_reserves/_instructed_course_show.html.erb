@@ -1,7 +1,7 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
     <br><br><br>
-    <%= render partial: "/user_course_listings/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
+    <%= render partial: "/courses/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
   <% end %>
 <% end %>
 
@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <% user_course_show.reserves.each do | reserve | %>
-        <%= render :partial => '/external/request/lists/instructor_list_row', :locals => { object: reserve } %>
+        <%= render :partial => 'instructor_list_row', :locals => { object: reserve } %>
       <% end %>
     </tbody>
   </table>

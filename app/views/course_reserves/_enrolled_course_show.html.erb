@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <% user_course_show.reserves.each do | reserve | %>
-      <%= render :partial => '/external/request/lists/student_list_row', :locals => { object: reserve } %>
+      <%= render :partial => 'student_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>
 </table>

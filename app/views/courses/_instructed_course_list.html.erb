@@ -26,7 +26,7 @@
       <td><%= h course.section_numbers.join(", ") %></td>
       <td>
         <% if CreateNewReservesPolicy.new(course).can_create_new_reserves? %>
-          <%= render partial: "/user_course_listings/instructor_new_reserve_menu", locals: { course: course, highlight: false } %>
+          <%= render partial: "/courses/instructor_new_reserve_menu", locals: { course: course, highlight: false } %>
         <% end %>
       </td>
     </tr>

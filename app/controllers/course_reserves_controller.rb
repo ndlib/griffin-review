@@ -10,7 +10,13 @@ class CourseReservesController < ApplicationController
 
 
   def show
+    @get_reserve = GetReserve.new(current_user, params)
+    check_view_permissions!(@get_reserve.course)
 
+    check_reserve_is_in_current_semester!(@get_reserve)
+    check_and_process_term_of_service_approval!(@get_reserve)
+
+    send_or_redirect_if_approved!(@get_reserve)
   end
 
 
@@ -50,9 +56,44 @@ class CourseReservesController < ApplicationController
   protected
 
 
-  def check_if_course_can_have_new_reserves!(course)
-    if !CreateNewReservesPolicy.new(course).can_create_new_reserves?
-      render_404
+    def check_if_course_can_have_new_reserves!(course)
+      if !CreateNewReservesPolicy.new(course).can_create_new_reserves?
+        render_404
+      end
     end
-  end
+
+
+    def check_and_process_term_of_service_approval!(get_reserve)
+      if params['accept_terms_of_service']
+        get_reserve.approve_terms_of_service!
+      end
+    end
+
+
+    def check_reserve_is_in_current_semester!(get_reserve)
+      if !get_reserve.reserve_in_current_semester?
+        render_404
+      end
+    end
+
+
+    def send_or_redirect_if_approved!(get_reserve)
+
+      if !get_reserve.approval_required?
+        if get_reserve.download_listing?
+          send_file(get_reserve.download_file_path)
+
+        elsif get_reserve.redirect_to_listing?
+
+          if get_reserve.streaming_server_file?
+            send_file(get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
+          else
+            redirect_to get_reserve.redirect_uri
+          end
+        else
+          raise "Attempt to get the resource of a listing that cannot be downloaded or redirected to. "
+        end
+      end
+
+    end
 end

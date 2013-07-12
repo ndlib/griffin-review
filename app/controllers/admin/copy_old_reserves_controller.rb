@@ -13,7 +13,7 @@ class Admin::CopyOldReservesController  < ApplicationController
 
     if @copy_old_course_reserve.copy!
       flash[:success] = "Successfully copied reserves from old reserves "
-      redirect_to course_path(@copy_old_course_reserve.to_course.id)
+      redirect_to course_reserves_path(@copy_old_course_reserve.to_course.id)
       return
     end
   end
