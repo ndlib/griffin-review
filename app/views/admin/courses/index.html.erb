@@ -50,14 +50,14 @@
         <% @admin_course_listing.search.each do | course | %>
           <tr>
             <td>
-              <%= link_to h(course.title), course_path(course.id) %>
+              <%= link_to h(course.title), course_reserves_path(course.id) %>
             </td>
             <td>
             </td>
             <td><%= h course.instructor_name %></td>
             <td>
               <%= link_to 'New Request', '#', class: "btn" %>
-              <%= link_to 'Copy From Course', admin_course_path(course.id), class: "btn" %>
+              <%= link_to 'Copy From Course', admin_course_reserves_path(course.id), class: "btn" %>
               <%= link_to 'Add Missing Student', '#add_user', class:'btn', "data-toggle"=>"modal" %>
             </td>
           </tr>

@@ -1,7 +1,7 @@
 
 <h3>Article Details </h3>
 
-<%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(f.object.course.id) do |f| %>
+<%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(object.course.id) do |f| %>
 
   <%= f.input :journal_title, :required => true %>
   <%= f.input :title %>
@@ -28,6 +28,6 @@
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
-    <%= link_to 'Cancel', course_path(object.course.id) %>
+    <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
   </div>
 <% end %>

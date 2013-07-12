@@ -1,7 +1,7 @@
 require 'spec_helper'
 Reserve
 
-describe GetReservesController do
+describe CourseReservesController do
   let(:semester) { FactoryGirl.create(:semester) }
 
   before(:each) do

@@ -13,11 +13,11 @@
           <% end %>
         </ul>
       </dd>
-      <dt>From:</dt><dd> <%= link_to h(@copy_course_listing.from_course_title), course_path(@copy_course_listing.to_course.id)  %></dd>
-      <dt>To:</dt><dd><%= link_to h(@copy_course_listing.to_course_title), course_path(@copy_course_listing.from_course.id) %></dd>
+      <dt>From:</dt><dd> <%= link_to h(@copy_course_listing.from_course_title), course_reserves_path(@copy_course_listing.to_course.id)  %></dd>
+      <dt>To:</dt><dd><%= link_to h(@copy_course_listing.to_course_title), course_reserves_path(@copy_course_listing.from_course.id) %></dd>
     </dl>
   </p>
   <p>
-    <%= link_to "Continue to #{@copy_course_listing.to_course_title}", course_path(@copy_course_listing.to_course.id), class: 'btn btn-large' %>
+    <%= link_to "Continue to #{@copy_course_listing.to_course_title}", course_reserves_path(@copy_course_listing.to_course.id), class: 'btn btn-large' %>
   </p>
 </div>
