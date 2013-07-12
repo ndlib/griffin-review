@@ -1,4 +1,4 @@
-class UserCourseShow
+  class UserCourseShow
   include ModelErrorTrapping
   include GetCourse
 
@@ -8,7 +8,7 @@ class UserCourseShow
 
   def initialize(current_user, params)
     @current_user = current_user
-    @course = get_course(params[:id])
+    @course = get_course(params[:course_id])
 
     validate_inputs!
   end

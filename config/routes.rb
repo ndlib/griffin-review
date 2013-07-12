@@ -97,6 +97,7 @@ Griffin::Application.routes.draw do
     resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
     resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
     # resources :copy_reserves, :path => 'copy', only: [ 'create' ]
+    resources :reserves, controller: 'course_reserves'
     match 'copy' => 'copy_reserves#copy_step1', as: :copy_step1
     match 'copy/:from_course_id' => 'copy_reserves#copy_step2', as: :copy_step2
     match 'copy/:from_course_id/copy' => 'copy_reserves#copy', :via => :post, as: :copy

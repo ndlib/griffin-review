@@ -10,7 +10,7 @@
     <% enrolled_courses.each do | course | %>
     <tr>
       <td>
-        <a href="<%= course_path(course.id) %>"><%= h course.title %></a>
+        <a href="<%= course_reserves_path(course.id) %>"><%= h course.title %></a>
       </td>
       <td><%= h course.instructor_name %></td>
     </tr>

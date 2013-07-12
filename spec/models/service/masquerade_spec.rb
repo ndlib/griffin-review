@@ -36,7 +36,7 @@ describe Masquerade do
   describe :stop! do
     before(:each) do
       @user = mock(User, :name => 'Original User')
-      Masquerade.any_instance.stub(:main_user).and_return(@user)
+      Masquerade.any_instance.stub(:original_user).and_return(@user)
       Masquerade.any_instance.stub(:masquerading?).and_return(true)
     end
 

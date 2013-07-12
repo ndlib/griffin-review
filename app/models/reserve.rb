@@ -110,6 +110,13 @@ class Reserve
   end
 
 
+  def destroy!
+    if self.remove
+      self.save!
+    end
+  end
+
+
   def set_topics!(topics)
     request.topic_list = topics
     save!

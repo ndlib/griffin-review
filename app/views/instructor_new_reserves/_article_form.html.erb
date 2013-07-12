@@ -1,7 +1,7 @@
 
 <h3>Article Details </h3>
 
-<%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path() do |f| %>
+<%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(f.object.course.id) do |f| %>
 
   <%= f.input :journal_title, :required => true %>
   <%= f.input :title %>

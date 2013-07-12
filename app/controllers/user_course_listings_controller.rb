@@ -21,4 +21,8 @@ class UserCourseListingsController < ApplicationController
     redirect_to course_path(course.id)
   end
 
+
+  def destroy
+
+  end
 end

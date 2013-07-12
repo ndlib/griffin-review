@@ -210,6 +210,20 @@ describe Reserve do
       @reserve.remove!
       @reserve.workflow_state.should == "removed"
     end
+
+
+    it "destroy the reserve by changing the state" do
+      @reserve.title = 'ttile '
+      @reserve.type="BookChapter"
+      @reserve.requestor_netid = "nid"
+      FactoryGirl.create(:semester)
+      @reserve.course = course_search.get( 'current_multisection_crosslisted')
+
+      @reserve.save!
+
+      @reserve.destroy!
+      @reserve.workflow_state.should == "removed"
+    end
   end
 
 
