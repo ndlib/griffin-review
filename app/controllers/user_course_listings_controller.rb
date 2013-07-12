@@ -7,12 +7,6 @@ class UserCourseListingsController < ApplicationController
   end
 
 
-  def show
-    @user_course_show = UserCourseShow.new(current_user, params)
-    check_view_permissions!(@user_course_show.course)
-  end
-
-
   def create
     course = CourseSearch.new.get(params[:course_id])
 

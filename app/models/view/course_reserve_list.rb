@@ -1,4 +1,5 @@
-  class UserCourseShow
+class CourseReserveList
+
   include ModelErrorTrapping
   include GetCourse
 

@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe UserCourseShow do
+describe CourseReserveList do
   let(:user) { mock(User, :username => 'student') }
 
   before(:each) do
     @course = mock(Course, :id => 1, :title => 'title', :instructor_name => 'name')
-    UserCourseShow.any_instance.stub(:get_course).with("course_id").and_return(@course)
+    CourseReserveList.any_instance.stub(:get_course).with("course_id").and_return(@course)
 
-    @user_course_show = UserCourseShow.new(user, {:course_id => "course_id"})
+    @user_course_show = CourseReserveList.new(user, {:course_id => "course_id"})
   end
 
 
   it "raises an error if the course is not found" do
-    UserCourseShow.any_instance.stub(:get_course).with("not_a_course_id").and_return(nil)
+    CourseReserveList.any_instance.stub(:get_course).with("not_a_course_id").and_return(nil)
 
     lambda {
-      @user_course_show = UserCourseShow.new(user, {:course_id => "not_a_course_id"})
+      @user_course_show = CourseReserveList.new(user, {:course_id => "not_a_course_id"})
     }.should raise_error ActionController::RoutingError
   end
 

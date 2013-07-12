@@ -4,7 +4,7 @@ class CourseReservesController < ApplicationController
 
 
   def index
-    @user_course_show = UserCourseShow.new(current_user, params)
+    @user_course_show = CourseReserveList.new(current_user, params)
     check_view_permissions!(@user_course_show.course)
   end
 

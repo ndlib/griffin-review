@@ -21,7 +21,7 @@ describe "Student Frontend Access" do
       @test_course = CourseSearch.new.get('current_multisection_crosslisted')
 
       UserCourseListing.any_instance.stub(:enrolled_courses).and_return([@test_course])
-      UserCourseShow.any_instance.stub(:get_course).and_return(@test_course)
+      CourseReserveList.any_instance.stub(:get_course).and_return(@test_course)
     end
 
 
@@ -38,7 +38,7 @@ describe "Student Frontend Access" do
       @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @test_course
       Course.any_instance.stub(:published_reserves).and_return([@file_reserve])
 
-      visit course_path(@test_course.id)
+      visit course_reserves_path(@test_course.id)
       click_link(@file_reserve.title)
     end
 
@@ -46,7 +46,7 @@ describe "Student Frontend Access" do
     it "allows the student to retreive a link resource" do
       @url_reserve  = mock_reserve FactoryGirl.create(:request, :available, :video), @test_course
 
-      visit course_path(@test_course.id)
+      visit course_reserves_path(@test_course.id)
 
       click_link(@url_reserve.title)
     end
