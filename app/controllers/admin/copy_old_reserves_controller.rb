@@ -12,6 +12,7 @@ class Admin::CopyOldReservesController  < ApplicationController
     @copy_old_course_reserve = CopyOldCourseReservesForm.new(current_user, params)
 
     if @copy_old_course_reserve.copy!
+      flash[:success] = "Successfully copied reserves from old reserves "
       redirect_to course_path(@copy_old_course_reserve.to_course.id)
       return
     end
