@@ -36,6 +36,19 @@ describe Admin::RequestsResourcesController do
         get :edit, { id: reserve.id }
       }.should raise_error ActionController::RoutingError
     end
+
+
+    it "does not allow non admins in" do
+      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+
+      u = FactoryGirl.create(:admin_user)
+      u.revoke_admin!
+      sign_in u
+
+      lambda {
+        get :edit, id: reserve.id
+      }.should raise_error(ActionController::RoutingError)
+    end
   end
 
 
@@ -58,6 +71,20 @@ describe Admin::RequestsResourcesController do
       put :update, { id: reserve.id, :admin_update_resource => { :url => "URL" } }
       response.should be_redirect
     end
+
+
+    it "does not allow non admins in" do
+      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+
+      u = FactoryGirl.create(:admin_user)
+      u.revoke_admin!
+      sign_in u
+
+      lambda {
+        get :update, id: reserve.id
+      }.should raise_error(ActionController::RoutingError)
+    end
+
   end
 
 

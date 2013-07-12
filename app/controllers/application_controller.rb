@@ -59,6 +59,13 @@ class ApplicationController < ActionController::Base
     end
 
 
+    def check_admin_or_admin_masquerading_permission!
+      if !(permission.current_user_is_admin_in_masquerade? || permission.current_user_is_administrator?)
+        render_404
+      end
+    end
+
+
     def render_404
       raise ActionController::RoutingError.new('Not Found')
     end

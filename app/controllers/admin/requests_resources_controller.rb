@@ -2,11 +2,13 @@ class Admin::RequestsResourcesController  < ApplicationController
 
 
   def edit
+    check_admin_permission!
     @request = AdminUpdateResource.new(current_user, params)
   end
 
 
   def update
+    check_admin_permission!
     @request = AdminUpdateResource.new(current_user, params)
 
     if @request.save_resource
@@ -15,11 +17,5 @@ class Admin::RequestsResourcesController  < ApplicationController
       render 'edit'
     end
   end
-
-  protected
-
-    def reserves
-      @reserves ||= ::ReservesAdminApp.new(params[:semester], "current_user")
-    end
 
 end

@@ -1,16 +1,19 @@
 class Admin::SemestersController < ApplicationController
 
   def index
+    check_admin_permission!
     @semesters = Semester.cronologial
   end
 
 
   def new
+    check_admin_permission!
     @semester = Semester.new
   end
 
 
   def create
+    check_admin_permission!
     @semester = Semester.new(params[:semester])
 
     if @semester.save
@@ -25,11 +28,13 @@ class Admin::SemestersController < ApplicationController
 
 
   def edit
+    check_admin_permission!
     @semester = Semester.find(params[:id])
   end
 
 
   def update
+    check_admin_permission!
     @semester = Semester.find(params[:id])
 
     if @semester.update_attributes(params[:semester])
