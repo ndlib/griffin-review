@@ -1,16 +1,7 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
     <br><br><br>
-    <div class="btn-group">
-        <a class="btn dropdown-toggle btn-large btn-primary" data-toggle="dropdown" href="#">
-          Add Reserve
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%= link_to raw("<i class=\"icon-plus\"></i>  New Material"), new_course_reserve_path(user_course_show.course_id) %></li>
-          <li><%= link_to raw("<i class=\"icon-share\"></i>  Copy Material"), course_copy_step1_path(user_course_show.course_id) %></li>
-        </ul>
-      </div>
+    <%= render partial: "/user_course_listings/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
   <% end %>
 <% end %>
 

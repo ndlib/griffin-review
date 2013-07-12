@@ -32,7 +32,7 @@ class MasqueradesController < ApplicationController
       m.cancel!
     end
 
-    flash[:notice] = "Stopped Masquerading and returned to #{m.main_user.name}"
+    flash[:notice] = "Stopped Masquerading and returned to #{m.original_user.name}"
     redirect_to '/'
   end
 

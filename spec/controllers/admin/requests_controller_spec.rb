@@ -8,11 +8,26 @@ describe Admin::RequestsController do
   end
 
 
-  it "displays the index page" do
-    FactoryGirl.create(:semester)
+  describe :index do
 
-    get :index
-    response.should be_success
+    it "displays the index page" do
+      FactoryGirl.create(:semester)
+
+      get :index
+      response.should be_success
+    end
+
+
+    it "does not allow non admins in" do
+      u = FactoryGirl.create(:admin_user)
+      u.revoke_admin!
+      sign_in u
+
+      lambda {
+        get :index
+        }.should raise_error(ActionController::RoutingError)
+    end
 
   end
+
 end

@@ -30,6 +30,7 @@
     <div class="tab-pane active" id="instructed">
       <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
       <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
+      <br><br><br><br><br><br>
     </div>
   <% end %>
 </div>
@@ -39,4 +40,5 @@
     You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
   </p>
 <% end %>
+
 

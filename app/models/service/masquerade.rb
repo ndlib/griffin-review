@@ -24,7 +24,7 @@ class Masquerade
 
   def cancel!
     if masquerading?
-      @controller.sign_in(main_user)
+      @controller.sign_in(original_user)
       @controller.session[:masquerading] = false
     end
   end
@@ -44,7 +44,7 @@ class Masquerade
   end
 
 
-  def main_user
+  def original_user
     if masquerading?
       @original_user ||= User.find(@controller.session[:masquerading])
     else

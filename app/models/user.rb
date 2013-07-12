@@ -35,6 +35,23 @@ class User < ActiveRecord::Base
     "#{self.display_name} (#{self.username})"
   end
 
+
+  def admin?
+    self.admin || ['rfox2', 'jhartzle', 'fboze'].include?(self.username)
+  end
+
+  def set_admin!
+    self.admin = true
+    self.save!
+  end
+
+
+  def revoke_admin!
+    self.admin = false
+    self.save!
+  end
+
+
   def self.get_affiliation(ldap_result)
     # This is engineered to get the most important affiliation in
     # LDAP for authorization purposes. The order of preference, if someone

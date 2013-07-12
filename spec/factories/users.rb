@@ -45,5 +45,6 @@ FactoryGirl.define do
     u.display_name { Faker::Name.name }
     u.email { Faker::Internet.safe_email }
     u.username { Faker::Internet.user_name }
+    u.admin true
   end
 end

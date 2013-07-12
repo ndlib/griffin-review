@@ -26,16 +26,7 @@
       <td><%= h course.section_numbers.join(", ") %></td>
       <td>
         <% if CreateNewReservesPolicy.new(course).can_create_new_reserves? %>
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Add Reserve
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to raw("<i class=\"icon-plus\"></i>  New Material"), new_course_reserve_path(course.id) %></li>
-              <li><%= link_to raw("<i class=\"icon-share\"></i>  Copy Material"), course_copy_step1_path(course.id) %></li>
-            </ul>
-          </div>
+          <%= render partial: "/user_course_listings/instructor_new_reserve_menu", locals: { course: course, highlight: false } %>
         <% end %>
       </td>
     </tr>
