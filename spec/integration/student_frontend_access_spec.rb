@@ -50,8 +50,36 @@ describe "Student Frontend Access" do
 
       click_link(@url_reserve.title)
     end
-
   end
+
+
+  describe :access_to_courses_in_the_past do
+
+    before(:each) do
+      previous_semester = FactoryGirl.create(:previous_semester)
+      @enrolled_course = mock(Course, id: 'id', crosslist_id: 'crosslist_id', title: 'enrolled title', full_title: "full_title", instructor_name: 'name', crosslisted_course_ids: [], section_numbers: ['2'], semester: previous_semester, semester_name: 'semester_name', instructor_netids: {})
+
+      CourseSearch.any_instance.stub(:get).and_return(@enrolled_course)
+    end
+
+
+    it "does not allow a student to view a reserves from a previous semester course" do
+      lambda {
+        visit course_reserves_path(@enrolled_course.id)
+      }.should raise_error(ActionController::RoutingError)
+    end
+
+
+    it "does not allow a student to get a reserves from a previous semester course" do
+      @file_reserve = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @enrolled_course
+      @enrolled_course.stub(:reserve).and_return(@file_reserve)
+
+      lambda {
+        visit course_reserve_path(@enrolled_course.id, @file_reserve.id)
+      }.should raise_error(ActionController::RoutingError)
+    end
+  end
+
 
   describe :student_does_not_have_reserves do
 
