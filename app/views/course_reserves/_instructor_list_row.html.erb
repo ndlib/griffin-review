@@ -1,10 +1,12 @@
-<tr>
+<% row = InstructorCourseRow.new(object, self) %>
+<tr class="reserve_<%= object.id %>">
   <td>
-    <%= render :partial => 'list_record', :locals => { object: object} %>
+    <%= render :partial => 'list_record', :locals => { object: row.reserve} %>
   </td>
   <!-- td class="topic_cell">
-    <%= render partial: '/topics/topic_edit_link', locals: { object: object } %>
-    <%= render partial: '/topics/add_topics_form', locals: { reserve: object } %>
+    <% # render partial: '/topics/topic_edit_link', locals: { object: object } %>
+    <% # render partial: '/topics/add_topics_form', locals: { reserve: object } %>
   </td -->
-  <td><%= object.workflow_state.titleize %></td>
+  <td><%= row.workflow_state %></td>
+  <td><%= row.delete_link %></td>
 </tr>

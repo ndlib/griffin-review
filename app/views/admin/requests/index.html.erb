@@ -28,7 +28,7 @@ breadcrumb(['Requests'])
   </thead>
   <tbody>
     <% @admin_request_listing.reserves.each do | reserve | %>
-      <%= render :partial => '/external/request/lists/admin_list_row', :locals => { object: reserve } %>
+      <%= render :partial => 'admin_list_row', :locals => { object: reserve } %>
     <% end %>
   </tbody>
 </table>

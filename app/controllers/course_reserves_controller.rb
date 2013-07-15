@@ -49,7 +49,11 @@ class CourseReservesController < ApplicationController
 
 
   def destroy
+    @destroy = InstructorReserveRemoveForm.new(current_user, params)
 
+    @destroy.remove!
+
+    redirect_to :index
   end
 
 
