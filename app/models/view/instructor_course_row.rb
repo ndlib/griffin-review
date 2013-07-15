@@ -1,5 +1,5 @@
 
-class InstructorReserveRow
+class InstructorCourseRow
   attr_accessor :reserve
 
   delegate :id, to: :reserve

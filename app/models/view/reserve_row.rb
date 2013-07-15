@@ -1,4 +1,4 @@
-class ReserveListing
+class ReserveRow
 
   delegate :id, :file, :url, :title, :course, :creator_contributor, :details, :publisher_provider, to: :reserve
 

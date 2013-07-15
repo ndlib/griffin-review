@@ -20,21 +20,21 @@ describe GetReserve do
   describe :approval_required? do
 
     it "returns true if there is no approval for the current listing and it needs one" do
-      @reserve.stub!(:approval_required?).and_return(true)
+      GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.approval_required?.should be_true
     end
 
     it "returns false if the item needs not approval" do
-      @reserve.stub!(:approval_required?).and_return(false)
+      GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(false)
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.approval_required?.should be_false
     end
 
     it "returns false if the item terms needs approval and it has been approved" do
-      @reserve.stub!(:approval_required?).and_return(true)
+      GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
       @reserve.stub!(:term_of_service_approved?).and_return(true)
 
       gcl = GetReserve.new(@user, @valid_params)

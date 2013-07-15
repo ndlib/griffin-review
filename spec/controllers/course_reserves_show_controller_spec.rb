@@ -60,7 +60,7 @@ describe CourseReservesController do
 
     context ' it does not requre copyright acceptance' do
       before(:each) do
-        Reserve.any_instance.stub(:approval_required?).and_return(false)
+        GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(false)
       end
 
       it "downloads the file if it is a downloaded item " do

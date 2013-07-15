@@ -52,6 +52,16 @@ class ReserveSearch
   end
 
 
+  def removed_reserves_for_semester(semester)
+    @relation.
+        includes(:item).
+        where('requests.semester_id  = ?', semester.id).
+        where('requests.workflow_state = ? ', 'removed').
+        order('needed_by').
+        collect { | r | load_in_reserve(r, false) }
+  end
+
+
   def all_reserves_for_semester(semester)
     @relation.
         includes(:item).

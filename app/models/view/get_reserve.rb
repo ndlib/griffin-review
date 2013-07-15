@@ -20,7 +20,7 @@ class GetReserve
 
 
   def approval_required?
-    @reserve.approval_required? && !term_of_service_approved?
+    reserve_requires_approval? && !term_of_service_approved?
   end
 
 
@@ -74,7 +74,6 @@ class GetReserve
   end
 
 
-
   private
 
     def validate_input!
@@ -83,4 +82,9 @@ class GetReserve
       end
     end
 
+
+    def reserve_requires_approval?
+      ReserveRequiresTermsOfServiceAgreement.new(reserve).requires_agreement?
+    end
 end
+
