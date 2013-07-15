@@ -5,12 +5,13 @@ class InstructorReserveRemoveForm
 
 
   attribute :reserve, Reserve
+  attribute :course, Course
 
 
   def initialize(current_user, params)
     @current_user = current_user
-    @course = get_course(params[:course_id])
 
+    self.course  = get_course(params[:course_id])
     self.reserve = load_reserve(params[:id], @course)
   end
 

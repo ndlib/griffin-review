@@ -1,3 +1,4 @@
+<% if !button.removed? %>
 <div class="btn-group">
   <button class="btn btn-mini <%= !button.complete? ? 'btn-warning' : 'btn-success' %>">Edit</button>
   <button class="btn btn-mini dropdown-toggle <%= !button.complete? ? 'btn-warning' : 'btn-success' %>" data-toggle="dropdown">
@@ -14,3 +15,4 @@
     <% end %>
   </ul>
 </div>
+<% end %>

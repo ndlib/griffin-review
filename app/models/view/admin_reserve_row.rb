@@ -51,10 +51,13 @@ class AdminReserveRow
 
   def missing_data
     ret = [self.workflow_state]
-    ret << 'fair_use' if !fair_use_policy.complete?
-    ret << 'meta_data' if !meta_data_policy.complete?
-    ret << 'resource' if !external_resource_policy.complete?
-    ret << 'on_order' if !awaiting_purchase_policy.complete?
+
+    if self.workflow_state != 'new'
+      ret << 'fair_use' if !fair_use_policy.complete?
+      ret << 'meta_data' if !meta_data_policy.complete?
+      ret << 'resource' if !external_resource_policy.complete?
+      ret << 'on_order' if !awaiting_purchase_policy.complete?
+    end
 
     ret.join(' ')
   end

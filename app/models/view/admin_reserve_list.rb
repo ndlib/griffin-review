@@ -12,6 +12,8 @@ class AdminReserveList
   def reserves
     if @filter.complete?
       completed_reserves
+    elsif @filter.removed?
+      removed_reserves
     else
       in_complete_reserves
     end
@@ -36,6 +38,11 @@ class AdminReserveList
 
     def completed_reserves
       reserve_search.available_reserves_for_semester(@semester)
+    end
+
+
+    def removed_reserves
+      reserve_search.removed_reserves_for_semester(@semester)
     end
 
 

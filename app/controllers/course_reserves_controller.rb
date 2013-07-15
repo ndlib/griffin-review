@@ -53,7 +53,7 @@ class CourseReservesController < ApplicationController
 
     @destroy.remove!
 
-    redirect_to :index
+    redirect_to course_reserves_path(@destroy.course.id)
   end
 
 

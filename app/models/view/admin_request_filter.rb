@@ -33,6 +33,11 @@ class AdminRequestFilter
   end
 
 
+  def removed?
+    @filter == 'removed'
+  end
+
+
   def inprocess_css_class
     inprocess? ? 'active' : ''
   end
@@ -51,7 +56,7 @@ class AdminRequestFilter
     end
 
     def validate_filter!(filter)
-      if !['new', 'inprocess', 'meta_data', 'resource', 'fair_use', 'on_order', 'available'].include?(filter)
+      if !['new', 'inprocess', 'meta_data', 'resource', 'fair_use', 'on_order', 'available', 'removed'].include?(filter)
         raise "Invalid filter passed to #{self.class}"
       end
     end

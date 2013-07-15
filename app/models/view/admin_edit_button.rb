@@ -11,6 +11,11 @@ class AdminEditButton
   end
 
 
+  def removed?
+    @reserve.workflow_state == 'removed'
+  end
+
+
   def complete?
     ReserveCheckIsComplete.new(@reserve).complete?
   end
