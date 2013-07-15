@@ -1,5 +1,5 @@
 
-class AdminRequestListing
+class AdminReserveList
   attr_accessor :semester, :filter
 
   def initialize(current_user, params)

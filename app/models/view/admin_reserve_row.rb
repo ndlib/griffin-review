@@ -1,4 +1,4 @@
-class AdminReserveListing
+class AdminReserveRow
 
   attr_accessor :reserve
 
