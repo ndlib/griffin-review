@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130711201511) do
+ActiveRecord::Schema.define(version: 20130717174627) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130711201511) do
     t.integer  "metadata_attribute_id"
     t.integer  "item_id"
     t.string   "value"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fair_use_questions", force: true do |t|
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20130711201511) do
     t.integer  "user_id"
     t.integer  "request_id"
     t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "fair_uses", ["item_id"], name: "index_fair_uses_on_item_id", using: :btree
@@ -54,16 +54,16 @@ ActiveRecord::Schema.define(version: 20130711201511) do
   create_table "item_types", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "creator"
     t.string   "title"
     t.string   "journal_title"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20130711201511) do
     t.string   "publisher"
     t.boolean  "on_order"
     t.string   "details"
+    t.datetime "metadata_synchronization_date"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
@@ -169,8 +170,8 @@ ActiveRecord::Schema.define(version: 20130711201511) do
     t.string   "author"
     t.string   "type"
     t.text     "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "test_requests", ["type"], name: "index_test_requests_on_type", using: :btree

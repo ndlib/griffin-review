@@ -50,108 +50,20 @@ describe Reserve do
       course_listing.respond_to?(:css_class)
     end
 
-
-    describe :discovery do
-
-      describe :title do
-
-        it "returns the title from the discovery api if the record is connected." do
-          VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(nd_meta_data_id: "book", title: "not real title")
-            course_listing.title.should == "Book."
-          end
-
-        end
+  end
 
 
-        it "returns title stored in the request if there is no nd_meta_data_id" do
-          course_listing = Reserve.new( title: "title")
+  describe :meta_data_sync do
 
-          course_listing.title.should == "title"
-        end
-      end
-
-
-      describe :creator_contributor do
-
-        it "returns the creator_contributor from the discovery api if the record is connected" do
-          VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(nd_meta_data_id: "book", creator: "not creator")
-            course_listing.creator_contributor.should == "Ronnie Wathen 1934-."
-          end
-        end
-
-
-        it "returns the author in the request if there is no discovery id" do
-          course_listing = Reserve.new( creator: "creator")
-
-          course_listing.creator_contributor.should == "creator"
-        end
-
-      end
-
-
-      describe :publisher_provider do
-
-        it "returns the publisher_provider from the discovery api if the record is connected" do
-          VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(nd_meta_data_id: "book", journal_title: "title")
-            course_listing.publisher_provider.should == "s.l. : s.n. 1968"
-          end
-        end
-
-
-        it "returns the author in the request if there is no discovery id" do
-          course_listing = Reserve.new( journal_title: "title")
-
-          course_listing.publisher_provider.should == "title"
-        end
-
-      end
-
-
-      describe :availability do
-
-        it "returns the availability from the discovery api if the record is connected" do
-          VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(nd_meta_data_id: "book")
-            course_listing.availability.should == "Available"
-          end
-        end
-
-
-        it "returns the author in the request if there is no discovery id" do
-          course_listing = Reserve.new( )
-
-          course_listing.availability.should == ""
-        end
-
-      end
-
-
-      describe :available_library do
-
-        it "returns the available_library from the discovery api if the record is connected" do
-          VCR.use_cassette 'discovery/book' do
-            course_listing = Reserve.new(nd_meta_data_id: "book")
-            course_listing.available_library.should == "Notre Dame, Hesburgh Library General Collection (PR 6073 .A83 B6 )"
-          end
-        end
-
-
-        it "returns the author in the request if there is no discovery id" do
-          course_listing = Reserve.new( )
-
-          course_listing.available_library.should == ""
-        end
-
-      end
-
+    it "checks the synchronziation when the object is created " do
+      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      mock_reserve FactoryGirl.create(:request), nil
     end
 
-    describe :discovery_api do
 
-      it "returns builds a discvo"
+    it "does not check the synchronization if it is a new record" do
+      ReserveSynchronizeMetaData.any_instance.should_not_receive(:check_synchronized!)
+      Reserve.new
     end
   end
 

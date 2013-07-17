@@ -34,4 +34,7 @@ describe Item do
 
     i.title.should == "the title"
   end
+
+
+
 end
