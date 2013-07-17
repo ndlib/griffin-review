@@ -1,5 +1,5 @@
 class FairUse < ActiveRecord::Base
-  has_paper_trail
+#  has_paper_trail
 
   store :fair_uses, accessors: [ :checklist ]
 

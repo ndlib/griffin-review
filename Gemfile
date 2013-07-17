@@ -56,7 +56,7 @@ gem 'virtus'
 
 gem "paperclip"
 
-gem "paper_trail"
+# gem "paper_trail"
 
 gem 'jquery-datatables-rails'
 
