@@ -107,13 +107,6 @@ class Reserve
   end
 
 
-  def ensure_state_is_inprogress!
-    if self.start
-      self.save!
-    end
-  end
-
-
   def destroy!
     if self.remove
       self.save!
@@ -137,9 +130,15 @@ class Reserve
   end
 
 
-  def approval_required?
-    false
+  def course
+    @course ||= CourseSearch.new.get(self.course_id)
   end
+
+
+  def fair_use
+    @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
+  end
+
 
 
   def self.generate_test_data_for_course(course)
@@ -162,14 +161,6 @@ class Reserve
   end
 
 
-  def course
-    @course ||= CourseSearch.new.get(self.course_id)
-  end
-
-
-  def fair_use
-    @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
-  end
 end
 
 

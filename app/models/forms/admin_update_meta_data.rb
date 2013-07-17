@@ -31,7 +31,7 @@ class AdminUpdateMetaData
       self.attributes = params[:admin_update_meta_data]
     end
 
-    @reserve.ensure_state_is_inprogress!
+    ReserveCheckInprogress.new(@reserve).check!
   end
 
 

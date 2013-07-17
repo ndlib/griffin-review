@@ -27,7 +27,7 @@ class AdminFairUseForm
       self.attributes = params[:admin_fair_use_form]
     end
 
-    @reserve.ensure_state_is_inprogress!
+    ReserveCheckInprogress.new(@reserve).check!
   end
 
 
@@ -87,11 +87,6 @@ class AdminFairUseForm
 
 
   private
-
-    def ensure_state_is_inprogress!
-      reserve.ensure_state_is_inprogress!
-    end
-
 
     def persist!
       @fair_use.user_id = @current_user.id

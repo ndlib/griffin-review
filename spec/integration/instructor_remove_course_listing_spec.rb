@@ -25,7 +25,6 @@ describe "Instructor New Reserve" do
 
     visit course_reserves_path(@test_course.id)
 
-#    binding.pry
 #    click_link("delete_reserve_#{@file_reserve.id}")
 
   end

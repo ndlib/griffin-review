@@ -62,9 +62,16 @@ describe ReserveSynchronizeMetaData do
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
 
+
+      it "does run the synchronization if the last sync date is nil " do
+        @reserve.metadata_synchronization_date = nil
+        ReserveSynchronizeMetaData.any_instance.should_receive(:synchonize!)
+        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+      end
+
+
       it "does not run the synchronization if the reserve does not have a metadata id" do
         @reserve.nd_meta_data_id = nil
-              binding.pry
         ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
@@ -82,15 +89,6 @@ describe ReserveSynchronizeMetaData do
         ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
-
-
-      it "does not run the synchronization if the last sync date is nil " do
-        @reserve.metadata_synchronization_date = nil
-        ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-
-      end
-
 
     end
   end

@@ -26,7 +26,7 @@ class AdminUpdateResource
 
     validate_input!
 
-    @reserve.ensure_state_is_inprogress!
+    ReserveCheckInprogress.new(@reserve).check!
   end
 
 
