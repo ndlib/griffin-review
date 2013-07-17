@@ -4,7 +4,7 @@ describe MovFileGenerator do
 
 
   it "generates a file with the correct url embeded in it" do
-    semester = mock(:semester, :movie_directory => 'movie_dir')
+    semester = double(:semester, :movie_directory => 'movie_dir')
     reserve = mock_reserve FactoryGirl.create(:request, :video), nil
     reserve.stub(:url).and_return('movie.mov')
 
@@ -14,7 +14,7 @@ describe MovFileGenerator do
 
 
   it " generates a file path for send file " do
-    semester = mock(:semester, :movie_directory => 'movie_dir')
+    semester = double(:semester, :movie_directory => 'movie_dir')
     reserve = mock_reserve FactoryGirl.create(:request, :video), nil
     reserve.stub(:url).and_return('movie.mov')
 

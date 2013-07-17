@@ -2,7 +2,7 @@ module ApiMocks
 
   def stub_courses!
 
-    API::Person.stub!(:courses) do  | netid, semester |
+    API::Person.stub(:courses) do  | netid, semester |
       begin
         path = File.join(Rails.root, "spec/fixtures/json_save/", "#{netid}_#{semester}.json")
         file = File.open(path, "rb")
@@ -18,7 +18,7 @@ module ApiMocks
     end
 
 
-    API::CourseSearchApi.stub!(:course_id) do | course_id |
+    API::CourseSearchApi.stub(:course_id) do | course_id |
       begin
         path = File.join(Rails.root, "spec/fixtures/json_save/get_course", "#{course_id}.json")
         file = File.open(path, "rb")
@@ -34,7 +34,7 @@ module ApiMocks
 
 
   def stub_discovery!
-    API::Resource.stub!(:search_catalog) do | id |
+    API::Resource.stub(:search_catalog) do | id |
       path = File.join(Rails.root, "spec/fixtures/json_save/discovery", "generic.json")
       file = File.open(path, "rb")
       contents = file.read

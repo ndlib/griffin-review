@@ -3,16 +3,21 @@ require 'spec_helper'
 
 describe AdminFairUseForm do
 
-  let (:user) { mock(User, id: 1)}
+  let (:user) { double(User, id: 1)}
 
   before(:each) {
-    @reserve = mock_reserve FactoryGirl.create(:request), mock(Course, id: 1, crosslist_id: 'crosslist_id', semester: Semester.first)
+    FactoryGirl.create(:semester)
+
+    c =  double(Course, id: 1, crosslist_id: 'crosslist_id', semester: Semester.first)
+
+    CourseSearch.any_instance.stub(:get).and_return(c)
+    @reserve = mock_reserve FactoryGirl.create(:request), c
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   }
 
   describe :checklist_questions do
     it "lists all the questions available for the form" do
-      FairUseQuestion.stub(:active).and_return([mock(FairUse), mock(FairUse)])
+      FairUseQuestion.stub(:active).and_return([double(FairUse), double(FairUse)])
 
       AdminFairUseForm.new(user, { id:  @reserve.id} ).checklist_questions.size.should == 2
     end
@@ -27,14 +32,14 @@ describe AdminFairUseForm do
 
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
 
-      afuf.question_checked?(mock(FairUseQuestion, id: 1)).should be_true
+      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_true
     end
 
 
     it "returns true if the fair use was checked in the form params" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" } } }  )
 
-      afuf.question_checked?(mock(FairUseQuestion, id: 1)).should be_true
+      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_true
     end
 
 
@@ -44,13 +49,13 @@ describe AdminFairUseForm do
 
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
 
-      afuf.question_checked?(mock(FairUseQuestion, id: 2)).should be_false
+      afuf.question_checked?(double(FairUseQuestion, id: 2)).should be_false
     end
 
 
     it "returns false if the question value is not set" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
-      afuf.question_checked?(mock(FairUseQuestion, id: 2)).should be_false
+      afuf.question_checked?(double(FairUseQuestion, id: 2)).should be_false
     end
 
   end
@@ -140,6 +145,15 @@ describe AdminFairUseForm do
 
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
       afuf.save_fair_use
+    end
+
+
+    it "removes the reserve if the fair use is denied " do
+
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { event: 'deny'} } )
+      afuf.save_fair_use
+      afuf.fair_use.state.should == "denied"
+      afuf.fair_use.reserve.workflow_state.should == "removed"
     end
 
   end

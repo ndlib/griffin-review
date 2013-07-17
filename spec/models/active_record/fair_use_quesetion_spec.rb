@@ -15,6 +15,7 @@ describe FairUseQuestion do
       FairUseQuestion.add_new_question!('something', 'category', 2, false)
 
       questions = FairUseQuestion.active
+
       questions.size.should == 1
       questions.first.question.should == "something"
     end
@@ -39,7 +40,7 @@ describe FairUseQuestion do
 
       fuq.reorder!(2)
 
-      questions = FairUseQuestion.order.further_questions(3)
+      questions = FairUseQuestion.default_order.further_questions(3)
       questions.first.ord.should == 3
       questions.last.ord.should == 4
     end

@@ -18,7 +18,7 @@ describe FairUse do
       f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), state: "update")
       f.checklist = { '1' => true, '2' => false}
       f.save!
-      f.checklist.class.should == Hash
+      f.checklist.class.should == ActiveSupport::HashWithIndifferentAccess
     end
 
   end

@@ -251,6 +251,7 @@ describe Reserve do
     end
 
     it "addes the course reserve id to the reserve record" do
+      FactoryGirl.create(:semester)
       request = FactoryGirl.create(:request)
       course = course_search.get( 'current_multisection_crosslisted')
       reserve = Reserve.factory(request, course)

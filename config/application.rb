@@ -20,6 +20,7 @@ module Griffin
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers', '{**}')]
 
+    config.secret_key_base = "griffsseaf235151tgdffqelg1vpfa7t231"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

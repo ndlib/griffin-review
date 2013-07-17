@@ -51,6 +51,11 @@ class FairUse < ActiveRecord::Base
   end
 
 
+  def reserve
+    Reserve.factory(request)
+  end
+
+
   def complete?
     (state == 'approved' || state == 'denied')
   end

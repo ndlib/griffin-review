@@ -36,6 +36,11 @@
 
       <% if masquerade.masquerading? %>
         <p class="navbar-text"><%= link_to raw("Stop Masquerading as #{current_user.name}"), cancel_masquerades_path, class: "masquerade_text" %></p>
+      <% elsif current_user.present? %>
+        <p class="navbar-text">
+          <%= current_user.name %>
+          <%= link_to("Log Out", destroy_user_session_path())%>
+        </p>
       <% end %>
 
     </div>

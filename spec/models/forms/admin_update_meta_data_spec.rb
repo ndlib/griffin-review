@@ -5,7 +5,9 @@ describe AdminUpdateMetaData do
   before(:each) do
     stub_courses!
 
-    @user = mock(User, :username => 'admin')
+    FactoryGirl.create(:semester)
+
+    @user = double(User, :username => 'admin')
     @course = CourseSearch.new.get('current_multisection_crosslisted')
 
     @reserve = mock_reserve(FactoryGirl.create(:request), @course)
@@ -109,19 +111,19 @@ describe AdminUpdateMetaData do
   describe "presistance" do
 
     it "returns true if the update is valid" do
-      @update_meta_data.stub!(:valid?).and_return(true)
+      @update_meta_data.stub(:valid?).and_return(true)
       @update_meta_data.save_meta_data.should be_true
     end
 
     it "returns false if the udates is invalid" do
-      @update_meta_data.stub!(:valid?).and_return(false)
+      @update_meta_data.stub(:valid?).and_return(false)
 
       @update_meta_data.save_meta_data.should be_false
 
     end
 
     it "calls save! on the reserve " do
-      @update_meta_data.stub!(:valid?).and_return(true)
+      @update_meta_data.stub(:valid?).and_return(true)
 
       Reserve.any_instance.should_receive(:save!)
       @update_meta_data.save_meta_data
@@ -131,7 +133,7 @@ describe AdminUpdateMetaData do
     it "checks to seed if the item is complete" do
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
 
-      @update_meta_data.stub!(:valid?).and_return(true)
+      @update_meta_data.stub(:valid?).and_return(true)
       @update_meta_data.save_meta_data
     end
 

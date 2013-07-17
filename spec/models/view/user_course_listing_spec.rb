@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe UserCourseListing do
 
-  let(:student_user) { mock(User, :username => 'student') }
-  let(:instructor_user) { mock(User, :username => 'instructor') }
-  let(:inst_stu_user)  { mock(User, :username => 'inst_stu') }
+  let(:student_user) { double(User, :username => 'student') }
+  let(:instructor_user) { double(User, :username => 'instructor') }
+  let(:inst_stu_user)  { double(User, :username => 'inst_stu') }
 
   let(:semester) { FactoryGirl.create(:semester)}
   let(:previous_semester) { FactoryGirl.create(:previous_semester)}

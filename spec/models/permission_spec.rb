@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Permission do
-  let(:student_user) { mock(User, :username => 'student', :admin? => false) }
-  let(:instructor_user) { mock(User, :username => 'instructor', :admin? => false) }
-  let(:inst_stu_user)  { mock(User, :username => 'inst_stu', :admin? => false) }
-  let(:admin_user) { mock(User, username: 'admin', admin?: true) }
-  let(:controller) { mock(ApplicationController, :session => {} )}
-  let(:course) { mock(Course) }
+  let(:student_user) { double(User, :username => 'student', :admin? => false) }
+  let(:instructor_user) { double(User, :username => 'instructor', :admin? => false) }
+  let(:inst_stu_user)  { double(User, :username => 'inst_stu', :admin? => false) }
+  let(:admin_user) { double(User, username: 'admin', admin?: true) }
+  let(:controller) { double(ApplicationController, :session => {} )}
+  let(:course) { double(Course) }
 
 
   describe :current_user_instructs_course? do

@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Masquerade do
 
   before(:each) do
-    @controller = mock(ActionController, :session => {}, :current_user => mock(User, id: 1) )
+    @controller = double(ActionController, :session => {}, :current_user => double(User, id: 1) )
     @controller.stub(:sign_in)
   end
 
   describe :start! do
     before(:each) do
-      Masquerade.any_instance.stub(:find_or_create_user).and_return(mock(User, :username => 'username', name: 'bob bobbers'))
+      Masquerade.any_instance.stub(:find_or_create_user).and_return(double(User, :username => 'username', name: 'bob bobbers'))
     end
 
     it "calls sign in on the controller" do
@@ -35,7 +35,7 @@ describe Masquerade do
 
   describe :stop! do
     before(:each) do
-      @user = mock(User, :name => 'Original User')
+      @user = double(User, :name => 'Original User')
       Masquerade.any_instance.stub(:original_user).and_return(@user)
       Masquerade.any_instance.stub(:masquerading?).and_return(true)
     end

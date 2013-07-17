@@ -11,10 +11,10 @@ describe CopyCourseReservesForm do
     semester = FactoryGirl.create(:semester)
     next_semester = FactoryGirl.create(:next_semester)
 
-    @from_course = mock(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'from_reserve_id')
-    @from_course.stub!(:semester).and_return(semester)
-    @to_course = mock(Course, :id => 'to_course_id', :title => 'to title', :instructor_name => 'name', :crosslist_id => 'to_reserve_id')
-    @to_course.stub!(:semester).and_return(next_semester)
+    @from_course = double(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'from_reserve_id')
+    @from_course.stub(:semester).and_return(semester)
+    @to_course = double(Course, :id => 'to_course_id', :title => 'to title', :instructor_name => 'name', :crosslist_id => 'to_reserve_id')
+    @to_course.stub(:semester).and_return(next_semester)
 
     CourseSearch.any_instance.stub(:get).and_return(nil)
     CourseSearch.any_instance.stub(:get).with(@from_course.id).and_return(@from_course)
@@ -39,7 +39,7 @@ describe CopyCourseReservesForm do
 
     it "is returns true when it is successful" do
       @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
-      @from_course.stub!(:reserve).with(@reserve.id).and_return(@reserve)
+      @from_course.stub(:reserve).with(@reserve.id).and_return(@reserve)
 
       valid_params = { course_id: @to_course.id, from_course_id: @from_course.id, reserve_ids: [ @reserve.id ] }
       @copy_course = CopyCourseReservesForm.new(user, valid_params)

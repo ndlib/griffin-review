@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe InstructorTopicsForm do
-  let(:user) { mock(User, :username => 'instructor') }
+  let(:user) { double(User, :username => 'instructor') }
   let(:course_search) { CourseSearch.new }
   let(:course) { course_search.get('current_multisection_crosslisted') }
   let(:semester) { FactoryGirl.create(:semester)}
@@ -9,9 +9,9 @@ describe InstructorTopicsForm do
   before(:each) do
     stub_courses!
 
-    @course = mock(Course, :id => "course_id", :title => 'title', :instructor_name => 'name', :crosslist_id => 'crosslist_id')
-    @course.stub!(:semester).and_return(semester)
-    @course.stub!(:reserve_id).and_return('reserve_id')
+    @course = double(Course, :id => "course_id", :title => 'title', :instructor_name => 'name', :crosslist_id => 'crosslist_id')
+    @course.stub(:semester).and_return(semester)
+    @course.stub(:reserve_id).and_return('reserve_id')
 
     InstructorTopicsForm.any_instance.stub(:get_course).with("course_id").and_return(@course)
   end

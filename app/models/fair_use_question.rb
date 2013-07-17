@@ -3,9 +3,9 @@ class FairUseQuestion < ActiveRecord::Base
 
   validates :question, :ord, :category, presence: true
 
-  scope :order, order(:ord)
-  scope :active, where(active: true).order
-  scope :further_questions, lambda{ | order | where("ord >= ? ", order).order }
+  scope :default_order, -> { order(:ord) }
+  scope :active, -> { where(active: true).default_order }
+  scope :further_questions, lambda{ | order | where("ord >= ? ", order).default_order }
 
 
   def deactivate!

@@ -47,27 +47,27 @@ describe ReserveRow do
     end
 
     it "sets the book class to when it is a book" do
-      r = mock(Reserve, :type => 'BookReserve')
+      r = double(Reserve, :type => 'BookReserve')
       ReserveRow.new(r).css_class.should == 'record-book'
     end
 
     it "sets the book chapter class to correctly when it is a book chapter" do
-      r = mock(Reserve, :type => 'BookChapterReserve')
+      r = double(Reserve, :type => 'BookChapterReserve')
       ReserveRow.new(r).css_class.should == 'record-book'
     end
 
     it "sets the video class to correctly when it is a video" do
-      r = mock(Reserve, :type => 'VideoReserve')
+      r = double(Reserve, :type => 'VideoReserve')
       ReserveRow.new(r).css_class.should == 'record-video'
     end
 
     it "sets the audio class correctly when it is an audio reserve" do
-      r = mock(Reserve, :type => 'AudioReserve')
+      r = double(Reserve, :type => 'AudioReserve')
       ReserveRow.new(r).css_class.should == 'record-audio'
     end
 
     it "sets the journal class correctly when it is a journal" do
-      r = mock(Reserve, :type => 'JournalReserve')
+      r = double(Reserve, :type => 'JournalReserve')
       ReserveRow.new(r).css_class.should == 'record-journal'
     end
   end

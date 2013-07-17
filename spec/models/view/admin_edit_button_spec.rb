@@ -2,7 +2,7 @@
 describe AdminEditButton do
 
   before(:each) do
-    @reserve = mock(Reserve, :id => 1)
+    @reserve = double(Reserve, :id => 1)
   end
 
   it "passes the reseve id out " do

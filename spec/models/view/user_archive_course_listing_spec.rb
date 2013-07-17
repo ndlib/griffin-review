@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UserArchiveCourseListing do
 
-  let(:instructor_user) { mock(User, :username => 'instructor') }
+  let(:instructor_user) { double(User, :username => 'instructor') }
 
 
   describe :archived_semesters do
@@ -85,7 +85,7 @@ describe UserArchiveCourseListing do
 
 
   def mock_course_with_reserve
-    course1 = mock(Course, id: 'course_id', crosslist_id: 'crosslist_id', title: 'course 1')
+    course1 = double(Course, id: 'course_id', crosslist_id: 'crosslist_id', title: 'course 1')
     reserve = mock_reserve FactoryGirl.create(:request, :available), course1
     course1.stub(:reserves).and_return([reserve])
 
@@ -94,6 +94,6 @@ describe UserArchiveCourseListing do
 
 
   def mock_course_without_reserve
-    mock(Course, id: 'course_id', crosslist_id: 'crosslist_id', title: 'course 1', reserves: [])
+    double(Course, id: 'course_id', crosslist_id: 'crosslist_id', title: 'course 1', reserves: [])
   end
 end

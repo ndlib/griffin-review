@@ -102,6 +102,11 @@ class AdminFairUseForm
         @fair_use.send(self.event)
       end
 
+      if @fair_use.denied?
+        @fair_use.reserve.remove
+        @fair_use.reserve.save!
+      end
+
       @fair_use.save!
     end
 

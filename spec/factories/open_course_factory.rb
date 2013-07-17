@@ -5,7 +5,7 @@ FactoryGirl.define do
     course_prefix 'prefix'
     course_number 'number'
     course_name 'name'
-    section_number 'section_number'
+    section_number '2011F'
     instructor_firstname 'inst_name'
     instructor_lastname 'last_name'
     sequence(:course_id, 1000) {|n| "#{n}" }

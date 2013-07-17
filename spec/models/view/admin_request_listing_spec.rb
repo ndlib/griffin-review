@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UserArchiveCourseListing do
 
-  let (:user) { mock(User, :username => 'admin')}
+  let (:user) { double(User, :username => 'admin')}
 
   it "gets incomplete listings when the filter is new " do
     ReserveSearch.any_instance.should_receive(:new_and_inprocess_reserves_for_semester)

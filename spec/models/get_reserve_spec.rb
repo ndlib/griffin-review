@@ -7,7 +7,7 @@ describe GetReserve do
 
     semester = FactoryGirl.create(:semester)
 
-    @course = mock(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
+    @course = double(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
     GetReserve.any_instance.stub(:get_course).with(@course.id).and_return(@course)
 
     @reserve =  mock_reserve FactoryGirl.create(:request, :book_chapter), @course
@@ -35,7 +35,7 @@ describe GetReserve do
 
     it "returns false if the item terms needs approval and it has been approved" do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
-      @reserve.stub!(:term_of_service_approved?).and_return(true)
+      @reserve.stub(:term_of_service_approved?).and_return(true)
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.approval_required?.should be_true
@@ -45,7 +45,7 @@ describe GetReserve do
 
   describe :download_listing? do
     it "returns true if the listing should download a file" do
-      @reserve.stub!(:file).and_return("FILE")
+      @reserve.stub(:file).and_return("FILE")
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.download_listing?.should be_true
@@ -72,14 +72,14 @@ describe GetReserve do
 
   describe :redirect_to_listing? do
     it "returns true if the listing should redirect to an external resource" do
-      @reserve.stub!(:url).and_return("URL")
+      @reserve.stub(:url).and_return("URL")
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.redirect_to_listing?.should be_true
     end
 
     it "returns false if the listing should not redirect" do
-      @reserve.stub!(:url).and_return(nil)
+      @reserve.stub(:url).and_return(nil)
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.redirect_to_listing?.should be_false
@@ -90,7 +90,7 @@ describe GetReserve do
   describe :redirect_uri do
 
     it "returns the uri to redirect to" do
-      @reserve.stub!(:url).and_return("URL")
+      @reserve.stub(:url).and_return("URL")
 
       gcl = GetReserve.new(@user, @valid_params)
       gcl.redirect_uri.should == "URL"

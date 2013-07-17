@@ -65,7 +65,7 @@ class GetReserve
 
 
   def streaming_server_file?
-    ReserveResourcePolicy.new(@reserve).streaming_server_redirect?
+    ReserveResourcePolicy.new(@reserve).streaming_service_resource?
   end
 
 

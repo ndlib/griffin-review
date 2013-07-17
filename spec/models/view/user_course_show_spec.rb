@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe CourseReserveList do
-  let(:user) { mock(User, :username => 'student') }
+  let(:user) { double(User, :username => 'student') }
 
   before(:each) do
-    @course = mock(Course, :id => 1, :title => 'title', :instructor_name => 'name')
+    @course = double(Course, :id => 1, :title => 'title', :instructor_name => 'name')
     CourseReserveList.any_instance.stub(:get_course).with("course_id").and_return(@course)
 
     @user_course_show = CourseReserveList.new(user, {:course_id => "course_id"})

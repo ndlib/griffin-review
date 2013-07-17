@@ -34,7 +34,7 @@ class ReserveResourcePolicy
   end
 
 
-  def streaming_server_redirect?
+  def streaming_service_resource?
     ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
   end
 

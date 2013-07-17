@@ -9,7 +9,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.stub!(:requires_fair_use?).and_return(true)
+      policy.stub(:requires_fair_use?).and_return(true)
 
       policy.complete?.should be_false
     end
@@ -19,7 +19,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.stub!(:requires_fair_use?).and_return(false)
+      policy.stub(:requires_fair_use?).and_return(false)
 
       policy.complete?.should be_true
     end
@@ -27,10 +27,10 @@ describe ReserveFairUsePolicy do
 
     it "returns true if the reserve needs fair use and it has been set." do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
-      reserve.stub!(:fair_use).and_return(mock(FairUse, complete?: true))
+      reserve.stub(:fair_use).and_return(double(FairUse, complete?: true))
 
       policy = ReserveFairUsePolicy.new(reserve)
-      policy.stub!(:requires_fair_use?).and_return(true)
+      policy.stub(:requires_fair_use?).and_return(true)
 
       policy.complete?.should be_true
     end

@@ -4,8 +4,9 @@ describe AdminUpdateResource do
 
   before(:each) do
     stub_courses!
+    FactoryGirl.create(:semester)
 
-    @user = mock(User, :username => 'admin')
+    @user = double(User, :username => 'admin')
     @course = CourseSearch.new.get('current_multisection_crosslisted')
   end
 

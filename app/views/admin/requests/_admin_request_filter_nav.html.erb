@@ -2,14 +2,14 @@
 <div class="tabbable tabs-top">
   <ul class="nav nav-tabs">
     <li class="<%= filter.css_class('new') %>">
-      <% if !filter.complete? %>
+      <% if !(filter.complete? || filter.removed?)  %>
         <a class="tab" data-toggle="tab" filter="new" href="#1">New</a>
       <% else %>
         <a class="tab" filter="new" href="<%= requests_path() %>">New</a>
       <% end %>
     </li>
     <li class="dropdown <%= filter.inprocess_css_class %>">
-      <% if !filter.complete? %>
+      <% if !(filter.complete? || filter.removed?)  %>
         <a class="dropdown-toggle" data-toggle="dropdown" filter="inprocess" href="#2">In process <b class="caret"></b></a>
       <% else %>
         <a class="dropdown-toggle" data-toggle="dropdown" filter="inprocess" href="<%= requests_path(:filter => 'inprocess') %>">In process <b class="caret"></b></a>

@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0'
 
+# '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -37,7 +38,7 @@ gem 'json'
 gem 'net-ldap'
 
 # form generation
-gem 'simple_form'
+gem 'simple_form', '~> 3.0.0.rc'
 gem 'nested_form'
 
 # so that activerecord is happy with US dates
@@ -59,6 +60,10 @@ gem "paper_trail"
 
 gem 'jquery-datatables-rails'
 
+
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier', '>= 1.2.4'
 
 # development only
 group :development do
@@ -82,18 +87,18 @@ group :test do
     gem 'database_cleaner'
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
-	gem "spork", "~> 0.9.0"
+	gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
-    gem 'guard-rspec'
-    gem 'guard-livereload'
-    gem 'guard-coffeescript'
-    gem 'guard-rails'
-    gem 'guard-bundler'
-    gem 'guard-spork'
-    gem 'guard-shell'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-coffeescript'
+  gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-spork'
+  gem 'guard-shell'
 
-    gem 'vcr'
-    gem 'webmock'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 
@@ -102,15 +107,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rb-readline', '~> 0.4.2' # specified to this version becase 0.5.0 was not working with pry in ruby 1.9.3
-end
-
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier', '>= 1.2.4'
 end
 
 

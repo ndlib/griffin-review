@@ -3,7 +3,7 @@ class ReserveSearch
 
   attr_accessor :relation
 
-  def initialize( relation = Request.scoped )
+  def initialize( relation = Request.all )
     @relation = relation
   end
 

@@ -9,7 +9,7 @@ describe InstructorReserveRemoveForm do
     semester = FactoryGirl.create(:semester)
     stub_courses!
 
-    @course = mock(Course, id: 'id', crosslist_id: 'crosslist_id', semester: semester)
+    @course = double(Course, id: 'id', crosslist_id: 'crosslist_id', semester: semester)
 
   end
 

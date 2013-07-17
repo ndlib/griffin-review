@@ -40,6 +40,11 @@ class AdminUpdateResource
   end
 
 
+  def show_video_form?
+    ReserveResourcePolicy.new(reserve).streaming_service_resource?
+  end
+
+
   def save_resource
     if valid?
       persist!
@@ -47,6 +52,11 @@ class AdminUpdateResource
     else
       false
     end
+  end
+
+
+  def pdf_file_name
+    @reserve.item.pdf_file_name
   end
 
 

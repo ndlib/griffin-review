@@ -10,7 +10,7 @@ class OpenVideo < OpenItem
   validates :title, :presence => true
   validates :item_type, :presence => true, :inclusion => { :in => %w(video) }
 
-  default_scope where(:item_type => 'video')
+  default_scope -> {where(:item_type => 'video')}
 
   # scope :currently_used, lambda { |semester|
   #   joins(:courses).where(:course => {:term => semester})

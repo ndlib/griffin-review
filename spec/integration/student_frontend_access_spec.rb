@@ -57,7 +57,7 @@ describe "Student Frontend Access" do
 
     before(:each) do
       previous_semester = FactoryGirl.create(:previous_semester)
-      @enrolled_course = mock(Course, id: 'id', crosslist_id: 'crosslist_id', title: 'enrolled title', full_title: "full_title", instructor_name: 'name', crosslisted_course_ids: [], section_numbers: ['2'], semester: previous_semester, semester_name: 'semester_name', instructor_netids: {})
+      @enrolled_course = double(Course, id: 'id', crosslist_id: 'crosslist_id', title: 'enrolled title', full_title: "full_title", instructor_name: 'name', crosslisted_course_ids: [], section_numbers: ['2'], semester: previous_semester, semester_name: 'semester_name', instructor_netids: {})
 
       CourseSearch.any_instance.stub(:get).and_return(@enrolled_course)
     end

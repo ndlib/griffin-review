@@ -43,7 +43,7 @@ class Reserve
   end
 
 
-  def self.factory(request, course)
+  def self.factory(request, course = nil)
     self.new(request: request, course: course)
   end
 

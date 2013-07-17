@@ -1,4 +1,3 @@
-
 class InstructorCourseRow
   attr_accessor :reserve
 
@@ -30,7 +29,7 @@ class InstructorCourseRow
     if can_delete?
       @context.link_to(@context.raw("<i class=\"icon-remove\"></i>"),
                      @context.course_reserve_path(@reserve.course.id, @reserve.id),
-                      :confirm => 'Are you sure you wish to remove this reserve from your course?',
+                      data: { confirm: 'Are you sure you wish to remove this reserve from your course?' },
                       :method => :delete,
                       :id => "delete_reserve_#{@reserve.id}")
     else
