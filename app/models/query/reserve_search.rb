@@ -42,7 +42,7 @@ class ReserveSearch
   end
 
 
-  def available_reserves_for_semester(semester)
+  def available_reserves_for_semester(semester = false)
     @relation.
         includes(:item).
         where('requests.semester_id IN(?)', determine_search_semesters(semester)).
@@ -52,7 +52,7 @@ class ReserveSearch
   end
 
 
-  def removed_reserves_for_semester(semester)
+  def removed_reserves_for_semester(semester = false)
     @relation.
         includes(:item).
         where('requests.semester_id IN(?)', determine_search_semesters(semester)).
@@ -62,7 +62,7 @@ class ReserveSearch
   end
 
 
-  def all_reserves_for_semester(semester)
+  def all_reserves_for_semester(semester = false)
     @relation.
         includes(:item).
         where('requests.semester_id IN(?)', determine_search_semesters(semester)).

@@ -39,6 +39,4 @@ describe AdminReserveRow do
     AdminReserveRow.new(Reserve.new).respond_to?(:requestor)
   end
 
-
-
 end

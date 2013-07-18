@@ -13,8 +13,8 @@ describe ReserveSynchronizeMetaData do
 
         @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", requestor_netid: 'netid', course: course)
 
-        discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details")
-        DiscoveryApi.stub(:search_by_ids).and_return([ discovery_record ])
+        @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "")
+        DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
 
         ReserveSynchronizeMetaData.any_instance.stub(:needs_to_be_synchronized?).and_return(true)
 
@@ -47,6 +47,28 @@ describe ReserveSynchronizeMetaData do
         @reserve.metadata_synchronization_date.should == nil
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
         @reserve.metadata_synchronization_date.to_s.should == Time.now.to_s
+      end
+
+
+      it "will synchronize the url if the discovery record has a full text available and the reserve is a type that can have urls" do
+        @reserve.type = 'JournalReserve'
+        @discovery_record.stub(:fulltext_available?).and_return(true)
+        @discovery_record.stub(:fulltext_url).and_return("http://www.google.com")
+
+        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        @reserve.url.should == "http://www.google.com"
+      end
+
+
+      it "only synchronizes the url if it is nil " do
+        @reserve.type = 'JournalReserve'
+        @reserve.url = "old_url"
+        @discovery_record.stub(:fulltext_available?).and_return(true)
+        @discovery_record.stub(:fulltext_url).and_return("http://www.google.com")
+
+        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        @reserve.url.should == "old_url"
+
       end
 
     end

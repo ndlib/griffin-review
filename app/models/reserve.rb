@@ -168,16 +168,16 @@ end
 class BookReserve < Reserve
 
   def self.test_request(course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "available", requestor_netid: "Bob Bobbers", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', nd_meta_data_id: "book")
+    self.new( course: course, type: self.to_s, workflow_state: "available", requestor_netid: "jhartzle", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', nd_meta_data_id: "book")
   end
 
 
   def self.new_request(course = nil)
-    self.new( course: course, type: self.to_s, type: self.to_s, workflow_state: "new", requestor_netid: "New Requestor", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
+    self.new( course: course, type: self.to_s, type: self.to_s, workflow_state: "new", requestor_netid: "jhartzle", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
   end
 
   def self.awaiting_request( course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "inprocess", requestor_netid: "Awaiting Requestor", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
+    self.new( course: course, type: self.to_s, workflow_state: "inprocess", requestor_netid: "rfox2", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
   end
 
 end
@@ -186,11 +186,11 @@ end
 class BookChapterReserve < Reserve
 
   def self.test_request( course = nil)
-    self.new( course: course, type: self.to_s,  workflow_state: "available", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf:  File.open("#{Rails.root}/uploads/test.pdf"))
+    self.new( course: course, type: self.to_s,  workflow_state: "available", requestor_netid: "jkennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf:  File.open("#{Rails.root}/uploads/test.pdf"))
   end
 
   def self.new_request( course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "new", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
+    self.new( course: course, type: self.to_s, workflow_state: "new", requestor_netid: "jhartzle", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
   end
 
   def self.awaiting_request( course = nil)
@@ -208,7 +208,7 @@ class JournalReserve < Reserve
 
 
   def self.test_url_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "HimesKeynote.mov")
+    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com")
   end
 
 end

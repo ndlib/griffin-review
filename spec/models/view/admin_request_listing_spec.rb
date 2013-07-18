@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserArchiveCourseListing do
+describe AdminReserveList do
 
   let (:user) { double(User, :username => 'admin')}
 

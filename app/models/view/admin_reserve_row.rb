@@ -40,7 +40,7 @@ class AdminReserveRow
 
 
   def course_title
-    reserve.course.title
+    reserve.course.full_title
   end
 
 

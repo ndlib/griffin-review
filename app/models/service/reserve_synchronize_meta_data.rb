@@ -26,9 +26,19 @@ class ReserveSynchronizeMetaData
       @reserve.creator = discovery_record.creator_contributor
       @reserve.journal_title = discovery_record.publisher_provider
       @reserve.details = discovery_record.details
+
+      if synchronize_url_from_meta_data?
+        @reserve.url = discovery_record.fulltext_url
+      end
+
       @reserve.metadata_synchronization_date = Time.now
 
       @reserve.save!
+    end
+
+
+    def synchronize_url_from_meta_data?
+      @reserve.url.nil? && reserve_resource_policy.can_have_url_resource? && !reserve_resource_policy.streaming_service_resource? && discovery_record.fulltext_available?
     end
 
 
@@ -36,4 +46,8 @@ class ReserveSynchronizeMetaData
       @discovery_record ||= DiscoveryApi.search_by_ids(@reserve.nd_meta_data_id).first
     end
 
+
+    def reserve_resource_policy
+      @policy ||= ReserveResourcePolicy.new(@reserve)
+    end
 end

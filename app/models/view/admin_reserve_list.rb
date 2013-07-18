@@ -47,7 +47,7 @@ class AdminReserveList
 
 
     def all_reserves
-      reserve_search.all_reserves_for_semester(@semester)
+      reserve_search.all_reserves_for_semester()
     end
 
 
