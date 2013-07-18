@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Item do
+describe UserCourseException do
 
   let(:semester) { FactoryGirl.create(:semester) }
   let(:previous_semester) { FactoryGirl.create(:previous_semester) }

@@ -56,6 +56,7 @@ class Course
     course_triple.gsub("#{term}_",'').gsub('_',' ')
   end
 
+
   def alpha_prefix
     @attributes['alpha_prefix']
   end

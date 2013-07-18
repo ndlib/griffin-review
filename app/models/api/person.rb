@@ -9,10 +9,12 @@ module API
 
 
     def self.courses(netid, semester)
-      path = File.join("by_netid", netid, semester, "courses")
+      Rails.cache.fetch("courses-#{netid}-#{semester}", expires_in: 1.hour) do
+        path = File.join("by_netid", netid, semester, "courses")
 
-      result = get_json(path)
-      result["people"].first
+        result = get_json(path)
+        result["people"].first
+      end
     end
   end
 end

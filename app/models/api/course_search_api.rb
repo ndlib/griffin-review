@@ -4,7 +4,9 @@ module API
 
 
     def self.course_id(course_id)
-      get_json("by_section_group/#{course_id}")
+      Rails.cache.fetch("course_id-#{course_id}", expires_in: 1.hour)  do
+        get_json("by_section_group/#{course_id}")
+      end
     end
 
 

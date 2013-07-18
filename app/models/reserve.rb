@@ -78,12 +78,12 @@ class Reserve
 
 
   def requestor_name
-    u = User.where(:username => self.requestor_netid).first
-    if !u
+    @user ||= User.where(:username => self.requestor_netid).first
+    if !@user
       return ""
     end
 
-    u.display_name
+    @user.display_name
   end
 
   def request
