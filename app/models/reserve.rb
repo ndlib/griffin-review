@@ -186,7 +186,7 @@ end
 class BookChapterReserve < Reserve
 
   def self.test_request( course = nil)
-    self.new( course: course, type: self.to_s, fair_use: "ADFADF", workflow_state: "available", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf:  File.open("#{Rails.root}/uploads/test.pdf"))
+    self.new( course: course, type: self.to_s,  workflow_state: "available", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, nd_meta_data_id: "funny book", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf:  File.open("#{Rails.root}/uploads/test.pdf"))
   end
 
   def self.new_request( course = nil)
@@ -203,12 +203,12 @@ end
 class JournalReserve < Reserve
 
   def self.test_file_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
+    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
   end
 
 
   def self.test_url_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "HimesKeynote.mov")
+    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "HimesKeynote.mov")
   end
 
 end
@@ -216,12 +216,12 @@ end
 
 class VideoReserve < Reserve
   def self.test_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
+    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "Star wars", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
   end
 
 
   def self.new_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "inprocess", fair_use: "ADFADF", course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
+    self.new( type: self.to_s, workflow_state: "inprocess",  course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "Empire Strikes Back", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
   end
 
 
@@ -235,7 +235,7 @@ end
 class AudioReserve < Reserve
 
   def self.test_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available", fair_use: "ADFADF", course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "HimesKeynote.mov")
+    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "kinda blue", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "HimesKeynote.mov")
   end
 
 end
