@@ -32,17 +32,17 @@ class AdminReserveList
 
 
     def in_complete_reserves
-      reserve_search.new_and_inprocess_reserves_for_semester(@semester)
+      reserve_search.new_and_inprocess_reserves_for_semester()
     end
 
 
     def completed_reserves
-      reserve_search.available_reserves_for_semester(@semester)
+      reserve_search.available_reserves_for_semester()
     end
 
 
     def removed_reserves
-      reserve_search.removed_reserves_for_semester(@semester)
+      reserve_search.removed_reserves_for_semester()
     end
 
 

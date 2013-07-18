@@ -32,10 +32,10 @@ class ReserveSearch
   end
 
 
-  def new_and_inprocess_reserves_for_semester(semester)
+  def new_and_inprocess_reserves_for_semester(semester = false)
     @relation.
         includes(:item).
-        where('requests.semester_id  = ?', semester.id).
+        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
         where('requests.workflow_state = ? || requests.workflow_state = ?', 'new', 'inprocess').
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
@@ -45,7 +45,7 @@ class ReserveSearch
   def available_reserves_for_semester(semester)
     @relation.
         includes(:item).
-        where('requests.semester_id  = ?', semester.id).
+        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
         where('requests.workflow_state = ? ', 'available').
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
@@ -55,7 +55,7 @@ class ReserveSearch
   def removed_reserves_for_semester(semester)
     @relation.
         includes(:item).
-        where('requests.semester_id  = ?', semester.id).
+        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
         where('requests.workflow_state = ? ', 'removed').
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
@@ -65,7 +65,7 @@ class ReserveSearch
   def all_reserves_for_semester(semester)
     @relation.
         includes(:item).
-        where('requests.semester_id  = ?', semester.id).
+        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
   end
@@ -73,12 +73,15 @@ class ReserveSearch
 
   private
 
-  def load_in_reserve(request, course)
-    course = course ? course : request.course
-
-    Reserve.factory(request, course)
-  end
+    def determine_search_semesters(semester)
+      (semester ? [semester] : Semester.future_semesters)
+    end
 
 
+    def load_in_reserve(request, course)
+      course = course ? course : request.course
+
+      Reserve.factory(request, course)
+    end
 
 end

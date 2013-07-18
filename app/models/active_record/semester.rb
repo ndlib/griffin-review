@@ -6,6 +6,7 @@ class Semester < ActiveRecord::Base
   scope :cronologial, ->{ order("date_begin desc") }
   scope :current, ->{where("date_begin <= ? AND date_end >= ?", Time.zone.now, Time.zone.now)}
   scope :previous, lambda { | date |  where('date_end <= ? ', date) }
+  scope :future, ->{ where("date_end >= ? ", Time.now) }
   # default_scope where('date_begin >= ?', Date.today << 6)
 
   def name
@@ -20,6 +21,11 @@ class Semester < ActiveRecord::Base
 
   def self.semesters_before_semester(semester)
     previous(semester.date_begin)
+  end
+
+
+  def self.future_semesters
+    future
   end
 
 
