@@ -22,6 +22,8 @@ class AdminUpdateResource
 
     if params[:admin_update_resource]
       self.attributes = params[:admin_update_resource]
+    else
+      self.url = @reserve.url
     end
 
     validate_input!
