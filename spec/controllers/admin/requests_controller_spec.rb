@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::RequestsController do
+describe RequestsController do
 
   before(:each) do
     u = FactoryGirl.create(:admin_user)

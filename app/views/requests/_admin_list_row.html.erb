@@ -1,7 +1,7 @@
 <% object = AdminReserveRow.new(object) %>
 <tr>
   <td>
-    <%= render partial: '/admin/requests/admin_row_button', locals: { button: object.button } %>
+    <%= render partial: '/requests/admin_row_button', locals: { button: object.button } %>
   </td>
   <td><%= object.request_date %></td>
   <td><%= object.needed_by %></td>

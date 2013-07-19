@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Admin::RequestsResourcesController do
+describe RequestsResourcesController do
 
   before(:each) do
     stub_courses!

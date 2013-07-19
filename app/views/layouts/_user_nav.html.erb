@@ -27,13 +27,15 @@
       <% end %>
       <% if permission.current_user_is_administrator? %>
         <li><%= link_to "Requests", requests_path() %></li>
-        <li><%= link_to "Courses", admin_courses_path() %></li>
+        <li>
+          <% #link_to "Courses", admin_courses_path() %>
+        </li>
         <li><%= link_to "Semesters", semesters_path() %></li>
         <li><%= link_to "Masquerade", new_masquerades_path %></li>
       <% end %>
     </ul>
-    <div class="pull-right">
 
+    <div class="pull-right">
       <% if masquerade.masquerading? %>
         <p class="navbar-text"><%= link_to raw("Stop Masquerading as #{current_user.name}"), cancel_masquerades_path, class: "masquerade_text" %></p>
       <% elsif current_user.present? %>

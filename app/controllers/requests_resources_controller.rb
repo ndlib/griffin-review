@@ -1,4 +1,4 @@
-class Admin::RequestsResourcesController  < ApplicationController
+class RequestsResourcesController  < ApplicationController
 
 
   def edit

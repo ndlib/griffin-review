@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Admin::CopyOldReservesController do
+describe CopyOldReservesController do
 
   before(:each) do
     stub_courses!

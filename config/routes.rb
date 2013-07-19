@@ -10,9 +10,7 @@ Griffin::Application.routes.draw do
   end
 
   resources :courses, only: [ 'index', 'create' ] do
-    # resources :get_reserves, as: 'get_reserve', only: [ 'show' ]
-    #resources :reserves, controller: 'instructor_new_reserves', only: [ 'new', 'create' ]
-    # resources :copy_reserves, :path => 'copy', only: [ 'create' ]
+
     resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
 
     get 'copy', to: 'copy_reserves#copy_step1', as: :copy_step1
@@ -20,8 +18,8 @@ Griffin::Application.routes.draw do
     get 'copy/:from_course_id/copy', to: 'copy_reserves#copy', :via => :post, as: :copy
 
 
-    get 'copy_old_reserves', to: 'admin/copy_old_reserves#new'
-    post 'copy_old_reserves', to: 'admin/copy_old_reserves#create'
+    get 'copy_old_reserves', to: 'copy_old_reserves#new'
+    post 'copy_old_reserves', to: 'copy_old_reserves#create'
 
     resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
   end
@@ -31,12 +29,12 @@ Griffin::Application.routes.draw do
 
 
   scope '/admin' do
-    resources :requests, controller: 'admin/requests'
-    resources :meta_datas, controller: 'admin/requests_meta_data'
-    resources :fair_use, controller: 'admin/requests_fair_use'
-    resources :resources, controller: 'admin/requests_resources'
-    resources :admin_courses, controller: 'admin/courses'
-    resources :semesters, controller: 'admin/semesters'
+    resources :requests
+    resources :meta_datas, controller: 'requests_meta_data'
+    resources :fair_use, controller: 'requests_fair_use'
+    resources :resources, controller: 'requests_resources'
+#    resources :admin_courses
+    resources :semesters
   end
 
 

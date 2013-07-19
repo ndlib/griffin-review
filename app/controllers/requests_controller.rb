@@ -1,4 +1,4 @@
-class Admin::RequestsController  < ApplicationController
+class RequestsController  < ApplicationController
 
   def index
     check_admin_permission!

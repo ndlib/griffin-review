@@ -1,4 +1,4 @@
-class Admin::RequestsFairUseController  < ApplicationController
+class RequestsFairUseController  < ApplicationController
 
   def edit
     check_admin_permission!

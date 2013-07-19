@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::RequestsMetaDataController do
+describe RequestsMetaDataController do
 
   before(:each) do
     stub_courses!

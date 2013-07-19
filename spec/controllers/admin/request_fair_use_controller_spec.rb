@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe Admin::RequestsFairUseController do
+describe RequestsFairUseController do
 
   before(:each) do
     stub_courses!

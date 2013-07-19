@@ -1,4 +1,4 @@
-class Admin::RequestsMetaDataController  < ApplicationController
+class RequestsMetaDataController  < ApplicationController
 
   def edit
     check_admin_permission!

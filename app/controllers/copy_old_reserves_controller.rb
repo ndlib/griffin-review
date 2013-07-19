@@ -1,4 +1,4 @@
-class Admin::CopyOldReservesController  < ApplicationController
+class CopyOldReservesController  < ApplicationController
 
 
   def new
