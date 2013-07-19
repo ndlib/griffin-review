@@ -1,13 +1,8 @@
 class AdminController < ApplicationController
 
   before_filter :authenticate_user!
-  load_and_authorize_resource
-  skip_authorize_resource :only => :not_authorized
-
-  rescue_from CanCan::AccessDenied do |exception|
-    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
-    redirect_to admin_not_authorized_url, :alert => exception.message
-  end
+#  load_and_authorize_resource
+#  skip_authorize_resource :only => :not_authorized
 
   unless Rails.configuration.consider_all_requests_local
     # rescue_from Exception, :with => :render_500

@@ -95,7 +95,7 @@ class CopyOldReserve
 
 
     def get_old_file(filename)
-      if Rails.env == 'development'
+      if Rails.env == 'development' || Rails.env == 'test'
         File.open(File.join(Rails.root, 'uploads', 'test.pdf'))
       else
 

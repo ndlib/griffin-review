@@ -29,8 +29,6 @@ gem 'acts-as-taggable-on'
 # workflow functionality
 gem 'workflow', '0.8.1'
 
-# authorization
-gem 'cancan'
 
 gem 'json'
 
