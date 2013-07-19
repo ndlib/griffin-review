@@ -10,3 +10,4 @@ doc/app/
 config/database.yml
 uploads/pdfs
 uploads/movs
+uploads/old_files

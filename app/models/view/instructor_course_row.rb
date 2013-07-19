@@ -3,7 +3,6 @@ class InstructorCourseRow
 
   delegate :id, to: :reserve
 
-
   def initialize(reserve, context)
     @reserve = reserve
     @context = context
