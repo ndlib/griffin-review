@@ -1,6 +1,12 @@
 class BookReserveImporter
   attr_accessor :errors, :successes
 
+
+  def self.import!
+    BookReserveImporter.new.import!
+  end
+
+
   def import!
     print_reserves.each do | api_data |
       ibr = BookReserveImport.new(api_data)

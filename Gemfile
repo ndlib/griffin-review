@@ -63,6 +63,8 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.2.4'
 
+gem "whenever", :require => false
+
 # development only
 group :development do
     gem 'looksee'
