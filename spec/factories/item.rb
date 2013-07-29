@@ -46,4 +46,11 @@ FactoryGirl.define do
   end
 
 
+  factory :item_with_bib_record, class: Item do
+    title "book"
+    type "BookReserve"
+    nd_meta_data_id "generic"
+  end
+
+
 end

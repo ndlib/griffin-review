@@ -66,6 +66,23 @@ describe ReserveSearch do
   end
 
 
+  describe :reserve_by_bib_for_course do
+
+    before(:each) do
+      stub_discovery!
+      @inprocess_semester = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), @course
+    end
+
+    it "returns the reserve for the course that has a bib id" do
+      reserve_search = ReserveSearch.new
+
+      reserve = reserve_search.reserve_by_bib_for_course(@inprocess_semester.course, @inprocess_semester.nd_meta_data_id)
+      expect(reserve.id).to be(@inprocess_semester.id)
+    end
+
+  end
+
+
   describe :admin_reserve_requests do
     before(:each) do
       @new_semester1 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => semester.id), @course

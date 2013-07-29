@@ -18,10 +18,6 @@ class CourseSearch
 
 
   def get(course_id)
-    # netid,
-    #semester_id = Course.get_semester_from(course_id)
-    # load_api_courses(netid, semester_id)
-
     res = course_api.course_id(course_id)
     res = search_for_section_group(res, course_id)
 

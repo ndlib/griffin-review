@@ -16,6 +16,7 @@ class ReserveSearch
   def instructor_reserves_for_course(course)
     @relation.
         includes(:item).
+        references(:item).
         where('crosslist_id = ? ', course.crosslist_id).
         order('items.title').
         collect { | r | load_in_reserve(r, course)}
@@ -25,6 +26,7 @@ class ReserveSearch
   def student_reserves_for_course(course)
     @relation.
         includes(:item).
+        references(:item).
         where('crosslist_id = ? ', course.crosslist_id).
         where('requests.workflow_state = ?', 'available').
         order('items.title').
@@ -68,6 +70,17 @@ class ReserveSearch
         where('requests.semester_id IN(?)', determine_search_semesters(semester)).
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
+  end
+
+
+  def reserve_by_bib_for_course(course, bib_id)
+    @relation.
+      includes(:item).
+      references(:item).
+      where('requests.course_id = ? ', course.id).
+      where('items.nd_meta_data_id = ?', bib_id).
+      collect { | r | load_in_reserve(r, false) }.
+      first
   end
 
 

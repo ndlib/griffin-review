@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :first_name, :last_name, :display_name
   validate :must_exist_in_ldap
 
-  scope :non_administrator, :include => :roles, :conditions => ['roles.name != ?', 'Administrator']
 
   def name
     "#{first_name} #{last_name}"
