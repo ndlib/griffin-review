@@ -39,7 +39,7 @@ describe DiscoveryApi do
 
 
     it "has details" do
-      @discovery_api.details.should == nil
+      @discovery_api.details.should == ""
     end
 
 
@@ -58,5 +58,31 @@ describe DiscoveryApi do
       @discovery_api.available_library.should == "Notre Dame, Hesburgh Library Special Coll.&nbsp;Rare Books Medium (PR 6045 .H2 O523 1958 )"
     end
 
+  end
+
+
+  describe :truncation do
+    before(:each) do
+      VCR.use_cassette 'discovery/single_id_response' do
+        @discovery_api = DiscoveryApi.search_by_ids(test_search).first
+      end
+    end
+
+    it "truncates the publisher_provider" do
+      String.any_instance.should_receive(:truncate)
+      @discovery_api.publisher_provider
+    end
+
+
+    it "truncates the creator_contributor" do
+      String.any_instance.should_receive(:truncate)
+      @discovery_api.creator_contributor
+    end
+
+
+    it "truncates the details" do
+      String.any_instance.should_receive(:truncate)
+      @discovery_api.details
+    end
   end
 end

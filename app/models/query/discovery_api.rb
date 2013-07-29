@@ -31,17 +31,17 @@ class DiscoveryApi
 
 
   def creator_contributor
-    @json_result['display']['creator_contributor']
+    @json_result['display']['creator_contributor'].to_s.truncate(250, :separator => ' ')
   end
 
 
   def details
-    @json_result['display']['details']
+    @json_result['display']['details'].to_s.truncate(250, :separator => ' ')
   end
 
 
   def publisher_provider
-    @json_result['display']['publisher_provider']
+    @json_result['display']['publisher_provider'].to_s.truncate(250, :separator => ' ')
   end
 
 
