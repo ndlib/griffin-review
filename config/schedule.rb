@@ -18,16 +18,16 @@
 # end
 
 if environment == 'pre_production'
-  set :bundler, "/shared/ruby_pprd/ruby/1.9.3/bin/bundle"
+  set :bundler, "/shared/reserves_pprd/ruby/1.9.3/bin/bundle"
 elsif environment == 'production'
-  set :bundler, "/shared/ruby_prod/ruby/1.9.3/bin/bundle"
+  set :bundler, "/shared/reserves_prod/ruby/1.9.3/bin/bundle"
 else
   set :bundler, "bundle"
 end
 
 
 if environment == 'pre_production' || environment == 'production'
-  set :rails_exec, 'vendor/bundle/bin/rails'
+  set :rails_exec, 'vendor/bundle/ruby/1.9.1/bin/rails'
 else
   set :rails_exec, 'rails'
 end
