@@ -134,3 +134,6 @@ end
 
 after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'
 after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'
+
+require 'deploy/whenever'
+
