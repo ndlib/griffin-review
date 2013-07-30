@@ -137,5 +137,5 @@ after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'
 
 
 # Define any addional tasks or callbacks here
-require 'deploy/whenever'
+require 'lib/deploy/whenever'
 
