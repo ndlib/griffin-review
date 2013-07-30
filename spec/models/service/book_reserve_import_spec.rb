@@ -39,6 +39,14 @@ describe BookReserveImport do
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
       @ibr.import!
     end
+
+    it "calls sets the state of the item to inprocess " do
+      # this is necessary because the check to complete won't complete an item that is new.  because i want all copied items even if they do not require fair use to
+      # be looked at before they are approved.
+
+      Reserve.any_instance.should_receive(:start)
+      @ibr.import!
+    end
   end
 
 

@@ -7,7 +7,7 @@ class ReserveCheckIsComplete
 
 
   def check!
-    if (@reserve.inprocess? || @reserve.new?) && complete?
+    if @reserve.inprocess? && complete?
       @reserve.complete
       @reserve.save!
     end
