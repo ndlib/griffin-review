@@ -7,6 +7,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Builds the whenever cron file on the server"
     task :update_crontab, :roles => :app do
       puts "update crontab"
+      _cset :binstubs_path,  File.join(shared_path, 'vendor/bundle/bin')
       _cset(:whenever_command)      { "whenever" }
       _cset(:whenever_identifier)   { fetch :application }
       _cset(:whenever_environment)  { fetch :rails_env, "production" }
