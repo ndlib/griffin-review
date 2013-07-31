@@ -14,6 +14,7 @@ class AdminUpdateMetaData
   attribute :journal_title, String
   attribute :nd_meta_data_id, String
   attribute :on_order, Boolean
+  attribute :overwrite_nd_meta_data, Boolean
 
   validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
   validates :title, :creator, :journal_title, presence: true, unless: :requires_nd_meta_data_id?
@@ -60,6 +61,10 @@ class AdminUpdateMetaData
   end
 
 
+  def overwrite_nd_meta_data?
+    @reserve.overwrite_nd_meta_data?
+  end
+
   private
 
     def requires_nd_meta_data_id?
@@ -71,6 +76,8 @@ class AdminUpdateMetaData
       @reserve.attributes = self.attributes
 
       @reserve.save!
+
+      ReserveSynchronizeMetaData.new(@reserve, true).check_synchronized!
     end
 
 

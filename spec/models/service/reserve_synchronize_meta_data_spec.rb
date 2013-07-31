@@ -71,6 +71,7 @@ describe ReserveSynchronizeMetaData do
 
       end
 
+
     end
 
     context "reserve cannot be synchronized" do
@@ -113,5 +114,29 @@ describe ReserveSynchronizeMetaData do
       end
 
     end
+
+
+    context "force" do
+      before(:each) do
+        @reserve = Reserve.new(nd_meta_data_id: "ndid", overwrite_nd_meta_data: false, metadata_synchronization_date: 11.days.ago)
+      end
+
+      it "can still be forced to synchonize" do
+        @reserve.metadata_synchronization_date = 9.days.ago
+        ReserveSynchronizeMetaData.any_instance.should_receive(:synchonize!)
+
+        ReserveSynchronizeMetaData.new(@reserve, true).check_synchronized!
+      end
+
+
+      it "won't force if we are overwriting meta data " do
+        @reserve.overwrite_nd_meta_data = true
+        ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
+        ReserveSynchronizeMetaData.new(@reserve, true).check_synchronized!
+      end
+    end
+
   end
+
+
 end

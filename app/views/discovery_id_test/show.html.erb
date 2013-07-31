@@ -1,0 +1,28 @@
+<p> Clicking Save will link the meta data of this record to </p>
+<dl class="dl-horizontal">
+  <dt>Title</dt>
+  <dd class="test_title"><%= h @record[:title] %></dd>
+
+  <dt>Type</dt>
+  <dd class="test_type"><%= h @record[:type] %></dd>
+
+  <dt>Creator Contributor</dt>
+  <dd class="test_creator_contributor"><%= h @record[:creator_contributor] %></dd>
+
+  <dt>Publisher Provider</dt>
+  <dd class="test_publisher_provider"><%= h @record[:publisher_provider] %></dd>
+
+  <dt>Details</dt>
+  <dd class="test_details"><%= h @record[:details] %></dd>
+
+</dl>
+
+<% if @record[:fulltext_available?] %>
+  <h4>Full Text </h4>
+
+  <p>
+    If this record is an article connecting the meta data will set the url to be the full text url associated with this record.
+    <br>
+    <a href="<%= @record[:fulltext_url] %>" target="_blank">Test</a>
+  </p>
+<% end %>

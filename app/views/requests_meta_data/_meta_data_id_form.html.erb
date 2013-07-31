@@ -1,16 +1,22 @@
-<div id="discovery_meta_data">
-  <%= f.input :nd_meta_data_id, label: "ND Record ID" %>
-
-  <%= f.input :on_order, as: :boolean %>
+<div id="discovery_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? 'display:none;' : '') %>">
+  <%= f.input :nd_meta_data_id, label: false, class: 'input-append' do %>
+    <%= f.input :nd_meta_data_id, label: "Record ID" %>
+    <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="btn" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">Test Id</a>
+  <% end %>
 
   <%= link_to "Not in our Records", "#", class: "show_full_meta_data" %>
 </div>
 
-<div id="full_meta_data">
+<%= f.input :overwrite_nd_meta_data, as: :hidden %>
+
+<div id="full_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? '' : 'display:none;') %>">
   <%= f.input :title %>
 
   <%= f.input :creator %>
 
-  <%= f.input :publisher %>
+  <%= f.input :publisher_provider %>
 
+  <%= f.input :details %>
+
+  <%= link_to "Link to Meta Data", "#", class: "use_meta_data_id" %>
 </div>

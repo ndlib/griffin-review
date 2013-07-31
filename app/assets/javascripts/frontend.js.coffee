@@ -113,12 +113,22 @@ jQuery ($) ->
 
   $('.datepicker').datepicker()
 
-
-  $('#full_meta_data').hide()
-
   $('.show_full_meta_data').click ->
+    $('#admin_update_meta_data_overwrite_nd_meta_data').val("1")
     $('#full_meta_data').show()
     $('#discovery_meta_data').hide()
+
+  $('.use_meta_data_id').click ->
+    $('#admin_update_meta_data_overwrite_nd_meta_data').val("")
+    $('#full_meta_data').hide()
+    $('#discovery_meta_data').show()
+
+  $('#test_meta_data').click ->
+    $(this).removeData "modal"
+    href = $(this).attr('base_url') + $('#admin_update_meta_data_nd_meta_data_id').val()
+    $(this).attr('href', href)
+
+
 
 
   setupAdminDatatable = () ->
@@ -154,15 +164,17 @@ jQuery ($) ->
 
 
   setupMetaDataForm = () ->
-    $('#admin_reserve_title').keyup ->
+    $('#admin_update_meta_data_title').keyup ->
       $('.title').html($(this).val())
 
-    $('#admin_reserve_creator').keyup ->
+    $('#admin_update_meta_data_creator').keyup ->
       $('.author').html($(this).val())
 
-
-    $('#admin_reserve_publisher').keyup ->
+    $('#admin_update_meta_data_publisher_provider').keyup ->
       $('.publisher').html($(this).val())
+
+    $('#admin_update_meta_data_details').keyup ->
+      $('.details').html($(this).val())
 
 
 

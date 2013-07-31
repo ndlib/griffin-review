@@ -3,24 +3,41 @@
 <% end %>
 
 
-<div class="row">
- <div class="span6">
-    <%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
+<div class="four columns">
+  <%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
 
-      <% if !@show_files %>
-        <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
-      <% end %>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
-
-        <%= link_to 'Cancel', requests_path(:filter => @request.workflow_state), class: 'btn' %>
-      </div>
+    <% if !@show_files %>
+      <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
+      <hr>
     <% end %>
-  </div>
 
-  <div class="span6 find-resources">
-    <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
+    <%= f.input :on_order, label: false do %>
+      <%= f.input_field :on_order, as: :boolean, inline_label: "On Order", label: false %>
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+      <%= link_to 'Cancel', requests_path(:filter => @request.workflow_state), class: 'btn' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="eight columns find-resources">
+  <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
+</div>
+
+
+<!-- Modal -->
+<div id="meta_data_test_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Test Meta Data</h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
 </div>
+
 

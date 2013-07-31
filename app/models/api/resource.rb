@@ -10,7 +10,12 @@ module API
 
     def self.search_catalog(q)
       result = get_json("search/id", {:q => q})
-      result["records"].first
+
+      if result["records"].nil?
+        ""
+      else
+        result["records"].first
+      end
     end
 
   end

@@ -20,6 +20,19 @@ class DiscoveryApi
   end
 
 
+  def data
+    {
+      title: title,
+      type: type,
+      creator_contributor: creator_contributor,
+      details: details,
+      publisher_provider: publisher_provider,
+      fulltext_available?: fulltext_available?,
+      fulltext_url: fulltext_url.to_s,
+    }
+  end
+
+
   def initialize(json_result)
     @json_result = json_result
   end
@@ -64,6 +77,9 @@ class DiscoveryApi
     @json_result['links']['fulltext_url']
   end
 
+  def type
+    @json_result['display']['type']
+  end
 
   private
 
