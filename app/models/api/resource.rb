@@ -9,7 +9,7 @@ module API
 
 
     def self.search_catalog(q)
-      result = get_json("search/catalog", {:q => q})
+      result = get_json("search/id", {:q => q})
       result["records"].first
     end
 
