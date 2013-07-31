@@ -17,7 +17,7 @@ class ReserveSynchronizeMetaData
 
     def needs_to_be_synchronized?
       !@reserve.overwrite_nd_meta_data? &&
-        @reserve.nd_meta_data_id.present? &&
+        (!@reserve.nd_meta_data_id.nil? && @reserve.nd_meta_data_id.present?) &&
         (@reserve.metadata_synchronization_date.nil? || @reserve.metadata_synchronization_date <= 10.days.ago || @force)
     end
 
