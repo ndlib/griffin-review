@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130717174627) do
+ActiveRecord::Schema.define(version: 20130801133814) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20130717174627) do
     t.string   "pdf_file_size"
     t.string   "pdf_content_type"
     t.string   "pdf_updated_at"
-    t.string   "url"
+    t.text     "url"
     t.string   "type"
     t.string   "publisher"
     t.boolean  "on_order"
