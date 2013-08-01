@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DiscoveryApi do
-  let(:test_search) { "the once and future king" }
+  let(:test_search) { "ndu_aleph000188916" }
 
   describe :search_by_ids do
 
@@ -45,7 +45,7 @@ describe DiscoveryApi do
 
 
     it "has publisher_provider" do
-      @discovery_api.publisher_provider.should == "London, Collins 1958"
+      @discovery_api.publisher_provider.should == "New York, Putnam 1958"
     end
 
 
@@ -55,7 +55,7 @@ describe DiscoveryApi do
 
 
     it "has availabile_library" do
-      @discovery_api.available_library.should == "Notre Dame, Hesburgh Library Special Coll.&nbsp;Rare Books Medium (PR 6045 .H2 O523 1958 )"
+      @discovery_api.available_library.should == "Notre Dame, Hesburgh Library General Collection (PR 6045 .H676 O5 )"
     end
 
   end

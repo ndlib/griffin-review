@@ -19,7 +19,7 @@ describe CopyReserve do
 
 
     it "sets the workflow state to new " do
-      @new_reserve.workflow_state.should == "new"
+      @new_reserve.workflow_state.should == "inprocess"
     end
 
 
@@ -60,6 +60,10 @@ describe CopyReserve do
     it "sets the metadata id " do
       @new_reserve.nd_meta_data_id.should == "sid"
     end
+
+    it "should auto complete this reserve" do
+      @new_reserve.workflow_state.should == "available"
+    end
   end
 
 
@@ -78,6 +82,11 @@ describe CopyReserve do
     it "sets the type correctly " do
       @new_reserve.type.should == "BookChapterReserve"
     end
+
+    it "should not auto complete this reserve" do
+      @new_reserve.workflow_state.should == "inprocess"
+    end
+
   end
 
 
@@ -105,12 +114,28 @@ describe CopyReserve do
     end
 
 
+    it "should not auto complete a journal file " do
+      new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      new_reserve.workflow_state.should == "inprocess"
+    end
+
+
+
     it "copies a url when the article has a url" do
       @old_reserve.stub(:location).and_return('')
       @old_reserve.stub(:url).and_return('http://www.google.com')
 
       new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       new_reserve.url.should == 'http://www.google.com'
+    end
+
+
+    it "should auto complete a journal url " do
+      @old_reserve.stub(:location).and_return('')
+      @old_reserve.stub(:url).and_return('http://www.google.com')
+
+      new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      new_reserve.workflow_state.should == "available"
     end
   end
 
@@ -131,6 +156,11 @@ describe CopyReserve do
     it "sets the metadata id " do
       @new_reserve.nd_meta_data_id.should == "sid"
     end
+
+
+    it "should not auto complete a video reserve" do
+      @new_reserve.workflow_state.should == "inprocess"
+    end
   end
 
 
@@ -150,6 +180,11 @@ describe CopyReserve do
 
     it "sets the metadata id " do
       @new_reserve.nd_meta_data_id.should == "sid"
+    end
+
+
+    it "should not auto complete a video reserve" do
+      @new_reserve.workflow_state.should == "inprocess"
     end
   end
 

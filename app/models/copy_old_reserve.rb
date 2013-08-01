@@ -31,7 +31,7 @@ class CopyOldReserve
 
 
       @new_request.overwrite_nd_meta_data = true
-      @new_request.workflow_state = 'new'
+      @new_request.workflow_state = 'inprocess'
       @new_request.requestor_netid = @user.username
     end
 
