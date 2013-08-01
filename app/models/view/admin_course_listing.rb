@@ -5,17 +5,12 @@ class AdminCourseListing
   def initialize(current_user, params)
     @current_user = current_user
     @semester = determine_semester(params)
-    @netid = params[:netid]
-  end
-
-
-  def search_semesters
-
+    @search = params[:q]
   end
 
 
   def search
-    @search_results ||= course_search.instructed_courses(@netid, @semester.code)
+    @search_results ||= course_search.search(@semester.code, @search)
   end
 
 

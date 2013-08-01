@@ -30,6 +30,19 @@ module ApiMocks
       end
     end
 
+
+    API::CourseSearchApi.stub(:search) do |  term_code, search |
+      begin
+        path = File.join(Rails.root, "spec/fixtures/json_save/search_course", "#{search}.json")
+        file = File.open(path, "rb")
+        contents = file.read
+
+        ActiveSupport::JSON.decode(contents)
+      rescue
+        []
+      end
+    end
+
   end
 
 

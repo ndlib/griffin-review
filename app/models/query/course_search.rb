@@ -12,8 +12,15 @@ class CourseSearch
   end
 
 
-  def search_courses(search)
+  def search(semester_id, search)
+    ret = []
+    course_api.search(semester_id, search).each do | c |
+      c['section_groups'].each do | sg |
+        ret << new_course(sg)
+      end
+    end
 
+    ret
   end
 
 

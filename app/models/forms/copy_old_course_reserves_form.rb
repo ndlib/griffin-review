@@ -2,7 +2,6 @@ class CopyOldCourseReservesForm
   include ModelErrorTrapping
 
 
-
   def initialize(current_user, params)
     @to_course_id = params[:course_id]
     @from_course_id = params[:from_course_id]
@@ -12,14 +11,13 @@ class CopyOldCourseReservesForm
   end
 
 
-
   def to_course
     @to_course ||= get_course(@to_course_id)
   end
 
 
   def to_course_title
-    "#{to_course.title} - #{to_course.semester.full_name}"
+    "#{to_course.full_title}"
   end
 
 

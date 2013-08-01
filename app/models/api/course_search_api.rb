@@ -16,12 +16,8 @@ module API
     end
 
 
-    def self.search(netid, semester)
-      raise "not implemented"
-      path = File.join("by_netid", netid, semester, "courses")
-
-      result = get_json(path)
-      result["people"].first
+    def self.search(term_code, q)
+      get_json("search", { q: q, term: term_code })
     end
 
   end

@@ -94,6 +94,7 @@ describe CourseSearch do
     end
   end
 
+
   describe :get do
     it "returns the course specified" do
       course_search.get('current_multisection_crosslisted').id.should == "current_multisection_crosslisted"
@@ -110,6 +111,22 @@ describe CourseSearch do
     end
   end
 
+
+  describe :search do
+
+    before(:each) do
+      @search_result = course_search.search('201210', 'augustine')
+    end
+
+    it "returns an array of courses searched for " do
+      expect(@search_result.size).to eq(1)
+    end
+
+    it "returns course objects" do
+      expect(@search_result.first.class).to eq(Course)
+    end
+
+  end
 
 
 
