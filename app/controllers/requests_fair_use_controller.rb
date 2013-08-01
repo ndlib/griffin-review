@@ -11,6 +11,7 @@ class RequestsFairUseController  < ApplicationController
     @request = AdminFairUseForm.new(current_user, params)
 
     if @request.save_fair_use
+      flash[:success] = "Fair Use Saved"
       redirect_to requests_path(:filter => @request.workflow_state)
     else
       render :edit

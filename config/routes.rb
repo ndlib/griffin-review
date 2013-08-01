@@ -33,7 +33,7 @@ Griffin::Application.routes.draw do
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'
 #    resources :admin_courses
-    resources :semesters
+    resources :semesters, controller: 'semesters'
     resources :discovery_id_test, contorller: 'discovery_id_test'
   end
 

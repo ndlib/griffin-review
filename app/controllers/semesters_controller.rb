@@ -14,7 +14,7 @@ class SemestersController < ApplicationController
 
   def create
     check_admin_permission!
-    @semester = Semester.new(params[:semester])
+    @semester = Semester.new(semester_params)
 
     if @semester.save
       flash[:success] = "#{@semester.name} created successfully!"
@@ -37,7 +37,7 @@ class SemestersController < ApplicationController
     check_admin_permission!
     @semester = Semester.find(params[:id])
 
-    if @semester.update_attributes(params[:semester])
+    if @semester.update_attributes(semester_params)
 
       flash[:success] = "#{@semester.name} updated successfully!"
 
@@ -50,5 +50,16 @@ class SemestersController < ApplicationController
 
 
   def destroy
+    @semester = Semester.find(params[:id])
+    @semester.destroy()
+
+    redirect_to semesters_path
   end
+
+
+  private
+
+    def semester_params
+      params.require(:semester).permit(:full_name, :code, :movie_directory, :date_begin, :date_end)
+    end
 end
