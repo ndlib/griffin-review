@@ -69,4 +69,9 @@ Griffin::Application.configure do
   config.ldap_lookup_flag = true
   config.reserves_upload_path = '/shared/data/reserves_files'
   config.reserves_cas_base = 'https://login.nd.edu/cas'
+
+  config.api_url = "https://apipprd.library.nd.edu/"
+  config.api_token = "SCSGYmwqLqSyBTmxCQgM"
+
+  config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
 end

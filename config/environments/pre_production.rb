@@ -5,7 +5,7 @@ Griffin::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -72,5 +72,7 @@ Griffin::Application.configure do
 
   config.api_url = "https://apipprd.library.nd.edu/"
   config.api_token = "SCSGYmwqLqSyBTmxCQgM"
+
+  config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
 
 end
