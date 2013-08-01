@@ -125,10 +125,8 @@ jQuery ($) ->
 
   $('#test_meta_data').click ->
     $(this).removeData "modal"
-    href = $(this).attr('base_url') + $('#admin_update_meta_data_nd_meta_data_id').val()
+    href = $(this).attr('base_url') + "?id=" + encodeURIComponent($('#admin_update_meta_data_nd_meta_data_id').val())
     $(this).attr('href', href)
-
-
 
 
   setupAdminDatatable = () ->
