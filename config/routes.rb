@@ -2,7 +2,7 @@ Griffin::Application.routes.draw do
 
   devise_for :users
 
-  root :to => 'courses#index'
+  root :to => 'homepage#index'
 
   resource :masquerades, :only => [:new, :create] do
     get :cancel
