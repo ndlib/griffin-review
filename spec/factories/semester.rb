@@ -8,7 +8,7 @@ end
 
 Factory.define :previous_semester, :class => "Semester" do | s |
   s.sequence(:code) { |n| "previous" }
-  s.sequence(:full_name) { |n| "Semester #{n}" }
+  s.sequence(:full_name) { |n| "Previous Semester #{n}" }
   s.date_begin Date.today - 4.months
   s.date_end Date.today - 3.weeks
 end
@@ -16,7 +16,7 @@ end
 
 Factory.define :next_semester, :class => "Semester" do | s |
   s.sequence(:code) { |n| "next" }
-  s.sequence(:full_name) { |n| "Semester #{n}" }
+  s.sequence(:full_name) { |n| "Next Semester #{n}" }
   s.date_begin Date.today + 4.months
   s.date_end Date.today + 8.months
 end

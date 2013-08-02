@@ -1,6 +1,6 @@
 
-class AdminCourseListing
-  attr_accessor :semester, :filter
+class AdminCourseList
+  attr_accessor :semester, :search
 
   def initialize(current_user, params)
     @current_user = current_user
@@ -10,7 +10,21 @@ class AdminCourseListing
 
 
   def search
-    @search_results ||= course_search.search(@semester.code, @search)
+    if @search
+      @search_results ||= course_search.search(@semester.code, @search)
+    else
+      []
+    end
+  end
+
+
+  def semesters
+    Semester.cronologial
+  end
+
+
+  def semester_option_array
+    semesters.collect { | s | [s.full_name, s.id] }
   end
 
 
@@ -20,7 +34,7 @@ class AdminCourseListing
 
 
   def has_searched?
-    !@netid.nil?
+    !@search.nil?
   end
 
 

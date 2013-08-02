@@ -2,13 +2,10 @@ class CopyReservesController < ApplicationController
 
 
   def copy
-    puts params.inspect
     @copy_course_listing = CopyCourseReservesForm.new(current_user, params)
 
-    puts @copy_course_listing.from_course.inspect
-    puts @copy_course_listing.to_course.inspect
-    #check_instructor_permissions!(@copy_course_listing.from_course)
-    #check_instructor_permissions!(@copy_course_listing.to_course)
+    check_instructor_permissions!(@copy_course_listing.from_course)
+    check_instructor_permissions!(@copy_course_listing.to_course)
 
     if !@copy_course_listing.copy_items
 

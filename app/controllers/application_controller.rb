@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         render_404
       end
 
-      if !permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)
+      if (!permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)) && !permission.current_user_is_administrator?
         render_404
       end
     end
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
         render_404
       end
 
-      if !permission.current_user_instructs_course?(course)
+      if !permission.current_user_instructs_course?(course) && !permission.current_user_is_administrator?
         render_404
       end
     end

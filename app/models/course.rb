@@ -85,6 +85,11 @@ class Course
   end
 
 
+  def instructor_netid
+    primary_instructor['netid']
+  end
+
+
   def primary_instructor
     @attributes['primary_instructor']
   end

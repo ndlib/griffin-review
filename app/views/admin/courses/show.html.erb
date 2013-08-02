@@ -1,6 +1,0 @@
-<% content_for(:content_title) do %>
-  <h1><%= h @course.title %> <small><%= h @course.instructor_name %></small></h1>
-<% end %>
-
-<%= render partial: '/courses/instructed_course_show', locals: { course: @course } %>
-

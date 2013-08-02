@@ -1,7 +1,13 @@
 class CoursesController < ApplicationController
 
   def index
-    @user_course_listing = UserCourseListing.new(current_user)
+    if permission.current_user_is_administrator?
+      @admin_course_listing = AdminCourseList.new(current_user, params)
+      render 'course_search/index'
+    else
+      @user_course_listing = UserCourseListing.new(current_user)
+      render :index
+    end
   end
 
 

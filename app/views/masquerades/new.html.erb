@@ -11,7 +11,7 @@
    <%= form_tag masquerades_path, class: "form-inline" do %>
 
     <label for="netid">Netid: </label>
-    <input id="netid" type="text" name="username" class="span3">
+    <input id="netid" type="text" name="username" class="span3" value="<%= params[:username] %>">
     <button type="submit" class="btn">Go</button>
     <span class="help-block">Entering a netid and clicking go will allow you to experience the site as that user.</span>
   <% end %>
