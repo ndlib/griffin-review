@@ -39,11 +39,6 @@ class Semester < ActiveRecord::Base
   end
 
 
-  def movie_directory
-    'summer_2013'
-  end
-
-
   def next
     Semester.where('date_begin >= ?', self.date_end).first
   end

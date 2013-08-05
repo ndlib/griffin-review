@@ -21,7 +21,7 @@ class MovFileGenerator
 
 
   def save_file
-    f = File.open(file_path, 'w+b')
+    f = File.open(file_path, 'w')
 
     f.write(generate_file_text)
     f.close
@@ -39,7 +39,7 @@ class MovFileGenerator
   private
 
     def sample_text
-      f = File.open(sample_file, 'r+b')
+      f = File.open(sample_file, 'r')
 
       txt = f.read
       f.close
