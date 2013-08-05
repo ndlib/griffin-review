@@ -14,7 +14,7 @@ describe Course do
   end
 
 
-  it "has an id / crn " do
+  it "has an id " do
     @course.respond_to?(:id).should be_true
     @course.id.should == "current_multisection_crosslisted"
   end
@@ -44,6 +44,11 @@ describe Course do
   it "has a section_numbers " do
     @course.respond_to?(:section_numbers).should be_true
     @course.section_numbers.should == [10, 11, 12, 13]
+  end
+
+  it "has supersection ids" do
+    @course.respond_to?(:unique_supersection_ids).should be_true
+    @course.unique_supersection_ids.should == ["current_AB_CD","current_EF_GH"]
   end
 
 

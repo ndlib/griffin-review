@@ -1,0 +1,1655 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws?wsdl
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 21:34:05 GMT
+      Set-Cookie:
+      - JSESSIONID=e75251e3-d902-4ec3-ac57-dba4c861cbe3.nddev1; Path=/; Secure; HttpOnly
+      X-Ua-Compatible:
+      - IE=EmulateIE9
+      Content-Type:
+      - text/xml;charset=utf-8
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions targetNamespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:impl=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        xmlns:intf=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n<!--WSDL created by Apache
+        Axis version: 1.4\nBuilt on Apr 22, 2006 (06:55:48 PDT)-->\n\n   <wsdl:message
+        name=\"findSitesByPropertyResponse\">\n\n      <wsdl:part name=\"findSitesByPropertyReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getSessionTotalCountResponse\">\n\n
+        \     <wsdl:part name=\"getSessionTotalCountReturn\" type=\"xsd:int\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"disallowFunctionForRoleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"functionname\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getPagesAndToolsForSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"changeUserEmailRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"email\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"copySiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteidtocopy\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"newsiteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"title\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"shortdesc\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"iconurl\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"infourl\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"joinable\" type=\"xsd:boolean\"/>\n\n      <wsdl:part
+        name=\"joinerrole\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"published\"
+        type=\"xsd:boolean\"/>\n\n      <wsdl:part name=\"publicview\" type=\"xsd:boolean\"/>\n\n
+        \     <wsdl:part name=\"skin\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"type\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addConfigPropertyToToolRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"tooltitle\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"propname\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"propvalue\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"copySiteContentRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"sourcesiteid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"destinationsiteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addNewSiteRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"title\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"description\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"shortdesc\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"iconurl\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"infourl\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"joinable\" type=\"xsd:boolean\"/>\n\n      <wsdl:part name=\"joinerrole\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"published\" type=\"xsd:boolean\"/>\n\n
+        \     <wsdl:part name=\"publicview\" type=\"xsd:boolean\"/>\n\n      <wsdl:part
+        name=\"skin\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"type\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"findSitesByPropertyResponse1\">\n\n
+        \     <wsdl:part name=\"findSitesByPropertyReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSitesUserCanAccessRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"copyRoleRequest1\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"authzgroupid1\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid2\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"removeBeforeSync\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"changeUserInfoRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"firstname\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"lastname\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"email\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"type\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"password\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"setRoleForAuthzGroupMaintenanceResponse\">\n\n      <wsdl:part
+        name=\"setRoleForAuthzGroupMaintenanceReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"changeUserNameResponse\">\n\n      <wsdl:part name=\"changeUserNameReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"setRoleDescriptionRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewUserResponse\">\n\n      <wsdl:part
+        name=\"addNewUserReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSiteDescriptionRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"findSitesByPropertyRequest1\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"propertyName\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propertyValue\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkForMemberInAuthzGroupWithRoleResponse\">\n\n
+        \     <wsdl:part name=\"checkForMemberInAuthzGroupWithRoleReturn\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUsersInAuthzGroupWithRoleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgrouproles\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeSiteTitleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"title\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"checkForAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"checkForAuthzGroupReturn\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"checkForMemberInAuthzGroupWithRoleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"role\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserEmailResponse1\">\n\n
+        \     <wsdl:part name=\"getUserEmailReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserIdRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getExistingFunctionsRequest\">\n\n
+        \     <wsdl:part name=\"sessionId\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzGroupId\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getSessionForUserResponse1\">\n\n
+        \     <wsdl:part name=\"getSessionForUserReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserIDRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeUserNameRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"firstname\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"lastname\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserIdResponse1\">\n\n      <wsdl:part
+        name=\"getUserIdReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getSessionForUserResponse\">\n\n      <wsdl:part name=\"getSessionForUserReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"removeAllRolesFromAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"setRoleForAuthzGroupMaintenanceRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"removeMemberFromSiteRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserTypeRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"userid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getUserDisplayNameRequest1\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForUserInAuthzGroupResponse\">\n\n      <wsdl:part
+        name=\"checkForUserInAuthzGroupReturn\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSessionForUserRequest1\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"wsonly\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"disallowAllFunctionsForRoleRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewSiteResponse\">\n\n      <wsdl:part
+        name=\"addNewSiteReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"removeAuthzGroupRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewUserRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"firstname\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"lastname\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"email\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"type\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"password\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"allowFunctionForRoleRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"functionname\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addMemberToSiteWithRoleResponse\">\n\n      <wsdl:part
+        name=\"addMemberToSiteWithRoleReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserEmailAddressResponse\">\n\n      <wsdl:part
+        name=\"getUserEmailAddressReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"changeSiteDescriptionRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getPlacementIdRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteId\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"toolId\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkSessionRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"findSiteByPropertyRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propertyName\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"propertyValue\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getAvailableRolesRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserIdResponse\">\n\n      <wsdl:part
+        name=\"getUserIdReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getSiteDescriptionResponse\">\n\n      <wsdl:part name=\"getSiteDescriptionReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkForSiteResponse\">\n\n
+        \     <wsdl:part name=\"checkForSiteReturn\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addConfigPropertyToToolResponse\">\n\n      <wsdl:part
+        name=\"addConfigPropertyToToolReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"findSitesByPropertyValueRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propertyName\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propertyValue\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"copyCalendarEventsRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"sourceSiteId\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"targetSiteId\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getAllSitesForUserResponse\">\n\n
+        \     <wsdl:part name=\"getAllSitesForUserReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSessionForUserRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"isSiteJoinableRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserPropertyRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"propertyName\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForUserResponse\">\n\n      <wsdl:part name=\"checkForUserReturn\"
+        type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeUserTypeResponse\">\n\n
+        \     <wsdl:part name=\"changeUserTypeReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"changeUserTypeRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"type\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSessionTotalCountRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"millisBeforeExpire\"
+        type=\"xsd:int\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addConfigPropertyToPageRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propname\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"propvalue\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addNewAuthzGroupRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"disallowFunctionForRoleResponse\">\n\n
+        \     <wsdl:part name=\"disallowFunctionForRoleReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserTypeResponse\">\n\n      <wsdl:part
+        name=\"getUserTypeReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addNewPageToSiteRequest1\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"pagetitle\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"pagelayout\" type=\"xsd:int\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"checkForMemberInSiteResponse\">\n\n      <wsdl:part name=\"checkForMemberInSiteReturn\"
+        type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getSitePropertyRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propname\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeUserPasswordResponse\">\n\n
+        \     <wsdl:part name=\"changeUserPasswordReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeUserRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getAllUsersRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getPagesAndToolsForSiteRequest1\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"userid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSiteTitleRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"setSitePropertyResponse\">\n\n
+        \     <wsdl:part name=\"setSitePropertyReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"copySiteContentRequest1\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"sourcesiteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"destinationsiteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"toolid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"checkForUserInAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"removeSitePropertyRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propname\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"allowFunctionForRoleResponse\">\n\n
+        \     <wsdl:part name=\"allowFunctionForRoleReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"checkForUserByIdRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"checkForSiteRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForRoleInAuthzGroupRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"setRoleDescriptionResponse\">\n\n
+        \     <wsdl:part name=\"setRoleDescriptionReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addGroupToSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"grouptitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"groupdesc\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getAllSitesForUserRequest1\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserIdRequest1\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSiteSkinResponse\">\n\n
+        \     <wsdl:part name=\"changeSiteSkinReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"changeSitePublishStatusRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"published\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewToolToPageRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"tooltitle\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"toolid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"layouthints\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"copySiteContentResponse1\">\n\n      <wsdl:part name=\"copySiteContentReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeSiteDescriptionResponse\">\n\n
+        \     <wsdl:part name=\"changeSiteDescriptionReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserPropertyResponse\">\n\n
+        \     <wsdl:part name=\"getUserPropertyReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getPagesAndToolsForSiteResponse1\">\n\n
+        \     <wsdl:part name=\"getPagesAndToolsForSiteReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeAllRolesFromAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"removeAllRolesFromAuthzGroupReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSiteIconUrlResponse\">\n\n
+        \     <wsdl:part name=\"changeSiteIconUrlReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewToolToPageResponse\">\n\n
+        \     <wsdl:part name=\"addNewToolToPageReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"resetAllUserWorkspaceResponse\">\n\n
+        \     <wsdl:part name=\"resetAllUserWorkspaceReturn\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"copyRoleResponse1\">\n\n      <wsdl:part
+        name=\"copyRoleReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getSiteDefaultJoinerRoleRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserDisplayNameRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"removeRoleFromAuthzGroupResponse\">\n\n      <wsdl:part name=\"removeRoleFromAuthzGroupReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"copyRoleResponse\">\n\n
+        \     <wsdl:part name=\"copyRoleReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"setSitePropertyRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"propname\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"propvalue\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"searchForUsersRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"criteria\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"first\" type=\"xsd:int\"/>\n\n      <wsdl:part name=\"last\" type=\"xsd:int\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getAllSitesForUserRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getUserEmailRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewRoleToAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addConfigPropertyToPageResponse\">\n\n
+        \     <wsdl:part name=\"addConfigPropertyToPageReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"isSuperUserResponse\">\n\n      <wsdl:part
+        name=\"isSuperUserReturn\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"findSiteByPropertyResponse\">\n\n      <wsdl:part
+        name=\"findSiteByPropertyReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"findSitesByPropertyValueResponse\">\n\n      <wsdl:part
+        name=\"findSitesByPropertyValueReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForUserByIdResponse\">\n\n      <wsdl:part name=\"checkForUserByIdReturn\"
+        type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeSiteIconUrlRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"iconurl\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkSessionResponse\">\n\n
+        \     <wsdl:part name=\"checkSessionReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSiteSkinResponse\">\n\n      <wsdl:part name=\"getSiteSkinReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addNewRoleToAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"addNewRoleToAuthzGroupReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"copySiteResponse\">\n\n      <wsdl:part
+        name=\"copySiteReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"changeSiteTitleResponse\">\n\n      <wsdl:part name=\"changeSiteTitleReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addNewPageToSiteResponse1\">\n\n
+        \     <wsdl:part name=\"addNewPageToSiteReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeRoleFromAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addMemberToAuthzGroupWithRoleResponse\">\n\n
+        \     <wsdl:part name=\"addMemberToAuthzGroupWithRoleReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeUserPasswordRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"password\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSiteJoinableResponse\">\n\n
+        \     <wsdl:part name=\"changeSiteJoinableReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSitePublishStatusResponse\">\n\n
+        \     <wsdl:part name=\"changeSitePublishStatusReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeAllMembersFromAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"addMemberToAuthzGroupWithRoleRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"roleid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"removeAuthzGroupResponse\">\n\n      <wsdl:part name=\"removeAuthzGroupReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addNewPageToSiteResponse\">\n\n
+        \     <wsdl:part name=\"addNewPageToSiteReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeSiteResponse\">\n\n      <wsdl:part
+        name=\"removeSiteReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSitePropertyResponse\">\n\n      <wsdl:part name=\"getSitePropertyReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkForUserRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getSessionCountForServerResponse\">\n\n      <wsdl:part name=\"getSessionCountForServerReturn\"
+        type=\"xsd:int\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"copyResourcesResponse\">\n\n
+        \     <wsdl:part name=\"copyResourcesReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getPlacementIdResponse\">\n\n      <wsdl:part name=\"getPlacementIdReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"copyResourcesRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"sourcesiteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"destinationsiteid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"isSiteJoinableResponse\">\n\n
+        \     <wsdl:part name=\"isSiteJoinableReturn\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUsersInAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"removeMemberFromSiteResponse\">\n\n      <wsdl:part name=\"removeMemberFromSiteReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addMemberToSiteWithRoleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addMemberToGroupResponse\">\n\n      <wsdl:part name=\"addMemberToGroupReturn\"
+        type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getAllUsersResponse\">\n\n
+        \     <wsdl:part name=\"getAllUsersReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"removeSitePropertyResponse\">\n\n      <wsdl:part
+        name=\"removeSitePropertyReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSitesUserCanAccessResponse\">\n\n      <wsdl:part
+        name=\"getSitesUserCanAccessReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addMemberToGroupRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"groupid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getUserIDResponse\">\n\n      <wsdl:part name=\"getUserIDReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getGroupsInSiteResponse\">\n\n
+        \     <wsdl:part name=\"getGroupsInSiteReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSiteJoinableRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"joinable\"
+        type=\"xsd:boolean\"/>\n\n      <wsdl:part name=\"joinerrole\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"publicview\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addResourceToWorkspaceResponse\">\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"isSuperUserRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getUserDisplayNameResponse1\">\n\n
+        \     <wsdl:part name=\"getUserDisplayNameReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSitesUserCanAccessResponse1\">\n\n
+        \     <wsdl:part name=\"getSitesUserCanAccessReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUsersInAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"getUsersInAuthzGroupReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"resetAllUserWorkspaceRequest\">\n\n
+        \     <wsdl:part name=\"sessionId\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForAuthzGroupRequest\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"changeSiteSkinRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"skin\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeUserResponse\">\n\n      <wsdl:part
+        name=\"removeUserReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"disallowAllFunctionsForRoleResponse\">\n\n      <wsdl:part
+        name=\"disallowAllFunctionsForRoleReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"copySiteContentResponse\">\n\n      <wsdl:part name=\"copySiteContentReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"createUuidRequest\">\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewToolToAllWorkspacesRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"toolid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"tooltitle\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"pagelayout\" type=\"xsd:int\"/>\n\n      <wsdl:part
+        name=\"position\" type=\"xsd:int\"/>\n\n      <wsdl:part name=\"popup\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSessionCountForServerRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"serverid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"millisBeforeExpire\"
+        type=\"xsd:int\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"copyRoleRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"authzgroupid1\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid2\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"roleid\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"description\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSiteDefaultJoinerRoleResponse\">\n\n      <wsdl:part
+        name=\"getSiteDefaultJoinerRoleReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserEmailRequest1\">\n\n      <wsdl:part name=\"sessionid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"userid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getAvailableRolesResponse\">\n\n
+        \     <wsdl:part name=\"getAvailableRolesReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addResourceResponse\">\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getAllSitesForUserResponse1\">\n\n      <wsdl:part
+        name=\"getAllSitesForUserReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"checkForMemberInSiteRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"eid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getUserEmailAddressRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getUsersInAuthzGroupWithRoleResponse\">\n\n      <wsdl:part name=\"getUsersInAuthzGroupWithRoleReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getGroupsInSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"addGroupToSiteResponse\">\n\n      <wsdl:part name=\"addGroupToSiteReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeUserEmailResponse\">\n\n
+        \     <wsdl:part name=\"changeUserEmailReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addNewToolToAllWorkspacesResponse\">\n\n
+        \     <wsdl:part name=\"addNewToolToAllWorkspacesReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeMemberFromAuthzGroupRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"eid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"authzgroupid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addNewPageToSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagelayout\" type=\"xsd:int\"/>\n\n
+        \     <wsdl:part name=\"position\" type=\"xsd:int\"/>\n\n      <wsdl:part
+        name=\"popup\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"getExistingFunctionsResponse\">\n\n      <wsdl:part name=\"getExistingFunctionsReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"addResourceRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"resourcePath\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"encodedBase64File\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"contentType\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"displayName\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getSiteTitleResponse\">\n\n      <wsdl:part name=\"getSiteTitleReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"changeUserInfoResponse\">\n\n
+        \     <wsdl:part name=\"changeUserInfoReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"removePageFromSiteResponse\">\n\n      <wsdl:part
+        name=\"removePageFromSiteReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"findSitesByPropertyRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"propertyName\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"checkForRoleInAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"checkForRoleInAuthzGroupReturn\" type=\"xsd:boolean\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSitesUserCanAccessRequest1\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"copyCalendarEventsResponse\">\n\n      <wsdl:part
+        name=\"copyCalendarEventsReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserEmailResponse\">\n\n      <wsdl:part name=\"getUserEmailReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"removeMemberFromAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"removeMemberFromAuthzGroupReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"getSiteSkinRequest\">\n\n      <wsdl:part
+        name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"siteid\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"getPagesAndToolsForSiteResponse\">\n\n
+        \     <wsdl:part name=\"getPagesAndToolsForSiteReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"removeAllMembersFromAuthzGroupResponse\">\n\n
+        \     <wsdl:part name=\"removeAllMembersFromAuthzGroupReturn\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"addResourceToWorkspaceRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"userId\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"encodedBase64File\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"contentType\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"displayName\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"getUserDisplayNameResponse\">\n\n      <wsdl:part
+        name=\"getUserDisplayNameReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"addNewAuthzGroupResponse\">\n\n      <wsdl:part name=\"addNewAuthzGroupReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"removeSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"searchForUsersResponse\">\n\n      <wsdl:part name=\"searchForUsersReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"removePageFromSiteRequest\">\n\n
+        \     <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n      <wsdl:part
+        name=\"siteid\" type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pagetitle\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"createUuidResponse\">\n\n
+        \     <wsdl:part name=\"createUuidReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:portType name=\"SakaiScript\">\n\n      <wsdl:operation name=\"getPlacementId\"
+        parameterOrder=\"sessionid siteId toolId\">\n\n         <wsdl:input message=\"impl:getPlacementIdRequest\"
+        name=\"getPlacementIdRequest\"/>\n\n         <wsdl:output message=\"impl:getPlacementIdResponse\"
+        name=\"getPlacementIdResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserId\" parameterOrder=\"sessionid\">\n\n         <wsdl:input message=\"impl:getUserIdRequest\"
+        name=\"getUserIdRequest\"/>\n\n         <wsdl:output message=\"impl:getUserIdResponse\"
+        name=\"getUserIdResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserId\" parameterOrder=\"sessionid eid\">\n\n         <wsdl:input
+        message=\"impl:getUserIdRequest1\" name=\"getUserIdRequest1\"/>\n\n         <wsdl:output
+        message=\"impl:getUserIdResponse1\" name=\"getUserIdResponse1\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"createUuid\">\n\n         <wsdl:input message=\"impl:createUuidRequest\"
+        name=\"createUuidRequest\"/>\n\n         <wsdl:output message=\"impl:createUuidResponse\"
+        name=\"createUuidResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"isSuperUser\" parameterOrder=\"sessionid\">\n\n         <wsdl:input
+        message=\"impl:isSuperUserRequest\" name=\"isSuperUserRequest\"/>\n\n         <wsdl:output
+        message=\"impl:isSuperUserResponse\" name=\"isSuperUserResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getSiteTitle\" parameterOrder=\"sessionid siteid\">\n\n
+        \        <wsdl:input message=\"impl:getSiteTitleRequest\" name=\"getSiteTitleRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getSiteTitleResponse\" name=\"getSiteTitleResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getSiteSkin\" parameterOrder=\"sessionid
+        siteid\">\n\n         <wsdl:input message=\"impl:getSiteSkinRequest\" name=\"getSiteSkinRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getSiteSkinResponse\" name=\"getSiteSkinResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"copyResources\" parameterOrder=\"sessionid
+        sourcesiteid destinationsiteid\">\n\n         <wsdl:input message=\"impl:copyResourcesRequest\"
+        name=\"copyResourcesRequest\"/>\n\n         <wsdl:output message=\"impl:copyResourcesResponse\"
+        name=\"copyResourcesResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserType\" parameterOrder=\"sessionid userid\">\n\n         <wsdl:input
+        message=\"impl:getUserTypeRequest\" name=\"getUserTypeRequest\"/>\n\n         <wsdl:output
+        message=\"impl:getUserTypeResponse\" name=\"getUserTypeResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addNewUser\" parameterOrder=\"sessionid eid firstname
+        lastname email type password\">\n\n         <wsdl:input message=\"impl:addNewUserRequest\"
+        name=\"addNewUserRequest\"/>\n\n         <wsdl:output message=\"impl:addNewUserResponse\"
+        name=\"addNewUserResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserEmail\" parameterOrder=\"sessionid\">\n\n         <wsdl:input
+        message=\"impl:getUserEmailRequest\" name=\"getUserEmailRequest\"/>\n\n         <wsdl:output
+        message=\"impl:getUserEmailResponse\" name=\"getUserEmailResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getUserEmail\" parameterOrder=\"sessionid
+        userid\">\n\n         <wsdl:input message=\"impl:getUserEmailRequest1\" name=\"getUserEmailRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:getUserEmailResponse1\" name=\"getUserEmailResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getUserDisplayName\"
+        parameterOrder=\"sessionid userid\">\n\n         <wsdl:input message=\"impl:getUserDisplayNameRequest\"
+        name=\"getUserDisplayNameRequest\"/>\n\n         <wsdl:output message=\"impl:getUserDisplayNameResponse\"
+        name=\"getUserDisplayNameResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserDisplayName\" parameterOrder=\"sessionid\">\n\n         <wsdl:input
+        message=\"impl:getUserDisplayNameRequest1\" name=\"getUserDisplayNameRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:getUserDisplayNameResponse1\" name=\"getUserDisplayNameResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeAuthzGroup\"
+        parameterOrder=\"sessionid authzgroupid\">\n\n         <wsdl:input message=\"impl:removeAuthzGroupRequest\"
+        name=\"removeAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:removeAuthzGroupResponse\"
+        name=\"removeAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSiteDescription\" parameterOrder=\"sessionid siteid\">\n\n         <wsdl:input
+        message=\"impl:getSiteDescriptionRequest\" name=\"getSiteDescriptionRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getSiteDescriptionResponse\" name=\"getSiteDescriptionResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"checkForUser\" parameterOrder=\"sessionid
+        eid\">\n\n         <wsdl:input message=\"impl:checkForUserRequest\" name=\"checkForUserRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:checkForUserResponse\" name=\"checkForUserResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"checkForSite\" parameterOrder=\"sessionid
+        siteid\">\n\n         <wsdl:input message=\"impl:checkForSiteRequest\" name=\"checkForSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:checkForSiteResponse\" name=\"checkForSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeSite\" parameterOrder=\"sessionid
+        siteid\">\n\n         <wsdl:input message=\"impl:removeSiteRequest\" name=\"removeSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:removeSiteResponse\" name=\"removeSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addMemberToGroup\"
+        parameterOrder=\"sessionid siteid groupid userid\">\n\n         <wsdl:input
+        message=\"impl:addMemberToGroupRequest\" name=\"addMemberToGroupRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addMemberToGroupResponse\" name=\"addMemberToGroupResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getAllUsers\" parameterOrder=\"sessionid\">\n\n
+        \        <wsdl:input message=\"impl:getAllUsersRequest\" name=\"getAllUsersRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getAllUsersResponse\" name=\"getAllUsersResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getUserProperty\"
+        parameterOrder=\"sessionid eid propertyName\">\n\n         <wsdl:input message=\"impl:getUserPropertyRequest\"
+        name=\"getUserPropertyRequest\"/>\n\n         <wsdl:output message=\"impl:getUserPropertyResponse\"
+        name=\"getUserPropertyResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserID\" parameterOrder=\"sessionid eid\">\n\n         <wsdl:input
+        message=\"impl:getUserIDRequest\" name=\"getUserIDRequest\"/>\n\n         <wsdl:output
+        message=\"impl:getUserIDResponse\" name=\"getUserIDResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addResource\" parameterOrder=\"sessionid resourcePath
+        encodedBase64File contentType displayName\">\n\n         <wsdl:input message=\"impl:addResourceRequest\"
+        name=\"addResourceRequest\"/>\n\n         <wsdl:output message=\"impl:addResourceResponse\"
+        name=\"addResourceResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeUser\" parameterOrder=\"sessionid eid\">\n\n         <wsdl:input
+        message=\"impl:removeUserRequest\" name=\"removeUserRequest\"/>\n\n         <wsdl:output
+        message=\"impl:removeUserResponse\" name=\"removeUserResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"changeUserInfo\" parameterOrder=\"sessionid eid
+        firstname lastname email type password\">\n\n         <wsdl:input message=\"impl:changeUserInfoRequest\"
+        name=\"changeUserInfoRequest\"/>\n\n         <wsdl:output message=\"impl:changeUserInfoResponse\"
+        name=\"changeUserInfoResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewAuthzGroup\" parameterOrder=\"sessionid authzgroupid\">\n\n         <wsdl:input
+        message=\"impl:addNewAuthzGroupRequest\" name=\"addNewAuthzGroupRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewAuthzGroupResponse\" name=\"addNewAuthzGroupResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addNewRoleToAuthzGroup\"
+        parameterOrder=\"sessionid authzgroupid roleid description\">\n\n         <wsdl:input
+        message=\"impl:addNewRoleToAuthzGroupRequest\" name=\"addNewRoleToAuthzGroupRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewRoleToAuthzGroupResponse\" name=\"addNewRoleToAuthzGroupResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getUserEmailAddress\"
+        parameterOrder=\"sessionid eid\">\n\n         <wsdl:input message=\"impl:getUserEmailAddressRequest\"
+        name=\"getUserEmailAddressRequest\"/>\n\n         <wsdl:output message=\"impl:getUserEmailAddressResponse\"
+        name=\"getUserEmailAddressResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserEmail\" parameterOrder=\"sessionid eid email\">\n\n         <wsdl:input
+        message=\"impl:changeUserEmailRequest\" name=\"changeUserEmailRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeUserEmailResponse\" name=\"changeUserEmailResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"changeUserType\" parameterOrder=\"sessionid
+        eid type\">\n\n         <wsdl:input message=\"impl:changeUserTypeRequest\"
+        name=\"changeUserTypeRequest\"/>\n\n         <wsdl:output message=\"impl:changeUserTypeResponse\"
+        name=\"changeUserTypeResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserPassword\" parameterOrder=\"sessionid eid password\">\n\n
+        \        <wsdl:input message=\"impl:changeUserPasswordRequest\" name=\"changeUserPasswordRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeUserPasswordResponse\" name=\"changeUserPasswordResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addGroupToSite\" parameterOrder=\"sessionid
+        siteid grouptitle groupdesc\">\n\n         <wsdl:input message=\"impl:addGroupToSiteRequest\"
+        name=\"addGroupToSiteRequest\"/>\n\n         <wsdl:output message=\"impl:addGroupToSiteResponse\"
+        name=\"addGroupToSiteResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getGroupsInSite\" parameterOrder=\"sessionid siteid\">\n\n         <wsdl:input
+        message=\"impl:getGroupsInSiteRequest\" name=\"getGroupsInSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getGroupsInSiteResponse\" name=\"getGroupsInSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"checkSession\" parameterOrder=\"sessionid\">\n\n
+        \        <wsdl:input message=\"impl:checkSessionRequest\" name=\"checkSessionRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:checkSessionResponse\" name=\"checkSessionResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getSiteProperty\"
+        parameterOrder=\"sessionid siteid propname\">\n\n         <wsdl:input message=\"impl:getSitePropertyRequest\"
+        name=\"getSitePropertyRequest\"/>\n\n         <wsdl:output message=\"impl:getSitePropertyResponse\"
+        name=\"getSitePropertyResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserName\" parameterOrder=\"sessionid eid firstname lastname\">\n\n
+        \        <wsdl:input message=\"impl:changeUserNameRequest\" name=\"changeUserNameRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeUserNameResponse\" name=\"changeUserNameResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getSessionForUser\"
+        parameterOrder=\"sessionid eid\">\n\n         <wsdl:input message=\"impl:getSessionForUserRequest\"
+        name=\"getSessionForUserRequest\"/>\n\n         <wsdl:output message=\"impl:getSessionForUserResponse\"
+        name=\"getSessionForUserResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSessionForUser\" parameterOrder=\"sessionid eid wsonly\">\n\n         <wsdl:input
+        message=\"impl:getSessionForUserRequest1\" name=\"getSessionForUserRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:getSessionForUserResponse1\" name=\"getSessionForUserResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeSiteProperty\"
+        parameterOrder=\"sessionid siteid propname\">\n\n         <wsdl:input message=\"impl:removeSitePropertyRequest\"
+        name=\"removeSitePropertyRequest\"/>\n\n         <wsdl:output message=\"impl:removeSitePropertyResponse\"
+        name=\"removeSitePropertyResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForRoleInAuthzGroup\" parameterOrder=\"sessionid authzgroupid
+        roleid\">\n\n         <wsdl:input message=\"impl:checkForRoleInAuthzGroupRequest\"
+        name=\"checkForRoleInAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:checkForRoleInAuthzGroupResponse\"
+        name=\"checkForRoleInAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"searchForUsers\" parameterOrder=\"sessionid criteria
+        first last\">\n\n         <wsdl:input message=\"impl:searchForUsersRequest\"
+        name=\"searchForUsersRequest\"/>\n\n         <wsdl:output message=\"impl:searchForUsersResponse\"
+        name=\"searchForUsersResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForAuthzGroup\" parameterOrder=\"sessionid authzgroupid\">\n\n
+        \        <wsdl:input message=\"impl:checkForAuthzGroupRequest\" name=\"checkForAuthzGroupRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:checkForAuthzGroupResponse\" name=\"checkForAuthzGroupResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeMemberFromSite\"
+        parameterOrder=\"sessionid siteid eid\">\n\n         <wsdl:input message=\"impl:removeMemberFromSiteRequest\"
+        name=\"removeMemberFromSiteRequest\"/>\n\n         <wsdl:output message=\"impl:removeMemberFromSiteResponse\"
+        name=\"removeMemberFromSiteResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForUserInAuthzGroup\" parameterOrder=\"sessionid authzgroupid
+        eid\">\n\n         <wsdl:input message=\"impl:checkForUserInAuthzGroupRequest\"
+        name=\"checkForUserInAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:checkForUserInAuthzGroupResponse\"
+        name=\"checkForUserInAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getUsersInAuthzGroupWithRole\" parameterOrder=\"sessionid
+        authzgroupid authzgrouproles\">\n\n         <wsdl:input message=\"impl:getUsersInAuthzGroupWithRoleRequest\"
+        name=\"getUsersInAuthzGroupWithRoleRequest\"/>\n\n         <wsdl:output message=\"impl:getUsersInAuthzGroupWithRoleResponse\"
+        name=\"getUsersInAuthzGroupWithRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addConfigPropertyToPage\" parameterOrder=\"sessionid
+        siteid pagetitle propname propvalue\">\n\n         <wsdl:input message=\"impl:addConfigPropertyToPageRequest\"
+        name=\"addConfigPropertyToPageRequest\"/>\n\n         <wsdl:output message=\"impl:addConfigPropertyToPageResponse\"
+        name=\"addConfigPropertyToPageResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"checkForMemberInAuthzGroupWithRole\" parameterOrder=\"sessionid
+        eid authzgroupid role\">\n\n         <wsdl:input message=\"impl:checkForMemberInAuthzGroupWithRoleRequest\"
+        name=\"checkForMemberInAuthzGroupWithRoleRequest\"/>\n\n         <wsdl:output
+        message=\"impl:checkForMemberInAuthzGroupWithRoleResponse\" name=\"checkForMemberInAuthzGroupWithRoleResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getSitesUserCanAccess\"
+        parameterOrder=\"sessionid userid\">\n\n         <wsdl:input message=\"impl:getSitesUserCanAccessRequest\"
+        name=\"getSitesUserCanAccessRequest\"/>\n\n         <wsdl:output message=\"impl:getSitesUserCanAccessResponse\"
+        name=\"getSitesUserCanAccessResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSitesUserCanAccess\" parameterOrder=\"sessionid\">\n\n         <wsdl:input
+        message=\"impl:getSitesUserCanAccessRequest1\" name=\"getSitesUserCanAccessRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:getSitesUserCanAccessResponse1\" name=\"getSitesUserCanAccessResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getAllSitesForUser\"
+        parameterOrder=\"sessionid userid\">\n\n         <wsdl:input message=\"impl:getAllSitesForUserRequest\"
+        name=\"getAllSitesForUserRequest\"/>\n\n         <wsdl:output message=\"impl:getAllSitesForUserResponse\"
+        name=\"getAllSitesForUserResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getAllSitesForUser\" parameterOrder=\"sessionid\">\n\n         <wsdl:input
+        message=\"impl:getAllSitesForUserRequest1\" name=\"getAllSitesForUserRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:getAllSitesForUserResponse1\" name=\"getAllSitesForUserResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"isSiteJoinable\" parameterOrder=\"sessionid
+        siteid\">\n\n         <wsdl:input message=\"impl:isSiteJoinableRequest\" name=\"isSiteJoinableRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:isSiteJoinableResponse\" name=\"isSiteJoinableResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"changeSiteTitle\"
+        parameterOrder=\"sessionid siteid title\">\n\n         <wsdl:input message=\"impl:changeSiteTitleRequest\"
+        name=\"changeSiteTitleRequest\"/>\n\n         <wsdl:output message=\"impl:changeSiteTitleResponse\"
+        name=\"changeSiteTitleResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewSite\" parameterOrder=\"sessionid siteid title description shortdesc
+        iconurl infourl joinable joinerrole published publicview skin type\">\n\n
+        \        <wsdl:input message=\"impl:addNewSiteRequest\" name=\"addNewSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewSiteResponse\" name=\"addNewSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeAllRolesFromAuthzGroup\"
+        parameterOrder=\"sessionid authzgroupid\">\n\n         <wsdl:input message=\"impl:removeAllRolesFromAuthzGroupRequest\"
+        name=\"removeAllRolesFromAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:removeAllRolesFromAuthzGroupResponse\"
+        name=\"removeAllRolesFromAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"removeRoleFromAuthzGroup\" parameterOrder=\"sessionid
+        authzgroupid roleid\">\n\n         <wsdl:input message=\"impl:removeRoleFromAuthzGroupRequest\"
+        name=\"removeRoleFromAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:removeRoleFromAuthzGroupResponse\"
+        name=\"removeRoleFromAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"allowFunctionForRole\" parameterOrder=\"sessionid
+        authzgroupid roleid functionname\">\n\n         <wsdl:input message=\"impl:allowFunctionForRoleRequest\"
+        name=\"allowFunctionForRoleRequest\"/>\n\n         <wsdl:output message=\"impl:allowFunctionForRoleResponse\"
+        name=\"allowFunctionForRoleResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"disallowAllFunctionsForRole\" parameterOrder=\"sessionid authzgroupid
+        roleid\">\n\n         <wsdl:input message=\"impl:disallowAllFunctionsForRoleRequest\"
+        name=\"disallowAllFunctionsForRoleRequest\"/>\n\n         <wsdl:output message=\"impl:disallowAllFunctionsForRoleResponse\"
+        name=\"disallowAllFunctionsForRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"disallowFunctionForRole\" parameterOrder=\"sessionid
+        authzgroupid roleid functionname\">\n\n         <wsdl:input message=\"impl:disallowFunctionForRoleRequest\"
+        name=\"disallowFunctionForRoleRequest\"/>\n\n         <wsdl:output message=\"impl:disallowFunctionForRoleResponse\"
+        name=\"disallowFunctionForRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"setRoleDescription\" parameterOrder=\"sessionid
+        authzgroupid roleid description\">\n\n         <wsdl:input message=\"impl:setRoleDescriptionRequest\"
+        name=\"setRoleDescriptionRequest\"/>\n\n         <wsdl:output message=\"impl:setRoleDescriptionResponse\"
+        name=\"setRoleDescriptionResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addMemberToAuthzGroupWithRole\" parameterOrder=\"sessionid eid authzgroupid
+        roleid\">\n\n         <wsdl:input message=\"impl:addMemberToAuthzGroupWithRoleRequest\"
+        name=\"addMemberToAuthzGroupWithRoleRequest\"/>\n\n         <wsdl:output message=\"impl:addMemberToAuthzGroupWithRoleResponse\"
+        name=\"addMemberToAuthzGroupWithRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"changeSitePublishStatus\" parameterOrder=\"sessionid
+        siteid published\">\n\n         <wsdl:input message=\"impl:changeSitePublishStatusRequest\"
+        name=\"changeSitePublishStatusRequest\"/>\n\n         <wsdl:output message=\"impl:changeSitePublishStatusResponse\"
+        name=\"changeSitePublishStatusResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"changeSiteSkin\" parameterOrder=\"sessionid siteid
+        skin\">\n\n         <wsdl:input message=\"impl:changeSiteSkinRequest\" name=\"changeSiteSkinRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeSiteSkinResponse\" name=\"changeSiteSkinResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"changeSiteJoinable\"
+        parameterOrder=\"sessionid siteid joinable joinerrole publicview\">\n\n         <wsdl:input
+        message=\"impl:changeSiteJoinableRequest\" name=\"changeSiteJoinableRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeSiteJoinableResponse\" name=\"changeSiteJoinableResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"changeSiteIconUrl\"
+        parameterOrder=\"sessionid siteid iconurl\">\n\n         <wsdl:input message=\"impl:changeSiteIconUrlRequest\"
+        name=\"changeSiteIconUrlRequest\"/>\n\n         <wsdl:output message=\"impl:changeSiteIconUrlResponse\"
+        name=\"changeSiteIconUrlResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteDescription\" parameterOrder=\"sessionid siteid description\">\n\n
+        \        <wsdl:input message=\"impl:changeSiteDescriptionRequest\" name=\"changeSiteDescriptionRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:changeSiteDescriptionResponse\" name=\"changeSiteDescriptionResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"setSiteProperty\"
+        parameterOrder=\"sessionid siteid propname propvalue\">\n\n         <wsdl:input
+        message=\"impl:setSitePropertyRequest\" name=\"setSitePropertyRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:setSitePropertyResponse\" name=\"setSitePropertyResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"removeMemberFromAuthzGroup\"
+        parameterOrder=\"sessionid eid authzgroupid\">\n\n         <wsdl:input message=\"impl:removeMemberFromAuthzGroupRequest\"
+        name=\"removeMemberFromAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:removeMemberFromAuthzGroupResponse\"
+        name=\"removeMemberFromAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"removeAllMembersFromAuthzGroup\" parameterOrder=\"sessionid
+        authzgroupid\">\n\n         <wsdl:input message=\"impl:removeAllMembersFromAuthzGroupRequest\"
+        name=\"removeAllMembersFromAuthzGroupRequest\"/>\n\n         <wsdl:output
+        message=\"impl:removeAllMembersFromAuthzGroupResponse\" name=\"removeAllMembersFromAuthzGroupResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"setRoleForAuthzGroupMaintenance\"
+        parameterOrder=\"sessionid authzgroupid roleid\">\n\n         <wsdl:input
+        message=\"impl:setRoleForAuthzGroupMaintenanceRequest\" name=\"setRoleForAuthzGroupMaintenanceRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:setRoleForAuthzGroupMaintenanceResponse\"
+        name=\"setRoleForAuthzGroupMaintenanceResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addMemberToSiteWithRole\" parameterOrder=\"sessionid
+        siteid eid roleid\">\n\n         <wsdl:input message=\"impl:addMemberToSiteWithRoleRequest\"
+        name=\"addMemberToSiteWithRoleRequest\"/>\n\n         <wsdl:output message=\"impl:addMemberToSiteWithRoleResponse\"
+        name=\"addMemberToSiteWithRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copySite\" parameterOrder=\"sessionid siteidtocopy
+        newsiteid title description shortdesc iconurl infourl joinable joinerrole
+        published publicview skin type\">\n\n         <wsdl:input message=\"impl:copySiteRequest\"
+        name=\"copySiteRequest\"/>\n\n         <wsdl:output message=\"impl:copySiteResponse\"
+        name=\"copySiteResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removePageFromSite\" parameterOrder=\"sessionid siteid pagetitle\">\n\n
+        \        <wsdl:input message=\"impl:removePageFromSiteRequest\" name=\"removePageFromSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:removePageFromSiteResponse\" name=\"removePageFromSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addNewPageToSite\"
+        parameterOrder=\"sessionid siteid pagetitle pagelayout position popup\">\n\n
+        \        <wsdl:input message=\"impl:addNewPageToSiteRequest\" name=\"addNewPageToSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewPageToSiteResponse\" name=\"addNewPageToSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addNewPageToSite\"
+        parameterOrder=\"sessionid siteid pagetitle pagelayout\">\n\n         <wsdl:input
+        message=\"impl:addNewPageToSiteRequest1\" name=\"addNewPageToSiteRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewPageToSiteResponse1\" name=\"addNewPageToSiteResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addNewToolToPage\"
+        parameterOrder=\"sessionid siteid pagetitle tooltitle toolid layouthints\">\n\n
+        \        <wsdl:input message=\"impl:addNewToolToPageRequest\" name=\"addNewToolToPageRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addNewToolToPageResponse\" name=\"addNewToolToPageResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addConfigPropertyToTool\"
+        parameterOrder=\"sessionid siteid pagetitle tooltitle propname propvalue\">\n\n
+        \        <wsdl:input message=\"impl:addConfigPropertyToToolRequest\" name=\"addConfigPropertyToToolRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:addConfigPropertyToToolResponse\" name=\"addConfigPropertyToToolResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getSessionTotalCount\"
+        parameterOrder=\"sessionid millisBeforeExpire\">\n\n         <wsdl:input message=\"impl:getSessionTotalCountRequest\"
+        name=\"getSessionTotalCountRequest\"/>\n\n         <wsdl:output message=\"impl:getSessionTotalCountResponse\"
+        name=\"getSessionTotalCountResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copySiteContent\" parameterOrder=\"sessionid sourcesiteid destinationsiteid\">\n\n
+        \        <wsdl:input message=\"impl:copySiteContentRequest\" name=\"copySiteContentRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:copySiteContentResponse\" name=\"copySiteContentResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"copySiteContent\"
+        parameterOrder=\"sessionid sourcesiteid destinationsiteid toolid\">\n\n         <wsdl:input
+        message=\"impl:copySiteContentRequest1\" name=\"copySiteContentRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:copySiteContentResponse1\" name=\"copySiteContentResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"findSiteByProperty\"
+        parameterOrder=\"sessionid propertyName propertyValue\">\n\n         <wsdl:input
+        message=\"impl:findSiteByPropertyRequest\" name=\"findSiteByPropertyRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:findSiteByPropertyResponse\" name=\"findSiteByPropertyResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"findSitesByProperty\"
+        parameterOrder=\"sessionid propertyName\">\n\n         <wsdl:input message=\"impl:findSitesByPropertyRequest\"
+        name=\"findSitesByPropertyRequest\"/>\n\n         <wsdl:output message=\"impl:findSitesByPropertyResponse\"
+        name=\"findSitesByPropertyResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"findSitesByProperty\" parameterOrder=\"sessionid propertyName propertyValue\">\n\n
+        \        <wsdl:input message=\"impl:findSitesByPropertyRequest1\" name=\"findSitesByPropertyRequest1\"/>\n\n
+        \        <wsdl:output message=\"impl:findSitesByPropertyResponse1\" name=\"findSitesByPropertyResponse1\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getUsersInAuthzGroup\"
+        parameterOrder=\"sessionid authzgroupid\">\n\n         <wsdl:input message=\"impl:getUsersInAuthzGroupRequest\"
+        name=\"getUsersInAuthzGroupRequest\"/>\n\n         <wsdl:output message=\"impl:getUsersInAuthzGroupResponse\"
+        name=\"getUsersInAuthzGroupResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copyCalendarEvents\" parameterOrder=\"sessionid sourceSiteId targetSiteId\">\n\n
+        \        <wsdl:input message=\"impl:copyCalendarEventsRequest\" name=\"copyCalendarEventsRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:copyCalendarEventsResponse\" name=\"copyCalendarEventsResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"addNewToolToAllWorkspaces\"
+        parameterOrder=\"sessionid toolid pagetitle tooltitle pagelayout position
+        popup\">\n\n         <wsdl:input message=\"impl:addNewToolToAllWorkspacesRequest\"
+        name=\"addNewToolToAllWorkspacesRequest\"/>\n\n         <wsdl:output message=\"impl:addNewToolToAllWorkspacesResponse\"
+        name=\"addNewToolToAllWorkspacesResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copyRole\" parameterOrder=\"sessionid authzgroupid1
+        authzgroupid2 roleid description\">\n\n         <wsdl:input message=\"impl:copyRoleRequest\"
+        name=\"copyRoleRequest\"/>\n\n         <wsdl:output message=\"impl:copyRoleResponse\"
+        name=\"copyRoleResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copyRole\" parameterOrder=\"sessionid authzgroupid1 authzgroupid2 roleid
+        description removeBeforeSync\">\n\n         <wsdl:input message=\"impl:copyRoleRequest1\"
+        name=\"copyRoleRequest1\"/>\n\n         <wsdl:output message=\"impl:copyRoleResponse1\"
+        name=\"copyRoleResponse1\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getPagesAndToolsForSite\" parameterOrder=\"sessionid siteid\">\n\n
+        \        <wsdl:input message=\"impl:getPagesAndToolsForSiteRequest\" name=\"getPagesAndToolsForSiteRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getPagesAndToolsForSiteResponse\" name=\"getPagesAndToolsForSiteResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getPagesAndToolsForSite\"
+        parameterOrder=\"sessionid userid siteid\">\n\n         <wsdl:input message=\"impl:getPagesAndToolsForSiteRequest1\"
+        name=\"getPagesAndToolsForSiteRequest1\"/>\n\n         <wsdl:output message=\"impl:getPagesAndToolsForSiteResponse1\"
+        name=\"getPagesAndToolsForSiteResponse1\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getSiteDefaultJoinerRole\" parameterOrder=\"sessionid
+        siteid\">\n\n         <wsdl:input message=\"impl:getSiteDefaultJoinerRoleRequest\"
+        name=\"getSiteDefaultJoinerRoleRequest\"/>\n\n         <wsdl:output message=\"impl:getSiteDefaultJoinerRoleResponse\"
+        name=\"getSiteDefaultJoinerRoleResponse\"/>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"checkForMemberInSite\" parameterOrder=\"sessionid
+        siteid eid\">\n\n         <wsdl:input message=\"impl:checkForMemberInSiteRequest\"
+        name=\"checkForMemberInSiteRequest\"/>\n\n         <wsdl:output message=\"impl:checkForMemberInSiteResponse\"
+        name=\"checkForMemberInSiteResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSessionCountForServer\" parameterOrder=\"sessionid serverid millisBeforeExpire\">\n\n
+        \        <wsdl:input message=\"impl:getSessionCountForServerRequest\" name=\"getSessionCountForServerRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getSessionCountForServerResponse\" name=\"getSessionCountForServerResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"findSitesByPropertyValue\"
+        parameterOrder=\"sessionid propertyName propertyValue\">\n\n         <wsdl:input
+        message=\"impl:findSitesByPropertyValueRequest\" name=\"findSitesByPropertyValueRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:findSitesByPropertyValueResponse\" name=\"findSitesByPropertyValueResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"checkForUserById\"
+        parameterOrder=\"sessionid userid\">\n\n         <wsdl:input message=\"impl:checkForUserByIdRequest\"
+        name=\"checkForUserByIdRequest\"/>\n\n         <wsdl:output message=\"impl:checkForUserByIdResponse\"
+        name=\"checkForUserByIdResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addResourceToWorkspace\" parameterOrder=\"sessionid userId encodedBase64File
+        contentType displayName\">\n\n         <wsdl:input message=\"impl:addResourceToWorkspaceRequest\"
+        name=\"addResourceToWorkspaceRequest\"/>\n\n         <wsdl:output message=\"impl:addResourceToWorkspaceResponse\"
+        name=\"addResourceToWorkspaceResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getAvailableRoles\" parameterOrder=\"sessionid authzgroupid\">\n\n
+        \        <wsdl:input message=\"impl:getAvailableRolesRequest\" name=\"getAvailableRolesRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getAvailableRolesResponse\" name=\"getAvailableRolesResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"getExistingFunctions\"
+        parameterOrder=\"sessionId authzGroupId roleid\">\n\n         <wsdl:input
+        message=\"impl:getExistingFunctionsRequest\" name=\"getExistingFunctionsRequest\"/>\n\n
+        \        <wsdl:output message=\"impl:getExistingFunctionsResponse\" name=\"getExistingFunctionsResponse\"/>\n\n
+        \     </wsdl:operation>\n\n      <wsdl:operation name=\"resetAllUserWorkspace\"
+        parameterOrder=\"sessionId\">\n\n         <wsdl:input message=\"impl:resetAllUserWorkspaceRequest\"
+        name=\"resetAllUserWorkspaceRequest\"/>\n\n         <wsdl:output message=\"impl:resetAllUserWorkspaceResponse\"
+        name=\"resetAllUserWorkspaceResponse\"/>\n\n      </wsdl:operation>\n\n   </wsdl:portType>\n\n
+        \  <wsdl:binding name=\"SakaiScriptSoapBinding\" type=\"impl:SakaiScript\">\n\n
+        \     <wsdlsoap:binding style=\"rpc\" transport=\"http://schemas.xmlsoap.org/soap/http\"/>\n\n
+        \     <wsdl:operation name=\"getPlacementId\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getPlacementIdRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getPlacementIdResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getUserId\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getUserIdRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserIdResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserId\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserIdRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserIdResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"createUuid\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"createUuidRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"createUuidResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"isSuperUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"isSuperUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"isSuperUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSiteTitle\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSiteTitleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSiteTitleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSiteSkin\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSiteSkinRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSiteSkinResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copyResources\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"copyResourcesRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"copyResourcesResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserType\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserTypeRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserTypeResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addNewUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addNewUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserEmail\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserEmailRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserEmailResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserEmail\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserEmailRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserEmailResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserDisplayName\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserDisplayNameRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserDisplayNameResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserDisplayName\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserDisplayNameRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserDisplayNameResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSiteDescription\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSiteDescriptionRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSiteDescriptionResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkForUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkForUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkForSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkForSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addMemberToGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addMemberToGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addMemberToGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getAllUsers\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getAllUsersRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getAllUsersResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserProperty\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserPropertyRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserPropertyResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserID\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserIDRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserIDResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addResource\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addResourceRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addResourceResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserInfo\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeUserInfoRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeUserInfoResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addNewAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addNewAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewRoleToAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addNewRoleToAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addNewRoleToAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUserEmailAddress\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUserEmailAddressRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUserEmailAddressResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserEmail\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeUserEmailRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeUserEmailResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserType\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeUserTypeRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeUserTypeResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserPassword\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeUserPasswordRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeUserPasswordResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addGroupToSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addGroupToSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addGroupToSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getGroupsInSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getGroupsInSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getGroupsInSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkSession\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkSessionRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkSessionResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSiteProperty\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSitePropertyRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSitePropertyResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeUserName\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeUserNameRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeUserNameResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSessionForUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSessionForUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSessionForUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSessionForUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSessionForUserRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSessionForUserResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeSiteProperty\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeSitePropertyRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeSitePropertyResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForRoleInAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkForRoleInAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkForRoleInAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"searchForUsers\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"searchForUsersRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"searchForUsersResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkForAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkForAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeMemberFromSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeMemberFromSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeMemberFromSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForUserInAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"checkForUserInAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"checkForUserInAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getUsersInAuthzGroupWithRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getUsersInAuthzGroupWithRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getUsersInAuthzGroupWithRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addConfigPropertyToPage\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addConfigPropertyToPageRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addConfigPropertyToPageResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"checkForMemberInAuthzGroupWithRole\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"checkForMemberInAuthzGroupWithRoleRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"checkForMemberInAuthzGroupWithRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSitesUserCanAccess\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSitesUserCanAccessRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSitesUserCanAccessResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getSitesUserCanAccess\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getSitesUserCanAccessRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getSitesUserCanAccessResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getAllSitesForUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getAllSitesForUserRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getAllSitesForUserResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"getAllSitesForUser\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"getAllSitesForUserRequest1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"getAllSitesForUserResponse1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"isSiteJoinable\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"isSiteJoinableRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"isSiteJoinableResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteTitle\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSiteTitleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSiteTitleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addNewSite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addNewSiteRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addNewSiteResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeAllRolesFromAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeAllRolesFromAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeAllRolesFromAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeRoleFromAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeRoleFromAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeRoleFromAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"allowFunctionForRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"allowFunctionForRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"allowFunctionForRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"disallowAllFunctionsForRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"disallowAllFunctionsForRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"disallowAllFunctionsForRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"disallowFunctionForRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"disallowFunctionForRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"disallowFunctionForRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"setRoleDescription\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"setRoleDescriptionRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"setRoleDescriptionResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addMemberToAuthzGroupWithRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addMemberToAuthzGroupWithRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addMemberToAuthzGroupWithRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSitePublishStatus\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSitePublishStatusRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSitePublishStatusResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteSkin\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSiteSkinRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSiteSkinResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteJoinable\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSiteJoinableRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSiteJoinableResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteIconUrl\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSiteIconUrlRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSiteIconUrlResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"changeSiteDescription\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"changeSiteDescriptionRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"changeSiteDescriptionResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"setSiteProperty\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"setSitePropertyRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"setSitePropertyResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeMemberFromAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeMemberFromAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeMemberFromAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"removeAllMembersFromAuthzGroup\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"removeAllMembersFromAuthzGroupRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"removeAllMembersFromAuthzGroupResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"setRoleForAuthzGroupMaintenance\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"setRoleForAuthzGroupMaintenanceRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"setRoleForAuthzGroupMaintenanceResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"addMemberToSiteWithRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"addMemberToSiteWithRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"addMemberToSiteWithRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copySite\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n         <wsdl:input
+        name=\"copySiteRequest\">\n\n            <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"copySiteResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"removePageFromSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"removePageFromSiteRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"removePageFromSiteResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addNewPageToSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addNewPageToSiteRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addNewPageToSiteResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addNewPageToSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addNewPageToSiteRequest1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addNewPageToSiteResponse1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addNewToolToPage\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addNewToolToPageRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addNewToolToPageResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addConfigPropertyToTool\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addConfigPropertyToToolRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addConfigPropertyToToolResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getSessionTotalCount\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getSessionTotalCountRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getSessionTotalCountResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copySiteContent\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"copySiteContentRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"copySiteContentResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copySiteContent\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"copySiteContentRequest1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"copySiteContentResponse1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"findSiteByProperty\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"findSiteByPropertyRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"findSiteByPropertyResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"findSitesByProperty\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"findSitesByPropertyRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"findSitesByPropertyResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"findSitesByProperty\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"findSitesByPropertyRequest1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"findSitesByPropertyResponse1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getUsersInAuthzGroup\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getUsersInAuthzGroupRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getUsersInAuthzGroupResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copyCalendarEvents\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"copyCalendarEventsRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"copyCalendarEventsResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addNewToolToAllWorkspaces\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addNewToolToAllWorkspacesRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addNewToolToAllWorkspacesResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"copyRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"copyRoleRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"copyRoleResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"copyRole\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n         <wsdl:input
+        name=\"copyRoleRequest1\">\n\n            <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"copyRoleResponse1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getPagesAndToolsForSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getPagesAndToolsForSiteRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getPagesAndToolsForSiteResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getPagesAndToolsForSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getPagesAndToolsForSiteRequest1\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getPagesAndToolsForSiteResponse1\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getSiteDefaultJoinerRole\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getSiteDefaultJoinerRoleRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getSiteDefaultJoinerRoleResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"checkForMemberInSite\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"checkForMemberInSiteRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"checkForMemberInSiteResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getSessionCountForServer\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getSessionCountForServerRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getSessionCountForServerResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"findSitesByPropertyValue\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"findSitesByPropertyValueRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"findSitesByPropertyValueResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"checkForUserById\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"checkForUserByIdRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"checkForUserByIdResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"addResourceToWorkspace\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"addResourceToWorkspaceRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"addResourceToWorkspaceResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getAvailableRoles\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getAvailableRolesRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getAvailableRolesResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"getExistingFunctions\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"getExistingFunctionsRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"getExistingFunctionsResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"resetAllUserWorkspace\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"resetAllUserWorkspaceRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"resetAllUserWorkspaceResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \  </wsdl:binding>\n\n   <wsdl:service name=\"SakaiScriptService\">\n\n      <wsdl:port
+        binding=\"impl:SakaiScriptSoapBinding\" name=\"SakaiScript\">\n\n         <wsdlsoap:address
+        location=\"https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws\"/>\n\n      </wsdl:port>\n\n
+        \  </wsdl:service>\n\n</wsdl:definitions>\n"
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 21:34:07 GMT
+- request:
+    method: post
+    uri: https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:impl="https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><impl:getSiteProperty><sessionid>b530c990-6992-4bfe-aae0-6dfa70542220</sessionid><siteId>0753e1de-d90f-43d5-a0de-6e9761a35690</siteId><propname>externalSiteId</propname></impl:getSiteProperty></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"getSiteProperty"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '499'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 21:34:08 GMT
+      Set-Cookie:
+      - JSESSIONID=0c8fe1e5-4ea3-4b97-84a7-f09a0b08639f.nddev1; Path=/; Secure; HttpOnly
+      X-Ua-Compatible:
+      - IE=EmulateIE9
+      Content-Type:
+      - text/xml;charset=utf-8
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:getSitePropertyResponse
+        soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws"><getSitePropertyReturn
+        xsi:type="xsd:string">SP13-ACMS-10145-SS04</getSitePropertyReturn></ns1:getSitePropertyResponse></soapenv:Body></soapenv:Envelope>
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 21:34:09 GMT
+recorded_with: VCR 2.5.0

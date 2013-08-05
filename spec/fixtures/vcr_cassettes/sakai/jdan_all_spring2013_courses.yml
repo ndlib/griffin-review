@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/jdan/201220/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 21:52:41 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 8316bc0130d1431a1adb835c978356c9
+      X-Runtime:
+      - '0.917558'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '16207'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTRjMjMxY2FlMmUwN2NlM2RjY2M3ZGVlZmQxZjVjNDJlBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--982ee54cc7e5790ec4535add3149a4a0ec57647d;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"},"enrolled_courses":[{"course_id":"201220_ACMS_98698","crosslist_id":"201220_29898","course_title":"Research
+        & Dissertation","section_groups":{"section_group_id":"201220_29898","primary_instructor":{"id":"jli7","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jli7","first_name":"Jiahan","last_name":"Li","full_name":"Jiahan
+        Li","ndguid":"nd.edu.ndrh3xh4","position_title":"Assistant Professor","campus_department":"Applied
+        Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"156
+        Hurley Hall&#10;Notre Dame, IN 46556","email":"jiahan.li@nd.edu","phone":"+1
+        574 631 2741"}},"sections":[{"section_id":"201220_29898","supersection_id":null,"instructors":[{"id":"jli7","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jli7","first_name":"Jiahan","last_name":"Li","full_name":"Jiahan
+        Li","ndguid":"nd.edu.ndrh3xh4","position_title":"Assistant Professor","campus_department":"Applied
+        Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"156
+        Hurley Hall&#10;Notre Dame, IN 46556","email":"jiahan.li@nd.edu","phone":"+1
+        574 631 2741"}}],"term":"201220","course_triple":"201220_ACMS_98698","course_title":"Research
+        & Dissertation","alpha_prefix":"ACMS","number":98698,"section_number":7,"crn":"29898","enrollments":["jdan","wchen4"]}],"crosslist_id":"201220_29898"}}],"instructed_courses":[{"course_id":"201220_ACMS_10145","crosslist_id":"201220_28970_28969","course_title":"Statistics
+        for Business and Economics I","section_groups":{"section_group_id":"201220_28970_28969","primary_instructor":{"id":"hhuynh1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"hhuynh1","first_name":"Huy","last_name":"Huynh","full_name":"Huy
+        Huynh","ndguid":"nd.edu.ndhq9mh7","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"136
+        Hayes-Healy Bldg&#10;Notre Dame, IN 46556-5641","email":"Huy.Huynh@nd.edu","phone":"+1
+        574 631 2526"}},"sections":[{"section_id":"201220_28970","supersection_id":"SP13-ACMS-10145-SS02","instructors":[{"id":"wchen4","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wchen4","first_name":"Weiye","last_name":"Chen","full_name":"Weiye
+        Chen","ndguid":"nd.edu.ndfg6dg9","primary_affiliation":"Student","contact_information":{"email":"Weiye.Chen.139@nd.edu"}},{"id":"hhuynh1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"hhuynh1","first_name":"Huy","last_name":"Huynh","full_name":"Huy
+        Huynh","ndguid":"nd.edu.ndhq9mh7","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"136
+        Hayes-Healy Bldg&#10;Notre Dame, IN 46556-5641","email":"Huy.Huynh@nd.edu","phone":"+1
+        574 631 2526"}}],"term":"201220","course_triple":"201220_ACMS_10145","course_title":"Statistics
+        for Business and Economics I","alpha_prefix":"ACMS","number":10145,"section_number":1,"crn":"28970","enrollments":["cmccar11","csporled","dander16","dferrao","eschnurr","ewoitche","hchiare1","jrumer","lcallah2","mgalla12","mwitt1","sbrown23","aekman","ahunt5","alarrabe","arussel5","aschoen1","astankow","astreff","awidner","bbocker","bbrockma","bfaresic","blach","bspahn","ccavana4","cheffro1","ckorth1","clevey","cmcquest","cwilli26","dchae1","dkuns","dmeehan1","edavis12","edowlin1","egruneis","ekim12","eobrie10","gcarrol3","gmazur","gpilotte","hobrien4","hyi","hyoder1","jfluecki","jguilfoi","jko","jlederma","jsulli18","kcarrol4","kdennis2","kfrost2","khebig","khermeli","kjoyce3","kmccaffe","kpalmer6","kunger","kwitzigm","ldunseit","marizmen","mhowar10","mkeatin3","mking15","mmcmaho7","mmitch14","mroger13","mryan26","msaba","msorlie","nstark1","nwillet1","nwilli10","omitchel","ophillip","pbartoli","pberriga","pcouch","pdemetri","pvieth","qfredric","qmonagha","qwang2","randrese","rbrogham","rzhao","scomstoc","sknee","ssonson","szepf","tcziperl","tlaubac1","wkarnes","zcox","zgyampoh","zhe"]},{"section_id":"201220_28969","supersection_id":"SP13-ACMS-10145-SS02","instructors":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"wchen4","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wchen4","first_name":"Weiye","last_name":"Chen","full_name":"Weiye
+        Chen","ndguid":"nd.edu.ndfg6dg9","primary_affiliation":"Student","contact_information":{"email":"Weiye.Chen.139@nd.edu"}},{"id":"hhuynh1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"hhuynh1","first_name":"Huy","last_name":"Huynh","full_name":"Huy
+        Huynh","ndguid":"nd.edu.ndhq9mh7","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"136
+        Hayes-Healy Bldg&#10;Notre Dame, IN 46556-5641","email":"Huy.Huynh@nd.edu","phone":"+1
+        574 631 2526"}},{"id":"tzhang2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tzhang2","first_name":"Tingting","last_name":"Zhang","full_name":"Tingting
+        Zhang","ndguid":"nd.edu.ndnx3rz2","primary_affiliation":"Student","contact_information":{"email":"Tingting.Zhang.177@nd.edu"}}],"term":"201220","course_triple":"201220_ACMS_10145","course_title":"Statistics
+        for Business and Economics I","alpha_prefix":"ACMS","number":10145,"section_number":2,"crn":"28969","enrollments":["ameruelo","atechar","dsulli12","kball4","rself","sschere1","abaldwi1","acumings","amosser","arhodes4","arobert8","arodelas","aryan4","awolff","bprusako","bsanok","bwillis1","chillsma","cjuska1","cmetzler","cphan1","cpratt1","crussel6","cscheid","cwiley1","echaleff","ekenned5","gmulholl","hmoon","imcgraw","iparkerr","jcrawfo6","jdrisco1","jdunne1","jgillen","jglemkow","jking14","jmckissi","jmichuda","jporemsk","kbrenn13","kferrar1","kferrara","khaimes","kheyen","kho1","khuggins","kruffolo","ktomin","kwolf4","lberning","lharig","lmadison","lstreepe","mbazan1","mbishtaw","mbrown30","mdeasey","mgavin1","mmannifi","mmckee2","mmuliadi","mobrie24","mrangel3","msajbel","mschmid","mtournat","mulle","nding2","nmontoya","nruelas","pchen1","pdeasey","pgonzal7","phickey4","pkearne2","pvorissi","rdutta","rfische1","rhusting","rmarti15","sbader","sgoicoec","slawson","smontag1","spryor","sronan","sseitz","sterry","tcheun","tkenned1","tmo","ttemplet","vdefina","xzhong2","zdavis1","zgrant","zparker","ztoste"]}],"crosslist_id":"201220_28970_28969"}},{"course_id":"201220_ACMS_10145","crosslist_id":"201220_28972_28971","course_title":"Statistics
+        for Business and Economics I","section_groups":{"section_group_id":"201220_28972_28971","primary_instructor":{"id":"ahuebne2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ahuebne2","first_name":"Alan","last_name":"Huebner","full_name":"Alan
+        Huebner","ndguid":"nd.edu.ndns4vj8","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"152C
+        Hurley Bldg&#10;Notre Dame, IN 46556-4618","email":"Alan.Huebner.10@nd.edu","phone":"+1
+        574 631 6252"}},"sections":[{"section_id":"201220_28972","supersection_id":"SP13-ACMS-10145-SS04","instructors":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"ahuebne2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ahuebne2","first_name":"Alan","last_name":"Huebner","full_name":"Alan
+        Huebner","ndguid":"nd.edu.ndns4vj8","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"152C
+        Hurley Bldg&#10;Notre Dame, IN 46556-4618","email":"Alan.Huebner.10@nd.edu","phone":"+1
+        574 631 6252"}}],"term":"201220","course_triple":"201220_ACMS_10145","course_title":"Statistics
+        for Business and Economics I","alpha_prefix":"ACMS","number":10145,"section_number":3,"crn":"28972","enrollments":["asganga","bgyamfi","ceckert3","dfurlon1","echarles","gramos3","gyeltond","habera","jdykstr1","jhawley","jonwualu","jzink","kharris4","kmccarte","lfeist","maguayo","mlandis","mlechlei","mzaire","pfernan3","skearne2","tflatley","wcahill","afeltz","aforlenz","agrainge","ahubregs","asulliv8","awenzel2","balmada","bbryck","bnaylor","ccardon","ccohen1","cgutier8","chillery","civey","cjimenez","cjuska","ckernodl","cklekota","cmichels","cmurph19","criccard","cryan18","dchomat","devans6","dkim18","dlojek","dmountf1","drussoni","ecollin5","emcosker","emiddlet","emorgan2","emurph19","escallen","gbradfo1","hbonneva","icortina","jbernard","jcardina","jhealy5","jmcgrady","jpaggi","jspeach","jturne10","kcox3","kdaly2","kdold1","kdufour","kgoitz","kkelley3","kkenne12","kkoester","kkrall","kmccar16","kmcmulla","ktaylo18","ktrolley","lcrawfo2","ldeherac","llinbeck","lparis","mbamgbos","mbowers4","mcastel2","mchambl1","mcyrocki","mginocch","mgreen8","mharrel1","mianni","mkhan4","mkunath","mmccuen","mroger14","mschill1","msisay","nbaratti","nmcalee","nmccorm2","pciuffo","pgayoso","rclark13","rgray4","rhidy","rpalmer5","rrizzuto","rsanche3","rsexton","rtwardzi","scampo2","seckmann","sgerstem","sibanez","sneuber1","sparker2","tbrosco","tcampbe4","tkleiber","tmorey2","wmcdonne","zflint"]},{"section_id":"201220_28971","supersection_id":"SP13-ACMS-10145-SS04","instructors":[{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"ahuebne2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ahuebne2","first_name":"Alan","last_name":"Huebner","full_name":"Alan
+        Huebner","ndguid":"nd.edu.ndns4vj8","position_title":"Assistant Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"152C
+        Hurley Bldg&#10;Notre Dame, IN 46556-4618","email":"Alan.Huebner.10@nd.edu","phone":"+1
+        574 631 6252"}},{"id":"tzhang2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tzhang2","first_name":"Tingting","last_name":"Zhang","full_name":"Tingting
+        Zhang","ndguid":"nd.edu.ndnx3rz2","primary_affiliation":"Student","contact_information":{"email":"Tingting.Zhang.177@nd.edu"}}],"term":"201220","course_triple":"201220_ACMS_10145","course_title":"Statistics
+        for Business and Economics I","alpha_prefix":"ACMS","number":10145,"section_number":4,"crn":"28971","enrollments":["crembeck","crobin10","jchen18","kloughr1","ydu5","aarcher1","acoman","acoppola","acrehan","aflatley","aflynn2","agarci22","ahender5","alee16","amccart7","amulvey","areyes4","arinaldi","ataylor8","avu1","avukosa","bbredem1","bbrown7","bcapelli","bchang1","bcontili","bgarvin","bharvel","bhurley2","blenke","boneillp","bplamond","bswanber","cbondi","cbrown37","cdesapio","cfilos","cgonnard","choldswo","chounshe","cjaeger1","cmason1","cowers","crhyne","csanche7","cschleck","csciupid","cstephan","dbland","dmccain1","dprice4","dzimmer3","ebelin","edargen","egebeke","ehight","ekelley5","elubowic","etracy1","evillalp","evoorde","gmittels","gprado1","hhannega","hhoyle","jalbert3","jbakrow","jbauer6","jcolli11","jdaboubs","jhayes4","jhuh","jkim41","jlammer1","jleniar1","jmcdona7","jprice9","jsledge","kaggarwa","kdennee","keverett","kmarti22","krussel3","kskorcz","ksolberg","kwhelan3","kxu","lfazio","lhorning","lmccrory","lweaver4","mcassid3","mchapman","mconnor6","mdetrem1","mfernan9","mjudge1","mkelley6","mlacayo2","mlugli","mmchugh2","mperll","mphill15","mribas","mvicenzi","mweeks","mwhitak2","mwon","ndesmone","paffinit","pcarriqu","pceledin","poconno4","psong1","rsmyth","rstrumil","rszucs","schesser","sdoyle9","sjudd","sobrie14","ssinger1","stoy","tball1","tflaim","tklamka","twaitsmo","wcheely","wjohnso5","xzhang15","yna"]}],"crosslist_id":"201220_28972_28971"}},{"course_id":"201220_ACMS_10145","crosslist_id":"201220_29901","course_title":"Statistics
+        for Business and Economics I","section_groups":{"section_group_id":"201220_29901","primary_instructor":{"id":"rghiased","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rghiased","first_name":"Roya","last_name":"Ghiaseddin","full_name":"Roya
+        Ghiaseddin","ndguid":"nd.edu.ndht8vt7","position_title":"Associate Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"276B
+        Hurley Hall&#10;Notre Dame, IN 46556","email":"rghiased@nd.edu","phone":"+1
+        574 631 1543"}},"sections":[{"section_id":"201220_29901","supersection_id":null,"instructors":[{"id":"rghiased","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rghiased","first_name":"Roya","last_name":"Ghiaseddin","full_name":"Roya
+        Ghiaseddin","ndguid":"nd.edu.ndht8vt7","position_title":"Associate Professional
+        Specialist","campus_department":"Applied Computational Mathematics & Statistics","primary_affiliation":"Faculty","contact_information":{"campus_address":"276B
+        Hurley Hall&#10;Notre Dame, IN 46556","email":"rghiased@nd.edu","phone":"+1
+        574 631 1543"}},{"id":"jdan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jdan","first_name":"Jun","last_name":"Dan","full_name":"Jun
+        Dan","ndguid":"nd.edu.ndbf7fz2","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Jun.Dan.2@nd.edu"}},{"id":"tzhang2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tzhang2","first_name":"Tingting","last_name":"Zhang","full_name":"Tingting
+        Zhang","ndguid":"nd.edu.ndnx3rz2","primary_affiliation":"Student","contact_information":{"email":"Tingting.Zhang.177@nd.edu"}}],"term":"201220","course_triple":"201220_ACMS_10145","course_title":"Statistics
+        for Business and Economics I","alpha_prefix":"ACMS","number":10145,"section_number":5,"crn":"29901","enrollments":["aburnet1","aklein4","aortiz6","cfricke","chaney1","clabuz","cloughl1","domiliak","dsmith42","edarcy","emiglior","emoser2","emoston","gledley","janchond","jchung2","jdoran","jsteffe4","klonge","ksammons","kzessoho","mfarring","mheuerma","mhunter6","mvillas1","nfantozz","pshea4","qsong","sbugos","scray","smorelos","tprice3","wbellant","wkelly2"]}],"crosslist_id":"201220_29901"}}]}]}'
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 21:52:44 GMT
+recorded_with: VCR 2.5.0

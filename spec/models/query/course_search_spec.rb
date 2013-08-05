@@ -94,6 +94,35 @@ describe CourseSearch do
     end
   end
 
+  
+  describe "#all_courses" do
+
+
+    it "returns the inst_stu's enrolled courses for the current semester" do
+      courses = course_search.all_courses('inst_stu', 'current')
+      courses.collect { |course| course.id }.should include "current_29898"
+    end
+    
+
+    it "returns the inst_stu's enrolled courses for the previous semester" do
+      courses = course_search.all_courses('inst_stu', 'previous')
+      courses.collect { |course| course.id }.should include("previous_19745", "previous_19591", "previous_20066")
+    end
+
+
+    it "returns the inst_stu's instructed courses for the current semester" do
+      courses = course_search.all_courses('inst_stu', 'current')
+      courses.collect { |course| course.id }.should include "current_28972_28971_29901"
+    end
+
+
+    it "returns the inst_stu's instructed courses for the previous semester" do
+      courses = course_search.all_courses('inst_stu', 'previous')
+      courses.collect { |course| course.id }.should include("previous_18446", "previous_18448")
+    end
+
+  end
+  
 
   describe :get do
     it "returns the course specified" do

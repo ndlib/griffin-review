@@ -19,8 +19,13 @@ class CourseSearch
         ret << new_course(sg)
       end
     end
-
     ret
+  end
+
+
+  def all_courses(netid, semester_id)
+    load_api_courses(netid, semester_id)
+    @result[netid][semester_id]['enrolled_course_objects'].concat(@result[netid][semester_id]['instructed_course_objects'])
   end
 
 

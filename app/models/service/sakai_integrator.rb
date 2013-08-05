@@ -1,19 +1,41 @@
 class SakaiIntegrator
 
+  attr_reader :session_id
+  attr_accessor :site_id
 
   def initialize(controller)
     @controller = controller
+    @session_id = soap_auth
+    @client = soap_client
+  end
+  
+  
+  def get_site_property(property_name)
+    session_id = @session_id
+    site_id = @site_id
+    response = @client.call(:get_site_property) do
+      message sessionid: session_id, site_id: site_id, propname: property_name
+    end
+    response.body[:get_site_property_response][:get_site_property_return]
+  end
+
+
+  def translate_external_site_id(external_site_id)
+    (search_type, search_value, search_term)   = parse_external_site_id(external_site_id)
+    section_group = nil
+    course_search = CourseSearch.new
+    course_search.all_courses(@controller.current_user.username, search_term).each do |course|
+      return_value = find_section_group(course, search_type, search_value)
+      section_group = return_value if !return_value.blank?
+    end
+    return section_group
   end
 
   private
 
 
-  def soap_call(session_id)
-    client = Savon.client(wsdl: Rails.configuration.sakai_script_wsdl)
-    site_id = "4a970344-3170-4e4b-ab36-e80f0244cb16"
-    response = client.call(:get_site_property) do
-      message sessionid: session_id, site_id: site_id, propname: 'externalSiteId'
-    end
+  def soap_client
+    Savon.client(wsdl: Rails.configuration.sakai_script_wsdl)
   end
 
   
@@ -25,5 +47,95 @@ class SakaiIntegrator
 
     return response.body[:login_response][:login_return]
   end
+
+
+  def parse_external_site_id(external_site_id)
+    type, value, term = nil
+    if external_site_id =~ /^XLS/
+      type = 'crosslist'
+      parts_array = /^(XLS)(.+)(\d{6})$/.match(external_site_id).captures
+      term = parts_array[2]
+      value = parts_array[2]
+      parts_array[1].scan(/.{2}/).each do |xls_id|
+        value = value + '_' + xls_id
+      end
+    elsif external_site_id =~ /.+-SS/
+      type = 'supersection'
+      parts_array = /^(\w{2})(\d{2})-(\w+)-(\d+)-(\w+)/.match(external_site_id).captures
+      (term, year_value) = calculate_term(parts_array)
+      value = external_site_id
+    else
+      type = 'section'
+      parts_array = /^(\w{2})(\d{2})-(\w+)-(\d+)-(\d+)/.match(external_site_id).captures
+      (term, year_value) = calculate_term(parts_array)
+      value = year_value + term_alpha_to_num(parts_array[0]) + '_' + parts_array[2] + '_' + parts_array[3] + '_' + parts_array[4]
+    end
+    return [type, value, term]
+  end
+
+
+  def find_section_group(course, search_type, search_value)
+    case search_type
+    when 'crosslist'
+      section_group_by_crosslist(course, search_value)
+    when 'supersection'
+      section_group_by_supersection(course, search_value)
+    when 'section'
+      section_group_by_section(course, search_value)
+    end
+  end
+
+
+  def section_group_by_crosslist(course, search_value)
+    if course.crosslist_id == search_value
+      course.id
+    end
+  end
+
+  def section_group_by_supersection(course, search_value)
+    if course.unique_supersection_ids.include?(search_value)
+      course.id
+    end
+  end
+
+  def section_group_by_section(course, search_value)
+    id = nil
+    course.sections.each do |section|
+      section_number = "%02d" % section["section_number"]
+      section_triple_number = section["course_triple"] + '_' + section_number
+      if section_triple_number == search_value
+        id = course.id
+      end
+    end
+    return id
+  end
+
+  def get_parts_array(pattern, external_site_id)
+    /"#{pattern}"/.match(external_site_id).captures
+  end
+
+  def calculate_term(parts_array)
+      year_value = calculate_year(parts_array)
+      term = year_value + term_alpha_to_num(parts_array[0])
+      return [term, year_value]
+  end
+
+  def calculate_year(parts_array)
+    year_value = 2000 + parts_array[1].to_i
+    year_value = year_value - 1 if parts_array[0] == 'SP'
+    return year_value.to_s
+  end
+
+  def term_alpha_to_num(alpha)
+    case alpha
+    when 'SU'
+      '00'
+    when 'FA'
+      '10'
+    when 'SP'
+      '20'
+    end
+  end
+
 
 end
