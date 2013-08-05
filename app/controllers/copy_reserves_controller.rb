@@ -1,5 +1,6 @@
 class CopyReservesController < ApplicationController
 
+  layout :determine_layout
 
   def copy
     @copy_course_listing = CopyCourseReservesForm.new(current_user, params)

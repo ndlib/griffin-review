@@ -2,7 +2,6 @@ class CourseReservesController < ApplicationController
 
   layout :determine_layout
 
-
   def index
     @user_course_show = CourseReserveList.new(current_user, params)
     check_view_permissions!(@user_course_show.course)
