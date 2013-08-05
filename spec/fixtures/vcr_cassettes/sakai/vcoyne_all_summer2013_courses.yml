@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/vcoyne/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 05 Aug 2013 01:53:48 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - da89f70493eadd0e9d00b8de14fb8967
+      X-Runtime:
+      - '0.943224'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '5289'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTNhMzg4ODJkMTk5ZjU0ZDkxNDM3N2ZlZjE1YTljYTIxBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--161a5c88f361791a08605fa9399be891c8e5f7ae;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"vcoyne","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"vcoyne","first_name":"Virginia","last_name":"Coyne","full_name":"Virginia
+        Coyne","ndguid":"nd.edu.ndth2qg8","primary_affiliation":"Student","contact_information":{"email":"Virginia.S.Coyne.24@nd.edu"},"enrolled_courses":[{"course_id":"201300_BAUG_35500","crosslist_id":"201300_3483","course_title":"Internship
+        Practicum","section_groups":{"section_group_id":"201300_3483","primary_instructor":{"id":"gshropsh","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gshropsh","first_name":"Gina","last_name":"Shropshire","full_name":"Gina
+        Shropshire","ndguid":"nd.edu.ndqm6xb9","position_title":"Assistant Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"101C
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"gshropsh@nd.edu","phone":"+1
+        574 631 3857"}},"sections":[{"section_id":"201300_3483","supersection_id":null,"instructors":[{"id":"gshropsh","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gshropsh","first_name":"Gina","last_name":"Shropshire","full_name":"Gina
+        Shropshire","ndguid":"nd.edu.ndqm6xb9","position_title":"Assistant Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"101C
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"gshropsh@nd.edu","phone":"+1
+        574 631 3857"}}],"term":"201300","course_triple":"201300_BAUG_35500","course_title":"Internship
+        Practicum","alpha_prefix":"BAUG","number":35500,"section_number":1,"crn":"3483","enrollments":["anel","atatis","bfalkenb","bmcgowan","cdeobald","cdollard","cgeils","cmansfie","cpark4","cprado","fsabal","gchapman","hlee8","jfang1","jpopp","jstanto1","jyu2","kcarter6","kkeenan1","klee13","lsulliv8","mcronin7","mklingsh","mkraft4","mmarti28","mryan24","qlu","rmoore11","rweltner","ryuan","sdelasca","tbliha","tceledin","vcoyne","ysheng","yzhang17"]}],"crosslist_id":"201300_3483"}},{"course_id":"201300_FIN_30220","crosslist_id":"201300_1654","course_title":"Macroeconomic
+        Analysis","section_groups":{"section_group_id":"201300_1654","primary_instructor":{"id":"jstiver","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jstiver","first_name":"John","last_name":"Stiver","full_name":"John
+        Stiver","ndguid":"nd.edu.nddn6dv9","position_title":"Associate Professional
+        Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"231
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jstiver@nd.edu","phone":"+1
+        574 631 2803"}},"sections":[{"section_id":"201300_1654","supersection_id":null,"instructors":[{"id":"jstiver","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jstiver","first_name":"John","last_name":"Stiver","full_name":"John
+        Stiver","ndguid":"nd.edu.nddn6dv9","position_title":"Associate Professional
+        Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"231
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jstiver@nd.edu","phone":"+1
+        574 631 2803"}}],"term":"201300","course_triple":"201300_FIN_30220","course_title":"Macroeconomic
+        Analysis","alpha_prefix":"FIN","number":30220,"section_number":1,"crn":"1654","enrollments":["dbaptist","gklingel","pmurph12","scombs","aladdish","amurray7","bcasey3","blesch","brust","cdoyle","cdoyle1","cgiestin","chanratt","croberso","cwalsh11","ecurtin","hbarnes1","hwillia4","jgrace2","jsabacin","jsimon5","kbyrne3","khughes8","kmcbride","knoonan2","kseveryn","kwhite10","mbrown24","mfrederi","mhegarty","mstark2","nmartin7","pconnaug","rnestor","sblazer","skerrig1","tniklas","tplantz","vcoyne","wschafer"]}],"crosslist_id":"201300_1654"}},{"course_id":"201300_ROIT_10115","crosslist_id":"201300_33","course_title":"Intensive
+        Beginning Italian","section_groups":{"section_group_id":"201300_2910","primary_instructor":{"id":"dbenvegn","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dbenvegn","first_name":"Damiano","last_name":"Benvegnu","full_name":"Damiano
+        Benvegnu","ndguid":"nd.edu.ndnw9mj8","position_title":"Grad Student Stipend","campus_department":"PhD
+        Literature","primary_affiliation":"Student","contact_information":{"email":"Damiano.Benvegnu.1@nd.edu"}},"sections":[{"section_id":"201300_2910","supersection_id":null,"instructors":[{"id":"dbenvegn","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dbenvegn","first_name":"Damiano","last_name":"Benvegnu","full_name":"Damiano
+        Benvegnu","ndguid":"nd.edu.ndnw9mj8","position_title":"Grad Student Stipend","campus_department":"PhD
+        Literature","primary_affiliation":"Student","contact_information":{"email":"Damiano.Benvegnu.1@nd.edu"}}],"term":"201300","course_triple":"201300_ROIT_10115","course_title":"Intensive
+        Beginning Italian","alpha_prefix":"ROIT","number":10115,"section_number":1,"crn":"2910","enrollments":["bbecht","rmultapu","vcoyne"]}],"crosslist_id":"201300_33"}}],"instructed_courses":[]}]}'
+    http_version: 
+  recorded_at: Mon, 05 Aug 2013 01:53:50 GMT
+recorded_with: VCR 2.5.0

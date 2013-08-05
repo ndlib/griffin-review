@@ -1,0 +1,131 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 20:42:39 GMT
+      Set-Cookie:
+      - JSESSIONID=da7d1218-06b6-4c59-b4dc-58f928d534bc.nddev1; Path=/; Secure; HttpOnly
+      X-Ua-Compatible:
+      - IE=EmulateIE9
+      Content-Type:
+      - text/xml;charset=utf-8
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions targetNamespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\"
+        xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:impl=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\"
+        xmlns:intf=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n<!--WSDL created by Apache
+        Axis version: 1.4\nBuilt on Apr 22, 2006 (06:55:48 PDT)-->\n\n   <wsdl:message
+        name=\"loginToServerResponse\">\n\n      <wsdl:part name=\"loginToServerReturn\"
+        type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n   <wsdl:message name=\"loginResponse\">\n\n
+        \     <wsdl:part name=\"loginReturn\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"loginRequest\">\n\n      <wsdl:part name=\"id\" type=\"xsd:string\"/>\n\n
+        \     <wsdl:part name=\"pw\" type=\"xsd:string\"/>\n\n   </wsdl:message>\n\n
+        \  <wsdl:message name=\"loginToServerRequest\">\n\n      <wsdl:part name=\"id\"
+        type=\"xsd:string\"/>\n\n      <wsdl:part name=\"pw\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:message name=\"logoutResponse\">\n\n      <wsdl:part
+        name=\"logoutReturn\" type=\"xsd:boolean\"/>\n\n   </wsdl:message>\n\n   <wsdl:message
+        name=\"logoutRequest\">\n\n      <wsdl:part name=\"sessionid\" type=\"xsd:string\"/>\n\n
+        \  </wsdl:message>\n\n   <wsdl:portType name=\"SakaiLogin\">\n\n      <wsdl:operation
+        name=\"login\" parameterOrder=\"id pw\">\n\n         <wsdl:input message=\"impl:loginRequest\"
+        name=\"loginRequest\"/>\n\n         <wsdl:output message=\"impl:loginResponse\"
+        name=\"loginResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"logout\" parameterOrder=\"sessionid\">\n\n         <wsdl:input message=\"impl:logoutRequest\"
+        name=\"logoutRequest\"/>\n\n         <wsdl:output message=\"impl:logoutResponse\"
+        name=\"logoutResponse\"/>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"loginToServer\" parameterOrder=\"id pw\">\n\n         <wsdl:input message=\"impl:loginToServerRequest\"
+        name=\"loginToServerRequest\"/>\n\n         <wsdl:output message=\"impl:loginToServerResponse\"
+        name=\"loginToServerResponse\"/>\n\n      </wsdl:operation>\n\n   </wsdl:portType>\n\n
+        \  <wsdl:binding name=\"SakaiLoginSoapBinding\" type=\"impl:SakaiLogin\">\n\n
+        \     <wsdlsoap:binding style=\"rpc\" transport=\"http://schemas.xmlsoap.org/soap/http\"/>\n\n
+        \     <wsdl:operation name=\"login\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n
+        \        <wsdl:input name=\"loginRequest\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"http://DefaultNamespace\"
+        use=\"encoded\"/>\n\n         </wsdl:input>\n\n         <wsdl:output name=\"loginResponse\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\" use=\"encoded\"/>\n\n
+        \        </wsdl:output>\n\n      </wsdl:operation>\n\n      <wsdl:operation
+        name=\"logout\">\n\n         <wsdlsoap:operation soapAction=\"\"/>\n\n         <wsdl:input
+        name=\"logoutRequest\">\n\n            <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"logoutResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \     <wsdl:operation name=\"loginToServer\">\n\n         <wsdlsoap:operation
+        soapAction=\"\"/>\n\n         <wsdl:input name=\"loginToServerRequest\">\n\n
+        \           <wsdlsoap:body encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        namespace=\"http://DefaultNamespace\" use=\"encoded\"/>\n\n         </wsdl:input>\n\n
+        \        <wsdl:output name=\"loginToServerResponse\">\n\n            <wsdlsoap:body
+        encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" namespace=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\"
+        use=\"encoded\"/>\n\n         </wsdl:output>\n\n      </wsdl:operation>\n\n
+        \  </wsdl:binding>\n\n   <wsdl:service name=\"SakaiLoginService\">\n\n      <wsdl:port
+        binding=\"impl:SakaiLoginSoapBinding\" name=\"SakaiLogin\">\n\n         <wsdlsoap:address
+        location=\"https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws\"/>\n\n      </wsdl:port>\n\n
+        \  </wsdl:service>\n\n</wsdl:definitions>\n"
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 20:42:40 GMT
+- request:
+    method: post
+    uri: https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:impl="https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><impl:login><id>hesburgh</id><pw>funkyCh1ck3n</pw></impl:login></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - ! '"login"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '369'
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 04 Aug 2013 20:42:41 GMT
+      Set-Cookie:
+      - JSESSIONID=d379b6ac-45c0-48c5-869d-f60839401b2a.nddev1; Path=/; Secure; HttpOnly
+      X-Ua-Compatible:
+      - IE=EmulateIE9
+      Content-Type:
+      - text/xml;charset=utf-8
+      Vary:
+      - Accept-Encoding,User-Agent
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:loginResponse
+        soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws"><loginReturn
+        xsi:type="xsd:string">b530c990-6992-4bfe-aae0-6dfa70542220</loginReturn></ns1:loginResponse></soapenv:Body></soapenv:Envelope>
+    http_version: 
+  recorded_at: Sun, 04 Aug 2013 20:42:41 GMT
+recorded_with: VCR 2.5.0

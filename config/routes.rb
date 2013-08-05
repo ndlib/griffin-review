@@ -23,6 +23,8 @@ Griffin::Application.routes.draw do
     resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
   end
 
+  post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
+
   resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
 
 

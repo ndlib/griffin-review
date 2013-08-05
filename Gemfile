@@ -16,6 +16,9 @@ gem 'american_date'
 # db backends
 gem 'mysql2', "~> 0.3.11"
 
+# SOAP interface
+gem 'savon', '2.2.0'
+
 # authentication
 gem 'rubycas-client'
 gem 'devise'

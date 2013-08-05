@@ -66,6 +66,10 @@ class Course
     @attributes['number']
   end
 
+  def unique_supersection_ids
+    @attributes['sections'].collect {|s| s["supersection_id"]}.uniq
+  end
+
 
   def add_enrollment_exception!(netid)
     UserCourseException.create_enrollment_exception!(self.id, self.term, netid)
