@@ -89,7 +89,7 @@ class CourseReservesController < ApplicationController
         elsif get_reserve.redirect_to_listing?
 
           if get_reserve.streaming_server_file?
-            send_file(get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
+            send_file(get_reserve.mov_file_path, :type => 'video/quicktime')
           else
             redirect_to get_reserve.redirect_uri
           end
