@@ -1,1 +1,2 @@
-rtsptextrtsp://{replaceurl}
+rtsptext
+rtsp://{replaceurl}
