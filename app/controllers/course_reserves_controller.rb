@@ -90,6 +90,7 @@ class CourseReservesController < ApplicationController
 
           if get_reserve.streaming_server_file?
             send_file(get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
+            headers['Content-Length'] = File.size(get_reserve.mov_file_path).to_s
           else
             redirect_to get_reserve.redirect_uri
           end

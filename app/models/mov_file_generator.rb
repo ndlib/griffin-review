@@ -15,7 +15,7 @@ class MovFileGenerator
 
 
   def generate_file_text
-    url = full_url.encode('ASCII-8BIT')
+    url = full_url #.encode('ASCII-8BIT')
     sample_text.gsub('{replaceurl}', url)
   end
 
