@@ -35,7 +35,7 @@ Griffin::Application.routes.draw do
     resources :resources, controller: 'requests_resources'
 #    resources :admin_courses
     resources :semesters, controller: 'semesters'
-
+    resources :scipt, controller: 'script'
 
     # NOTE About this route.
     # the "ids" that are searched on can have "." in them and that throws off the rails routing. They need to be passed in as
