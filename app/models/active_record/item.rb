@@ -9,6 +9,8 @@ class Item < ActiveRecord::Base
   has_attached_file :pdf, { :path => ":rails_root/uploads/pdfs/:id/:filename" }
 
 
+  store :description, accessors: [ :subtitle_language, :language_track ]
+
   def creator_contributor
     self.creator
   end

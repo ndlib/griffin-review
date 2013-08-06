@@ -10,6 +10,9 @@
     <%= f.input_field :needed_by, as: "string", id: "video_needed_by_id", class: 'datepicker span2' %>
   <% end %>
 
+  <%= f.input :language_track %>
+
+  <%= f.input :subtitle_language %>
 
   <%= f.input :length, label: "Clips" do %>
     <%= f.input_field :length %>

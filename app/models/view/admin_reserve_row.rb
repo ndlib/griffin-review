@@ -25,6 +25,11 @@ class AdminReserveRow
   end
 
 
+  def requestor_netid
+    @reserve.requestor_netid
+  end
+
+
   def needed_by
     if !@reserve.needed_by.nil?
       @reserve.needed_by.to_date.to_s(:short)
@@ -46,6 +51,20 @@ class AdminReserveRow
 
   def type
     reserve.type.gsub('Reserve', '')
+  end
+
+
+  def subtitles
+    ret = ""
+    if @reserve.language_track.present?
+      ret += "Language: #{@reserve.language_track} <br>"
+    end
+
+    if @reserve.subtitle_language.present?
+      ret += "Subtitle: #{@reserve.subtitle_language}"
+    end
+
+    ret
   end
 
 

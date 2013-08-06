@@ -14,6 +14,8 @@ class InstructorReserveRequest
   attribute :title, String
   attribute :publisher, String
   attribute :journal_title, String
+  attribute :language_track, String
+  attribute :subtitle_language, String
   attribute :creator, String
   attribute :length, String
   attribute :note, String

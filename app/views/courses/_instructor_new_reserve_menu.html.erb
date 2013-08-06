@@ -4,12 +4,12 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><%= link_to raw("<i class=\"icon-plus\"></i>  Request New Reserve"), new_course_reserve_path(course.id) %></li>
-    <li><%= link_to raw("<i class=\"icon-share\"></i>  Copy from a Previous Course"), course_copy_step1_path(course.id) %></li>
+    <li><%= link_to raw("<i class=\"icon-plus\"></i>  Request New Video"), new_course_reserve_path(course.id) %></li>
+    <!-- li><%= link_to raw("<i class=\"icon-share\"></i>  Copy from a Previous Course"), course_copy_step1_path(course.id) %></li>
     <% if permission.current_user_is_admin_in_masquerade? %>
       <li class="divider">Admin Actions</li>
       <li><%= link_to raw("<i class=\"icon-user\"></i> Add Missing User"), "#" %></li>
-      <li><%= link_to raw("<i class=\"icon-share-alt\"></i> Copy from the Old Reserves"), course_copy_old_reserves_path(course.id) %></li>
+      <li><%= link_to raw("<i class=\"icon-share-alt\"></i> Copy from the Old Reserves"), course_copy_old_reserves_path(course.id) %></li -->
     <% end %>
   </ul>
 </div>

@@ -33,6 +33,9 @@ class SaveRequest < ActiveRecord::Base
         r.title = self.title
         r.type  = 'VideoReserve'
 
+        r.language_track = req.language
+        r.subtitle_language = req.subtitles
+
         r.requestor_netid = self.user.username
 
         r.course = CourseSearch.new.get(course_id)
@@ -46,7 +49,9 @@ class SaveRequest < ActiveRecord::Base
         fu.save!
 
         self.destroy
-    rescue
+    rescue Exception => e
+        puts e.to_s
+        puts e.backtrace.inspect
         add_error "Error id: #{self.id}"
     end
   end
@@ -90,6 +95,10 @@ class SaveRequest < ActiveRecord::Base
         "FA13 ESS 33600 01" => "201310_10191",
         "FA13 AFST 13181 02" => "201310_19924",
         "FA13 PS 34571 01" => "201310_19843",
+        "FA13 ROSP 63768 01" => "201310_19966",
+        "FA13 AMST 30116 01" => "201310_18466_19115",
+        "FA13 CSEM 23101 06" => "201310_12132",
+        "FA13 AFST 33075 01" => "201310_19108"
     }
   end
 
