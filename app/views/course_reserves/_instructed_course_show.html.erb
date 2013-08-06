@@ -29,9 +29,4 @@
   </p>
 <% end %>
 
-<%= form_tag courses_path, :method => 'post' do | f | %>
-  <%= hidden_field_tag :course_id, user_course_show.course_id %>
-  <input type="submit" name="input" value="Add Default Data" />
-<% end %>
-
 

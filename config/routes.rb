@@ -44,5 +44,5 @@ Griffin::Application.routes.draw do
     #resources :discovery_id_test, contorller: 'discovery_id_test'
   end
 
-
+  get "video/request/new", to: "homepage#index"
 end
