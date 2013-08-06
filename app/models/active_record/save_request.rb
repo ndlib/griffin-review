@@ -33,6 +33,8 @@ class SaveRequest < ActiveRecord::Base
         r.title = self.title
         r.type  = 'VideoReserve'
 
+        r.workflow_state = 'inprocess'
+
         r.language_track = req.language
         r.subtitle_language = req.subtitles
 
