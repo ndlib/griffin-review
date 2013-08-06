@@ -10,7 +10,7 @@ class CourseReservesController < ApplicationController
 
   def show
     @get_reserve = GetReserve.new(current_user, params)
-    check_view_permissions!(@get_reserve.course)
+    # check_view_permissions!(@get_reserve.course)
 
     check_reserve_is_in_current_semester!(@get_reserve)
     check_and_process_term_of_service_approval!(@get_reserve)

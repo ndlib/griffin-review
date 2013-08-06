@@ -33,7 +33,7 @@ class SaveRequest < ActiveRecord::Base
         r.title = self.title
         r.type  = 'VideoReserve'
 
-        r.workflow_state = 'inprocess'
+        r.workflow_state = 'new'
 
         r.language_track = req.language
         r.subtitle_language = req.subtitles
@@ -52,8 +52,6 @@ class SaveRequest < ActiveRecord::Base
 
         self.destroy
     rescue Exception => e
-        puts e.to_s
-        puts e.backtrace.inspect
         add_error "Error id: #{self.id}"
     end
   end
