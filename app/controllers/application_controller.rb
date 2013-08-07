@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
+  force_ssl if: :ssl_configured?
+
+
+  def ssl_configured?
+    !(Rails.env.development? || Rails.env.test?)
+  end
+
 
   protect_from_forgery
 
