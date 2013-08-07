@@ -62,13 +62,13 @@ class AdminUpdateMetaData
 
 
   def overwrite_nd_meta_data?
-    @reserve.overwrite_nd_meta_data?
+    reserve.overwrite_nd_meta_data?
   end
 
   private
 
     def requires_nd_meta_data_id?
-      (!reserve.overwrite_nd_meta_data?)
+      (!overwrite_nd_meta_data)
     end
 
 

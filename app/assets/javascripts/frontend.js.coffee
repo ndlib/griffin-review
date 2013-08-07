@@ -113,21 +113,6 @@ jQuery ($) ->
 
   $('.datepicker').datepicker()
 
-  $('.show_full_meta_data').click ->
-    $('#admin_update_meta_data_overwrite_nd_meta_data').val("1")
-    $('#full_meta_data').show()
-    $('#discovery_meta_data').hide()
-
-  $('.use_meta_data_id').click ->
-    $('#admin_update_meta_data_overwrite_nd_meta_data').val("")
-    $('#full_meta_data').hide()
-    $('#discovery_meta_data').show()
-
-  $('#test_meta_data').click ->
-    $(this).removeData "modal"
-    href = $(this).attr('base_url') + "?id=" + encodeURIComponent($('#admin_update_meta_data_nd_meta_data_id').val())
-    $(this).attr('href', href)
-
 
   setupAdminDatatable = () ->
     # For admin table
@@ -174,6 +159,20 @@ jQuery ($) ->
     $('#admin_update_meta_data_details').keyup ->
       $('.details').html($(this).val())
 
+    $('.show_full_meta_data').click ->
+      $('#admin_update_meta_data_overwrite_nd_meta_data').val("1")
+      $('#full_meta_data').show()
+      $('#discovery_meta_data').hide()
+
+    $('.use_meta_data_id').click ->
+      $('#admin_update_meta_data_overwrite_nd_meta_data').val("0")
+      $('#full_meta_data').hide()
+      $('#discovery_meta_data').show()
+
+    $('#test_meta_data').click ->
+      $(this).removeData "modal"
+      href = $(this).attr('base_url') + "?id=" + encodeURIComponent($('#admin_update_meta_data_nd_meta_data_id').val())
+      $(this).attr('href', href)
 
 
 

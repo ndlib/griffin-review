@@ -15,4 +15,5 @@ class UserRoleInCoursePolicy
     @course.instructor_netids.include?(@user.username)
   end
 
+
 end

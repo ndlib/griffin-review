@@ -7,13 +7,13 @@ class Permission
 
 
   def current_user_is_administrator?
-    @current_user.admin?
+    UserIsAdminPolicy.new(@current_user).is_admin?
   end
 
 
   def current_user_is_admin_in_masquerade?
     m = Masquerade.new(@controller)
-    m.masquerading? && m.original_user.admin?
+    m.masquerading? && UserIsAdminPolicy.new(m.original_user).is_admin?
   end
 
 

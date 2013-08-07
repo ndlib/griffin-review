@@ -42,7 +42,7 @@ class CourseReserveList
 
 
   def instructs_course?
-    @instructs_course ||= UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course? || true
+    @instructs_course ||= (UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course? || UserIsAdminPolicy.new(@current_user).is_admin?)
   end
 
 

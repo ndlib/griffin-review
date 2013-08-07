@@ -19,41 +19,41 @@ describe AdminUpdateMetaData do
   describe :validations do
 
     it "requires a nd_meta_data_id if overwrite_nd_meta_data is false" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(false)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
 
       @update_meta_data.should have(1).error_on(:nd_meta_data_id)
     end
 
 
     it "does not require nd_meta_data_id if we have set the item to overwrite nd meta data" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(true)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 
       @update_meta_data.should have(0).error_on(:nd_meta_data_id)
     end
 
 
     it "does not require title if overwrite_nd_meta_data is false" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(false)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
       @update_meta_data.should have(0).error_on(:title)
     end
 
 
     it "requires title if overwrite_nd_meta_data is true" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(true)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
       @update_meta_data.title = nil
       @update_meta_data.should have(1).error_on(:title)
     end
 
 
     it "does not require creator if overwrite_nd_meta_data is false" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(false)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
 
       @update_meta_data.should have(0).error_on(:creator)
     end
 
 
     it "requires creator if overwrite_nd_meta_data is true" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(true)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 
       @update_meta_data.should have(1).error_on(:creator)
     end
@@ -61,16 +61,25 @@ describe AdminUpdateMetaData do
 
 
     it "does not require journal_title if overwrite_nd_meta_data is false" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(false)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
 
       @update_meta_data.should have(0).error_on(:journal_title)
     end
 
 
     it "requires journal_title if overwrite_nd_meta_data is true" do
-      Reserve.any_instance.stub(:overwrite_nd_meta_data?).and_return(true)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 
       @update_meta_data.should have(1).error_on(:journal_title)
+    end
+
+
+    it "regression against case where we are unable to update the overwrite to false and the reserve stays validating as if it data was overwritten" do
+      @reserve.overwrite_nd_meta_data = true
+      @reserve.save!
+
+      @params = { id: @reserve.id,  admin_update_meta_data: { nd_meta_data_id: 'metaid', overwrite_nd_meta_data: "0" } }
+      AdminUpdateMetaData.new(@user, @params).valid?.should be_true
     end
   end
 

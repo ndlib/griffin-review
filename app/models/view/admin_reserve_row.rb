@@ -5,8 +5,9 @@ class AdminReserveRow
   delegate :id, :title, :workflow_state, to: :reserve
 
 
-  def initialize(reserve)
+  def initialize(reserve, context)
     @reserve = reserve
+    @context = context
   end
 
 
@@ -17,16 +18,6 @@ class AdminReserveRow
 
   def button
     @button ||= AdminEditButton.new(@reserve)
-  end
-
-
-  def requestor
-    @reserve.requestor_name
-  end
-
-
-  def requestor_netid
-    @reserve.requestor_netid
   end
 
 
@@ -44,8 +35,13 @@ class AdminReserveRow
   end
 
 
-  def course_title
-    reserve.course.full_title
+  def course_col
+    @context.link_to(reserve.course.full_title.truncate(40), @context.course_reserves_path(reserve.course.id), target: '_blank' )
+  end
+
+
+  def requestor_col
+    @context.link_to(@reserve.requestor_name, @context.new_masquerades_path(:username => @reserve.requestor_netid))
   end
 
 
@@ -64,7 +60,7 @@ class AdminReserveRow
       ret += "Subtitle: #{@reserve.subtitle_language}"
     end
 
-    ret
+    @context.raw(ret)
   end
 
 

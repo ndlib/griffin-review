@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AdminCourseListing do
+describe AdminCourseList do
 
 
 end

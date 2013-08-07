@@ -63,7 +63,6 @@ describe "Instructor Frontend Course Listing Access" do
 
     it "shows the next course" do
       visit root_path
-
       page.should have_content(@next_course.title)
       page.should have_content(@current_course.title)
     end
