@@ -9,8 +9,8 @@ class AdminFairUseForm
 
   delegate :can_approve?, :can_deny?, :can_send_to_council?, to: :fair_use
   delegate :id, :workflow_state, to: :reserve
-
   attribute :comments, String
+
   attribute :checklist, Hash
   attribute :event, String
 

@@ -77,7 +77,7 @@ class GetReserve
   private
 
     def validate_input!
-      if !reserve_in_current_semester?
+      if !link_to_listing?
         render_404
       end
     end
