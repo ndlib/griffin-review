@@ -126,10 +126,6 @@ jQuery ($) ->
           bSortable: false
           bSearchable: false
           aTargets: [6]
-        ,
-          bSortable: false
-          bSearchable: false
-          aTargets: [1]
         ]
       )
 
