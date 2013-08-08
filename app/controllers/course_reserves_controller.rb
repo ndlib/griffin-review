@@ -12,7 +12,7 @@ class CourseReservesController < ApplicationController
     @get_reserve = GetReserve.new(current_user, params)
     check_view_permissions!(@get_reserve.course)
 
-    check_reserve_is_in_current_semester!(@get_reserve)
+    check_reserve_can_be_viewed!(@get_reserve)
     check_and_process_term_of_service_approval!(@get_reserve)
 
     send_or_redirect_if_approved!(@get_reserve)
@@ -73,8 +73,8 @@ class CourseReservesController < ApplicationController
     end
 
 
-    def check_reserve_is_in_current_semester!(get_reserve)
-      if !get_reserve.reserve_in_current_semester?
+    def check_reserve_can_be_viewed!(get_reserve)
+      if !get_reserve.link_to_listing?
         render_404
       end
     end

@@ -78,13 +78,23 @@ class Reserve
 
 
   def requestor_name
-    @user ||= User.where(:username => self.requestor_netid).first
+    if requestor_netid == 'import'
+      return "imported"
+    end
+
+    @user ||= requestor
     if !@user
       return ""
     end
 
     @user.display_name
   end
+
+
+  def requestor
+    @user ||= User.where(:username => self.requestor_netid).first
+  end
+
 
   def request
     @request ||= Request.new

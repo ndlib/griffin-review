@@ -4,8 +4,9 @@ class ReserveRow
 
   attr_accessor :reserve
 
-  def initialize(reserve)
+  def initialize(reserve, current_user)
     @reserve = reserve
+    @current_user = current_user
   end
 
 
@@ -28,7 +29,7 @@ class ReserveRow
 
 
   def link_to_get_listing?
-    ReserveResourcePolicy.new(@reserve).can_be_linked_to?
+    ReserveResourcePolicy.new(@reserve, @current_user).can_be_linked_to?
   end
 
 

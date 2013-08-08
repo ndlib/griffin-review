@@ -49,6 +49,6 @@ class ReserveSynchronizeMetaData
 
 
     def reserve_resource_policy
-      @policy ||= ReserveResourcePolicy.new(@reserve)
+      @policy ||= ReserveResourcePolicy.new(@reserve, false)
     end
 end

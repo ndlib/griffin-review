@@ -8,7 +8,7 @@ class ReserveSearch
   end
 
 
-  def get(id, course)
+  def get(id, course = nil)
     load_in_reserve(@relation.find(id), course)
   end
 

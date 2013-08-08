@@ -49,6 +49,7 @@
               <%= content_for(:left_column) %>
             </div>
           <% end %>
+          <%= display_notices %>
           <%
           content_width = 12
           if content_for?(:left_column)
@@ -70,7 +71,6 @@
               <% end %>
               <%= content_for(:content_title) %>
             </div>
-            <%= display_notices %>
 
             <%= yield %>
 

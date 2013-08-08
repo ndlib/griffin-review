@@ -2,7 +2,7 @@ class AdminReserveRow
 
   attr_accessor :reserve
 
-  delegate :id, :title, :workflow_state, to: :reserve
+  delegate :id, :workflow_state, to: :reserve
 
 
   def initialize(reserve, context)
@@ -32,6 +32,11 @@ class AdminReserveRow
 
   def request_date
     @reserve.created_at.to_date.to_s(:short)
+  end
+
+
+  def title
+    @context.link_to(reserve.title, @context.request_path(reserve.id) )
   end
 
 

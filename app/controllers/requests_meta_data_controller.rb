@@ -11,7 +11,7 @@ class RequestsMetaDataController  < ApplicationController
     @request = AdminUpdateMetaData.new(current_user, params)
     if @request.save_meta_data
       flash[:success] = "Meta Data Saved"
-      redirect_to requests_path(@request.id, :filter => @request.workflow_state)
+      redirect_to request_path(@request.id)
     else
       render :edit
     end

@@ -1,0 +1,31 @@
+<% content_for(:content_title) do %>
+  <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
+  <p class="lead">
+    <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %> <br>
+    <small><%= @admin_reserve.course.course_triple %></small><br>
+    Status: <%= @admin_reserve.workflow_state %><br />
+    Requestor: <%= @admin_reserve.requestor %>
+  </p>
+<% end %>
+<% content_for(:content_title_links) do %>
+  <%= render partial: '/requests/admin_row_button', locals: { button: @admin_reserve.button } %>
+<% end %>
+
+<%
+breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow_state)), h(@admin_reserve.title) ])
+%>
+<div class="find-resources">
+  <hr>
+  <%= render :partial => '/course_reserves/list_record', :locals => { object: @admin_reserve.reserve } %>
+</div>
+
+<%= raw @admin_reserve.info_list %>
+<h4>Notes</h4>
+<%= raw @admin_reserve.note %>
+
+
+
+
+
+
+

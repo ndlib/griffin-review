@@ -125,7 +125,7 @@ jQuery ($) ->
           bVisible: false
           bSortable: false
           bSearchable: false
-          aTargets: [8]
+          aTargets: [6]
         ,
           bSortable: false
           bSearchable: false
@@ -134,14 +134,14 @@ jQuery ($) ->
       )
 
       if $('li.active > a.tab').attr('filter') != "complete"
-        oTable.fnFilter($('li.active > a.tab').attr('filter'), 8, true, false, false)
+        oTable.fnFilter($('li.active > a.tab').attr('filter'), 6, true, false, false)
 
 
       $('a[data-toggle="tab"]').on('click', ->
         if oTable.size() == 0
           return
 
-        oTable.fnFilter($(this).attr('filter'), 8, true, false, false)
+        oTable.fnFilter($(this).attr('filter'), 6, true, false, false)
       )
 
 

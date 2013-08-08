@@ -13,7 +13,7 @@ class RequestsResourcesController  < ApplicationController
 
     if @request.save_resource
       flash[:success] = "Resource Saved"
-      redirect_to requests_path(:filter => @request.workflow_state)
+      redirect_to request_path(@request.id)
     else
       render 'edit'
     end

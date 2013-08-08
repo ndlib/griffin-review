@@ -70,19 +70,20 @@ gem "whenever", :require => false
 
 # development only
 group :development do
-    gem 'looksee'
-    gem 'rdoc'
-    gem 'awesome_print'
-    gem 'sextant'
+  gem 'looksee'
+  gem 'rdoc'
+  gem 'awesome_print'
+  gem 'sextant'
+  gem 'bullet'
 end
 
 # testing
 group :test do
-    gem 'json_spec'
-    gem 'capybara'
-    gem 'launchy', '~> 2.1.0'
-    gem 'faker'
-    gem 'selenium-webdriver'
+  gem 'json_spec'
+  gem 'capybara'
+  gem 'launchy', '~> 2.1.0'
+  gem 'faker'
+  gem 'selenium-webdriver'
 
 	gem 'growl'
 	gem 'growl-rspec'
