@@ -30,7 +30,7 @@ class MovFileGenerator
 
   def file_path
     path = File.join(Rails.root, "uploads/movs/", "#{@reserve.id}")
-    FileUtils.mkdir_p(path)
+    FileUtils.mkdir_p(path) unless File.exists?(path)
 
     File.join(path, @reserve.url)
   end
