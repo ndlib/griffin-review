@@ -158,6 +158,13 @@ describe Reserve do
 
       expect(@reserve.title).to eq("title")
     end
+
+    it "does not include the display_length if there is none" do
+      @reserve.stub(:overwrite_nd_meta_data?).and_return(false)
+      @reserve.display_length= ""
+
+      expect(@reserve.title).to eq("title")
+    end
   end
 
   describe :fair_use do

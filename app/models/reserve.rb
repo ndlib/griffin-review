@@ -68,10 +68,10 @@ class Reserve
 
 
   def title
-    if self.overwrite_nd_meta_data?
-      "#{@item.title}"
-    else
+    if !self.overwrite_nd_meta_data? && @item.display_length.present?
       "#{@item.title} - #{@item.display_length}"
+    else
+      "#{@item.title}"
     end
   end
 
