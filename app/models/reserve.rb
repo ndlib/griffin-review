@@ -4,8 +4,8 @@ class Reserve
   extend ActiveModel::Naming
   extend ActiveModel::Callbacks
 
-  delegate :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
-  delegate :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
+  delegate :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
+  delegate :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
   delegate :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 
   delegate :created_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
@@ -149,104 +149,6 @@ class Reserve
     @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
   end
 
-
-
-  def self.generate_test_data_for_course(course)
-    BookReserve.test_request(course).save!
-    BookReserve.new_request(course).save!
-    BookReserve.awaiting_request(course).save!
-
-    BookChapterReserve.test_request(course).save!
-    BookChapterReserve.new_request(course).save!
-    BookChapterReserve.awaiting_request(course).save!
-
-    JournalReserve.test_file_request(course).save!
-    JournalReserve.test_url_request(course).save!
-
-    VideoReserve.test_request(course).save!
-    VideoReserve.new_request(course).save!
-    VideoReserve.awaiting_request(course).save!
-
-    AudioReserve.test_request(course).save!
-  end
-
-
-end
-
-
-
-class BookReserve < Reserve
-
-  def self.test_request(course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "available", requestor_netid: "jhartzle", needed_by: 4.days.from_now, title: "Book Request", creator: 'Hartzler, Jon', nd_meta_data_id: "")
-  end
-
-
-  def self.new_request(course = nil)
-    self.new( course: course, type: self.to_s, type: self.to_s, workflow_state: "new", requestor_netid: "jhartzle", needed_by: 2.days.from_now, title: "New Book Request", creator: 'Hartzler, Jon')
-  end
-
-  def self.awaiting_request( course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "inprocess", requestor_netid: "rfox2", needed_by: 2.days.from_now, title: "Awaiting Book Request", creator: 'Hartzler, Jon')
-  end
-
-end
-
-
-class BookChapterReserve < Reserve
-
-  def self.test_request( course = nil)
-    self.new( course: course, type: self.to_s,  workflow_state: "available", requestor_netid: "jkennel", needed_by: 6.days.from_now, nd_meta_data_id: "", title: "Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf:  File.open("#{Rails.root}/uploads/test.pdf"))
-  end
-
-  def self.new_request( course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "new", requestor_netid: "jhartzle", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
-  end
-
-  def self.awaiting_request( course = nil)
-    self.new( course: course, type: self.to_s, workflow_state: "inprocess", nd_meta_data_id: "", requestor_netid: "Jaron Kennel", needed_by: 6.days.from_now, title: "New Book Chapter Request", creator: 'Kennel, Jaron', length: "Chapter 7")
-  end
-
-end
-
-
-class JournalReserve < Reserve
-
-  def self.test_file_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Bob Bobbers", needed_by: 10.days.from_now, title: "Journal File Request", creator: 'Fox, Rob', journal_title: "Journal", length: "pages: 33-44", pdf: File.open("#{Rails.root}/uploads/test.pdf"))
-  end
-
-
-  def self.test_url_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Person", needed_by: 1.days.from_now, title: "Journal Url Request", creator: 'Wetheril, Andy', journal_title: "Journal", length: "pgs: 55-66", url: "http://www.google.com")
-  end
-
-end
-
-
-class VideoReserve < Reserve
-  def self.test_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "Prof P", needed_by: 4.days.from_now, nd_meta_data_id: "", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
-  end
-
-
-  def self.new_request( course = nil)
-    self.new( type: self.to_s, workflow_state: "inprocess",  course: course, requestor_netid: "Prof Q", needed_by: 14.days.from_now, nd_meta_data_id: "", title: "Movie", creator: 'Robin Schaaf', length: "42:33 20 min.", url: "HimesKeynote.mov")
-  end
-
-
-  def self.awaiting_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "new", course: course, requestor_netid: "Prof 9", needed_by: 8.days.from_now, title: "Return of the Jedi", creator: 'George L', length: "42:33 20 min.")
-  end
-
-end
-
-
-class AudioReserve < Reserve
-
-  def self.test_request(course = nil)
-    self.new( type: self.to_s, workflow_state: "available",  course: course, requestor_netid: "bla bla", needed_by: 11.days.from_now, nd_meta_data_id: "", title: "Audio", creator: 'Music Person', length: "3:33 15 min.", url: "HimesKeynote.mov")
-  end
 
 end
 
