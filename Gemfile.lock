@@ -69,6 +69,7 @@ GEM
     awesome_print (1.1.0)
     backports (3.3.3)
     bcrypt-ruby (3.1.1)
+    breach-mitigation-rails (0.0.3)
     builder (3.1.4)
     bullet (4.6.0)
       uniform_notifier
@@ -353,6 +354,7 @@ DEPENDENCIES
   airbrake
   american_date
   awesome_print
+  breach-mitigation-rails
   bullet
   capistrano
   capybara

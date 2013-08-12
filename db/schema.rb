@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801143910) do
+ActiveRecord::Schema.define(version: 20130809194541) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20130801143910) do
     t.boolean  "on_order"
     t.string   "details"
     t.datetime "metadata_synchronization_date"
+    t.string   "display_length"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
@@ -233,7 +234,7 @@ ActiveRecord::Schema.define(version: 20130801143910) do
     t.boolean  "admin"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "versions", force: true do |t|

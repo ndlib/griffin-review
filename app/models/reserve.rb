@@ -67,6 +67,15 @@ class Reserve
   end
 
 
+  def title
+    if self.overwrite_nd_meta_data?
+      "#{@item.title}"
+    else
+      "#{@item.title} - #{@item.display_length}"
+    end
+  end
+
+
   def item
     @item ||= (request.item || request.build_item)
   end

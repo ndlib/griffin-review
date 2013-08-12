@@ -139,6 +139,27 @@ describe Reserve do
   end
 
 
+  describe :title do
+
+    before(:each) do
+      @reserve = Reserve.new
+      @reserve.display_length= "Part1"
+      @reserve.title = "title"
+    end
+
+    it "includes the display_length in the title if the meta data is synchronizated " do
+      @reserve.stub(:overwrite_nd_meta_data?).and_return(false)
+
+      expect(@reserve.title).to eq("title - Part1")
+    end
+
+    it "does not include the display_length if the meta data is overwritten." do
+      @reserve.stub(:overwrite_nd_meta_data?).and_return(true)
+
+      expect(@reserve.title).to eq("title")
+    end
+  end
+
   describe :fair_use do
 
     it "creates an empty fair use object when there isn't one " do

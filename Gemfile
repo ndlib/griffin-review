@@ -24,6 +24,8 @@ gem 'rubycas-client'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 
+gem 'breach-mitigation-rails'
+
 # exception logging
 gem 'airbrake'
 

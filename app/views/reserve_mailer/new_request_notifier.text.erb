@@ -1,0 +1,14 @@
+New Request for <%= @reserve.requestor_name %>
+
+A new request has been submitted. The link to the request is here:
+
+<%= request_url(@reserve.id) %>
+
+Here are the details:
+
+Requested Video Name: <%= @reserve.title %>
+Course: <%= @reserve.course.full_title %>
+Needed By: <%= @reserve.needed_by %>
+Note:
+
+<%= @reserve.note %>

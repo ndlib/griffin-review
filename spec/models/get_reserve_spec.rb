@@ -52,6 +52,7 @@ describe GetReserve do
     end
 
     it "returns false if the listing should not download a file"  do
+      GetReserve.any_instance.stub(:validate_input!).and_return(true)
       @reserve.pdf.clear
 
       gcl = GetReserve.new(@user, @valid_params)

@@ -8,8 +8,9 @@
 
     <% if !@show_files %>
       <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
-      <hr>
     <% end %>
+
+    <hr>
 
     <%= f.input :on_order, label: false do %>
       <%= f.input_field :on_order, as: :boolean, inline_label: "On Order", label: false %>

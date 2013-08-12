@@ -8,7 +8,7 @@ describe InstructorReserveRequest do
 
 
   before(:each) do
-    @course = double(Course, :id => "course_id", :title => 'title', :instructor_name => 'name', :crosslist_id => 'crosslist_id')
+    @course = double(Course, :id => "course_id", :title => 'title', :instructor_name => 'name', :crosslist_id => 'crosslist_id', :full_title => 'full_title')
     @course.stub(:semester).and_return(semester)
     @course.stub(:reserve_id).and_return('reserve_id')
 

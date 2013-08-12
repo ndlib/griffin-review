@@ -52,6 +52,7 @@ class InstructorReserveRequest
   def make_request
     if valid?
       persist!
+      notify!
       true
     else
       false
@@ -144,6 +145,11 @@ class InstructorReserveRequest
       if @course.nil? || !course_can_create_new_reserve?
         render_404
       end
+    end
+
+
+    def notify!
+      ReserveMailer.new_request_notifier(reserve).deliver
     end
 
 end
