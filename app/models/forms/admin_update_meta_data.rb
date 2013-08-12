@@ -13,11 +13,13 @@ class AdminUpdateMetaData
   attribute :publisher, String
   attribute :journal_title, String
   attribute :nd_meta_data_id, String
+  attribute :display_length, String
   attribute :on_order, Boolean
   attribute :overwrite_nd_meta_data, Boolean
 
   validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
-  validates :title, :creator, :journal_title, presence: true, unless: :requires_nd_meta_data_id?
+  validates :title, :creator, presence: true, unless: :requires_nd_meta_data_id?
+  validates :journal_title, presence: true,  if: :requires_journal_title?
 
   delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
 
@@ -69,6 +71,11 @@ class AdminUpdateMetaData
 
     def requires_nd_meta_data_id?
       (!overwrite_nd_meta_data)
+    end
+
+
+    def requires_journal_title?
+      @reserve.type == 'JournalReserve'
     end
 
 

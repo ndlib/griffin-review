@@ -68,7 +68,7 @@ describe AdminUpdateMetaData do
 
 
     it "requires journal_title if overwrite_nd_meta_data is true" do
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
+      @update_meta_data.stub(:requires_journal_title?).and_return(true)
 
       @update_meta_data.should have(1).error_on(:journal_title)
     end
