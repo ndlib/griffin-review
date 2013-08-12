@@ -13,6 +13,7 @@ class RequestsMetaDataController  < ApplicationController
       flash[:success] = "Meta Data Saved"
       redirect_to request_path(@request.id)
     else
+      flash[:error] = @request.errors.full_messages
       render :edit
     end
   end
