@@ -66,6 +66,7 @@ class Course
     @attributes['number']
   end
 
+
   def unique_supersection_ids
     @attributes['sections'].collect {|s| s["supersection_id"]}.uniq
   end
@@ -164,33 +165,13 @@ class Course
   end
 
 
-  def self.reserve_test_data(course)
-    Reserve
-
-    [
-      BookReserve.test_request(course),
-      BookChapterReserve.test_request(course),
-      JournalReserve.test_file_request(course),
-      JournalReserve.test_url_request(course),
-      VideoReserve.test_request(course),
-      AudioReserve.test_request(course),
-      BookReserve.new_request(course),
-      BookReserve.awaiting_request(course),
-      BookChapterReserve.new_request(course),
-      BookChapterReserve.awaiting_request(course),
-      VideoReserve.awaiting_request(course),
-      VideoReserve.new_request(course),
-    ]
-  end
-
-
   def self.get_semester_from(course_id)
     course_id.split('_')[0]
   end
 
 
   def crosslistings
-    @crosslistings ||= [self]
+    @crosslistings ||= [ self ]
   end
 
 
@@ -201,7 +182,6 @@ class Course
 
 
   def crosslisted_course_ids
-
     crosslistings.collect { | c | c.course_code }
   end
 

@@ -20,7 +20,9 @@ Griffin::Application.routes.draw do
     get 'copy_old_reserves', to: 'copy_old_reserves#new'
     post 'copy_old_reserves', to: 'copy_old_reserves#create'
 
-    resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
+    # resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
+
+    resources :users, controller: 'course_users', only: [:new, :create]
   end
 
   post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'

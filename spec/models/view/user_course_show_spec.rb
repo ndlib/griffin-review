@@ -26,12 +26,6 @@ describe CourseReserveList do
   end
 
 
-  it "has an instructor_name" do
-    @user_course_show.respond_to?(:instructor_name).should be_true
-    @user_course_show.instructor_name.should == "name"
-  end
-
-
   it "has a course id " do
     @user_course_show.respond_to?(:course_id).should be_true
     @user_course_show.course_id.should == 1

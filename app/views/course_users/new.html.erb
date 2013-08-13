@@ -1,0 +1,19 @@
+<% content_for(:content_title) do %>
+  <%= render partial: '/course_reserves/course_title', locals: { course: @add_user_from.course } %>
+<% end %>
+
+<hr>
+<div class="six columns">
+  <h2>Add Missing User</h2>
+
+  <%= simple_form_for @add_user_from, url: course_users_path(@add_user_from.course.id) do | f | %>
+
+    <%= f.input :netid %>
+    <%= f.input :role, as: :select, collection: @add_user_from.valid_roles %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Save", :class => 'btn-primary' %>
+      <%= link_to 'Cancel', course_reserves_path(@add_user_from.course.id) %>
+    </div>
+  <% end %>
+</div>

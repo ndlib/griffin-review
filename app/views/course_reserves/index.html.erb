@@ -1,9 +1,5 @@
 <% content_for(:content_title) do %>
-  <h1><%= h @user_course_show.title %> <small><%= h @user_course_show.semester_name %></small></h1>
-  <p class="lead">
-    <%= @user_course_show.instructor_name %><br />
-    <small>Sections: <%= @user_course_show.sections %></small>
-  </p>
+  <%= render partial: '/course_reserves/course_title', locals: { course: @user_course_show.course } %>
 <% end %>
 
 <% if @user_course_show.current_or_future_semester? %>

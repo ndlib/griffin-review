@@ -5,7 +5,7 @@ class CourseReserveList
 
   attr_accessor :course, :current_user
 
-  delegate :title, :instructor_name, to: :course
+  delegate :title, to: :course
 
   def initialize(current_user, params)
     @current_user = current_user
@@ -28,16 +28,6 @@ class CourseReserveList
     else
       raise "unable to determine reserves"
     end
-  end
-
-
-  def semester_name
-    @course.semester.full_name
-  end
-
-
-  def sections
-    @course.section_numbers.join(", ")
   end
 
 

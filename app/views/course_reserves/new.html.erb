@@ -1,14 +1,11 @@
 <% content_for(:content_title) do %>
-  <h1>Request New Material <small><%= h @new_reserve.course_title %></small></h1>
-  <p class="lead">
-    <%= @new_reserve.instructor_name %><br />
-    <small>Sections: <%= @new_reserve.sections %></small>
-  </p>
+  <%= render partial: '/course_reserves/course_title', locals: { course: @new_reserve.course } %>
 <% end %>
 
 <% breadcrumb([ link_to('Courses', courses_path), link_to(@new_reserve.course_title, course_reserves_path(@new_reserve.course.id)), 'Request New Material' ]) %>
-
+<hr>
 <div class="six columns">
+  <h2>New Video Request</h2>
   <!--
   <div class="btn-group" data-toggle="buttons-radio">
     <h3>What type of material do you need? </h3>
