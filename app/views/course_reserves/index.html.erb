@@ -8,7 +8,9 @@
   <% breadcrumb([ link_to('Courses', courses_path), link_to('Archived Courses', archived_courses_path), @user_course_show.title ]) %>
 <% end %>
 
-<%= render partial: 'table_filter', locals: { course: @user_course_show.course } %>
+<div class="show_popover_help">
+  <%= render partial: 'table_filter', locals: { course: @user_course_show.course } %>
+</div>
 
 <%= render @user_course_show.show_partial %>
 
