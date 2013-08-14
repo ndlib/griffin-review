@@ -116,7 +116,6 @@ describe GetReserve do
   end
 
 
-
   describe :link_to_listing? do
 
     before(:each) do
@@ -133,6 +132,16 @@ describe GetReserve do
     it "returns false if cannot be linked to" do
       ReserveResourcePolicy.any_instance.stub(:can_be_linked_to?).and_return(false)
       @get_reserve.link_to_listing?.should be_false
+    end
+
+  end
+
+
+  describe :statistics do
+
+    it "sets a statistic datapoint for the reserve " do
+      ReserveStat.should_receive(:add_statistic!)
+      @get_reserve = GetReserve.new(@user, @valid_params)
     end
 
   end

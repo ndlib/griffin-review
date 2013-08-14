@@ -11,6 +11,8 @@ class GetReserve
     @term_of_service_approved = false
 
     validate_input!
+
+    ReserveStat.add_statistic!(current_user, @reserve)
   end
 
 
