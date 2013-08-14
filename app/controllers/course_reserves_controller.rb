@@ -83,6 +83,8 @@ class CourseReservesController < ApplicationController
     def send_or_redirect_if_approved!(get_reserve)
 
       if !get_reserve.approval_required?
+        get_reserve.mark_view_statistics
+
         if get_reserve.download_listing?
           send_file(get_reserve.download_file_path)
 

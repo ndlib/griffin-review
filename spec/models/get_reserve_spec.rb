@@ -142,6 +142,7 @@ describe GetReserve do
     it "sets a statistic datapoint for the reserve " do
       ReserveStat.should_receive(:add_statistic!)
       @get_reserve = GetReserve.new(@user, @valid_params)
+      @get_reserve.mark_view_statistics
     end
 
   end

@@ -11,8 +11,6 @@ class GetReserve
     @term_of_service_approved = false
 
     validate_input!
-
-    ReserveStat.add_statistic!(current_user, @reserve)
   end
 
 
@@ -74,6 +72,12 @@ class GetReserve
   def mov_file_path
     MovFileGenerator.new(@reserve).mov_file_path
   end
+
+
+  def mark_view_statistics
+    ReserveStat.add_statistic!(current_user, @reserve)
+  end
+
 
 
   private

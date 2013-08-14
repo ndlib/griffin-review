@@ -112,3 +112,11 @@ table.dataTable tfoot th {
   border-top: 1px solid black;
   font-weight: bold;
 }
+
+.dl-horizontal.long-dt dt {
+  width: 200px;
+}
+
+.dl-horizontal.long-dt dd {
+  margin-left: 220px;
+}

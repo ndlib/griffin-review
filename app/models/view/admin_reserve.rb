@@ -78,6 +78,23 @@ class AdminReserve
     end
   end
 
+
+
+  def number_of_views_for_current_request
+    ReserveStat.all_request_stats(@reserve).size
+  end
+
+
+  def number_of_views_all_time
+    ReserveStat.all_item_stats(@reserve).size
+  end
+
+
+  def semester_code
+    @reserve.semester.code
+  end
+
+
   private
 
     def reserve_search
