@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130809194541) do
+ActiveRecord::Schema.define(version: 20130814134446) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -123,6 +123,13 @@ ActiveRecord::Schema.define(version: 20130809194541) do
   add_index "requests", ["crosslist_id"], name: "index_requests_on_crosslist_id", using: :btree
   add_index "requests", ["library"], name: "index_requests_on_library", using: :btree
   add_index "requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
+
+  create_table "reserve_stats", force: true do |t|
+    t.integer "request_id"
+    t.integer "item_id"
+    t.integer "semester_id"
+    t.integer "user_id"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
