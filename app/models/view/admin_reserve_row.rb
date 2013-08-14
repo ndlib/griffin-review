@@ -77,6 +77,7 @@ class AdminReserveRow
       ret << 'meta_data' if !meta_data_policy.complete?
       ret << 'resource' if !external_resource_policy.complete?
       ret << 'on_order' if !awaiting_purchase_policy.complete?
+      ""
     end
 
     ret.join(' ')
@@ -101,6 +102,6 @@ class AdminReserveRow
 
 
     def awaiting_purchase_policy
-      @external_resource_policy ||= ReserveAwaitingPurchasePolicy.new(@reserve)
+      @awaiting_purchase_policy ||= ReserveAwaitingPurchasePolicy.new(@reserve)
     end
 end

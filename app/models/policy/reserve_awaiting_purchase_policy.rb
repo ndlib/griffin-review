@@ -1,5 +1,5 @@
 class ReserveAwaitingPurchasePolicy
-
+  attr_accessor :reserve
 
   def initialize(reserve)
     @reserve = reserve
