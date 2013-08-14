@@ -8,7 +8,7 @@ class CourseUsersController < ApplicationController
 
 
   def create
-    check_admin_permission!
+    check_admin_or_admin_masquerading_permission!
     @add_user_from = AddUserExeceptionForm.new(current_user, params)
 
     if @add_user_from.save_user_exception
