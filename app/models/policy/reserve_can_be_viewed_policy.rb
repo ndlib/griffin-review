@@ -20,7 +20,7 @@ class ReserveCanBeViewedPolicy
   private
 
     def resource_completed?
-      ReserveResourcePolicy.new(reserve).has_resource?
+      ReserveResourcePolicy.new(@reserve).has_resource?
     end
 
 
@@ -35,7 +35,7 @@ class ReserveCanBeViewedPolicy
 
 
     def instructor_can_preview?
-      @reserve.semester.future? && UserRoleInCoursePolicy.new(@current_user, @reserve.course).user_instructs_course?
+      @reserve.semester.future? && UserRoleInCoursePolicy.new(@reserve.course, @current_user).user_instructs_course?
     end
 
 

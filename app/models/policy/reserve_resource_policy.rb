@@ -1,7 +1,6 @@
 class ReserveResourcePolicy
 
-  def initialize(reserve, current_user = false)
-    @current_user = current_user
+  def initialize(reserve)
     @reserve = reserve
   end
 
@@ -42,11 +41,6 @@ class ReserveResourcePolicy
 
   def has_url_resource?
     can_have_url_resource? && @reserve.url.present?
-  end
-
-
-  def can_be_linked_to?
-    has_resource? && (@reserve.semester.current? || ( @current_user && UserIsAdminPolicy.new(@current_user).is_admin? ))
   end
 
 

@@ -29,7 +29,7 @@ class ReserveRow
 
 
   def link_to_get_listing?
-    ReserveResourcePolicy.new(@reserve, @current_user).can_be_linked_to?
+    ReserveCanBeViewedPolicy.new(@reserve, @current_user).can_be_viewed?
   end
 
 

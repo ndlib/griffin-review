@@ -1,9 +1,8 @@
 class ReserveCheckIsComplete
 
 
-  def initialize(reserve, current_user = false)
+  def initialize(reserve)
     @reserve = reserve
-    @current_user = current_user
   end
 
 
@@ -19,6 +18,6 @@ class ReserveCheckIsComplete
     ReserveFairUsePolicy.new(@reserve).complete? &&
     ReserveAwaitingPurchasePolicy.new(@reserve).complete? &&
     ReserveMetaDataPolicy.new(@reserve).complete? &&
-    ReserveResourcePolicy.new(@reserve, @current_user).complete?
+    ReserveResourcePolicy.new(@reserve).complete?
   end
 end
