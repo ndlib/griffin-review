@@ -1,5 +1,7 @@
 class SakaiIntegratorController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   def sakai_redirect
     if params[:context_id]
       si = SakaiIntegrator.new(self)
