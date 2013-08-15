@@ -1,7 +1,13 @@
 module GetCourse
 
   def get_course(id)
-    course_search.get(id)
+    c = course_search.get(id)
+
+    if c.nil?
+      render_404
+    end
+
+    c
   end
 
 

@@ -1,5 +1,6 @@
 class AddUserExeceptionForm
   include ModelErrorTrapping
+  include GetCourse
   include Virtus
 
   extend ActiveModel::Naming
@@ -17,7 +18,7 @@ class AddUserExeceptionForm
 
 
   def initialize(current_user, params)
-    @course = course_search.get(params[:course_id])
+    @course = get_course(params[:course_id])
 
     if params[:add_user_exeception_form]
       self.attributes = params[:add_user_exeception_form]
@@ -51,18 +52,4 @@ class AddUserExeceptionForm
     end
 
 
-    def get_course(id)
-      c = course_search.get(id)
-
-      if c.nil?
-        render_404
-      end
-
-      c
-    end
-
-
-    def course_search
-      @course_search ||= CourseSearch.new
-    end
 end
