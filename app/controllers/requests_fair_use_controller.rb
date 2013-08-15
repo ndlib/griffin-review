@@ -12,7 +12,7 @@ class RequestsFairUseController  < ApplicationController
 
     if @request.save_fair_use
       flash[:success] = "Fair Use Saved"
-      redirect_to requests_path(@request.id)
+      redirect_to request_path(@request.id)
     else
       render :edit
     end
