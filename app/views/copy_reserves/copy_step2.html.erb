@@ -19,7 +19,7 @@
           <%= check_box_tag 'copy', reserve.id, false, class: "copy" %>
         </td>
         <td>
-          <%= render :partial => '/external/request/lists/list_record', :locals => { object: reserve} %>
+          <%= render :partial => '/course_reserves/list_record', :locals => { object: reserve} %>
         </td>
       </tr>
     <% end %>

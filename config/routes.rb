@@ -14,7 +14,7 @@ Griffin::Application.routes.draw do
 
     get 'copy', to: 'copy_reserves#copy_step1', as: :copy_step1
     get 'copy/:from_course_id', to: 'copy_reserves#copy_step2', as: :copy_step2
-    get 'copy/:from_course_id/copy', to: 'copy_reserves#copy', :via => :post, as: :copy
+    post 'copy/:from_course_id/copy', to: 'copy_reserves#copy', as: :copy
 
 
     get 'copy_old_reserves', to: 'copy_old_reserves#new'
@@ -22,7 +22,7 @@ Griffin::Application.routes.draw do
 
     # resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
 
-    resources :users, controller: 'course_users', only: [:new, :create]
+    resources :users, controller: 'course_users', only: [:new, :create, :index]
   end
 
   post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
