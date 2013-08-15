@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/airblade/paper_trail.git
+  revision: efe386d0b1fd097b5038d7624546a2b6c3c413ce
+  specs:
+    paper_trail (3.0.0.beta)
+      activerecord (>= 3.0, < 5.0)
+
+GIT
   remote: git://github.com/sporkrb/spork-rails.git
   revision: 3224f84d8c31fcb0894e9a43f6c3ac67e3aa0d71
   specs:
@@ -65,7 +72,7 @@ GEM
       nokogiri (>= 1.4.0)
     american_date (1.1.0)
     arel (4.0.0)
-    atomic (1.1.10)
+    atomic (1.1.13)
     awesome_print (1.1.0)
     backports (3.3.3)
     bcrypt-ruby (3.1.1)
@@ -167,7 +174,7 @@ GEM
     http_parser.rb (0.5.3)
     httpi (2.0.2)
       rack
-    i18n (0.6.4)
+    i18n (0.6.5)
     jquery-datatables-rails (1.11.2)
       jquery-rails
     jquery-rails (3.0.4)
@@ -193,7 +200,7 @@ GEM
     mime-types (1.23)
     mini_portile (0.5.1)
     minitest (4.7.5)
-    multi_json (1.7.7)
+    multi_json (1.7.9)
     mysql2 (0.3.12)
     nested_form (0.3.2)
     net-ldap (0.3.1)
@@ -307,7 +314,7 @@ GEM
       libv8 (~> 3.11.8.12)
       ref
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     timeliness (0.3.7)
@@ -384,6 +391,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.11)
   nested_form
   net-ldap
+  paper_trail!
   paperclip
   pry-rails
   rails (= 4.0)
