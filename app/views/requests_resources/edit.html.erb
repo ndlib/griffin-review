@@ -7,7 +7,12 @@
  <div class="span6">
     <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
       <% if @request.show_url_form? %>
-        <%= f.input :url, :label => (@request.show_video_form? ? 'Streaming Server Filename' : 'Link to external site') %>
+        <% if @request.show_video_form? %>
+          <%= f.input :url, :label => (@request.steaming_server_full_url? ? 'Video URL' : 'Streaming Server Filename') %>
+          <a href="#" class="btn toggle_video_form" data-state="<%= (@request.steaming_server_full_url? ? 'streaming_server' : 'internet') %>"><%= (@request.steaming_server_full_url? ? 'Video on our streaming server' :  'Video is on the internet') %></a>
+        <% else %>
+          <%= f.input :url, :label => 'Link to external site' %>
+        <% end %>
       <% end %>
       <% if @request.show_file_upload_form? %>
         <p>Current File: <%= @request.pdf_file_name %></p>

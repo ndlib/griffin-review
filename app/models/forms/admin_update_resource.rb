@@ -48,6 +48,11 @@ class AdminUpdateResource
   end
 
 
+  def steaming_server_full_url?
+    show_video_form? && TextIsUriPolicy.uri?(reserve.url)
+  end
+
+
   def save_resource
     if valid?
       persist!

@@ -171,8 +171,23 @@ jQuery ($) ->
       $(this).attr('href', href)
 
 
+  setupResourceForm = () ->
+    $('.toggle_video_form').click ->
+      if $(this).attr('data-state') == 'streaming_server'
+        $(this).html('Video is on the internet')
+        $(this).attr('data-state', 'internet')
+        $('label.url').html('Streaming Server Filename')
+      else
+        $(this).html('Video on our streaming server')
+        $(this).attr('data-state', 'streaming_server')
+        $('label.url').html('Video URL')
+      return false
+
+
 
   setupMetaDataForm()
+  setupResourceForm()
+
   setupAdminDatatable()
   setupStudentDatatable()
   setupInstructorDatatable()

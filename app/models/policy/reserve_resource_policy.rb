@@ -39,6 +39,11 @@ class ReserveResourcePolicy
   end
 
 
+  def streaming_service_redirect?
+    TextIsUriPolicy.uri?(@reserve.url)
+  end
+
+
   def has_url_resource?
     can_have_url_resource? && @reserve.url.present?
   end

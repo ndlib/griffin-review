@@ -44,11 +44,6 @@ class GetReserve
   end
 
 
-  def reserve_in_current_semester?
-    @reserve.semester.current?
-  end
-
-
   def link_to_listing?
     ReserveCanBeViewedPolicy.new(@reserve, @current_user).can_be_viewed?
   end
@@ -65,7 +60,8 @@ class GetReserve
 
 
   def streaming_server_file?
-    ReserveResourcePolicy.new(@reserve).streaming_service_resource?
+    rp = ReserveResourcePolicy.new(@reserve)
+    rp.streaming_service_resource? && !rp.streaming_service_redirect?
   end
 
 
@@ -77,7 +73,6 @@ class GetReserve
   def mark_view_statistics
     ReserveStat.add_statistic!(current_user, @reserve)
   end
-
 
 
   private
