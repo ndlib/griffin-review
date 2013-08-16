@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
+  before_filter :set_access_control_headers
   force_ssl if: :ssl_configured?
 
 
@@ -77,6 +78,11 @@ class ApplicationController < ActionController::Base
         format.html { render :template => 'errors/error_500', :layout => 'layouts/external', :status => 500 }
         format.all { render :nothing => true, :status => 500}
       end
+    end
+
+
+    def set_access_control_headers
+      headers['X-Frame-Options'] = "ALLOW-FROM " + Rails.configuration.sakai_domain 
     end
 
 end
