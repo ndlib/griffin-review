@@ -28,7 +28,7 @@ Griffin::Application.routes.draw do
   post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
   scope path: '/sakai' do
     resources :courses, controller: 'courses', only: [ 'index', 'create' ] do
-      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
+      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy'], as: "sakai_reserves"
       get 'copy', to: 'copy_reserves#copy_step1'
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
       post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
