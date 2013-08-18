@@ -24,7 +24,7 @@
 <% else %>
   <p class="alert">
     <strong>There are no reserves requested for this class. </strong><br>
-    <a href="<%= new_course_reserve_path(user_course_show.course_id) %>">Request Material</a>
+    <%= link_to "Request Material", new_course_reserve_path(user_course_show.course_id) %>
   </p>
 <% end %>
 

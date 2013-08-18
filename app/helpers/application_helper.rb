@@ -1,8 +1,15 @@
 module ApplicationHelper
 
+  def url_for(options = {})
+    original = super(options)
+    return original unless request.path.starts_with?('/sakai')
+    original.gsub(/^\//, '/sakai/')
+  end
+
+
   def user_top_nav()
     render partial: '/layouts/user_nav',
-                locals: { user_course_listing: UserCourseListing.new(current_user) }
+      locals: { user_course_listing: UserCourseListing.new(current_user) }
   end
 
 

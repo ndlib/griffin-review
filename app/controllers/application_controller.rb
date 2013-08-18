@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   protected
 
     def determine_layout
-      params[:sakai] == '1' ? 'sakai' : 'application'
+      request.path.starts_with?('/sakai') ? 'sakai' : 'application'
+      # params[:sakai] == '1' ? 'sakai' : 'application'
     end
 
 

@@ -12,7 +12,7 @@
     <% instructed_courses.each do | course | %>
     <tr>
       <td>
-        <a href="<%= course_copy_step2_path(to_course.id, course.id) %>"><%= h course.title %></a>
+        <%= link_to course.title, :controller => "copy_reserves", :action => "copy_step2", :course_id => to_course.id, :from_course_id => course.id %>
       </td>
       <td>
         <%= h course.semester.full_name %>

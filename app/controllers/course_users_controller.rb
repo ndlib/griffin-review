@@ -1,5 +1,6 @@
 class CourseUsersController < ApplicationController
 
+  layout :determine_layout
 
   def new
     check_admin_or_admin_masquerading_permission!
