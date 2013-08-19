@@ -8,27 +8,28 @@ Griffin::Application.routes.draw do
     get :cancel
   end
 
-  resources :courses, only: [ 'index', 'create' ] do
+  # resources :courses, only: [ 'index', 'create' ] do
 
-    resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
+  #   resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
 
-    get 'copy', to: 'copy_reserves#copy_step1'
-    get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
-    post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
+  #   get 'copy', to: 'copy_reserves#copy_step1'
+  #   get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
+  #   post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
 
 
-    get 'copy_old_reserves', to: 'copy_old_reserves#new'
-    post 'copy_old_reserves', to: 'copy_old_reserves#create'
+  #   get 'copy_old_reserves', to: 'copy_old_reserves#new'
+  #   post 'copy_old_reserves', to: 'copy_old_reserves#create'
 
-    # resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
+  #   # resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
 
-    resources :users, controller: 'course_users', only: [:new, :create, :index]
-  end
+  #   resources :users, controller: 'course_users', only: [:new, :create, :index]
+  # end
 
-  post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
-  scope path: '/sakai' do
+  # this method exits so that several routes that perform the same function
+  # can be encapsulated at different places but located once in the routes file
+  def course_routes
     resources :courses, controller: 'courses', only: [ 'index', 'create' ] do
-      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy'], as: "sakai_reserves"
+      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
       get 'copy', to: 'copy_reserves#copy_step1'
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
       post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
@@ -36,6 +37,13 @@ Griffin::Application.routes.draw do
       post 'copy_old_reserves', to: 'copy_old_reserves#create'
       resources :users, controller: 'course_users', only: [:new, :create, :index]
     end
+  end
+
+  course_routes
+
+  post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
+  scope path: '/sakai' do
+    course_routes
   end
 
   resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
@@ -58,4 +66,5 @@ Griffin::Application.routes.draw do
   end
 
   get "video/request/new", to: "homepage#index"
+
 end

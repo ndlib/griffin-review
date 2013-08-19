@@ -4,7 +4,7 @@ class Semester < ActiveRecord::Base
   validates :code, :uniqueness => true
 
   scope :cronologial, ->{ order("date_begin desc") }
-  scope :current, ->{where("date_begin <= ? AND date_end >= ?", Time.zone.now, Time.zone.now)}
+  scope :current, ->{where("date_begin <= ? AND date_end >= ?", Time.zone.today, Time.zone.today)}
   scope :previous, lambda { | date |  where('date_end <= ? ', date) }
   scope :future, ->{ where("date_end >= ? ", Time.now) }
   # default_scope where('date_begin >= ?', Date.today << 6)

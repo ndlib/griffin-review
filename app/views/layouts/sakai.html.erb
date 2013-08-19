@@ -1,44 +1,43 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Reserves</title>
-    <meta name="description" content="Information resources and collections of the Hesburgh Libraries, University of Notre Dame." />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Library Reserves</title>
+    <meta name="description" content="Reserves system for Hesburgh Libraries at the University of Notre Dame." />
     <meta name="viewport" content="width=device-width" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <%= stylesheet_link_tag    "hesburgh_assets/admin/1.0/", :media => "all" %>
-    <!--[if lte IE 9]>
-      <%= stylesheet_link_tag    "hesburgh_assets/admin/1.0/ie.css", :media => "all" %>
-    <![endif]-->
     <%= stylesheet_link_tag    "sakai", :media => "all" %>
-
     <%= javascript_include_tag "hesburgh_assets/admin/1.0/" %>
     <%= javascript_include_tag "application" %>
-
     <%= csrf_meta_tags %>
+
   </head>
-  <body>
-  <div class="row content">
-    <div class="frame">
-      <div class="row menu">
-        <div class="twelve columns">
-          <%= sakai_top_nav() %>
+  <body class="">
+    <div class="header">
+      <%= image_tag "header-home.jpg", height: '45', alt: '' %>
+      <h3>Library Reserves</h3>
+    </div>
+    <div class="rcontainer">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li class="active"><%= link_to CourseSearch.new.get(params[:course_id]).title, :controller => "course_reserves", :action => "index", :course_id => params[:course_id] %></li>
+          </ul>
         </div>
       </div>
-
-      <div class="twelve columns">
+      <div class="primary_content">
         <% if content_for?(:content_title_links) %>
           <div class="pull-right">
             <%= content_for(:content_title_links) %>
           </div>
         <% end %>
         <%= content_for(:content_title) %>
-
-        <%= yield %>
+        <div class="yield_content">
+          <%= yield %>
+        </div>
+      <div style="clear:both;"></div>
       </div>
     </div>
-
   </body>
 </html>
-

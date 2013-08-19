@@ -3,38 +3,80 @@
 *= require jquery-ui-1.10.2.custom
 */
 
-body {background-color: white;}
-
-
-.dataTables_filter input { height: 30px;}
-.dataTables_info { display: none;}
-.dataTables_paginate { display: none;}
-
-.instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
-
-.table_filter { display: none; }
-
-.has_electronic_copy {
-  display: none;
-  margin-left: 20px;
-  margin-top: 10px;
+body {
+  background: #2B5781;
+  margin:0 8px;
+  font-family: "Helvetica Neue",Helvetica,Verdana,Arial,Helvetica,sans-serif;
+  color:#304962;
 }
 
-#copy-overlay {
-  display: none;
-  padding: 25px 25px 5px 25px;
-  position: fixed;
-  right: 10px;
-  bottom: 0px;
-  background-color: white;
-  border: 4px black solid;
+p {
+  margin:0 0 1.12em;
 }
 
-.topic_form .topic_list label {
-  display: block;
+h1, h2, h3, h4, h5, h6 {
+    color: #0F3255;
+}
+h1 {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top:0;
 }
 
-.topic_form .add_topic_input {
-  width: 75%;
-  height: 30px;
+div.primary_content {
+  width: 85%;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+
+div.yield_content {
+  margin-top: 3%;
+}
+
+.header {
+  height:45px;
+}
+
+.header img {
+  float: left;
+  height:45px;
+}
+
+.header h3 {
+  float:right;
+  margin:0;
+  padding:0 5px 0 0 ; 
+  color:#FDD456;
+
+}
+
+.rcontainer {
+  background:#F8F7E9 url(/assets/fade.png) bottom repeat-x;
+  padding:55px 15px;
+  clear:both;
+  min-height: 500px;
+  padding-bottom:90px;
+  position: relative;
+}
+
+.navbar-fixed-top {
+  position: absolute;
+}
+
+.navbar-inverse .navbar-inner {
+  border:solid 1px #789CBF;
+  background: #304962;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a{
+  color:#DDE8F4;
+}
+
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus, .navbar-inverse .brand, .navbar-inverse .nav > li > a:hover {
+  background:#0e3255;
+}
+
+.navbar .nav > li {
+  border:solid #789CBF;
+  border-width:0 1px 0 0;
 }
