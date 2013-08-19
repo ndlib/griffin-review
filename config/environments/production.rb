@@ -78,6 +78,7 @@ Griffin::Application.configure do
   # Sakai integration
   config.sakai_script_wsdl = "https://sakailogin.nd.edu/sakai-axis/SakaiScript.jws?wsdl"
   config.sakai_login_wsdl = "https://sakailogin.nd.edu/sakai-axis/SakaiLogin.jws?wsdl"
-  config.sakai_domain = "https://sakailogin.nd.edu"
+  config.sakai_domain = "https://nd-test.rsmart.com"
+  # config.sakai_domain = "https://sakailogin.nd.edu"
 
 end
