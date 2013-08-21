@@ -5,18 +5,30 @@ class UserCourseException < ActiveRecord::Base
 
 
   def self.create_enrollment_exception!(section_group_id, term, netid)
-    self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'enrollment').save!
+    ucx = self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'enrollment')
+    ucx.save!
+    ucx
   end
 
 
   def self.create_instructor_exception!(section_group_id, term, netid)
-    self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'instructor').save!
+    ucx = self.new(section_group_id: section_group_id, term: term, netid: netid, role: 'instructor')
+    ucx.save!
+    ucx
   end
 
 
-  def self.user_course_exceptions(netid, term)
+  def self.user_exceptions(netid, term)
     where(netid: netid).
     where(term: term)
+  end
+
+
+  def self.user_course_exception(section_group_id, netid, term)
+    where(section_group_id: section_group_id).
+    where(term: term).
+    where(netid: netid).
+    first
   end
 
 

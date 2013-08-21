@@ -8,8 +8,8 @@ class SakaiIntegrator
     @session_id = soap_auth
     @client = soap_client
   end
-  
-  
+
+
   def get_site_property(property_name)
     session_id = @session_id
     site_id = @site_id
@@ -38,7 +38,7 @@ class SakaiIntegrator
     Savon.client(log: false, wsdl: Rails.configuration.sakai_script_wsdl)
   end
 
-  
+
   def soap_auth
     client = Savon.client(log: false, wsdl: Rails.configuration.sakai_login_wsdl)
     response = client.call(:login) do

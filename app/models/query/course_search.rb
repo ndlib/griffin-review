@@ -93,7 +93,7 @@ class CourseSearch
 
 
     def add_course_exceptions(netid, semester_id)
-      UserCourseException.user_course_exceptions(netid, semester_id).each do | course_exception |
+      UserCourseException.user_exceptions(netid, semester_id).each do | course_exception |
         parse_course_exception_to_object(course_exception, netid, semester_id)
       end
     end
@@ -126,7 +126,7 @@ class CourseSearch
         end
       end
 
-      if UserCourseException.user_course_exceptions(netid, res['section_groups'].first['sections'].first['term']).where(section_group_id: course_id).size > 0
+      if UserCourseException.user_exceptions(netid, res['section_groups'].first['sections'].first['term']).where(section_group_id: course_id).size > 0
         return res['section_groups'].first
       end
 

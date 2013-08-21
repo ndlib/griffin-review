@@ -2,7 +2,7 @@ class CourseHeader
 
   attr_accessor :course
 
-  delegate :title, :instructor_name, to: :course
+  delegate :title, to: :course
 
   def initialize(course)
     @course = course
@@ -18,4 +18,8 @@ class CourseHeader
     @course.section_numbers.join(", ")
   end
 
+
+  def instructor_name
+    @course.primary_instructor.display_name
+  end
 end

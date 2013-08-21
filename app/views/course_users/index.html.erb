@@ -1,0 +1,34 @@
+<% content_for(:content_title) do %>
+  <%= render partial: '/course_reserves/course_title', locals: { course: @course_user_list.course } %>
+<% end %>
+<% content_for(:content_title_links) do %>
+    <br><br><br>
+  <%= link_to raw("<i class=\"icon-user\"></i> Add Missing Roster"), new_course_user_path( @course_user_list.course.id), class: 'btn btn-large btn-primary' %>
+<% end %>
+
+<h3>Roster</h3>
+<table class="table table-striped users_datatable datatable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Netid</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Source</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course_user_list.users.each do | user | %>
+      <tr>
+        <td><%= user.display_name %></td>
+        <td><%= link_to user.username, new_masquerades_path(username: user.username) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= user.source %></td>
+        <td><%= DeleteCourseUserForm.new(user).delete_link %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

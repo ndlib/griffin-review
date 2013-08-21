@@ -9,8 +9,6 @@ class InstructorReserveRequest
 
   attr_accessor :course, :current_user
 
-  delegate :instructor_name, to: :course
-
   attribute :title, String
   attribute :publisher, String
   attribute :journal_title, String
@@ -32,7 +30,8 @@ class InstructorReserveRequest
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
-  validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current } }
+  validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 3.weeks } }
+
 
   def initialize(current_user, params)
     @current_user = current_user

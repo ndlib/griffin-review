@@ -39,6 +39,12 @@ FactoryGirl.define do
   end
 
 
+  factory :item_video_external, class: Item do
+    title "video reserve"
+    type "VideoReserve"
+    url "http://www.google.com"
+  end
+
   factory :item_audio, class: Item do
     title "audio reserve"
     type "VideoReserve"
@@ -49,7 +55,7 @@ FactoryGirl.define do
   factory :item_with_bib_record, class: Item do
     title "book"
     type "BookReserve"
-    nd_meta_data_id "generic"
+    nd_meta_data_id "ndu_aleph001368481"
   end
 
 

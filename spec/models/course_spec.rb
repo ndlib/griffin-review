@@ -35,12 +35,6 @@ describe Course do
   end
 
 
-  it "has an instructor_name" do
-    @course.respond_to?(:instructor_name).should be_true
-    @course.instructor_name.should == "William Schmuhl"
-  end
-
-
   it "has a section_numbers " do
     @course.respond_to?(:section_numbers).should be_true
     @course.section_numbers.should == [10, 11, 12, 13]
@@ -70,7 +64,7 @@ describe Course do
   end
 
 
-  describe :enrollments do
+  describe :enrollment_netids do
 
     it "lists has an enrollment_netids" do
       @course.respond_to?(:enrollment_netids).should be_true
@@ -87,7 +81,20 @@ describe Course do
       @course.add_enrollment_exception!('netid')
       @course.enrollment_netids.include?('netid').should be_true
     end
+
   end
+
+
+  describe :enrollments do
+
+    it "returns a list of course users" do
+      User.stub(:username).and_return([double(User, username: 'jhartzle', display_name: "Jon Hartzler", new_record?: false )])
+      expect(@course.enrollments.class).to eq(Array)
+      expect(@course.enrollments.first.class).to eq(CourseUser)
+    end
+
+  end
+
 
 
   describe :instructors do
@@ -112,7 +119,9 @@ describe Course do
             "primary_affiliation"=>"Staff"
       }
 
-      @course.instructors[1]['netid'].should == 'newnetid'
+      User.stub(:username).and_return([double(User, username: 'newnetid', display_name: "Jon Hartzler", new_record?: false )])
+
+      @course.instructors[1].username.should == 'newnetid'
     end
 
 
@@ -120,15 +129,20 @@ describe Course do
       @course.attributes['sections'][0]['instructors'][0]['netid'].should == "wschmuhl"
       @course.attributes['sections'][1]['instructors'][0]['netid'].should == "wschmuhl"
 
-      @course.instructors.reject { | i | i['netid'] != "wschmuhl" }.size.should == 1
+      User.stub(:username).and_return([double(User, username: 'newnetid', display_name: "Jon Hartzler", new_record?: false )])
+      User.stub(:username).with('wschmuhl').and_return([double(User, username: 'wschmuhl', display_name: "Jon Hartzler", new_record?: false )])
+
+      @course.instructors.reject { | i | i.username != "wschmuhl" }.size.should == 1
     end
 
 
     it "adds in instructors who have exceptions" do
-      @course.add_instructor_exception!('netid')
-      @course.instructors.reject { | i | i['netid'] != 'netid'}.size.should == 1
-    end
+      User.stub(:username).and_return([double(User, username: 'othernetid', display_name: "Jon Hartzler", new_record?: false )])
+      User.stub(:username).with('netid').and_return([double(User, username: 'netid', display_name: "Jon Hartzler", new_record?: false )])
 
+      @course.add_instructor_exception!('netid')
+      @course.instructors.reject { | i | i.username != 'netid'}.size.should == 1
+    end
 
   end
 

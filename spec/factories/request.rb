@@ -25,6 +25,10 @@ FactoryGirl.define do
     workflow_state "available"
   end
 
+  trait :removed do
+    workflow_state "removed"
+  end
+
   trait :book do
     association(:item, factory: :item_book)
   end
@@ -44,6 +48,11 @@ FactoryGirl.define do
   trait :video do
     association(:item, factory: :item_video)
   end
+
+  trait :video_external do
+    association(:item, factory: :item_video_external)
+  end
+
 
   trait :audio do
     association(:item, factory: :item_audio)

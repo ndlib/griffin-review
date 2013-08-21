@@ -62,6 +62,11 @@ module ApiMocks
   end
 
 
+  def turn_on_ldap!
+    Rails.configuration.stub(:ldap_lookup_flag).and_return(true)
+  end
+
+
   def mock_reserve(request, course)
     if !course.nil?
       request.course_id = course.id

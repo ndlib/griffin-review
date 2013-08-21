@@ -8,10 +8,10 @@ en:
   time:
     formats:
       default: "%m/%d/%Y %I:%M%p"
-  activerecord:
+  activemodel:
     errors:
       models:
-        request:
+        instructor_reserve_request:
           attributes:
             needed_by:
-              on_or_after: "Date must be in the future"
+              on_or_after: "We cannot meet any dates earlier then 3 weeks.  Please call if you have an urgent need."
