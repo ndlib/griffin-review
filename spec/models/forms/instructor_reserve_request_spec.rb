@@ -44,9 +44,17 @@ describe InstructorReserveRequest do
         @instructor_reserve.should have(1).error_on(:title)
       end
 
+
       it "requires a needed_by" do
         @instructor_reserve.should have(2).error_on(:needed_by)
       end
+
+
+      it "requires needed by to be 3 weeks out" do
+        @instructor_reserve.needed_by = 22.days.from_now
+        @instructor_reserve.should have(0).error_on(:needed_by)
+      end
+
 
       it "requires a library" do
         @instructor_reserve.should have(1).error_on(:library)
@@ -132,7 +140,7 @@ describe InstructorReserveRequest do
   describe "make_request" do
 
     it "creates the reserve with valid params" do
-      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" } }
+      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } }
 
 
       @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)
