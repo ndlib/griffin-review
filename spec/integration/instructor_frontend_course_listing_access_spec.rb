@@ -12,7 +12,7 @@ describe "Instructor Frontend Course Listing Access" do
 
     @current_course = double(Course, id: 'id', title: 'current title', full_title: "full_title", crosslisted_course_ids: [], section_numbers: ['2'], semester: @semester, semester_name: 'semester_name')
     @next_course = double(Course, id: 'id', title: 'next title', full_title: "full_title",crosslisted_course_ids: [], section_numbers: ['3'], semester: @next_semester, semester_name: 'semester_name')
-    @enrolled_course = double(Course, id: 'id', title: 'enrolled title', full_title: "full_title", instructor_name: 'name', crosslisted_course_ids: [], section_numbers: ['2'], semester: @semester, semester_name: 'semester_name')
+    @enrolled_course = double(Course, id: 'id', title: 'enrolled title', full_title: "full_title", primary_instructor: double(User, display_name: 'name'), crosslisted_course_ids: [], section_numbers: ['2'], semester: @semester, semester_name: 'semester_name')
   end
 
 

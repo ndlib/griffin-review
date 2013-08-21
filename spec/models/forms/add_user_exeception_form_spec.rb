@@ -45,14 +45,14 @@ describe AddUserExeceptionForm do
     it "adds an enrollment exception for a netid" do
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'enrollment', netid: 'netid' } } )
       expect(auef.save_user_exception).to be_true
-      expect(UserCourseException.user_course_exceptions('netid', 'current').size).to eq(1)
+      expect(UserCourseException.user_exceptions('netid', 'current').size).to eq(1)
     end
 
 
     it "adds an instructional enrollment exception for a netid " do
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'instructor', netid: 'netid' } } )
       expect(auef.save_user_exception).to be_true
-      expect(UserCourseException.user_course_exceptions('netid', 'current').size).to eq(1)
+      expect(UserCourseException.user_exceptions('netid', 'current').size).to eq(1)
     end
 
 

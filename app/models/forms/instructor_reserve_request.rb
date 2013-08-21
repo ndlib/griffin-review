@@ -9,8 +9,6 @@ class InstructorReserveRequest
 
   attr_accessor :course, :current_user
 
-  delegate :instructor_name, to: :course
-
   attribute :title, String
   attribute :publisher, String
   attribute :journal_title, String

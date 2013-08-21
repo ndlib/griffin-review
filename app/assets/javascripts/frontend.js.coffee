@@ -40,6 +40,28 @@ jQuery ($) ->
       )
 
 
+  setupUsersDatatable = () ->
+    if $(".users_datatable").size() > 0
+      oTable = $(".users_datatable").dataTable(
+        sPaginationType: "bootstrap"
+        iDisplayLength: 1000
+        bLengthChange: false
+        aoColumnDefs: [
+          bSortable: false
+          bSearchable: false
+          aTargets: [3]
+        ,
+          bSortable: false
+          bSearchable: false
+          aTargets: [4]
+        ,
+          bSortable: false
+          bSearchable: false
+          aTargets: [5]
+        ]
+      )
+
+
 
   setupTableFilters = () ->
     oTable = $(".datatable").dataTable()
@@ -192,6 +214,6 @@ jQuery ($) ->
   setupStudentDatatable()
   setupInstructorDatatable()
   setupCopyOldReserveDatatable()
+  setupUsersDatatable()
 
   setupTableFilters()
-

@@ -7,7 +7,7 @@ describe GetReserve do
 
     semester = FactoryGirl.create(:semester)
 
-    @course = double(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
+    @course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
     GetReserve.any_instance.stub(:get_course).with(@course.id).and_return(@course)
 
     @reserve =  mock_reserve FactoryGirl.create(:request, :book_chapter), @course

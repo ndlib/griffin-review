@@ -1,5 +1,5 @@
 <% if enrolled_courses.size > 0 %>
-<table class="table table-striped">
+<table class="table table-striped enrolled_courses">
   <thead>
     <tr>
       <th>Courses</th>
@@ -12,7 +12,7 @@
       <td>
         <a href="<%= course_reserves_path(course.id) %>"><%= h course.title %></a>
       </td>
-      <td><%= h course.instructor_name %></td>
+      <td><%= h course.primary_instructor.display_name %></td>
     </tr>
     <% end %>
   </tbody>

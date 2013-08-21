@@ -77,39 +77,39 @@ class Course
   end
 
 
-  def enrollment_netids
+  def enrollments
     @enrollments ||= (
-        sections.collect{ | s | s['enrollments']}.flatten +
-        exception_enrollment_netids
-      )
+      banner_enrollment_netids.collect { | netid | marshal_course_user(netid, 'enrollment', 'banner') } +
+      exception_enrollment_netids.collect { | netid | marshal_course_user(netid, 'enrollment', 'exception') }
+    )
   end
 
 
-  def instructor_name
-    "#{primary_instructor['first_name']} #{primary_instructor['last_name']}"
+  def enrollment_netids
+    @enrollments ||= banner_enrollment_netids + exception_enrollment_netids
   end
 
 
   def instructor_netid
-    primary_instructor['netid']
+    primary_instructor.username
   end
 
 
   def primary_instructor
-    @attributes['primary_instructor']
+    @primary_instructor ||= marshal_course_user(@attributes['primary_instructor']['netid'], 'instructor', 'banner')
   end
 
 
   def instructors
     @instructors ||= (
-            sections.collect{ | s | s['instructors'] }.flatten.uniq{|x| x['netid']} +
-            exception_instructors
-        )
+      banner_instructor_netids.collect { | netid | marshal_course_user(netid, 'instructor', 'banner') } +
+      exception_instructors_netids.collect { | netid | marshal_course_user(netid, 'instructor', 'exception') }
+    )
   end
 
 
   def instructor_netids
-    instructors.collect { | c | c['netid'] }
+    @instructor_netids ||= banner_instructor_netids + exception_instructors_netids
   end
 
 
@@ -193,12 +193,27 @@ class Course
     end
 
 
+    def banner_enrollment_netids
+      @banner_enromment_netids ||= sections.collect{ | s | s['enrollments']}.flatten
+    end
+
+
     def exception_enrollment_netids
-      UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid }
+      @exception_enrollment_netids ||= UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid }
     end
 
 
-    def exception_instructors
-      UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | i | { 'id' => i.netid, 'netid' => i.netid } }
+    def banner_instructor_netids
+      @banner_instructor_netids ||= sections.collect{ | s | s['instructors'] }.flatten.collect{ | i | i['netid'] }.uniq
     end
+
+
+    def exception_instructors_netids
+      @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid }
+    end
+
+    def marshal_course_user(user, role, source)
+      CourseUser.netid_factory(user, self, role, source)
+    end
+
 end

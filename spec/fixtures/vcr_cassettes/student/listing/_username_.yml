@@ -1,0 +1,174 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/bcarrico/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 Aug 2013 17:18:54 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 13cc2d79bb79098503a7f589ecdfc957
+      X-Runtime:
+      - '0.545908'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '3225'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTc2N2VjNzhlNDIxNDg1OTA2MGE0NDdiZDhiNWYyNGMzBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--9339861acc594e2e2eadbcaeec08d85c299b5946;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"bcarrico","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcarrico","first_name":"Bradley","last_name":"Carrico","full_name":"Bradley
+        Carrico","ndguid":"nd.edu.ndrz9rn3","primary_affiliation":"Student","contact_information":{"email":"Bradley.Carrico.8@nd.edu"},"enrolled_courses":[{"course_id":"201300_ACCT_20100","crosslist_id":"201300_1644","course_title":"Accountancy
+        I","section_groups":{"section_group_id":"201300_1644","primary_instructor":{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}},"sections":[{"section_id":"201300_1644","supersection_id":null,"instructors":[{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}}],"term":"201300","course_triple":"201300_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":1,"crn":"1644","enrollments":["xzhou1","aburgett","arabasa","arobert8","asuckow","bcarrico","bdoyle3","cprosise","jmceldre","jsalles","jwhite31","lchan","mharrel1","mholmes3","nmontoya","nsmith11","nstark1","ntausch","qzhu","rmultap1","rokwara","rstanle2","sday1"]}],"crosslist_id":"201300_1644"}},{"course_id":"201300_POLS_30062","crosslist_id":"201300_3931","course_title":"Civil
+        Liberties and Civil Rights","section_groups":{"section_group_id":"201300_3931","primary_instructor":{"id":"jkaplan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkaplan","first_name":"Joshua","last_name":"Kaplan","full_name":"Joshua
+        Kaplan","ndguid":"nd.edu.ndgb9rt5","position_title":"Associate Professional
+        Specialist","campus_department":"Political Science","primary_affiliation":"Faculty","contact_information":{"campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"jkaplan@nd.edu","phone":"+1
+        574 631 6377"}},"sections":[{"section_id":"201300_3931","supersection_id":null,"instructors":[{"id":"jkaplan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkaplan","first_name":"Joshua","last_name":"Kaplan","full_name":"Joshua
+        Kaplan","ndguid":"nd.edu.ndgb9rt5","position_title":"Associate Professional
+        Specialist","campus_department":"Political Science","primary_affiliation":"Faculty","contact_information":{"campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"jkaplan@nd.edu","phone":"+1
+        574 631 6377"}}],"term":"201300","course_triple":"201300_POLS_30062","course_title":"Civil
+        Liberties and Civil Rights","alpha_prefix":"POLS","number":30062,"section_number":1,"crn":"3931","enrollments":["amusser","bcarrico","dspond","kikram","mmurph33","sellis2","zkutsuli"]}],"crosslist_id":"201300_3931"}}],"instructed_courses":[]}]}'
+    http_version: 
+  recorded_at: Fri, 16 Aug 2013 17:18:54 GMT
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/bcarrico/201310/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 16 Aug 2013 17:18:55 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 6bab7bab51786e30d3485ee8461e2246
+      X-Runtime:
+      - '3.249783'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '13667'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTI2ODU1MzdkMTMyNDVmYTU2ZDY4YThlZTVkNjJmZDYyBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--a7155a945554065dff3da9d2ba5fb30f81155d39;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"bcarrico","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcarrico","first_name":"Bradley","last_name":"Carrico","full_name":"Bradley
+        Carrico","ndguid":"nd.edu.ndrz9rn3","primary_affiliation":"Student","contact_information":{"email":"Bradley.Carrico.8@nd.edu"},"enrolled_courses":[{"course_id":"201310_POLS_20200","crosslist_id":"201310_XX","course_title":"International
+        Relations","section_groups":{"section_group_id":"201310_12055","primary_instructor":{"id":"aguising","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aguising","first_name":"Alexandra","last_name":"Guisinger","full_name":"Alexandra
+        Guisinger","ndguid":"nd.edu.ndfz9qg3","primary_affiliation":"Faculty","contact_information":{"email":"guisinger.1@nd.edu","campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","phone":"+1 574 631 3846"},"position_title":"Assistant
+        Professor","campus_department":"Political Science"},"sections":[{"section_id":"201310_12055","supersection_id":null,"instructors":[{"id":"aguising","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aguising","first_name":"Alexandra","last_name":"Guisinger","full_name":"Alexandra
+        Guisinger","ndguid":"nd.edu.ndfz9qg3","primary_affiliation":"Faculty","contact_information":{"email":"guisinger.1@nd.edu","campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","phone":"+1 574 631 3846"},"position_title":"Assistant
+        Professor","campus_department":"Political Science"},{"id":"sbotero1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sbotero1","first_name":"Sandra","last_name":"Botero","full_name":"Sandra
+        Botero","ndguid":"nd.edu.ndkt4hv7","primary_affiliation":"Student","contact_information":{"email":"sbotero1@nd.edu"},"position_title":"GRAD
+        Stipend-Political Science","campus_department":"Political Science"},{"id":"mgiannin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mgiannin","first_name":"Maria
+        Del","last_name":"Giannini","full_name":"Maria Del Giannini","ndguid":"nd.edu.ndkn3tg7","primary_affiliation":"Student","contact_information":{"email":"MariaDel.P.Giannini.2@nd.edu"},"position_title":"Research
+        Assistant","campus_department":"Kellogg Inst for Intrnl Studies"}],"term":"201310","course_triple":"201310_POLS_20200","course_title":"International
+        Relations","alpha_prefix":"POLS","number":20200,"section_number":1,"crn":"12055","enrollments":["aadduci","aanosike","aduncan1","aforlenz","anagy","bbucciar","bcarrico","bgyamfi","bharrin2","btalcott","cbarth1","cbequett","ccastill","clogue1","cmlnarik","cryan18","ctorres5","cwalsh14","degger","dglaser","dkatter","dlafontd","dsehlhor","dyared","dyoo","edarcy","edrisco1","egibbon1","fsimon","fspesia","gchoe","gpettey","jkane11","jkroenke","jkrug","jleslie4","jreagan","jrooney1","jtaiclet","kconnol3","kgeppert","kgriffi4","kobrie19","kpatel3","kwolf4","lfeist","lpate","mboomer1","mbrown28","mbrown30","mgalla12","mhudspit","mlobb","mmccar15","mmenker","moviedo","msaba","mstarrs","mvangel","mzeiss","nhebert","nmurgas","nruelas","nwilli11","pcavana1","pkearne3","rsuarezm","skenned7","speragal","srheinha","stao1","tbliha","tharvey1","tpuhr","uiheduru","zkutsuli"]}],"crosslist_id":"201310_XX"}},{"course_id":"201310_POLS_30656","crosslist_id":"201310_DW","course_title":"Human
+        Rights and Human Wrongs","section_groups":{"section_group_id":"201310_16557","primary_instructor":{"id":"everdeja","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"everdeja","first_name":"Ernesto","last_name":"Verdeja","full_name":"Ernesto
+        Verdeja","ndguid":"nd.edu.ndzm6sm7","primary_affiliation":"Faculty","contact_information":{"email":"Ernesto.Verdeja.1@nd.edu","campus_address":"306
+        Hesburgh Center&#10;Notre Dame, IN 46556-5677","phone":"+1 574 631 8533"},"position_title":"Assistant
+        Professor","campus_department":"Political Science"},"sections":[{"section_id":"201310_16557","supersection_id":null,"instructors":[{"id":"everdeja","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"everdeja","first_name":"Ernesto","last_name":"Verdeja","full_name":"Ernesto
+        Verdeja","ndguid":"nd.edu.ndzm6sm7","primary_affiliation":"Faculty","contact_information":{"email":"Ernesto.Verdeja.1@nd.edu","campus_address":"306
+        Hesburgh Center&#10;Notre Dame, IN 46556-5677","phone":"+1 574 631 8533"},"position_title":"Assistant
+        Professor","campus_department":"Political Science"},{"id":"mcronin6","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mcronin6","first_name":"Madeline","last_name":"Cronin","full_name":"Madeline
+        Cronin","ndguid":"nd.edu.ndzx4km6","primary_affiliation":"Student","contact_information":{"email":"Madeline.A.Cronin.39@nd.edu"},"position_title":"GRAD
+        Stipend-Political Science","campus_department":"Political Science"}],"term":"201310","course_triple":"201310_POLS_30656","course_title":"Human
+        Rights and Human Wrongs","alpha_prefix":"POLS","number":30656,"section_number":1,"crn":"16557","enrollments":["achiquit","amccart7","aseverso","bcarrico","bstuhlre","cdineen","ckelly17","creinha2","cweinsch","eareval1","ejagielo","isperry","jcarlso9","jdolan4","jdwyer5","jmancini","jnizamof","jpepelnj","jpowers5","kdumais","kgordon2","kgurrola","lchin","ldun","mherrma2","mjohns37","mkochans","mmathia1","mmcdon13","mneuberg","ngoebelb","nryan5","pcallag1","sdawson1","sveith1","tfreema3","tryanmos","wchun","wmiller3"]}],"crosslist_id":"201310_DW"}},{"course_id":"201310_ROPO_20201","crosslist_id":"201310_10449_17209","course_title":"Intermediate
+        Portuguese I","section_groups":{"section_group_id":"201310_10449_17209","primary_instructor":{"id":"steixeir","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"steixeir","first_name":"Sandra","last_name":"Teixeira","full_name":"Sandra
+        Teixeira","ndguid":"nd.edu.ndbv4wx3","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.M.Teixeira.5@nd.edu","campus_address":"343
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","phone":"+1 574 631 6886"}},"sections":[{"section_id":"201310_10449","supersection_id":null,"instructors":[{"id":"steixeir","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"steixeir","first_name":"Sandra","last_name":"Teixeira","full_name":"Sandra
+        Teixeira","ndguid":"nd.edu.ndbv4wx3","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.M.Teixeira.5@nd.edu","campus_address":"343
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","phone":"+1 574 631 6886"}}],"term":"201310","course_triple":"201310_ROPO_20201","course_title":"Intermediate
+        Portuguese I","alpha_prefix":"ROPO","number":20201,"section_number":1,"crn":"10449","enrollments":["bjackso9","dspond","ehardy1","iwillia2","bcarrico","bleichty","bsulli13","cholmes2","eatkins","hgrant","mokoniew","mthomp20","nmontoya","tplantz"]},{"section_id":"201310_17209","supersection_id":null,"instructors":[{"id":"steixeir","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"steixeir","first_name":"Sandra","last_name":"Teixeira","full_name":"Sandra
+        Teixeira","ndguid":"nd.edu.ndbv4wx3","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.M.Teixeira.5@nd.edu","campus_address":"343
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","phone":"+1 574 631 6886"}}],"term":"201310","course_triple":"201310_ROPO_20201","course_title":"Intermediate
+        Portuguese I","alpha_prefix":"ROPO","number":20201,"section_number":2,"crn":"17209","enrollments":["achiquit","apena4","avernon","bdimas","cdiaz2","cvillara","fsheeha1","jwhite27","jwhite31","kgaona","klee15","kmiranda","ksylva","pdelacru","pvorissi","rpererab","sperry3","tfreema3"]}],"crosslist_id":"201310_10449_17209"}},{"course_id":"201310_SOC_20342","crosslist_id":"201310_97","course_title":"Marriage
+        and the Family","section_groups":{"section_group_id":"201310_12000","primary_instructor":{"id":"emcclint","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"emcclint","first_name":"Elizabeth","last_name":"McClintock","full_name":"Elizabeth
+        McClintock","ndguid":"nd.edu.ndfq5vm6","primary_affiliation":"Faculty","contact_information":{"email":"Elizabeth.A.McClintock.2@nd.edu","campus_address":"Sociology
+        Department&#10;740 Flanner Hall&#10;Notre Dame, IN 46556-4637","phone":"+1
+        574 631 5218"},"position_title":"Assistant Professor","campus_department":"Sociology"},"sections":[{"section_id":"201310_12000","supersection_id":null,"instructors":[{"id":"emcclint","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"emcclint","first_name":"Elizabeth","last_name":"McClintock","full_name":"Elizabeth
+        McClintock","ndguid":"nd.edu.ndfq5vm6","primary_affiliation":"Faculty","contact_information":{"email":"Elizabeth.A.McClintock.2@nd.edu","campus_address":"Sociology
+        Department&#10;740 Flanner Hall&#10;Notre Dame, IN 46556-4637","phone":"+1
+        574 631 5218"},"position_title":"Assistant Professor","campus_department":"Sociology"}],"term":"201310","course_triple":"201310_SOC_20342","course_title":"Marriage
+        and the Family","alpha_prefix":"SOC","number":20342,"section_number":1,"crn":"12000","enrollments":["nbaratti","ajohns22","alasher","amurph11","aromeros","awidner","bcarrico","cbarns","csmith48","cwalsh11","ebroun1","eodonne2","gsmith12","hhartman","jbarber3","jbepo","kcullin1","kdefili1","kgeppert","klind1","kwhite10","lbohaboy","lrenz","lsulliv8","marcenas","mhillin","mklingsh","mmcaveen","mnosek1","moleferc","mrivera1","mryan24","msell","mternowc","mwright9","nvasquez","pmosey","rgerspac","rjones27","rroetzel","rrusso1","rsulenti","skerrig1","trabinek"]}],"crosslist_id":"201310_97"}},{"course_id":"201310_THEO_20828","crosslist_id":"201310_MO","course_title":"Christianity
+        and World Religions","section_groups":{"section_group_id":"201310_13630_15533_19372","primary_instructor":{"id":"bmalkovs","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bmalkovs","first_name":"Bradley","last_name":"Malkovsky","full_name":"Bradley
+        Malkovsky","ndguid":"nd.edu.ndqx9ng3","primary_affiliation":"Faculty","contact_information":{"email":"Bradley.J.Malkovsky.1@nd.edu","campus_address":"232
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","phone":"+1 574 631 7128"},"position_title":"Associate
+        Professor","campus_department":"Theology"},"sections":[{"section_id":"201310_13630","supersection_id":null,"instructors":[{"id":"bmalkovs","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bmalkovs","first_name":"Bradley","last_name":"Malkovsky","full_name":"Bradley
+        Malkovsky","ndguid":"nd.edu.ndqx9ng3","primary_affiliation":"Faculty","contact_information":{"email":"Bradley.J.Malkovsky.1@nd.edu","campus_address":"232
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","phone":"+1 574 631 7128"},"position_title":"Associate
+        Professor","campus_department":"Theology"}],"term":"201310","course_triple":"201310_THEO_20828","course_title":"Christianity
+        and World Religions","alpha_prefix":"THEO","number":20828,"section_number":1,"crn":"13630","enrollments":["bcouncel","cbadger","jatkins3","mharrel1","sday1","acampbe8","agibson2","asantmil","avoelker","bcarrico","bcasey3","bkelley5","dferrant","dhaldes","dseah","dumubyey","ekoerner","hwang8","isurjanc","jbachmay","jbritsch","jbrown26","jhallste","jpopp","jvidovic","kschnei4","mfabry","mfaulk","mguiriba","mhannon5","mharri11","mkilbrid","mking14","mkingsle","mlee27","mlee28","mstechsc","mtrak","nhauser","nkubik","pcross1","pmurph12","rfu1","slee31","srobert6","twagner2","ysheng"]},{"section_id":"201310_15533","supersection_id":null,"instructors":[{"id":"bmalkovs","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bmalkovs","first_name":"Bradley","last_name":"Malkovsky","full_name":"Bradley
+        Malkovsky","ndguid":"nd.edu.ndqx9ng3","primary_affiliation":"Faculty","contact_information":{"email":"Bradley.J.Malkovsky.1@nd.edu","campus_address":"232
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","phone":"+1 574 631 7128"},"position_title":"Associate
+        Professor","campus_department":"Theology"}],"term":"201310","course_triple":"201310_THEO_20828","course_title":"Christianity
+        and World Religions","alpha_prefix":"THEO","number":20828,"section_number":2,"crn":"15533","enrollments":["dbyrne3","dwu3","gmeikle","mpaek"]},{"section_id":"201310_19372","supersection_id":null,"instructors":[{"id":"bmalkovs","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bmalkovs","first_name":"Bradley","last_name":"Malkovsky","full_name":"Bradley
+        Malkovsky","ndguid":"nd.edu.ndqx9ng3","primary_affiliation":"Faculty","contact_information":{"email":"Bradley.J.Malkovsky.1@nd.edu","campus_address":"232
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","phone":"+1 574 631 7128"},"position_title":"Associate
+        Professor","campus_department":"Theology"}],"term":"201310","course_triple":"201310_THEO_20828","course_title":"Christianity
+        and World Religions","alpha_prefix":"THEO","number":20828,"section_number":3,"crn":"19372","enrollments":["aheffron","bzhu1","ckupfer","heaton","hluu","jhansen6","jkwon2","jwang14","khagel","lcrawfo3","mkim10","mwong4","odietzel","ptan4","qzhang4","shyder","tkavilav","tvandewa","ykim14","yzhang17","zleblanc","zosterho"]}],"crosslist_id":"201310_MO"}}],"instructed_courses":[]}]}'
+    http_version: 
+  recorded_at: Fri, 16 Aug 2013 17:18:58 GMT
+recorded_with: VCR 2.5.0

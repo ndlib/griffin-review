@@ -56,10 +56,12 @@ Griffin::Application.configure do
   config.api_token = "SCSGYmwqLqSyBTmxCQgM"
 
   config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
- 
+
   # Sakai integration
   config.sakai_script_wsdl = "https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"
   config.sakai_login_wsdl = "https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
+  config.sakai_domain = "https://nd-test.rsmart.com"
+
   config.sakai_domain = "https://nd-test.rsmart.com"
 
 end

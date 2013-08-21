@@ -39,14 +39,14 @@ describe UserCourseException do
 
   end
 
-  describe :user_course_exceptions do
+  describe :user_exceptions do
 
     it "returns all the exceptions for the netid " do
       UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
       UserCourseException.create_instructor_exception!("course_id", semester.id, "netid")
       UserCourseException.create_instructor_exception!("course_id", semester.id, "other_netid")
 
-      UserCourseException.user_course_exceptions('netid', semester.id).size.should == 2
+      UserCourseException.user_exceptions('netid', semester.id).size.should == 2
     end
 
 
@@ -55,9 +55,22 @@ describe UserCourseException do
       UserCourseException.create_instructor_exception!("course_id", semester.id, "netid")
       UserCourseException.create_instructor_exception!("course_id", previous_semester.id, "netid")
 
-      UserCourseException.user_course_exceptions('netid', semester.id).size.should == 2
+      UserCourseException.user_exceptions('netid', semester.id).size.should == 2
     end
 
+  end
+
+
+  describe :user_course_exception do
+
+    it "returns the exception for the user semester and course" do
+      test_exception = UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
+      UserCourseException.create_enrollment_exception!("other_course_id", semester.id , "netid")
+      UserCourseException.create_enrollment_exception!("course_id", previous_semester.id , "netid")
+      UserCourseException.create_enrollment_exception!("course_id", semester.id , "other_netid")
+
+      expect(UserCourseException.user_course_exception('course_id', 'netid', semester.id).id).to eq(test_exception.id)
+    end
   end
 
 

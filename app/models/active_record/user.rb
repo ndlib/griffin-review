@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :cas_authenticatable, :trackable
 
-  before_validation :fetch_attributes_from_ldap, :on => :create
-  before_validation :fetch_attributes_from_ldap, :on => :update
+  before_validation :fetch_attributes_from_ldap
 
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
@@ -20,6 +19,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username, :first_name, :last_name, :display_name
   validate :must_exist_in_ldap
 
+  scope :username, lambda { | username |  where(username: username) }
 
   def name
     "#{first_name} #{last_name}"
@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     roles.any? { |r| r.name.split.join.to_s.underscore.to_sym == role_sym }
   end
 
+
   def requester_display
     "#{self.display_name} (#{self.username})"
   end
@@ -38,6 +39,7 @@ class User < ActiveRecord::Base
   def admin?
     self.admin || ['rfox2', 'jhartzle', 'fboze'].include?(self.username)
   end
+
 
   def set_admin!
     self.admin = true
@@ -133,6 +135,11 @@ class User < ActiveRecord::Base
     results.first
   end
 
+
+  def self.generate_imported_user
+    User.new(display_name: 'Imported')
+  end
+
   private
 
   def must_exist_in_ldap
@@ -166,23 +173,6 @@ class User < ActiveRecord::Base
       self.first_name, self.last_name = preferred_name_from_nickname(fn, sn, nickname)
       self.email = attributes[:mail].first
       self.display_name = attributes[:displayname].first
-
-      # affiliation setting for authorization
-      primary_association = User.get_affiliation(attributes)
-      case primary_association
-      when 'faculty'
-        faculty_role = Role.where(:name => 'Faculty').first_or_create(:description => 'Teaching and research faculty of the university')
-        self.roles.push(faculty_role) unless self.roles.include?(faculty_role)
-      when 'grad'
-        grad_role = Role.where(:name => 'Graduate Student').first_or_create(:description => 'Graduate student enrolled in the university')
-        self.roles.push(grad_role) unless self.roles.include?(grad_role)
-      when 'staff'
-        staff_role = Role.where(:name => 'Staff').first_or_create(:description => 'Full or part time staff of the university')
-        self.roles.push(staff_role) unless self.roles.include?(staff_role)
-      when 'undergrad'
-        undergrad_role = Role.where(:name => 'Undergraduate Student').first_or_create(:description => 'Undergraduate student enrolled in the university')
-        self.roles.push(undergrad_role) unless self.roles.include?(undergrad_role)
-      end
     end
   end
 

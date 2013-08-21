@@ -11,9 +11,9 @@ describe CopyCourseReservesForm do
     semester = FactoryGirl.create(:semester)
     next_semester = FactoryGirl.create(:next_semester)
 
-    @from_course = double(Course, :id => 'from_course_id', :title => 'from title', :instructor_name => 'name', :crosslist_id => 'from_reserve_id')
+    @from_course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'from_reserve_id')
     @from_course.stub(:semester).and_return(semester)
-    @to_course = double(Course, :id => 'to_course_id', :title => 'to title', :instructor_name => 'name', :crosslist_id => 'to_reserve_id')
+    @to_course = double(Course, :id => 'to_course_id', :title => 'to title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'to_reserve_id')
     @to_course.stub(:semester).and_return(next_semester)
 
     CourseSearch.any_instance.stub(:get).and_return(nil)

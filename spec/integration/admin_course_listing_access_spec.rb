@@ -24,7 +24,7 @@ describe "Course Search" do
 
 
     it "searches by semester " do
-      course = mock(Course, id: 'id', title: "title", instructor_name: "bob", instructor_netid: 'netid', crosslisted_course_ids: [], section_numbers: ['1'], semester: @next_semester)
+      course = mock(Course, id: 'id', title: "title", instructor: double(User, display_name: 'bob'), instructor_netid: 'netid', crosslisted_course_ids: [], section_numbers: ['1'], semester: @next_semester)
       CourseSearch.any_instance.stub(:search).and_return([course])
 
       visit courses_path
