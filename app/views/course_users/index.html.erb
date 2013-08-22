@@ -3,10 +3,19 @@
 <% end %>
 <% content_for(:content_title_links) do %>
     <br><br><br>
-  <%= link_to raw("<i class=\"icon-user\"></i> Add Missing Roster"), new_course_user_path( @course_user_list.course.id), class: 'btn btn-large btn-primary' %>
+  <%= link_to raw("<i class=\"icon-user\"></i> Add Missing Participant"), new_course_user_path( @course_user_list.course.id), class: 'btn btn-large btn-primary' %>
 <% end %>
 
+
 <h3>Roster</h3>
+
+<div class="tabbable tabs-top">
+  <ul class="nav nav-tabs">
+    <li><a class="tab" data-toggle="tab" filter="students" href="#1">Students</a></li>
+    <li><a class="tab" data-toggle="tab" filter="instructors" href="#1">Instructors</a></li>
+  </ul>
+</div>
+
 <table class="table table-striped users_datatable datatable">
   <thead>
     <tr>

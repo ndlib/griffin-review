@@ -1,5 +1,5 @@
 <div id="copy-overlay">
-  <%= form_tag course_copy_path(to_course.id, from_course.id), :method => 'post' do %>
+  <%= form_tag( :controller => "copy_reserves", :action => "copy", :course_id => to_course.id, :from_course_id => from_course.id , :method => 'post') do %>
     <h4>Copy Material to a New Course</h4>
     <ul id="">
     </ul>

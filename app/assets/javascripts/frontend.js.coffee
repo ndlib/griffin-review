@@ -79,7 +79,6 @@ jQuery ($) ->
     if ($('.show_popover_help').size() > 0)
       input.attr('data-content', 'Type the title or author of the work you need.')
       input.attr('data-title', 'Search')
-      input.attr('data-placement', "top")
 
       input.popover({ trigger: 'manual',  })
 
@@ -97,7 +96,6 @@ jQuery ($) ->
 
       input.keyup ->
         $(this).popover('hide')
-
 
       input.focus()
 

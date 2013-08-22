@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe DeleteCourseUserForm do
 
-
   describe :delete_link do
 
     before(:each) do
@@ -88,5 +87,4 @@ describe DeleteCourseUserForm do
     end
 
   end
-
 end
