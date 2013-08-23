@@ -28,7 +28,7 @@ gem 'breach-mitigation-rails'
 
 # exception logging
 # gem 'airbrake'
-gem 'exception_notification'
+gem 'exception_notification', "~> 4.0.0"
 
 gem 'acts-as-taggable-on'
 

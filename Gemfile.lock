@@ -121,8 +121,9 @@ GEM
       http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    exception_notification (3.0.1)
+    exception_notification (4.0.0)
       actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (2.6.4)
@@ -367,7 +368,7 @@ DEPENDENCIES
   database_cleaner
   devise
   devise_cas_authenticatable
-  exception_notification
+  exception_notification (~> 4.0.0)
   factory_girl (~> 2.6.0)
   factory_girl_rails (~> 1.7.0)
   faker
