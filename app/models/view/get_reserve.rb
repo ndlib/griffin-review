@@ -89,7 +89,7 @@ class GetReserve
         render_404
       end
 
-      if !link_to_listing?
+      if !current_user.nil? && !link_to_listing?
         render_404
       end
     end
