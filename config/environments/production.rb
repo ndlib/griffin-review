@@ -83,9 +83,9 @@ Griffin::Application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {
-    :email_prefix => "Prod ",
-    :sender_address => %{"notifier" <notifier@nd.edu>},
-    :exception_recipients => %w{jhartzler@nd.edu}
+    :email_prefix => "[ Prod ]",
+    :sender_address => %{"reserves notifier" <reserves_notifier@nd.edu>},
+    :exception_recipients => %w{ jhartzle@nd.edu jon.hartzler@gmail.com}
   }
 
 end
