@@ -81,7 +81,7 @@ Griffin::Application.configure do
   config.sakai_domain = "https://sakailogin.nd.edu"
 
 
-  Whatever::Application.config.middleware.use ExceptionNotification::Rack,
+  config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "Prod ",
     :sender_address => %{"notifier" <notifier@nd.edu>},
