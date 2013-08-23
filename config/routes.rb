@@ -30,6 +30,9 @@ Griffin::Application.routes.draw do
   def course_routes
     resources :courses, controller: 'courses', only: [ 'index', 'create' ] do
       resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
+
+      get 'streaming/:token/:id', to: "streaming#show"
+
       get 'copy', to: 'copy_reserves#copy_step1'
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
       post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
