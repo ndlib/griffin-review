@@ -66,6 +66,13 @@ module Griffin
     # Sakai admin access
     ENV.update YAML.load(File.read(File.expand_path('../sakai.yml', __FILE__)))
 
+
+    config.middleware.use ExceptionNotifier,
+      :email_prefix => "[Reserves #{Rails.env}] ",
+      :sender_address => %{"Reserves Notifier" <reserves@nd.edu>},
+      :exception_recipients => %w{jhartzler@nd.edu}
+
+
     # Custom configs
     config.reserves_ldap_host = 'directory.nd.edu'
     config.reserves_ldap_port = 636
