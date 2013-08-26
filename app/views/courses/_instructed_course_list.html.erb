@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% instructed_courses.each do | course | %>
-    <tr>
+    <tr id="course_row_<%= course.id %>">
       <td>
         <a href="<%= course_reserves_path(course.id) %>"><%= h course.title %></a>
       </td>

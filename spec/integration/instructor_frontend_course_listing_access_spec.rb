@@ -2,97 +2,68 @@ require 'spec_helper'
 
 describe "Instructor Frontend Course Listing Access" do
 
+  let(:username) { 'cmick'}
+
+  let(:reserve_course) { '201300_4193' }
+  let(:next_reserve_course) { '201310_12754' }
+
+  let(:semester_code) { '201300'}
+  let(:next_semester_code) { '201310'}
+
+  let(:current_course_key) { "instructor/#{reserve_course}/#{username}" }
+  let(:next_course_key) { "instructor/#{next_reserve_course}/#{username}" }
+  let(:listing_course_key) { 'instructor/listing/#{username}' }
+
 
   before(:each) do
-    @semester = FactoryGirl.create(:semester)
-    @next_semester = FactoryGirl.create(:next_semester)
+    semester = Factory(:semester, code: semester_code)
+    next_semester = Factory(:next_semester, code: next_semester_code)
 
-    u = FactoryGirl.create(:instructor)
+    u = FactoryGirl.create(:student, username: username)
     login_as u
 
-    @current_course = double(Course, id: 'id', title: 'current title', full_title: "full_title", crosslisted_course_ids: [], section_numbers: ['2'], semester: @semester, semester_name: 'semester_name')
-    @next_course = double(Course, id: 'id', title: 'next title', full_title: "full_title",crosslisted_course_ids: [], section_numbers: ['3'], semester: @next_semester, semester_name: 'semester_name')
-    @enrolled_course = double(Course, id: 'id', title: 'enrolled title', full_title: "full_title", primary_instructor: double(User, display_name: 'name'), crosslisted_course_ids: [], section_numbers: ['2'], semester: @semester, semester_name: 'semester_name')
+    stub_ssi!
+    turn_on_ldap!
+
+    VCR.use_cassette current_course_key do
+      @current_course = CourseSearch.new.get(reserve_course)
+    end
+    VCR.use_cassette next_course_key do
+      @next_course = CourseSearch.new.get(next_reserve_course)
+    end
+
   end
 
 
   describe :instructor_has_reserves_in_current_semester do
-    before(:each) do
-      UserCourseListing.any_instance.stub(:enrolled_courses).and_return([])
-      UserCourseListing.any_instance.stub(:current_instructed_courses).and_return([@current_course])
-      UserCourseListing.any_instance.stub(:upcoming_instructed_courses).and_return([])
-    end
-
 
     it "shows the current course" do
-      visit root_path
+      VCR.use_cassette listing_course_key do
+        visit root_path
+      end
 
-      within("table.instructed_courses") do
-        page.should have_content(@current_course.title)
+      within("table.instructed_courses tr#course_row_#{@current_course.id}") do
+        click_link @current_course.title
       end
     end
 
   end
 
   describe :instructor_has_reserves_in_next_semester do
-    before(:each) do
-      UserCourseListing.any_instance.stub(:enrolled_courses).and_return([])
-      UserCourseListing.any_instance.stub(:current_instructed_courses).and_return([])
-      UserCourseListing.any_instance.stub(:upcoming_instructed_courses).and_return([@next_course])
-    end
-
 
     it "shows the next course" do
-      visit root_path
+      VCR.use_cassette listing_course_key do
+        visit root_path
+      end
 
-      within("table.instructed_courses") do
-        page.should have_content(@next_course.title)
+
+      within("table.instructed_courses tr#course_row_#{@next_course.id}") do
+        click_link(@next_course.title)
       end
     end
 
   end
 
-
-  describe :instructor_has_reserves_in_both_semesters do
-    before(:each) do
-      UserCourseListing.any_instance.stub(:enrolled_courses).and_return([])
-      UserCourseListing.any_instance.stub(:current_instructed_courses).and_return([@current_course])
-      UserCourseListing.any_instance.stub(:upcoming_instructed_courses).and_return([@next_course])
-    end
-
-
-    it "shows the next course" do
-      visit root_path
-      page.should have_content(@next_course.title)
-      page.should have_content(@current_course.title)
-    end
-
-
-    it "shows not have an alert message for the upcoming semester" do
-      visit root_path
-
-      page.should_not have_selector('p.alert')
-    end
-  end
-
-
-  describe :instructor_is_enrolled_in_courses_as_well_as_instructing_courses do
-    before(:each) do
-      UserCourseListing.any_instance.stub(:enrolled_courses).and_return([@enrolled_course])
-      UserCourseListing.any_instance.stub(:current_instructed_courses).and_return([@current_course])
-      UserCourseListing.any_instance.stub(:upcoming_instructed_courses).and_return([@next_course])
-    end
-
-
-    it "shows the next course" do
-      visit root_path
-
-      page.should have_content(@enrolled_course.title)
-      page.should have_content(@next_course.title)
-      page.should have_content(@current_course.title)
-    end
-
-  end
 
   describe :instructor_has_no_courses do
     before(:each) do

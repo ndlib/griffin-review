@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_access_control_headers
+
+  before_filter :log_additional_data
+
   force_ssl if: :ssl_configured?
 
 
@@ -22,7 +25,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def determine_layout
-      request.path.starts_with?('/sakai') ? 'sakai' : 'application'
+      current_path_is_sakai? ? 'sakai' : 'application'
       # params[:sakai] == '1' ? 'sakai' : 'application'
     end
 
@@ -84,6 +87,19 @@ class ApplicationController < ActionController::Base
 
     def set_access_control_headers
       headers['X-Frame-Options'] = "ALLOW-FROM " + Rails.configuration.sakai_domain
+    end
+
+
+    def log_additional_data
+      request.env["exception_notifier.exception_data"] = {
+        :netid => (current_user ? current_user.username : ''),
+        :location => current_path_is_sakai? ? 'sakai' : 'library'
+      }
+    end
+
+
+    def current_path_is_sakai?
+      request.path.starts_with?('/sakai')
     end
 
 end

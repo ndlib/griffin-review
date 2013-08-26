@@ -21,16 +21,16 @@ module AssetsHelper
 
   def display_notices
     content = raw("")
-    if notice
+    if notice.present?
       content += content_tag(:div, raw(notice), class: "alert alert-info")
     end
-    if alert
+    if alert.present?
       content += content_tag(:div, raw(alert), class: "alert")
     end
-    if success
+    if success.present?
       content += content_tag(:div, raw(success), class: "alert alert-success")
     end
-    if flash[:error]
+    if flash[:error].present?
       content += content_tag(:div, raw(flash[:error]), class: "alert alert-error")
     end
     content_tag(:div, content, id: "notices")
