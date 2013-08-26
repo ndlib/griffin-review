@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class GetReserve
   include ModelErrorTrapping
   include GetCourse
@@ -6,11 +8,11 @@ class GetReserve
 
   def initialize(current_user, params)
     @current_user = current_user
-    @reserve = get_course(params[:course_id]).reserve(params[:id])
+    @reserve = reserve_search.get(params[:id])
 
     @term_of_service_approved = false
 
-    validate_input!
+    validate_input!(params)
   end
 
 
@@ -75,10 +77,19 @@ class GetReserve
   end
 
 
+  def get_course_token
+    Digest::MD5.hexdigest("#{Date.today}-#{course.id}")
+  end
+
+
   private
 
-    def validate_input!
-      if !link_to_listing?
+    def validate_input!(params)
+      if params[:course_id] != @reserve.course.id
+        render_404
+      end
+
+      if !current_user.nil? && !link_to_listing?
         render_404
       end
     end
@@ -86,6 +97,11 @@ class GetReserve
 
     def reserve_requires_approval?
       ReserveRequiresTermsOfServiceAgreement.new(reserve).requires_agreement?
+    end
+
+
+    def reserve_search
+      @search ||= ReserveSearch.new
     end
 end
 

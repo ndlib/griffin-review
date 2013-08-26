@@ -66,6 +66,9 @@ module Griffin
     # Sakai admin access
     ENV.update YAML.load(File.read(File.expand_path('../sakai.yml', __FILE__)))
 
+
+
+
     # Custom configs
     config.reserves_ldap_host = 'directory.nd.edu'
     config.reserves_ldap_port = 636

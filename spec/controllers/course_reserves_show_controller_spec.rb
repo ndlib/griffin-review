@@ -15,6 +15,7 @@ describe CourseReservesController do
 
     request = FactoryGirl.create(:request, :available, :book_chapter)
     @reserve = mock_reserve request, @course
+    Reserve.any_instance.stub(:course).and_return(@course)
 
     @url_reserve = mock_reserve FactoryGirl.create(:request, :available, :video), @course
   end

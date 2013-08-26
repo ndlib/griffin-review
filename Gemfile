@@ -27,7 +27,8 @@ gem 'devise_cas_authenticatable'
 gem 'breach-mitigation-rails'
 
 # exception logging
-gem 'airbrake'
+# gem 'airbrake'
+gem 'exception_notification', "~> 4.0.0"
 
 gem 'acts-as-taggable-on'
 

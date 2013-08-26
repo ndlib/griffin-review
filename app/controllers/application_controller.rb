@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
  unless Rails.configuration.consider_all_requests_local
-    rescue_from Exception, :with => :render_500
+    # rescue_from Exception, :with => :render_500
     rescue_from ActionController::RoutingError, :with => :render_404
     rescue_from ActionController::UnknownController, :with => :render_404
     rescue_from AbstractController::ActionNotFound, :with => :render_404
@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
 
 
     def set_access_control_headers
-      headers['X-Frame-Options'] = "ALLOW-FROM " + Rails.configuration.sakai_domain 
+      headers['X-Frame-Options'] = "ALLOW-FROM " + Rails.configuration.sakai_domain
     end
 
 end

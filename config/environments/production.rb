@@ -80,4 +80,12 @@ Griffin::Application.configure do
   config.sakai_login_wsdl = "https://sakailogin.nd.edu/sakai-axis/SakaiLogin.jws?wsdl"
   config.sakai_domain = "https://sakailogin.nd.edu"
 
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ Prod ]",
+    :sender_address => %{"reserves notifier" <reserves_notifier@nd.edu>},
+    :exception_recipients => %w{ jhartzle@nd.edu jon.hartzler@gmail.com}
+  }
+
 end
