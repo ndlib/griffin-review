@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130814134446) do
     t.integer  "metadata_attribute_id"
     t.integer  "item_id"
     t.string   "value"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fair_use_questions", force: true do |t|
@@ -54,16 +54,16 @@ ActiveRecord::Schema.define(version: 20130814134446) do
   create_table "item_types", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "creator"
     t.string   "title"
     t.string   "journal_title"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 20130814134446) do
     t.boolean  "admin"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "versions", force: true do |t|

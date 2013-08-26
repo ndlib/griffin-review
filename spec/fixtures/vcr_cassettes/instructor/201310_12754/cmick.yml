@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/by_section_group/201310_12754.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Aug 2013 14:49:39 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 7e8ae2789c4462546e790adfe6b56a14
+      X-Runtime:
+      - '0.480276'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '2026'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTAwNjhjMzYzN2VhN2QyYWQ5ZmI5YjcyZDVhM2E5OWM4BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--20edac0c1a9310d5e1726d2610ddf979c15b05c5;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"term_prefix":"201310","alpha_prefix":"CSC","number":63953,"course_title":"Civic
+        Engagement and Social Responsibility","section_groups":[{"section_group_id":"201310_12754","primary_instructor":{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}},"sections":[{"section_id":"201310_12754","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}}],"term":"201310","course_triple":"201310_CSC_63953","course_title":"Civic
+        Engagement and Social Responsibility","alpha_prefix":"CSC","number":63953,"section_number":1,"crn":"12754","enrollments":[]}],"crosslist_id":"201310_12754"}],"supersections":null}'
+    http_version: 
+  recorded_at: Mon, 26 Aug 2013 14:49:41 GMT
+recorded_with: VCR 2.5.0

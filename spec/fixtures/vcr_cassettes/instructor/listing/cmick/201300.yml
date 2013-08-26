@@ -1,0 +1,331 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/cmick/201310/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Aug 2013 14:49:40 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 3b5cbee95951727893fd2561168ea35a
+      X-Runtime:
+      - '2.492908'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '33474'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWM2MzMzODc4N2E3NjUzYmRkOTM1ZGY3YWEwNDYyMzVkBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--8f1a32186bba5a27ab5b3fe17bd4d005cf35f317;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"},"enrolled_courses":[],"instructed_courses":[{"course_id":"201310_CSC_63953","crosslist_id":"201310_12754","course_title":"Civic
+        Engagement and Social Responsibility","section_groups":{"section_group_id":"201310_12754","primary_instructor":{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}},"sections":[{"section_id":"201310_12754","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}}],"term":"201310","course_triple":"201310_CSC_63953","course_title":"Civic
+        Engagement and Social Responsibility","alpha_prefix":"CSC","number":63953,"section_number":1,"crn":"12754","enrollments":[]}],"crosslist_id":"201310_12754"}},{"course_id":"201310_CSC_33952","crosslist_id":"201310_CA","course_title":"Social
+        Concerns Seminar: Topics in Social Change","section_groups":{"section_group_id":"201310_15096","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_15096","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}}],"term":"201310","course_triple":"201310_CSC_33952","course_title":"Social
+        Concerns Seminar: Topics in Social Change","alpha_prefix":"CSC","number":33952,"section_number":1,"crn":"15096","enrollments":[]}],"crosslist_id":"201310_CA"}},{"course_id":"201310_CSC_33959","crosslist_id":"201310_CE","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","section_groups":{"section_group_id":"201310_12534","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_12534","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"khooge","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"khooge","first_name":"Karen","last_name":"Hooge","full_name":"Karen
+        Hooge","ndguid":"nd.edu.ndwn4sh6","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Karen.M.Hooge.1@nd.edu"}},{"id":"bcrubaug","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcrubaug","first_name":"Bryant","last_name":"Crubaugh","full_name":"Bryant
+        Crubaugh","ndguid":"nd.edu.ndkt4hb4","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Bryant.J.Crubaugh.1@nd.edu"}}],"term":"201310","course_triple":"201310_CSC_33959","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","alpha_prefix":"CSC","number":33959,"section_number":1,"crn":"12534","enrollments":[]}],"crosslist_id":"201310_CE"}},{"course_id":"201310_CSC_33990","crosslist_id":"201310_13848","course_title":"Social
+        Concerns Seminar: Winter Service Learning Seminar","section_groups":{"section_group_id":"201310_13848","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_13848","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_CSC_33990","course_title":"Social
+        Concerns Seminar: Winter Service Learning Seminar","alpha_prefix":"CSC","number":33990,"section_number":1,"crn":"13848","enrollments":[]}],"crosslist_id":"201310_13848"}},{"course_id":"201310_CSC_33992","crosslist_id":"201310_15092","course_title":"Ethical
+        Leadership Through Service and Civic Engagement","section_groups":{"section_group_id":"201310_15092","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_15092","supersection_id":null,"instructors":[{"id":"jbuttigi","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jbuttigi","first_name":"Joseph","last_name":"Buttigieg","full_name":"Joseph
+        Buttigieg","ndguid":"nd.edu.ndqv3qb4","position_title":"The William R. Kenan
+        Jr. Chair in English","campus_department":"English","primary_affiliation":"Faculty","contact_information":{"campus_address":"323
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"Joseph.A.Buttigieg.1@nd.edu","phone":"+1
+        574 631 0465"}},{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_CSC_33992","course_title":"Ethical
+        Leadership Through Service and Civic Engagement","alpha_prefix":"CSC","number":33992,"section_number":1,"crn":"15092","enrollments":["aconkli1","adoyle7","bfouch","cpine","cwright8","hdickman","hourahou","jgrabows","jrydburg","jsuarezm","jtombar1","jwilso28","kmorchid","mhumphr3","mmcgove2","nventill","omogaka","onewey","pfink","rganson","seallona","swdowik","vsolorza","vvangaev"]}],"crosslist_id":"201310_15092"}},{"course_id":"201310_CSC_36991","crosslist_id":"201310_15053","course_title":"Directed
+        Readings","section_groups":{"section_group_id":"201310_15053","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_15053","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_CSC_36991","course_title":"Directed
+        Readings","alpha_prefix":"CSC","number":36991,"section_number":1,"crn":"15053","enrollments":[]}],"crosslist_id":"201310_15053"}},{"course_id":"201310_ENGL_20171","crosslist_id":"201310_DG","course_title":"Rhetorics
+        of Gender and Poverty","section_groups":{"section_group_id":"201310_19178","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_19178","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_ENGL_20171","course_title":"Rhetorics
+        of Gender and Poverty","alpha_prefix":"ENGL","number":20171,"section_number":1,"crn":"19178","enrollments":["abird","akuster","ccali","koconn22","lperczak"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_GSC_33656","crosslist_id":"201310_DG","course_title":"Rhetorics
+        of Gender and Poverty","section_groups":{"section_group_id":"201310_19197","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_19197","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_GSC_33656","course_title":"Rhetorics
+        of Gender and Poverty","alpha_prefix":"GSC","number":33656,"section_number":1,"crn":"19197","enrollments":["akillen"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_ILS_33959","crosslist_id":"201310_CE","course_title":"Latino
+        Community Organizing Against Violence","section_groups":{"section_group_id":"201310_16026","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_16026","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"khooge","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"khooge","first_name":"Karen","last_name":"Hooge","full_name":"Karen
+        Hooge","ndguid":"nd.edu.ndwn4sh6","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Karen.M.Hooge.1@nd.edu"}},{"id":"bcrubaug","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcrubaug","first_name":"Bryant","last_name":"Crubaugh","full_name":"Bryant
+        Crubaugh","ndguid":"nd.edu.ndkt4hb4","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Bryant.J.Crubaugh.1@nd.edu"}}],"term":"201310","course_triple":"201310_ILS_33959","course_title":"Latino
+        Community Organizing Against Violence","alpha_prefix":"ILS","number":33959,"section_number":1,"crn":"16026","enrollments":[]}],"crosslist_id":"201310_CE"}},{"course_id":"201310_PS_33400","crosslist_id":"201310_DG","course_title":"Rhetorics
+        of Gender and Poverty","section_groups":{"section_group_id":"201310_19157","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_19157","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_PS_33400","course_title":"Rhetorics
+        of Gender and Poverty","alpha_prefix":"PS","number":33400,"section_number":1,"crn":"19157","enrollments":["amcguir4","atollaks","efessler","mmazur","spaulsen"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_PS_34002","crosslist_id":"201310_15789","course_title":"DC
+        Experiential Learning: Internship Graded Credit","section_groups":{"section_group_id":"201310_15789","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_15789","supersection_id":null,"instructors":[{"id":"tkellenb","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tkellenb","first_name":"Thomas","last_name":"Kellenberg","full_name":"Thomas
+        Kellenberg","ndguid":"nd.edu.ndfw4zt5","position_title":"Director, Washington
+        DC Program","campus_department":"Washington, DC","primary_affiliation":"Faculty","contact_information":{"campus_address":"152
+        Hurley Hall&#10;Notre Dame, IN 46556","email":"Thomas.M.Kellenberg.3@nd.edu"}},{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"sfinlen","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sfinlen","first_name":"Shawn","last_name":"Finlen","full_name":"Shawn
+        Finlen","ndguid":"nd.edu.ndfz6sr7","primary_affiliation":"Staff","contact_information":{"campus_address":"105
+        Main Building&#10;Notre Dame, IN 46556-5602","email":"Shawn.T.Finlen.2@nd.edu","phone":"+1
+        574 631 7251"}}],"term":"201310","course_triple":"201310_PS_34002","course_title":"DC
+        Experiential Learning: Internship Graded Credit","alpha_prefix":"PS","number":34002,"section_number":1,"crn":"15789","enrollments":["cspreen"]}],"crosslist_id":"201310_15789"}},{"course_id":"201310_PS_35001","crosslist_id":"201310_18516","course_title":"Experiential
+        Learning:  One Credit Bundle Course","section_groups":{"section_group_id":"201310_18516","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_18516","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_PS_35001","course_title":"Experiential
+        Learning:  One Credit Bundle Course","alpha_prefix":"PS","number":35001,"section_number":1,"crn":"18516","enrollments":[]}],"crosslist_id":"201310_18516"}},{"course_id":"201310_PS_35002","crosslist_id":"201310_18517","course_title":"Experiential
+        Learning:  Internship","section_groups":{"section_group_id":"201310_18517","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_18517","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_PS_35002","course_title":"Experiential
+        Learning:  Internship","alpha_prefix":"PS","number":35002,"section_number":1,"crn":"18517","enrollments":["apena4","dlapid","egarfiel","khuffman"]}],"crosslist_id":"201310_18517"}},{"course_id":"201310_PS_36900","crosslist_id":"201310_19158","course_title":"Directed
+        Readings","section_groups":{"section_group_id":"201310_19158","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_19158","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_PS_36900","course_title":"Directed
+        Readings","alpha_prefix":"PS","number":36900,"section_number":2,"crn":"19158","enrollments":[]}],"crosslist_id":"201310_19158"}},{"course_id":"201310_PS_46900","crosslist_id":"201310_18520","course_title":"Directed
+        Readings for Seniors","section_groups":{"section_group_id":"201310_18520","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_18520","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201310","course_triple":"201310_PS_46900","course_title":"Directed
+        Readings for Seniors","alpha_prefix":"PS","number":46900,"section_number":3,"crn":"18520","enrollments":[]}],"crosslist_id":"201310_18520"}},{"course_id":"201310_SOC_33062","crosslist_id":"201310_CE","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","section_groups":{"section_group_id":"201310_20055","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_20055","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"khooge","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"khooge","first_name":"Karen","last_name":"Hooge","full_name":"Karen
+        Hooge","ndguid":"nd.edu.ndwn4sh6","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Karen.M.Hooge.1@nd.edu"}},{"id":"bcrubaug","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcrubaug","first_name":"Bryant","last_name":"Crubaugh","full_name":"Bryant
+        Crubaugh","ndguid":"nd.edu.ndkt4hb4","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Bryant.J.Crubaugh.1@nd.edu"}}],"term":"201310","course_triple":"201310_SOC_33062","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","alpha_prefix":"SOC","number":33062,"section_number":2,"crn":"20055","enrollments":[]}],"crosslist_id":"201310_CE"}},{"course_id":"201310_THEO_33952","crosslist_id":"201310_CA","course_title":"Social
+        Concerns Seminar: Topics in Social Change","section_groups":{"section_group_id":"201310_15105","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_15105","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"ctomssme","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctomssme","first_name":"Cynthia","last_name":"TomsSmedley","full_name":"Cynthia
+        TomsSmedley","ndguid":"nd.edu.ndwv3wx3","position_title":"Educational Immersion
+        Prgm Dir","campus_department":"Center for Social Concerns","primary_affiliation":"Staff","contact_information":{"campus_address":"203
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"ctomssmedley@nd.edu","phone":"+1
+        574 631 3356"}}],"term":"201310","course_triple":"201310_THEO_33952","course_title":"Social
+        Concerns Seminar: Topics in Social Change","alpha_prefix":"THEO","number":33952,"section_number":1,"crn":"15105","enrollments":[]}],"crosslist_id":"201310_CA"}},{"course_id":"201310_THEO_33959","crosslist_id":"201310_CE","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","section_groups":{"section_group_id":"201310_11972","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201310_11972","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},{"id":"khooge","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"khooge","first_name":"Karen","last_name":"Hooge","full_name":"Karen
+        Hooge","ndguid":"nd.edu.ndwn4sh6","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Karen.M.Hooge.1@nd.edu"}},{"id":"bcrubaug","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcrubaug","first_name":"Bryant","last_name":"Crubaugh","full_name":"Bryant
+        Crubaugh","ndguid":"nd.edu.ndkt4hb4","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Bryant.J.Crubaugh.1@nd.edu"}}],"term":"201310","course_triple":"201310_THEO_33959","course_title":"Social
+        Concerns Seminar: Latino Community Organizing Against Violence","alpha_prefix":"THEO","number":33959,"section_number":1,"crn":"11972","enrollments":[]}],"crosslist_id":"201310_CE"}}]}]}'
+    http_version: 
+  recorded_at: Mon, 26 Aug 2013 14:49:44 GMT
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/cmick/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Aug 2013 14:49:42 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 4089b807e73018f13ae18c88624ed807
+      X-Runtime:
+      - '0.129564'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '1970'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTBiYzYwMWZmMGRiM2I0ZjA0NWI1MjdhOGIyZDU5ZjFlBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--7c675e4d247325a22107a757140d20768727324d;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"},"enrolled_courses":[],"instructed_courses":[{"course_id":"201300_CSC_36991","crosslist_id":"201300_4193","course_title":"Directed
+        Readings","section_groups":{"section_group_id":"201300_4193","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}},"sections":[{"section_id":"201300_4193","supersection_id":null,"instructors":[{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
+        Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
+        Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
+        Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
+        574 631 0498"}}],"term":"201300","course_triple":"201300_CSC_36991","course_title":"Directed
+        Readings","alpha_prefix":"CSC","number":36991,"section_number":1,"crn":"4193","enrollments":["agarci22"]}],"crosslist_id":"201300_4193"}}]}]}'
+    http_version: 
+  recorded_at: Mon, 26 Aug 2013 14:49:44 GMT
+recorded_with: VCR 2.5.0
