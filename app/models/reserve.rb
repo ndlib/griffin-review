@@ -4,7 +4,7 @@ class Reserve
   extend ActiveModel::Naming
   extend ActiveModel::Callbacks
 
-  delegate :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
+  delegate :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :on_order?, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
   delegate :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
   delegate :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 

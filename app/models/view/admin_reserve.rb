@@ -46,6 +46,11 @@ class AdminReserve
       uls << "Meta Data needs synchronization"
     end
 
+    if @reserve.on_order?
+      uls << "On Order"
+    end
+
+
     ret = "<ul>"
     ret += "<li>" + uls.join("</li><li>")
     ret += "</li></ul>"
