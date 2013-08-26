@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_access_control_headers
+
+  before_filter :log_additional_data
+
   force_ssl if: :ssl_configured?
 
 
@@ -84,6 +87,13 @@ class ApplicationController < ActionController::Base
 
     def set_access_control_headers
       headers['X-Frame-Options'] = "ALLOW-FROM " + Rails.configuration.sakai_domain
+    end
+
+
+    def log_additional_data
+      request.env["exception_notifier.exception_data"] = {
+        :netid => (current_user ? current_user.username : '')
+      }
     end
 
 end
