@@ -3,7 +3,7 @@ module AssetsHelper
   include HesburghAssets::AssetsHelper
 
 
-  # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
+  # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
   def include_ssi(filepath)
     if Rails.env == 'test'
       "SSI INCLUDE !!!"
@@ -14,7 +14,7 @@ module AssetsHelper
 
 
   def breadcrumb(*crumbs)
-    crumbs.unshift(link_to("Hesburgh Libraries", "https://www.library.nd.edu"))
+    crumbs.unshift(link_to("Hesburgh Libraries", "https://library.nd.edu"))
     content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))
   end
 

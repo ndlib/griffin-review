@@ -1,16 +1,16 @@
 module ExternalHelper
-    # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
+    # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
 
     def download_ssi_file(filename)
       require 'open-uri'
-      ssi_url = "http://www.library.nd.edu/ssi/#{filename}.shtml"
+      ssi_url = "http://library.nd.edu/ssi/#{filename}.shtml"
       f = open(ssi_url, "User-Agent" => "Ruby/#{RUBY_VERSION}")
       contents = f.read
     end
 
     def parse_ssi_contents(contents)
-      # Modify any href and src starting with "/" to start with "https://www.library.nd.edu/"
-      contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
+      # Modify any href and src starting with "/" to start with "https://library.nd.edu/"
+      contents.gsub(/(href|src)="\//,"\\1=\"https://library.nd.edu/")
     end
 
     # Since we're in the context of a Rails application with its own javascript assets, we want to remove any library site javascripts we don't need
