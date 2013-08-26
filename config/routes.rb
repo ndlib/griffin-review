@@ -8,23 +8,6 @@ Griffin::Application.routes.draw do
     get :cancel
   end
 
-  # resources :courses, only: [ 'index', 'create' ] do
-
-  #   resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
-
-  #   get 'copy', to: 'copy_reserves#copy_step1'
-  #   get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
-  #   post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
-
-
-  #   get 'copy_old_reserves', to: 'copy_old_reserves#new'
-  #   post 'copy_old_reserves', to: 'copy_old_reserves#create'
-
-  #   # resources :topics, as: 'reserve_topic', path: 'update_topics', only: [ 'update' ]
-
-  #   resources :users, controller: 'course_users', only: [:new, :create, :index]
-  # end
-
   # this method exits so that several routes that perform the same function
   # can be encapsulated at different places but located once in the routes file
   def course_routes
@@ -50,6 +33,10 @@ Griffin::Application.routes.draw do
   end
 
   resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
+
+  scope '/documentation' do
+    get '/', to: 'documentation#index'
+  end
 
 
   scope '/admin' do
