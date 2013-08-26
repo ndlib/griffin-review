@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
 
     def log_additional_data
       request.env["exception_notifier.exception_data"] = {
-        :netid => (current_user ? current_user.username : '').
+        :netid => (current_user ? current_user.username : ''),
         :location => current_path_is_sakai? ? 'sakai' : 'library'
       }
     end
