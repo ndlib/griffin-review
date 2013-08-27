@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/by_section_group/201300_1644.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Aug 2013 18:35:37 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 5b95f1ad538033234d9c5db223e55e58
+      X-Runtime:
+      - '0.251345'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '1334'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTNjNWEzMDExZGFjMWRlMjA5ODkxNzcyNjZhNzY2MmZjBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--aed8746cb7eff8039712799ad1c8dbefae9bab23;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"term_prefix":"201300","alpha_prefix":"ACCT","number":20100,"course_title":"Accountancy
+        I","section_groups":[{"section_group_id":"201300_1644","primary_instructor":{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}},"sections":[{"section_id":"201300_1644","supersection_id":null,"instructors":[{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}}],"term":"201300","course_triple":"201300_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":1,"crn":"1644","enrollments":["xzhou1","aburgett","arabasa","arobert8","asuckow","bcarrico","bdoyle3","cprosise","jmceldre","jsalles","jwhite31","lchan","mharrel1","mholmes3","nmontoya","nsmith11","nstark1","ntausch","qzhu","rmultap1","rokwara","rstanle2","sday1"]}],"crosslist_id":"201300_1644"}],"supersections":null}'
+    http_version: 
+  recorded_at: Mon, 26 Aug 2013 18:35:37 GMT
+recorded_with: VCR 2.5.0
