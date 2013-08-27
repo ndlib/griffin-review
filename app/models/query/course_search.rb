@@ -41,6 +41,19 @@ class CourseSearch
   end
 
 
+  def crosslist_courses(crosslist_id)
+    res = []
+
+    courses = course_api.courses_by_crosslist_id(crosslist_id)
+
+    courses.each do |course|
+      res << new_course(course)
+    end
+
+    res
+  end
+
+
   private
 
     def load_api_courses(netid, semester_id)

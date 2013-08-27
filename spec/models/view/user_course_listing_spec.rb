@@ -59,7 +59,7 @@ describe UserCourseListing do
       reserves = UserCourseListing.new(student_user)
 
       course = CourseSearch.new.enrolled_courses(student_user.username, reserves.current_semester.code).first
-      mock_reserve FactoryGirl.create(:request, :available, course_id: course.reserve_id), course
+      mock_reserve FactoryGirl.create(:request, :available, course_id: course.id), course
 
       reserves.enrolled_courses.size.should == 1
     end
@@ -75,7 +75,7 @@ describe UserCourseListing do
       reserves = UserCourseListing.new(student_user)
       courses  = CourseSearch.new.enrolled_courses(student_user.username, reserves.current_semester.code)
 
-      mock_reserve FactoryGirl.create(:request, :available, course_id: courses.first.reserve_id), courses.first
+      mock_reserve FactoryGirl.create(:request, :available, course_id: courses.first.id), courses.first
 
       reserves.enrolled_courses.size.should_not == courses.size
     end

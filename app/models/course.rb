@@ -14,16 +14,12 @@ class Course
 
   def id
     self.section_group_id
+    #self.crosslist_id
   end
 
 
   def course_triple
     sections.first['course_triple']
-  end
-
-
-  def reserve_id
-    "#{self.crosslist_id}-#{self.section_group_id}"
   end
 
 
@@ -159,15 +155,6 @@ class Course
     reserve_search.get(id, self)
   end
 
-
-  def default_course_data!
-    Course.reserve_test_data(self).map { | r | r.save! }
-  end
-
-
-  def self.get_semester_from(course_id)
-    course_id.split('_')[0]
-  end
 
 
   def crosslistings

@@ -10,6 +10,13 @@ module API
     end
 
 
+    def self.courses_by_crosslist_id(crosslist_id)
+      Rails.cache.fetch("crosslist_id-#{crosslist_id}", expires_in: 4.hours)  do
+        get_json("by_crosslist/#{crosslist_id}")
+      end
+    end
+
+
     def self.course_by_section_id(term_code, section_id)
       path = File.join("by_section", term_code, section_id)
       get_json(path)
