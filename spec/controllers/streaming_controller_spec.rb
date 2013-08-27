@@ -20,12 +20,6 @@ describe StreamingController do
     GetReserve.any_instance.stub(:get_course_token).and_return('token')
   end
 
-  it "does not allow you to view the item if the id is not in the course id" do
-    expect {
-      get :show, token: 'token', id: 'id', course_id: "not course id "
-    }.to raise_error ActionController::RoutingError
-  end
-
 
   it "allows you in if the token is valid and there is no session " do
     get :show, token: 'token', id: 'id', course_id: @current_course.id

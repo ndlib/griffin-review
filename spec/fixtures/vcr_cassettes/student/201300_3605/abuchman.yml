@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 27 Aug 2013 19:14:09 GMT
+      - Tue, 27 Aug 2013 17:10:40 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - 6094fda21632d218e212f667d0c03bae
+      - d787999e756798596a71ff9b1a594c4d
       X-Runtime:
-      - '0.850474'
+      - '0.343823'
       X-Rack-Cache:
       - miss
       Status:
@@ -43,7 +43,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWNlYTk5OWY0YmU1Nzg0MjAzYThlODZiZGNiNjdmODY1BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--8204ef4c0e500534a6e27a22866d4a57530da941;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWYwZWU4MGRkMmQyYTcyNGEwYTZmMTViZTk5YmE1ZDhkBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--7d4f22b15d3a1d05641231e3311b63c3304748f3;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -61,7 +61,7 @@ http_interactions:
         574 631 5926"}}],"term":"201300","course_triple":"201300_ACMS_67890","course_title":"Independent
         Summer Research","alpha_prefix":"ACMS","number":67890,"section_number":1,"crn":"3605","enrollments":["abuchman","aspecht2","bxiong","chorr","dlv1","fpancald","jdan","jlioi","lwu2","mmachen","smahsere","tjiang","tkupaev","tmccoy","wchen4","whao"]}],"crosslist_id":"201300_3605"}}],"instructed_courses":[]}]}'
     http_version: 
-  recorded_at: Tue, 27 Aug 2013 19:14:10 GMT
+  recorded_at: Tue, 27 Aug 2013 17:10:42 GMT
 - request:
     method: get
     uri: https://apipprd.library.nd.edu/1.0/people/by_netid/abuchman/201310/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
@@ -79,7 +79,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 27 Aug 2013 19:14:10 GMT
+      - Tue, 27 Aug 2013 17:10:41 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -89,9 +89,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - f31d0caa072cecb57756cf8d8f98b72e
+      - a3750c3fcd491bd0413bf2b61e08079f
       X-Runtime:
-      - '0.717276'
+      - '0.377895'
       X-Rack-Cache:
       - miss
       Status:
@@ -105,7 +105,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWUyMjE3NDhhYzM0ZjFlMzU1NGMwOTlhZTkzNzhlNjM1BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--b3c85686f9d6523573ead9eb583cd0c9654c38bd;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWQ3NWI4N2FlMTY5ODRjMTA3NmQ5ZjZjNGRhNTM3YTA3BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--74fcb12c6b2c3dc71799b436166d07d9562956a3;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -127,5 +127,5 @@ http_interactions:
         Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Amy.L.Buchmann.5@nd.edu"}}],"term":"201310","course_triple":"201310_ACMS_20750","course_title":"Introduction
         to Applied Mathematical Methods II","alpha_prefix":"ACMS","number":20750,"section_number":1,"crn":"18968","enrollments":["cminges","phartnet","ajensen1","bperry3","csidberr","cstacy2","dcanonic","ewelsh1","fosthoff","gmontemu","grudnik","hta","jangst","jlong8","jzhou3","kcolli18","lgabel","ljonassa","llebrun","lowens3","lseubert","mmcken10","sstaten","sstierit","szappa"]}],"crosslist_id":"201310_18968"}}]}]}'
     http_version: 
-  recorded_at: Tue, 27 Aug 2013 19:14:11 GMT
+  recorded_at: Tue, 27 Aug 2013 17:10:43 GMT
 recorded_with: VCR 2.5.0

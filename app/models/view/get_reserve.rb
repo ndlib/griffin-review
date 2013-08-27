@@ -85,10 +85,6 @@ class GetReserve
   private
 
     def validate_input!(params)
-      if params[:course_id] != @reserve.course.id
-        render_404
-      end
-
       if !current_user.nil? && !link_to_listing?
         render_404
       end
