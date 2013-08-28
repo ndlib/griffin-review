@@ -116,7 +116,7 @@ describe CopyCourseReservesForm do
 
       lambda {
         CopyCourseReservesForm.new(user, valid_params)
-      }.should_not raise_error ActionController::RoutingError
+      }.should_not raise_error
     end
 
 
