@@ -4,7 +4,7 @@ require 'spec_helper'
 describe StreamingController do
   let(:current_course) { '201300_3605' }
   let(:username) { 'abuchman'}
-  let(:current_course_key) { "student/#{current_course}/#{username}"}
+  let(:current_course_key) { "course/streaming_#{current_course}_#{username}"}
   let(:semester_code) { '201300'}
 
   before(:each) do
@@ -15,7 +15,6 @@ describe StreamingController do
     end
 
     res = mock_reserve FactoryGirl.create(:request, :available, :video), @current_course
-
     ReserveSearch.any_instance.stub(:get).and_return(res)
     GetReserve.any_instance.stub(:get_course_token).and_return('token')
   end
