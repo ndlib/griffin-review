@@ -5,21 +5,16 @@ describe API::CourseSearchApi do
 
 
   before(:each) do
-    API::Base.stub(:get).and_return(results)
+
+    VCR.use_cassette 'course_search_api/crosslist_id' do
+      @result = API::CourseSearchApi.courses_by_crosslist_id('201310_JE_JH_JJ_JK')
+    end
   end
 
 
   it "returns an array of courses with the crosslist id" do
-    expect(API::CourseSearchApi.courses_by_crosslist_id('id').class).to eq(Array)
-    expect(API::CourseSearchApi.courses_by_crosslist_id('id').size).to eq(3)
-  end
-
-
-
-
-  def results
-    file = File.join(Rails.root, 'spec', 'fixtures', 'json_save', 'course_search_api', 'search_example.json')
-    File.read(file)
+    expect(@result.class).to eq(Array)
+    expect(@result.size).to eq(4)
   end
 
 end
