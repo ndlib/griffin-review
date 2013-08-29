@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 28 Aug 2013 18:11:22 GMT
+      - Wed, 28 Aug 2013 18:34:59 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - c9a9eee5e0241c894f5beb8665c17b6d
+      - 7d319a26503b8a5c5b402c2e8fc2f6b4
       X-Runtime:
-      - '0.593773'
+      - '0.010245'
       X-Rack-Cache:
       - miss
       Status:
@@ -81,5 +81,5 @@ http_interactions:
         H.","au":"White, T. H","btitle":"The once and future king.","date":"1958","risdate":"[1958]","format":"book","genre":"book","ristype":"BOOK","cop":"New
         York","pub":"Putnam","oclcid":["58010760","00276397"],"lccn":"58010760"}}}]}'
     http_version: 
-  recorded_at: Wed, 28 Aug 2013 18:11:23 GMT
+  recorded_at: Wed, 28 Aug 2013 18:34:59 GMT
 recorded_with: VCR 2.5.0

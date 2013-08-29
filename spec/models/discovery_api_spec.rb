@@ -7,7 +7,7 @@ describe DiscoveryApi do
 
     it "searchs by a single id" do
 
-      VCR.use_cassette 'discovery/single_id_response' do
+      VCR.use_cassette 'discovery/search_single_id_response' do
         res = DiscoveryApi.search_by_ids(test_search)
         res.size.should == 1
         res.first.title.should == "The once and future king."
@@ -23,7 +23,7 @@ describe DiscoveryApi do
   describe "attributes" do
 
     before(:each) do
-      VCR.use_cassette 'discovery/single_id_response' do
+      VCR.use_cassette 'discovery/attributes_single_id_response' do
         @discovery_api = DiscoveryApi.search_by_ids(test_search).first
       end
     end
@@ -63,7 +63,7 @@ describe DiscoveryApi do
 
   describe :truncation do
     before(:each) do
-      VCR.use_cassette 'discovery/single_id_response' do
+      VCR.use_cassette 'discovery/truncation_single_id_response' do
         @discovery_api = DiscoveryApi.search_by_ids(test_search).first
       end
     end
