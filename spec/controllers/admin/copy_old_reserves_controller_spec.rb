@@ -4,13 +4,11 @@ require 'spec_helper'
 describe CopyOldReservesController do
 
   before(:each) do
-    stub_courses!
-    FactoryGirl.create(:semester)
-
     @u = FactoryGirl.create(:admin_user)
     sign_in @u
 
-    @course = CourseSearch.new.get('current_multisection_crosslisted')
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    CourseSearch.any_instance.stub(:get).and_return(@course)
   end
 
 

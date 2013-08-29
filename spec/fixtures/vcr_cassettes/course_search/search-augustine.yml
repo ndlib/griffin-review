@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/search.json?auth_token=SCSGYmwqLqSyBTmxCQgM&q=augustine&term=201310
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2013 14:00:21 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - caebcc97e764285f1269c2c9af1f236e
+      X-Runtime:
+      - '0.262556'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '1456'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTVhMzY1YmZiZTU0ZThkZjYzMzI1ZTcxMTFjOWZjYmJhBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--d2d0345194feba52722f9e62937e3efcb9c5d43d;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '[{"term_prefix":"201310","alpha_prefix":"MI","number":63421,"course_title":"Early
+        Christianity Seminar: Augustine","section_groups":[{"section_group_id":"201310_19590","primary_instructor":{"id":"sleyerle","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sleyerle","first_name":"Blake","last_name":"Leyerle","full_name":"Blake
+        Leyerle","ndguid":"nd.edu.ndhv9vs4","position_title":"Associate Professor","campus_department":"Theology","primary_affiliation":"Faculty","contact_information":{"campus_address":"444
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","email":"Blake.Leyerle.1@nd.edu","phone":"+1
+        574 631 7090"}},"sections":[{"section_id":"201310_19590","supersection_id":null,"instructors":[{"id":"sleyerle","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sleyerle","first_name":"Blake","last_name":"Leyerle","full_name":"Blake
+        Leyerle","ndguid":"nd.edu.ndhv9vs4","position_title":"Associate Professor","campus_department":"Theology","primary_affiliation":"Faculty","contact_information":{"campus_address":"444
+        Malloy Hall&#10;Notre Dame, IN 46556-4619","email":"Blake.Leyerle.1@nd.edu","phone":"+1
+        574 631 7090"}}],"term":"201310","course_triple":"201310_MI_63421","course_title":"Early
+        Christianity Seminar: Augustine","alpha_prefix":"MI","number":63421,"section_number":1,"crn":"19590","enrollments":[]}],"crosslist_id":"201310_KJ"}],"supersections":null}]'
+    http_version: 
+  recorded_at: Thu, 29 Aug 2013 14:00:21 GMT
+recorded_with: VCR 2.5.0

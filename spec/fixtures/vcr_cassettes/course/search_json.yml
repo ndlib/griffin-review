@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/search.json?auth_token=SCSGYmwqLqSyBTmxCQgM&q=201310&term=accountancy
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2013 15:47:51 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 71bfff5cf09fbed0864eac4498a25689
+      X-Runtime:
+      - '0.077768'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTM2YmQ4NjIwNGRkZGNkZGZkZDU1OWI0MTkwYzM3YjE3BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--04fb28fa91e35bddc4c37eaf3efbd961147f9d88;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '[]'
+    http_version: 
+  recorded_at: Thu, 29 Aug 2013 15:47:51 GMT
+recorded_with: VCR 2.5.0

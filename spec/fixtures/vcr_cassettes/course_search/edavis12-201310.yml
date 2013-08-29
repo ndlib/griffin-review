@@ -1,0 +1,185 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/edavis12/201310/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2013 14:43:48 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 09ee094909dd06dd8afee10e7deab120
+      X-Runtime:
+      - '3.221898'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '34182'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTNlODczODJmYzNmMjM3ZjNkMTk3ZjA0NGVlOWE0OTQxBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--ed0d661230f8fc5a5457978904fe7c1651dd2dea;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"edavis12","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"edavis12","first_name":"Elizabeth","last_name":"Davis","full_name":"Elizabeth
+        Davis","ndguid":"nd.edu.ndbb7ws2","primary_affiliation":"Student","contact_information":{"email":"Elizabeth.M.Davis.315@nd.edu"},"enrolled_courses":[{"course_id":"201310_ACCT_20100","crosslist_id":"201310_JE_JH_JJ_JK","course_title":"Accountancy
+        I","section_groups":{"section_group_id":"201310_11294_11299_15479_11300","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201310_11294","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":3,"crn":"11294","enrollments":["jdykstr1","kdold1","afeltz","ahakes","bbrockma","bcimons","cbuehler","cgaffy","dchae1","ecollin5","edavis12","escallen","gmadden1","hhuffma1","kbrenn13","kkelley3","kkoester","krogers6","lgolden","lgolke","mcyrocki","mlopez11","mmatigia","mmcfadd2","mphill15","mschleg1","mvicenzi","nfischer","nsmith16","nwilli10","qmonagha","qwang3","rbonner1","rclark13","rhusting","sdoyle9","ttemplet"]},{"section_id":"201310_11299","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":4,"crn":"11299","enrollments":["kferrara","aflynn2","ahunt5","ainclan","amazzocc","bbryck","bdavis12","bharrin2","blach","bswanber","cbrown37","ckurtz","cschieti","emurph19","gmittels","jchen18","jglemkow","jnagle4","jschmi13","jwang20","kheyen","kmcmulla","ksolberg","ktomin","mdandrad","mdeasey","mginocch","mmannifi","nholuta","pcarriqu","pmcdonou","qfredric","sbader","sdimaggi","smcinte1","smorris7","tallen3"]},{"section_id":"201310_15479","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":5,"crn":"15479","enrollments":["asegreto","rgrzyb","ajensen1","ataylor8","bharvel","cbequett","ceckert3","choldswo","ckernodl","cmccar11","edowlin1","ekim12","emoston","jpoth","kdennis2","kskorcz","kxu","lgaraton","lmccrory","mbishtaw","mconnor6","mhunter6","mlobb","mlogue1","mmchugh2","mribas","msisay","mweeks","pvieth","qwang2","rtwardzi","sgiles1","tshiba","wjohnso5","wkarnes","zgrant","zhorne"]},{"section_id":"201310_11300","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":6,"crn":"11300","enrollments":["emoser2","acagliot","aekman","aklein4","ameruelo","boneillp","bsanok","bwillis1","cconroy","cfilos","chillery","cnewell","cthoma18","dlanari","dmccain1","ecarson2","ekelley5","emcosker","jmalley","jshamon","kcollet1","krichar9","kwalker9","madams14","mdunne4","mfarring","mzhao2","pberriga","pcouch","phickey4","poconno4","rself","sjudd","tstephan","tyanagi","wchristi","wcoulter"]}],"crosslist_id":"201310_JE_JH_JJ_JK"}},{"course_id":"201310_BAET_20300","crosslist_id":"201310_12427_12433_12436_12853_12854_12438_12428_14240_14239","course_title":"Introduction
+        to Business Ethics","section_groups":{"section_group_id":"201310_12427_12433_12436_12853_12854_12438_12428_14240_14239","primary_instructor":{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}},"sections":[{"section_id":"201310_12427","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":3,"crn":"12427","enrollments":["mprouse","trees","ahakes","asulliv8","avu1","bsanok","bscales","ckorth1","crussel6","cwiley1","ecarson2","emiddlet","gmazur","jcomer","jmcgrady","kgoitz","khaimes","ktrolley","mperll","msiman","mtournat","pbartoli","pfernan3","srheinha","sseitz","syao","taichele","zcox"]},{"section_id":"201310_12433","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":4,"crn":"12433","enrollments":["cwilli25","jmack5","acoticch","aklein4","dchomat","kmarti22","mhowar10","mobrie24","sjudd","sliu8","whuang4"]},{"section_id":"201310_12436","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":5,"crn":"12436","enrollments":["btullos","cgaffy","cgutier8","chale4","cpiccini","dbabiak","dchae1","dle1","dmountf1","druffolo","ejagielo","emazelis","gbradfo1","jbruhn","jdoran","jelliot7","jlee48","jpoth","jriegel","kguo","kpalmer6","kpatel3","kruffolo","msell","msorlie","nsmith16","phickey4","sprice6","stoy","tallen3"]},{"section_id":"201310_12853","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":8,"crn":"12853","enrollments":["smelgark","agarci22","agrainge","alee16","amosser","bherbert","blach","bswanber","bwillis1","cgutier7","cmampier","criccard","dyoo","egebeke","emolina1","fdizenzo","hroh","jfinley","jking14","jxue","kcox3","kdold1","kjoyce3","lwelge","mmcfadd2","nding2","nfischer","nmontoya","scastill","schesser"]},{"section_id":"201310_12854","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":9,"crn":"12854","enrollments":["atorres4","acarmon3","alarrabe","arhodes4","avernon","bharvel","bmille18","cconroy","cnewell","cpratt1","cwu6","dbechtel","dsmith42","edavis12","gacuna","hkim21","hroh1","jhayes4","jwang20","kamarosa","kcolema8","khermeli","mbamgbos","mbazan1","mtopping","nholuta","pbartlet","rhusting","sschafer","yli17"]},{"section_id":"201310_12438","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":10,"crn":"12438","enrollments":["jdaboubs","acarreon","acollin9","aortiz6","bloweris","cmillig1","cstephan","edarcy","hshim","jrardon","jrischar","kcolema7","kpark6","madams14","mfallon2","mfarring","mvillas1","pwynne","rfische1","rmarti15","wcoulter"]},{"section_id":"201310_12428","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":11,"crn":"12428","enrollments":["aburgett","adankoff","bbocker","ebyrnes","edowlin1","gmulholl","jbazal","jkang5","jlammer1","jwolfing","kleuck","mfarrel9","mpoczat1","srosas","szepf","tcziperl","uavinash","wlin4","xzhong2","ydu5"]},{"section_id":"201310_14240","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":12,"crn":"14240","enrollments":["dvu","kdurham1","msiatczy","acheung1","ainclan","bcapelli","bcimons","chillery","eander11","ecollin5","ethies","ewelsh1","gpeterso","jamsler","jleniar1","jschmi13","jzhang11","kaggarwa","kheyen","kmcmulle","marizmen","mvicenzi","nstark1","rsmyth","seckmann","smcinte1","smorris7","tshiba","wcahill"]},{"section_id":"201310_14239","supersection_id":"FA13-BAET-20300-SS13","instructors":[{"id":"jmcmanus","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanus","first_name":"Jessica","last_name":"McManusWarnell","full_name":"Jessica
+        McManus Warnell","ndguid":"nd.edu.ndws8hf9","position_title":"Associate Professional
+        Specialist","campus_department":"Management","primary_affiliation":"Faculty","contact_information":{"campus_address":"254
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jmcmanus@nd.edu","phone":"+1
+        574 631 9182"}}],"term":"201310","course_triple":"201310_BAET_20300","course_title":"Introduction
+        to Business Ethics","alpha_prefix":"BAET","number":20300,"section_number":13,"crn":"14239","enrollments":["cmalone2","jpearl2","jschne13","ngallett","pcoletti","ahidalgo","bdavis12","dlanari","drussoni","gprado1","jlee42","joneill8","kfrost2","krichar9","mdandrad","mianni","mlandis","nwilli10","pvorissi","rgrzyb","sbader","schoi5","skearne2","sprotos","tgordon3","tklamka","ttemplet","wkelly2"]}],"crosslist_id":"201310_12427_12433_12436_12853_12854_12438_12428_14240_14239"}},{"course_id":"201310_BALW_20150","crosslist_id":"201310_12403_12404_12405_14663_12406","course_title":"Business
+        Law: Contracts and Agency","section_groups":{"section_group_id":"201310_12403_12404_12405_14663_12406","primary_instructor":{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}},"sections":[{"section_id":"201310_12403","supersection_id":"FA13-BALW-20150-SS05","instructors":[{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}}],"term":"201310","course_triple":"201310_BALW_20150","course_title":"Business
+        Law: Contracts and Agency","alpha_prefix":"BALW","number":20150,"section_number":1,"crn":"12403","enrollments":["rokwara","ainclan","akessle3","amazzocc","anussba2","ataylor8","bcapelli","bwillis1","crevord","cschieti","dmeehan1","dsanmart","dschluet","egebeke","ekelley5","gmukumbi","icortina","jgillen","jmcmanu2","kfox3","khermeli","kmccar15","kzessoho","lchan","lhorning","mmannifi","omitchel","pdumas","pgrima","pkearne2","rrizzuto","sgerstem","smontag1","sryder","tgantt","wchristi"]},{"section_id":"201310_12404","supersection_id":"FA13-BALW-20150-SS05","instructors":[{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}}],"term":"201310","course_triple":"201310_BALW_20150","course_title":"Business
+        Law: Contracts and Agency","alpha_prefix":"BALW","number":20150,"section_number":2,"crn":"12404","enrollments":["agiger","amulvey","awolff","bangelin","bbarnet2","cclouse","cjuska","cmampier","cphan1","dmccain1","dyoo","edavis12","emcosker","ewoitche","gmadden1","hhuffma1","jamsler","janchond","jcorish","jking14","kball4","kbond2","kdufour","kfrost2","mbensen","mfernan9","mschwapp","nboggess","nmcalee","skearne2","spryor","tcampbe4","tmaguire","ttemplet","wcahill","wjohnso5"]},{"section_id":"201310_12405","supersection_id":"FA13-BALW-20150-SS05","instructors":[{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}}],"term":"201310","course_triple":"201310_BALW_20150","course_title":"Business
+        Law: Contracts and Agency","alpha_prefix":"BALW","number":20150,"section_number":3,"crn":"12405","enrollments":["aburgett","aforlenz","bbocker","bfaresic","bherbert","bmille18","bnaylor","bswanber","cbrown37","cgutier7","cjimenez","criccard","dxin","elubowic","ezaleski","gmcosker","gricaud","jbazal","jbruhn","jkang5","jporemsk","jromano4","jsalter","ksolberg","kwolf3","mdunne4","mkeatin3","mmitch14","mwitt1","qwang3","rgray4","rself","scomstoc","seckmann","sonderdo","zzeng1"]},{"section_id":"201310_14663","supersection_id":"FA13-BALW-20150-SS05","instructors":[{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}}],"term":"201310","course_triple":"201310_BALW_20150","course_title":"Business
+        Law: Contracts and Agency","alpha_prefix":"BALW","number":20150,"section_number":4,"crn":"14663","enrollments":["acheung1","arobert8","asganga","asrmek","bbrockma","bbrown7","bdavis12","cfinigan","cnewell","cschleck","dflanne3","dkim18","edarcy","gacuna","hdoane","jrumer","jshan","kcolema8","kheyen","kwalker9","kwolf4","mdeasey","mholmes3","mtopping","pshea4","rsmyth","rtwardzi","sgiles1","sibanez","sknee","sterry","svery","tkubicek","tmeyer1","wkelly2"]},{"section_id":"201310_12406","supersection_id":"FA13-BALW-20150-SS05","instructors":[{"id":"blevey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blevey","first_name":"Brian","last_name":"Levey","full_name":"Brian
+        Levey","ndguid":"nd.edu.ndbm7jd8","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"229
+        Mendoza College of Bus&#10;Notre Dame, IN 46556-5646","email":"blevey@nd.edu","phone":"+1
+        574 631 3560"}}],"term":"201310","course_triple":"201310_BALW_20150","course_title":"Business
+        Law: Contracts and Agency","alpha_prefix":"BALW","number":20150,"section_number":5,"crn":"12406","enrollments":["mhayes4","acagliot","aflynn2","clabuz","devans6","elindhol","jbachled","jbauer6","jchen18","jdaboubs","kdold1","ktomin","kxu","maguayo","mlopez11","pgrinsto","sliu8","tshiba","wmcdonne","zgrant"]}],"crosslist_id":"201310_12403_12404_12405_14663_12406"}},{"course_id":"201310_FIN_20150","crosslist_id":"201310_14678_14108_14679","course_title":"Corporate
+        Financial Management","section_groups":{"section_group_id":"201310_14678_14108_14679","primary_instructor":{"id":"cackerm1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cackerm1","first_name":"Carl","last_name":"Ackermann","full_name":"Carl
+        Ackermann","ndguid":"nd.edu.ndxm6zf8","position_title":"Professional Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"329
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"cackerm1@nd.edu","phone":"+1
+        574 631 8407"}},"sections":[{"section_id":"201310_14678","supersection_id":"FA13-FIN-20150-SS03","instructors":[{"id":"cackerm1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cackerm1","first_name":"Carl","last_name":"Ackermann","full_name":"Carl
+        Ackermann","ndguid":"nd.edu.ndxm6zf8","position_title":"Professional Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"329
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"cackerm1@nd.edu","phone":"+1
+        574 631 8407"}}],"term":"201310","course_triple":"201310_FIN_20150","course_title":"Corporate
+        Financial Management","alpha_prefix":"FIN","number":20150,"section_number":1,"crn":"14678","enrollments":["sday1","abergoni","acollin9","acoppola","acoticch","acrehan","acumings","agiger","ahakes","alee16","arussel5","bayhan","bbryck","bharvel","bherbert","bloweris","bswanber","cgross2","civey","cnewell","cstephan","cwieber1","cwilli26","dchae1","dfurlon1","dhearne","dlillie","ebelin","echoi3","edavis12","ehight","elim","emcconvi","emiddlet","emoston","ethomps6","ewuertz","gmazur","gmulholl","hjin2","hosulliv","hroh1","iparkerr","jalbert3","jdaboubs","jdoran","jgillen","jkang5","jkim41","jlederma","jnagle4","jporemsk","jshamon","jshan","jvanden2","jwang20","kbond2","kguo","khebig","kjoyce3","kkelley3","kleuck","kpalmer6","krogers6","ktrolley","kwoodrum","lchan","lchen1","lgroody","lmccrory","lstreepe","mbamgbos","mbensen","mbishtaw","mcyrocki","mdelgeni","mfallon2","mkeatin3","mmagdzia","mmazzucc","mryan26","mstanson","mtopping","mwitt1","mwon","nholuta","nmontoya","nsmith16","ntroscin","pberriga","pceledin","pcouch","pkrebs","pvieth","qfredric","qwang3","rhusting","rsim","rszucs","rzhao","schesser","scomstoc","scopela1","scray","sherr","sknee","sparker2","spochini","tbilling","tbrosco","tcampbe4","tflaim","tgantt","tmaguire","vbotsfor","wkarnes","wlin4","xzhong2","yhuang9","ykim17","zhorne","zsturm"]},{"section_id":"201310_14108","supersection_id":"FA13-FIN-20150-SS03","instructors":[{"id":"cackerm1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cackerm1","first_name":"Carl","last_name":"Ackermann","full_name":"Carl
+        Ackermann","ndguid":"nd.edu.ndxm6zf8","position_title":"Professional Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"329
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"cackerm1@nd.edu","phone":"+1
+        574 631 8407"}}],"term":"201310","course_triple":"201310_FIN_20150","course_title":"Corporate
+        Financial Management","alpha_prefix":"FIN","number":20150,"section_number":2,"crn":"14108","enrollments":["jromano3","lcallah2","mharrel1","rokwara","rstanle2","acheng2","acheung1","adankoff","adigenov","aestrad1","aklein4","amazzocc","anussba2","aryan4","aschoen1","asulliv8","bangelin","bbarnet2","bbocker","bbredem1","bcimons","bconrad","bthielse","bvonrued","cchao","ccurran","chale4","ckorth1","clucas2","cmurph19","cpiccini","crevord","cschieti","cwiley1","dbabiak","dbland","ddye","dmountf1","domiliak","dzimmer3","edarcy","eleppert","eweir","eyokum","hhuffma1","hobrien4","jbauer6","jbruhn","jcorish","jdykstr1","jjaeger2","jlammer1","jleniar1","jlippe","jrardon","jriegel","jschmi13","jshea2","jsulli18","kdennis2","kdufour","kgoitz","khaimes","kloughr1","kmcmulla","kpark7","ksolberg","kzessoho","lbarnes","ldeherac","marizmen","mfarrel9","mfrederi","mkalish","mlogue1","mobrie24","mrotondo","msaba","mscheid","mschwapp","msell","msiman","msorlie","mwilbur1","nwilli10","nwu1","okwitny","pbartoli","pcarriqu","pchen1","phickey4","pkearne2","pmascare","ppierret","qwang2","qzhu","rbonner1","rfische1","rluttrel","rmarti15","rrizzuto","sdimaggi","sdoyle9","sfogart2","sgilcres","sjudd","skearne2","srheinha","stoy","taichele","tdipauli","tgreen6","thanson2","tklamka","tworby","vwhite1","wcahill","wchristi","wcoulter","wkohrs","zcox","zwang7"]},{"section_id":"201310_14679","supersection_id":"FA13-FIN-20150-SS03","instructors":[{"id":"cackerm1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cackerm1","first_name":"Carl","last_name":"Ackermann","full_name":"Carl
+        Ackermann","ndguid":"nd.edu.ndxm6zf8","position_title":"Professional Specialist","campus_department":"Finance","primary_affiliation":"Faculty","contact_information":{"campus_address":"329
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"cackerm1@nd.edu","phone":"+1
+        574 631 8407"}}],"term":"201310","course_triple":"201310_FIN_20150","course_title":"Corporate
+        Financial Management","alpha_prefix":"FIN","number":20150,"section_number":3,"crn":"14679","enrollments":["acarlis1","chounshe","cprosise","gmittels","aburgett","agrainge","ajensen1","alarrabe","amosser","apruitt","arhodes4","avu1","avukosa","bhurley2","blenke","bsanok","bspahn","bwillis1","cbrown37","cconroy","cfiessin","cfinigan","cfitzge5","cklekota","cmampier","cmillig1","criccard","crussel6","cscheid","cthoma18","cwu6","dbechtel","dcalder3","dgambino","dle1","dlempres","dlojek","egebeke","ekim12","elubowic","emolina1","eobrie10","ewoitche","gbradfo1","gcarrol3","gcully","gmadden1","hbonneva","hkim21","hyi","jamsler","jbachled","jbakrow","jcomer","jcrawfo6","jcresta","jdrisco1","jflaher3","jhuh","jnevant","joneill8","jpoth","jrumer","jsalter","jsledge","jwhite31","jxue","kamarosa","kmccar15","kmuschar","kpatel3","krichar9","kruffolo","ksalat","kunger","lrichar5","lwelge","madams14","mdetrem1","mhearne","mholmes3","mhowar10","mhunter6","mkhan4","mlacayo2","mlandis","mlawren4","mlechlei","mlobb","mlucia1","mmchugh2","mtournat","mweeks","mzhao2","nboggess","nfischer","nwillet1","pbartlet","pfernan3","pglennon","phodan","pshea4","pvorissi","rgray4","rgrzyb","rjanecek","rlopez1","rsexton","sliu8","smorelos","sonderdo","sprotos","syao","tcziperl","tstephan","whuang4","wkelly2","wmcdonne","zdavis1","zostapch","zparker","ztoste"]}],"crosslist_id":"201310_14678_14108_14679"}},{"course_id":"201310_MARK_20100","crosslist_id":"201310_14690_14691_16602","course_title":"Principles
+        of Marketing","section_groups":{"section_group_id":"201310_14690_14691_16602","primary_instructor":{"id":"sducoffe","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sducoffe","first_name":"Sandra","last_name":"Ducoffe","full_name":"Sandra
+        Ducoffe","ndguid":"nd.edu.ndjw3kg7","position_title":"Adjunct Professor","campus_department":"Marketing","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.J.Ducoffe.1@nd.edu"}},"sections":[{"section_id":"201310_14690","supersection_id":"FA13-MARK-20100-SS10","instructors":[{"id":"sducoffe","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sducoffe","first_name":"Sandra","last_name":"Ducoffe","full_name":"Sandra
+        Ducoffe","ndguid":"nd.edu.ndjw3kg7","position_title":"Adjunct Professor","campus_department":"Marketing","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.J.Ducoffe.1@nd.edu"}}],"term":"201310","course_triple":"201310_MARK_20100","course_title":"Principles
+        of Marketing","alpha_prefix":"MARK","number":20100,"section_number":7,"crn":"14690","enrollments":["jromano3","kaggarwa","abergoni","ahubregs","aklein4","aryan4","bayhan","bharrin2","ckernodl","cmurph19","creiche","eleonar1","eleppert","fsatrio","hhuffma1","jcorish","jmcsorle","jporemsk","kcolema8","kdodds","kferrar1","kleuck","kmcmanni","marizmen","mbamgbos","mcyrocki","mdunne4","mmarti25","mostrow1","mschwapp","nbrown4","nsmith16","pceledin","rluttrel","sbader","scopela1","sfogart2","sherr","smorris7","vlam2","vwhite1","xlin3"]},{"section_id":"201310_14691","supersection_id":"FA13-MARK-20100-SS10","instructors":[{"id":"sducoffe","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sducoffe","first_name":"Sandra","last_name":"Ducoffe","full_name":"Sandra
+        Ducoffe","ndguid":"nd.edu.ndjw3kg7","position_title":"Adjunct Professor","campus_department":"Marketing","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.J.Ducoffe.1@nd.edu"}}],"term":"201310","course_triple":"201310_MARK_20100","course_title":"Principles
+        of Marketing","alpha_prefix":"MARK","number":20100,"section_number":9,"crn":"14691","enrollments":["lcespede","tshiba","ahunt5","ajensen1","aortiz6","arhodes4","asulliv8","bbocker","bherbert","ccohen1","ccurran","cfitzge5","cnewell","criccard","dhearne","dyoo","jalbert3","jbachled","jbecerra","jcassano","jcomer","jguilfoi","joneill8","kheyen","ksolberg","ktomin","lbarnes","lgroody","lmccrory","marmstr2","mchatman","mdandrad","mfallon2","mlawren4","mscheid","rsim","slawson","stsai","taichele","tschneem","tsonsall","tworby","zcox","zhorne"]},{"section_id":"201310_16602","supersection_id":"FA13-MARK-20100-SS10","instructors":[{"id":"sducoffe","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sducoffe","first_name":"Sandra","last_name":"Ducoffe","full_name":"Sandra
+        Ducoffe","ndguid":"nd.edu.ndjw3kg7","position_title":"Adjunct Professor","campus_department":"Marketing","primary_affiliation":"Faculty","contact_information":{"email":"Sandra.J.Ducoffe.1@nd.edu"}}],"term":"201310","course_triple":"201310_MARK_20100","course_title":"Principles
+        of Marketing","alpha_prefix":"MARK","number":20100,"section_number":10,"crn":"16602","enrollments":["astreff","aflynn2","ainclan","akessle3","astankow","avu1","bbrown7","bcimons","bfaresic","cchao","cjuska","edavis12","eherlih1","elindhol","gmulholl","hobrien4","jfishe10","jkang5","jkim41","jlou1","jmalley","kball4","kcarrol4","kgoitz","kmarti22","madams14","mellis2","mkeatin3","mkelly25","mlacayo2","mmartura","mpoczat1","mschleg1","nding2","smelgark","syao","syu","szepf","tmo","vdefina","wbarth","whuang4","wraaf"]}],"crosslist_id":"201310_14690_14691_16602"}},{"course_id":"201310_ROSP_30310","crosslist_id":"201310_12124","course_title":"Textual
+        Analysis","section_groups":{"section_group_id":"201310_12124","primary_instructor":{"id":"twest","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"twest","first_name":"Ty","last_name":"West","full_name":"Ty
+        West","ndguid":"nd.edu.ndqj3hd7","position_title":"Visiting Assistant Professional
+        Specialist","campus_department":"Romance Languages and Literatures","primary_affiliation":"Faculty","contact_information":{"campus_address":"343
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"Ty.H.West.57@nd.edu"}},"sections":[{"section_id":"201310_12124","supersection_id":null,"instructors":[{"id":"twest","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"twest","first_name":"Ty","last_name":"West","full_name":"Ty
+        West","ndguid":"nd.edu.ndqj3hd7","position_title":"Visiting Assistant Professional
+        Specialist","campus_department":"Romance Languages and Literatures","primary_affiliation":"Faculty","contact_information":{"campus_address":"343
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"Ty.H.West.57@nd.edu"}}],"term":"201310","course_triple":"201310_ROSP_30310","course_title":"Textual
+        Analysis","alpha_prefix":"ROSP","number":30310,"section_number":2,"crn":"12124","enrollments":["jgrassey","mdoyle14","arosenba","balmada","bgalassi","bprusako","cbogatto","cmagnuso","dreynol2","edavis12","ehillman","eorem","jvanden2","mgarci18","mpoczat1","mryan26","mshipp","mvillas1","pvieth"]}],"crosslist_id":"201310_12124"}}],"instructed_courses":[]}]}'
+    http_version: 
+  recorded_at: Thu, 29 Aug 2013 14:43:52 GMT
+recorded_with: VCR 2.5.0

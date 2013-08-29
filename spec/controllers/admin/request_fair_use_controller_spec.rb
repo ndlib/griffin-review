@@ -4,12 +4,12 @@ require 'spec_helper'
 describe RequestsFairUseController do
 
   before(:each) do
-    stub_courses!
-
     u = FactoryGirl.create(:admin_user)
     sign_in u
 
-    @course = CourseSearch.new.get('current_multisection_crosslisted')
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    CourseSearch.any_instance.stub(:get).and_return(@course)
+
     @reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
   end
 

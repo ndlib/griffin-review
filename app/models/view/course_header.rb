@@ -1,11 +1,12 @@
 class CourseHeader
 
-  attr_accessor :course
+  attr_accessor :course, :course_section
 
-  delegate :title, to: :course
+  delegate :title, to: :course_section
 
-  def initialize(course)
+  def initialize(course, current_user)
     @course = course
+    @course_section = course.get_section_for_user(current_user)
   end
 
 

@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 26 Aug 2013 14:49:40 GMT
+      - Thu, 29 Aug 2013 19:09:12 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - 3b5cbee95951727893fd2561168ea35a
+      - 406e9bf3686c3f059dfc343e93315edd
       X-Runtime:
-      - '2.492908'
+      - '2.394395'
       X-Rack-Cache:
       - miss
       Status:
@@ -39,11 +39,11 @@ http_interactions:
       Access-Control-Allow-Methods:
       - PUT, GET, POST, DELETE, OPTIONS
       Content-Length:
-      - '33474'
+      - '33464'
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWM2MzMzODc4N2E3NjUzYmRkOTM1ZGY3YWEwNDYyMzVkBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--8f1a32186bba5a27ab5b3fe17bd4d005cf35f317;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTc1NGQ4Mzg2N2I5MGZiMGVlMTFkYzk4MDhjNDZkNTg2BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--56869f6ce359d48a2c856aea3d671bc4679cc739;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -135,7 +135,7 @@ http_interactions:
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
         Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
         574 631 0498"}}],"term":"201310","course_triple":"201310_ENGL_20171","course_title":"Rhetorics
-        of Gender and Poverty","alpha_prefix":"ENGL","number":20171,"section_number":1,"crn":"19178","enrollments":["abird","akuster","ccali","koconn22","lperczak"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_GSC_33656","crosslist_id":"201310_DG","course_title":"Rhetorics
+        of Gender and Poverty","alpha_prefix":"ENGL","number":20171,"section_number":1,"crn":"19178","enrollments":["abird","akuster","koconn22"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_GSC_33656","crosslist_id":"201310_DG","course_title":"Rhetorics
         of Gender and Poverty","section_groups":{"section_group_id":"201310_19197","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
         Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
@@ -167,7 +167,7 @@ http_interactions:
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
         Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
         574 631 0498"}}],"term":"201310","course_triple":"201310_PS_33400","course_title":"Rhetorics
-        of Gender and Poverty","alpha_prefix":"PS","number":33400,"section_number":1,"crn":"19157","enrollments":["amcguir4","atollaks","efessler","mmazur","spaulsen"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_PS_34002","crosslist_id":"201310_15789","course_title":"DC
+        of Gender and Poverty","alpha_prefix":"PS","number":33400,"section_number":1,"crn":"19157","enrollments":["amcguir4","apehar","atollaks","efessler","mmazur","spaulsen"]}],"crosslist_id":"201310_DG"}},{"course_id":"201310_PS_34002","crosslist_id":"201310_15789","course_title":"DC
         Experiential Learning: Internship Graded Credit","section_groups":{"section_group_id":"201310_15789","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
         Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
@@ -263,7 +263,7 @@ http_interactions:
         Crubaugh","ndguid":"nd.edu.ndkt4hb4","position_title":"Grad Student Stipend","campus_department":"Sociology","primary_affiliation":"Student","contact_information":{"email":"Bryant.J.Crubaugh.1@nd.edu"}}],"term":"201310","course_triple":"201310_THEO_33959","course_title":"Social
         Concerns Seminar: Latino Community Organizing Against Violence","alpha_prefix":"THEO","number":33959,"section_number":1,"crn":"11972","enrollments":[]}],"crosslist_id":"201310_CE"}}]}]}'
     http_version: 
-  recorded_at: Mon, 26 Aug 2013 14:49:44 GMT
+  recorded_at: Thu, 29 Aug 2013 19:09:15 GMT
 - request:
     method: get
     uri: https://apipprd.library.nd.edu/1.0/people/by_netid/cmick/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
@@ -281,7 +281,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 26 Aug 2013 14:49:42 GMT
+      - Thu, 29 Aug 2013 19:09:15 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -291,9 +291,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - 4089b807e73018f13ae18c88624ed807
+      - e72e8c0d87873c1d7fd265c64018a702
       X-Runtime:
-      - '0.129564'
+      - '0.203803'
       X-Rack-Cache:
       - miss
       Status:
@@ -307,7 +307,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTBiYzYwMWZmMGRiM2I0ZjA0NWI1MjdhOGIyZDU5ZjFlBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--7c675e4d247325a22107a757140d20768727324d;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWU2OGQ1ZGIzNDQyZWI3OTQ0Yzg0YjM5MzE0OGE4YjU2BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--1f398992da5c2285ff669ac582abaf8e744583a7;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -327,5 +327,5 @@ http_interactions:
         574 631 0498"}}],"term":"201300","course_triple":"201300_CSC_36991","course_title":"Directed
         Readings","alpha_prefix":"CSC","number":36991,"section_number":1,"crn":"4193","enrollments":["agarci22"]}],"crosslist_id":"201300_4193"}}]}]}'
     http_version: 
-  recorded_at: Mon, 26 Aug 2013 14:49:44 GMT
+  recorded_at: Thu, 29 Aug 2013 19:09:15 GMT
 recorded_with: VCR 2.5.0

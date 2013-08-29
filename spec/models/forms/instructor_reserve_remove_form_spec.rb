@@ -7,8 +7,6 @@ describe InstructorReserveRemoveForm do
 
   before(:each) do
     semester = FactoryGirl.create(:semester)
-    stub_courses!
-
     @course = double(Course, id: 'id', crosslist_id: 'crosslist_id', semester: semester)
 
   end
@@ -17,6 +15,7 @@ describe InstructorReserveRemoveForm do
   describe :validations do
 
     it "raises a routing error if the course is not found" do
+      CourseSearch.any_instance.stub(:get).and_return(nil)
       lambda {
         InstructorReserveRemoveForm.new(user, { course_id: 'not_a_course_id', id: 1 })
       }.should raise_error ActionController::RoutingError

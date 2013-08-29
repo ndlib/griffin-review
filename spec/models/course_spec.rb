@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 describe Course do
@@ -8,69 +9,96 @@ describe Course do
 
 
   before(:each) do
-    stub_courses!
-    # "current_multisection_crosslisted"
-    @course = course_search.get("current_multisection_crosslisted")
+
+    VCR.use_cassette "course/crosslist_json" do
+      @crosslist_course = CourseSearch.new.get('201310_JE_JH_JJ_JK')
+    end
+
+    VCR.use_cassette "course/search_json" do
+      @search_json = API::CourseSearchApi.search('accountancy', '201310')
+    end
+
+    VCR.use_cassette "course/user_json" do
+      @user_json = API::Person.courses('jotousa1', '201310')
+    end
+
   end
 
 
   it "has an id " do
-    @course.respond_to?(:id).should be_true
-    @course.id.should == "current_multisection_crosslisted"
+    expect(@crosslist_course.id).to eq('201310_JE_JH_JJ_JK')
   end
 
-
-  it "has a title" do
-    @course.respond_to?(:title).should be_true
-    @course.title.should == "Accountancy I"
-  end
-
-
-  it "has a section_numbers " do
-    @course.respond_to?(:section_numbers).should be_true
-    @course.section_numbers.should == [10, 11, 12, 13]
-  end
 
   it "has supersection ids" do
-    @course.respond_to?(:unique_supersection_ids).should be_true
-    @course.unique_supersection_ids.should == ["current_AB_CD","current_EF_GH"]
-  end
-
-
-  it "has a crosslist_id" do
-    @course.respond_to?(:crosslist_id).should be_true
-    @course.crosslist_id.should == "current_BY_M3_CE_CF"
-  end
-
-
-  it "has a section group id" do
-    @course.respond_to?(:section_group_id).should be_true
-    @course.section_group_id.should == "current_multisection_crosslisted"
+    @crosslist_course.respond_to?(:unique_supersection_ids).should be_true
+    @crosslist_course.unique_supersection_ids.should == ["FA13-ACCT-20100-SSJK"]
   end
 
 
   it "has a term_code" do
-    @course.respond_to?(:term).should be_true
-    @course.term.should == 'current'
+    @crosslist_course.term.should == '201310'
+  end
+
+
+  it "has a primary_instructor" do
+    User.stub(:username).and_return([ double(User, display_name: 'Instructor', new_record?: false) ])
+
+    expect(@crosslist_course.primary_instructor.display_name).to eq("Instructor")
+  end
+
+
+  it "has the section numbers uniq from each section " do
+    expect(@crosslist_course.section_numbers).to eq([3, 4, 5, 6])
+  end
+
+
+  it "has the unique crosslist course ids" do
+    expect(@crosslist_course.crosslisted_course_ids).to eq(["ACCT 20100", "BAAL 20100", "BAEG 20100", "BASC 20100"])
+  end
+
+
+  describe :get_section_for_user do
+
+    it "returns the section that the user is enrolled in" do
+      section = @crosslist_course.sections[2]
+      section.stub(:enrollment_netids).and_return("netid")
+      user = double(User, username: 'netid')
+
+      expect(@crosslist_course.get_section_for_user(user)).to eq(section)
+    end
+
+    it "returns the first section if the user is an instructor" do
+      @crosslist_course.stub(:instructor_netids).and_return(["netid"])
+      section = @crosslist_course.sections.first
+      user = double(User, username: 'netid')
+
+      expect(@crosslist_course.get_section_for_user(user)).to eq(section)
+    end
+
+    it "raises an error if ther user is not in the course" do
+      user = double(User, username: 'netid')
+      expect {@crosslist_course.get_section_for_user(user) }.to raise_error
+    end
   end
 
 
   describe :enrollment_netids do
 
     it "lists has an enrollment_netids" do
-      @course.respond_to?(:enrollment_netids).should be_true
+      @crosslist_course.respond_to?(:enrollment_netids).should be_true
     end
 
 
     it "merges all the sections together for the net ids call" do
-      total_size = @course.sections.collect{ | s | s['enrollments']}.flatten.size
-      @course.enrollment_netids.size.should == total_size
+      total_size = @crosslist_course.sections.collect{ | s | s.enrollment_netids}.flatten.size
+      @crosslist_course.enrollment_netids.size.should == total_size
     end
 
 
     it "adds in the students who have exceptions " do
-      @course.add_enrollment_exception!('netid')
-      @course.enrollment_netids.include?('netid').should be_true
+      UserCourseException.create_enrollment_exception!(@crosslist_course.id, @crosslist_course.term, 'netid')
+      @crosslist_course.enrollment_netids.include?('netid').should be_true
     end
 
   end
@@ -80,8 +108,8 @@ describe Course do
 
     it "returns a list of course users" do
       User.stub(:username).and_return([double(User, username: 'jhartzle', display_name: "Jon Hartzler", new_record?: false )])
-      expect(@course.enrollments.class).to eq(Array)
-      expect(@course.enrollments.first.class).to eq(CourseUser)
+      expect(@crosslist_course.enrollments.class).to eq(Array)
+      expect(@crosslist_course.enrollments.first.class).to eq(CourseUser)
     end
 
   end
@@ -91,39 +119,26 @@ describe Course do
   describe :instructors do
 
     it "lists all the instructors for a course" do
-      @course.respond_to?(:instructors).should be_true
+      @crosslist_course.respond_to?(:instructors).should be_true
     end
 
 
     it "merges all the sections together " do
-      @course.attributes['sections'][1]['instructors'] << {
-          "id"=>"newnetid",
-            "identifier_contexts"=>{"ldap"=>"uid", "staff_directory"=>"email"},
-            "identifier"=>"by_netid",
-            "netid"=>"newnetid",
-            "first_name"=>"New",
-            "last_name"=>"Guy",
-            "full_name"=>"New Guy",
-            "ndguid"=>"otherguid",
-            "position_title"=>"Associate Professional Specialist",
-            "campus_department"=>"Accountancy",
-            "primary_affiliation"=>"Staff"
-      }
+      @crosslist_course.sections.first.stub(:instructor_netids).and_return(["newnetid"])
 
       User.stub(:username).and_return([double(User, username: 'newnetid', display_name: "Jon Hartzler", new_record?: false )])
-
-      @course.instructors[1].username.should == 'newnetid'
+      @crosslist_course.instructors[1].username.should == 'newnetid'
     end
 
 
     it "removes duplicates" do
-      @course.attributes['sections'][0]['instructors'][0]['netid'].should == "wschmuhl"
-      @course.attributes['sections'][1]['instructors'][0]['netid'].should == "wschmuhl"
+      @crosslist_course.sections[0].stub(:instructor_netids).and_return(["wschmuhl"])
+      @crosslist_course.sections[1].stub(:instructor_netids).and_return(["wschmuhl"])
 
       User.stub(:username).and_return([double(User, username: 'newnetid', display_name: "Jon Hartzler", new_record?: false )])
       User.stub(:username).with('wschmuhl').and_return([double(User, username: 'wschmuhl', display_name: "Jon Hartzler", new_record?: false )])
 
-      @course.instructors.reject { | i | i.username != "wschmuhl" }.size.should == 1
+      @crosslist_course.instructors.reject { | i | i.username != "wschmuhl" }.size.should == 1
     end
 
 
@@ -131,18 +146,17 @@ describe Course do
       User.stub(:username).and_return([double(User, username: 'othernetid', display_name: "Jon Hartzler", new_record?: false )])
       User.stub(:username).with('netid').and_return([double(User, username: 'netid', display_name: "Jon Hartzler", new_record?: false )])
 
-      @course.add_instructor_exception!('netid')
-      @course.instructors.reject { | i | i.username != 'netid'}.size.should == 1
+      UserCourseException.create_instructor_exception!(@crosslist_course.id, @crosslist_course.term, 'netid')
+
+      @crosslist_course.instructors.reject { | i | i.username != 'netid'}.size.should == 1
     end
 
   end
 
 
   it "gets the current semester for a course" do
-    semester
-
-    @course.respond_to?(:semester).should be_true
-    @course.semester.should == semester
+    semester = FactoryGirl.create(:semester, code: "201310")
+    @crosslist_course.semester.should == semester
   end
 
 
@@ -152,11 +166,11 @@ describe Course do
   describe "reserves" do
 
     it "returns all the reserves associated with the course reguardless of state" do
-      mock_reserve FactoryGirl.create(:request, :new, course_id: @course.id), @course
-      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @course.id), @course
-      mock_reserve FactoryGirl.create(:request, :available, course_id: @course.id), @course
+      mock_reserve FactoryGirl.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryGirl.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
 
-      @course.reserves.size.should == 3
+      @crosslist_course.reserves.size.should == 3
     end
   end
 
@@ -164,13 +178,13 @@ describe Course do
   describe "published_reserves" do
 
     it "returns only the published reserves" do
-      mock_reserve FactoryGirl.create(:request, :new, course_id: @course.id), @course
-      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @course.id), @course
-      mock_reserve FactoryGirl.create(:request, :available, course_id: @course.id), @course
+      mock_reserve FactoryGirl.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryGirl.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
 
-      @course.published_reserves.size.should == 1
+      @crosslist_course.published_reserves.size.should == 1
 
-      @course.published_reserves.each do | r |
+      @crosslist_course.published_reserves.each do | r |
         r.workflow_state.should == 'available'
       end
     end

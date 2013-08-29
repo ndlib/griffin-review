@@ -68,7 +68,7 @@ class BookReserveImport
 
 
   def course_id
-    @api_data['section_group_id']
+    @api_data['crosslist_id']
   end
 
 

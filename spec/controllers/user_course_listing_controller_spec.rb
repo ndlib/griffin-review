@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe CoursesController do
-  let(:semester) { FactoryGirl.create(:semester) }
+
 
   before(:each) do
-    semester
-    stub_courses!
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    CourseSearch.any_instance.stub(:get).and_return(@course)
   end
 
 

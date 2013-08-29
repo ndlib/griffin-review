@@ -12,7 +12,6 @@ class CopyReserve
     new_request = @reserve.request.dup
 
     new_request.course_id = @course_to.id
-    new_request.crosslist_id = @course_to.crosslist_id
 
     new_request.workflow_state = 'new'
 

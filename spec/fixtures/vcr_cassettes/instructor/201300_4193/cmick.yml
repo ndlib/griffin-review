@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://apipprd.library.nd.edu/1.0/resources/courses/by_section_group/201300_4193.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/by_crosslist/201300_4193.json?auth_token=SCSGYmwqLqSyBTmxCQgM
     body:
       encoding: US-ASCII
       string: ''
@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 26 Aug 2013 14:49:39 GMT
+      - Thu, 29 Aug 2013 19:09:11 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - fb641586f38d98fb7effcba83a189f9b
+      - ee2c0a0aafaaedc5ca0bad47a4702bf3
       X-Runtime:
-      - '0.194083'
+      - '0.529578'
       X-Rack-Cache:
       - miss
       Status:
@@ -39,15 +39,15 @@ http_interactions:
       Access-Control-Allow-Methods:
       - PUT, GET, POST, DELETE, OPTIONS
       Content-Length:
-      - '1450'
+      - '1452'
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWU4NzQxNjQzOGNiNTA2NDE1YzBmODM3N2Y0ODdkZGUwBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--145a0914a87810345a982983dc72d46ef9065bf2;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWE2MWY0MGVlOWI0YjViYTU3ODM1ZDc2OWI2YmY5YmVjBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--2d58fb1f72cf23036e37d7d343fc72281e1bbc24;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
-      string: ! '{"term_prefix":"201300","alpha_prefix":"CSC","number":36991,"course_title":"Directed
+      string: ! '[{"term_prefix":"201300","alpha_prefix":"CSC","number":36991,"course_title":"Directed
         Readings","section_groups":[{"section_group_id":"201300_4193","primary_instructor":{"id":"cmick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmick","first_name":"Connie","last_name":"Mick","full_name":"Connie
         Mick","ndguid":"nd.edu.ndxr9rw3","position_title":"Associate Professional
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
@@ -57,7 +57,7 @@ http_interactions:
         Specialist","campus_department":"Center for Social Concerns","primary_affiliation":"Faculty","contact_information":{"campus_address":"205
         Geddes Hall&#10;Notre Dame, IN 46556-4633","email":"cmick@nd.edu","phone":"+1
         574 631 0498"}}],"term":"201300","course_triple":"201300_CSC_36991","course_title":"Directed
-        Readings","alpha_prefix":"CSC","number":36991,"section_number":1,"crn":"4193","enrollments":["agarci22"]}],"crosslist_id":"201300_4193"}],"supersections":null}'
+        Readings","alpha_prefix":"CSC","number":36991,"section_number":1,"crn":"4193","enrollments":["agarci22"]}],"crosslist_id":"201300_4193"}],"supersections":null}]'
     http_version: 
-  recorded_at: Mon, 26 Aug 2013 14:49:40 GMT
+  recorded_at: Thu, 29 Aug 2013 19:09:12 GMT
 recorded_with: VCR 2.5.0

@@ -45,9 +45,9 @@ class AddUserExeceptionForm
 
     def persist!
       if role == "enrollment"
-        course.add_enrollment_exception!(netid)
+        UserCourseException.create_enrollment_exception!(course.id, course.term, netid)
       elsif role == "instructor"
-        course.add_instructor_exception!(netid)
+        UserCourseException.create_instructor_exception!(course.id, course.term, netid)
       end
     end
 

@@ -3,14 +3,12 @@ require 'spec_helper'
 describe AdminUpdateMetaData do
 
   before(:each) do
-    stub_courses!
-
-    FactoryGirl.create(:semester)
 
     @user = double(User, :username => 'admin')
-    @course = CourseSearch.new.get('current_multisection_crosslisted')
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
 
     @reserve = mock_reserve(FactoryGirl.create(:request), @course)
+    Reserve.any_instance.stub(:course).and_return(@course)
 
     @params = { id: @reserve.id }
     @update_meta_data = AdminUpdateMetaData.new(@user, @params)

@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/bcarrico/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2013 13:51:51 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 8c00261adab97d03158a4655c8e0af89
+      X-Runtime:
+      - '0.595919'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '3225'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWEyMTZmZjE1ODc0ZDc3ODk5ZDQ0OWVmMzBiNzlkYjRmBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--54d141a4e1fb975427c7f44b91bf4ddc51a0a392;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"bcarrico","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bcarrico","first_name":"Bradley","last_name":"Carrico","full_name":"Bradley
+        Carrico","ndguid":"nd.edu.ndrz9rn3","primary_affiliation":"Student","contact_information":{"email":"Bradley.Carrico.8@nd.edu"},"enrolled_courses":[{"course_id":"201300_ACCT_20100","crosslist_id":"201300_1644","course_title":"Accountancy
+        I","section_groups":{"section_group_id":"201300_1644","primary_instructor":{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}},"sections":[{"section_id":"201300_1644","supersection_id":null,"instructors":[{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}}],"term":"201300","course_triple":"201300_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":1,"crn":"1644","enrollments":["xzhou1","aburgett","arabasa","arobert8","asuckow","bcarrico","bdoyle3","cprosise","jmceldre","jsalles","jwhite31","lchan","mharrel1","mholmes3","nmontoya","nsmith11","nstark1","ntausch","qzhu","rmultap1","rokwara","rstanle2","sday1"]}],"crosslist_id":"201300_1644"}},{"course_id":"201300_POLS_30062","crosslist_id":"201300_3931","course_title":"Civil
+        Liberties and Civil Rights","section_groups":{"section_group_id":"201300_3931","primary_instructor":{"id":"jkaplan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkaplan","first_name":"Joshua","last_name":"Kaplan","full_name":"Joshua
+        Kaplan","ndguid":"nd.edu.ndgb9rt5","position_title":"Associate Professional
+        Specialist","campus_department":"Political Science","primary_affiliation":"Faculty","contact_information":{"campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"jkaplan@nd.edu","phone":"+1
+        574 631 6377"}},"sections":[{"section_id":"201300_3931","supersection_id":null,"instructors":[{"id":"jkaplan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkaplan","first_name":"Joshua","last_name":"Kaplan","full_name":"Joshua
+        Kaplan","ndguid":"nd.edu.ndgb9rt5","position_title":"Associate Professional
+        Specialist","campus_department":"Political Science","primary_affiliation":"Faculty","contact_information":{"campus_address":"217
+        O''Shaughnessy Hall&#10;Notre Dame, IN 46556-5639","email":"jkaplan@nd.edu","phone":"+1
+        574 631 6377"}}],"term":"201300","course_triple":"201300_POLS_30062","course_title":"Civil
+        Liberties and Civil Rights","alpha_prefix":"POLS","number":30062,"section_number":1,"crn":"3931","enrollments":["amusser","bcarrico","dspond","kikram","mmurph33","sellis2","zkutsuli"]}],"crosslist_id":"201300_3931"}}],"instructed_courses":[]}]}'
+    http_version: 
+  recorded_at: Thu, 29 Aug 2013 13:51:52 GMT
+recorded_with: VCR 2.5.0

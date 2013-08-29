@@ -1,75 +1,51 @@
 class Course
-  attr_accessor :attributes, :crosslistings
+  attr_accessor :sections, :id, :primary_instructor_hash
 
 
-  def initialize(attributes)
-    @attributes = attributes
+  def initialize(id, primary_instructor_hash)
+    @id = id
+    @primary_instructor_hash = primary_instructor_hash
+    @sections ||= []
   end
 
 
-  def self.factory(attributes = {})
-    Course.new(attributes)
-  end
-
-
-  def id
-    self.section_group_id
-    #self.crosslist_id
-  end
-
-
-  def course_triple
-    sections.first['course_triple']
-  end
-
-
-  def crosslist_id
-    @attributes['crosslist_id']
-  end
-
-
-  def section_group_id
-    @attributes['section_group_id'] || @attributes['section_groups'].first['section_group_id']
+  def self.factory(id, primary_instructor_hash)
+    Course.new(id, primary_instructor_hash)
   end
 
 
   def title
-    sections.first['course_title']
+    @sections.first.title
   end
 
 
   def full_title
-    "#{title} - #{semester_name}"
+    @sections.first.full_title
   end
 
 
-  def sections
-    @attributes['sections']
+  def add_section(section_json)
+    @sections << CourseSection.factory(id, section_json)
   end
 
 
-  def course_code
-    course_triple.gsub("#{term}_",'').gsub('_',' ')
-  end
+  def get_section_for_user(user)
+    if instructor_netids.include?(user.username)
+      return @sections.first
+    else
+      @sections.each do | section |
+        if section.enrollment_netids.include?(user.username)
+          return section
+        end
+      end
+    end
 
-
-  def alpha_prefix
-    @attributes['alpha_prefix']
-  end
-
-
-  def number
-    @attributes['number']
+    raise "unable to find section for user."
   end
 
 
   def unique_supersection_ids
-    @attributes['sections'].collect {|s| s["supersection_id"]}.uniq
-  end
-
-
-  def add_enrollment_exception!(netid)
-    UserCourseException.create_enrollment_exception!(self.id, self.term, netid)
+    @sections.collect {|s| s.supersection_id }.uniq
   end
 
 
@@ -82,7 +58,7 @@ class Course
 
 
   def enrollment_netids
-    @enrollments ||= banner_enrollment_netids + exception_enrollment_netids
+    @enrollment_netids ||= (banner_enrollment_netids + exception_enrollment_netids)
   end
 
 
@@ -92,7 +68,7 @@ class Course
 
 
   def primary_instructor
-    @primary_instructor ||= marshal_course_user(@attributes['primary_instructor']['netid'], 'instructor', 'banner')
+    @primary_instructor ||= marshal_course_user(@primary_instructor_hash['netid'], 'instructor', 'banner')
   end
 
 
@@ -109,13 +85,8 @@ class Course
   end
 
 
-  def add_instructor_exception!(netid)
-    UserCourseException.create_instructor_exception!(self.id, self.term, netid)
-  end
-
-
   def term
-    sections.first['term']
+    @sections.first.term
   end
 
 
@@ -130,14 +101,12 @@ class Course
 
 
   def section_numbers
-    sections.collect { | s | s['section_number']}
+    @sections.collect { | s | s.section_number }.uniq
   end
 
 
-  def all_topics
-    @all_tags = []
-    reserves.each{ | r | @all_tags = @all_tags + r.topics }
-    @all_tags.uniq
+  def crosslisted_course_ids
+    @sections.collect { | c | "#{c.alpha_prefix} #{c.course_number}" }.uniq
   end
 
 
@@ -157,22 +126,6 @@ class Course
 
 
 
-  def crosslistings
-    @crosslistings ||= [ self ]
-  end
-
-
-  def add_crosslisted_course(course)
-    @crosslistings ||= [self]
-    @crosslistings << course
-  end
-
-
-  def crosslisted_course_ids
-    crosslistings.collect { | c | c.course_code }
-  end
-
-
   private
 
     def reserve_search
@@ -181,7 +134,7 @@ class Course
 
 
     def banner_enrollment_netids
-      @banner_enromment_netids ||= sections.collect{ | s | s['enrollments']}.flatten
+      @banner_enromment_netids ||= sections.collect{ | s | s.enrollment_netids }.flatten
     end
 
 
@@ -191,13 +144,14 @@ class Course
 
 
     def banner_instructor_netids
-      @banner_instructor_netids ||= sections.collect{ | s | s['instructors'] }.flatten.collect{ | i | i['netid'] }.uniq
+      @banner_instructor_netids ||= sections.collect{ | s | s.instructor_netids }.flatten.uniq
     end
 
 
     def exception_instructors_netids
       @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid }
     end
+
 
     def marshal_course_user(user, role, source)
       CourseUser.netid_factory(user, self, role, source)

@@ -8,8 +8,7 @@ describe ReserveSearch do
   let(:course_search) { CourseSearch.new }
 
   before(:each) do
-    stub_courses!
-    @course = course_search.get("current_multisection_crosslisted")
+    @course = double(Course, id: 'crosslist_id', semester: semester)
   end
 
   describe :student_and_instructor_requests do

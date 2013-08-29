@@ -2,16 +2,12 @@ require 'spec_helper'
 Reserve
 
 describe CourseReservesController do
-  let(:semester) { FactoryGirl.create(:semester) }
 
   before(:each) do
-    semester
-    stub_courses!
+    @user = FactoryGirl.create(:student)
+    sign_in @user
 
-    u = FactoryGirl.create(:student)
-    sign_in u
-
-    @course = CourseSearch.new.get("current_multisection_crosslisted")
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester), title: 'Title', instructor_netids: [],  enrollment_netids: [@user.username] )
 
     request = FactoryGirl.create(:request, :available, :book_chapter)
     @reserve = mock_reserve request, @course
@@ -48,8 +44,9 @@ describe CourseReservesController do
 
 
       it "renders a 404 if the reserve is not in the current semester" do
-        previous_course = CourseSearch.new.get("previous_multisection")
         request = FactoryGirl.create(:request, :available, :book_chapter, :previous_semester)
+        previous_course = double(Course, id: 'id', semester: request.semester, title: 'Title', instructor_netids: [],  enrollment_netids: [@user.username] )
+
         previous_reserve = Reserve.factory(request, previous_course)
 
         lambda {

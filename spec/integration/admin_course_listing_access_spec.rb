@@ -7,15 +7,19 @@ describe "Course Search" do
     @next_semester = FactoryGirl.create(:next_semester)
 
     stub_ssi!
-    stub_courses!
     stub_discovery!
 
     u = FactoryGirl.create(:admin_user)
     login_as u
+
+    @course = double(Course, id: 'id', semester: @semester, title: 'title', instructor: double(User, display_name: 'bob bobbers'), instructor_netid: [], crosslisted_course_ids: [], section_numbers: [] )
+    CourseSearch.any_instance.stub(:search).and_return([@course])
+
+    CourseSearch.any_instance.stub(:enrolled_courses).and_return([])
+    CourseSearch.any_instance.stub(:instructed_courses).and_return([])
   end
 
   describe :admin_course_search do
-
 
     it "shows the search page to admins" do
       visit courses_path
@@ -24,9 +28,6 @@ describe "Course Search" do
 
 
     it "searches by semester " do
-      course = mock(Course, id: 'id', title: "title", instructor: double(User, display_name: 'bob'), instructor_netid: 'netid', crosslisted_course_ids: [], section_numbers: ['1'], semester: @next_semester)
-      CourseSearch.any_instance.stub(:search).and_return([course])
-
       visit courses_path
 
       fill_in("q", with: "search")

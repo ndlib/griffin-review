@@ -1,4 +1,4 @@
-<% @course_header = CourseHeader.new(course) %>
+<% @course_header = CourseHeader.new(course, current_user) %>
 <h1><%= h @course_header.title %> <small><%= h @course_header.semester_name %></small></h1>
 <p class="lead">
   <%= @course_header.instructor_name %><br />

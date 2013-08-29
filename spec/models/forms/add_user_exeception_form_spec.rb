@@ -5,12 +5,13 @@ describe AddUserExeceptionForm do
 
   let(:user) { double(User) }
 
+    before(:each) do
+      @course = double(Course, id: 1, term: '201310')
+      AddUserExeceptionForm.any_instance.stub(:get_course).and_return(@course)
+    end
+
   describe :validations do
 
-    before(:each) do
-      @course = double(Course, id: 1, title: "Title" )
-      CourseSearch.any_instance.stub(:get).and_return(@course)
-    end
 
     it "requires netid" do
       expect(AddUserExeceptionForm.new(user, { course_id: 1})).to have(1).error_on(:netid)
@@ -37,22 +38,18 @@ describe AddUserExeceptionForm do
 
   describe :persistance do
 
-    before(:each) do
-      stub_courses!
-    end
-
-
     it "adds an enrollment exception for a netid" do
+
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'enrollment', netid: 'netid' } } )
       expect(auef.save_user_exception).to be_true
-      expect(UserCourseException.user_exceptions('netid', 'current').size).to eq(1)
+      expect(UserCourseException.user_exceptions('netid', @course.term).size).to eq(1)
     end
 
 
     it "adds an instructional enrollment exception for a netid " do
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'instructor', netid: 'netid' } } )
       expect(auef.save_user_exception).to be_true
-      expect(UserCourseException.user_exceptions('netid', 'current').size).to eq(1)
+      expect(UserCourseException.user_exceptions('netid', @course.term).size).to eq(1)
     end
 
 

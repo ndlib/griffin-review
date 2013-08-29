@@ -2,31 +2,27 @@ class CourseSearch
 
   def enrolled_courses(netid, semester_id)
     load_api_courses(netid, semester_id)
-    @result[netid][semester_id]['enrolled_course_objects']
+    @result[netid][semester_id]['enrolled_course_objects'].values
   end
 
 
   def instructed_courses(netid, semester_id)
     load_api_courses(netid, semester_id)
-    @result[netid][semester_id]['instructed_course_objects']
-  end
-
-
-  def search(semester_id, search)
-    ret = []
-    course_api.search(semester_id, search).each do | c |
-      c['section_groups'].each do | sg |
-        ret << new_course(sg)
-      end
-    end
-    ret
+    @result[netid][semester_id]['instructed_course_objects'].values
   end
 
 
   def all_courses(netid, semester_id)
     load_api_courses(netid, semester_id)
-    @result[netid][semester_id]['enrolled_course_objects'].concat(@result[netid][semester_id]['instructed_course_objects'])
+    (@result[netid][semester_id]['enrolled_course_objects'].values +  @result[netid][semester_id]['instructed_course_objects'].values)
   end
+
+
+  def search(semester_id, search)
+    search_result = course_api.search(semester_id, search)
+    parse_search_to_objects(search_result)
+  end
+
 
 
   def get(course_id)
@@ -41,16 +37,10 @@ class CourseSearch
   end
 
 
-  def crosslist_courses(crosslist_id)
-    res = []
-
+  def get(crosslist_id)
     courses = course_api.courses_by_crosslist_id(crosslist_id)
 
-    courses.each do |course|
-      res << new_course(course)
-    end
-
-    res
+    parse_crosslist_to_object(crosslist_id, courses)
   end
 
 
@@ -65,43 +55,35 @@ class CourseSearch
         return @result[netid][semester_id]
       end
 
-      @result[netid][semester_id] = API::Person.courses(netid, semester_id)
+      @result[netid][semester_id] = person_course_search(netid, semester_id)
 
-      @result[netid][semester_id]['enrolled_course_objects'] = parse_api_result_to_objs(@result[netid][semester_id]['enrolled_courses']) || []
-      @result[netid][semester_id]['instructed_course_objects'] = parse_api_result_to_objs(@result[netid][semester_id]['instructed_courses']) || []
+      @result[netid][semester_id]['enrolled_course_objects'] = {}
+      parser_user_objects(@result[netid][semester_id]['enrolled_course_objects'], @result[netid][semester_id]['enrolled_courses'])
+
+      @result[netid][semester_id]['instructed_course_objects'] = {}
+      parser_user_objects(@result[netid][semester_id]['instructed_course_objects'], @result[netid][semester_id]['instructed_courses'])
 
       add_course_exceptions(netid, semester_id)
     end
 
 
-    def parse_api_result_to_objs(api_result)
-      result = []
-
-      api_result.each do | c |
-        result << new_course(c['section_groups'])
+    def parser_user_objects(result_array, json)
+      json.each do | section_group |
+        course = find_or_create_course(result_array, section_group)
+        add_user_sections_to_course(section_group['section_groups']['sections'], course)
       end
-
-      parse_crosslistings(result)
     end
 
 
-    def new_course(args)
-      Course.factory(args)
+    def add_user_sections_to_course(sections, course)
+      sections.each do | section |
+        course.add_section(section)
+      end
     end
 
 
-    def parse_crosslistings(courses)
-      course_to_cross = {}
-
-      courses.each do | c |
-        if course_to_cross.has_key?(c.crosslist_id)
-          course_to_cross[c.crosslist_id].add_crosslisted_course(c)
-        else
-          course_to_cross[c.crosslist_id] = c
-        end
-      end
-
-      course_to_cross.values
+    def find_or_create_course(result_array, section_group)
+      result_array[section_group['crosslist_id']] ||= new_course(section_group['section_groups'])
     end
 
 
@@ -118,53 +100,60 @@ class CourseSearch
       return if course.nil?
 
       if course_exception.enrollment?
-        @result[netid][semester_id]['enrolled_course_objects'] << course
+        @result[netid][semester_id]['enrolled_course_objects'][course.id] = course
       elsif course_exception.instructor?
-        @result[netid][semester_id]['instructed_course_objects'] << course
+        @result[netid][semester_id]['instructed_course_objects'][course.id] = course
       else
         raise "invalid course role"
       end
     end
 
 
-    def find_section_group_for_netid(res, netid, course_id)
-      return false if res.empty?
+    def parse_crosslist_to_object(crosslist_id, crosslist_json)
+      c = nil
 
-      res['section_groups'].each do | section_group |
-
-        section_group['sections'].each do | section |
-          if section['enrollments'].include?(netid) || section['instructors'].collect{ | s | s['netid']}.include?(netid)
-            return section_group
+      crosslist_json.each do | section_groups |
+        section_groups['section_groups'].each do | sections |
+          if sections['crosslist_id'] == crosslist_id
+            c ||= new_course(sections)
+            sections['sections'].each do | section |
+              c.add_section(section)
+            end
           end
         end
       end
 
-      if UserCourseException.user_exceptions(netid, res['section_groups'].first['sections'].first['term']).where(section_group_id: course_id).size > 0
-        return res['section_groups'].first
-      end
-
-      false
+      return c.nil? ? false : c
     end
 
 
-    def search_for_section_group(res, id)
-      if !res
-        return nil
-      end
-      if res['section_groups'].is_a?(Hash)
-        return res['section_groups']
-      else
-        res['section_groups'].each do | sg |
-          if sg['section_group_id'] == id
-            return sg
+    def parse_search_to_objects(search)
+      res = []
+      search.each do | section_groups |
+        section_groups['section_groups'].each do | sections |
+          c = new_course(sections)
+          sections['sections'].each do | section |
+            c.add_section(section)
           end
+          res << c
         end
-
-        return nil
       end
+
+      res
     end
+
+
+    def new_course(section_group)
+      Course.factory(section_group['crosslist_id'], section_group['primary_instructor'])
+    end
+
 
     def course_api
       API::CourseSearchApi
+    end
+
+
+    def person_course_search(netid, semester_id)
+      API::Person.courses(netid, semester_id)
     end
 end

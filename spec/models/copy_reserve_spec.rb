@@ -7,13 +7,9 @@ describe CopyReserve do
   let(:user) { mock_model(User, id: 1 )}
 
   before(:each) do
-    stub_courses!
 
-    FactoryGirl.create(:semester)
-    FactoryGirl.create(:previous_semester)
-
-    @from_course = course_search.get('previous_multisection')
-    @to_course = course_search.get('current_multisection_crosslisted')
+    @from_course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @to_course = double(Course, id: 'id', semester: FactoryGirl.create(:previous_semester))
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
 
@@ -37,7 +33,6 @@ describe CopyReserve do
     new_reserve = @copy_reserve.copy
 
     new_reserve.course_id.should == @to_course.id
-    new_reserve.crosslist_id.should == @to_course.crosslist_id
   end
 
 

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe SakaiIntegrator do
-  
+
   before(:each) do
     @controller = double(ActionController, :session => {}, :current_user => double(User, id: 1, username: 'jdan', name: 'Scooby Doo') )
     @controller.stub(:sign_in)
   end
 
-  let(:si) { 
+  let(:si) {
     VCR.use_cassette 'sakai/sakai_integrator' do
       SakaiIntegrator.new(@controller)
     end
@@ -35,7 +35,7 @@ describe SakaiIntegrator do
 
 
   describe "#parse_external_site_id" do
-    
+
     it "parses crosslist external id" do
       si.send(:parse_external_site_id, "XLSCE201200")[1].should eq '201200_CE'
     end
@@ -56,24 +56,24 @@ describe SakaiIntegrator do
 
   describe "#translate_external_site_id" do
 
-    let(:section_external_site_id) { 
+    let(:section_external_site_id) {
       VCR.use_cassette 'sakai/translate_single_section' do
         si.site_id = "749d7ca8-4743-431e-a102-a4c042db8337"
-        si.get_site_property('externalSiteId') 
+        si.get_site_property('externalSiteId')
       end
     }
-    
-    let(:supersection_external_site_id) { 
+
+    let(:supersection_external_site_id) {
       VCR.use_cassette 'sakai/translate_supersection' do
         si.site_id = "0753e1de-d90f-43d5-a0de-6e9761a35690"
-        si.get_site_property('externalSiteId') 
+        si.get_site_property('externalSiteId')
       end
     }
-    
-    let(:crosslist_external_site_id) { 
+
+    let(:crosslist_external_site_id) {
       VCR.use_cassette 'sakai/translate_crosslist' do
         si.site_id = "21590942-4d68-4f83-8529-da22ea02fd0e"
-        si.get_site_property('externalSiteId') 
+        si.get_site_property('externalSiteId')
       end
     }
 
@@ -82,7 +82,7 @@ describe SakaiIntegrator do
         si.translate_external_site_id(section_external_site_id).should eq '201220_28970_28969'
       end
     end
-    
+
     it "translates supersection into section group id" do
       VCR.use_cassette 'sakai/jdan_all_spring2013_courses' do
         si.translate_external_site_id(supersection_external_site_id).should eq '201220_28972_28971'
@@ -93,7 +93,7 @@ describe SakaiIntegrator do
       @controller = double(ActionController, :session => {}, :current_user => double(User, id: 1, username: 'vcoyne', name: 'Fred') )
       @controller.stub(:sign_in)
       VCR.use_cassette 'sakai/vcoyne_all_summer2013_courses' do
-        si.translate_external_site_id(crosslist_external_site_id).should eq '201300_2910'
+        si.translate_external_site_id(crosslist_external_site_id).should eq '201300_33'
       end
     end
   end

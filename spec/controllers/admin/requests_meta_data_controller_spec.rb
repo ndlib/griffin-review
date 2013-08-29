@@ -3,12 +3,12 @@ require 'spec_helper'
 describe RequestsMetaDataController do
 
   before(:each) do
-    stub_courses!
     stub_discovery!
 
-    FactoryGirl.create(:semester)
+    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    CourseSearch.any_instance.stub(:get).and_return(@course)
 
-    @reserve = mock_reserve FactoryGirl.create(:request), double(Course, id: 'current_multisection_crosslisted', crosslist_id: 'crosslist_id', semester: Semester.first)
+    @reserve = mock_reserve FactoryGirl.create(:request), @course
 
     u = FactoryGirl.create(:admin_user)
     sign_in u

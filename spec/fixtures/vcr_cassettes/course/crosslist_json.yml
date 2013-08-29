@@ -1,0 +1,465 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/resources/courses/by_crosslist/201310_JE_JH_JJ_JK.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Aug 2013 17:54:56 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 97b2639a67bc34fa42bee427e010c9ce
+      X-Runtime:
+      - '5.398525'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '80797'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTM2Y2M2NjRjZDdiM2Q0YTYyMmU2ZTE1N2UxMjc5YzI2BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--fa71b885492e76b544dce96101edd0d41b633eb7;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '[{"term_prefix":"201310","alpha_prefix":"ACCT","number":20100,"course_title":"Accountancy
+        I","section_groups":[{"section_group_id":"201310_19909","primary_instructor":{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}},"sections":[{"section_id":"201310_19909","supersection_id":null,"instructors":[{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":1,"crn":"19909","enrollments":["mprouse","aarcher1","aforlenz","akessle3","ccardon","drussoni","eander11","hhill1","hkumahor","jlee42","jwolfing","kcolema7","kcox3","kwoodrum","mroger14","nfantozz","paffinit","rquinla1","sprice6","srosas"]}],"crosslist_id":"201310_N3"},{"section_group_id":"201310_11298","primary_instructor":{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}},"sections":[{"section_id":"201310_11298","supersection_id":null,"instructors":[{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":2,"crn":"11298","enrollments":["pcoletti","tcheng","arinaldi","aschrei1","asoisson","csporled","dkim17","dprice4","dzimmer3","gmukumbi","gprado1","igrazios","jcolli11","mkunath","mthomp20","mwhitak2","nmcalee","seckmann","sgerstem","smontag1","spryor","zflint"]}],"crosslist_id":"201310_JD"},{"section_group_id":"201310_11294_11299_15479_11300","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201310_11294","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":3,"crn":"11294","enrollments":["jdykstr1","kdold1","afeltz","ahakes","bbrockma","bcimons","cbuehler","cgaffy","dchae1","ecollin5","edavis12","escallen","gmadden1","hhuffma1","kbrenn13","kkelley3","kkoester","krogers6","lgolden","lgolke","mcyrocki","mlopez11","mmatigia","mmcfadd2","mphill15","mschleg1","mvicenzi","nfischer","nsmith16","nwilli10","qmonagha","qwang3","rbonner1","rclark13","rhusting","sdoyle9","ttemplet"]},{"section_id":"201310_11299","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":4,"crn":"11299","enrollments":["kferrara","aflynn2","ahunt5","ainclan","amazzocc","bbryck","bdavis12","bharrin2","blach","bswanber","cbrown37","ckurtz","cschieti","emurph19","gmittels","jchen18","jglemkow","jnagle4","jschmi13","jwang20","kheyen","kmcmulla","ksolberg","ktomin","mdandrad","mdeasey","mginocch","mmannifi","nholuta","pcarriqu","pmcdonou","qfredric","sbader","sdimaggi","smcinte1","smorris7","tallen3"]},{"section_id":"201310_15479","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":5,"crn":"15479","enrollments":["asegreto","rgrzyb","ajensen1","ataylor8","bharvel","cbequett","ceckert3","choldswo","ckernodl","cmccar11","edowlin1","ekim12","emoston","jpoth","kdennis2","kskorcz","kxu","lgaraton","lmccrory","mbishtaw","mconnor6","mhunter6","mlobb","mlogue1","mmchugh2","mribas","msisay","mweeks","pvieth","qwang2","rtwardzi","sgiles1","tshiba","wjohnso5","wkarnes","zgrant","zhorne"]},{"section_id":"201310_11300","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":6,"crn":"11300","enrollments":["emoser2","acagliot","aekman","aklein4","ameruelo","boneillp","bsanok","bwillis1","cconroy","cfilos","chillery","cnewell","cthoma18","dlanari","dmccain1","ecarson2","ekelley5","emcosker","jmalley","jshamon","kcollet1","krichar9","kwalker9","madams14","mdunne4","mfarring","mzhao2","pberriga","pcouch","phickey4","poconno4","rself","sjudd","tstephan","tyanagi","wchristi","wcoulter"]}],"crosslist_id":"201310_JE_JH_JJ_JK"},{"section_group_id":"201310_10569_14958_11301","primary_instructor":{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}},"sections":[{"section_id":"201310_10569","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":7,"crn":"10569","enrollments":["avu1","jmack5","acheng2","adigenov","ahubregs","arhodes4","btullos","cchao","ccohen1","cfinigan","cpiccini","dbabiak","edarcy","gricaud","hbonneva","jguilfoi","jporemsk","jrardon","jrumer","jsulli18","kamarosa","khaimes","kwhelan3","marizmen","mobrie24","msorlie","nwillet1","pkearne2","ppierret","pshea4","rfische1","rlopez1","rweir2","szepf","tcampbe4","tschneem","wdarcy"]},{"section_id":"201310_14958","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":8,"crn":"14958","enrollments":["atorres4","kfox3","mguzman3","aestrad1","alee16","anussba2","aortiz6","asulliv8","bbarnet2","bbocker","blenke","bscales","cgutier7","civey","ckorth1","cmillig1","dbland","devans6","dhearne","dle1","dyoo","egebeke","ewoitche","gkelly2","iolarra","jbauer6","jlammer1","jmcmanu2","jzhang11","mfarrel9","mhowar10","rkang","rkubasak","sonderdo","srheinha","tgantt","tgreen6","wcahill"]},{"section_id":"201310_11301","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":9,"crn":"11301","enrollments":["dstrick1","jschne13","abaldwi1","bbredem1","cjuska","cmichels","cwiley1","cwilli26","dsmith42","eholzmei","elim","gmulholl","hkim21","icortina","jdoran","jhuh","jkang5","jkim41","kmarti22","ldeherac","mdetrem1","mfallon2","mmitch14","mryan26","mwon","pbartlet","pchen1","pgonzal7","rbrogham","scastill","schesser","smooney","spochini","syao","wlin4","xzhong2","ydu5","zhe"]}],"crosslist_id":"201310_JL_JM_JN"},{"section_group_id":"201310_11302_14314_11295_11297","primary_instructor":{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}},"sections":[{"section_id":"201310_11302","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":10,"crn":"11302","enrollments":["mhayes4","msiatczy","awidner","bangelin","cfrye1","cloughl1","cwieber1","dnilsson","edoster","emolina1","emorgan2","ewuertz","gacuna","gyeltond","hhoyle","hwhite3","jagar","jmcgrady","jmcguir4","jromy","jxue","kball4","kmuschar","lgroody","lxu3","mkelley6","mkramm","mmagdzia","msaba","msell","pceledin","pciuffo","pfernan3","pglennon","qsong","tmaguire","zcox"]},{"section_id":"201310_14314","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":11,"crn":"14314","enrollments":["adematte","erayno","mkruse1","tbuchhei","acheung1","acrehan","acumings","akerins","astankow","bflorin","bmille18","cwu6","dflanne3","dmeehan1","dsanmart","dxin","eaveledo","echoi3","ecummin1","ewelsh1","ezaleski","jbruhn","jleniar1","jnevant","jpearl2","jshan","kpark7","mcassid3","mkhan4","mtopping","pgrima","pkrebs","sbrown23","scomstoc","sknee","vdefina","xliang1","yli17"]},{"section_id":"201310_11295","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":12,"crn":"11295","enrollments":["ksammons","ngallett","acollin9","adankoff","agebhard","areyes4","asganga","avukosa","bbrown7","bchang1","bgarvin","bloweris","bspahn","cbondi","crevord","cschleck","dlipka","ebyrnes","esong1","gcarrol3","jcresta","jflaher3","jvanden2","ksulli18","lrichar5","mbazan1","mfernan9","mhearne","mizzo","mobrie25","nguerrer","pdeasey","rsmyth","sclingen","skearne2","tbilling","xxu5"]},{"section_id":"201310_11297","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":13,"crn":"11297","enrollments":["mmaehara","rszucs","arodelas","bayhan","bcapelli","cdevine1","cgutier8","crussel6","ddye","hyi","hyoder1","janchond","jbazal","kzessoho","lmcgowa1","mperll","mschade","mvillas1","omitchel","randrese","rhidy","schoi5","tbrosco","tdye1","tprice3","wcheely","wkohrs","zdavis1"]}],"crosslist_id":"201310_JO_JT_JU_JV"},{"section_group_id":"201310_13576","primary_instructor":{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}},"sections":[{"section_id":"201310_13576","supersection_id":null,"instructors":[{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":14,"crn":"13576","enrollments":["jdaboubs","krussel3","alarrabe","amulvey","bcontili","bhurley2","cclouse","cmurph19","cscheid","dgambino","dschluet","dsulli12","eleppert","gdempse2","hhannega","imcgraw","jbakrow","jjaeger2","jmcdona7","jspeach","kmccar15","ksmith48","lberning","ldunseit","lhorning","lwang9","maguayo","mbamgbos","mchambl1","mlechlei","mwilbur1","pgrinsto","pmascare","pvorissi","rluttrel","smelgark","sschafer"]}],"crosslist_id":"201310_JX"},{"section_group_id":"201310_12123_13577_11296_14329","primary_instructor":{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}},"sections":[{"section_id":"201310_12123","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":15,"crn":"12123","enrollments":["ehuang1","jrischar","nwilson6","arussel5","cgallett","emcdonag","ethies","ethomps6","gmazur","hjin2","hosulliv","hroh","hroh1","jfalcon","ktrolley","mkenne11","mmazzucc","mscheid","mtournat","pwynne","rsim","rvalek","scopela1","scray","slawson","sparker2","stsai","tmo","tmolson"]},{"section_id":"201310_13577","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":16,"crn":"13577","enrollments":["cwilli25","ewelch1","jturne10","kdaly2","mnowak3","nbaratti","acarmon3","agiger","amosser","aryan4","aschoen1","awolff","cgross2","cmampier","cphan1","dmountf1","eherlih1","ehight","iparkerr","jlippe","jriegel","jshea2","kbond2","kferrar1","kfrost2","kguo","kwolf4","mlucia1","mschwapp","msiman","pbartoli","phodan","rzhao","sfogart2","sherr","stoy","tdipauli","zparker"]},{"section_id":"201310_11296","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":17,"crn":"11296","enrollments":["cjaeger1","kdurham1","nwojtak","tflaim","apruitt","avernon","bthielse","bvonrued","cklekota","clucas2","dlillie","dlojek","domiliak","ebelin","eobrie10","eweir","gbradfo1","gschmid3","jgillen","jlederma","jsalter","kho1","kjoyce3","kpalmer6","kpatel3","kruffolo","lstreepe","mkeatin3","mstanson","pdumas","rrizzuto","rsexton","sprotos","sryder","sterry","wkelly2","ykim17","zzeng1"]},{"section_id":"201310_14329","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":18,"crn":"14329","enrollments":["jmichuda","smorelos","abergoni","acoppola","acoticch","agrainge","bconrad","bfaresic","chale4","cpratt1","criccard","dbechtel","elubowic","emiddlet","hobrien4","jalbert3","jcomer","jcrawfo6","jdrisco1","jsledge","kcarrol4","kdodds","kdufour","kgoitz","kloughr1","ksalat","kunger","mdelgeni","mlandis","mwitt1","nding2","nnikonch","rgray4","rhipshma","rmarti15","rprice2","taichele","whuang4"]}],"crosslist_id":"201310_JY_JZ_KB_KC"},{"section_group_id":"201310_19031","primary_instructor":{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}},"sections":[{"section_id":"201310_19031","supersection_id":null,"instructors":[{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}}],"term":"201310","course_triple":"201310_ACCT_20100","course_title":"Accountancy
+        I","alpha_prefix":"ACCT","number":20100,"section_number":20,"crn":"19031","enrollments":["dvu","nmccorm2","agarci22","asrmek","astreff","bstahl1","cjimenez","clabuz","cmason1","csciupid","cstephan","cwalsh14","dfurlon1","dkim18","dkuns","elindhol","emcconvi","jgutier5","kaggarwa","kcolema8","kdennee","khebig","khermeli","lwelge","mcaldero","mcatino","mianni","mmcmaho7","mmuliadi","ntroscin","rjanecek","rstrumil","sibanez","sseitz","wmcdonne","ztoste"]}],"crosslist_id":"201310_KD"}],"supersections":["FA13-ACCT-20100-SSJK"]},{"term_prefix":"201310","alpha_prefix":"BAAL","number":20100,"course_title":"Accounting
+        I","section_groups":[{"section_group_id":"201310_19912","primary_instructor":{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}},"sections":[{"section_id":"201310_19912","supersection_id":null,"instructors":[{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":1,"crn":"19912","enrollments":["elohr","afausone","amoore9","chilljun","etracy1","habera","jshanno2","jstallin"]}],"crosslist_id":"201310_N3"},{"section_group_id":"201310_19645","primary_instructor":{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}},"sections":[{"section_id":"201310_19645","supersection_id":null,"instructors":[{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":2,"crn":"19645","enrollments":["aflatley","btyznik","ccarrera","cwogoman","dwoods4","mdaly6","mkelly29","msalinas","npeiffer"]}],"crosslist_id":"201310_JD"},{"section_group_id":"201310_19640_19647_19652_19644","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201310_19640","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":3,"crn":"19640","enrollments":["lfazio","yjones1"]},{"section_id":"201310_19647","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":4,"crn":"19647","enrollments":["mbarana1","mwalsh24"]},{"section_id":"201310_19652","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":5,"crn":"19652","enrollments":["nhomchic","nschilli"]},{"section_id":"201310_19644","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":6,"crn":"19644","enrollments":["sbrown18"]}],"crosslist_id":"201310_JE_JH_JJ_JK"},{"section_group_id":"201310_19638_19653_19642","primary_instructor":{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}},"sections":[{"section_id":"201310_19638","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":7,"crn":"19638","enrollments":["athiel","twaitsmo"]},{"section_id":"201310_19653","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":8,"crn":"19653","enrollments":["cdineen","gvilla"]},{"section_id":"201310_19642","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":9,"crn":"19642","enrollments":["amccart7","tsulliv8"]}],"crosslist_id":"201310_JL_JM_JN"},{"section_group_id":"201310_19641_19654_19646_19651","primary_instructor":{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}},"sections":[{"section_id":"201310_19641","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":10,"crn":"19641","enrollments":["cstephe5","ktribe"]},{"section_id":"201310_19654","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":11,"crn":"19654","enrollments":["rrey1","thunting"]},{"section_id":"201310_19646","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":12,"crn":"19646","enrollments":["bwest2","kgordon2"]},{"section_id":"201310_19651","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":13,"crn":"19651","enrollments":["aander18","jmoore22","jpaul1","lmatich","mlougher"]}],"crosslist_id":"201310_JO_JT_JU_JV"},{"section_group_id":"201310_19637","primary_instructor":{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}},"sections":[{"section_id":"201310_19637","supersection_id":null,"instructors":[{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":14,"crn":"19637","enrollments":["jpaggi","mvillavi"]}],"crosslist_id":"201310_JX"},{"section_group_id":"201310_19648_19649_19639_19643","primary_instructor":{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}},"sections":[{"section_id":"201310_19648","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":15,"crn":"19648","enrollments":["apangraz","ckelly17","pmuro","sdawson1","sschube2"]},{"section_id":"201310_19649","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":16,"crn":"19649","enrollments":["sgans","tcreight"]},{"section_id":"201310_19639","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":17,"crn":"19639","enrollments":["alaplaca","knolan2"]},{"section_id":"201310_19643","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":18,"crn":"19643","enrollments":["epeter11","msnyder8"]}],"crosslist_id":"201310_JY_JZ_KB_KC"},{"section_group_id":"201310_19650","primary_instructor":{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}},"sections":[{"section_id":"201310_19650","supersection_id":null,"instructors":[{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}}],"term":"201310","course_triple":"201310_BAAL_20100","course_title":"Accounting
+        I","alpha_prefix":"BAAL","number":20100,"section_number":20,"crn":"19650","enrollments":["ldouvill","mjewell1"]}],"crosslist_id":"201310_KD"}],"supersections":["FA13-ACCT-20100-SSJK"]},{"term_prefix":"201310","alpha_prefix":"BAEG","number":20100,"course_title":"Accounting
+        I","section_groups":[{"section_group_id":"201310_19911","primary_instructor":{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}},"sections":[{"section_id":"201310_19911","supersection_id":null,"instructors":[{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":1,"crn":"19911","enrollments":["jturek","sroskos","ayurkows"]}],"crosslist_id":"201310_N3"},{"section_group_id":"201310_19667","primary_instructor":{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}},"sections":[{"section_id":"201310_19667","supersection_id":null,"instructors":[{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":2,"crn":"19667","enrollments":["azielin4","evaughn","jbartle1","jyoder7","mfitzge9","mromano2","nsnyder2","nwoodbin"]}],"crosslist_id":"201310_JD"},{"section_group_id":"201310_19661_19670_19669_19658","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201310_19661","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":3,"crn":"19661","enrollments":["lstangle","kryan12"]},{"section_id":"201310_19670","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":4,"crn":"19670","enrollments":["clillie1","thickey1"]},{"section_id":"201310_19669","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":5,"crn":"19669","enrollments":["starin"]},{"section_id":"201310_19658","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":6,"crn":"19658","enrollments":["akray"]}],"crosslist_id":"201310_JE_JH_JJ_JK"},{"section_group_id":"201310_19663_19672_19659","primary_instructor":{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}},"sections":[{"section_id":"201310_19663","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":7,"crn":"19663","enrollments":["awillenb"]},{"section_id":"201310_19672","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":8,"crn":"19672","enrollments":["scogan"]},{"section_id":"201310_19659","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":9,"crn":"19659","enrollments":["rruss1"]}],"crosslist_id":"201310_JL_JM_JN"},{"section_group_id":"201310_19664_19660_19673_19656","primary_instructor":{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}},"sections":[{"section_id":"201310_19664","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":10,"crn":"19664","enrollments":["tthoma10"]},{"section_id":"201310_19660","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":11,"crn":"19660","enrollments":["cmcgerve"]},{"section_id":"201310_19673","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":12,"crn":"19673","enrollments":["mbrittan"]},{"section_id":"201310_19656","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":13,"crn":"19656","enrollments":["aporter1","dobrien8","knunn","mmccloug"]}],"crosslist_id":"201310_JO_JT_JU_JV"},{"section_group_id":"201310_19662","primary_instructor":{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}},"sections":[{"section_id":"201310_19662","supersection_id":null,"instructors":[{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":14,"crn":"19662","enrollments":["jlencion"]}],"crosslist_id":"201310_JX"},{"section_group_id":"201310_19665_19666_19668_19671","primary_instructor":{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}},"sections":[{"section_id":"201310_19665","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":15,"crn":"19665","enrollments":["ckerins","aheldric","alagomar","azweberl","lmahle"]},{"section_id":"201310_19666","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":16,"crn":"19666","enrollments":["sdivel"]},{"section_id":"201310_19668","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":17,"crn":"19668","enrollments":["jmcguinn"]},{"section_id":"201310_19671","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":18,"crn":"19671","enrollments":["kkiefer2"]}],"crosslist_id":"201310_JY_JZ_KB_KC"},{"section_group_id":"201310_19657","primary_instructor":{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}},"sections":[{"section_id":"201310_19657","supersection_id":null,"instructors":[{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}}],"term":"201310","course_triple":"201310_BAEG_20100","course_title":"Accounting
+        I","alpha_prefix":"BAEG","number":20100,"section_number":20,"crn":"19657","enrollments":["jobrie14"]}],"crosslist_id":"201310_KD"}],"supersections":["FA13-ACCT-20100-SSJK"]},{"term_prefix":"201310","alpha_prefix":"BASC","number":20100,"course_title":"Accounting
+        I","section_groups":[{"section_group_id":"201310_19910","primary_instructor":{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}},"sections":[{"section_id":"201310_19910","supersection_id":null,"instructors":[{"id":"bfox5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfox5","first_name":"Brian","last_name":"Fox","full_name":"Brian
+        Fox","ndguid":"nd.edu.ndkh8kd4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Brian.P.Fox.92@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":1,"crn":"19910","enrollments":[]}],"crosslist_id":"201310_N3"},{"section_group_id":"201310_19676","primary_instructor":{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}},"sections":[{"section_id":"201310_19676","supersection_id":null,"instructors":[{"id":"fagostin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fagostin","first_name":"Frank","last_name":"Agostino","full_name":"Frank
+        Agostino","ndguid":"nd.edu.ndbs4km7","position_title":"Adjunct Instructor","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"102
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Frank.J.Agostino.8@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":2,"crn":"19676","enrollments":["stomasko"]}],"crosslist_id":"201310_JD"},{"section_group_id":"201310_19681_19693_19687_19684","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201310_19681","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":3,"crn":"19681","enrollments":["dlee13"]},{"section_id":"201310_19693","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":4,"crn":"19693","enrollments":["mtemple1"]},{"section_id":"201310_19687","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":5,"crn":"19687","enrollments":["mbush3"]},{"section_id":"201310_19684","supersection_id":"FA13-ACCT-20100-SSJK","instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":6,"crn":"19684","enrollments":["afava"]}],"crosslist_id":"201310_JE_JH_JJ_JK"},{"section_group_id":"201310_19678_19690_19675","primary_instructor":{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}},"sections":[{"section_id":"201310_19678","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":7,"crn":"19678","enrollments":["agoike"]},{"section_id":"201310_19690","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":8,"crn":"19690","enrollments":["sdonegan"]},{"section_id":"201310_19675","supersection_id":null,"instructors":[{"id":"mmeyer9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmeyer9","first_name":"Michael","last_name":"Meyer","full_name":"Michael
+        Meyer","ndguid":"nd.edu.ndtx9fr2","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"220
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Michael.J.Meyer.96@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":9,"crn":"19675","enrollments":["hduehren"]}],"crosslist_id":"201310_JL_JM_JN"},{"section_group_id":"201310_19685_19680_19682_19689","primary_instructor":{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}},"sections":[{"section_id":"201310_19685","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":10,"crn":"19685","enrollments":["ajohns22"]},{"section_id":"201310_19680","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":11,"crn":"19680","enrollments":["dghirard"]},{"section_id":"201310_19682","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":12,"crn":"19682","enrollments":["mpark4"]},{"section_id":"201310_19689","supersection_id":null,"instructors":[{"id":"wschmuhl","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wschmuhl","first_name":"William","last_name":"Schmuhl","full_name":"William
+        Schmuhl","ndguid":"nd.edu.ndwm2xz8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"309
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"schmuhl.7@nd.edu","phone":"+1
+        574 631 6280"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":13,"crn":"19689","enrollments":["jtao","mgarci16","tbrown17","tdoone"]}],"crosslist_id":"201310_JO_JT_JU_JV"},{"section_group_id":"201310_19677","primary_instructor":{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}},"sections":[{"section_id":"201310_19677","supersection_id":null,"instructors":[{"id":"dkroll","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dkroll","first_name":"Douglas","last_name":"Kroll","full_name":"Douglas
+        Kroll","ndguid":"nd.edu.ndjh6qh3","position_title":"Sr Director IT Admin Services","campus_department":"Office
+        of Chief Information Officer","primary_affiliation":"Staff","contact_information":{"campus_address":"364
+        Information Technology Ctr&#10;Notre Dame, IN 46556-5659","email":"dkroll@nd.edu","phone":"+1
+        574 631 3684"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":14,"crn":"19677","enrollments":["aacuna"]}],"crosslist_id":"201310_JX"},{"section_group_id":"201310_19679_19688_19692_19683","primary_instructor":{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}},"sections":[{"section_id":"201310_19679","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":15,"crn":"19679","enrollments":["cvoglewe","jstonebu","lcziesla","mflemin3"]},{"section_id":"201310_19688","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":16,"crn":"19688","enrollments":["rgalleg5"]},{"section_id":"201310_19692","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":17,"crn":"19692","enrollments":["khuffman"]},{"section_id":"201310_19683","supersection_id":null,"instructors":[{"id":"ehums","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ehums","first_name":"Edward","last_name":"Hums","full_name":"Edward
+        Hums","ndguid":"nd.edu.ndtd5bg4","position_title":"Professional Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"313
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"Edward.F.Hums.2@nd.edu","phone":"+1
+        574 631 4644"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":18,"crn":"19683","enrollments":["jyoon1"]}],"crosslist_id":"201310_JY_JZ_KB_KC"},{"section_group_id":"201310_19686","primary_instructor":{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}},"sections":[{"section_id":"201310_19686","supersection_id":null,"instructors":[{"id":"jmark1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmark1","first_name":"Jessica","last_name":"Mark","full_name":"Jessica
+        Mark","ndguid":"nd.edu.ndvw7hb4","position_title":"GRAD Stipend-Accountancy","campus_department":"Accountancy","primary_affiliation":"Student","contact_information":{"email":"Jessica.Mark.26@nd.edu"}}],"term":"201310","course_triple":"201310_BASC_20100","course_title":"Accounting
+        I","alpha_prefix":"BASC","number":20100,"section_number":20,"crn":"19686","enrollments":["mmcken10"]}],"crosslist_id":"201310_KD"}],"supersections":["FA13-ACCT-20100-SSJK"]}]'
+    http_version: 
+  recorded_at: Thu, 29 Aug 2013 17:55:01 GMT
+recorded_with: VCR 2.5.0

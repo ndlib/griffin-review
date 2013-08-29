@@ -7,7 +7,6 @@ describe InstructorTopicsForm do
   let(:semester) { FactoryGirl.create(:semester)}
 
   before(:each) do
-    stub_courses!
 
     @course = double(Course, :id => "course_id", :title => 'title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id')
     @course.stub(:semester).and_return(semester)

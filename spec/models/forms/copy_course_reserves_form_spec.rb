@@ -6,7 +6,6 @@ describe CopyCourseReservesForm do
   let(:course_search) { CourseSearch.new }
 
   before(:each) do
-    stub_courses!
 
     semester = FactoryGirl.create(:semester)
     next_semester = FactoryGirl.create(:next_semester)

@@ -87,7 +87,7 @@ class SakaiIntegrator
 
 
   def section_group_by_crosslist(course, search_value)
-    if course.crosslist_id == search_value
+    if course.id == search_value
       course.id
     end
   end
@@ -101,8 +101,8 @@ class SakaiIntegrator
   def section_group_by_section(course, search_value)
     id = nil
     course.sections.each do |section|
-      section_number = "%02d" % section["section_number"]
-      section_triple_number = section["course_triple"] + '_' + section_number
+      section_number = "%02d" % section.section_number
+      section_triple_number = section.triple + '_' + section_number
       if section_triple_number == search_value
         id = course.id
       end

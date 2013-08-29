@@ -4,12 +4,13 @@ require 'spec_helper'
 describe BookReserveImport do
 
   before(:each) do
-    FactoryGirl.create(:semester)
+    semester = FactoryGirl.create(:semester)
 
-    stub_courses!
     stub_discovery!
 
-    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01","doc_number" => "000047839","section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
+    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01","doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
+    @course = double(Course, id: 'crosslist_id', semester: semester)
+    BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
 
 
@@ -53,8 +54,7 @@ describe BookReserveImport do
   describe :existing_record do
 
     it "passes records that already exist" do
-      course = CourseSearch.new.get("current_multisection_crosslisted")
-      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), course
+      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), @course
 
       @ibr = BookReserveImport.new(@api_data)
       @ibr.reserve.should_receive(:save!).exactly(0).times
@@ -86,13 +86,14 @@ describe BookReserveImport do
   describe :errors do
 
     it "traps an error if the course cannot be found" do
-      @api_data['section_group_id'] = 'blabla'
+      @api_data['crosslist_id'] = 'blabla'
+      BookReserveImport.any_instance.stub(:course).and_return(nil)
 
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
 
-      expect(@ibr.errors.first).to eq("Unable to find course #{@api_data['section_group_id']}")
+      expect(@ibr.errors.first).to eq("Unable to find course #{@api_data['crosslist_id']}")
     end
 
 

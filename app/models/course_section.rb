@@ -1,7 +1,6 @@
 class CourseSection
   attr_accessor :attributes, :crosslist_id
 
-
   def self.factory(crosslist_id, attributes = {})
     attributes[:crosslist_id] = crosslist_id
     CourseSection.new(attributes)
@@ -45,6 +44,11 @@ class CourseSection
 
   def alpha_prefix
     @attributes[:alpha_prefix]
+  end
+
+
+  def course_number
+    @attributes[:number]
   end
 
 

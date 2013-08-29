@@ -6,7 +6,8 @@ describe Reserve do
   let(:course_search) { CourseSearch.new }
 
   before(:each) do
-    stub_courses!
+    @semester = FactoryGirl.create(:semester)
+    @course = double(Course, id: 'crossid', semester: @semester)
   end
 
   describe "attribute fields" do
@@ -128,8 +129,8 @@ describe Reserve do
       @reserve.title = 'ttile '
       @reserve.type="BookChapter"
       @reserve.requestor_netid = "nid"
-      FactoryGirl.create(:semester)
-      @reserve.course = course_search.get( 'current_multisection_crosslisted')
+
+      @reserve.course = @course
 
       @reserve.save!
 
@@ -191,9 +192,8 @@ describe Reserve do
     end
 
     it "addes the course reserve id to the reserve record" do
-      FactoryGirl.create(:semester)
       request = FactoryGirl.create(:request)
-      course = course_search.get( 'current_multisection_crosslisted')
+      course = @course
       reserve = Reserve.factory(request, course)
       reserve.save!
 
@@ -203,7 +203,7 @@ describe Reserve do
     end
 
     it "raises invalid record if the record is not valid" do
-      @reserve.course = course_search.get('current_multisection_crosslisted')
+      @reserve.course = @course
       lambda {
         @reserve.save!
       }.should raise_error
@@ -214,9 +214,8 @@ describe Reserve do
 
     it "checks to seed if the item is complete" do
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
-      FactoryGirl.create(:semester)
 
-      @reserve.course = course_search.get('current_multisection_crosslisted')
+      @reserve.course = @course
       @reserve.title = "title"
       @reserve.type = 'BookChapter'
       @reserve.requestor_netid = "username"

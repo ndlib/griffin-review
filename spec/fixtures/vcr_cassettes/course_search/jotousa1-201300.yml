@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/jotousa1/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 28 Aug 2013 19:24:07 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 5ab4e0fba3cdd2f8ffe5b1c05f9f528f
+      X-Runtime:
+      - '0.150266'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '2052'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWJmNDZkN2U0ZDJiNTY4YzRkYTkzZGY2ZjM1NGU3ZjQxBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--f362311eddc0e52f45c9a94ba354b571c9a56889;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"},"enrolled_courses":[],"instructed_courses":[{"course_id":"201300_ACCT_20200","crosslist_id":"201300_3176","course_title":"Accountancy
+        II","section_groups":{"section_group_id":"201300_3176","primary_instructor":{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}},"sections":[{"section_id":"201300_3176","supersection_id":null,"instructors":[{"id":"jotousa1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jotousa1","first_name":"Janet","last_name":"O''Tousa","full_name":"Janet
+        O''Tousa","ndguid":"nd.edu.ndkr3mh8","position_title":"Associate Professional
+        Specialist","campus_department":"Accountancy","primary_affiliation":"Faculty","contact_information":{"campus_address":"252
+        Mendoza College of Bus&#10;Notre Dame, IN 46556","email":"jotousa1@nd.edu","phone":"+1
+        574 631 9090"}}],"term":"201300","course_triple":"201300_ACCT_20200","course_title":"Accountancy
+        II","alpha_prefix":"ACCT","number":20200,"section_number":1,"crn":"3176","enrollments":["dcalder3","dkyrouac","jmeyers4","kwhite10","mfrederi","mli10","nboggess","pstynes"]}],"crosslist_id":"201300_3176"}}]}]}'
+    http_version: 
+  recorded_at: Wed, 28 Aug 2013 19:24:11 GMT
+recorded_with: VCR 2.5.0

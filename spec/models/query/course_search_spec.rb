@@ -5,10 +5,6 @@ describe CourseSearch do
   let(:course_search) { CourseSearch.new }
   let(:semester) { FactoryGirl.create(:semester)}
 
-  before(:each) do
-    stub_courses!
-  end
-
 
   describe "api_access" do
     it "only calls the api once for enrolled and instucted courses per netid and semster"
@@ -16,135 +12,118 @@ describe CourseSearch do
 
 
   describe "#enrolled_courses" do
+    before(:each) do
+      VCR.use_cassette "course_search/edavis12-201310" do
+        @current_courses = CourseSearch.new.enrolled_courses('edavis12', '201310')
+      end
 
-    it "returns the students enrolled courses for the current semseter" do
-      courses = course_search.enrolled_courses('student', 'current')
-      test_result_has_course_ids(courses, ["current_21258_20334_20452_20237", "current_22555_23911", "current_22557", "current_21188", "current_21266_20113_20588", "current_23124_24550_23128", "current_25426", "current_24541_28873", "current_29157", "current_28883", "current_21015"])
+      VCR.use_cassette "course_search/bcarrico-201300" do
+        @previous_courses = CourseSearch.new.enrolled_courses('bcarrico', '201300')
+      end
     end
 
-    it "returns the students enrolled courses for the previous semseter" do
-      courses = course_search.enrolled_courses('student', 'previous')
-      test_result_has_course_ids(courses, ["previous_11389", "previous_12569_12570_12574_12576", "previous_12545_12546_12547_15041_12548", "previous_18984_18985", "previous_12777_14617", "previous_13023_13024_14383_14389", "previous_11640_11641"])
+    it "returns each of the users courses for the current semester" do
+      expect(@current_courses.size).to eq(6)
     end
 
-    it "returns the inst_stu's enrolled courses for the current semester" do
-      courses = course_search.enrolled_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ["current_29898"])
+
+    it "returns the courses from a different semester" do
+      expect(@previous_courses.size).to eq(2)
     end
 
-    it "returns the inst_stu's enrolled courses for the previous semester" do
-      courses = course_search.enrolled_courses('inst_stu', 'previous')
-      test_result_has_course_ids(courses, ["previous_19745", "previous_19591", "previous_20066"])
+
+    it "it does not aggregatge the crosslists only the one the student is a part of " do
+      # see the instructors listing for the same course below.
+      res = ["201310_ACCT_20100"]
+      expect(@current_courses[0].sections.collect(&:triple).uniq).to eq(res)
     end
 
-    it "returns the instructors enrolled courses for the current semester" do
-      course_search.enrolled_courses('instructor', 'current').size.should == 0
+
+    it "aggregates the sections" do
+      res = ["201310_11294", "201310_11299", "201310_15479", "201310_11300"]
+      expect(@current_courses[0].sections.collect(&:id).uniq).to eq(res)
     end
 
-    it "returns the instructors enrolled courses for the previous semester" do
-      course_search.enrolled_courses('instructor', 'previous').size.should == 0
-    end
+    it "handles empty response"
+
+    it "handles a 500 response from the api"
+
   end
 
 
   describe "#instructed_courses" do
 
-    it "returns the students instructed courses for the current semseter" do
-      course_search.instructed_courses('student', 'current').size.should == 0
-    end
+    before(:each) do
 
+      VCR.use_cassette "course_search/jotousa1-201310" do
+        @current_courses = CourseSearch.new.instructed_courses('jotousa1', '201310')
+      end
 
-    it "returns the students instructed courses for the previous semseter" do
-      course_search.instructed_courses('student', 'previous').size.should == 0
-    end
-
-
-    it "returns the inst_stu's instructed courses for the current semester" do
-      courses = course_search.instructed_courses('inst_stu', 'current')
-      test_result_has_course_ids(courses, ["current_28972_28971_29901"])
-    end
-
-
-    it "returns the inst_stu's instructed courses for the previous semester" do
-      courses = course_search.instructed_courses('inst_stu', 'previous')
-      test_result_has_course_ids(courses, ["previous_18446", "previous_18448"])
-    end
-
-
-    it "returns the instructors instructed courses for the current semester" do
-      courses = course_search.instructed_courses('instructor', 'current')
-      test_result_has_course_ids(courses, ["current_21258_20334_20452_20237"])
-   end
-
-
-    it "returns the instructors instructed courses for the previous semester" do
-      courses = course_search.instructed_courses('instructor', 'previous')
-      test_result_has_course_ids(courses, ["previous_24521_24661_24522"])
-    end
-
-
-
-    describe "cross_listings" do
-      it "combines the corss listed classes into one result" do
-        courses = course_search.instructed_courses('crosslisting', 'current')
-
-        courses.first.crosslistings.first.id.should == "current_11393_14611_11386_11388"
-        courses.first.crosslistings.last.id.should == "current_13944_14854_13946_13947"
+      VCR.use_cassette "course_search/jotousa1-201300" do
+        @previous_courses = CourseSearch.new.instructed_courses('jotousa1', '201300')
       end
     end
+
+
+    it "returns each of the users courses for the current semester" do
+      expect(@current_courses.size).to eq(2)
+    end
+
+
+    it "returns the courses from a different semester" do
+      expect(@previous_courses.size).to eq(1)
+    end
+
+
+    it "aggregates each of the crosslisted courses into one." do
+      res = ["201310_ACCT_20100", "201310_BAAL_20100", "201310_BAEG_20100", "201310_BASC_20100"]
+      expect(@current_courses[0].sections.collect(&:triple).uniq).to eq(res)
+    end
+
+
+    it "collects courses that are not cross listed into one course with one section" do
+      res = ["201310_BAUG_30760"]
+      expect(@current_courses[1].sections.collect(&:triple).uniq).to eq(res)
+    end
+
+
+    it "handles empty response"
+
+    it "handles a 500 response from the api"
   end
 
-  
-  describe "#all_courses" do
 
-
-    it "returns the inst_stu's enrolled courses for the current semester" do
-      courses = course_search.all_courses('inst_stu', 'current')
-      courses.collect { |course| course.id }.should include "current_29898"
-    end
-    
-
-    it "returns the inst_stu's enrolled courses for the previous semester" do
-      courses = course_search.all_courses('inst_stu', 'previous')
-      courses.collect { |course| course.id }.should include("previous_19745", "previous_19591", "previous_20066")
-    end
-
-
-    it "returns the inst_stu's instructed courses for the current semester" do
-      courses = course_search.all_courses('inst_stu', 'current')
-      courses.collect { |course| course.id }.should include "current_28972_28971_29901"
-    end
-
-
-    it "returns the inst_stu's instructed courses for the previous semester" do
-      courses = course_search.all_courses('inst_stu', 'previous')
-      courses.collect { |course| course.id }.should include("previous_18446", "previous_18448")
-    end
-
-  end
-  
 
   describe :get do
+    before(:each) do
+      VCR.use_cassette "course_search/201310_JE_JH_JJ_JK" do
+        @course =  course_search.get('201310_JE_JH_JJ_JK')
+      end
+    end
+
     it "returns the course specified" do
-      course_search.get('current_multisection_crosslisted').id.should == "current_multisection_crosslisted"
+      expect(@course.id).to eq("201310_JE_JH_JJ_JK")
     end
 
-
-    it "returns courses from past semesters" do
-      course_search.get('previous_multisection').id.should == "previous_multisection"
+    it "combines sections from crosslistings into one result " do
+      res = ["201310_ACCT_20100", "201310_BAAL_20100", "201310_BAEG_20100", "201310_BASC_20100"]
+      expect(@course.sections.collect(&:triple).uniq).to eq(res)
     end
 
+    it "handles empty response"
 
-    it "returns nil if the course is not found" do
-      course_search.get('afafasfafadfafadsffd').should be_nil
-    end
+    it "handles a 500 response from the api"
+
+
   end
 
 
   describe :search do
 
     before(:each) do
-      @search_result = course_search.search('201210', 'augustine')
+      VCR.use_cassette "course_search/search-augustine" do
+        @search_result = course_search.search('201310', 'augustine')
+      end
     end
 
     it "returns an array of courses searched for " do
@@ -155,32 +134,45 @@ describe CourseSearch do
       expect(@search_result.first.class).to eq(Course)
     end
 
+    it "handles empty response"
+
+    it "handles a 500 response from the api"
+
   end
 
 
 
   describe "course exceptions" do
+    before(:each) do
+      VCR.use_cassette "course_search/201310_JE_JH_JJ_JK" do
+        @course =  course_search.get('201310_JE_JH_JJ_JK')
+      end
+    end
 
     it "merges student exceptions into the student couse list" do
-      UserCourseException.create_enrollment_exception!('current_multisection_crosslisted', semester.code, 'student')
+      UserCourseException.create_enrollment_exception!(@course.id, '201310', 'student')
 
-      courses = course_search.enrolled_courses('student', 'current')
-      courses.last.id.should == "current_multisection_crosslisted"
+      CourseSearch.any_instance.stub(:person_course_search).and_return({'enrolled_courses' => [], 'instructed_courses' => []})
+      courses = course_search.enrolled_courses('student', '201310')
+
+      courses.last.id.should == @course.id
     end
 
 
     it "mergers instructor exceptions into the instructor course list" do
-      UserCourseException.create_instructor_exception!('current_multisection_crosslisted', semester.code, 'instructor')
+      UserCourseException.create_instructor_exception!(@course.id, '201310', 'instructor')
 
-      courses = course_search.instructed_courses('instructor', 'current')
-      courses.last.id.should == "current_multisection_crosslisted"
+      CourseSearch.any_instance.stub(:person_course_search).and_return({'enrolled_courses' => [], 'instructed_courses' => []})
+      courses = course_search.instructed_courses('instructor', '201310')
+      courses.last.id.should == @course.id
     end
 
 
     it "creates a course object for the passed in course" do
-      UserCourseException.create_instructor_exception!('current_multisection_crosslisted', semester.code, 'instructor')
+      UserCourseException.create_instructor_exception!(@course.id, '201310',  'instructor')
 
-      courses = course_search.instructed_courses('instructor', 'current')
+      CourseSearch.any_instance.stub(:person_course_search).and_return({'enrolled_courses' => [], 'instructed_courses' => []})
+      courses = course_search.instructed_courses('instructor', '201310')
 
       courses.last.class.should == Course
     end
