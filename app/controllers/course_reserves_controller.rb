@@ -3,7 +3,18 @@ class CourseReservesController < ApplicationController
   layout :determine_layout
 
   def index
-    @user_course_show = CourseReserveList.new(current_user, params)
+    # begin code can be removed after fall 2013
+    begin
+      @user_course_show = CourseReserveList.new(current_user, params)
+    rescue OpenURI::HTTPError
+      lookup = API::CourseSearchApi.course_id(params[:course_id])
+      if lookup['section_groups'].first['crosslist_id']
+        redirect_to course_reserves_path(lookup['section_groups'].first['crosslist_id'])
+        return
+      end
+
+      render_404
+    end
     check_view_permissions!(@user_course_show.course)
   end
 
