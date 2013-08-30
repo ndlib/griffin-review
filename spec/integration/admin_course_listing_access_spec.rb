@@ -12,7 +12,7 @@ describe "Course Search" do
     u = FactoryGirl.create(:admin_user)
     login_as u
 
-    @course = double(Course, id: 'id', semester: @semester, title: 'title', instructor: double(User, display_name: 'bob bobbers'), instructor_netid: [], crosslisted_course_ids: [], section_numbers: [] )
+    @course = double(Course, id: 'id', semester: @semester, title: 'title', primary_instructor: double(User, display_name: 'bob bobbers', username: 'username'), instructor_netid: [], crosslisted_course_ids: [], section_numbers: [] )
     CourseSearch.any_instance.stub(:search).and_return([@course])
 
     CourseSearch.any_instance.stub(:enrolled_courses).and_return([])
