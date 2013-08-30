@@ -43,7 +43,7 @@
             <a href="<%= course_reserves_path(course.id) %>"><%= h course.title %></a>
           </td>
           <td>
-            <%= link_to h(course.instructor.display_name), new_masquerades_path(:username => course.instructor_netid) %>
+            <%= link_to h(course.primary_instructor.display_name), new_masquerades_path(:username => course.primary_instructor.username) %>
           </td>
           <td>
             <% course.crosslisted_course_ids.each do | cid | %>
