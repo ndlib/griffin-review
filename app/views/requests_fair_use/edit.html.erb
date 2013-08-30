@@ -64,7 +64,7 @@
 
     <div class="form-actions">
       <%= f.button :submit, "Save", :class => 'btn-primary' %>
-      <%= link_to 'Cancel', requests_path(:filter => @request.workflow_state) %>
+      <%= link_to 'Cancel', request_path(@request.id) %>
     </div>
   </div>
 <% end %>
