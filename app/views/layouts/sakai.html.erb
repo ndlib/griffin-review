@@ -19,13 +19,15 @@
       <h3>Library Reserves</h3>
     </div>
     <div class="rcontainer">
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <ul class="nav">
-            <li class="active"><%= link_to CourseSearch.new.get(params[:course_id]).title, :controller => "course_reserves", :action => "index", :course_id => params[:course_id] %></li>
-          </ul>
+      <% if params[:course_id] %>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <ul class="nav">
+              <li class="active"><%= link_to CourseSearch.new.get(params[:course_id]).title, :controller => "course_reserves", :action => "index", :course_id => params[:course_id] %></li>
+            </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="primary_content">
         <% if content_for?(:content_title_links) %>
           <div class="pull-right">

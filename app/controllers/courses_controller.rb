@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
 
+  layout :determine_layout
+
   def index
     if permission.current_user_is_administrator?
       @admin_course_listing = AdminCourseList.new(current_user, params)

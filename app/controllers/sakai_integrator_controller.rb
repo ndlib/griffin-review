@@ -3,6 +3,9 @@ class SakaiIntegratorController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def sakai_redirect
+    redirect_to '/sakai/courses'
+    return
+
     if params[:context_id]
       si = SakaiIntegrator.new(self)
       si.site_id = params[:context_id]
