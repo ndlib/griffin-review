@@ -114,11 +114,13 @@ ActiveRecord::Schema.define(version: 20130829203050) do
     t.string   "requestor_owns_a_copy"
     t.string   "library"
     t.string   "course_id"
+    t.string   "crosslist_id"
     t.string   "requestor_netid"
     t.integer  "item_id"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
+  add_index "requests", ["crosslist_id"], name: "index_requests_on_crosslist_id", using: :btree
   add_index "requests", ["library"], name: "index_requests_on_library", using: :btree
   add_index "requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
 
