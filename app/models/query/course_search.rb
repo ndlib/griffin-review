@@ -95,7 +95,7 @@ class CourseSearch
 
 
     def parse_course_exception_to_object(course_exception, netid, semester_id)
-      course = self.get(course_exception.section_group_id)
+      course = self.get(course_exception.course_id)
 
       return if course.nil?
 

@@ -12,14 +12,15 @@ describe CoursesController do
   describe :logged_in_as_student do
 
     before(:each) do
-      u = FactoryGirl.create(:student)
-      sign_in u
+      @u = FactoryGirl.create(:student)
+      sign_in @u
     end
 
 
     describe :index do
 
       it "returns a successful response" do
+        # the failure on this does not happen when you run just this file :/
         get :index
         response.should be_success
       end

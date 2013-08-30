@@ -21,8 +21,8 @@ describe UserCourseException do
       UserCourseException.new.should have(1).error_on(:term)
     end
 
-    it "requires a term" do
-      UserCourseException.new.should have(1).error_on(:section_group_id)
+    it "requires a course_id" do
+      UserCourseException.new.should have(1).error_on(:course_id)
     end
 
 
