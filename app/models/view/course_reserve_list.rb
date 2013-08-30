@@ -11,12 +11,19 @@ class CourseReserveList
     @current_user = current_user
     @course = get_course(params[:course_id])
 
+    @show_deleted = params[:deleted] ? true : false
+
     validate_inputs!
   end
 
 
   def course_id
     @course.id
+  end
+
+
+  def has_deleted_reserves?
+    @course.reserves.find { | r | r.removed? }.present?
   end
 
 
@@ -29,6 +36,7 @@ class CourseReserveList
       raise "unable to determine reserves"
     end
   end
+
 
 
   def instructs_course?

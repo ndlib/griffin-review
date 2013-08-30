@@ -2,6 +2,9 @@
   <% if user_course_show.can_have_new_reserves? %>
     <br><br><br>
     <%= render partial: "/courses/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
+    <% if user_course_show.has_deleted_reserves? %>
+      <a class="btn btn-large show_deleted_reserves">Deleted Reserves</a>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -12,6 +15,7 @@
         <th>Reserve</th>
         <!-- th class="topic_row">Topics</th -->
         <th>Status</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>

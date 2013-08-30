@@ -22,7 +22,24 @@ jQuery ($) ->
         sPaginationType: "bootstrap"
         iDisplayLength: 1000
         bLengthChange: false
+        aoColumnDefs: [
+          bVisible: false
+          aTargets: [3]
+        ]
       )
+
+      oTable.fnFilter("available", 3, true, false, false)
+
+      $('.show_deleted_reserves').click ->
+        oTable = $(".instructor_datatable").dataTable()
+
+        if $(this).text() == "Deleted Reserves"
+          oTable.fnFilter("removed", 3, true, false, false)
+          $(this).text('Active Reserves')
+        else
+          oTable.fnFilter("available", 3, true, false, false)
+          $(this).text('Deleted Reserves')
+
 
 
   setupCopyOldReserveDatatable = () ->
@@ -132,6 +149,7 @@ jQuery ($) ->
       $(this).parents('div.controls').find('div.has_electronic_copy').hide()
 
   $('.datepicker').datepicker()
+
 
 
   setupAdminDatatable = () ->

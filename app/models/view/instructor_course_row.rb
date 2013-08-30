@@ -36,5 +36,14 @@ class InstructorCourseRow
     end
   end
 
+
+  def delete_sort
+    if reserve.removed?
+      'removed'
+    else
+      'available'
+    end
+  end
+
 end
 
