@@ -27,7 +27,7 @@
 
   <% if @user_course_listing.show_instructed_courses? %>
 
-    <div class="tab-pane active" id="instructed">
+    <div class="tab-pane <%= (@user_course_listing.show_both_enrolled_and_instructed_courses?) ? '' : 'active' %>" id="instructed" >
       <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
       <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
       <br><br><br><br><br><br>
