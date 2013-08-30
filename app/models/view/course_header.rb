@@ -21,7 +21,11 @@ class CourseHeader
 
 
   def sections
-    @course.section_numbers.join(", ")
+    if UserRoleInCoursePolicy.new(@course, @current_user).user_enrolled_in_course?
+      "#{@course_section.alpha_prefix} #{@course_section.course_number} - #{@course_section.section_number}"
+    else
+      "#{@course.crosslisted_course_ids.join(", ")} - #{@course.section_numbers.join(", ")}"
+    end
   end
 
 
