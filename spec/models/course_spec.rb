@@ -58,31 +58,6 @@ describe Course do
   end
 
 
-  describe :get_section_for_user do
-
-    it "returns the section that the user is enrolled in" do
-      section = @crosslist_course.sections[2]
-      section.stub(:enrollment_netids).and_return("netid")
-      user = double(User, username: 'netid')
-
-      expect(@crosslist_course.get_section_for_user(user)).to eq(section)
-    end
-
-    it "returns the first section if the user is an instructor" do
-      @crosslist_course.stub(:instructor_netids).and_return(["netid"])
-      section = @crosslist_course.sections.first
-      user = double(User, username: 'netid')
-
-      expect(@crosslist_course.get_section_for_user(user)).to eq(section)
-    end
-
-    it "raises an error if ther user is not in the course" do
-      user = double(User, username: 'netid')
-      expect {@crosslist_course.get_section_for_user(user) }.to raise_error
-    end
-  end
-
-
   describe :enrollment_netids do
 
     it "lists has an enrollment_netids" do

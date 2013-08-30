@@ -29,21 +29,6 @@ class Course
   end
 
 
-  def get_section_for_user(user)
-    if instructor_netids.include?(user.username)
-      return @sections.first
-    else
-      @sections.each do | section |
-        if section.enrollment_netids.include?(user.username)
-          return section
-        end
-      end
-    end
-
-    raise "unable to find section for user."
-  end
-
-
   def unique_supersection_ids
     @sections.collect {|s| s.supersection_id }.uniq
   end

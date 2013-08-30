@@ -2,7 +2,10 @@
   <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
   <p class="lead">
     <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %> <br>
-    <small><%= @admin_reserve.course.course_triple %></small><br>
+    <small>
+      <%= @admin_reserve.course.crosslisted_course_ids.join(", ") %><br />
+      Sections: <%= @admin_reserve.course.section_numbers.join(", ") %><br>
+    </small>
     Status: <%= @admin_reserve.workflow_state %><br />
     Requestor: <%= @admin_reserve.requestor %>
   </p>

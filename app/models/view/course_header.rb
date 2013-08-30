@@ -6,7 +6,12 @@ class CourseHeader
 
   def initialize(course, current_user)
     @course = course
-    @course_section = course.get_section_for_user(current_user)
+    @current_user = current_user
+    @course_section = FindUserSectionInCourse.new(@course, @current_user).find
+
+    if @course_section.nil?
+      raise "unable to find course section for user."
+    end
   end
 
 
