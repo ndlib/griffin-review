@@ -3,8 +3,6 @@ class CourseReservesController < ApplicationController
   layout :determine_layout
 
   def index
-
-    binding.pry
     # begin code can be removed after fall 2013
     begin
       @user_course_show = CourseReserveList.new(current_user, params)
