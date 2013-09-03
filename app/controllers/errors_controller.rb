@@ -5,4 +5,19 @@ class ErrorsController < ApplicationController
 
   def error_500
   end
+
+
+  def index
+    check_admin_permission!
+    @errors = ErrorLog.errors
+  end
+
+
+  def show
+    check_admin_permission!
+
+    @error = ErrorLog.find(params[:id])
+  end
+
+
 end

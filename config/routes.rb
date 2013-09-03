@@ -8,6 +8,8 @@ Griffin::Application.routes.draw do
     get :cancel
   end
 
+  resources :errors
+
   # this method exits so that several routes that perform the same function
   # can be encapsulated at different places but located once in the routes file
   def course_routes

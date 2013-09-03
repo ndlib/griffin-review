@@ -1,0 +1,17 @@
+<% content_for(:content_title) do %>
+  <h1>Recent Error</h1>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt>Message</dt>
+  <dd><%= @error.message %></dd>
+  <dt>Netid</dt>
+  <dd><%= @error.netid %></dd>
+  <dt>Path</dt>
+  <dd><%= @error.path %></dd>
+  <dt>Params</dt>
+  <dd><%= @error.params %></dd>
+</dl>
+
+  <h3>Trace</h3>
+  <p><%= @error.stack_trace %></p>
