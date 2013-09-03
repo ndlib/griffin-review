@@ -11,7 +11,6 @@ module API
 
 
     def self.courses_by_crosslist_id(crosslist_id)
-      puts crosslist_id
       Rails.cache.fetch("crosslist_id-#{crosslist_id}", expires_in: 4.hours)  do
         get_json("by_crosslist/#{crosslist_id}")
       end
