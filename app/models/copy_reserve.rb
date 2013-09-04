@@ -21,7 +21,7 @@ class CopyReserve
 
     @reserve.fair_use.copy_to_new_request!(new_request, @user)
 
-    new_request
+    Reserve.factory(new_request)
   end
 
 end
