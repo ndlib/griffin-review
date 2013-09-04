@@ -1,4 +1,4 @@
-<% row = InstructorCourseRow.new(object, self) %>
+<% row = InstructorCourseRow.new(object) %>
 <tr class="reserve_<%= object.id %>">
   <td>
     <%= render :partial => 'list_record', :locals => { object: row.reserve} %>
