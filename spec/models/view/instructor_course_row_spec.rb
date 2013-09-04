@@ -69,14 +69,14 @@ describe InstructorCourseRow do
   describe :delete_sort do
 
     it "returns removed when a reserve is removed " do
-      @course_row.stub(:removed?).and_return(true)
-      expect(@course_row.delete_sort).and_return('removed')
+      @reserve.stub(:removed?).and_return(true)
+      expect(@course_row.delete_sort).to eq('removed')
     end
 
 
     it "returns available if the reserve is not removed" do
-      @course_row.stub(:removed?).and_return(false)
-      expect(@course_row.delete_sort).and_return('available')
+      @reserve.stub(:removed?).and_return(false)
+      expect(@course_row.delete_sort).to eq('available')
     end
   end
 
