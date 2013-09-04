@@ -36,7 +36,7 @@ class InstructorReserveRemoveForm
         reserve_search.get(id, course)
 
       rescue ActiveRecord::RecordNotFound => e
-        render_404
+        raise_404
       end
     end
 end

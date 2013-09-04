@@ -29,7 +29,7 @@ describe RequestsFairUseController do
 
       lambda {
         get :edit, id: @reserve.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
   end
@@ -50,7 +50,7 @@ describe RequestsFairUseController do
 
       lambda {
         put :update, id: @reserve.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
   end
 end

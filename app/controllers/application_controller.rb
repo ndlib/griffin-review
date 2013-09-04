@@ -1,4 +1,8 @@
+require 'error_helper'
+
 class ApplicationController < ActionController::Base
+  include ErrorHelper
+
   before_filter :authenticate_user!
   before_filter :set_access_control_headers
 
@@ -14,19 +18,17 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
- unless Rails.configuration.consider_all_requests_local
-    # rescue_from Exception, :with => :render_500
-    rescue_from ActionController::RoutingError, :with => :render_404
-    rescue_from ActionController::UnknownController, :with => :render_404
-    rescue_from AbstractController::ActionNotFound, :with => :render_404
-    rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  unless Rails.configuration.consider_all_requests_local
+    rescue_from ActionController::RoutingError, :with => :catch_404
+    rescue_from ActionController::UnknownController, :with => :catch_404
+    rescue_from AbstractController::ActionNotFound, :with => :catch_404
+    rescue_from ActiveRecord::RecordNotFound, :with => :catch_404
   end
 
   protected
 
     def determine_layout
       current_path_is_sakai? ? 'sakai' : 'application'
-      # params[:sakai] == '1' ? 'sakai' : 'application'
     end
 
 
@@ -37,51 +39,42 @@ class ApplicationController < ActionController::Base
 
     def check_view_permissions!(course)
       if course.nil?
-        render_404
+        raise_404
       end
 
       if (!permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)) && !permission.current_user_is_administrator?
-        render_404
+        raise_404
       end
     end
 
 
     def check_instructor_permissions!(course)
       if course.nil?
-        render_404
+        raise_404
       end
 
       if !permission.current_user_instructs_course?(course) && !permission.current_user_is_administrator?
-        render_404
+        raise_404
       end
     end
 
 
     def check_admin_permission!
       if !permission.current_user_is_administrator?
-        render_404
+        raise_404
       end
     end
 
 
     def check_admin_or_admin_masquerading_permission!
       if !(permission.current_user_is_admin_in_masquerade? || permission.current_user_is_administrator?)
-        render_404
+        raise_404
       end
     end
 
 
-    def render_404
-      raise ActionController::RoutingError.new('Not Found')
-    end
-
-
-    def render_500(exception)
-      @error = exception
-      respond_to do |format|
-        format.html { render :template => 'errors/error_500', :layout => 'layouts/external', :status => 500 }
-        format.all { render :nothing => true, :status => 500}
-      end
+    def raise_404
+      raise ActionController::RoutingError
     end
 
 

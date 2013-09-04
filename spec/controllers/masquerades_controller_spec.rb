@@ -23,7 +23,7 @@ describe MasqueradesController do
 
       lambda {
         get :new
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
   end
@@ -45,7 +45,7 @@ describe MasqueradesController do
 
       lambda {
         post :create, :username => 'username'
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
 

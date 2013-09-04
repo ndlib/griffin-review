@@ -86,7 +86,7 @@ class GetReserve
 
     def validate_input!(params)
       if !current_user.nil? && !link_to_listing?
-        render_404
+        raise_404
       end
     end
 

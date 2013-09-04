@@ -92,11 +92,13 @@ class SakaiIntegrator
     end
   end
 
+
   def section_group_by_supersection(course, search_value)
     if course.unique_supersection_ids.include?(search_value)
       course.id
     end
   end
+
 
   def section_group_by_section(course, search_value)
     id = nil
@@ -110,9 +112,11 @@ class SakaiIntegrator
     return id
   end
 
+
   def get_parts_array(pattern, external_site_id)
     /"#{pattern}"/.match(external_site_id).captures
   end
+
 
   def calculate_term(parts_array)
       year_value = calculate_year(parts_array)
@@ -120,11 +124,13 @@ class SakaiIntegrator
       return [term, year_value]
   end
 
+
   def calculate_year(parts_array)
     year_value = 2000 + parts_array[1].to_i
     year_value = year_value - 1 if parts_array[0] == 'SP'
     return year_value.to_s
   end
+
 
   def term_alpha_to_num(alpha)
     case alpha

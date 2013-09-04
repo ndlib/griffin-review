@@ -1,11 +1,7 @@
 class ErrorsController < ApplicationController
-  def error_404
-    @not_found_path = params[:not_found]
-  end
-
-  def error_500
-  end
-
+  include ErrorHelper
+  
+  layout :determine_layout
 
   def index
     check_admin_permission!
@@ -18,6 +14,5 @@ class ErrorsController < ApplicationController
 
     @error = ErrorLog.find(params[:id])
   end
-
 
 end

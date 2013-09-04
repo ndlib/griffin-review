@@ -98,7 +98,7 @@ describe CopyReservesController do
       it "denies students access" do
         lambda {
           post :copy, :course_id => "current_25823", :from_course_id=> "current_26315"
-        }.should raise_error(ActionController::RoutingError)
+        }.should render_template(nil)
       end
     end
   end

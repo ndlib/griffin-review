@@ -72,7 +72,7 @@ class CourseReservesController < ApplicationController
 
     def check_if_course_can_have_new_reserves!(course)
       if !CreateNewReservesPolicy.new(course).can_create_new_reserves?
-        render_404
+        raise_404
       end
     end
 
@@ -86,7 +86,7 @@ class CourseReservesController < ApplicationController
 
     def check_reserve_can_be_viewed!(get_reserve)
       if !get_reserve.link_to_listing?
-        render_404
+        raise_404
       end
     end
 

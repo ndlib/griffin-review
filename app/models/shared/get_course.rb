@@ -4,7 +4,7 @@ module GetCourse
     c = course_search.get(id)
 
     if c.nil?
-      render_404
+      raise_404
     end
 
     c

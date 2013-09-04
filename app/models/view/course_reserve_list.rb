@@ -74,7 +74,7 @@ class CourseReserveList
 
     def validate_inputs!
       if @course.nil?
-        render_404
+        raise_404
       end
     end
 

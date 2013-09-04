@@ -96,7 +96,7 @@ class CopyCourseReservesForm
       c = course_search.get(id)
 
       if c.nil?
-        render_404
+        raise_404
       end
 
       c
@@ -111,7 +111,7 @@ class CopyCourseReservesForm
     def validate_inputs!
 
       if @to_course && !to_course_can_have_new_reserves?
-        render_404
+        raise_404
       end
     end
 

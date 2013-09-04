@@ -25,7 +25,7 @@ describe RequestsController do
 
       lambda {
         get :index
-        }.should raise_error(ActionController::RoutingError)
+        }.should render_template(nil)
     end
 
   end

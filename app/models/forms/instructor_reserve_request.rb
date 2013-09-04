@@ -142,7 +142,7 @@ class InstructorReserveRequest
 
     def validate_inputs!
       if @course.nil? || !course_can_create_new_reserve?
-        render_404
+        raise_404
       end
     end
 

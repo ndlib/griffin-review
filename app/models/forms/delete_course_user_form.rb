@@ -24,7 +24,7 @@ class DeleteCourseUserForm
     if users.first
       self.new(users.first)
     else
-      render_404
+      raise_404
     end
   end
 
@@ -42,7 +42,7 @@ class DeleteCourseUserForm
 
   def destroy
     if !can_delete?
-      render_404
+      raise_404
     end
 
     course_user_exception.destroy
@@ -58,7 +58,7 @@ class DeleteCourseUserForm
 
     def course_user_exception
       if !ucx = UserCourseException.user_course_exception(@course_user.course.id, @course_user.user.username, @course_user.course.semester.code)
-        render_404
+        raise_404
       end
 
       ucx

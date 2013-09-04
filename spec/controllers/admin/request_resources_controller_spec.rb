@@ -34,7 +34,7 @@ describe RequestsResourcesController do
       reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
       lambda {
         get :edit, { id: reserve.id }
-      }.should raise_error ActionController::RoutingError
+      }.should render_template(nil) 
     end
 
 
@@ -47,7 +47,7 @@ describe RequestsResourcesController do
 
       lambda {
         get :edit, id: reserve.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil) 
     end
   end
 
@@ -82,7 +82,7 @@ describe RequestsResourcesController do
 
       lambda {
         get :update, id: reserve.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
   end

@@ -4,6 +4,9 @@ Griffin::Application.routes.draw do
 
   root :to => 'homepage#index'
 
+  get '404', to: 'errors#catch_404'
+  get '500', to: 'errors#catch_500'
+
   resource :masquerades, :only => [:new, :create] do
     get :cancel
   end

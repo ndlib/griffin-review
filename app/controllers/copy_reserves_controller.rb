@@ -20,7 +20,7 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(@copy_course_listing.to_course)
 
     if !@copy_course_listing.step1?
-      render_404
+      raise_404
     end
   end
 
@@ -32,7 +32,7 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(@copy_course_listing.to_course)
 
     if !@copy_course_listing.step2?
-      render_404
+      raise_404
     end
   end
 

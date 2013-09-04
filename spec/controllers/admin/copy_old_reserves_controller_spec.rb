@@ -27,7 +27,7 @@ describe CopyOldReservesController do
 
       lambda {
         get :new, course_id: @course.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
 
@@ -53,7 +53,7 @@ describe CopyOldReservesController do
 
       lambda {
         post :create, course_id: @course.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
 

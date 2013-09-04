@@ -51,7 +51,7 @@ describe CourseReservesController do
 
         lambda {
           get :show, id: previous_reserve.id, course_id: previous_course.id
-        }.should raise_error ActionController::RoutingError
+        }.should render_template(nil)
       end
     end
 

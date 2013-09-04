@@ -70,7 +70,7 @@ describe CourseReservesController do
       it "denies access" do
         lambda {
           get :new, :course_id => "current_multisection_crosslisted"
-        }.should raise_error(ActionController::RoutingError)
+        }.should render_template(nil)
       end
     end
 
@@ -78,7 +78,7 @@ describe CourseReservesController do
       it "denies access" do
         lambda {
           post :create, :course_id => "current_multisection_crosslisted", :instructor_reserve_request => {}
-        }.should raise_error(ActionController::RoutingError)
+        }.should render_template(nil)
       end
     end
   end

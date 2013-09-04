@@ -75,7 +75,7 @@ class AdminUpdateResource
       up = ReserveResourcePolicy.new(@reserve)
 
       if !fp.can_have_file_resource? && !up.can_have_url_resource?
-        render_404
+        raise_404
       end
     end
 

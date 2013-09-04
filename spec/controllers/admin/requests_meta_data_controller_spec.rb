@@ -30,7 +30,7 @@ describe RequestsMetaDataController do
 
       lambda {
         get :edit, id: @reserve.id
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
   end
@@ -51,7 +51,7 @@ describe RequestsMetaDataController do
 
       lambda {
         put :update, id: @reserve.id, admin_update_meta_data: {}
-      }.should raise_error(ActionController::RoutingError)
+      }.should render_template(nil)
     end
 
   end

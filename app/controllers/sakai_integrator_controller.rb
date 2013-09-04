@@ -14,10 +14,10 @@ class SakaiIntegratorController < ApplicationController
       if !section_group_id.blank?
         redirect_to '/sakai' + course_reserves_path(:course_id => section_group_id)
       else
-        render_404
+        raise_404
       end
     else
-      render_404
+      raise_404
     end
   end
 

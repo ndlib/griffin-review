@@ -1,9 +1,54 @@
 <div class="container">
   <div class="row">
     <div class="span15">
-      <h2 style="color:#AD3536;">Not Found</h2>
-      <div class="alert alert-error" style="font-size: 15px; margin-top: 25px;">
-        The resource you were attempting to reach does not exist on this host. Please notify a system administrator.
+      <h2 style="color:#AD3536;">Error</h2>
+      <div style="font-size: 18px; margin-top: 15px;" class="eight columns">
+        This may have happened for the following reasons:
+        <% if !@masquerading_user.blank? %>
+          <h4 style="color:#AD3536;">YOU ARE MASQUERADING AS <%= current_user.username %>!</h4>
+          <p>If you are <strong>masquerading as another user</strong>, you will be restricted from administrative functions, and functions reserved to instructors. Please click the "stop masquerading as" link at the top right of the screen if this is the case</p>
+        <% end %>
+        <hr/>
+        <h4>For Instructors</h4>
+        <ul>
+          <li>The registrar's office may not have you listed as an instructor for this course</li>
+          <li>There may be a problem with your netid account. Please contact the OIT help desk to resolve issues relating to your account in general</li>
+          <li>You are a teaching assistant or course aide that should be listed as an instructor but are not current listed as an exception</li>
+          <li>If you are accessing reserves from within Sakai, there may be an error with Sakai that we will need to resolve</li>
+        </ul>
+        <p>If you think this may be a mistake on the part of the registrar's office, please contact them. Otherwise, contact the library reserves staff for further assistance.</p>
+        <hr/>
+        <h4>For Students</h4>
+        <ul>
+          <li>The registrar's office may not have you listed as a student for this course for some reason</li>
+          <li>You may have just added this class through the registrar's office. In this case, wait 24 hours and try again. If the problem persists, contact the library reserves desk.</li>
+          <li>There may be a problem with your netid account. Please contact the OIT help desk to resolve issues relating to your account in general</li>
+          <li>If you are accessing reserves from within Sakai, there may be an error with Sakai that we will need to resolve</li>
+        </ul>
+        <p>If you think this may be a mistake on the part of the registrar's office, please contact them. Otherwise, contact the library reserves staff for further assistance.</p>
+      </div>
+      <div class="alert alert-info three columns">
+        <h4>Contact Information</h4>
+        <br/>
+        <h5>Library Reserves</h5>
+        <p>
+        Tracey Morton<br/>
+        Manager, Frontline Services<br/>
+        Phone: 631-6824<br/>
+        <a href="mailto:tmorton@nd.edu">tmorton@nd.edu</a><br/>
+        <br/>
+        Dave Enyeart<br/>
+        Reserves Technician<br/>
+        Phone: 631-7578<br/>
+        <a href="mailto:denyeart@nd.edu">denyeart@nd.edu</a><br/>
+        <hr/>
+        <h5>Video Reserves</h5>
+        Patrick Rader<br/>
+        Media Digitization Specialist<br/>
+        Phone:  631-3099<br/>
+        <a href="mailto:prader@nd.edu">prader@nd.edu</a><br/>
+        <br/>
+        </p>
       </div>
     </div>
   </div>

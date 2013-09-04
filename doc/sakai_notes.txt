@@ -1,0 +1,11 @@
+Setting up the BLTI tool in Sakai
+---------------------------------
+
+1. Go to https://nd-test.rsmart.com/xsl-portal
+2. Click "Guest Login"
+3. Input the "hesburgh" user account credentials
+4. Click on "Administration Workspace" at the top
+5. Click on "Site Setup" in the left hand column
+6. Search for the course site you want using the right most search box. There are several methods you can try. The most accurate would be to use the term-alpha-number course title as a search term. For example, to find the Fall 2013 course entitled "Comedy, Italian Style Lab", you could type in FA13-LLRO-41542, and this will bring up the course.
+7. Click on the "Worksite Title" for the course site.
+8.

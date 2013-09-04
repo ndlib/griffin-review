@@ -5,13 +5,13 @@ module ModelErrorTrapping
   end
 
 
-  def render_404
+  def raise_404
     raise ActionController::RoutingError.new('Not Found')
   end
 
 
   module ClassMethods
-    def render_404
+    def raise_404
       raise ActionController::RoutingError.new('Not Found')
     end
   end

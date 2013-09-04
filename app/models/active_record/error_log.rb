@@ -2,8 +2,12 @@ class ErrorLog  < ActiveRecord::Base
 
   scope :default_order, -> { order(:created_at) }
 
-  def self.log_error(current_user, request, exception)
-    ErrorLog.create(message: exception.message, netid: current_user.username, path: request.path, params: request.params.to_s, stack_trace: exception.backtrace.to_s )
+  def self.log_error(current_user, request, exception, masquerading_user = nil)
+    exception_message = exception.blank? ? 'Nil Exception' : exception.message
+    current_username = current_user.present? ? current_user.username : 'Unknown User'
+    current_username = masquerading_user.blank? ? current_user.username : "#{masquerading_user.username} (as: " + current_user.username + ")"
+    exception_backtrace = exception.blank? ? 'Nil Exception' : exception.backtrace.to_s
+    ErrorLog.create(message: exception_message, netid: current_username, path: request.path, params: request.params.to_s, stack_trace: exception_backtrace )
   end
 
 
