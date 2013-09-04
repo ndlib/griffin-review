@@ -36,4 +36,9 @@ module AssetsHelper
     content_tag(:div, content, id: "notices")
   end
 
+
+  def help_popover(title, content, klass = "popover_help")
+    link_to(image_tag("help.png"), "#", "data-original-title" => title, "data-content" => content, :class => klass)
+  end
+
 end

@@ -149,8 +149,9 @@ describe AdminFairUseForm do
 
 
     it "removes the reserve if the fair use is denied " do
-
+      expect(@reserve).to receive(:save!)
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { event: 'deny'} } )
+
       afuf.save_fair_use
       afuf.fair_use.state.should == "denied"
       afuf.fair_use.reserve.workflow_state.should == "removed"

@@ -55,10 +55,10 @@
         <span class="label label-warning">Reject</span> - Request is not Fair Use
       </label>
     <% end %>
-    <% if @request.state_transition_available?('awaiting_council', 'send_to_council') %>
+    <% if @request.state_transition_available?('temporary_approval', 'temporary_approval') %>
       <label class="radio">
-        <input type="radio" name="admin_fair_use_form[event]" value="send_to_council" <%= @request.is_state?('awaiting_council') ? 'checked="true"' : '' %>>
-        <span class="label label-info">Put on Hold</span> - Ask General Council
+        <input type="radio" name="admin_fair_use_form[event]" value="temporary_approval" <%= @request.is_state?('temporary_approval') ? 'checked="true"' : '' %>>
+        <span class="label label-info">Temporarily Approve</span>
       </label>
     <% end %>
 

@@ -26,6 +26,9 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
 <%= raw @admin_reserve.info_list %>
 <%= raw @admin_reserve.note %>
 
+<h4>Fair Use - <%= raw @admin_reserve.fair_use %></h4>
+<%= @admin_reserve.fair_use_comments %>
+
 <h4>Statistics</h4>
 <dl class="dl-horizontal long-dt">
   <dt>Number of Clicks for <%= @admin_reserve.semester_code %>:</dt>

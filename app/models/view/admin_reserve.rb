@@ -58,10 +58,33 @@ class AdminReserve
     ret
   end
 
-  def note
-    ret = simple_format(@reserve.note)
 
-    ret
+  def note
+    simple_format(@reserve.note)
+  end
+
+
+  def fair_use
+    txt = ""
+    if @reserve.fair_use.update?
+      txt = "Not Done"
+    elsif @reserve.fair_use.approved?
+      txt = "<span class=\"label label-success\">Approved</span>"
+    elsif @reserve.fair_use.denied?
+      txt = "<span class=\"label label-warning\">Denied</span>"
+    elsif @reserve.fair_use.temporary_approval?
+      txt = "<span class=\"label label-info\">Temporarily Approved</span>"
+    else
+      puts @reserve.fair_use.state
+      raise " Invalid fair use state in admin reserve  "
+    end
+
+    txt
+  end
+
+
+  def fair_use_comments
+    simple_format(@reserve.fair_use.comments)
   end
 
 

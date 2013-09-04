@@ -1,4 +1,5 @@
 class InstructorCourseRow
+
   attr_accessor :reserve
 
   delegate :id, to: :reserve
@@ -15,7 +16,11 @@ class InstructorCourseRow
 
 
   def workflow_state
-    @reserve.workflow_state.titleize
+    if @reserve.fair_use.temporary_approval?
+      @context.raw("Temporily Approved #{@context.link_to(@context.image_tag("help.png"), "#temporarily_available_text", 'data-toggle' => "modal")}")
+    else
+      @reserve.workflow_state.titleize
+    end
   end
 
 
