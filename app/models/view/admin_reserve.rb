@@ -28,6 +28,17 @@ class AdminReserve
 
   def info_list
     uls = []
+
+    uls << "Fair Use: #{fair_use}"
+    if @reserve.fair_use.comments.present?
+      uls << fair_use_comments
+    end
+
+    if @reserve.on_order?
+      uls << "<span class=\"text-warning\">On Order</span>"
+    end
+
+
     if length.present?
       uls << "Clips: #{length}"
     end
@@ -46,11 +57,6 @@ class AdminReserve
       uls << "Meta Data needs synchronization"
     end
 
-    if @reserve.on_order?
-      uls << "On Order"
-    end
-
-
     ret = "<ul>"
     ret += "<li>" + uls.join("</li><li>")
     ret += "</li></ul>"
@@ -61,30 +67,6 @@ class AdminReserve
 
   def note
     simple_format(@reserve.note)
-  end
-
-
-  def fair_use
-    txt = ""
-    if @reserve.fair_use.update?
-      txt = "Not Done"
-    elsif @reserve.fair_use.approved?
-      txt = "<span class=\"label label-success\">Approved</span>"
-    elsif @reserve.fair_use.denied?
-      txt = "<span class=\"label label-warning\">Denied</span>"
-    elsif @reserve.fair_use.temporary_approval?
-      txt = "<span class=\"label label-info\">Temporarily Approved</span>"
-    else
-      puts @reserve.fair_use.state
-      raise " Invalid fair use state in admin reserve  "
-    end
-
-    txt
-  end
-
-
-  def fair_use_comments
-    simple_format(@reserve.fair_use.comments)
   end
 
 
@@ -128,4 +110,29 @@ class AdminReserve
     def reserve_search
       @search ||= ReserveSearch.new
     end
+
+
+
+  def fair_use
+    txt = ""
+    if @reserve.fair_use.update?
+      txt = "<span class=\"text-error\">Not Done</span>"
+    elsif @reserve.fair_use.approved?
+      txt = "<span class=\"text-success\">Approved</span>"
+    elsif @reserve.fair_use.denied?
+      txt = "<span class=\"text-warning\">Denied</span>"
+    elsif @reserve.fair_use.temporary_approval?
+      txt = "<span class=\"text-info\">Temporarily Approved</span>"
+    else
+      raise " Invalid fair use state in admin reserve  "
+    end
+
+    txt
+  end
+
+
+  def fair_use_comments
+    simple_format(@reserve.fair_use.comments)
+  end
+
 end
