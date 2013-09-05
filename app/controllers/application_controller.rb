@@ -39,42 +39,42 @@ class ApplicationController < ActionController::Base
 
     def check_view_permissions!(course)
       if course.nil?
-        raise_404
+        raise_404("Course does not exist")
       end
 
       if (!permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)) && !permission.current_user_is_administrator?
-        raise_404
+        raise_404("User cannot view the course")
       end
     end
 
 
     def check_instructor_permissions!(course)
       if course.nil?
-        raise_404
+        raise_404("Course does not exist.")
       end
 
       if !permission.current_user_instructs_course?(course) && !permission.current_user_is_administrator?
-        raise_404
+        raise_404("User not an instructor")
       end
     end
 
 
     def check_admin_permission!
       if !permission.current_user_is_administrator?
-        raise_404
+        raise_404("User not an admin")
       end
     end
 
 
     def check_admin_or_admin_masquerading_permission!
       if !(permission.current_user_is_admin_in_masquerade? || permission.current_user_is_administrator?)
-        raise_404
+        raise_404("User not a admin or an admin in masquerade")
       end
     end
 
 
-    def raise_404
-      raise ActionController::RoutingError("Not Found")
+    def raise_404(message = "Not Found")
+      raise ActionController::RoutingError.new(message)
     end
 
 
