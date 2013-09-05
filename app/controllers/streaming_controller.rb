@@ -21,7 +21,7 @@ class StreamingController < ApplicationController
 
   def validate_token!
     if @get_reserve.get_course_token != params[:token]
-      raise_404
+      raise_404("Token not valid")
     end
   end
 
