@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 31 Aug 2013 22:50:21 GMT
+      - Tue, 03 Sep 2013 20:26:22 GMT
       Server:
       - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
       X-Powered-By:
@@ -27,9 +27,9 @@ http_interactions:
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       X-Request-Id:
-      - 4940cbaa0dac221ec6336075ef53fa18
+      - ad6fdceecde8a77727bb2873b13186c0
       X-Runtime:
-      - '1.533434'
+      - '0.312731'
       X-Rack-Cache:
       - miss
       Status:
@@ -43,7 +43,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Set-Cookie:
-      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJThhODY2OTJjM2ZmMjhkYzk5ZmFlZTdjMDZmNjIzNjc0BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--3619e33dbf82e2606589ba704da294bfb1b28988;
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTQ3NDE0ZTQ1MTM5NjJlY2JhNDlkMWFkNDJlZWRlYjM5BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--8fe0c5b8d0de6f4853bce6d5656fa43de73a5469;
         path=/; HttpOnly
     body:
       encoding: US-ASCII
@@ -58,6 +58,6 @@ http_interactions:
         Main Building&#10;Notre Dame, IN 46556-4629","email":"Maureen.Collins.97@nd.edu","phone":"+1
         574 631 5926"}}],"term":"201300","course_triple":"201300_ACMS_67890","course_title":"Independent
         Summer Research","alpha_prefix":"ACMS","number":67890,"section_number":1,"crn":"3605","enrollments":["abuchman","aspecht2","bxiong","chorr","dlv1","fpancald","jdan","jlioi","lwu2","mmachen","smahsere","tjiang","tkupaev","tmccoy","wchen4","whao"]}],"crosslist_id":"201300_3605"}],"supersections":null}]'
-    http_version: 
-  recorded_at: Sat, 31 Aug 2013 22:50:23 GMT
+    http_version:
+  recorded_at: Tue, 03 Sep 2013 20:26:22 GMT
 recorded_with: VCR 2.5.0
