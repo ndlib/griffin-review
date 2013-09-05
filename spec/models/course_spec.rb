@@ -65,6 +65,20 @@ describe Course do
     end
 
 
+    it "lowercases all enromment_netids" do
+      @crosslist_course.sections.first.stub(:enrollment_netids).and_return(['UPPER'])
+      expect(@crosslist_course.enrollment_netids.include?('upper')).to be_true
+      expect(@crosslist_course.enrollment_netids.include?('UPPER')).to be_false
+    end
+
+
+    it "strips all enromment netids" do
+      @crosslist_course.sections.first.stub(:enrollment_netids).and_return([' strip '])
+      expect(@crosslist_course.enrollment_netids.include?('strip')).to be_true
+      expect(@crosslist_course.enrollment_netids.include?(' strip ')).to be_false
+    end
+
+
     it "merges all the sections together for the net ids call" do
       total_size = @crosslist_course.sections.collect{ | s | s.enrollment_netids}.flatten.size
       @crosslist_course.enrollment_netids.size.should == total_size
@@ -103,6 +117,19 @@ describe Course do
 
       User.stub(:username).and_return([double(User, username: 'newnetid', display_name: "Jon Hartzler", new_record?: false )])
       @crosslist_course.instructors[1].username.should == 'newnetid'
+    end
+
+    it "lowercases all enromment_netids" do
+      @crosslist_course.sections.first.stub(:instructor_netids).and_return(['UPPER'])
+      expect(@crosslist_course.instructor_netids.include?('upper')).to be_true
+      expect(@crosslist_course.instructor_netids.include?('UPPER')).to be_false
+    end
+
+
+    it "strips all enromment netids" do
+      @crosslist_course.sections.first.stub(:instructor_netids).and_return([' strip '])
+      expect(@crosslist_course.instructor_netids.include?('strip')).to be_true
+      expect(@crosslist_course.instructor_netids.include?(' strip ')).to be_false
     end
 
 

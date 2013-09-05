@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+
+  def username
+    self[:username].downcase.strip
+  end
+
   # roles
   def has_role?(role_sym)
     roles.any? { |r| r.name.split.join.to_s.underscore.to_sym == role_sym }
