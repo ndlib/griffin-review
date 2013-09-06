@@ -34,40 +34,11 @@ class ReserveSearch
   end
 
 
-  def new_and_inprocess_reserves_for_semester(semester = false)
+  def reserves_by_status_for_semester(status, semester = false)
     @relation.
         includes(:item).
         where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? || requests.workflow_state = ?', 'new', 'inprocess').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
-
-
-  def available_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? ', 'available').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
-
-
-  def removed_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? ', 'removed').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
-
-
-  def all_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
+        where('requests.workflow_state = ? ', status).
         order('needed_by').
         collect { | r | load_in_reserve(r, false) }
   end

@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe ReserveSearch do
 
-  let(:semester) { FactoryGirl.create(:semester)}
-  let(:previous_semester) { FactoryGirl.create(:previous_semester)}
+  let(:semester) { FactoryGirl.create(:semester) }
+  let(:previous_semester) { FactoryGirl.create(:previous_semester) }
+  let(:next_semester) { FactoryGirl.create(:next_semester) }
 
   let(:course_search) { CourseSearch.new }
 
@@ -32,7 +33,6 @@ describe ReserveSearch do
         reserve_search = ReserveSearch.new
         reserve_search.instructor_reserves_for_course(@course).collect{|r| r.id}.should == [@new_reserve.id, @inprogress_reserve.id, @available_reserve.id]
       end
-
     end
 
 
@@ -86,6 +86,7 @@ describe ReserveSearch do
     before(:each) do
       @new_semester1 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => semester.id), @course
       @new_semester2 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => previous_semester.id), @course
+      @new_semester3 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => next_semester.id), @course
 
       @inprocess_semester1 = mock_reserve FactoryGirl.create(:request, :inprocess, :semester_id => semester.id), @course
       @inprocess_semester2 = mock_reserve FactoryGirl.create(:request, :inprocess, :semester_id => previous_semester.id), @course
@@ -95,37 +96,60 @@ describe ReserveSearch do
     end
 
 
-    describe :new_and_inprocess_reserves_for_semester do
+    describe :reserves_by_status_for_semester do
 
-      it "gets all the reserves that are new and inprocess for the passed in semester" do
-        reserve_search = ReserveSearch.new
+      context :new do
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('new', previous_semester)
 
-        res = reserve_search.new_and_inprocess_reserves_for_semester(semester)
-        res.size.should == 2
-        res.collect { | r | r.id }.should == [ @new_semester1.id, @inprocess_semester1.id ]
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester2.id ])
+        end
+
+        it "returns all future  items when there is no semester passed in" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('new')
+
+          expect(result.size).to eq(2)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester1.id, @new_semester3.id ])
+        end
       end
-    end
 
 
-    describe :available_reserves_for_semester do
-      it "gets all the reserves that are available " do
-        reserve_search = ReserveSearch.new
+      context :inprocess do
 
-        res = reserve_search.available_reserves_for_semester(semester)
-        res.size.should == 1
-        res.collect { | r | r.id }.should == [ @available_semester1.id ]
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('inprocess', previous_semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester2.id ])
+        end
+
+
+        it "returns all future items when there is no semester passed in" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('inprocess')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
       end
-    end
 
 
-    describe :all_reserves_for_semester do
+      context :available do
 
-      it "gets all the reserves for a semester" do
-        reserve_search = ReserveSearch.new
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('available', previous_semester)
 
-        res = reserve_search.all_reserves_for_semester(semester)
-        res.size.should == 3
-        res.collect { | r | r.id }.should == [  @new_semester1.id, @inprocess_semester1.id, @available_semester1.id ]
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester2.id ])
+        end
+
+
+        it "returns all future items when there is no semester passed in" do
+          result = ReserveSearch.new.reserves_by_status_for_semester('available')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester1.id ])
+        end
       end
     end
   end
