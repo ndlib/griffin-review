@@ -79,6 +79,13 @@ describe Reserve do
     end
 
 
+    it "can be placed on order" do
+      @reserve.start!
+      @reserve.order!
+
+      expect(@reserve.workflow_state).to eq("on_order")
+    end
+
     it "can be completed" do
       @reserve.complete!
       @reserve.workflow_state.should == "available"
@@ -100,6 +107,15 @@ describe Reserve do
 
     it "can be completed from inprocess" do
       @reserve.start!
+      @reserve.complete!
+      @reserve.workflow_state.should == "available"
+    end
+
+
+    it "can be completed from on order" do
+      @reserve.workflow_state = 'on_order'
+      @reserve.save!
+
       @reserve.complete!
       @reserve.workflow_state.should == "available"
     end
