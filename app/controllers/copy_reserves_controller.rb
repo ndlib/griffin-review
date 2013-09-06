@@ -20,7 +20,7 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(@copy_course_listing.to_course)
 
     if !@copy_course_listing.step1?
-      raise_404
+      raise_404("Copy course listing step 1 failed")
     end
   end
 
@@ -32,7 +32,7 @@ class CopyReservesController < ApplicationController
     check_instructor_permissions!(@copy_course_listing.to_course)
 
     if !@copy_course_listing.step2?
-      raise_404
+      raise_404("Copy course listing step 2 failed")
     end
   end
 

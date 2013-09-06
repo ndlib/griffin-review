@@ -7,7 +7,13 @@ class StreamingController < ApplicationController
   def show
     @get_reserve = GetReserve.new(current_user, params)
 
-    validate_token!
+    if !valid_token?
+      flash[:error] = "Your stream for #{@get_reserve.reserve.title} has expired.  Please reselect it."
+      redirect_to course_reserves_path(@get_reserve.reserve.course.id)
+
+      ErrorLog.log_error(current_user, request, Exception.new("Token Expired"))
+      return
+    end
 
     if cookies['_reserves_session'] || !current_user.nil?
       authenticate_user!
@@ -18,11 +24,10 @@ class StreamingController < ApplicationController
     send_file(@get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
   end
 
+  protected
 
-  def validate_token!
-    if @get_reserve.get_course_token != params[:token]
-      raise_404
-    end
+  def valid_token?
+    (@get_reserve.get_course_token == params[:token])
   end
 
 end

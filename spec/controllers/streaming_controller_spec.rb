@@ -27,6 +27,7 @@ describe StreamingController do
 
   it "allows you in if the token is valid and there is no session " do
     get :show, token: 'token', id: 'id', course_id: @current_course.id
+    expect(response.status).to eq(200)
   end
 
 
@@ -49,5 +50,12 @@ describe StreamingController do
     login_as u
 
     get :show, token: 'token', id: 'id', course_id: @current_course.id
+  end
+
+
+  it "the token has expried it will redirect you back to the course to try again" do
+    get :show, token: 'expired_token', id: 'id', course_id: @current_course.id
+    expect(response.status).to eq(302)
+    expect(flash[:error]).to_not be_nil
   end
 end
