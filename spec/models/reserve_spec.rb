@@ -114,7 +114,6 @@ describe Reserve do
 
     it "can be completed from on order" do
       @reserve.workflow_state = 'on_order'
-      @reserve.save!
 
       @reserve.complete!
       @reserve.workflow_state.should == "available"

@@ -23,7 +23,7 @@ class Reserve
 
 
     event :remove do
-      transition [:new, :inprocess, :available :on_order] => :removed
+      transition [:new, :inprocess, :available, :on_order] => :removed
     end
 
 
@@ -38,7 +38,7 @@ class Reserve
 
 
     event :order do
-      transition[:inprocess] => :on_order
+      transition [:inprocess] => :on_order
     end
 
     state :new
