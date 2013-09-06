@@ -5,14 +5,14 @@ describe AdminReserveList do
   let (:user) { double(User, :username => 'admin')}
 
   it "gets incomplete listings when the filter is new " do
-    ReserveSearch.any_instance.should_receive(:new_and_inprocess_reserves_for_semester)
+    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('new')
 
     arl = AdminReserveList.new(user, {filter: 'new' })
     arl.reserves
   end
 
   it "gets incomplete listings when the filter is unset" do
-    ReserveSearch.any_instance.should_receive(:new_and_inprocess_reserves_for_semester)
+    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('new')
 
     arl = AdminReserveList.new(user, { })
     arl.reserves
@@ -20,7 +20,7 @@ describe AdminReserveList do
 
 
   it "gets incomplete listings when the filter is inprocess" do
-    ReserveSearch.any_instance.should_receive(:new_and_inprocess_reserves_for_semester)
+    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('inprocess')
 
     arl = AdminReserveList.new(user, {filter: 'inprocess' })
     arl.reserves
@@ -28,11 +28,28 @@ describe AdminReserveList do
 
 
   it "gets complete only listings when the filter is complete" do
-    ReserveSearch.any_instance.should_receive(:available_reserves_for_semester)
+    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('available')
 
     arl = AdminReserveList.new(user, {filter: 'available' })
     arl.reserves
   end
+
+
+  it "gets removed only listings when the filter is removed" do
+    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('available')
+
+    arl = AdminReserveList.new(user, {filter: 'available' })
+    arl.reserves
+  end
+
+
+  it "returns all the reserves when the filter is all " do
+    ReserveSearch.any_instance.should_receive(:reserves_for_semester)
+
+    arl = AdminReserveList.new(user, {filter: 'all' })
+    arl.reserves
+  end
+
 
 
   it "switches the semester to the one passed in" do

@@ -44,6 +44,15 @@ class ReserveSearch
   end
 
 
+  def reserves_for_semester(semester = false)
+    @relation.
+        includes(:item).
+        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
+        order('needed_by').
+        collect { | r | load_in_reserve(r, false) }
+  end
+
+
   def reserve_by_bib_for_course(course, bib_id)
     @relation.
       includes(:item).

@@ -1,7 +1,8 @@
 class AdminRequestFilter
 
+  VALID_FILTERS = ['new', 'inprocess', 'available', 'on_order', 'removed', 'all']
 
-  def initialize(filter)
+  def initialize(filter = false)
     if !filter
       filter = 'new'
     end
@@ -23,40 +24,20 @@ class AdminRequestFilter
   end
 
 
-  def inprocess?
-    inprocess_filters.include?(@filter)
-  end
-
-
-  def complete?
-    @filter == 'available'
-  end
-
-
-  def removed?
-    @filter == 'removed'
-  end
-
-
-  def inprocess_css_class
-    inprocess? ? 'active' : ''
-  end
-
-
-
   def to_s
     @filter
   end
 
 
+  def reserve_status
+    @filter
+  end
+
   private
 
-    def inprocess_filters
-      ['inprocess', 'meta_data', 'resource', 'fair_use', 'on_order']
-    end
 
     def validate_filter!(filter)
-      if !['new', 'inprocess', 'meta_data', 'resource', 'fair_use', 'on_order', 'available', 'removed'].include?(filter)
+      if !VALID_FILTERS.include?(filter)
         raise "Invalid filter passed to #{self.class}"
       end
     end

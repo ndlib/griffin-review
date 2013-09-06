@@ -152,6 +152,24 @@ describe ReserveSearch do
         end
       end
     end
+
+
+    describe :reserves_for_semester do
+
+      it "returns all the reserves for the passed in semester " do
+          result = ReserveSearch.new.reserves_for_semester(previous_semester)
+
+          expect(result.size).to eq(3)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester2.id, @inprocess_semester2.id, @available_semester2.id ])
+      end
+
+      it "returns all future reserves if no semester is passed in " do
+          result = ReserveSearch.new.reserves_for_semester()
+
+          expect(result.size).to eq(4)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester1.id, @new_semester3.id, @inprocess_semester1.id, @available_semester1.id ])
+      end
+    end
   end
 
 

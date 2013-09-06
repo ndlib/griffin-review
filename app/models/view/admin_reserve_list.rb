@@ -10,7 +10,11 @@ class AdminReserveList
 
 
   def reserves
-    reserve_search.reserves_by_status_for_semester(@filter.reserve_status)
+    if @filter.set?('all')
+      reserve_search.reserves_for_semester()
+    else
+      reserve_search.reserves_by_status_for_semester(@filter.reserve_status)
+    end
   end
 
 
