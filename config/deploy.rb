@@ -68,7 +68,7 @@ task :production do
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
   set :user,      'rprod'
-  set :domain,    'reservesprod.library.nd.edu'
+  set :domain,    'reserves.library.nd.edu'
   set :site_url,  'reserves.library.nd.edu'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
