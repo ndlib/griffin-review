@@ -33,14 +33,17 @@ module ErrorHelper
   def determine_masquerade
     masquerade = Masquerade.new(self)
     if masquerade.masquerading?
-      masquerade.original_user
+      return masquerade.original_user
     end
+
+    return false
   end
 
 
   def determine_netid
     if current_user.present?
-      masquerading_user.blank? ? current_user.username : "#{masquerading_user.username} (as: " + current_user.username + ")"
+
+      !determine_masquerade ? current_user.username : "#{determine_masquerade.username} (as: " + current_user.username + ")"
     else
       "Uknown User"
     end
