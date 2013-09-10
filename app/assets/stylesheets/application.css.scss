@@ -71,6 +71,22 @@ body.empty {
 }
 
 
+.nav.pull-right:last-child {
+  padding-right: 20px;
+}
+
+.navbar .brand {
+  margin-left: 0px;
+}
+
+.navbar .nav > li > a.trouble-viewing {
+  color: #0088cc;
+}
+
+
+#pg-title .pull-right {
+  margin-top: 8px;
+}
 
 /*
  * Sorting

@@ -1,8 +1,17 @@
-<h2>How do I?...</h2>
+<% content_for(:content_title) do %>
+  <h1>How do I?...</h1>
+<% end %>
+
+
+<%
+breadcrumb(['Help'])
+%>
+
 <ul class="nav nav-tabs">
     <li class="active"><a href="#request" data-toggle="tab">Place a reserves request</a></li>
     <li><a href="#view" data-toggle="tab">View my course reserves</a></li>
     <li><a href="#sakai" data-toggle="tab">View reserves in Sakai</a></li>
+    <li><a href="/documentation/troubleshooting">Troubleshoot Technology Issues</a></li>
 </ul>
 
 <div class="tab-content">

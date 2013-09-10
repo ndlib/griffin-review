@@ -1,7 +1,9 @@
 module ErrorHelper
 
   def catch_404(exception=nil)
-    @masquerading_user = log_error(exception)
+    @masquerading_user = determine_masquerade
+    log_error(exception)
+
     respond_to do |format|
       format.html { render :template => 'errors/error_404', :status => 404 }
     end
@@ -9,7 +11,9 @@ module ErrorHelper
 
 
   def catch_500(exception=nil)
-    @masquerading_user = log_error(exception)
+    @masquerading_user = determine_masquerade
+    log_error(exception)
+
     respond_to do |format|
       format.html { render :template => 'errors/error_404', :status => 404 }
     end
@@ -18,32 +22,21 @@ module ErrorHelper
 
   def log_error(exception)
     @e = env["action_dispatch.exception"]
-    masquerading_user = determine_masquerade
     if exception.blank?
-      ErrorLog.log_error(current_user, request, @e, masquerading_user)
-      Rails.logger.warn(DateTime.now.to_s + " [ERROR RAISED] #{@e.class.to_s} #{@e.message} #{determine_netid}")
+      ErrorLog.log_error(self, @e)
     else
-      ErrorLog.log_error(current_user, request, exception, masquerading_user)
-      Rails.logger.warn(DateTime.now.to_s + " [ERROR RAISED] #{exception.inspect} #{determine_netid}")
+      ErrorLog.log_error(self, exception)
     end
-    return masquerading_user
   end
 
 
   def determine_masquerade
     masquerade = Masquerade.new(self)
     if masquerade.masquerading?
-      masquerade.original_user
+      return masquerade.original_user
     end
-  end
 
-
-  def determine_netid
-    if current_user.present?
-      masquerading_user.blank? ? current_user.username : "#{masquerading_user.username} (as: " + current_user.username + ")"
-    else
-      "Uknown User"
-    end
+    return false
   end
 
 end

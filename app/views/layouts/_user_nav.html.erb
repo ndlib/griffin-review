@@ -35,16 +35,14 @@
           <li><%= link_to "Masquerade", new_masquerades_path %></li>
         <% end %>
       </ul>
-
-      <div class="pull-right">
+      <ul class="nav pull-right">
         <% if masquerade.masquerading? %>
-          <p class="navbar-text"><%= link_to raw("Stop Masquerading as #{current_user.name}"), cancel_masquerades_path, class: "masquerade_text" %></p>
+          <li><%= link_to raw("Stop Masquerading as #{current_user.name}"), cancel_masquerades_path, class: "masquerade_text" %></li>
         <% elsif current_user.present? %>
-          <p class="navbar-text">
-          <%= current_user.name %>
-          </p>
         <% end %>
-      </div>
+        <li class="divider-vertical"></li>
+        <li><a href="/documentation" target="_blank">Help</a></li>
+      </ul>
     </div>
   </div>
 <% end %>
