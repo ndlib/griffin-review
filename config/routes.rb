@@ -20,6 +20,7 @@ Griffin::Application.routes.draw do
       resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
 
       get 'streaming/:token/:id', to: "streaming#show"
+      get 'streaming/test', to: "streaming#test"
 
       get 'copy', to: 'copy_reserves#copy_step1'
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
@@ -41,6 +42,7 @@ Griffin::Application.routes.draw do
 
   scope '/documentation' do
     get '/', to: 'documentation#index'
+    get '/troubleshooting', to: 'documentation#troubleshooting'
   end
 
 

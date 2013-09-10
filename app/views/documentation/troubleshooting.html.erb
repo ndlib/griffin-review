@@ -1,0 +1,34 @@
+<% content_for(:content_title) do %>
+  <div class="page-header">
+    <h1>Video Troubleshooting Tips</h1>
+  </div>
+<% end %>
+
+<style>
+   li { line-height: 28px; }
+</style>
+<div class="eight columns">
+<ol>
+  <li>To view streaming videos please ensure that you have the Quicktime Video plugin installed.  <a target="_blank" href="https://www.apple.com/quicktime/">Get Quicktime</a></li>
+  <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> or <a href=" https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a> to ensure compatibility. Currently Safari and Internet Explorer are not as reliable at playing streaming videos.</li>
+  <li>Currently our streaming video server does not work with mobile devices. We are currently developing a better streaming solution that will allow you to stream to your smartphones and tablets soon.</li>
+  <li>If students are having issues with streaming videos they can always use a computer in one of the labs on campus.</li>
+  <li>A wired Ethernet connection is always recommend as it more reliable and faster than wifi.</li>
+  <li>The Quicktime plugin for Windows does not allow for fullscreen video.</li>
+  <li>If you are viewing videos from off campus we recommend you have at least a 2-3 megabit internet connection speed to ensure reliable viewing.</li>
+</ol>
+</div>
+<div class="four columns">
+  <h4>Test Video</h4>
+  <object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" height="240" width="190">
+    <param name="src" value="http://learning.nd.edu/OLD/pages/QuickTime-sample.mov">
+    <param name="autoplay" value="true">
+    <param name="target" value="myself">
+    <param name="controller" value="false">
+    <param name="href" value="http://learning.nd.edu/OLD/pages/QuickTime-sample.mov">
+    <param name="type" value="video/quicktime" height="240" width="190">
+
+    <embed src="http://learning.nd.edu/OLD/pages/QuickTime-sample.mov" height="240" width="190" autoplay="true" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/" controller="false" href="http://learning.nd.edu/OLD/pages/QuickTime-sample.mov" target="myself"></embed>
+  </object>
+  <p> If you are able to view this video quicktime is installed</p>
+</div>
