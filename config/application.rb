@@ -50,6 +50,9 @@ module Griffin
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # Additional asset paths
+    config.assets.paths << Rails.root.join("app", "assets", "videos")
+
     # Rspec Testing configs
     config.generators do |g|
       g.test_framework :rspec,
