@@ -1,6 +1,22 @@
 class ErrorLog  < ActiveRecord::Base
 
-  scope :default_order, -> { order("created_at DESC") }
+  scope :default_order, -> { order("state DESC, created_at DESC") }
+
+  state_machine :state, :initial => :new do
+
+    event :resolve do
+      transition [:new, :active] => :resolved
+    end
+
+    event :start do
+      transition [:new] => :active
+    end
+
+    state :new
+    state :active
+    state :resolved
+  end
+
 
   def self.log_error(controller, exception)
     error = ErrorLog.create(
@@ -18,7 +34,7 @@ class ErrorLog  < ActiveRecord::Base
 
 
   def self.errors
-    self.default_order.limit(100)
+    self.default_order.limit(100).where("state != ? ", 'resolved')
   end
 
 

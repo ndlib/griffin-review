@@ -62,4 +62,28 @@ describe ErrorLog do
     end
   end
 
+
+  it " defaults to new " do
+    expect(@error_log.state).to eq("new")
+  end
+
+
+  it "can tranistion to resolved" do
+    @error_log.resolve
+    expect(@error_log.state).to eq("resolved")
+  end
+
+
+  it "can transition to active" do
+    @error_log.start
+    expect(@error_log.state).to eq("active")
+  end
+
+
+  it "can transition from active to resolved " do
+    @error_log.start
+    @error_log.resolve
+    expect(@error_log.state).to eq("resolved")
+  end
+
 end
