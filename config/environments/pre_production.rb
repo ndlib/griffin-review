@@ -71,7 +71,7 @@ Griffin::Application.configure do
   # Custom configuration
   config.ldap_lookup_flag = true
   config.reserves_upload_path = '/shared/reserves_pprd/data/files'
-  config.reserves_cas_base = 'https://login-test.cc.nd.edu/cas'
+  config.reserves_cas_base = 'https://login.nd.edu/cas'
 
   config.api_url = "https://apipprd.library.nd.edu/"
   config.api_token = "SCSGYmwqLqSyBTmxCQgM"
