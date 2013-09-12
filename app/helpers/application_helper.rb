@@ -20,7 +20,7 @@ module ApplicationHelper
 
 
   def library_select_form(f)
-    f.input :library, as: "select", collection: [ 'Hesburgh', 'Math', 'Chemestry/Physics', 'BIC', 'Architecture', 'Engeneering'], :selected => 'Hesburgh'
+    f.input :library, as: "select", collection: { 'Hesburgh Library' => :hesburgh , 'O\' Meara Mathmatics Library' => :math, 'Chemestry - Physics Library' => :chem, 'Mahaffey Business Library' => :business, 'Architecture Library' => :architecture, 'Engeneering Library' => :engeneering }, :selected => 'Hesburgh'
   end
 
 

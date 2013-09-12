@@ -34,22 +34,23 @@ class ReserveSearch
   end
 
 
-  def reserves_by_status_for_semester(status, semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? ', status).
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
+  def admin_requests(status, types, libraries, semester = false)
+    search = @relation.
+              includes(:item).
+              where('requests.semester_id IN(?)', determine_search_semesters(semester)).
+              order('needed_by')
 
+    if status != 'all'
+      search = search.where('requests.workflow_state = ? ', status)
+    end
+    if libraries != 'all'
+      search = search.where('requests.library IN(?)', libraries)
+    end
+    if types != 'all'
+      search = search.where('items.type IN(?)', types).references(:items)
+    end
 
-  def reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
+    search.collect { | r | load_in_reserve(r, false) }
   end
 
 
@@ -76,5 +77,4 @@ class ReserveSearch
 
       Reserve.factory(request, course)
     end
-
 end

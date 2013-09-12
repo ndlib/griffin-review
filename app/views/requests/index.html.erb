@@ -11,7 +11,7 @@
 breadcrumb(['Requests'])
 %>
 
-<%= render :partial => 'admin_request_filter_nav', locals: { :filter => @admin_request_listing.filter }%>
+<%= render :partial => 'request_tabs', locals: { :filter => @admin_request_listing.request_tabs }%>
 
 <table class="table table-striped find-resources admin_datatable datatable">
   <thead>

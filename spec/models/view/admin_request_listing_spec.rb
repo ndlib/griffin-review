@@ -5,14 +5,14 @@ describe AdminReserveList do
   let (:user) { double(User, :username => 'admin')}
 
   it "gets incomplete listings when the filter is new " do
-    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('new')
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('new', 'all', 'all')
 
-    arl = AdminReserveList.new(user, {filter: 'new' })
+    arl = AdminReserveList.new(user, {tab: 'new' })
     arl.reserves
   end
 
   it "gets incomplete listings when the filter is unset" do
-    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('new')
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('new', 'all', 'all')
 
     arl = AdminReserveList.new(user, { })
     arl.reserves
@@ -20,33 +20,33 @@ describe AdminReserveList do
 
 
   it "gets incomplete listings when the filter is inprocess" do
-    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('inprocess')
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('inprocess', 'all', 'all')
 
-    arl = AdminReserveList.new(user, {filter: 'inprocess' })
+    arl = AdminReserveList.new(user, {tab: 'inprocess' })
     arl.reserves
   end
 
 
   it "gets complete only listings when the filter is complete" do
-    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('available')
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('available', 'all', 'all')
 
-    arl = AdminReserveList.new(user, {filter: 'available' })
+    arl = AdminReserveList.new(user, {tab: 'available' })
     arl.reserves
   end
 
 
   it "gets removed only listings when the filter is removed" do
-    ReserveSearch.any_instance.should_receive(:reserves_by_status_for_semester).with('available')
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('available', 'all', 'all')
 
-    arl = AdminReserveList.new(user, {filter: 'available' })
+    arl = AdminReserveList.new(user, {tab: 'available' })
     arl.reserves
   end
 
 
   it "returns all the reserves when the filter is all " do
-    ReserveSearch.any_instance.should_receive(:reserves_for_semester)
+    ReserveSearch.any_instance.should_receive(:admin_requests)
 
-    arl = AdminReserveList.new(user, {filter: 'all' })
+    arl = AdminReserveList.new(user, {tab: 'all' })
     arl.reserves
   end
 
@@ -61,10 +61,10 @@ describe AdminReserveList do
   end
 
 
-  it "has a filter" do
+  it "has a request_tabs" do
     arl = AdminReserveList.new(user, {  })
-    arl.respond_to?(:filter)
-    arl.filter.class.should == AdminRequestFilter
+    arl.respond_to?(:request_tabs)
+    arl.request_tabs.class.should == RequestTab
   end
 
 end

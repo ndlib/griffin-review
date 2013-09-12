@@ -47,7 +47,7 @@ FactoryGirl.define do
 
   factory :item_audio, class: Item do
     title "audio reserve"
-    type "VideoReserve"
+    type "AudioReserve"
     url "audio.mov"
   end
 

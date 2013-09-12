@@ -1,0 +1,22 @@
+<div class="tabbable tabs-top">
+  <ul class="nav nav-tabs">
+    <li class="<%= filter.css_class('new') %>">
+      <a class="tab" filter="new" href="<%= requests_path(:tab => 'new') %>">New</a>
+    </li>
+    <li class="dropdown <%= filter.css_class('inprocess') %>">
+      <a class="tab" filter="inprocess" href="<%= requests_path(:tab => 'inprocess') %>">In process</a>
+    </li>
+    <li class="dropdown <%= filter.css_class('on_order') %>">
+      <a class="tab" filter="on_order" href="<%= requests_path(:tab => 'on_order') %>">On Order</a>
+    </li>
+    <li class="<%= filter.css_class('available') %>">
+      <a class="tab" filter="complete" data-toggle="link_tab" href="<%= requests_path(:tab => 'available') %>">Completed</a>
+    </li>
+    <li class="<%= filter.css_class('removed') %>">
+      <a class="tab" filter="complete" data-toggle="link_tab" href="<%= requests_path(:tab => 'removed') %>">Deleted</a>
+    </li>
+    <li class="<%= filter.css_class('all') %>">
+      <a class="tab" filter="complete" data-toggle="link_tab" href="<%= requests_path(:tab => 'all') %>">All</a>
+    </li>
+  </ul>
+</div>

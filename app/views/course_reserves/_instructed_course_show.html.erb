@@ -1,9 +1,8 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
-    <br><br><br>
     <%= render partial: "/courses/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
     <% if user_course_show.has_deleted_reserves? %>
-      <a class="btn btn-large show_deleted_reserves">Deleted Reserves</a>
+      <a class="btn show_deleted_reserves">Deleted Reserves</a>
     <% end %>
   <% end %>
 <% end %>

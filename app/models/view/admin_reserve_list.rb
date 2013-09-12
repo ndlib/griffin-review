@@ -1,20 +1,15 @@
-
 class AdminReserveList
-  attr_accessor :semester, :filter
+  attr_accessor :semester, :request_tabs
 
   def initialize(current_user, params)
     @current_user = current_user
     @semester = determine_semester(params)
-    @filter = AdminRequestFilter.new(params[:filter])
+    @request_tabs = RequestTab.new(params[:tab])
   end
 
 
   def reserves
-    if @filter.set?('all')
-      reserve_search.reserves_for_semester()
-    else
-      reserve_search.reserves_by_status_for_semester(@filter.reserve_status)
-    end
+    reserve_search.admin_requests(@request_tabs.filter, 'all', 'all') # (@filter.types, @filter.libraries)
   end
 
 
@@ -24,7 +19,7 @@ class AdminReserveList
       if params.has_key?(:semester_id)
         Semester.find(params[:semester_id])
       else
-        Semester.current.first
+        false
       end
     end
 
