@@ -3,8 +3,7 @@ class SakaiIntegratorController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def sakai_redirect
-
-    if params[:context_id]
+    begin
       si = SakaiIntegrator.new(self)
       si.site_id = params[:context_id]
       external_site_id = si.get_site_property('externalSiteId')
@@ -14,8 +13,9 @@ class SakaiIntegratorController < ApplicationController
       else
         raise_404("Course id not found")
       end
-    else
-      raise_404("Context id not submitted in params")
+    rescue Exception => e
+      log_error(e)
+      redirect_to '/sakai/courses'
     end
   end
 
