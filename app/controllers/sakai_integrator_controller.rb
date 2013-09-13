@@ -13,7 +13,7 @@ class SakaiIntegratorController < ApplicationController
       if !course_id.blank?
         redirect_to '/sakai' + course_reserves_path(:course_id => course_id)
       else
-        raise_404("Course id not found")
+        raise_404("Course could not be determined")
       end
     rescue Exception => e
       log_error(e)
