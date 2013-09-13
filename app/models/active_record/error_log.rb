@@ -27,7 +27,7 @@ class ErrorLog  < ActiveRecord::Base
       stack_trace: determine_backtrace(exception)
     )
 
-    Rails.logger.warn(DateTime.now.to_s + " [ERROR RAISED] http://reserves.library.nd.edu:/errors/#{error.id}")
+    Rails.logger.warn(DateTime.now.to_s + " [ERROR RAISED] http://reserves.library.nd.edu/errors/#{error.id}")
 
     error
   end
