@@ -1,7 +1,7 @@
 class SakaiIntegrator
 
   attr_reader :session_id
-  attr_accessor :site_id
+  attr_accessor :site_id, :sakai_user
 
   def initialize(controller)
     @controller = controller
@@ -24,7 +24,7 @@ class SakaiIntegrator
     (search_type, search_value, search_term)   = parse_external_site_id(external_site_id)
     section_group = nil
     course_search = CourseSearch.new
-    course_search.all_courses(@controller.current_user.username, search_term).each do |course|
+    course_search.all_courses(@sakai_user, search_term).each do |course|
       return_value = find_section_group(course, search_type, search_value)
       section_group = return_value if !return_value.blank?
     end
