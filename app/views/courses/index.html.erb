@@ -46,6 +46,29 @@
       </div>
     </div>
   </div>
+<% else %>
+ <p>
+  <a href="#why_message" data-toggle="modal">Don't see your course?</a>
+ </p>
+
+<div id="why_message" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:75%; left:33%">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Don't see your course?</h3>
+  </div>
+  <div class="modal-body">
+    <div style="font-size: 18px; margin-top: 15px;" class="eight columns">
+      <%= render partial: '/errors/error_help_message' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
 <% end %>
+
+
+
 
 
