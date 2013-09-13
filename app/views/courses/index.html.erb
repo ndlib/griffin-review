@@ -36,9 +36,16 @@
 </div>
 
 <% if @user_course_listing.has_no_courses? %>
-  <p class="alert">
-    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
-  </p>
+  <div class="container">
+    <div class="row">
+      <div class="span15">
+        <h2 style="color:#AD3536;">You do not currently have any courses with reserves. </h2>
+        <div style="font-size: 18px; margin-top: 15px;" class="eight columns">
+          <%= render partial: '/errors/error_help_message' %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 
