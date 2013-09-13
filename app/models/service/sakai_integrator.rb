@@ -35,12 +35,12 @@ class SakaiIntegrator
 
 
   def soap_client
-    Savon.client(log: false, wsdl: Rails.configuration.sakai_script_wsdl)
+    Savon.client(log: false, open_timeout: 5, read_timeout: 5, wsdl: Rails.configuration.sakai_script_wsdl)
   end
 
 
   def soap_auth
-    client = Savon.client(log: false, wsdl: Rails.configuration.sakai_login_wsdl)
+    client = Savon.client(log: false, open_timeout: 5, read_timeout: 5, wsdl: Rails.configuration.sakai_login_wsdl)
     response = client.call(:login) do
       message id: ENV["SAKAI_ADMIN_USERNAME"], pw: ENV["SAKAI_ADMIN_PASSWORD"]
     end

@@ -69,19 +69,21 @@ Griffin::Application.configure do
   config.action_mailer.default_url_options = { :host => "reserves.library.nd.edu" }
 
   # Custom configuration
-  config.ldap_lookup_flag = true
-  config.reserves_upload_path = '/shared/data/reserves_files'
-  config.reserves_cas_base = 'https://login.nd.edu/cas'
+  config.ldap_lookup_flag               = true
+  config.reserves_upload_path           = '/shared/data/reserves_files'
+  config.reserves_cas_base              = 'https://login.nd.edu/cas'
+  config.reserves_cas_validate          = 'https://login.nd.edu/cas/serviceValidate'
+  config.reserves_cas_logout            = 'https://login.nd.edu/cas/logout'
 
-  config.api_url = "https://api.library.nd.edu/"
-  config.api_token = "nDKg6F8dAcUkCdzzFqc5"
+  config.api_url                        = "https://api.library.nd.edu/"
+  config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
 
-  config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
+  config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
 
   # Sakai integration
-  config.sakai_script_wsdl = "https://sakailogin.nd.edu/sakai-axis/SakaiScript.jws?wsdl"
-  config.sakai_login_wsdl = "https://sakailogin.nd.edu/sakai-axis/SakaiLogin.jws?wsdl"
-  config.sakai_domain = "https://sakailogin.nd.edu"
+  config.sakai_script_wsdl              = "https://sakailogin.nd.edu/sakai-axis/SakaiScript.jws?wsdl"
+  config.sakai_login_wsdl               = "https://sakailogin.nd.edu/sakai-axis/SakaiLogin.jws?wsdl"
+  config.sakai_domain                   = "https://sakailogin.nd.edu"
 
 
   config.middleware.use ExceptionNotification::Rack,
