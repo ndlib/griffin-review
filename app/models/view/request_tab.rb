@@ -2,14 +2,8 @@ class RequestTab
   attr_accessor :filter, :library_filters, :type_filters
 
   VALID_FILTERS = ['new', 'inprocess', 'available', 'on_order', 'removed', 'all']
-  VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
-  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engeneering']
 
   def initialize(filter = false)
-    #@controller = controller
-    #determine_filters
-    #process_params
-
     if !filter
       @filter = 'new'
     else
@@ -80,46 +74,4 @@ class RequestTab
       end
     end
 
-
-    def determine_filters
-      if @controller.session[:admin_request_filter]
-
-        @filter = @controller.session[:admin_request_filter][:status]
-        @library_filter = @controller.session[:admin_request_filter][:libraries]
-        @type_filter = @controller.session[:admin_request_filter][:types]
-
-      elsif false && @controller.current_user.admin_display_fitlers
-
-      else
-        @filter = 'new'
-        @library_filter = VALID_LIBRARIES
-        @type_filter = VALID_TYPES
-      end
-    end
-
-
-    def process_params
-
-      if @controller.params[:admin_request_filter]
-        if @controller.params[:admin_request_filter][:status]
-          @filter = @controller.params[:admin_request_filter][:status]
-        end
-        if @controller.params[:admin_request_filter][:libraries]
-          @library_filter = @controller.params[:admin_request_filter][:libraries]
-        end
-        if @controller.params[:admin_request_filter][:types]
-          @type_filter = @controller.params[:admin_request_filter][:types]
-        end
-
-        save_in_session!
-      end
-    end
-
-
-    def save_in_session!
-      @controller.session[:admin_request_filter] ||= {}
-      @controller.session[:admin_request_filter][:status] = @filter
-      @controller.session[:admin_request_filter][:libraries] = @library_filter
-      @controller.session[:admin_request_filter][:types] = @types
-    end
 end

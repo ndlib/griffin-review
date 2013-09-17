@@ -1,38 +1,6 @@
 
 describe RequestTab do
 
-=begin
-  before(:each) do
-    @controller = ApplicationController.new
-    @controller.stub(:current_user).and_return(double(User, id: 1, username: 'usernaem'))
-    @controller.stub(:session).and_return({ } )
-    @controller.stub(:params).and_return( { } )
-  end
-
-  describe :session_saving do
-
-    it "saves the status value in the session when it is changed " do
-      @controller.params[:admin_request_filter] = { status: 'inprocess', libraries: [ 'library1', 'library2'], types: [ 'types' ] }
-      arf = RequestTab.new(@controller)
-
-      expect(arf.filter).should eq("inprocess")
-    end
-  end
-
-  describe :determine_filters do
-
-    it "defaults to everything if there is nothing to choose from" do
-      arf = RequestTab.new(@controller)
-      expect(arf.filter).to eq("new")
-      expect(arf.library_filters).to eq(RequestTab::VALID_LIBRARIES)
-      expect(arf.library_filters).to eq(RequestTab::VALID_LIBRARIES)
-    end
-
-
-    it "defaults"
-  end
-=end
-
   describe "new" do
 
     it "sets the new params" do

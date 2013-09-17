@@ -9,7 +9,7 @@ class UserCourseListing
 
 
   def all_semesters
-    Semester.cronologial
+    Semester.chronological
   end
 
 

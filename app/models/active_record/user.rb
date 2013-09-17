@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   scope :username, lambda { | username |  where(username: username) }
 
+  store :admin_preferences, accessors: [ :libraries, :types ]
+
   def name
     "#{first_name} #{last_name}"
   end

@@ -2,7 +2,7 @@ class SemestersController < ApplicationController
 
   def index
     check_admin_permission!
-    @semesters = Semester.cronologial
+    @semesters = Semester.chronological
   end
 
 

@@ -23,7 +23,6 @@ breadcrumb(['Requests'])
       <th>Course</th>
       <th>Type</th>
       <th>Missing Data</th>
-
     </tr>
   </thead>
   <tbody>
@@ -33,35 +32,46 @@ breadcrumb(['Requests'])
   </tbody>
 </table>
 
-
+<%
+filter = @admin_request_listing.request_filter
+semester = @admin_request_listing.semester
+%>
 <div class="modal hide" id="filter_form">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Filter Requests for</h3>
   </div>
-  <div class="modal-body">
-    <form>
+  <form src="<%= requests_path() %>" method="get">
+    <div class="modal-body">
       <fieldset id="topic_list">
         <legend>For Types</legend>
-        <label class="checkbox"><input type="checkbox"> Books</label>
-        <label class="checkbox"><input type="checkbox"> Book Chapters</label>
-        <label class="checkbox"><input type="checkbox"> Journal</label>
-        <label class="checkbox"><input type="checkbox"> Audio</label>
-        <label class="checkbox"><input type="checkbox"> Video</label>
+        <% RequestFilter::VALID_TYPES.each do | type | %>
+          <label class="checkbox"><input name="admin_request_filter[types][]" value="<%= type %>" type="checkbox" <%= filter.type_selected?(type) ? 'checked="true"' : '' %>> <%= type.gsub('Reserve', '') %></label>
+        <% end %>
       </fieldset>
 
       <fieldset id="topic_list">
         <legend>For Library </legend>
-        <label class="checkbox"><input type="checkbox"> Hesburgh</label>
-        <label class="checkbox"><input type="checkbox"> Chem/Phys</label>
-        <label class="checkbox"><input type="checkbox"> BIC</label>
-        <label class="checkbox"><input type="checkbox"> Math</label>
-        <label class="checkbox"><input type="checkbox"> ...</label>
+        <% RequestFilter::VALID_LIBRARIES.each do | library | %>
+          <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= library.titleize %></label>
+        <% end %>
       </fieldset>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-  </div>
+
+      <fieldlist id="semester">
+        <legend>Semester</legend>
+        <select name="semester_id">
+          <option value="false">Current and Upcoming</option>
+          <% Semester.chronological.each do | s | %>
+            <option value="<%= s.id %>" <%= semester && semester.id == s.id ? 'selected' : '' %>><%= s.name %></option>
+          <% end %>
+        </select>
+      </fieldlist>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Save changes</button>
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+    <input type="hidden" name="tab" value="<%= params[:tab] %>">
+  </form>
 </div>
 
