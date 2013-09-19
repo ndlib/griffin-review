@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919142734) do
+ActiveRecord::Schema.define(version: 20130919205041) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20130919142734) do
   add_index "sakai_context_cache", ["course_id"], name: "index_sakai_context_cache_on_course_id", using: :btree
   add_index "sakai_context_cache", ["external_id"], name: "index_sakai_context_cache_on_external_id", using: :btree
   add_index "sakai_context_cache", ["term"], name: "index_sakai_context_cache_on_term", using: :btree
+  add_index "sakai_context_cache", ["user_id"], name: "index_sakai_context_cache_on_user_id", using: :btree
 
   create_table "save_requests", force: true do |t|
     t.integer  "user_id"
