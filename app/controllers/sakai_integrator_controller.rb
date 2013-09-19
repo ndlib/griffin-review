@@ -37,6 +37,8 @@ class SakaiIntegratorController < ApplicationController
       course = get_course(context_record.course_id)
       if course.enrollment_netids.include?(sakai_user)
         course_id = context_record.course_id
+      elsif course.instructor_netids.include?(sakai_user)
+        course_id = context_record.course_id
       end
       course_id
     end
