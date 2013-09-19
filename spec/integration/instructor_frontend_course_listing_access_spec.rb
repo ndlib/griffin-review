@@ -76,7 +76,7 @@ describe "Instructor Frontend Course Listing Access" do
     it "shows not have an alert message for the upcoming semester" do
       visit root_path
 
-      page.should have_selector('p.alert')
+      page.should have_text('You do not currently have any courses with reserves.')
     end
   end
 
