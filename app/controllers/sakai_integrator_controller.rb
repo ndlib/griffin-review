@@ -1,4 +1,5 @@
 class SakaiIntegratorController < ApplicationController
+  include GetCourse
 
   skip_before_filter :verify_authenticity_token
   skip_before_filter :authenticate_user!
@@ -31,8 +32,13 @@ class SakaiIntegratorController < ApplicationController
 
   def sakai_cache(context_id, sakai_user)
     context_record = SakaiContextCache.where("context_id = ? AND user_id = ?", context_id, sakai_user).first
+    course_id = nil
     unless context_record.blank?
-      context_record.course_id
+      course = get_course(context_record.course_id)
+      if course.enrollment_netids.include?(sakai_user)
+        course_id = context_record.course_id
+      end
+      course_id
     end
   end
 
