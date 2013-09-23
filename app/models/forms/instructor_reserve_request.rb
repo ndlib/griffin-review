@@ -145,9 +145,9 @@ class InstructorReserveRequest
         raise_404
       end
 
-      self.title = self.title.to_s.truncate(250)
-      self.creator = self.creator.to_s.truncate(250)
-      self.journal_title = self.journal_title.to_s.truncate(250)
+      self.title = self.title.to_s.truncate(250).strip
+      self.creator = self.creator.to_s.truncate(250).strip
+      self.journal_title = self.journal_title.to_s.truncate(250).strip
     end
 
 
