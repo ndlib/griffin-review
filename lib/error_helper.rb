@@ -15,7 +15,7 @@ module ErrorHelper
     log_error(exception)
 
     respond_to do |format|
-      format.html { render :template => 'errors/error_404', :status => 404 }
+      format.html { render :template => 'errors/error_404', :status => 500 }
     end
   end
 

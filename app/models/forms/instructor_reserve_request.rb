@@ -144,6 +144,10 @@ class InstructorReserveRequest
       if @course.nil? || !course_can_create_new_reserve?
         raise_404
       end
+
+      self.title = self.title.to_s.truncate(250).strip
+      self.creator = self.creator.to_s.truncate(250).strip
+      self.journal_title = self.journal_title.to_s.truncate(250).strip
     end
 
 
