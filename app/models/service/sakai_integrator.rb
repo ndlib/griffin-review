@@ -1,7 +1,7 @@
 class SakaiIntegrator
 
   attr_reader :session_id
-  attr_accessor :site_id
+  attr_accessor :site_id, :sakai_user
 
   def initialize(controller)
     @controller = controller
@@ -21,26 +21,26 @@ class SakaiIntegrator
 
 
   def translate_external_site_id(external_site_id)
-    (search_type, search_value, search_term)   = parse_external_site_id(external_site_id)
+    (search_type, search_value, search_term) = parse_external_site_id(external_site_id)
     section_group = nil
     course_search = CourseSearch.new
-    course_search.all_courses(@controller.current_user.username, search_term).each do |course|
+    course_search.all_courses(@sakai_user, search_term).each do |course|
       return_value = find_section_group(course, search_type, search_value)
       section_group = return_value if !return_value.blank?
     end
-    return section_group
+    return [section_group, search_term]
   end
 
   private
 
 
   def soap_client
-    Savon.client(log: false, wsdl: Rails.configuration.sakai_script_wsdl)
+    Savon.client(log: false, open_timeout: 5, read_timeout: 5, wsdl: Rails.configuration.sakai_script_wsdl)
   end
 
 
   def soap_auth
-    client = Savon.client(log: false, wsdl: Rails.configuration.sakai_login_wsdl)
+    client = Savon.client(log: false, open_timeout: 5, read_timeout: 5, wsdl: Rails.configuration.sakai_login_wsdl)
     response = client.call(:login) do
       message id: ENV["SAKAI_ADMIN_USERNAME"], pw: ENV["SAKAI_ADMIN_PASSWORD"]
     end
@@ -66,6 +66,7 @@ class SakaiIntegrator
       value = external_site_id
     else
       type = 'section'
+      puts "EX: " + external_site_id
       parts_array = /^(\w{2})(\d{2})-(\w+)-(\d+)-(\d+)/.match(external_site_id).captures
       (term, year_value) = calculate_term(parts_array)
       value = year_value + term_alpha_to_num(parts_array[0]) + '_' + parts_array[2] + '_' + parts_array[3] + '_' + parts_array[4]

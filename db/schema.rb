@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916175921) do
+ActiveRecord::Schema.define(version: 20130923141724) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -136,10 +136,12 @@ ActiveRecord::Schema.define(version: 20130916175921) do
   add_index "requests", ["workflow_state"], name: "index_requests_on_workflow_state", using: :btree
 
   create_table "reserve_stats", force: true do |t|
-    t.integer "request_id"
-    t.integer "item_id"
-    t.integer "semester_id"
-    t.integer "user_id"
+    t.integer  "request_id"
+    t.integer  "item_id"
+    t.integer  "semester_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.boolean  "from_lms"
   end
 
   add_index "reserve_stats", ["item_id"], name: "index_reserve_stats_on_item_id", using: :btree
@@ -151,6 +153,22 @@ ActiveRecord::Schema.define(version: 20130916175921) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "sakai_context_cache", force: true do |t|
+    t.string   "context_id"
+    t.string   "external_id"
+    t.string   "course_id"
+    t.string   "term"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "user_id"
+  end
+
+  add_index "sakai_context_cache", ["context_id"], name: "index_sakai_context_cache_on_context_id", using: :btree
+  add_index "sakai_context_cache", ["course_id"], name: "index_sakai_context_cache_on_course_id", using: :btree
+  add_index "sakai_context_cache", ["external_id"], name: "index_sakai_context_cache_on_external_id", using: :btree
+  add_index "sakai_context_cache", ["term"], name: "index_sakai_context_cache_on_term", using: :btree
+  add_index "sakai_context_cache", ["user_id"], name: "index_sakai_context_cache_on_user_id", using: :btree
 
   create_table "save_requests", force: true do |t|
     t.integer  "user_id"

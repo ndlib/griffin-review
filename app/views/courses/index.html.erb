@@ -36,9 +36,39 @@
 </div>
 
 <% if @user_course_listing.has_no_courses? %>
-  <p class="alert">
-    You do not currently have any courses with reserves. <br />  If you were expecting to find reserves it could be that the reserves have not been published yet.
-  </p>
+  <div class="container">
+    <div class="row">
+      <div class="span15">
+        <h2 style="color:#AD3536;">You do not currently have any courses with reserves. </h2>
+        <div style="font-size: 18px; margin-top: 15px;" class="eight columns">
+          <%= render partial: '/errors/error_help_message' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+ <p>
+  <a href="#why_message" data-toggle="modal">Don't see your course?</a>
+ </p>
+
+<div id="why_message" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:75%; left:33%">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Don't see your course?</h3>
+  </div>
+  <div class="modal-body">
+    <div style="font-size: 18px; margin-top: 15px;" class="eight columns">
+      <%= render partial: '/errors/error_help_message' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
 <% end %>
+
+
+
 
 

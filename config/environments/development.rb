@@ -54,19 +54,21 @@ Griffin::Application.configure do
   config.action_mailer.default_url_options = { :host => "localhost" }
 
   # Custom configuration
-  config.ldap_lookup_flag = true
-  config.reserves_upload_path = '/shared/data/reserves_files'
-  config.reserves_cas_base = 'https://cas.library.nd.edu/cas'
+  config.ldap_lookup_flag                 = true
+  config.reserves_upload_path             = '/shared/data/reserves_files'
+  config.reserves_cas_base                = 'https://cas.library.nd.edu/cas'
+  config.reserves_cas_validate            = 'https://cas.library.nd.edu/cas/serviceValidate'
+  config.reserves_cas_logout              = 'https://cas.library.nd.edu/cas/logout'
 
-  config.api_url = "https://apipprd.library.nd.edu/"
-  config.api_token = "SCSGYmwqLqSyBTmxCQgM"
+  config.api_url                          = "https://apipprd.library.nd.edu/"
+  config.api_token                        = "SCSGYmwqLqSyBTmxCQgM"
 
 
-  config.path_to_old_files = File.join(Rails.root, 'uploads', 'old_files')
+  config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
 
   # Sakai integration
-  config.sakai_script_wsdl = "https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"
-  config.sakai_login_wsdl = "https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
-  config.sakai_domain = "https://nd-test.rsmart.com"
+  config.sakai_script_wsdl                = "https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"
+  config.sakai_login_wsdl                 = "https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
+  config.sakai_domain                     = "https://nd-test.rsmart.com"
 
 end

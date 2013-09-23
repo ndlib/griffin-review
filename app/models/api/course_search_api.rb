@@ -4,14 +4,14 @@ module API
 
 
     def self.course_id(course_id)
-      Rails.cache.fetch("course_id-#{course_id}", expires_in: 4.hours)  do
+      Rails.cache.fetch("course_id-#{course_id}", expires_in: 14.hours)  do
         get_json("by_section_group/#{course_id}")
       end
     end
 
 
     def self.courses_by_crosslist_id(crosslist_id)
-      Rails.cache.fetch("crosslist_id-#{crosslist_id}", expires_in: 4.hours)  do
+      Rails.cache.fetch("crosslist_id-#{crosslist_id}", expires_in: 14.hours)  do
         get_json("by_crosslist/#{crosslist_id}")
       end
     end

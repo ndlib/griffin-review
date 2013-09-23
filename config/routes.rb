@@ -29,12 +29,14 @@ Griffin::Application.routes.draw do
       post 'copy_old_reserves', to: 'copy_old_reserves#create'
       resources :users, controller: 'course_users', only: [:new, :create, :index, :destroy]
     end
+
+    resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
   end
 
   course_routes
 
   post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
-  scope path: '/sakai' do
+  scope path: '/sakai', :as => 'sakai' do
     course_routes
   end
 
