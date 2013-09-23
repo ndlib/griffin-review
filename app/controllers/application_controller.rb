@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownController, :with => :catch_404
     rescue_from AbstractController::ActionNotFound, :with => :catch_404
     rescue_from ActiveRecord::RecordNotFound, :with => :catch_404
+    rescue_from Exception, :with => :catch_500
   end
 
 
