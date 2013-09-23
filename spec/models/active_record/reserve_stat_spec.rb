@@ -28,7 +28,7 @@ describe ReserveStat do
 
   it "has a field for if it is a part of sakai or not" do
     obj = ReserveStat.add_statistic!(@user, @reserve, true)
-    expect(obj.sakai?).to be(true)
+    expect(obj.from_lms?).to be(true)
   end
 
 

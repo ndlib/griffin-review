@@ -6,11 +6,13 @@ class GetReserve
 
   attr_accessor :reserve, :current_user, :term_of_service_approved
 
-  def initialize(controller, params)
+  def initialize(controller)
     @current_user = controller.current_user
     @controller = controller
-    @reserve = reserve_search.get(params[:id])
 
+    params = controller.params
+
+    @reserve = reserve_search.get(params[:id])
     @term_of_service_approved = false
 
     validate_input!(params)

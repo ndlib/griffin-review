@@ -18,7 +18,7 @@ describe GetReserve do
 
     @valid_params = { course_id: @course.id, id: @reserve.id }
 
-    @controller = double(ApplicationController, current_user: @user, current_path_is_sakai?: false)
+    @controller = double(ApplicationController, current_user: @user, current_path_is_sakai?: false, params: @valid_params)
   end
 
 
@@ -27,14 +27,14 @@ describe GetReserve do
     it "returns true if there is no approval for the current listing and it needs one" do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.approval_required?.should be_true
     end
 
     it "returns false if the item needs not approval" do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(false)
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.approval_required?.should be_false
     end
 
@@ -42,7 +42,7 @@ describe GetReserve do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
       @reserve.stub(:term_of_service_approved?).and_return(true)
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.approval_required?.should be_true
     end
   end
@@ -52,7 +52,7 @@ describe GetReserve do
     it "returns true if the listing should download a file" do
       @reserve.stub(:file).and_return("FILE")
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.download_listing?.should be_true
     end
 
@@ -60,7 +60,7 @@ describe GetReserve do
       GetReserve.any_instance.stub(:validate_input!).and_return(true)
       @reserve.pdf.clear
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.download_listing?.should be_false
     end
   end
@@ -69,7 +69,7 @@ describe GetReserve do
   describe :download_file_path do
 
     it "returns the path the to file for download" do
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.download_file_path.include?(@reserve.pdf.path).should be_true
     end
 
@@ -80,14 +80,14 @@ describe GetReserve do
     it "returns true if the listing should redirect to an external resource" do
       @reserve.stub(:url).and_return("URL")
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.redirect_to_listing?.should be_true
     end
 
     it "returns false if the listing should not redirect" do
       @reserve.stub(:url).and_return(nil)
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.redirect_to_listing?.should be_false
     end
   end
@@ -98,7 +98,7 @@ describe GetReserve do
     it "returns the uri to redirect to" do
       @reserve.stub(:url).and_return("URL")
 
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.redirect_uri.should == "URL"
     end
   end
@@ -107,14 +107,14 @@ describe GetReserve do
   describe :approve_terms_of_service! do
 
     it "approves the terms of service for the current user" do
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.approve_terms_of_service!
       gcl.term_of_service_approved?.should be_true
     end
 
 
     it "defaults to false if there is no approval" do
-      gcl = GetReserve.new(@controller, @valid_params)
+      gcl = GetReserve.new(@controller)
       gcl.term_of_service_approved?.should be_false
     end
 
@@ -124,7 +124,7 @@ describe GetReserve do
   describe :link_to_listing? do
 
     before(:each) do
-      @get_reserve = GetReserve.new(@controller, @valid_params)
+      @get_reserve = GetReserve.new(@controller)
     end
 
 
@@ -146,7 +146,7 @@ describe GetReserve do
 
     it "sets a statistic datapoint for the reserve " do
       ReserveStat.should_receive(:add_statistic!)
-      @get_reserve = GetReserve.new(@controller, @valid_params)
+      @get_reserve = GetReserve.new(@controller)
       @get_reserve.mark_view_statistics
     end
 

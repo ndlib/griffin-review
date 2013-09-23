@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.integer  "semester_id"
     t.integer  "user_id"
     t.datetime "created_at"
-    t.boolean  "sakai"
+    t.boolean  "from_lms"
   end
 
   add_index "reserve_stats", ["item_id"], name: "index_reserve_stats_on_item_id", using: :btree
