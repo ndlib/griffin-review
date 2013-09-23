@@ -6,8 +6,9 @@ class GetReserve
 
   attr_accessor :reserve, :current_user, :term_of_service_approved
 
-  def initialize(current_user, params)
-    @current_user = current_user
+  def initialize(controller, params)
+    @current_user = controller.current_user
+    @controller = controller
     @reserve = reserve_search.get(params[:id])
 
     @term_of_service_approved = false
@@ -73,7 +74,7 @@ class GetReserve
 
 
   def mark_view_statistics
-    ReserveStat.add_statistic!(current_user, @reserve)
+    ReserveStat.add_statistic!(current_user, @reserve, @controller.current_path_is_sakai?)
   end
 
 

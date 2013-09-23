@@ -14,10 +14,23 @@ describe ReserveStat do
 
 
   it "can add new stat records " do
-    obj = ReserveStat.add_statistic!(@user, @reserve)
+    obj = ReserveStat.add_statistic!(@user, @reserve, true)
     expect(obj.valid?).to be_true
     expect(obj.new_record?).to be_false
   end
+
+  it "has as created at field" do
+    obj = ReserveStat.add_statistic!(@user, @reserve, true)
+    expect(obj.created_at.class).to eq(ActiveSupport::TimeWithZone)
+    expect(obj.created_at.nil?).to be(false)
+  end
+
+
+  it "has a field for if it is a part of sakai or not" do
+    obj = ReserveStat.add_statistic!(@user, @reserve, true)
+    expect(obj.sakai?).to be(true)
+  end
+
 
 
   describe :query do
@@ -25,8 +38,8 @@ describe ReserveStat do
       @request2 = double(Request, id: 5)
       @reserve2  = double(Reserve, semester: @semester, user: @user, request: @request2, item: @item)
 
-      @saved1 = ReserveStat.add_statistic!(@user, @reserve)
-      @saved2 = ReserveStat.add_statistic!(@user, @reserve2)
+      @saved1 = ReserveStat.add_statistic!(@user, @reserve, true)
+      @saved2 = ReserveStat.add_statistic!(@user, @reserve2, true)
     end
 
 

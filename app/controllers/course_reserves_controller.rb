@@ -20,7 +20,7 @@ class CourseReservesController < ApplicationController
 
 
   def show
-    @get_reserve = GetReserve.new(current_user, params)
+    @get_reserve = GetReserve.new(self, params)
     check_view_permissions!(@get_reserve.course)
 
     check_reserve_can_be_viewed!(@get_reserve)

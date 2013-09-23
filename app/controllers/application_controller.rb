@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound, :with => :catch_404
   end
 
+
+  def current_path_is_sakai?
+    request.path.starts_with?('/sakai')
+  end
+
   protected
 
     def determine_layout
@@ -91,8 +96,5 @@ class ApplicationController < ActionController::Base
     end
 
 
-    def current_path_is_sakai?
-      request.path.starts_with?('/sakai')
-    end
 
 end

@@ -4,7 +4,7 @@ class StreamingController < ApplicationController
 
 
   def show
-    @get_reserve = GetReserve.new(current_user, params)
+    @get_reserve = GetReserve.new(self, params)
 
     if !valid_token?
       flash[:error] = "Your stream for #{@get_reserve.reserve.title} has expired.  Please reselect it."
