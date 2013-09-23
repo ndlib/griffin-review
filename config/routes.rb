@@ -57,6 +57,8 @@ Griffin::Application.routes.draw do
     resources :semesters, controller: 'semesters'
     resources :scipt, controller: 'script'
 
+    resources :users
+
     # NOTE About this route.
     # the "ids" that are searched on can have "." in them and that throws off the rails routing. They need to be passed in as
     # query params and not as part of the get string that is not /discovery_test_id/i,adf.adsfwe.adsfsdf but as /discovery_test_id?id=i,adf.adsfwe.adsfsdf

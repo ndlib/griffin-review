@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   def index
-
+    @users = User.where(admin: true)
   end
 
 

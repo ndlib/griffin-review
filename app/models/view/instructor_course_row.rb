@@ -17,6 +17,8 @@ class InstructorCourseRow
   def workflow_state
     if @reserve.fair_use.temporary_approval?
       helpers.raw("Temporarily Approved #{helpers.link_to(helpers.image_tag("help.png"), "#temporarily_available_text", 'data-toggle' => "modal")}")
+    elsif @reserve.workflow_state == 'available'
+      'Done'
     else
       @reserve.workflow_state.titleize
     end

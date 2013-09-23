@@ -24,10 +24,10 @@ describe RequestFilter do
 
     it "saves the new params over the old session data " do
       @controller.session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
-      @controller.params[:admin_request_filter] = { libraries: [ 'library1'], types: [ 'type1' ] }
+      @controller.params[:admin_request_filter] = { libraries: [ 'library1'], types: [ 'type1' ], semester_id: 1  }
       arf = RequestFilter.new(@controller)
 
-      expect(@controller.session).to eq( { admin_request_filter: { libraries: [ 'library1'], types: [ 'type1' ] } } )
+      expect(@controller.session).to eq( { admin_request_filter: { libraries: [ 'library1'], types: [ 'type1' ], semester: 1 } } )
     end
   end
 

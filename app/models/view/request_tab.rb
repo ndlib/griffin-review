@@ -70,7 +70,7 @@ class RequestTab
 
     def validate_filter!(filter)
       if !VALID_FILTERS.include?(filter)
-        raise "Invalid filter passed to #{self.class}"
+        raise "Invalid filter, #{filter}, passed to #{self.class}"
       end
     end
 

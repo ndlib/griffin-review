@@ -1,0 +1,52 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Admin Users</h1></div>
+<% end %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Admin</th>
+      <th>Request Types</th>
+      <th>Request Libraries</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do | u | %>
+      <tr>
+        <td><%= link_to u.display_name, user_path(u) %></td>
+        <td>
+          <ul>
+            <% if u.types %>
+              <% u.types.each do | type | %>
+                <li><%= type %></li>
+              <% end %>
+            <% else %>
+              <p> All Types </p>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% if u.libraries %>
+              <% u.libraries.each do | library | %>
+                <li><%= library %></li>
+              <% end %>
+            <% else %>
+              <p> All Libraries </p>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <%= link_to(raw("<i class=\"icon-remove\"></i>"),
+                      user_path(u),
+                      data: { confirm: 'Are you sure you wish remove this user\'s administrator status?' },
+                      :method => :delete,
+                      :id => "delete_user_#{u.id}")
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

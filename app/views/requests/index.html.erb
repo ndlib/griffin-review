@@ -1,6 +1,6 @@
 <% content_for(:content_title) do %>
   <div class="page-header">
-    <h1>Requests</h1>
+    <h1>Requests <small><%= @admin_request_listing.semester_title %></small></h1>
   </div>
 <% end %>
 <% content_for(:content_title_links) do %>
@@ -34,7 +34,6 @@ breadcrumb(['Requests'])
 
 <%
 filter = @admin_request_listing.request_filter
-semester = @admin_request_listing.semester
 %>
 <div class="modal hide" id="filter_form">
   <div class="modal-header">
@@ -59,10 +58,10 @@ semester = @admin_request_listing.semester
 
       <fieldlist id="semester">
         <legend>Semester</legend>
-        <select name="semester_id">
+        <select name="admin_request_filter[semester_id]">
           <option value="false">Current and Upcoming</option>
           <% Semester.chronological.each do | s | %>
-            <option value="<%= s.id %>" <%= semester && semester.id == s.id ? 'selected' : '' %>><%= s.name %></option>
+            <option value="<%= s.id %>" <%= filter.semester_filter && filter.semester_filter.to_s == s.id.to_s ? 'selected' : '' %>><%= s.name %></option>
           <% end %>
         </select>
       </fieldlist>
@@ -71,7 +70,9 @@ semester = @admin_request_listing.semester
       <button type="submit" class="btn btn-primary">Save changes</button>
       <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
-    <input type="hidden" name="tab" value="<%= params[:tab] %>">
+    <% if params[:tab] %>
+      <input type="hidden" name="tab" value="<%= params[:tab] %>">
+    <% end %>
   </form>
 </div>
 
