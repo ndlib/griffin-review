@@ -137,6 +137,9 @@ class User < ActiveRecord::Base
       :filter        => Net::LDAP::Filter.eq( 'uid', username ),
       :return_result => true
     )
+    if results.nil?
+      raise Exception.new("LDAP Lookup failed for '#{username}'")
+    end
     results.first
   end
 
