@@ -14,6 +14,10 @@ module ErrorHelper
     @masquerading_user = determine_masquerade
     log_error(exception)
 
+    if !exception.nil?
+      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
+    end
+
     respond_to do |format|
       format.html { render :template => 'errors/error_404', :status => 500 }
     end
