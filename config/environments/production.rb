@@ -90,7 +90,7 @@ Griffin::Application.configure do
   :email => {
     :email_prefix => "[ Prod ]",
     :sender_address => %{"reserves notifier" <reserves_notifier@nd.edu>},
-    :exception_recipients => %w{ jhartzle@nd.edu jon.hartzler@gmail.com rfox2@nd.edu}
+    :exception_recipients => %w{ jhartzle@nd.edu rfox2@nd.edu}
   }
 
 end

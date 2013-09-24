@@ -15,7 +15,7 @@ module ErrorHelper
     log_error(exception)
 
     if !exception.nil?
-      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
+      ExceptionNotifier.notify_exception(exception, options.merge(:env => request.env))
     end
 
     respond_to do |format|
