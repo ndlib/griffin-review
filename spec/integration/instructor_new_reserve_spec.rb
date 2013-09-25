@@ -36,10 +36,12 @@ describe "Instructor New Reserve" do
       visit new_course_reserve_path(@current_course.id)
     end
 
-    fill_in("Title", with: 'title')
-    fill_in("video_needed_by_id", with: 22.days.from_now)
+    within("#video_form") do
+      fill_in("Title", with: 'title')
+      fill_in("video_needed_by_id", with: 22.days.from_now)
 
-    click_button "Save"
+      click_button "Save"
+    end
 
     expect(page).to have_selector('.alert-success')
 
@@ -57,11 +59,13 @@ describe "Instructor New Reserve" do
     long_string = ""
     300.times { long_string += "e" }
 
-    fill_in("Title", with: long_string)
-    fill_in("Director or Publisher", with: long_string)
-    fill_in("video_needed_by_id", with: 22.days.from_now)
+    within("#video_form") do
+      fill_in("Title", with: long_string)
+      fill_in("Director or Publisher", with: long_string)
+      fill_in("video_needed_by_id", with: 22.days.from_now)
 
-    click_button "Save"
+      click_button "Save"
+    end
 
     expect(page).to have_selector('.alert-success')
 

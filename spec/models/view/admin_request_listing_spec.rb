@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AdminReserveList do
 
   before(:each) do
-    RequestFilter.stub(:new).and_return(double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'] ))
+    RequestFilter.stub(:new).and_return(double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'], semester_filter: false ))
     @controller = double(ApplicationController, params: { tab: '' })
   end
 
@@ -63,13 +63,15 @@ describe AdminReserveList do
 
 
   it "switches the semester to the one passed in" do
-    FactoryGirl.create(:semester)
     s = FactoryGirl.create(:previous_semester)
 
-    @controller.stub(:params).and_return( { semester_id: s.id })
+    RequestFilter.stub(:new).and_return(double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'], semester_filter: s.id ))
+    ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], s)
+
+    @controller.stub(:params).and_return( {  })
 
     arl = AdminReserveList.new(@controller)
-    arl.semester.id.should == s.id
+    arl.reserves
   end
 
 
