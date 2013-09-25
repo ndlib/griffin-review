@@ -26,9 +26,69 @@ describe "Instructor New Reserve" do
   end
 
 
-  it "an instructor can add a book request"
+  it "an instructor can add a book request" do
+    VCR.use_cassette 'new-instructor-video-page' do
+      visit new_course_reserve_path(@current_course.id)
+    end
 
-  it "allows an instructor to add a book chapter request"
+    within("#book_form") do
+      fill_in("Title", with: 'title')
+      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in("book_needed_by_id", with: 22.days.from_now)
+
+      click_button "Save"
+    end
+
+    expect(page).to have_selector('.alert-success')
+
+    click_link('I am Done')
+
+    expect(page).to have_selector('.title', text: 'title')
+
+  end
+
+
+  it "allows an instructor to add a book chapter request" do
+    VCR.use_cassette 'new-instructor-video-page' do
+      visit new_course_reserve_path(@current_course.id)
+    end
+
+    within("#book_chapter_form") do
+      fill_in("Title", with: 'title')
+      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in("book_chapter_needed_by_id", with: 22.days.from_now)
+      fill_in("Chapter / Pages", with: "chapter 2")
+
+      click_button "Save"
+    end
+
+    expect(page).to have_selector('.alert-success')
+
+    click_link('I am Done')
+
+    expect(page).to have_selector('.title', text: 'title')
+  end
+
+
+  it "allows an instructor to add a article request " do
+    VCR.use_cassette 'new-instructor-video-page' do
+      visit new_course_reserve_path(@current_course.id)
+    end
+
+    within("#article_form") do
+      fill_in("Title", with: 'title')
+      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in("article_needed_by_id", with: 22.days.from_now)
+
+      click_button "Save"
+    end
+
+    expect(page).to have_selector('.alert-success')
+
+    click_link('I am Done')
+
+    expect(page).to have_selector('.title', text: 'title')
+  end
 
 
   it "allows an instructor to add a video request" do

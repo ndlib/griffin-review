@@ -65,8 +65,8 @@ class AdminReserve
   end
 
 
-  def description
-    simple_format(@reserve.description)
+  def citation
+    simple_format(@reserve.citation)
   end
 
 
@@ -120,7 +120,9 @@ class AdminReserve
 
   def fair_use
     txt = ""
-    if @reserve.fair_use.update?
+    if !ReserveFairUsePolicy.new(@reserve).requires_fair_use?
+      txt = "<span class=\"text-success\">Not Required</span>"
+    elsif @reserve.fair_use.update?
       txt = "<span class=\"text-error\">Not Done</span>"
     elsif @reserve.fair_use.approved?
       txt = "<span class=\"text-success\">Approved</span>"
