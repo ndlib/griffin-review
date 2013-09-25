@@ -5,24 +5,21 @@
 <% breadcrumb([ link_to('Courses', courses_path), link_to(@new_reserve.course_title, course_reserves_path(@new_reserve.course.id)), 'Request New Material' ]) %>
 <hr>
 <div class="six columns">
-  <h2>New Video Request</h2>
-  <!--
+
   <div class="btn-group" data-toggle="buttons-radio">
-    <h3>What type of material do you need? </h3>
+    <h2>What type of material do you need? </h2>
     <p>
 
       <a href="#book" class="btn <%= (!@request_reserve.nil? && @request_reserve.book_request?) ? 'active' : '' %>" data-toggle="tab">Book</a>
       <a href="#book_chapter" class="btn <%= (@request_reserve && @request_reserve.book_chapter_request?) ? 'active' : '' %>" data-toggle="tab">Book Chapter</a>
       <a href="#article" class="btn <%= @request_reserve && @request_reserve.article_request? ? 'active' : '' %>" data-toggle="tab">Article</a>
       <a href="#video" class="btn <%= @request_reserve && @request_reserve.video_request? ? 'active' : '' %>" data-toggle="tab">Video</a>
-      <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a>
+      <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a> -->
 
       <%= link_to 'Cancel Request', course_reserves_path(@new_reserve.course.id), :id => 'cancel_button', :class => "" %>
     </p>
   </div>
--->
 
-<!--
   <div class="tab-content">
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.book_request? ? 'active' : '' %>" id="book">
       <hr>
@@ -38,15 +35,12 @@
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
       <hr>
--->
       <%= render :partial => 'video_form', :locals => { object: new_instructor_reserve('VideoReserve')  } %>
-<!--
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
       <hr>
       <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
     </div>
--->
 
   </div>
 

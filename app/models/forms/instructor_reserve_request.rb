@@ -15,6 +15,7 @@ class InstructorReserveRequest
   attribute :language_track, String
   attribute :subtitle_language, String
   attribute :creator, String
+  attribute :citation, String
   attribute :length, String
   attribute :note, String
   attribute :needed_by, DateTime
@@ -29,6 +30,7 @@ class InstructorReserveRequest
   validates :creator, :presence => true, :if => :creator_required?
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
+  validates :citation, :presence => true, :if => :citation_required?
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
   validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 3.weeks } }
 
@@ -60,7 +62,7 @@ class InstructorReserveRequest
 
 
   def creator_required?
-    ['BookReserve', 'BookChapterReserve', 'JournalReserve', 'AudioReserve'].include?(type)
+    [].include?(type)
   end
 
 
@@ -69,8 +71,13 @@ class InstructorReserveRequest
   end
 
 
+  def citation_required?
+    ['BookReserve', 'BookChapterReserve', 'JournalReserve'].include?(type)
+  end
+
+
   def journal_title_required?
-    ['JournalReserve'].include?(type)
+    [].include?(type)
   end
 
 

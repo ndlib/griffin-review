@@ -28,7 +28,7 @@
     <% @copy_old_course_reserve.courses.each do | course | %>
       <tr>
         <td><%= h course.course_name %></td>
-        <td><%= h course.instructor.display_name %></td>
+        <td><%= h course.instructor_name %></td>
         <td><%= h course.id %></td>
         <td><%= h course.section_number %></td>
         <td>

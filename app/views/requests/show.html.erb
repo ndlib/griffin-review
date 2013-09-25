@@ -20,6 +20,9 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
   <%= render :partial => '/course_reserves/list_record', :locals => { object: @admin_reserve.reserve } %>
 
   <div class="record">
+    <h4>Citation</h4>
+    <%= raw @admin_reserve.description %>
+
     <h4>Notes</h4>
     <%= raw @admin_reserve.info_list %>
     <%= raw @admin_reserve.note %>

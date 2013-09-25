@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923141724) do
+ActiveRecord::Schema.define(version: 20130924203057) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "basic_metadata", force: true do |t|
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "details"
     t.datetime "metadata_synchronization_date"
     t.string   "display_length"
+    t.text     "citation"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
@@ -98,8 +99,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   create_table "metadata_attributes", force: true do |t|
     t.string   "name"
     t.text     "definition"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "metadata_type"
   end
 
@@ -114,8 +115,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "language"
     t.string   "subtitles"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
@@ -133,6 +134,7 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   add_index "requests", ["crosslist_id"], name: "index_requests_on_crosslist_id", using: :btree
   add_index "requests", ["library"], name: "index_requests_on_library", using: :btree
   add_index "requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
+  add_index "requests", ["workflow_state"], name: "index_requests_on_workflow_state", using: :btree
 
   create_table "reserve_stats", force: true do |t|
     t.integer  "request_id"
@@ -149,8 +151,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   create_table "roles", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "sakai_context_cache", force: true do |t|
@@ -180,8 +182,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "language"
     t.string   "subtitles"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
@@ -205,8 +207,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "movie_directory"
   end
 
@@ -230,8 +232,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   create_table "technical_metadata", force: true do |t|
     t.integer  "item_id"
     t.integer  "metadata_attribute_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "value"
   end
 
@@ -267,9 +269,10 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "admin"
+    t.string   "admin_preferences"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

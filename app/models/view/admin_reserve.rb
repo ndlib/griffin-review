@@ -65,6 +65,11 @@ class AdminReserve
   end
 
 
+  def description
+    simple_format(@reserve.description)
+  end
+
+
   def note
     simple_format(@reserve.note)
   end

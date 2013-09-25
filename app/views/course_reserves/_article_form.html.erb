@@ -3,9 +3,11 @@
 
 <%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(object.course.id) do |f| %>
 
-  <%= f.input :journal_title, :required => true %>
-  <%= f.input :title %>
-  <%= f.input :creator, :required => true %>
+  <%= f.input :title, label: 'Article Title' %>
+
+  <%= f.input :citation, label: "Citation or Catalog URL", required: true do %>
+    <%= f.input_field :citation, as: "text", rows: 5, style: "width: 100%" %>
+  <% end %>
 
   <%= f.input :needed_by do %>
     <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker span2' %>
