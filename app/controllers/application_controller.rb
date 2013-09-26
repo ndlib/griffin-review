@@ -3,7 +3,7 @@ require 'error_helper'
 class ApplicationController < ActionController::Base
   include ErrorHelper
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:catch_500, :catch_404]
   before_filter :set_access_control_headers
 
   before_filter :log_additional_data

@@ -71,4 +71,11 @@ Griffin::Application.configure do
   config.sakai_login_wsdl                 = "https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
   config.sakai_domain                     = "https://nd-test.rsmart.com"
 
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ Dev ]",
+    :sender_address => %{"reserves notifier" <reserves_notifier@nd.edu>},
+    :exception_recipients => %w{ jhartzle@nd.edu rfox2@nd.edu}
+  }
+
 end

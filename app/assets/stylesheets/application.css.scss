@@ -137,9 +137,12 @@ table.dataTable tfoot th {
   margin-left: 220px;
 }
 
-
 .help-block {
   font-style: italic;
   padding-left: 5px;
   margin-bottom: 15px;
+}
+
+.row {
+  min-width: 0;
 }

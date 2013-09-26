@@ -10,7 +10,7 @@ class StreamingController < ApplicationController
       flash[:error] = "Your stream for #{@get_reserve.reserve.title} has expired.  Please reselect it."
       redirect_to course_reserves_path(@get_reserve.reserve.course.id)
 
-      ErrorLog.log_error(self, Exception.new("Token Expired"))
+      # ErrorLog.log_error(self, Exception.new("Token Expired"))
       return
     end
 
