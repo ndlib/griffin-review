@@ -14,7 +14,7 @@ en:
         instructor_reserve_request:
           attributes:
             needed_by:
-              on_or_after: "We cannot meet any dates earlier then 3 weeks.  Please call if you have an urgent need."
+              on_or_after: "We cannot meet any dates earlier then 2 weeks.  Please email Patrick Rader (prader@nd.edu) if you have an urgent need."
   devise:
     failure:
       unauthenticated: ""
