@@ -30,7 +30,7 @@ class InstructorReserveRequest
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
-  validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 3.weeks } }
+  validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 2.weeks } }
 
 
   def initialize(current_user, params)
