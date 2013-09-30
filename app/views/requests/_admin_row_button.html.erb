@@ -1,6 +1,6 @@
 <% if !button.removed? %>
 <div class="btn-group">
-  <button class="btn <%= !button.complete? ? 'btn-warning' : 'btn-success' %>">Manage Reserve</button>
+  <button class="btn <%= !button.complete? ? 'btn-warning' : 'btn-success' %>" data-toggle="dropdown">Manage Reserve</button>
   <button class="btn dropdown-toggle <%= !button.complete? ? 'btn-warning' : 'btn-success' %>" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
