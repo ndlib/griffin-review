@@ -1,5 +1,13 @@
 class CopyOldReserve
 
+  GROUP_TO_LIBRARY =  {
+        "Admin" => 'hesburgh',
+        "Mathematics" => 'math',
+        "Chemestry/Physics" => 'chem',
+        "Business" => 'business',
+        'Architecture' => 'architecture',
+        'Engeneering' => 'engeneering'
+      }
 
   def initialize(current_user, to_course, old_reserve)
     @user = current_user
@@ -28,6 +36,7 @@ class CopyOldReserve
       @new_request.journal_title = @old_reserve.journal_name
       @new_request.length = @old_reserve.pages
       @new_request.details = @old_reserve.display_note
+      @new_request.library = convert_group_to_library(@old_reserve.group_name)
 
 
       @new_request.overwrite_nd_meta_data = true
@@ -92,6 +101,17 @@ class CopyOldReserve
       @new_request.type = "AudioReserve"
       @new_request.nd_meta_data_id = @old_reserve.sourceId
     end
+
+
+    def convert_group_to_library(group)
+      if !GROUP_TO_LIBRARY[group]
+        raise "Unable to convert the group name, #{group}, in old reserves to the library in the reserves"
+      end
+
+      return GROUP_TO_LIBRARY[group]
+    end
+
+
 
 
     def get_old_file(filename)

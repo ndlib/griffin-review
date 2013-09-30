@@ -11,8 +11,6 @@ gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
 
-gem 'american_date'
-
 # db backends
 gem 'mysql2', "~> 0.3.11"
 
