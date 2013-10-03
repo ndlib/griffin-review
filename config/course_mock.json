@@ -39,7 +39,7 @@
                     "staff_directory": "email"
                 },
                 "identifier": "by_netid",
-                "netid": "pvivirit",
+                "netid": "jhartzle",
                 "first_name": "Jon",
                 "last_name": "Hartzler",
                 "full_name": "Jon Hartzler",
@@ -50,6 +50,27 @@
                 "contact_information": {
                     "email": "jhartzle@nd.edu",
                     "campus_address": "208 Hesburgh Library&#10;Notre Dame, IN 46556",
+                    "phone": "+1 574 631 1234"
+                }
+            },
+            {
+                "id": "lgekeler",
+                "identifier_contexts": {
+                    "ldap": "uid",
+                    "staff_directory": "email"
+                },
+                "identifier": "by_netid",
+                "netid": "lgekeler",
+                "first_name": "Laura",
+                "last_name": "Gekeler",
+                "full_name": "Laura Gekeler",
+                "ndguid": "nd.edu.nd12345",
+                "position_title": "OIT Magistrate",
+                "campus_department": "Hesburgh Libraries",
+                "primary_affiliation": "Staff",
+                "contact_information": {
+                    "email": "lgekeler@nd.edu",
+                    "campus_address": "123 ITC&#10;Notre Dame, IN 46556",
                     "phone": "+1 574 631 1234"
                 }
             },
@@ -81,9 +102,9 @@
                 "section_number": 1,
                 "crn": "54321",
                 "enrollments": [
-                    "bbecht",
-                    "rmultapu",
-                    "vcoyne"
+                    "jkennel",
+                    "rmalott",
+                    "awetheri"
                 ]
         }
         ],

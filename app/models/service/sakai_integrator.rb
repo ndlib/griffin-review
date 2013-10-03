@@ -66,7 +66,6 @@ class SakaiIntegrator
       value = external_site_id
     else
       type = 'section'
-      puts "EX: " + external_site_id
       parts_array = /^(\w{2})(\d{2})-(\w+)-(\d+)-(\d+)/.match(external_site_id).captures
       (term, year_value) = calculate_term(parts_array)
       value = year_value + term_alpha_to_num(parts_array[0]) + '_' + parts_array[2] + '_' + parts_array[3] + '_' + parts_array[4]
