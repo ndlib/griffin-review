@@ -9,8 +9,12 @@ class Course
   end
 
 
-  def self.factory(id, primary_instructor_hash)
-    Course.new(id, primary_instructor_hash)
+  def self.factory(id, primary_instructor_hash, mock_flag = nil)
+    if mock_flag
+      CourseMock.new(id, primary_instructor_hash)
+    else
+      Course.new(id, primary_instructor_hash)
+    end
   end
 
 
@@ -81,7 +85,7 @@ class Course
 
 
   def semester
-    @semeseter ||= Semester.semester_for_code(term)
+    @semester ||= Semester.semester_for_code(term)
   end
 
 

@@ -38,9 +38,14 @@ class CourseSearch
 
 
   def get(crosslist_id)
-    courses = course_api.courses_by_crosslist_id(crosslist_id)
 
-    parse_crosslist_to_object(crosslist_id, courses)
+    if crosslist_id == '12345678_54321_LR'
+      parse_crosslist_to_object(crosslist_id, CourseMock.mock_data, true)
+    else
+      courses = course_api.courses_by_crosslist_id(crosslist_id)
+      parse_crosslist_to_object(crosslist_id, courses)
+    end
+
   end
 
 
@@ -109,14 +114,18 @@ class CourseSearch
     end
 
 
-    def parse_crosslist_to_object(crosslist_id, crosslist_json)
+    def parse_crosslist_to_object(crosslist_id, crosslist_json, mock_flag = nil)
       c = nil
 
       crosslist_json.each do | section_groups |
         section_groups['section_groups'].each do | sections |
-          if sections['crosslist_id'] == crosslist_id
+        if sections['crosslist_id'] == crosslist_id
+          if mock_flag
+            c ||= new_course(sections, mock_flag)
+          else
             c ||= new_course(sections)
-            sections['sections'].each do | section |
+          end
+          sections['sections'].each do | section |
               c.add_section(section)
             end
           end
@@ -143,8 +152,12 @@ class CourseSearch
     end
 
 
-    def new_course(section_group)
-      Course.factory(section_group['crosslist_id'], section_group['primary_instructor'])
+    def new_course(section_group, mock_flag = nil)
+      if mock_flag
+        CourseMock.factory(section_group['crosslist_id'], section_group['primary_instructor'], mock_flag)
+      else
+        Course.factory(section_group['crosslist_id'], section_group['primary_instructor'])
+      end
     end
 
 
