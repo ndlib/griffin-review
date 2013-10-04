@@ -110,7 +110,6 @@ class Course
   end
 
 
-
   private
 
     def reserve_search

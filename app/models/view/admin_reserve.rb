@@ -40,8 +40,15 @@ class AdminReserve
 
 
     if length.present?
-      uls << "Clips: #{length}"
+      if @reserve.type == 'VideoReserve'
+        uls << "Clips: #{length}"
+      else
+        uls << "Chapter/Pages: #{length}"
+      end
     end
+
+    uls << "Physical Reserve: #{(@reserve.physical_reserve? ? 'yes' : 'no' )}"
+
     if @reserve.language_track.present?
       uls << "Language: #{@reserve.language_track} <br>"
     end
@@ -66,7 +73,10 @@ class AdminReserve
 
 
   def citation
-    simple_format(@reserve.citation)
+    cite = @reserve.citation.to_s.gsub( %r{http://[^\s<]+} ) do |url|
+      "<a target=\"_blank\" href='#{url}'>#{url.truncate(100)}</a>"
+    end
+    simple_format(cite)
   end
 
 

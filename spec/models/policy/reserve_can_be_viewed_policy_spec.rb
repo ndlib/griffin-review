@@ -6,7 +6,7 @@ describe ReserveCanBeViewedPolicy do
 
   context "no resource attached" do
     before(:each) do
-      @policy = ReserveCanBeViewedPolicy.new(double(User), double(Reserve))
+      @policy = ReserveCanBeViewedPolicy.new(double(Reserve, physical_reserve: false), double(User))
 
       @policy.stub(:resource_completed?).and_return(false)
       @policy.stub(:current_semester?).and_return(false)
@@ -67,6 +67,11 @@ describe ReserveCanBeViewedPolicy do
       expect(@policy.can_be_viewed?).to be_true
     end
 
+
+    it "returns false if the resource is a physical item " do
+      @policy.stub(:physical_reserve?).and_return(true)
+      expect(@policy.can_be_viewed?).to be_false
+    end
   end
 
 

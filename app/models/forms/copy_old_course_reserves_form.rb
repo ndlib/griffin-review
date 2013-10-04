@@ -57,6 +57,7 @@ class CopyOldCourseReservesForm
     @copied_items = []
 
     from_course.reserves.each do | old_reserve |
+      puts "from course: #{from_course.course_id}"
       @copied_items << CopyOldReserve.new(@current_user, to_course, old_reserve).copy
     end
 

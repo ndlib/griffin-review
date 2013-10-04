@@ -28,8 +28,8 @@ describe InstructorReserveRequest do
 
     it "has all the form attributes" do
       [
-        :title, :publisher, :journal_title, :creator, :length, :note, :needed_by,
-        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies, :citation
+        :title, :publisher, :journal_title, :creator, :length, :note, :needed_by, :type, :pdf,
+        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies, :citation, :physical_reserve
       ].each do | at |
         @instructor_reserve.respond_to?(at).should be_true
       end

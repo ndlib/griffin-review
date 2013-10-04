@@ -49,16 +49,20 @@
         <span class="label label-success">Approve</span> - Request is Fair Use.
       </label>
     <% end %>
+      <label class="radio">
+        <input type="radio" name="admin_fair_use_form[event]"  value="approve" >
+        <span class="label label-info">Licensed</span>
+      </label>
     <% if @request.state_transition_available?('denied', 'deny') %>
       <label class="radio">
         <input type="radio" name="admin_fair_use_form[event]" value="deny" <%= @request.is_state?('denied') ? 'checked="true"' : '' %>>
-        <span class="label label-warning">Reject</span> - Request is not Fair Use
+        <span class="label label-important">Reject</span> - Request is not Fair Use
       </label>
     <% end %>
     <% if @request.state_transition_available?('temporary_approval', 'temporary_approval') %>
       <label class="radio">
         <input type="radio" name="admin_fair_use_form[event]" value="temporary_approval" <%= @request.is_state?('temporary_approval') ? 'checked="true"' : '' %>>
-        <span class="label label-info">Temporarily Approve</span>
+        <span class="label label-warning">Temporarily Approve</span>
       </label>
     <% end %>
 

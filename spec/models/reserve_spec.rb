@@ -51,6 +51,11 @@ describe Reserve do
       course_listing.respond_to?(:css_class)
     end
 
+
+    it "has a physical reserve flag" do
+      expect(course_listing.respond_to?(:physical_reserve)).to be_true
+    end
+
   end
 
 

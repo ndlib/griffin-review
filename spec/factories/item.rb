@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :item do
     title "title"
     type "BookReserve"
+    physical_reserve false
   end
 
 

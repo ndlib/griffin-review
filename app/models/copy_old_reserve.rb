@@ -3,7 +3,7 @@ class CopyOldReserve
   GROUP_TO_LIBRARY =  {
         "Admin" => 'hesburgh',
         "Mathematics" => 'math',
-        "Chemestry/Physics" => 'chem',
+        "Chemistry/Physics" => 'chem',
         "Business" => 'business',
         'Architecture' => 'architecture',
         'Engeneering' => 'engeneering'
@@ -22,7 +22,6 @@ class CopyOldReserve
     copy_item_by_type!
 
     @new_request.save!
-
     @new_request
   end
 
@@ -31,16 +30,16 @@ class CopyOldReserve
 
     def copy_shared_fields!
       # shared data
-      @new_request.title = @old_reserve.title
+      @new_request.title = determine_title(@old_reserve)
       @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
       @new_request.journal_title = @old_reserve.journal_name
       @new_request.length = @old_reserve.pages
-      @new_request.details = @old_reserve.display_note
+      @new_request.details = (@old_reserve.display_note.nil? ? @old_reserve.publisher : @old_reserve.display_note.truncate(250))
       @new_request.library = convert_group_to_library(@old_reserve.group_name)
 
 
       @new_request.overwrite_nd_meta_data = true
-      @new_request.workflow_state = 'inprocess'
+      @new_request.workflow_state = 'available'
       @new_request.requestor_netid = @user.username
     end
 
@@ -54,6 +53,8 @@ class CopyOldReserve
       when 'journal'
         copy_journal
       when 'book'
+        copy_book
+      when 'map'
         copy_book
       when 'video'
         copy_video
@@ -69,6 +70,7 @@ class CopyOldReserve
     def copy_book
       @new_request.type = "BookReserve"
       @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.physical_reserve = true
     end
 
 
@@ -94,12 +96,14 @@ class CopyOldReserve
     def copy_video
       @new_request.type = "VideoReserve"
       @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.physical_reserve = true
     end
 
 
     def copy_audio
       @new_request.type = "AudioReserve"
       @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.physical_reserve = true
     end
 
 
@@ -112,6 +116,15 @@ class CopyOldReserve
     end
 
 
+    def determine_title(reserve)
+      if reserve.title.present?
+        reserve.title
+      elsif reserve.book_title.present?
+        reserve.book_title
+      else
+        "#{reserve.author_firstname} #{reserve.author_lastname}"
+      end
+    end
 
 
     def get_old_file(filename)

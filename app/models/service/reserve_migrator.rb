@@ -1,50 +1,65 @@
 class ReserveMigrator
-  attr_accessor :errors, :successes
+  attr_accessor :errors, :converted_courses, :completed
 
 
   def import!
-   ['2013F', '2014S'].each do | term |
-      import_for_term!(term)
-   end
+    pre_parsed_courses
+
+    ['2013F'].each do | term |
+      convert_courses_for_term!(term)
+    end
+
+    process_courses!
   end
 
 
   private
 
 
-    def import_for_term!(term)
+    def process_courses!
+      current_user = User.where(username: 'jhartzle').first
+
+      @converted_courses.each_pair do | from_course_id, to_courses |
+        to_course = to_courses.pop
+
+        CopyOldCourseReservesForm.new(current_user, { course_id: to_course, from_course_id: from_course_id, term: '201310' }).copy!
+
+        add_course_completed(to_courses.pop)
+
+        to_courses.each do | to_course |
+          add_course_completed(to_course)
+        end
+      end
+    end
+
+
+    def convert_courses_for_term!(term)
       i = 0
 
-      missing_courses.each do | id |
-        add_success(id)
-      end
-
       OpenCourse.where(term: term).each do | from_course |
-
-        id = determine_current_course_id(term, "#{from_course.course_prefix}_#{from_course.course_number}", from_course.instructor_lastname, from_course.instructor_firstname)
+        course = "#{from_course.course_prefix}_#{from_course.course_number}"
+        id = determine_current_course_id(term, course, from_course.instructor_lastname, from_course.instructor_firstname)
         puts "#{i += 1}: #{id}"
+
         if id
-          add_success(id)
+          add_match(from_course.id, id)
         end
 
-        # check the cross lists.
-        puts "check cross lists--->"
         OpenCrosslist.where(term_parent: term).where(course_id_parent: from_course.course_id).each do | crosslist |
-          id = determine_current_course_id(term, "#{crosslist.course_prefix_child}_#{crosslist.course_number_child}", crosslist.instructor_lastname_child, crosslist.instructor_firstname_child, true)
+          course = "#{crosslist.course_prefix_child}_#{crosslist.course_number_child}"
+          id = determine_current_course_id(term, course, crosslist.instructor_lastname_child, crosslist.instructor_firstname_child, true)
           puts "#{i += 1}: #{id}"
 
-          if id && !@successes.include?(id)
-            puts "---->NEW NEW NEW NEW<-------"
-            add_success(id)
+          if id
+            add_match(from_course.id, id)
           end
         end
-        puts "---> done"
       end
     end
 
 
     def determine_current_course_id(term, course_number, instructor_lastname, instructor_firstname, crosslist = false)
-      if missing_courses[course_number]
+      if missing_courses.has_key?(course_number)
         return false
       end
 
@@ -75,9 +90,18 @@ class ReserveMigrator
     end
 
 
-    def add_success(course)
-      @successes ||= []
-      @successes << course
+    def add_match(from_course, to_course)
+      @converted_courses ||= { }
+      @converted_courses[from_course] ||= []
+      if !@converted_courses[from_course].include?(to_course)
+        @converted_courses[from_course] << to_course
+      end
+    end
+
+
+    def add_course_completed(id)
+      @completed ||= []
+      @completed << id
     end
 
 
@@ -115,7 +139,20 @@ class ReserveMigrator
         "ANTH_10141" => "201310_U2",
         "POLS_60662" => "201310_18851",
         "ENGL_13186" => "201310_14409",
+        "SCPP_34315" => "201310_G3",
+        "STV_34330" => "201310_G3",
+        "FIN_60220" => false,
+        "CONS_00000" => false,
+        "PE_10000" => false,
+        "ACCT_20100" => false
+      }
+    end
 
+
+    def pre_parsed_courses
+      @converted_courses ||= {
+        "2013F_PE_10000_01" => [ '201310_12711', '201310_12706', '201310_12707', '201310_12708', '201310_12709', '201310_12710', '201310_12712', '201310_12713', '201310_12714', '201310_12715'],
+        "2013F_ACCT_20100_04" => [ '201310_N3', '201310_JD', '201310_JE_JH_JJ_JK', '201310_JL_JM_JN', '201310_JO_JT_JU_JV', '201310_JX', '201310_JY_JZ_KB_KC', '201310_KD']
       }
     end
 end

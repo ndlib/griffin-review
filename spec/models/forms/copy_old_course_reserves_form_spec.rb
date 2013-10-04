@@ -5,7 +5,7 @@ describe CopyCourseReservesForm do
 
   before(:each) do
     @to_course = double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), :crosslist_id => 'crosslist_id')
-    @from_course = double(OpenCourse, id: 'from_course_id')
+    @from_course = double(OpenCourse, id: 'from_course_id', course_id: 'from_course_id')
 
     CopyOldCourseReservesForm.any_instance.stub(:get_course).and_return(nil)
     CopyOldCourseReservesForm.any_instance.stub(:get_course).with('course_id').and_return(@to_course)
@@ -62,7 +62,7 @@ describe CopyCourseReservesForm do
   describe :copy! do
 
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "journal" )
+      old_reserve = mock_model(OpenItem, item_type: 'chapter', group_name: 'Admin', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "journal", course_id: "id" )
 
       @from_course.stub(:reserves).and_return( [ old_reserve ] )
     end

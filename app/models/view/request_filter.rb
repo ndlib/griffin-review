@@ -29,7 +29,7 @@ class RequestFilter
         @type_filters    = @controller.session[:admin_request_filter][:types]
         @semester_filter = @controller.session[:admin_request_filter][:semester]
 
-      elsif !@controller.current_user.admin_preferences.empty?
+      elsif !@controller.current_user.admin_preferences.nil? && !@controller.current_user.admin_preferences.empty?
         @library_filters = @controller.current_user.libraries
         @type_filters    = @controller.current_user.types
         @semester_filter = false

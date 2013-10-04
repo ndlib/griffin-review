@@ -55,4 +55,13 @@ describe CopyReserve do
     new_reserve = @copy_reserve.copy
     new_reserve.item.id.should == @reserve.item.id
   end
+
+
+  it "resets the created at and updated at" do
+    @reserve.request.created_at = 6.days.ago
+    @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
+
+    new_reserve = @copy_reserve.copy
+    expect(new_reserve.created_at.to_s ).to eq(Time.now.to_s)
+  end
 end

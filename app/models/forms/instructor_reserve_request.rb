@@ -21,6 +21,7 @@ class InstructorReserveRequest
   attribute :needed_by, DateTime
   attribute :requestor_owns_a_copy, Boolean
   attribute :requestor_has_an_electronic_copy, Boolean
+  attribute :physical_reserve, Boolean
   attribute :library, String
   attribute :number_of_copies, Integer
   attribute :type, String

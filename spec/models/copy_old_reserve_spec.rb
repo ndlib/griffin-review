@@ -208,8 +208,8 @@ describe CopyReserve do
     end
 
 
-    it "converts Chemestry/Phyics to chem" do
-      @old_reserve.stub(:group_name).and_return 'Chemestry/Physics'
+    it "converts Chemistry/Phyics to chem" do
+      @old_reserve.stub(:group_name).and_return 'Chemistry/Physics'
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       expect(@new_reserve.library).to eq('chem')
     end
