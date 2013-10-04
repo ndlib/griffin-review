@@ -1,0 +1,14 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Edit <%= @user.display_name %></h1></div>
+<% end %>
+
+<%= form_for @user do | f | %>
+
+  <%= render partial: 'request_types_form', locals: { filter: @filter } %>
+
+
+  <div class="form-actions">
+    <%= f.submit :submit, :value=> 'Save', :class => 'btn btn-primary'%>
+    <%= link_to 'cancel', users_path %>
+  </div>
+<% end %>

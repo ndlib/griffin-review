@@ -14,11 +14,12 @@ describe RequestFilter do
   describe :session_saving do
 
     it "saves the status value in the session when it is changed " do
-      @controller.params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+      @controller.params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ], semester_id: 1  }
       arf = RequestFilter.new(@controller)
 
       expect(arf.library_filters).to eq([ 'library1', 'library2'])
       expect(arf.type_filters).to eq([ 'types' ])
+      expect(arf.semester_filter).to eq(1)
     end
 
 
@@ -38,16 +39,18 @@ describe RequestFilter do
       arf = RequestFilter.new(@controller)
       expect(arf.library_filters).to eq(RequestFilter::VALID_LIBRARIES)
       expect(arf.type_filters).to eq(RequestFilter::VALID_TYPES)
+      expect(arf.semester_filter).to be(false)
     end
 
 
     it "reloads from the session " do
-      @controller.session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+      @controller.session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ], semester: 1  }
 
       arf = RequestFilter.new(@controller)
 
       expect(arf.library_filters).to eq([ 'library1', 'library2'])
       expect(arf.type_filters).to eq([ 'types' ])
+      expect(arf.semester_filter).to eq(1)
     end
 
 
@@ -60,6 +63,17 @@ describe RequestFilter do
 
       expect(arf.library_filters).to eq([ 'library1', 'library2'])
       expect(arf.type_filters).to eq([ 'types' ])
+    end
+
+
+    it "does not load the semester from the user record" do
+      @controller.current_user.stub(:admin_preferences).and_return({:libraries => '32432423'})
+      @controller.current_user.stub(:libraries).and_return([ 'library1', 'library2'])
+      @controller.current_user.stub(:types).and_return( [ 'types' ] )
+      @controller.current_user.stub(:semeseter).and_return( 1 )
+
+      arf = RequestFilter.new(@controller)
+      expect(arf.semester_filter).to be(false)
     end
   end
 

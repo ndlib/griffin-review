@@ -4,8 +4,15 @@ class RequestFilter
   VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
   VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engeneering']
 
-  def initialize(controller)
+  def initialize(controller, current_user = false)
     @controller = controller
+
+    if !current_user
+      @current_user = @controller.current_user
+    else
+      @current_user = current_user
+    end
+
     determine_filters
     process_params
   end
@@ -21,6 +28,13 @@ class RequestFilter
   end
 
 
+  def save_filter_for_user!
+    @current_user.libraries = @library_filters
+    @current_user.types = @type_filters
+    @current_user.save!
+  end
+
+
   private
 
     def determine_filters
@@ -33,10 +47,12 @@ class RequestFilter
         @library_filters = @controller.current_user.libraries
         @type_filters    = @controller.current_user.types
         @semester_filter = false
+
       else
         @library_filters = VALID_LIBRARIES
         @type_filters    = VALID_TYPES
         @semester_filter = false
+
       end
     end
 

@@ -31,7 +31,7 @@ breadcrumb(['Requests'])
     <% end %>
   </tbody>
 </table>
-
+<p> Showing <%= @admin_request_listing.reserves.size %> <%= @admin_request_listing.request_tabs.filter.titleize %> Reserves </p>
 <%
 filter = @admin_request_listing.request_filter
 %>
@@ -42,19 +42,8 @@ filter = @admin_request_listing.request_filter
   </div>
   <form src="<%= requests_path() %>" method="get">
     <div class="modal-body">
-      <fieldset id="topic_list">
-        <legend>For Types</legend>
-        <% RequestFilter::VALID_TYPES.each do | type | %>
-          <label class="checkbox"><input name="admin_request_filter[types][]" value="<%= type %>" type="checkbox" <%= filter.type_selected?(type) ? 'checked="true"' : '' %>> <%= type.gsub('Reserve', '') %></label>
-        <% end %>
-      </fieldset>
 
-      <fieldset id="topic_list">
-        <legend>For Library </legend>
-        <% RequestFilter::VALID_LIBRARIES.each do | library | %>
-          <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= library.titleize %></label>
-        <% end %>
-      </fieldset>
+      <%= render :partial => "/users/request_types_form", :locals => { :filter => filter } %>
 
       <fieldlist id="semester">
         <legend>Semester</legend>
