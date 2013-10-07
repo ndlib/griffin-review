@@ -19,7 +19,7 @@ class AdminUpdateMetaData
 
   validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
   validates :title, presence: true, unless: :requires_nd_meta_data_id?
-  validates :journal_title, presence: true,  if: :requires_journal_title?
+#  validates :journal_title, presence: true,  if: :requires_journal_title?
 
   delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
 
@@ -75,7 +75,7 @@ class AdminUpdateMetaData
 
 
     def requires_journal_title?
-      @reserve.type == 'JournalReserve'
+    #  @reserve.type == 'JournalReserve'
     end
 
 
