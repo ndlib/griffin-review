@@ -38,7 +38,7 @@ class CopyOldReserve
       @new_request.library = convert_group_to_library(@old_reserve.group_name)
 
       @new_request.overwrite_nd_meta_data = true
-      @new_request.workflow_state = 'inprocess'
+      @new_request.workflow_state = 'new'
       @new_request.requestor_netid = @user.username
     end
 
