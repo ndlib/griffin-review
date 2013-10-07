@@ -30,16 +30,15 @@ class CopyOldReserve
 
     def copy_shared_fields!
       # shared data
-      @new_request.title = determine_title(@old_reserve)
+      @new_request.title   = determine_title(@old_reserve)
       @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
       @new_request.journal_title = @old_reserve.journal_name
-      @new_request.length = @old_reserve.pages
+      @new_request.length  = @old_reserve.pages
       @new_request.details = (@old_reserve.display_note.nil? ? @old_reserve.publisher : @old_reserve.display_note.truncate(250))
       @new_request.library = convert_group_to_library(@old_reserve.group_name)
 
-
       @new_request.overwrite_nd_meta_data = true
-      @new_request.workflow_state = 'available'
+      @new_request.workflow_state = 'inprocess'
       @new_request.requestor_netid = @user.username
     end
 
