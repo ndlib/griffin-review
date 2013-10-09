@@ -31,7 +31,7 @@
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.article_request? ? 'active' : '' %>" id="article">
       <hr>
-      <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('ArticleReserve')  } %>
+      <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('JournalReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
       <hr>
@@ -41,15 +41,28 @@
       <hr>
       <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
     </div>
-
   </div>
-
 </div>
-<script type="text/javascript">
 
+<script type="text/javascript">
   $('#book_chapter_requestor_has_an_electronic_copy').change(function () {
     $('book_chapter_file').show();
   });
-
 </script>
+
+<div id="needed_by_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Date Lead Time</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      We cannot guarantee any fulfilment with in the next 10 days.
+      If your request requires immediate attention please call the
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
 

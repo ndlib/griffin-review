@@ -9,8 +9,8 @@
     <%= f.input_field :citation, as: "text", rows: 4, style: "width: 100%" %>
   <% end %>
 
-  <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
-    <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker span2' %>
+  <%= f.input :needed_by, hint: "Please plan on a 10 day lead time." do %>
+    <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker span2 needed_by_datepicker' %>
   <% end %>
 
   <%= library_select_form(f) %>

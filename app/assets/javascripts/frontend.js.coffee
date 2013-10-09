@@ -157,14 +157,10 @@ jQuery ($) ->
     if $(".admin_datatable").size() > 0
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
-        iDisplayLength: 1000
         bLengthChange: false
-        aoColumnDefs: [
-          bVisible: false
-          bSortable: false
-          bSearchable: false
-          aTargets: [6]
-        ]
+        bProcessing: true
+        bServerSide: true
+        sAjaxSource: "/admin/requests"
       )
 
       if $('li.active > a.tab').attr('filter') != "complete"
@@ -177,6 +173,8 @@ jQuery ($) ->
 
         oTable.fnFilter($(this).attr('filter'), 6, true, false, false)
       )
+
+      $('.modal-backdrop').hide()
 
 
 
@@ -233,3 +231,14 @@ jQuery ($) ->
   setupUsersDatatable()
 
   setupTableFilters()
+
+
+  $('.needed_by_datepicker').change ->
+    d = Date.parse($(this).val())
+    test_date = new Date();
+    test_date.setDate(test_date.getDate() + 10)
+
+    if d < test_date
+      $('#needed_by_modal').modal(
+        show: true
+      )

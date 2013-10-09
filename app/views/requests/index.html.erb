@@ -6,7 +6,7 @@
 <% content_for(:content_title_links) do %>
   <a href="#filter_form" data-toggle="modal" class="btn btn-primary">Filter Request Results</a>
 <% end %>
-
+<div class="modal-backdrop fade in"></div>
 <%
 breadcrumb(['Requests'])
 %>
@@ -27,11 +27,12 @@ breadcrumb(['Requests'])
   </thead>
   <tbody>
     <% @admin_request_listing.reserves.each do | reserve | %>
-      <%= render :partial => 'admin_list_row', :locals => { object: reserve } %>
+      <% cache("listing/admin_list_row_#{reserve.id}") do %>
+        <%= render :partial => 'admin_list_row', :locals => { object: reserve } %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-<p> Showing <%= @admin_request_listing.reserves.size %> <%= @admin_request_listing.request_tabs.filter.titleize %> Reserves </p>
 <%
 filter = @admin_request_listing.request_filter
 %>

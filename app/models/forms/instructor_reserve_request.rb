@@ -98,7 +98,7 @@ class InstructorReserveRequest
 
 
   def article_request?
-    type == 'ArticleReserve'
+    type == 'JournalReserve'
   end
 
 
