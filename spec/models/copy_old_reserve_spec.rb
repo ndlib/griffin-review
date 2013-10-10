@@ -19,7 +19,7 @@ describe CopyReserve do
 
 
     it "sets the workflow state to new " do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
 
 
@@ -84,7 +84,7 @@ describe CopyReserve do
     end
 
     it "should not auto complete this reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
 
   end
@@ -116,7 +116,7 @@ describe CopyReserve do
 
     it "should not auto complete a journal file " do
       new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      new_reserve.workflow_state.should == "inprocess"
+      new_reserve.workflow_state.should == "new"
     end
 
 
@@ -159,7 +159,7 @@ describe CopyReserve do
 
 
     it "should not auto complete a video reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
   end
 
@@ -184,7 +184,7 @@ describe CopyReserve do
 
 
     it "should not auto complete a video reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
   end
 

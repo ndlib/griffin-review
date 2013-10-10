@@ -9,11 +9,12 @@ class CopyOldReserve
         'Engeneering' => 'engeneering'
       }
 
-  def initialize(current_user, to_course, old_reserve)
+  def initialize(current_user, to_course, old_reserve, approve_reserve = false)
     @user = current_user
     @to_course = to_course
     @old_reserve = old_reserve
     @new_request = Reserve.factory(nil, @to_course)
+    @approve_reserve = approve_reserve
   end
 
 
@@ -22,6 +23,7 @@ class CopyOldReserve
     copy_item_by_type!
 
     @new_request.save!
+
     @new_request
   end
 
@@ -40,6 +42,10 @@ class CopyOldReserve
       @new_request.overwrite_nd_meta_data = true
       @new_request.workflow_state = 'new'
       @new_request.requestor_netid = @user.username
+
+      if @approve_reserve
+        @new_request.complete
+      end
     end
 
 
@@ -68,8 +74,9 @@ class CopyOldReserve
 
     def copy_book
       @new_request.type = "BookReserve"
-      @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
+      @new_request.complete
     end
 
 
@@ -87,6 +94,7 @@ class CopyOldReserve
         @new_request.pdf = get_old_file(@old_reserve.location)
       else
         @new_request.url = @old_reserve.url
+        @new_request.complete
       end
     end
 
@@ -94,14 +102,14 @@ class CopyOldReserve
 
     def copy_video
       @new_request.type = "VideoReserve"
-      @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
     end
 
 
     def copy_audio
       @new_request.type = "AudioReserve"
-      @new_request.nd_meta_data_id = @old_reserve.sourceId
+      @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
     end
 

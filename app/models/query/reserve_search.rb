@@ -65,6 +65,16 @@ class ReserveSearch
   end
 
 
+  def reserve_by_rta_id_for_course(course, rta_id)
+    @relation.
+      includes(:item).
+      references(:item).
+      where('requests.course_id = ? ', course.id).
+      where('items.realtime_availability_id = ?', rta_id).
+      collect { | r | load_in_reserve(r, false) }.
+      first
+  end
+
   private
 
     def determine_search_semesters(semester)

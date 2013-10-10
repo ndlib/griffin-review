@@ -22,7 +22,7 @@ class ReserveMigrator
       @converted_courses.each_pair do | from_course_id, to_courses |
         to_course = to_courses.pop
 
-        CopyOldCourseReservesForm.new(current_user, { course_id: to_course, from_course_id: from_course_id, term: '201310' }).copy!
+        CopyOldCourseReservesForm.new(current_user, { course_id: to_course, from_course_id: from_course_id, term: '201310', auto_complete: true }).copy!
 
         add_course_completed(to_courses.pop)
 

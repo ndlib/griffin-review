@@ -16,6 +16,7 @@ class BookReserveImport
       reserve.title = bib_title
       reserve.type = "BookReserve"
       reserve.nd_meta_data_id = bib_id
+      reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
       # this needs to happen so that ReserveCheckIsComplete will make the reserve available.
       # because we don't want that class to complete new items normally
@@ -48,7 +49,19 @@ class BookReserveImport
 
 
   def reserve
-    @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id) || Reserve.new
+    return @reserve if @reserve
+
+    @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id)
+    if @reserve
+      puts "found bibid"
+    end
+    @reserve ||= ReserveSearch.new.reserve_by_rta_id_for_course(course, realtime_availability_id)
+    if @reserve
+      puts "found rta"
+    else
+      puts "new"
+    end
+    @reserve ||= Reserve.new
   end
 
 
@@ -66,6 +79,10 @@ class BookReserveImport
     @api_data['bib_id']
   end
 
+
+  def realtime_availability_id
+    @api_data['doc_number']
+  end
 
   def course_id
     @api_data['crosslist_id']
@@ -91,7 +108,7 @@ class BookReserveImport
 
 
     def can_import?
-      course.present? && new_reserve?
+      course.present?
     end
 
 end
