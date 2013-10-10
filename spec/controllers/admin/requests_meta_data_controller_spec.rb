@@ -39,7 +39,9 @@ describe RequestsMetaDataController do
   describe :update do
 
     it "redirects when it is done" do
+      AdminUpdateMetaData.any_instance.stub(:requires_nd_meta_data_id?).and_return(false)
       put :update, id: @reserve.id, admin_update_meta_data: {nd_meta_data_id: 'id'}
+
       response.should be_redirect
     end
 

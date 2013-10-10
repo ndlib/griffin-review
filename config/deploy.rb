@@ -21,18 +21,7 @@ set :use_sudo, false
 set :scm, 'git'
 set :scm_command,   '/shared/git/bin/git'
 set :repository, "git@git.library.nd.edu:griffin"
-# Set an environment variable to deploy from a branch other than master
-# branch=beta cap staging deploy
-set(:branch) {
-  name = ENV['branch'] ? ENV['branch'] : 'master'
 
-  if name == 'master'
-    set :git_shallow_clone, 1
-  end
-
-  puts "Deploying to branch #{name}"
-  name
-}
 
 #############################################################
 #  Environments
@@ -52,6 +41,7 @@ task :pre_production do
   set :user,      'rpprd'
   set :domain,    'reservespprd.library.nd.edu'
   set :site_url,  'reservespprd.library.nd.edu'
+  set :branch,    '1.1'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
@@ -70,6 +60,8 @@ task :production do
   set :user,      'rprod'
   set :domain,    'reserves.library.nd.edu'
   set :site_url,  'reserves.library.nd.edu'
+  set :branch,    'master'
+  set :git_shallow_clone, 1
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end

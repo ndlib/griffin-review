@@ -1,28 +1,33 @@
 class ReserveSynchronizeMetaData
+  attr_reader :reserve
 
-  def initialize(reserve, force = false)
+  def initialize(reserve)
     @reserve = reserve
-    @force = force
   end
 
 
   def check_synchronized!
-    if needs_to_be_synchronized?
+    if can_be_synchronized?
       synchonize!
     end
   end
 
 
+  def valid_discovery_id?
+    discovery_record.present?
+  end
+
+
   private
 
-    def needs_to_be_synchronized?
-      !@reserve.overwrite_nd_meta_data? &&
-        (!@reserve.nd_meta_data_id.nil? && @reserve.nd_meta_data_id.present?) &&
-        (@reserve.metadata_synchronization_date.nil? || @reserve.metadata_synchronization_date <= 10.days.ago || @force)
+    def can_be_synchronized?
+      !@reserve.overwrite_nd_meta_data?
     end
 
 
     def synchonize!
+      return if !valid_discovery_id?
+
       @reserve.title =  discovery_record.title
       @reserve.creator = discovery_record.creator_contributor
       @reserve.journal_title = discovery_record.publisher_provider

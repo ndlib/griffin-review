@@ -13,7 +13,7 @@ class RequestsMetaDataController  < ApplicationController
       flash[:success] = "Meta Data Saved"
       redirect_to request_path(@request.id)
     else
-      flash[:error] = @request.errors.full_messages
+      flash.now[:error] = "Your form submission has errors in it.  Please correct them and resubmit."
       render :edit
     end
   end
