@@ -53,10 +53,6 @@ class Reserve
 
     # this is required for the state_machine gem do not forget again and remove
     super()
-
-    if !self.request.new_record?
-      ReserveSynchronizeMetaData.new(self).check_synchronized!
-    end
   end
 
 

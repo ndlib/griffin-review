@@ -54,20 +54,6 @@ describe Reserve do
   end
 
 
-  describe :meta_data_sync do
-
-    it "checks the synchronziation when the object is created " do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
-      mock_reserve FactoryGirl.create(:request), nil
-    end
-
-
-    it "does not check the synchronization if it is a new record" do
-      ReserveSynchronizeMetaData.any_instance.should_not_receive(:check_synchronized!)
-      Reserve.new
-    end
-  end
-
 
   describe "workflow_state#state_machine" do
     before(:each) do

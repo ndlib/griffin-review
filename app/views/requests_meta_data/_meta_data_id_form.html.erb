@@ -1,11 +1,10 @@
 <div id="discovery_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? 'display:none;' : '') %>">
-  <%= f.input :nd_meta_data_id, label: false, class: 'input-append' do %>
-    <div class="pull-right">
-      <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
-        <i class="icon icon-arrow-up"></i> Test Record Id</a>
-    </div>
-    <%= f.input :nd_meta_data_id, label: "Record ID" %>
-  <% end %>
+
+  <div class="pull-right">
+    <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
+      <i class="icon icon-arrow-up"></i> Test Record Id</a>
+  </div>
+  <%= f.input :nd_meta_data_id, label: "Record Id" %>
 
   <div class="clearfix">
     <%= f.input :display_length, label: "Distinguishing Title" %>

@@ -15,9 +15,6 @@ describe ReserveSynchronizeMetaData do
 
         @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "")
         DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
-
-        ReserveSynchronizeMetaData.any_instance.stub(:needs_to_be_synchronized?).and_return(true)
-
       end
 
       it "synchronizes the title" do
@@ -72,67 +69,37 @@ describe ReserveSynchronizeMetaData do
       end
 
 
-    end
-
-    context "reserve cannot be synchronized" do
-
-      before(:each) do
-        @reserve = Reserve.new(nd_meta_data_id: "ndid", overwrite_nd_meta_data: false, metadata_synchronization_date: 11.days.ago)
-      end
-
-      it "runs the synchronization if there is a metadata id and metadata has not been overwritten and it is more then 10 days ago" do
-        ReserveSynchronizeMetaData.any_instance.should_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-      end
-
-
-      it "does run the synchronization if the last sync date is nil " do
-        @reserve.metadata_synchronization_date = nil
-        ReserveSynchronizeMetaData.any_instance.should_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-      end
-
-
-      it "does not run the synchronization if the reserve does not have a metadata id" do
-        @reserve.nd_meta_data_id = nil
-        ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-      end
-
-
-      it "does not run the synchronization if the meta data has been overwritten" do
+      it "will not synch if the meta data should not be overwritten" do
         @reserve.overwrite_nd_meta_data = true
+
         ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
 
-
-      it "does not run the synchronization if the last sync was less then 10 days ago" do
-        @reserve.metadata_synchronization_date = 9.days.ago
-        ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-      end
 
     end
 
 
-    context "force" do
+    context "valid_discovery_id?" do
       before(:each) do
-        @reserve = Reserve.new(nd_meta_data_id: "ndid", overwrite_nd_meta_data: false, metadata_synchronization_date: 11.days.ago)
+        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryGirl.create(:semester))
+        CourseSearch.any_instance.stub(:get).and_return(course)
+
+        @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", requestor_netid: 'netid', course: course)
+
+        @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "")
+
+        ReserveSynchronizeMetaData.any_instance.stub(:needs_to_be_synchronized?).and_return(true)
       end
 
-      it "can still be forced to synchonize" do
-        @reserve.metadata_synchronization_date = 9.days.ago
-        ReserveSynchronizeMetaData.any_instance.should_receive(:synchonize!)
-
-        ReserveSynchronizeMetaData.new(@reserve, true).check_synchronized!
+      it "returns true if the record is found" do
+        DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
+        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_true
       end
 
-
-      it "won't force if we are overwriting meta data " do
-        @reserve.overwrite_nd_meta_data = true
-        ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve, true).check_synchronized!
+      it "returns false if the record is not found" do
+        DiscoveryApi.stub(:search_by_ids).and_return([ ])
+        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_false
       end
     end
 
