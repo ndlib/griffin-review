@@ -6,7 +6,7 @@ describe ReserveCanBeViewedPolicy do
 
   context "no resource attached" do
     before(:each) do
-      @policy = ReserveCanBeViewedPolicy.new(double(Reserve, physical_reserve: false), double(User))
+      @policy = ReserveCanBeViewedPolicy.new(double(Reserve, physical_reserve?: false), double(User))
 
       @policy.stub(:resource_completed?).and_return(false)
       @policy.stub(:current_semester?).and_return(false)
@@ -42,6 +42,7 @@ describe ReserveCanBeViewedPolicy do
       @policy.stub(:current_semester?).and_return(false)
       @policy.stub(:user_is_administrator?).and_return(false)
       @policy.stub(:instructor_can_preview?).and_return(false)
+      @policy.stub(:physical_reserve?).and_return(false)
     end
 
 
