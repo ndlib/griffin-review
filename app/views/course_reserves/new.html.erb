@@ -58,8 +58,12 @@
   <div class="modal-body">
     <p>
       <strong>No Guarantee’s</strong><br>
-      We request a lead time of ten (10) business days to process requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
+      We request a lead time of 10 business days to process requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
       If this request requires immediate attention please contact
+      <div class="pull-right">
+        <%= render partial: '/errors/video_contact_info' %>
+      </div>
+      <%= render :partial => '/errors/contact_info' %>
     </p>
   </div>
   <div class="modal-footer">
