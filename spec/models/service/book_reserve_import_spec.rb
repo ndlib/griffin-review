@@ -13,6 +13,9 @@ describe BookReserveImport do
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
 
+  it "converts the bib id to have the ndu_aleph prefix" do
+    expect(BookReserveImport.new(@api_data).bib_id).to eq("ndu_alephgeneric")
+  end
 
   describe :new_reserve do
     before(:each) do

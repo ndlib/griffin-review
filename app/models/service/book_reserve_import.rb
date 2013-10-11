@@ -26,6 +26,10 @@ class BookReserveImport
         reserve.requestor_netid = 'import'
       end
 
+      if !reserve.nd_meta_data_id.nil?
+        reserve.overwrite_nd_meta_data = false
+      end
+
       begin
         ActiveRecord::Base.transaction do
           reserve.save!
@@ -52,15 +56,7 @@ class BookReserveImport
     return @reserve if @reserve
 
     @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id)
-    if @reserve
-      puts "found bibid"
-    end
     @reserve ||= ReserveSearch.new.reserve_by_rta_id_for_course(course, realtime_availability_id)
-    if @reserve
-      puts "found rta"
-    else
-      puts "new"
-    end
     @reserve ||= Reserve.new
   end
 
@@ -76,13 +72,14 @@ class BookReserveImport
 
 
   def bib_id
-    @api_data['bib_id']
+    "ndu_aleph#{@api_data['bib_id']}"
   end
 
 
   def realtime_availability_id
     @api_data['doc_number']
   end
+
 
   def course_id
     @api_data['crosslist_id']
