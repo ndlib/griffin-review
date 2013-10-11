@@ -24,11 +24,22 @@ class CopyOldReserve
 
     @new_request.save!
 
+    approve_fair_use!
+
+    ReserveCheckIsComplete.new(@new_request).check!
+
     @new_request
   end
 
 
   private
+
+    def approve_fair_use!
+      @new_request.fair_use.approve
+      @new_request.fair_use.user = @user
+      @new_request.fair_use.save!
+    end
+
 
     def copy_shared_fields!
       # shared data

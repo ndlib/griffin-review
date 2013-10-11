@@ -10,6 +10,8 @@ class ReserveMigrator
     end
 
     process_courses!
+
+    BookReserveImporter.new.import!
   end
 
 

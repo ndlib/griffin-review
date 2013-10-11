@@ -1,7 +1,6 @@
 class Course
   attr_accessor :sections, :id, :primary_instructor_hash
 
-
   def initialize(id, primary_instructor_hash)
     @id = id
     @primary_instructor_hash = primary_instructor_hash

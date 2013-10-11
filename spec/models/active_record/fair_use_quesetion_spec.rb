@@ -11,8 +11,8 @@ describe FairUseQuestion do
 
 
     it "can return only active questions" do
-      FairUseQuestion.add_new_question!('something', 'category', 1, true)
-      FairUseQuestion.add_new_question!('something', 'category', 2, false)
+      FairUseQuestion.add_new_question!('something', 'category', 1, true, true)
+      FairUseQuestion.add_new_question!('something', 'category', 2, false, false)
 
       questions = FairUseQuestion.active
 

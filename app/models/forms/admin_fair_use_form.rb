@@ -57,7 +57,17 @@ class AdminFairUseForm
 
 
   def checklist_questions
-    FairUseQuestion.active
+    res = {}
+    FairUseQuestion.active.each do | q |
+      res[q.category] ||= { favoring: [], notfavoring: [] }
+      if q.subcategory == 'Trending Toward Fair Use'
+        res[q.category][:favoring] << q
+      else
+        res[q.category][:notfavoring] << q
+      end
+    end
+
+    res
   end
 
 

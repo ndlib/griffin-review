@@ -6,27 +6,31 @@
 
 
 <%= simple_form_for @request, :url => fair_use_path(@request.reserve_id), :method=>'put' do | f | %>
-  <div class="twelve columns">
-    <h3>Checklist</h3>
-  </div>
-  <% current_category = false %>
-  <% @request.checklist_questions.each do | question | %>
-    <% if current_category != question.category %>
-      <% if current_category != false %>
-        </div>
-      <% end %>
+
+  <% @request.checklist_questions.each_pair do | category, questions | %>
+    <div class="twelve columns">
+      <h3><%= h category %></h3>
       <div class="six columns">
-        <% current_category = question.category %>
-        <h5><%= h question.category %></h5>
-    <% end %>
-    <label class="checkbox">
-      <%= check_box_tag "admin_fair_use_form[checklist][#{question.id}]", true, @request.question_checked?(question) %> <%= h question.question %>
-    </label>
+        <h5>Trending Toward Fair Use</h5>
+
+        <% questions[:favoring].each do | question | %>
+          <label class="checkbox">
+          <%= check_box_tag "admin_fair_use_form[checklist][#{question.id}]", true, @request.question_checked?(question) %> <%= h question.question %>
+          </label>
+        <% end %>
+      </div>
+      <div class="six columns">
+        <h5>Trending Away From Fair Use</h5>
+        <% questions[:notfavoring].each do | question | %>
+          <label class="checkbox">
+          <%= check_box_tag "admin_fair_use_form[checklist][#{question.id}]", true, @request.question_checked?(question) %> <%= h question.question %>
+          </label>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-  </div>
 
   <div class="twelve columns">
-
     <hr>
     <% if @request.previous_fair_uses.size > 0 %>
       <% @request.previous_fair_uses.each do | fair_use | %>

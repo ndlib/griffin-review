@@ -158,9 +158,9 @@ jQuery ($) ->
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
         bLengthChange: false
-        bProcessing: true
-        bServerSide: true
-        sAjaxSource: "/admin/requests"
+#        bProcessing: true
+#        bServerSide: true
+#        sAjaxSource: "/admin/requests"
       )
 
       if $('li.active > a.tab').attr('filter') != "complete"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010192811) do
+ActiveRecord::Schema.define(version: 20131011145457) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20131010192811) do
     t.boolean "active"
     t.string  "category"
     t.integer "ord"
+    t.string  "subcategory"
   end
 
   add_index "fair_use_questions", ["ord"], name: "index_fair_use_questions_on_ord", using: :btree
