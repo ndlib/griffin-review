@@ -24,7 +24,11 @@ class CopyOldReserve
 
     @new_request.save!
 
-    approve_fair_use!
+    puts "Approve: #{@approve_reserve}"
+
+    if @approve_reserve
+      approve_fair_use!
+    end
 
     ReserveCheckIsComplete.new(@new_request).check!
 
@@ -35,9 +39,14 @@ class CopyOldReserve
   private
 
     def approve_fair_use!
-      @new_request.fair_use.approve
-      @new_request.fair_use.user = @user
-      @new_request.fair_use.save!
+
+      fu = @new_request.fair_use
+      puts "--> #{fu.new_record?}"
+
+      fu.user = @user
+      fu.approve
+
+      puts "--> #{fu.inspect}"
     end
 
 
@@ -53,10 +62,6 @@ class CopyOldReserve
       @new_request.overwrite_nd_meta_data = true
       @new_request.workflow_state = 'new'
       @new_request.requestor_netid = @user.username
-
-      if @approve_reserve
-        @new_request.complete
-      end
     end
 
 

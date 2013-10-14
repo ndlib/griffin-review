@@ -17,9 +17,10 @@ describe AdminFairUseForm do
 
   describe :checklist_questions do
     it "lists all the questions available for the form" do
-      FairUseQuestion.stub(:active).and_return([double(FairUse), double(FairUse)])
+      FairUseQuestion.stub(:active).and_return([double(FairUseQuestion, category: 'cat', subcategory: true), double(FairUseQuestion, category: 'cat', subcategory: false)])
 
-      AdminFairUseForm.new(user, { id:  @reserve.id} ).checklist_questions.size.should == 2
+      AdminFairUseForm.new(user, { id:  @reserve.id} ).checklist_questions['cat'][:notfavoring].size.should == 2
+      AdminFairUseForm.new(user, { id:  @reserve.id} ).checklist_questions['cat'][:favoring].size.should == 0
     end
   end
 
@@ -55,7 +56,7 @@ describe AdminFairUseForm do
 
     it "returns false if the question value is not set" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
-      afuf.question_checked?(double(FairUseQuestion, id: 2)).should be_false
+      afuf.question_checked?(double(FairUseQuestion, id: 2, category: 'Trending Toward Fair Use')).should be_false
     end
 
   end
@@ -156,6 +157,15 @@ describe AdminFairUseForm do
       afuf.fair_use.state.should == "denied"
       afuf.fair_use.reserve.workflow_state.should == "removed"
     end
+
+
+    it "checks if the reserve is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { event: 'deny'} } )
+
+      afuf.save_fair_use
+    end
+
 
   end
 

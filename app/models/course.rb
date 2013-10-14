@@ -9,6 +9,10 @@ class Course
 
 
   def self.factory(id, primary_instructor_hash, mock_flag = nil)
+    # because of the complex systems in play we have created a course mock.
+    # this is the point it gets loaded from course search.  It is a separate class that duck types course.
+    # in the future if a new system of creating courses is generated that does not require a mock like this this
+    # should be removed.
     if mock_flag
       CourseMock.new(id, primary_instructor_hash)
     else

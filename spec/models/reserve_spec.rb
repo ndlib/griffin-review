@@ -216,19 +216,6 @@ describe Reserve do
     end
 
 
-
-
-    it "checks to seed if the item is complete" do
-      ReserveCheckIsComplete.any_instance.should_receive(:check!)
-
-      @reserve.course = @course
-      @reserve.title = "title"
-      @reserve.type = 'BookChapter'
-      @reserve.requestor_netid = "username"
-
-      @reserve.save!
-    end
-
   end
 
 

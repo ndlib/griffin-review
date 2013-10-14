@@ -86,6 +86,8 @@ class AdminUpdateMetaData
       if requires_nd_meta_data_id?
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
+
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

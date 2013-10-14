@@ -23,7 +23,11 @@ class CopyReserve
 
     @reserve.fair_use.copy_to_new_request!(new_request, @user)
 
-    Reserve.factory(new_request)
+    res = Reserve.factory(new_request)
+
+    ReserveCheckIsComplete.new(res).check!
+
+    res
   end
 
 end

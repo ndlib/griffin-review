@@ -64,4 +64,10 @@ describe CopyReserve do
     new_reserve = @copy_reserve.copy
     expect(new_reserve.created_at.to_s ).to eq(Time.now.to_s)
   end
+
+
+  it "checks if the new reserve is complete" do
+    ReserveCheckIsComplete.any_instance.should_receive(:check!)
+    @copy_reserve.copy
+  end
 end

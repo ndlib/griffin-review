@@ -154,6 +154,7 @@ jQuery ($) ->
 
   setupAdminDatatable = () ->
     # For admin table
+
     if $(".admin_datatable").size() > 0
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
@@ -162,19 +163,6 @@ jQuery ($) ->
 #        bServerSide: true
 #        sAjaxSource: "/admin/requests"
       )
-
-      if $('li.active > a.tab').attr('filter') != "complete"
-        oTable.fnFilter($('li.active > a.tab').attr('filter'), 6, true, false, false)
-
-
-      $('a[data-toggle="tab"]').on('click', ->
-        if oTable.size() == 0
-          return
-
-        oTable.fnFilter($(this).attr('filter'), 6, true, false, false)
-      )
-
-      $('.modal-backdrop').hide()
 
 
 

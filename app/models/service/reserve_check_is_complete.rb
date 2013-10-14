@@ -7,7 +7,7 @@ class ReserveCheckIsComplete
 
 
   def check!
-    if @reserve.inprocess? && complete?
+    if !already_completed? && complete?
       @reserve.complete
       @reserve.save!
     end
@@ -20,4 +20,10 @@ class ReserveCheckIsComplete
     ReserveMetaDataPolicy.new(@reserve).complete? &&
     ReserveResourcePolicy.new(@reserve).complete?
   end
+
+
+  def already_completed?
+    @reserve.workflow_state == 'available'
+  end
+
 end

@@ -165,6 +165,17 @@ describe AdminUpdateMetaData do
     end
 
 
+    it "chechs if the reserve is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+
+      @update_meta_data.stub(:valid?).and_return(true)
+      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
+
+      @update_meta_data.save_meta_data
+    end
+
+
+
     it "trims the nd_meta_data_id " do
       @params = { id: @reserve.id, :admin_update_meta_data  => { nd_meta_data_id: ' asdf '} }
       @update_meta_data = AdminUpdateMetaData.new(@user, @params)

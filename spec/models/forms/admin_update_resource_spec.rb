@@ -62,6 +62,21 @@ describe AdminUpdateResource do
       aur.reserve.url.should == "url"
     end
 
+
+
+    it "checks to seed if the item is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+
+      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      url_reserve.url = nil
+      url_reserve.save!
+
+      aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { :url => "url" }})
+
+      aur.save_resource
+    end
+
+
   end
 
 end

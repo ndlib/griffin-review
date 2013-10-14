@@ -121,8 +121,6 @@ class Reserve
       request.semester_id = course.semester.id
 
       request.save!
-
-      ReserveCheckIsComplete.new(self).check!
     end
   end
 

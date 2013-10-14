@@ -89,6 +89,8 @@ class AdminUpdateResource
       @reserve.url = url
 
       @reserve.save!
+
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 

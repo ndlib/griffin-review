@@ -11,7 +11,7 @@ class ReserveMigrator
 
     process_courses!
 
-    BookReserveImporter.new.import!
+    #BookReserveImporter.new.import!
   end
 
 

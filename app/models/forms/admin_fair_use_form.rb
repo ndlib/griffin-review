@@ -113,6 +113,8 @@ class AdminFairUseForm
       end
 
       @fair_use.save!
+
+      ReserveCheckIsComplete.new(@fair_use.reserve).check!
     end
 
 
