@@ -70,7 +70,6 @@ describe CopyReserve do
 
     it "should look up the nd_meta_data_id for this item" do
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      binding.pry
       expect(@new_reserve.nd_meta_data_id).to eq("bib_id")
     end
 

@@ -31,7 +31,7 @@ class CopyOldReserve
     if @approve_reserve
       approve_fair_use!
     end
-
+    synchronize_meta_data!
     ReserveCheckIsComplete.new(@new_request).check!
 
     @new_request
@@ -89,7 +89,7 @@ class CopyOldReserve
       @new_request.type = "BookReserve"
       @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
-      @new_request.complete
+      @new_request.nd_meta_data_id = determine_nd_meta_data_id(@new_request)
     end
 
 
@@ -117,6 +117,7 @@ class CopyOldReserve
       @new_request.type = "VideoReserve"
       @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
+      @new_request.nd_meta_data_id = determine_nd_meta_data_id(@new_request)
     end
 
 
@@ -124,6 +125,7 @@ class CopyOldReserve
       @new_request.type = "AudioReserve"
       @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
+      @new_request.nd_meta_data_id = determine_nd_meta_data_id(@new_request)
     end
 
 
@@ -159,6 +161,28 @@ class CopyOldReserve
 
     def old_file_path
       Rails.configuration.path_to_old_files
+    end
+
+
+    def synchronize_meta_data!
+      if @new_request.nd_meta_data_id.present?
+        @new_request.overwrite_nd_meta_data = false
+        ReserveSynchronizeMetaData.new(@new_request).check_synchronized!
+      end
+    end
+
+
+    def determine_nd_meta_data_id(request)
+      if ['BookReserve', 'VideoReserve', 'AudioReserve'].include?(request.type)
+        res = API::PrintReserves.find_by_rta_id_course_id(request.realtime_availability_id, request.course.id)
+        if res.empty?
+          return ""
+        else
+          return res.first['bib_id']
+        end
+      end
+
+      return ""
     end
 
 end
