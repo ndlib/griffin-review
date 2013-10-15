@@ -4,12 +4,12 @@ class RequestsController  < ApplicationController
     check_admin_permission!
     @admin_request_listing = AdminReserveList.new(self)
 
-    respond_to do | format |
-      format.html
-      format.json {
-        render :text => json
-      }
-    end
+#    respond_to do | format |
+#      format.html
+#      format.json {
+#        render :text => json
+#      }
+#    end
   end
 
 

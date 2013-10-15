@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+=begin
 describe InstructorTopicsForm do
   let(:user) { double(User, :username => 'instructor') }
   let(:course_search) { CourseSearch.new }
@@ -66,3 +67,6 @@ describe InstructorTopicsForm do
   it "can tell you all the available topics for the form."
 
 end
+
+=end
+

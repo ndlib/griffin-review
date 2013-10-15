@@ -132,17 +132,6 @@ class Reserve
   end
 
 
-  def set_topics!(topics)
-    request.topic_list = topics
-    save!
-  end
-
-
-  def topics
-    request.topics
-  end
-
-
   def persisted?
     false
   end
