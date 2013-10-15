@@ -3,7 +3,11 @@
 
 <%= simple_form_for object, :html => {id: "book_chapter_form"}, :url => course_reserves_path() do |f| %>
 
-  <%= f.input :title %>
+  <%= f.input :title, label: "Book Title" %>
+
+  <%= f.input :length, label: "Chapter / Pages", :required => true do %>
+    <%= f.input_field :length, class: 'span2'%>
+  <% end %>
 
   <%= f.input :citation, label: "Citation or Catalog URL", required: true do %>
     <%= f.input_field :citation, as: "text", rows: 4, style: "width: 100%" %>
@@ -11,10 +15,6 @@
 
   <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
     <%= f.input_field :needed_by, as: "string", id: "book_chapter_needed_by_id", class: 'datepicker span2 needed_by_datepicker' %>
-  <% end %>
-
-  <%= f.input :length, label: "Chapter / Pages", :required => true do %>
-    <%= f.input_field :length, class: 'span2'%>
   <% end %>
 
   <%= library_select_form(f) %>

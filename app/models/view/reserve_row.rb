@@ -1,6 +1,6 @@
 class ReserveRow
 
-  delegate :id, :file, :url, :title, :course, :creator_contributor, :details, :publisher_provider, to: :reserve
+  delegate :id, :file, :url, :title, :length, :course, :creator_contributor, :details, :publisher_provider, to: :reserve
 
   attr_accessor :reserve
 
