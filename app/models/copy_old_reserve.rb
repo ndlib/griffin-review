@@ -22,9 +22,11 @@ class CopyOldReserve
     copy_shared_fields!
     copy_item_by_type!
 
-    @new_request.save!
+    # check if the reserve is already in the course
 
-    puts "Approve: #{@approve_reserve}"
+    # check if the reserves should be skipped.
+
+    @new_request.save!
 
     if @approve_reserve
       approve_fair_use!
@@ -39,14 +41,9 @@ class CopyOldReserve
   private
 
     def approve_fair_use!
-
       fu = @new_request.fair_use
-      puts "--> #{fu.new_record?}"
-
       fu.user = @user
       fu.approve
-
-      puts "--> #{fu.inspect}"
     end
 
 
