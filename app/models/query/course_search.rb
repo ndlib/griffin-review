@@ -19,7 +19,8 @@ class CourseSearch
 
 
   def search(semester_id, search)
-    search_result = course_api.search(semester_id, search)
+    massaged_search = massage_search_string(search)
+    search_result = course_api.search(semester_id, massaged_search)
     parse_search_to_objects(search_result)
   end
 
@@ -135,6 +136,10 @@ class CourseSearch
       return c.nil? ? false : c
     end
 
+
+    def massage_search_string(search)
+      search.split(' ').join(' AND ')
+    end
 
     def parse_search_to_objects(search)
       res = []
