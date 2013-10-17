@@ -5,7 +5,7 @@ Griffin::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Error routing
@@ -79,7 +79,7 @@ Griffin::Application.configure do
   config.api_token                      = "SCSGYmwqLqSyBTmxCQgM"
 
   config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
- 
+
   # Sakai integration
   config.sakai_script_wsdl              = "https://nd-test.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"
   config.sakai_login_wsdl               = "https://nd-test.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
