@@ -46,6 +46,8 @@ Griffin::Application.routes.draw do
     get '/troubleshooting', to: 'documentation#troubleshooting'
   end
 
+  resources :documentation_admin
+
 
   scope '/admin' do
     resources :requests

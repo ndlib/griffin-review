@@ -17,9 +17,23 @@ describe InstructorCourseRow do
 
   describe :workflow_state do
 
-    it "returns the state titleized" do
-      expect(@course_row.workflow_state).to eq("New")
+    it "returns in process if the state is new" do
+      @reserve.stub(:workflow_state).and_return('new')
+      expect(@course_row.workflow_state).to eq("In Process")
     end
+
+
+    it "returns in process if the state is in process" do
+      @reserve.stub(:workflow_state).and_return('inprocess')
+      expect(@course_row.workflow_state).to eq("In Process")
+    end
+
+
+    it "returns published if the state is in process" do
+      @reserve.stub(:workflow_state).and_return('inprocess')
+      expect(@course_row.workflow_state).to eq("In Process")
+    end
+
 
     it "returns the special state with a link to the modal if the state is temporary_approval" do
       @fair_use.stub(:temporary_approval?).and_return(true)

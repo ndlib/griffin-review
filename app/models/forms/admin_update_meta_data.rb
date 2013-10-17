@@ -67,7 +67,7 @@ class AdminUpdateMetaData
 
 
   def overwrite_nd_meta_data?
-    reserve.overwrite_nd_meta_data?
+    overwrite_nd_meta_data
   end
 
 
