@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def url_for(options = {})
     original = super(options)
-    return original unless request.path.starts_with?('/sakai')
+    return original unless (request.path.starts_with?('/sakai') && !original.starts_with?('/sakai'))
     original.gsub(/^\//, '/sakai/')
   end
 
