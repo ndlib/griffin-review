@@ -14,6 +14,19 @@ describe AdminUpdateMetaData do
     @update_meta_data = AdminUpdateMetaData.new(@user, @params)
   end
 
+  describe :overwrite_nd_meta_data do
+
+    it "presets overwrite_nd_meta_data to false if it is nil on the model " do
+      @reserve.overwrite_nd_meta_data = nil
+      @reserve.save!
+
+      @params = { id: @reserve.id }
+      @update_meta_data = AdminUpdateMetaData.new(@user, @params)
+      expect(@update_meta_data.overwrite_nd_meta_data).to be_false
+    end
+
+  end
+
   describe :validations do
 
     it "requires a nd_meta_data_id if overwrite_nd_meta_data is false" do
@@ -73,15 +86,6 @@ describe AdminUpdateMetaData do
       #@update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 
       #@update_meta_data.should have(1).error_on(:creator)
-    end
-
-
-    it "regression against case where we are unable to update the overwrite to false and the reserve stays validating as if it data was overwritten" do
-      @reserve.overwrite_nd_meta_data = true
-      @reserve.save!
-
-      @params = { id: @reserve.id,  admin_update_meta_data: { nd_meta_data_id: 'metaid', overwrite_nd_meta_data: "0" } }
-      AdminUpdateMetaData.new(@user, @params).valid?.should be_true
     end
   end
 

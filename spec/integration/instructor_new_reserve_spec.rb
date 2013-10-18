@@ -33,7 +33,7 @@ describe "Instructor New Reserve" do
 
     within("#book_form") do
       fill_in("Title", with: 'title')
-      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in('Citation', with: "citation")
       fill_in("book_needed_by_id", with: 22.days.from_now)
 
       click_button "Save"
@@ -55,7 +55,7 @@ describe "Instructor New Reserve" do
 
     within("#book_chapter_form") do
       fill_in("Title", with: 'title')
-      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in('Citation', with: "citation")
       fill_in("book_chapter_needed_by_id", with: 22.days.from_now)
       fill_in("Chapter / Pages", with: "chapter 2")
 
@@ -77,7 +77,7 @@ describe "Instructor New Reserve" do
 
     within("#article_form") do
       fill_in("Title", with: 'title')
-      fill_in('Citation or Catalog URL', with: "citation")
+      fill_in('Citation', with: "citation")
       fill_in("article_needed_by_id", with: 22.days.from_now)
 
       click_button "Save"

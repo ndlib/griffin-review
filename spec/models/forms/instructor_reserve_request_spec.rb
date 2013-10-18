@@ -46,7 +46,7 @@ describe InstructorReserveRequest do
 
 
       it "requires a needed_by" do
-        @instructor_reserve.should have(2).error_on(:needed_by)
+        @instructor_reserve.should have(1).error_on(:needed_by)
       end
 
 

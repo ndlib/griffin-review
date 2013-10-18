@@ -37,6 +37,8 @@ class AdminUpdateMetaData
       self.nd_meta_data_id = self.nd_meta_data_id.strip
     end
 
+    self.overwrite_nd_meta_data ||= false
+
     ReserveCheckInprogress.new(@reserve).check!
   end
 
@@ -83,9 +85,7 @@ class AdminUpdateMetaData
 
       @reserve.save!
 
-      if requires_nd_meta_data_id?
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
-      end
+      synchronize_meta_data!
 
       ReserveCheckIsComplete.new(@reserve).check!
     end
@@ -93,6 +93,13 @@ class AdminUpdateMetaData
 
     def reserve_search
       @search ||= ReserveSearch.new
+    end
+
+
+    def synchronize_meta_data!
+      if requires_nd_meta_data_id?
+        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+      end
     end
 
 end
