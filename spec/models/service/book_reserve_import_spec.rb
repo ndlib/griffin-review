@@ -22,6 +22,12 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
     end
 
+    it "sets the reserve as being a physical reserve" do
+      @ibr.import!
+      expect(@ibr.reserve.physical_reserve).to be_true
+    end
+
+
     it "imports a book that does not have an existing reserve to the course" do
       @ibr.import!
       expect(@ibr.reserve.request.new_record?).to be_false
@@ -44,13 +50,6 @@ describe BookReserveImport do
       @ibr.import!
     end
 
-    it "calls sets the state of the item to inprocess " do
-      # this is necessary because the check to complete won't complete an item that is new.  because i want all copied items even if they do not require fair use to
-      # be looked at before they are approved.
-
-      Reserve.any_instance.should_receive(:start)
-      @ibr.import!
-    end
   end
 
 

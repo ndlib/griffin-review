@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20131016142317) do
 
+  create_table "assignments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "error_logs", force: true do |t|
     t.string   "netid"
     t.string   "path"

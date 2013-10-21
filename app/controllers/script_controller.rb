@@ -3,6 +3,8 @@ class ScriptController < ApplicationController
 
   def index
     check_admin_permission!
-    render :text => SaveRequest.update_all
+    render :text => ReserveMigrator.new.import!
+
+    #SaveRequest.update_all
   end
 end

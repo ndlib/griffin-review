@@ -78,7 +78,7 @@ Griffin::Application.configure do
   config.api_url                        = "https://apipprd.library.nd.edu/"
   config.api_token                      = "SCSGYmwqLqSyBTmxCQgM"
 
-  config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
+  config.path_to_old_files              = "/shared/reserves_pprd/data/app_home/reserves/current/uploads/old_files"
 
   # Sakai integration
   config.sakai_script_wsdl              = "https://nd-test.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"

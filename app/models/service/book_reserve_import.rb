@@ -18,9 +18,7 @@ class BookReserveImport
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
-      # this needs to happen so that ReserveCheckIsComplete will make the reserve available.
-      # because we don't want that class to complete new items normally
-      reserve.start
+      reserve.physical_reserve = true
 
       if reserve.requestor_netid.nil?
         reserve.requestor_netid = 'import'
