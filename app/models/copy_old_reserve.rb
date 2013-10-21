@@ -96,7 +96,11 @@ class CopyOldReserve
     def copy_bookchapter
       @new_request.type = "BookChapterReserve"
 
-      @new_request.pdf = get_old_file(@old_reserve.location)
+      begin
+        @new_request.pdf = get_old_file(@old_reserve.location)
+      rescue
+        raise "#{@old_reserve.id} #{@old_reserve.location}"
+      end
     end
 
 
