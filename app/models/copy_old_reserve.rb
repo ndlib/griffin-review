@@ -96,10 +96,10 @@ class CopyOldReserve
     def copy_bookchapter
       @new_request.type = "BookChapterReserve"
 
-      begin
+      if @old_reserve.location.present?
         @new_request.pdf = get_old_file(@old_reserve.location)
-      rescue
-        raise "#{@old_reserve.id} #{@old_reserve.location}"
+      else
+        @new_request.url = @old_reserve.url
       end
     end
 
@@ -114,7 +114,6 @@ class CopyOldReserve
         @new_request.complete
       end
     end
-
 
 
     def copy_video
