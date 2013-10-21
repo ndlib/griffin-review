@@ -159,6 +159,7 @@ jQuery ($) ->
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
         bLengthChange: false
+        iDisplayLength: 500
 #        bProcessing: true
 #        bServerSide: true
 #        sAjaxSource: "/admin/requests"

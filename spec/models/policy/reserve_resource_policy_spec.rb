@@ -138,7 +138,7 @@ describe ReserveResourcePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveResourcePolicy.new(reserve)
 
-      policy.can_have_url_resource?.should be_false
+      policy.can_have_url_resource?.should be_true
     end
 
 

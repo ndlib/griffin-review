@@ -29,7 +29,7 @@ class ReserveResourcePolicy
 
 
   def can_have_url_resource?
-    return true if ['JournalReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type) && !physical_reserve_only?
+    return true if ['BookChapterReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type) && !physical_reserve_only?
 
     false
   end
