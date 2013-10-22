@@ -1,5 +1,6 @@
-
-<h3>Article Details </h3>
+<p class="form-help">
+  This form will make a digital copy of a journal or print article available on the website. The library will link to already licensed content or attempt to aquire the rights and do a fair use evaluation before publishing to the students.
+</p>
 
 <%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(object.course.id) do |f| %>
 
@@ -9,11 +10,11 @@
     <%= f.input_field :citation, as: "text", rows: 4, style: "width: 100%" %>
   <% end %>
 
-  <%= f.input :needed_by, hint: "Please plan on a 10 day lead time." do %>
-    <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker span2 needed_by_datepicker' %>
+  <%= f.input :needed_by, hint: "Please plan on a 10 day lead time.", label: "Date Needed By" do %>
+    <%= f.input_field :needed_by, as: "string", id: "article_needed_by_id", class: 'datepicker needed_by_datepicker' %>
   <% end %>
 
-  <%= library_select_form(f) %>
+  <%= library_select_form(f, "Library you wish to fullfill request.") %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
     <%= f.input_field :note, as: "text", placeholder: "e.g. Other specifics about the work or requests for presentation of the work. ", rows: 3, style: "width: 100%" %>

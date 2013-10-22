@@ -144,6 +144,19 @@ table.dataTable tfoot th {
   font-style: italic;
   padding-left: 5px;
   margin-bottom: 15px;
+  font-size: .8em;
+}
+
+.instructor_form .tab-pane {
+  margin-top: 2em;
+}
+
+.form-help {
+  margin-bottom: 1.6em;
+}
+
+input[type="text"] {
+  height: 25px;
 }
 
 .row {

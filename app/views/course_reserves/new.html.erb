@@ -20,25 +20,20 @@
     </p>
   </div>
 
-  <div class="tab-content">
+  <div class="tab-content instructor_form">
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.book_request? ? 'active' : '' %>" id="book">
-      <hr>
       <%= render :partial => 'book_form', :locals => { object: new_instructor_reserve('BookReserve') } %>
     </div>
     <div class="tab-pane<%= !@request_reserve.nil? && @request_reserve.book_chapter_request? ? 'active' : '' %>" id="book_chapter">
-      <hr>
       <%= render :partial => 'book_chapter_form', :locals => { object: new_instructor_reserve('BookChapterReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.article_request? ? 'active' : '' %>" id="article">
-      <hr>
       <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('JournalReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
-      <hr>
       <%= render :partial => 'video_form', :locals => { object: new_instructor_reserve('VideoReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
-      <hr>
       <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
     </div>
   </div>
