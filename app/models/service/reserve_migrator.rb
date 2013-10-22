@@ -29,6 +29,8 @@ class ReserveMigrator
         add_course_completed(to_courses.pop)
 
         to_courses.each do | to_course |
+          CopyOldCourseReservesForm.new(current_user, { course_id: to_course, from_course_id: from_course_id, term: '201310', auto_complete: true }).copy!
+
           add_course_completed(to_course)
         end
       end
