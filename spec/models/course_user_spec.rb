@@ -96,6 +96,14 @@ describe CourseUser do
       expect(user.display_name).to eq('Jon Hartzler')
     end
 
+
+    it "handles a nil netid" do
+      user = CourseUser.netid_factory(nil, @course, 'enrollment', 'banner')
+
+      expect(user.display_name).to eq("")
+      expect(user.username).to eq("")
+    end
+
   end
 
 
