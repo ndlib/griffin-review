@@ -21,6 +21,11 @@ module API
     end
 
 
+    def self.rta(rta_id)
+      path = "rta/#{rta_id}"
+
+      get_json(path)
+    end
 
   end
 end

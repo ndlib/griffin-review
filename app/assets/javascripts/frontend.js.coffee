@@ -231,3 +231,14 @@ jQuery ($) ->
       $('#needed_by_modal').modal(
         show: true
       )
+
+  $('.needed_video_datepicker').change ->
+    d = Date.parse($(this).val())
+    test_date = new Date();
+    test_date.setDate(test_date.getDate() + 14)
+
+    if d < test_date
+      $('#video_needed_by_modal').modal(
+        show: true
+      )
+

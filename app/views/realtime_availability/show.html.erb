@@ -1,0 +1,15 @@
+
+<ul class="unstyled">
+<% @rta.items.each do | r | %>
+  <li>
+    <% if r.available? %>
+      <span class="label label-success">Available</span>
+    <% else %>
+      <span class="label label-important"> Checked out until <%= r.due_at %></span>
+    <% end %>
+    at <%= r.location %>
+  </li>
+
+<% end %>
+</ul>
+

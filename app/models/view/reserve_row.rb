@@ -1,6 +1,6 @@
 class ReserveRow
 
-  delegate :id, :file, :url, :title, :length, :course, :creator_contributor, :details, :publisher_provider, to: :reserve
+  delegate :id, :file, :url, :title, :length, :course, :creator_contributor, :details, :publisher_provider, :realtime_availability_id, to: :reserve
 
   attr_accessor :reserve
 
@@ -35,6 +35,11 @@ class ReserveRow
 
   def is_editable?
     ReserveIsEditablePolicy.new(@reserve).is_editable?
+  end
+
+
+  def show_check_availability?
+    @reserve.realtime_availability_id && @reserve.physical_reserve?
   end
 
 

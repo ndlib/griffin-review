@@ -60,10 +60,25 @@
       <strong>No Guarantee’s</strong><br>
       We request a lead time of 10 business days to process requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
       If this request requires immediate attention please contact
-      <div class="pull-right">
-        <%= render partial: '/errors/video_contact_info' %>
-      </div>
       <%= render :partial => '/errors/contact_info' %>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<div id="video_needed_by_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Date Lead Time</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong>No Guarantee’s</strong><br>
+      We request a lead time of 14 business days to process video requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
+      If this request requires immediate attention please contact
+      <%= render partial: '/errors/video_contact_info' %>
     </p>
   </div>
   <div class="modal-footer">
