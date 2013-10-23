@@ -11,12 +11,12 @@
     <%= f.input_field :needed_by, as: "string", id: "video_needed_by_id", class: 'datepicker needed_video_datepicker' %>
   <% end %>
 
-  <%= f.input :language_track %>
+  <%= f.input :language_track, label: "Audio Language" %>
 
   <%= f.input :subtitle_language %>
 
-  <%= f.input :length, label: "Clips" do %>
-    <%= f.input_field :length %>
+  <%= f.input :length, label: "Desired Clips" do %>
+    <%= f.input_field :length, placeholder: "e.g. 24:24 - 50:34 or whole video" %>
   <% end %>
 
   <%= f.input :physical_reserve, as: :boolean, inline_label: "I do not want this video to be streamed.", label: false %>

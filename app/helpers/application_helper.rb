@@ -19,12 +19,12 @@ module ApplicationHelper
   end
 
 
-  def library_select_form(f, hint = "")
+  def library_select_form(f, label = "")
     f.input :library,
       as: "select",
       collection: { 'Hesburgh Library' => :hesburgh , 'O\' Meara Mathmatics Library' => :math, 'Chemestry - Physics Library' => :chem, 'Mahaffey Business Library' => :business, 'Architecture Library' => :architecture, 'Engeneering Library' => :engeneering },
       :selected => 'Hesburgh',
-      hint: hint
+      label: label
   end
 
 

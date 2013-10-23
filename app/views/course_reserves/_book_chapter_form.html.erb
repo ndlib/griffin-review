@@ -16,7 +16,7 @@
     <%= f.input_field :needed_by, as: "string", id: "book_chapter_needed_by_id", class: 'datepicker needed_by_datepicker' %>
   <% end %>
 
-  <%= library_select_form(f, "Library you wish to fullfill request.") %>
+  <%= library_select_form(f, "Fullfillment Library") %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
     <%= f.input_field :note, as: "text", placeholder: "e.g. Other specifics about the work or requests for presentation of the work. ", rows: 3, style: "width: 100%" %>
@@ -34,8 +34,10 @@
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'BookChapterReserve' %>
 
   <div class="form-actions">
-    <%= f.button :submit, "Save", :class => 'btn-primary'%>
-    <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
+    <%= f.button :submit, "Save", :class => 'btn-primary'%> or
+    <div class="pull-right">
+      <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
+    </div>
   </div>
 
 <% end %>
