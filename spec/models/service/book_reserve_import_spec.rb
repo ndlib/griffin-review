@@ -8,7 +8,7 @@ describe BookReserveImport do
 
     stub_discovery!
 
-    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01","doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
+    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01", "doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
     @course = double(Course, id: 'crosslist_id', semester: semester)
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
@@ -62,6 +62,20 @@ describe BookReserveImport do
       @ibr.reserve.should_receive(:save!).exactly(0).times
 
       @ibr.import!
+    end
+
+    it "does not overwrite an existing type with BookReserve" do
+      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve.type = 'VideoReserve'
+      @existing_reserve.save!
+
+      BookReserveImport.any_instance.stub(:reserve).and_return(@existing_reserve)
+
+      @ibr = BookReserveImport.new(@api_data)
+      @ibr.import!
+
+      @existing_reserve.item.reload()
+      expect(@existing_reserve.type).to eq("VideoReserve")
     end
 
   end

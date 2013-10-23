@@ -14,7 +14,7 @@ class BookReserveImport
   def import!
     if can_import?
       reserve.title = bib_title
-      reserve.type = "BookReserve"
+      reserve.type  ||= "BookReserve"
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
