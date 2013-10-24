@@ -64,9 +64,10 @@ describe BookReserveImport do
       @ibr.import!
     end
 
-    it "does not overwrite an existing type with BookReserve" do
+    it "does not overwrite an existing type or physical_reserve with BookReserve" do
       @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
       @existing_reserve.type = 'VideoReserve'
+      @existing_reserve.physical_reserve = false
       @existing_reserve.save!
 
       BookReserveImport.any_instance.stub(:reserve).and_return(@existing_reserve)
@@ -76,6 +77,7 @@ describe BookReserveImport do
 
       @existing_reserve.item.reload()
       expect(@existing_reserve.type).to eq("VideoReserve")
+      expect(@existing_reserve.physical_reserve).to be_false
     end
 
   end
