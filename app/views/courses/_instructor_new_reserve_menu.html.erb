@@ -5,8 +5,8 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><%= link_to raw("<i class=\"icon-plus\"></i>  Request Reserve"), new_course_reserve_path(course.id) %></li>
-    <li><%= link_to raw("<i class=\"icon-share\"></i>  Copy from a Previous Course"), :controller => "copy_reserves", :action => "copy_step1", :course_id => course.id %></li>
+    <li><%= link_to raw("<i class=\"icon-plus\"></i> New Reserve"), new_course_reserve_path(course.id) %></li>
+    <li><%= link_to raw("<i class=\"icon-share\"></i> Copy from a Previous Course"), :controller => "copy_reserves", :action => "copy_step1", :course_id => course.id %></li>
   </ul>
 </div>
 <% if permission.current_user_is_admin_in_masquerade? || permission.current_user_is_administrator? %>
