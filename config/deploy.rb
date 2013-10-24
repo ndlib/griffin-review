@@ -41,7 +41,7 @@ task :pre_production do
   set :user,      'rpprd'
   set :domain,    'reservespprd.library.nd.edu'
   set :site_url,  'reservespprd.library.nd.edu'
-  set :branch,    '1.1'
+  set :branch,    'master'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
