@@ -18,7 +18,9 @@ class BookReserveImport
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
-      reserve.physical_reserve ||= true
+      if reserve.physical_reserve.nil?
+        reserve.physical_reserve = true
+      end
 
       if reserve.requestor_netid.nil?
         reserve.requestor_netid = 'import'
