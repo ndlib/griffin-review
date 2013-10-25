@@ -1,53 +1,34 @@
-
 class AdminReserveList
-  attr_accessor :semester, :filter
+  attr_accessor :request_tabs, :request_filter
 
-  def initialize(current_user, params)
-    @current_user = current_user
-    @semester = determine_semester(params)
-    @filter = AdminRequestFilter.new(params[:filter])
+  def initialize(controller)
+    @request_tabs   = RequestTab.new(controller.params[:tab])
+    @request_filter = RequestFilter.new(controller)
   end
 
 
   def reserves
-    if @filter.complete?
-      completed_reserves
-    elsif @filter.removed?
-      removed_reserves
+    reserve_search.admin_requests(request_tabs.filter, request_filter.type_filters, request_filter.library_filters, determine_semester)
+  end
+
+
+  def semester_title
+    if semester = determine_semester
+      "for #{semester.full_name}"
     else
-      in_complete_reserves
+      "for Current and Upcoming Semesters"
     end
   end
 
 
   private
 
-    def determine_semester(params)
-      if params.has_key?(:semester_id)
-        Semester.find(params[:semester_id])
+    def determine_semester
+      if request_filter.semester_filter
+        @semester ||= Semester.find(request_filter.semester_filter)
       else
-        Semester.current.first
+        false
       end
-    end
-
-
-    def in_complete_reserves
-      reserve_search.new_and_inprocess_reserves_for_semester()
-    end
-
-
-    def completed_reserves
-      reserve_search.available_reserves_for_semester()
-    end
-
-
-    def removed_reserves
-      reserve_search.removed_reserves_for_semester()
-    end
-
-
-    def all_reserves
-      reserve_search.all_reserves_for_semester()
     end
 
 

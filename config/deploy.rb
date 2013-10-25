@@ -41,7 +41,7 @@ task :pre_production do
   set :user,      'rpprd'
   set :domain,    'reservespprd.library.nd.edu'
   set :site_url,  'reservespprd.library.nd.edu'
-  set :branch,    '1.1'
+  set :branch,    'master'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
@@ -58,7 +58,7 @@ task :production do
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
   set :user,      'rprod'
-  set :domain,    'reservesprod.library.nd.edu'
+  set :domain,    'reserves.library.nd.edu'
   set :site_url,  'reserves.library.nd.edu'
   set :branch,    'master'
   set :git_shallow_clone, 1

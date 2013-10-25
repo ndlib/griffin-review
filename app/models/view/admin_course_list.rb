@@ -19,7 +19,7 @@ class AdminCourseList
 
 
   def semesters
-    Semester.cronologial
+    Semester.chronological
   end
 
 

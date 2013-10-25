@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe ReserveSearch do
 
-  let(:semester) { FactoryGirl.create(:semester)}
-  let(:previous_semester) { FactoryGirl.create(:previous_semester)}
+  let(:semester) { FactoryGirl.create(:semester) }
+  let(:previous_semester) { FactoryGirl.create(:previous_semester) }
+  let(:next_semester) { FactoryGirl.create(:next_semester) }
 
   let(:course_search) { CourseSearch.new }
 
@@ -32,7 +33,6 @@ describe ReserveSearch do
         reserve_search = ReserveSearch.new
         reserve_search.instructor_reserves_for_course(@course).collect{|r| r.id}.should == [@new_reserve.id, @inprogress_reserve.id, @available_reserve.id]
       end
-
     end
 
 
@@ -84,48 +84,184 @@ describe ReserveSearch do
 
   describe :admin_reserve_requests do
     before(:each) do
-      @new_semester1 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => semester.id), @course
-      @new_semester2 = mock_reserve FactoryGirl.create(:request, :new, :semester_id => previous_semester.id), @course
+      @new_semester1 = mock_reserve FactoryGirl.create(:request, :book, :new, :library => 'library1', :semester_id => semester.id), @course
+      @new_semester2 = mock_reserve FactoryGirl.create(:request, :journal_file, :new, :library => 'library1', :semester_id => previous_semester.id), @course
+      @new_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :new, :library => 'library2', :semester_id => next_semester.id), @course
 
-      @inprocess_semester1 = mock_reserve FactoryGirl.create(:request, :inprocess, :semester_id => semester.id), @course
-      @inprocess_semester2 = mock_reserve FactoryGirl.create(:request, :inprocess, :semester_id => previous_semester.id), @course
+      @inprocess_semester1 = mock_reserve FactoryGirl.create(:request, :journal_url, :inprocess, :library => 'library1', :semester_id => semester.id), @course
+      @inprocess_semester2 = mock_reserve FactoryGirl.create(:request, :video, :inprocess, :library => 'library1', :semester_id => previous_semester.id), @course
+      @inprocess_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :inprocess, :library => 'library2', :semester_id => next_semester.id), @course
 
-      @available_semester1 = mock_reserve FactoryGirl.create(:request, :available, :semester_id => semester.id), @course
-      @available_semester2 = mock_reserve FactoryGirl.create(:request, :available, :semester_id => previous_semester.id), @course
+      @available_semester1 = mock_reserve FactoryGirl.create(:request, :audio, :available, :library => 'library1', :semester_id => semester.id), @course
+      @available_semester2 = mock_reserve FactoryGirl.create(:request, :book, :available, :library => 'library1', :semester_id => previous_semester.id), @course
+      @available_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :available, :library => 'library2', :semester_id => next_semester.id), @course
+
     end
 
 
-    describe :new_and_inprocess_reserves_for_semester do
 
-      it "gets all the reserves that are new and inprocess for the passed in semester" do
-        reserve_search = ReserveSearch.new
 
-        res = reserve_search.new_and_inprocess_reserves_for_semester(semester)
-        res.size.should == 2
-        res.collect { | r | r.id }.should == [ @new_semester1.id, @inprocess_semester1.id ]
+
+    describe :admin_reserve_requests_by_status_for_semester do
+
+      context :new do
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.admin_requests('new', 'all', 'all', previous_semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester2.id ])
+        end
+
+        it "returns all future  items when there is no semester passed in" do
+          result = ReserveSearch.new.admin_requests('new', 'all', 'all')
+
+          expect(result.size).to eq(2)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester1.id, @new_semester3.id ])
+        end
+
+
+        it "returns just the new ones for a specific library" do
+          result = ReserveSearch.new.admin_requests('new', 'all', 'library1')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester1.id ])
+        end
+
+
+        it "returns just the types asked for " do
+          result = ReserveSearch.new.admin_requests('new', 'BookReserve', 'all')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester1.id ])
+        end
       end
-    end
 
 
-    describe :available_reserves_for_semester do
-      it "gets all the reserves that are available " do
-        reserve_search = ReserveSearch.new
+      context :inprocess do
 
-        res = reserve_search.available_reserves_for_semester(semester)
-        res.size.should == 1
-        res.collect { | r | r.id }.should == [ @available_semester1.id ]
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all', previous_semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester2.id ])
+        end
+
+
+        it "returns all future items when there is no semester passed in" do
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all')
+
+          expect(result.size).to eq(2)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id, @inprocess_semester3.id ])
+        end
+
+
+        it "returns just the new ones for a specific library" do
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'library1')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
+
+
+        it "returns just the types asked for " do
+          result = ReserveSearch.new.admin_requests('inprocess', 'JournalReserve', 'all')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
       end
-    end
 
 
-    describe :all_reserves_for_semester do
+      context :available do
 
-      it "gets all the reserves for a semester" do
-        reserve_search = ReserveSearch.new
+        it "returns all the items in the passed in semester" do
+          result = ReserveSearch.new.admin_requests('available', 'all', 'all', previous_semester)
 
-        res = reserve_search.all_reserves_for_semester(semester)
-        res.size.should == 3
-        res.collect { | r | r.id }.should == [  @new_semester1.id, @inprocess_semester1.id, @available_semester1.id ]
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester2.id ])
+        end
+
+
+        it "returns all future items when there is no semester passed in" do
+          result = ReserveSearch.new.admin_requests('available', 'all', 'all')
+
+          expect(result.size).to eq(2)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester1.id, @available_semester3.id ])
+        end
+
+
+        it "returns just the new ones for a specific library" do
+          result = ReserveSearch.new.admin_requests('available', 'all', 'library1')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester1.id ])
+        end
+
+
+        it "returns just the types asked for " do
+          result = ReserveSearch.new.admin_requests('available', 'AudioReserve', 'all')
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @available_semester1.id ])
+        end
+      end
+
+
+      describe :semester_only do
+
+        it "returns all the reserves for the passed in semester " do
+            result = ReserveSearch.new.admin_requests('all', 'all', 'all', previous_semester)
+
+            expect(result.size).to eq(3)
+            expect(result.collect { | r | r.id }).to eq([ @new_semester2.id, @inprocess_semester2.id, @available_semester2.id ])
+        end
+
+        it "returns all future reserves if no semester is passed in " do
+            result = ReserveSearch.new.admin_requests('all', 'all', 'all')
+
+            expect(result.size).to eq(6)
+            expect(result.collect { | r | r.id }).to eq([ @new_semester1.id, @new_semester3.id, @inprocess_semester1.id, @inprocess_semester3.id, @available_semester1.id, @available_semester3.id ])
+        end
+      end
+
+
+      describe :library_only do
+        it "returns all the reserves for a library for the passed in " do
+          result = ReserveSearch.new.admin_requests('all', 'all', 'library1', previous_semester)
+
+          expect(result.size).to eq(3)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester2.id, @inprocess_semester2.id, @available_semester2.id ])
+        end
+
+        it "returns all the reserves for a library in the upcoming semesters" do
+          result = ReserveSearch.new.admin_requests('all', 'all', 'library2')
+
+          expect(result.size).to eq(3)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester3.id, @inprocess_semester3.id, @available_semester3.id ])
+        end
+
+        it "takes an array of availble library values" do
+          result = ReserveSearch.new.admin_requests('all', 'all', [ 'library1', 'library2' ])
+
+          expect(result.size).to eq(6)
+        end
+      end
+
+
+      describe :type_only do
+        it "returns all the reserves for a type for the passed in " do
+          result = ReserveSearch.new.admin_requests('all', 'BookChapterReserve', 'all', next_semester)
+
+          expect(result.size).to eq(3)
+          expect(result.collect { | r | r.id }).to eq([ @new_semester3.id, @inprocess_semester3.id, @available_semester3.id ])
+        end
+
+
+        it "returns takes an array of reserve types" do
+          result = ReserveSearch.new.admin_requests('all', ['BookReserve', 'AudioReserve'], 'all')
+
+          expect(result.size).to eq(2)
+        end
       end
     end
   end

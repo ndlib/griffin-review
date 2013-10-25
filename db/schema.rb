@@ -11,21 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923141724) do
+ActiveRecord::Schema.define(version: 20131016142317) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "basic_metadata", force: true do |t|
-    t.integer  "metadata_attribute_id"
-    t.integer  "item_id"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "error_logs", force: true do |t|
@@ -43,6 +35,7 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.boolean "active"
     t.string  "category"
     t.integer "ord"
+    t.string  "subcategory"
   end
 
   add_index "fair_use_questions", ["ord"], name: "index_fair_use_questions_on_ord", using: :btree
@@ -61,19 +54,12 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   add_index "fair_uses", ["item_id"], name: "index_fair_uses_on_item_id", using: :btree
   add_index "fair_uses", ["request_id"], name: "index_fair_uses_on_request_id", using: :btree
 
-  create_table "item_types", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "creator"
     t.string   "title"
     t.string   "journal_title"
@@ -91,17 +77,12 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "details"
     t.datetime "metadata_synchronization_date"
     t.string   "display_length"
+    t.text     "citation"
+    t.boolean  "physical_reserve"
+    t.string   "realtime_availability_id"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
-
-  create_table "metadata_attributes", force: true do |t|
-    t.string   "name"
-    t.text     "definition"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "metadata_type"
-  end
 
   create_table "requests", force: true do |t|
     t.integer  "user_id"
@@ -114,8 +95,8 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "language"
     t.string   "subtitles"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
@@ -133,6 +114,7 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   add_index "requests", ["crosslist_id"], name: "index_requests_on_crosslist_id", using: :btree
   add_index "requests", ["library"], name: "index_requests_on_library", using: :btree
   add_index "requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
+  add_index "requests", ["workflow_state"], name: "index_requests_on_workflow_state", using: :btree
 
   create_table "reserve_stats", force: true do |t|
     t.integer  "request_id"
@@ -145,13 +127,6 @@ ActiveRecord::Schema.define(version: 20130923141724) do
 
   add_index "reserve_stats", ["item_id"], name: "index_reserve_stats_on_item_id", using: :btree
   add_index "reserve_stats", ["request_id"], name: "index_reserve_stats_on_request_id", using: :btree
-
-  create_table "roles", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "sakai_context_cache", force: true do |t|
     t.string   "context_id"
@@ -169,82 +144,15 @@ ActiveRecord::Schema.define(version: 20130923141724) do
   add_index "sakai_context_cache", ["term"], name: "index_sakai_context_cache_on_term", using: :btree
   add_index "sakai_context_cache", ["user_id"], name: "index_sakai_context_cache_on_user_id", using: :btree
 
-  create_table "save_requests", force: true do |t|
-    t.integer  "user_id"
-    t.date     "needed_by"
-    t.integer  "semester_id"
-    t.string   "title"
-    t.string   "course"
-    t.boolean  "repeat_request"
-    t.boolean  "library_owned"
-    t.string   "language"
-    t.string   "subtitles"
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "workflow_state"
-    t.datetime "workflow_state_change_date"
-    t.integer  "workflow_state_change_user"
-    t.integer  "video_id"
-    t.integer  "number_of_copies"
-    t.string   "requestor_owns_a_copy"
-    t.string   "library"
-    t.string   "course_id"
-    t.string   "crosslist_id"
-    t.string   "requestor_netid"
-    t.integer  "item_id"
-  end
-
-  add_index "save_requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
-  add_index "save_requests", ["crosslist_id"], name: "index_requests_on_crosslist_id", using: :btree
-  add_index "save_requests", ["library"], name: "index_requests_on_library", using: :btree
-  add_index "save_requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
-
   create_table "semesters", force: true do |t|
     t.string   "code"
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "movie_directory"
   end
-
-  create_table "taggings", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       limit: 128
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-
-  create_table "tags", force: true do |t|
-    t.string "name"
-  end
-
-  create_table "technical_metadata", force: true do |t|
-    t.integer  "item_id"
-    t.integer  "metadata_attribute_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "value"
-  end
-
-  create_table "test_requests", force: true do |t|
-    t.string   "title"
-    t.string   "author"
-    t.string   "type"
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "test_requests", ["type"], name: "index_test_requests_on_type", using: :btree
 
   create_table "user_course_exceptions", force: true do |t|
     t.string "netid"
@@ -267,9 +175,10 @@ ActiveRecord::Schema.define(version: 20130923141724) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "admin"
+    t.string   "admin_preferences"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

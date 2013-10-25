@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :item do
     title "title"
     type "BookReserve"
+    physical_reserve false
   end
 
 
@@ -47,7 +48,7 @@ FactoryGirl.define do
 
   factory :item_audio, class: Item do
     title "audio reserve"
-    type "VideoReserve"
+    type "AudioReserve"
     url "audio.mov"
   end
 

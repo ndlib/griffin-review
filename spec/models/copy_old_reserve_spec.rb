@@ -8,7 +8,7 @@ describe CopyReserve do
 
   describe :generic_copy do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "journal" )
+      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "journal", group_name: "Admin" )
       @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
     end
 
@@ -19,7 +19,7 @@ describe CopyReserve do
 
 
     it "sets the workflow state to new " do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
 
 
@@ -47,29 +47,47 @@ describe CopyReserve do
 
   describe :copy_book do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'book', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid' )
-
-      @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+      @old_reserve = mock_model(OpenItem, item_type: 'book', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
+      API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details'))
     end
 
     it "sets the type correctly" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       @new_reserve.type.should == "BookReserve"
     end
 
 
-    it "sets the metadata id " do
-      @new_reserve.nd_meta_data_id.should == "sid"
+    it "sets the realtime availabliity id " do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      @new_reserve.realtime_availability_id.should == "sid"
     end
 
     it "should auto complete this reserve" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       @new_reserve.workflow_state.should == "available"
+    end
+
+    it "should look up the nd_meta_data_id for this item" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.nd_meta_data_id).to eq("bib_id")
+    end
+
+    it "should attempt to synchonize the metadata " do
+      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      CopyOldReserve.new(user, to_course, @old_reserve).copy
+    end
+
+    it "should say that the metadata is overwriten" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.overwrite_nd_meta_data).to be_false
     end
   end
 
 
   describe :copy_book_chapter do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "" )
+      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "", group_name: "Admin"  )
 
       @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
     end
@@ -84,7 +102,7 @@ describe CopyReserve do
     end
 
     it "should not auto complete this reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve.workflow_state.should == "new"
     end
 
   end
@@ -92,7 +110,7 @@ describe CopyReserve do
 
   describe :copy_journal do
     before(:each) do
-      @old_reserve = mock_model(OpenItem, item_type: 'article', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "" )
+      @old_reserve = mock_model(OpenItem, item_type: 'article', location: 'test.pdf', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "", group_name: "Admin"  )
     end
 
     it "sets the type correctly for articles" do
@@ -116,7 +134,7 @@ describe CopyReserve do
 
     it "should not auto complete a journal file " do
       new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      new_reserve.workflow_state.should == "inprocess"
+      new_reserve.workflow_state.should == "new"
     end
 
 
@@ -143,24 +161,46 @@ describe CopyReserve do
 
   describe :copy_video do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'video', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid' )
-
-      @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+      @old_reserve = mock_model(OpenItem, item_type: 'video', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
+      API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details'))
     end
 
     it "sets the type correctly" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       @new_reserve.type.should == "VideoReserve"
     end
 
 
-    it "sets the metadata id " do
-      @new_reserve.nd_meta_data_id.should == "sid"
+    it "sets the realtime availabliity id " do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      @new_reserve.realtime_availability_id.should == "sid"
     end
 
 
     it "should not auto complete a video reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      @new_reserve.workflow_state.should == "new"
     end
+
+
+    it "should look up the nd_meta_data_id for this item" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.nd_meta_data_id).to eq("bib_id")
+    end
+
+
+    it "should attempt to synchonize the metadata " do
+      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      CopyOldReserve.new(user, to_course, @old_reserve).copy
+    end
+
+
+    it "should say that the metadata is overwriten" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.overwrite_nd_meta_data).to be_false
+    end
+
   end
 
 
@@ -168,25 +208,86 @@ describe CopyReserve do
 
   describe :copy_music do
     before(:each) do
-      old_reserve = mock_model(OpenItem, item_type: 'music', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid' )
-
-      @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+      @old_reserve = mock_model(OpenItem, item_type: 'music', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
+      API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details'))
     end
 
     it "sets the type correctly" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
       @new_reserve.type.should == "AudioReserve"
     end
 
 
-    it "sets the metadata id " do
-      @new_reserve.nd_meta_data_id.should == "sid"
+    it "sets the realtime availabliity id " do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      @new_reserve.realtime_availability_id.should == "sid"
     end
 
 
     it "should not auto complete a video reserve" do
-      @new_reserve.workflow_state.should == "inprocess"
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      @new_reserve.workflow_state.should == "new"
+    end
+
+
+    it "should say that the metadata is overwriten" do
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.overwrite_nd_meta_data).to be_false
+    end
+
+
+    it "should attempt to synchonize the metadata " do
+      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      CopyOldReserve.new(user, to_course, @old_reserve).copy
     end
   end
 
 
+
+  describe :convert_group_name_to_library do
+    before(:each) do
+      @old_reserve = mock_model(OpenItem, item_type: 'chapter', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: ""  )
+    end
+
+    it "converts admin to hesburgh" do
+      @old_reserve.stub(:group_name).and_return 'Admin'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('hesburgh')
+    end
+
+    it "converts Mathamtics to math" do
+      @old_reserve.stub(:group_name).and_return 'Mathematics'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('math')
+    end
+
+
+    it "converts Chemistry/Phyics to chem" do
+      @old_reserve.stub(:group_name).and_return 'Chemistry/Physics'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('chem')
+    end
+
+
+    it "converts Business to business" do
+      @old_reserve.stub(:group_name).and_return 'Business'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('business')
+    end
+
+
+    it "converts Engeneering to engeneering" do
+      @old_reserve.stub(:group_name).and_return 'Engeneering'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('engeneering')
+    end
+
+
+    it "converts Architecture to architecture" do
+      @old_reserve.stub(:group_name).and_return 'Architecture'
+      @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
+      expect(@new_reserve.library).to eq('architecture')
+    end
+  end
 end

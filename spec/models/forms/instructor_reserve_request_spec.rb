@@ -28,8 +28,8 @@ describe InstructorReserveRequest do
 
     it "has all the form attributes" do
       [
-        :title, :publisher, :journal_title, :creator, :length, :note, :needed_by,
-        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies
+        :title, :publisher, :journal_title, :creator, :length, :note, :needed_by, :type, :pdf,
+        :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies, :citation, :physical_reserve
       ].each do | at |
         @instructor_reserve.respond_to?(at).should be_true
       end
@@ -46,7 +46,7 @@ describe InstructorReserveRequest do
 
 
       it "requires a needed_by" do
-        @instructor_reserve.should have(2).error_on(:needed_by)
+        @instructor_reserve.should have(1).error_on(:needed_by)
       end
 
 
@@ -63,17 +63,7 @@ describe InstructorReserveRequest do
 
 
     describe "creator" do
-      it "requires a creator if the type is Book, BookChapter, Journal, Audio" do
-        ['BookReserve', 'BookChapterReserve', 'JournalReserve', 'AudioReserve'].each do | type |
-          @instructor_reserve.type = type
-          @instructor_reserve.should have(1).error_on(:creator)
-        end
-      end
 
-      it "does not require a creator if the type is Video" do
-        @instructor_reserve.type = 'VideoReserve'
-        @instructor_reserve.should_not have(1).error_on(:creator)
-      end
     end
 
 
@@ -96,18 +86,23 @@ describe InstructorReserveRequest do
 
     describe "journal_title" do
 
-      it "requires the journal_title if the type is JournalReserve" do
-        @instructor_reserve.type = 'JournalReserve'
-        @instructor_reserve.should have(1).error_on(:journal_title)
+    end
+
+
+    describe "citation" do
+      it "does not require the citation is video or audioo" do
+        ['VideoReserve', 'AudioReserve'].each do | type |
+          @instructor_reserve.type = type
+          @instructor_reserve.should_not have(1).error_on(:citation)
+        end
       end
 
 
-      it "does not requires the journal_title if the type is Book, BookChapter, Audio, Video" do
-        ['BookReserve', 'VideoReserve', 'BookChapterReserve', 'AudioReserve'].each do | type |
+      it "does not require the length for types: Book, Journal, Audio, Video" do
+        ['BookReserve', 'JournalReserve', 'BookChapterReserve'].each do | type |
           @instructor_reserve.type = type
-          @instructor_reserve.should_not have(1).error_on(:journal_title)
+          @instructor_reserve.should have(1).error_on(:citation)
         end
-
       end
     end
 
@@ -140,7 +135,7 @@ describe InstructorReserveRequest do
   describe "make_request" do
 
     it "creates the reserve with valid params" do
-      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } }
+      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } }
 
 
       @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)

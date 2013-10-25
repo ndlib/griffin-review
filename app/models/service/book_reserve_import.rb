@@ -14,15 +14,20 @@ class BookReserveImport
   def import!
     if can_import?
       reserve.title = bib_title
-      reserve.type = "BookReserve"
+      reserve.type  ||= "BookReserve"
       reserve.nd_meta_data_id = bib_id
+      reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
-      # this needs to happen so that ReserveCheckIsComplete will make the reserve available.
-      # because we don't want that class to complete new items normally
-      reserve.start
+      if reserve.physical_reserve.nil?
+        reserve.physical_reserve = true
+      end
 
       if reserve.requestor_netid.nil?
         reserve.requestor_netid = 'import'
+      end
+
+      if !reserve.nd_meta_data_id.nil?
+        reserve.overwrite_nd_meta_data = false
       end
 
       begin
@@ -48,7 +53,11 @@ class BookReserveImport
 
 
   def reserve
-    @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id) || Reserve.new
+    return @reserve if @reserve
+
+    @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id)
+    @reserve ||= ReserveSearch.new.reserve_by_rta_id_for_course(course, realtime_availability_id)
+    @reserve ||= Reserve.new
   end
 
 
@@ -63,7 +72,12 @@ class BookReserveImport
 
 
   def bib_id
-    @api_data['bib_id']
+    "ndu_aleph#{@api_data['bib_id']}"
+  end
+
+
+  def realtime_availability_id
+    @api_data['doc_number']
   end
 
 
@@ -91,7 +105,7 @@ class BookReserveImport
 
 
     def can_import?
-      course.present? && new_reserve?
+      course.present?
     end
 
 end

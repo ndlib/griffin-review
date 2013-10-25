@@ -49,6 +49,16 @@ describe ReserveFairUsePolicy do
     end
 
 
+    it "returns false if the type of request is a book chapter and there is no file attached" do
+      reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
+      reserve.pdf.destroy
+      reserve.url = "http://www.google.com"
+
+      policy = ReserveFairUsePolicy.new(reserve)
+
+      policy.requires_fair_use?.should be_false
+    end
+
     it "returns true is the type of the request is a journal with a file attached" do
       reserve = mock_reserve FactoryGirl.create(:request, :journal_file), nil
       policy = ReserveFairUsePolicy.new(reserve)

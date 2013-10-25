@@ -14,6 +14,8 @@ describe AdminUpdateResource do
 
     it "only allows pdfs to be set if it can have pdfs " do
       url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      ReserveResourcePolicy.any_instance.stub(:can_have_file_resource?).and_return(false)
+
       aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { :pdf => 'filefile' }})
       aur.should have(1).error_on(:pdf)
     end
@@ -21,7 +23,10 @@ describe AdminUpdateResource do
 
     it "only allows links to be set if it can have links " do
       pdf_reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+      ReserveResourcePolicy.any_instance.stub(:can_have_url_resource?).and_return(false)
+
       aur = AdminUpdateResource.new(@user, { :id => pdf_reserve.id, :admin_update_resource => { :url => 'urlurl' }})
+
       aur.should have(1).error_on(:url)
     end
 
@@ -61,6 +66,21 @@ describe AdminUpdateResource do
       aur.save_resource.should be_true
       aur.reserve.url.should == "url"
     end
+
+
+
+    it "checks to seed if the item is complete" do
+      ReserveCheckIsComplete.any_instance.should_receive(:check!)
+
+      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      url_reserve.url = nil
+      url_reserve.save!
+
+      aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { :url => "url" }})
+
+      aur.save_resource
+    end
+
 
   end
 

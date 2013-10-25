@@ -1,13 +1,11 @@
 <% content_for(:content_title) do %>
   <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
-  <p class="lead">
+  <p class="lead well">
     <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %> <br>
     <small>
-      <%= @admin_reserve.course.crosslisted_course_ids.join(", ") %><br />
-      Sections: <%= @admin_reserve.course.section_numbers.join(", ") %><br>
+      <%= @admin_reserve.course.crosslisted_course_ids.join(", ") %> - <%= @admin_reserve.course.section_numbers.join(", ") %> <br />
     </small>
-    Status: <%= @admin_reserve.workflow_state %><br />
-    Requestor: <%= @admin_reserve.requestor %>
+    Requestor: <%= @admin_reserve.requestor %> <br>
   </p>
 <% end %>
 <% content_for(:content_title_links) do %>
@@ -18,22 +16,28 @@
 breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow_state)), h(@admin_reserve.title) ])
 %>
 <div class="find-resources">
-  <hr>
+  <h4>Record Display</h4>
   <%= render :partial => '/course_reserves/list_record', :locals => { object: @admin_reserve.reserve } %>
+
+  <div class="record">
+    <h4>Citation</h4>
+    <%= raw @admin_reserve.citation %>
+
+    <h4>Notes</h4>
+    <%= raw @admin_reserve.info_list %>
+    <%= raw @admin_reserve.note %>
+  </div>
+
+  <h4>Statistics</h4>
+  <dl class="dl-horizontal long-dt">
+    <dt>Number of Clicks for <%= @admin_reserve.semester_code %>:</dt>
+    <dd><%= @admin_reserve.number_of_views_for_current_request %></dd>
+
+    <dt>Number of Clicks Alltime:</dt>
+    <dd><%= @admin_reserve.number_of_views_all_time %></dd>
+  </dl>
+
 </div>
-
-<h4>Notes</h4>
-<%= raw @admin_reserve.info_list %>
-<%= raw @admin_reserve.note %>
-
-<h4>Statistics</h4>
-<dl class="dl-horizontal long-dt">
-  <dt>Number of Clicks for <%= @admin_reserve.semester_code %>:</dt>
-  <dd><%= @admin_reserve.number_of_views_for_current_request %></dd>
-
-  <dt>Number of Clicks Alltime:</dt>
-  <dd><%= @admin_reserve.number_of_views_all_time %></dd>
-</dl>
 
 
 

@@ -7,9 +7,9 @@ class ReserveFairUsePolicy
 
 
   def requires_fair_use?
-    return true if ['BookChapterReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type)
+    return true if ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
 
-    return true if 'JournalReserve' == @reserve.type && @reserve.pdf.present?
+    return true if ['BookChapterReserve', 'JournalReserve'].include?(@reserve.type) && @reserve.pdf.present?
 
     return false
   end

@@ -88,11 +88,11 @@ describe FairUse do
     end
 
 
-    it "can transition to awaiting council from update" do
+    it "can transition to temporary_approval from update" do
       f = FairUse.new(:user_id => 1)
-      f.send_to_council
+      f.temporary_approval
 
-      f.state.should == "awaiting_council"
+      f.state.should == "temporary_approval"
     end
 
 
@@ -104,8 +104,8 @@ describe FairUse do
     end
 
 
-    it "can transition to denied from awaiting_council " do
-      f = FairUse.new(:user_id => 1, :state => 'awaiting_council')
+    it "can transition to denied from temporary_approval " do
+      f = FairUse.new(:user_id => 1, :state => 'temporary_approval')
       f.deny
 
       f.state.should == "denied"
@@ -135,16 +135,19 @@ describe FairUse do
       FairUse.new(user_id: 1, state: "approved").complete?.should be_true
     end
 
+
     it "is complete if the state is denied" do
       FairUse.new(user_id: 1, state: "denied").complete?.should be_true
     end
 
-    it "is not complete if the state is update" do
-      FairUse.new(user_id: 1, state: "update").complete?.should be_false
+
+    it "is complete if the state is temporary_approval" do
+      FairUse.new(user_id: 1, state: "temporary_approval").complete?.should be_true
     end
 
-    it "is not complete ifthe state is awaiting_council" do
-      FairUse.new(user_id: 1, state: "awaiting_council").complete?.should be_false
+
+    it "is not complete if the state is update" do
+      FairUse.new(user_id: 1, state: "update").complete?.should be_false
     end
 
   end

@@ -6,6 +6,13 @@ class CopyOldCourseReservesForm
     @to_course_id = params[:course_id]
     @from_course_id = params[:from_course_id]
     @term = params[:term]
+
+    if params[:auto_complete]
+      @auto_complete = params[:auto_complete]
+    else
+      @auto_complete = false
+    end
+
     @current_user = current_user
     validate_inputs!
   end
@@ -57,7 +64,7 @@ class CopyOldCourseReservesForm
     @copied_items = []
 
     from_course.reserves.each do | old_reserve |
-      @copied_items << CopyOldReserve.new(@current_user, to_course, old_reserve).copy
+      @copied_items << CopyOldReserve.new(@current_user, to_course, old_reserve, @auto_complete).copy
     end
 
     @copied_items

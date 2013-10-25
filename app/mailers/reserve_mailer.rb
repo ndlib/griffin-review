@@ -3,8 +3,20 @@ class ReserveMailer < ActionMailer::Base
 
   def new_request_notifier(reserve)
     @reserve = reserve
-    mail(:to => 'prader@nd.edu', :subject => "Video Digitization Request from " + @reserve.requestor_name)
+
+    if Rails.env == 'production'
+      mail(:to => determine_email_for_reserve(reserve), :subject => "Reserve Request from " + @reserve.requestor_name)
+    end
   end
 
+
+  private
+    def determine_email_for_reserve(reserve)
+      if ['VideoReserve', 'AudioReserve'].include?(reserve.type)
+        'prader@nd.edu'
+      else
+        'denyeart@nd.edu'
+      end
+    end
 
 end

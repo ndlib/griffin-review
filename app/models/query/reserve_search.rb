@@ -34,42 +34,23 @@ class ReserveSearch
   end
 
 
-  def new_and_inprocess_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? || requests.workflow_state = ?', 'new', 'inprocess').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
+  def admin_requests(status, types, libraries, semester = false)
+    search = @relation.
+              includes(:item).
+              where('requests.semester_id IN(?)', determine_search_semesters(semester)).
+              order('needed_by')
 
+    if status != 'all'
+      search = search.where('requests.workflow_state = ? ', status)
+    end
+    if libraries != 'all'
+      search = search.where('requests.library IN(?)', libraries)
+    end
+    if types != 'all'
+      search = search.where('items.type IN(?)', types).references(:items)
+    end
 
-  def available_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? ', 'available').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
-
-
-  def removed_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        where('requests.workflow_state = ? ', 'removed').
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
-  end
-
-
-  def all_reserves_for_semester(semester = false)
-    @relation.
-        includes(:item).
-        where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-        order('needed_by').
-        collect { | r | load_in_reserve(r, false) }
+    search.collect { | r | load_in_reserve(r, false) }
   end
 
 
@@ -84,6 +65,16 @@ class ReserveSearch
   end
 
 
+  def reserve_by_rta_id_for_course(course, rta_id)
+    @relation.
+      includes(:item).
+      references(:item).
+      where('requests.course_id = ? ', course.id).
+      where('items.realtime_availability_id = ?', rta_id).
+      collect { | r | load_in_reserve(r, false) }.
+      first
+  end
+
   private
 
     def determine_search_semesters(semester)
@@ -96,5 +87,4 @@ class ReserveSearch
 
       Reserve.factory(request, course)
     end
-
 end

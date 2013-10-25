@@ -11,7 +11,8 @@ class ReserveResourcePolicy
 
 
   def can_have_file_resource?
-    return true if ['JournalReserve', 'BookChapterReserve'].include?(@reserve.type)
+    return true if ['JournalReserve', 'BookChapterReserve'].include?(@reserve.type) && !physical_reserve_only?
+
 
     false
   end
@@ -28,7 +29,7 @@ class ReserveResourcePolicy
 
 
   def can_have_url_resource?
-    return true if ['JournalReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type)
+    return true if ['BookChapterReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].include?(@reserve.type) && !physical_reserve_only?
 
     false
   end
@@ -58,4 +59,8 @@ class ReserveResourcePolicy
     !can_have_resource? || has_resource?
   end
 
+
+  def physical_reserve_only?
+    @reserve.physical_reserve?
+  end
 end

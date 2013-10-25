@@ -1,11 +1,11 @@
 class InstructorCourseRow
+
   attr_accessor :reserve
 
   delegate :id, to: :reserve
 
-  def initialize(reserve, context)
+  def initialize(reserve)
     @reserve = reserve
-    @context = context
   end
 
 
@@ -15,7 +15,15 @@ class InstructorCourseRow
 
 
   def workflow_state
-    @reserve.workflow_state.titleize
+    if @reserve.fair_use.temporary_approval?
+      helpers.raw("Temporarily Approved #{helpers.link_to(helpers.image_tag("help.png"), "#temporarily_available_text", 'data-toggle' => "modal")}")
+    elsif @reserve.workflow_state == 'available'
+      'Published'
+    elsif @reserve.workflow_state == "new" || @reserve.workflow_state == 'inprocess'
+      'In Process'
+    else
+      @reserve.workflow_state.titleize
+    end
   end
 
 
@@ -26,8 +34,8 @@ class InstructorCourseRow
 
   def delete_link
     if can_delete?
-      @context.link_to(@context.raw("<i class=\"icon-remove\"></i>"),
-                     @context.course_reserve_path(@reserve.course.id, @reserve.id),
+      helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i>"),
+                      routes.course_reserve_path(@reserve.course.id, @reserve.id),
                       data: { confirm: 'Are you sure you wish to remove this reserve from your course?' },
                       :method => :delete,
                       :id => "delete_reserve_#{@reserve.id}")
@@ -44,6 +52,18 @@ class InstructorCourseRow
       'available'
     end
   end
+
+
+  private
+
+    def helpers
+      ActionController::Base.helpers
+    end
+
+
+    def routes
+      Rails.application.routes.url_helpers
+    end
 
 end
 

@@ -17,9 +17,15 @@ class CourseUser
 
 
   def self.netid_factory(netid, course, role, source)
-    u = User.username(netid).first || User.new(username: netid)
-    if u.new_record?
-      u.save!
+
+    if !netid.nil?
+      u = User.username(netid).first || User.new(username: netid)
+
+      if u.new_record?
+        u.save!
+      end
+    else
+      u = User.new(username: "", display_name: "")
     end
 
     self.new(u, course, role, source)

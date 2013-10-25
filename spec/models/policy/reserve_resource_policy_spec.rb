@@ -70,7 +70,17 @@ describe ReserveResourcePolicy do
 
       policy.can_have_file_resource?.should be_false
     end
+
+
+    it "returns false if it is a physical only reserve" do
+      reserve = mock_reserve FactoryGirl.create(:request, :audio), nil
+      reserve.physical_reserve = true
+
+      policy = ReserveResourcePolicy.new(reserve)
+      policy.can_have_file_resource?.should be_false
+    end
   end
+
 
 
   describe :has_file_resource? do
@@ -128,7 +138,7 @@ describe ReserveResourcePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveResourcePolicy.new(reserve)
 
-      policy.can_have_url_resource?.should be_false
+      policy.can_have_url_resource?.should be_true
     end
 
 
@@ -161,6 +171,15 @@ describe ReserveResourcePolicy do
       policy = ReserveResourcePolicy.new(reserve)
 
       policy.can_have_url_resource?.should be_true
+    end
+
+
+    it "returns false if it is a physical only reserve" do
+      reserve = mock_reserve FactoryGirl.create(:request, :audio), nil
+      reserve.physical_reserve = true
+
+      policy = ReserveResourcePolicy.new(reserve)
+      policy.can_have_url_resource?.should be_false
     end
   end
 

@@ -154,28 +154,15 @@ jQuery ($) ->
 
   setupAdminDatatable = () ->
     # For admin table
+
     if $(".admin_datatable").size() > 0
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
-        iDisplayLength: 1000
         bLengthChange: false
-        aoColumnDefs: [
-          bVisible: false
-          bSortable: false
-          bSearchable: false
-          aTargets: [6]
-        ]
-      )
-
-      if $('li.active > a.tab').attr('filter') != "complete"
-        oTable.fnFilter($('li.active > a.tab').attr('filter'), 6, true, false, false)
-
-
-      $('a[data-toggle="tab"]').on('click', ->
-        if oTable.size() == 0
-          return
-
-        oTable.fnFilter($(this).attr('filter'), 6, true, false, false)
+        iDisplayLength: 500
+#        bProcessing: true
+#        bServerSide: true
+#        sAjaxSource: "/admin/requests"
       )
 
 
@@ -233,3 +220,25 @@ jQuery ($) ->
   setupUsersDatatable()
 
   setupTableFilters()
+
+
+  $('.needed_by_datepicker').change ->
+    d = Date.parse($(this).val())
+    test_date = new Date();
+    test_date.setDate(test_date.getDate() + 10)
+
+    if d < test_date
+      $('#needed_by_modal').modal(
+        show: true
+      )
+
+  $('.needed_video_datepicker').change ->
+    d = Date.parse($(this).val())
+    test_date = new Date();
+    test_date.setDate(test_date.getDate() + 14)
+
+    if d < test_date
+      $('#video_needed_by_modal').modal(
+        show: true
+      )
+

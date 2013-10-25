@@ -5,57 +5,79 @@
 <% breadcrumb([ link_to('Courses', courses_path), link_to(@new_reserve.course_title, course_reserves_path(@new_reserve.course.id)), 'Request New Material' ]) %>
 <hr>
 <div class="six columns">
-  <h2>New Video Request</h2>
-  <!--
+
   <div class="btn-group" data-toggle="buttons-radio">
-    <h3>What type of material do you need? </h3>
+    <h2>What type of material do you need? </h2>
     <p>
 
       <a href="#book" class="btn <%= (!@request_reserve.nil? && @request_reserve.book_request?) ? 'active' : '' %>" data-toggle="tab">Book</a>
       <a href="#book_chapter" class="btn <%= (@request_reserve && @request_reserve.book_chapter_request?) ? 'active' : '' %>" data-toggle="tab">Book Chapter</a>
       <a href="#article" class="btn <%= @request_reserve && @request_reserve.article_request? ? 'active' : '' %>" data-toggle="tab">Article</a>
       <a href="#video" class="btn <%= @request_reserve && @request_reserve.video_request? ? 'active' : '' %>" data-toggle="tab">Video</a>
-      <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a>
+      <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a> -->
 
       <%= link_to 'Cancel Request', course_reserves_path(@new_reserve.course.id), :id => 'cancel_button', :class => "" %>
     </p>
   </div>
--->
 
-<!--
-  <div class="tab-content">
+  <div class="tab-content instructor_form">
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.book_request? ? 'active' : '' %>" id="book">
-      <hr>
       <%= render :partial => 'book_form', :locals => { object: new_instructor_reserve('BookReserve') } %>
     </div>
     <div class="tab-pane<%= !@request_reserve.nil? && @request_reserve.book_chapter_request? ? 'active' : '' %>" id="book_chapter">
-      <hr>
       <%= render :partial => 'book_chapter_form', :locals => { object: new_instructor_reserve('BookChapterReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.article_request? ? 'active' : '' %>" id="article">
-      <hr>
-      <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('ArticleReserve')  } %>
+      <%= render :partial => 'article_form', :locals => { object: new_instructor_reserve('JournalReserve')  } %>
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.video_request? ? 'active' : '' %>" id="video">
-      <hr>
--->
       <%= render :partial => 'video_form', :locals => { object: new_instructor_reserve('VideoReserve')  } %>
-<!--
     </div>
     <div class="tab-pane <%= !@request_reserve.nil? && @request_reserve.audio_request? ? 'active' : '' %>" id="audio">
-      <hr>
       <%= render :partial => 'audio_form', :locals => { object: new_instructor_reserve('AudioReserve')  } %>
     </div>
--->
-
   </div>
-
 </div>
-<script type="text/javascript">
 
+<script type="text/javascript">
   $('#book_chapter_requestor_has_an_electronic_copy').change(function () {
     $('book_chapter_file').show();
   });
-
 </script>
+
+<div id="needed_by_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Date Lead Time</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong>No Guarantee’s</strong><br>
+      We request a lead time of 10 business days to process requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
+      If this request requires immediate attention please contact
+      <%= render :partial => '/errors/contact_info' %>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<div id="video_needed_by_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Date Lead Time</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong>No Guarantee’s</strong><br>
+      We request a lead time of 14 business days to process video requests.  Our processing time may vary depending on the volume of requests and material availability.<br>
+      If this request requires immediate attention please contact
+      <%= render partial: '/errors/video_contact_info' %>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
 

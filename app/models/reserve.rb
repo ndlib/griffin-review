@@ -4,9 +4,9 @@ class Reserve
   extend ActiveModel::Naming
   extend ActiveModel::Callbacks
 
-  delegate :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :on_order?, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
-  delegate :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
-  delegate :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
+  delegate :realtime_availability_id, :physical_reserve, :citation, :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :on_order?, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
+  delegate :realtime_availability_id=, :physical_reserve=, :citation=, :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
+  delegate :physical_reserve?, :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 
   delegate :created_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
   delegate :id=, :semester=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
@@ -18,12 +18,12 @@ class Reserve
   state_machine :workflow_state, :initial => :new do
 
     event :complete do
-      transition [:new, :inprocess] => :available
+      transition [:new, :inprocess, :on_order] => :available
     end
 
 
     event :remove do
-      transition [:new, :inprocess, :available] => :removed
+      transition [:new, :inprocess, :available, :on_order] => :removed
     end
 
 
@@ -36,9 +36,15 @@ class Reserve
       transition [:available] => :inprocess
     end
 
+
+    event :order do
+      transition [:inprocess] => :on_order
+    end
+
     state :new
     state :inproess
     state :available
+    state :on_order
     state :removed
   end
 
@@ -115,8 +121,6 @@ class Reserve
       request.semester_id = course.semester.id
 
       request.save!
-
-      ReserveCheckIsComplete.new(self).check!
     end
   end
 
@@ -125,17 +129,6 @@ class Reserve
     if self.remove
       self.save!
     end
-  end
-
-
-  def set_topics!(topics)
-    request.topic_list = topics
-    save!
-  end
-
-
-  def topics
-    request.topics
   end
 
 

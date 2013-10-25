@@ -17,6 +17,9 @@
     <p class="details"><%= h object.details %></p>
     <p class="publisher"><%= h object.publisher_provider %></p>
     <p class="availability">
+      <% if object.show_check_availability? %>
+        <a href="/realtime_availability/<%= object.realtime_availability_id %>" class="check_availability_link" data-toggle="modal" data-target="#check_availability">Check Availability</a>
+      <% end %>
     </p>
   </div>
 </div>

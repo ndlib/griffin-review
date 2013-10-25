@@ -8,16 +8,25 @@ describe BookReserveImport do
 
     stub_discovery!
 
-    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01","doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
+    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01", "doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology"}
     @course = double(Course, id: 'crosslist_id', semester: semester)
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
 
+  it "converts the bib id to have the ndu_aleph prefix" do
+    expect(BookReserveImport.new(@api_data).bib_id).to eq("ndu_alephgeneric")
+  end
 
   describe :new_reserve do
     before(:each) do
       @ibr = BookReserveImport.new(@api_data)
     end
+
+    it "sets the reserve as being a physical reserve" do
+      @ibr.import!
+      expect(@ibr.reserve.physical_reserve).to be_true
+    end
+
 
     it "imports a book that does not have an existing reserve to the course" do
       @ibr.import!
@@ -41,13 +50,6 @@ describe BookReserveImport do
       @ibr.import!
     end
 
-    it "calls sets the state of the item to inprocess " do
-      # this is necessary because the check to complete won't complete an item that is new.  because i want all copied items even if they do not require fair use to
-      # be looked at before they are approved.
-
-      Reserve.any_instance.should_receive(:start)
-      @ibr.import!
-    end
   end
 
 
@@ -60,6 +62,22 @@ describe BookReserveImport do
       @ibr.reserve.should_receive(:save!).exactly(0).times
 
       @ibr.import!
+    end
+
+    it "does not overwrite an existing type or physical_reserve with BookReserve" do
+      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve.type = 'VideoReserve'
+      @existing_reserve.physical_reserve = false
+      @existing_reserve.save!
+
+      BookReserveImport.any_instance.stub(:reserve).and_return(@existing_reserve)
+
+      @ibr = BookReserveImport.new(@api_data)
+      @ibr.import!
+
+      @existing_reserve.item.reload()
+      expect(@existing_reserve.type).to eq("VideoReserve")
+      expect(@existing_reserve.physical_reserve).to be_false
     end
 
   end

@@ -39,7 +39,7 @@ class DiscoveryApi
 
 
   def title
-    @json_result["display"]["title"]
+    @json_result["display"]["title"].to_s.truncate(250, :separator => ' ')
   end
 
 

@@ -8,8 +8,11 @@
 
 
 .dataTables_filter input { height: 30px;}
+
+/*
 .dataTables_info { display: none;}
 .dataTables_paginate { display: none;}
+*/
 
 .instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
 
@@ -79,7 +82,7 @@ body.empty {
   margin-left: 0px;
 }
 
-.navbar .nav > li > a.trouble-viewing {
+.navbar .nav > li > a.help {
   color: #0088cc;
 }
 
@@ -137,6 +140,27 @@ table.dataTable tfoot th {
   margin-left: 220px;
 }
 
+.help-block {
+  font-style: italic;
+  padding-left: 5px;
+  margin-bottom: 15px;
+  font-size: .8em;
+}
+
+.instructor_form .tab-pane {
+  margin-top: 2em;
+}
+
+.form-help {
+  margin-bottom: 1.6em;
+}
+
+input[type="text"] {
+  height: 25px;
+}
+
 .row {
   min-width: 0;
 }
+
+

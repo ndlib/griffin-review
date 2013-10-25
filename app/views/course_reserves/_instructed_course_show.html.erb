@@ -1,9 +1,8 @@
 <% content_for(:content_title_links) do %>
   <% if user_course_show.can_have_new_reserves? %>
-    <br><br><br>
     <%= render partial: "/courses/instructor_new_reserve_menu", locals: { course: user_course_show.course, highlight: true } %>
     <% if user_course_show.has_deleted_reserves? %>
-      <a class="btn btn-large show_deleted_reserves">Deleted Reserves</a>
+      <a class="btn show_deleted_reserves">Deleted Reserves</a>
     <% end %>
   <% end %>
 <% end %>
@@ -13,7 +12,6 @@
     <thead>
       <tr>
         <th>Reserve</th>
-        <!-- th class="topic_row">Topics</th -->
         <th>Status</th>
         <th></th>
         <th></th>
@@ -32,4 +30,19 @@
   </p>
 <% end %>
 
+
+<div id="temporarily_available_text" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Temporary Approval</h3>
+  </div>
+  <div class="modal-body">
+    <p>General Council allows us to temporily apporove works that we are activly seeking out copyright approval from the rights holders.
+This means that that when we are able to contact the rights holders we may be denied permissions to reproduce this work and will remove the material immediately.
+</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
 

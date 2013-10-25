@@ -40,12 +40,13 @@ Griffin::Application.routes.draw do
     course_routes
   end
 
-  resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
 
   scope '/documentation' do
     get '/', to: 'documentation#index'
     get '/troubleshooting', to: 'documentation#troubleshooting'
   end
+
+  resources :documentation_admin
 
 
   scope '/admin' do
@@ -53,16 +54,18 @@ Griffin::Application.routes.draw do
     resources :meta_datas, controller: 'requests_meta_data'
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'
-#    resources :admin_courses
     resources :semesters, controller: 'semesters'
     resources :scipt, controller: 'script'
+
+    resources :users
 
     # NOTE About this route.
     # the "ids" that are searched on can have "." in them and that throws off the rails routing. They need to be passed in as
     # query params and not as part of the get string that is not /discovery_test_id/i,adf.adsfwe.adsfsdf but as /discovery_test_id?id=i,adf.adsfwe.adsfsdf
     get "discovery_id_test", to: 'discovery_id_test#show'
-    #resources :discovery_id_test, contorller: 'discovery_id_test'
   end
+
+  resources :realtime_availability
 
   get "video/request/new", to: "homepage#index"
 

@@ -23,6 +23,13 @@ module API
     end
 
 
+    def self.course_by_triple(course_triple)
+      Rails.cache.fetch("course_by_triple-#{course_triple}", expires_in: 14.hours)  do
+        get_json("by_course_triple/#{course_triple}")
+      end
+    end
+
+
     def self.search(term_code, q)
       get_json("search", { q: q, term: term_code })
     end

@@ -22,9 +22,11 @@ class FairUseQuestion < ActiveRecord::Base
   end
 
 
-  def self.add_new_question!(question, category, order, active = true)
+  def self.add_new_question!(question, category, order, favoring_fair_use = true, active = true)
+    subcategory = favoring_fair_use ? 'Trending Toward Fair Use' : 'Trending Away From Fair Use'
+
     FairUseQuestion.push_back_order!(order)
-    FairUseQuestion.create!(question: question, category: category, ord: order, active: active)
+    FairUseQuestion.create!(question: question, category: category, ord: order, active: active, subcategory: subcategory)
   end
 
 

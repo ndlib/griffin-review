@@ -11,8 +11,6 @@ gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
 
-gem 'american_date'
-
 # db backends
 gem 'mysql2', "~> 0.3.11"
 
@@ -65,7 +63,6 @@ gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
 
 gem 'jquery-datatables-rails'
 
-
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.2.4'
@@ -92,7 +89,7 @@ group :test do
 	gem 'growl'
 	gem 'growl-rspec'
 	gem 'rb-fsevent'
-    gem 'database_cleaner'
+  gem 'database_cleaner'
 	gem 'factory_girl', "~> 2.6.0"
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem 'spork-rails', :github => 'sporkrb/spork-rails'

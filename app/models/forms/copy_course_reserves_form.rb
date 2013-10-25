@@ -34,7 +34,7 @@ class CopyCourseReservesForm
 
 
   def all_semesters
-    Semester.cronologial
+    Semester.chronological
   end
 
 

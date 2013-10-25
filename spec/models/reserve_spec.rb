@@ -51,6 +51,11 @@ describe Reserve do
       course_listing.respond_to?(:css_class)
     end
 
+
+    it "has a physical reserve flag" do
+      expect(course_listing.respond_to?(:physical_reserve)).to be_true
+    end
+
   end
 
 
@@ -64,6 +69,13 @@ describe Reserve do
       @reserve.workflow_state.should == "new"
     end
 
+
+    it "can be placed on order" do
+      @reserve.start!
+      @reserve.order!
+
+      expect(@reserve.workflow_state).to eq("on_order")
+    end
 
     it "can be completed" do
       @reserve.complete!
@@ -86,6 +98,14 @@ describe Reserve do
 
     it "can be completed from inprocess" do
       @reserve.start!
+      @reserve.complete!
+      @reserve.workflow_state.should == "available"
+    end
+
+
+    it "can be completed from on order" do
+      @reserve.workflow_state = 'on_order'
+
       @reserve.complete!
       @reserve.workflow_state.should == "available"
     end
@@ -195,19 +215,6 @@ describe Reserve do
       }.should raise_error
     end
 
-
-
-
-    it "checks to seed if the item is complete" do
-      ReserveCheckIsComplete.any_instance.should_receive(:check!)
-
-      @reserve.course = @course
-      @reserve.title = "title"
-      @reserve.type = 'BookChapter'
-      @reserve.requestor_netid = "username"
-
-      @reserve.save!
-    end
 
   end
 

@@ -1,23 +1,26 @@
 
-<h3>Book Details </h3>
+<p class="form-help">This form will place a physical copy of the book on reserve at the library.  The book will be listed in the course on the website and students will be able to check its availability. </p>
 
 <%= simple_form_for object, :html => {id: "book_form"}, :url => course_reserves_path() do |f| %>
 
-  <%= f.input :title %>
-  <%= f.input :creator, :required => true %>
+  <%= f.input :title, label: "Book Title" %>
 
-  <%= f.input :needed_by, hint: "Please plan on a 2 week lead time." do %>
-    <%= f.input_field :needed_by, as: "string", id: "book_needed_by_id", class: 'datepicker span2' %>
+  <%= f.input :citation, label: "Citation", required: true do %>
+    <%= f.input_field :citation, as: "text", rows: 4, style: "width: 100%" %>
   <% end %>
 
-  <%= f.input :number_of_copies do %>
-    <%= f.input_field :number_of_copies, class: 'span2' %>
+  <%= f.input :needed_by, hint: "Please plan on a 10 day lead time.", label: "Date Needed By" do %>
+    <%= f.input_field :needed_by, as: "string", id: "book_needed_by_id", class: 'datepicker needed_by_datepicker' %>
   <% end %>
 
-  <%= library_select_form(f) %>
+  <%= f.input :number_of_copies, label: "Number of copies needed at the reserves desk" %>
+
+  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', true %>
+
+  <%= library_select_form(f, "Library to hold the reserved item.") %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
-    <%= f.input_field :note, as: "text", placeholder: "e.g. Specific edition or other notes to identify the work. ", rows: 5 %>
+    <%= f.input_field :note, as: "text", placeholder: "e.g. Other specifics about the work or requests for presentation of the work. ", rows: 3, style: "width: 100%" %>
   <% end %>
 
   <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
@@ -26,6 +29,9 @@
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
-    <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
+    <div class="pull-right">
+      <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
+    </div>
   </div>
+
 <% end %>

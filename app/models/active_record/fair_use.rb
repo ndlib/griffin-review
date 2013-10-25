@@ -13,20 +13,20 @@ class FairUse < ActiveRecord::Base
 
   state_machine :state, :initial => :update do
 
-    event :send_to_council do
-      transition [:update] => :awaiting_council
-    end
-
     event :approve do
-      transition [:update, :awaiting_council] => :approved
+      transition [ :update, :temporary_approval ] => :approved
     end
 
     event :deny do
-      transition [:update, :approved, :awaiting_council] => :denied
+      transition [ :update, :approved, :temporary_approval ] => :denied
+    end
+
+    event :temporary_approval do
+      transition [ :update ] => :temporary_approval
     end
 
     state :update
-    state :awaiting_council
+    state :temporary_approval
     state :approved
     state :denied
   end
@@ -57,6 +57,7 @@ class FairUse < ActiveRecord::Base
 
 
   def complete?
-    (state == 'approved' || state == 'denied')
+    (state == 'approved' || state == 'denied' || state == 'temporary_approval')
   end
+
 end
