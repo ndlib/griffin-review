@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/abuchman/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 24 Oct 2013 19:05:34 GMT
+      Server:
+      - Apache/2.2.19 (Unix) mod_ssl/2.2.19 OpenSSL/0.9.8e-fips-rhel5 Phusion_Passenger/3.0.15
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.15
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - bd756f9ca0a56cf6b59cd1751b19d4b9
+      X-Runtime:
+      - '1.531725'
+      X-Rack-Cache:
+      - miss
+      Status:
+      - '200'
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Allow-Methods:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Length:
+      - '3692'
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJWM0ZjhlZmZkNTRmZmEyMmRkOWU2NDY3YjNiNzU1ZWUyBjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQ0w--f16b867c096f3d5a3ed791f2db8cba18e0a8d5db;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"abuchman","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"abuchman","first_name":"Amy","last_name":"Buchmann","full_name":"Amy
+        Buchmann","ndguid":"nd.edu.ndqn6qb9","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Amy.L.Buchmann.5@nd.edu"},"enrolled_courses":[{"course_id":"201300_ACMS_67890","crosslist_id":"201300_3605","course_title":"Independent
+        Summer Research","section_groups":{"section_group_id":"201300_3605","primary_instructor":{"id":"mcollin5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mcollin5","first_name":"Maureen","last_name":"Collins","full_name":"Maureen
+        Collins","ndguid":"nd.edu.ndxt5js8","position_title":"Data & Reporting Pgrm
+        Mgr","campus_department":"Dean''s Office - Graduate School","primary_affiliation":"Staff","contact_information":{"campus_address":"502
+        Main Building&#10;Notre Dame, IN 46556-4629","email":"Maureen.Collins.97@nd.edu","phone":"+1
+        574 631 5926"}},"sections":[{"section_id":"201300_3605","supersection_id":null,"instructors":[{"id":"mcollin5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mcollin5","first_name":"Maureen","last_name":"Collins","full_name":"Maureen
+        Collins","ndguid":"nd.edu.ndxt5js8","position_title":"Data & Reporting Pgrm
+        Mgr","campus_department":"Dean''s Office - Graduate School","primary_affiliation":"Staff","contact_information":{"campus_address":"502
+        Main Building&#10;Notre Dame, IN 46556-4629","email":"Maureen.Collins.97@nd.edu","phone":"+1
+        574 631 5926"}}],"term":"201300","course_triple":"201300_ACMS_67890","course_title":"Independent
+        Summer Research","alpha_prefix":"ACMS","number":67890,"section_number":1,"crn":"3605","enrollments":["abuchman","aspecht2","bxiong","chorr","dlv1","fpancald","jdan","jlioi","lwu2","mmachen","smahsere","tjiang","tkupaev","tmccoy","wchen4","whao"]}],"crosslist_id":"201300_3605"}}],"instructed_courses":[{"course_id":"201300_ACMS_20750","crosslist_id":"201300_18968","course_title":"Introduction
+        to Applied Mathematical Methods II","section_groups":{"section_group_id":"201300_18968","primary_instructor":{"id":"abuchman","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"abuchman","first_name":"Amy","last_name":"Buchmann","full_name":"Amy
+        Buchmann","ndguid":"nd.edu.ndqn6qb9","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Amy.L.Buchmann.5@nd.edu"}},"sections":[{"section_id":"201300_18968","supersection_id":null,"instructors":[{"id":"abuchman","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"abuchman","first_name":"Amy","last_name":"Buchmann","full_name":"Amy
+        Buchmann","ndguid":"nd.edu.ndqn6qb9","position_title":"Grad Student Stipend","campus_department":"Applied
+        Computational Math & Stats","primary_affiliation":"Student","contact_information":{"email":"Amy.L.Buchmann.5@nd.edu"}}],"term":"201300","course_triple":"201300_ACMS_20750","course_title":"Introduction
+        to Applied Mathematical Methods II","alpha_prefix":"ACMS","number":20750,"section_number":1,"crn":"18968","enrollments":["phartnet","ajensen1","atarnask","bperry3","csidberr","cstacy2","dcanonic","ewelsh1","fosthoff","gmontemu","grudnik","hta","jangst","jlong8","jzhou3","kcolli18","lgabel","ljonassa","llebrun","lowens3","lseubert","mmcken10","rmichel1","sstaten","sstierit","szappa"]}],"crosslist_id":"201300_18968"}}]}]}'
+    http_version: 
+  recorded_at: Thu, 24 Oct 2013 19:05:35 GMT
+recorded_with: VCR 2.5.0

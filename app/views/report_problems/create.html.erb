@@ -1,0 +1,18 @@
+<%
+breadcrumb(['Report a Problem'])
+%>
+
+<div class="hero-unit">
+  <h1>Report Submitted Successfully</h1>
+
+  <p>Thank you for your report.  Someone from reserves will contact you about a resolution.</p>
+  <p>
+    Issue: <br />
+    <%= params[:comments] %>
+  </p>
+  <p>
+    <a href="<%= params[:path] %>" class="btn btn-primary btn-large">
+      Back
+    </a>
+  </p>
+</div>

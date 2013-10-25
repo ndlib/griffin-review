@@ -67,6 +67,8 @@ Griffin::Application.routes.draw do
 
   resources :realtime_availability
 
+  resource :report_problem
+
   get "video/request/new", to: "homepage#index"
 
 end
