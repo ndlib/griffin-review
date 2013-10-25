@@ -38,6 +38,21 @@ module ApplicationHelper
   end
 
 
+  def how_to_use_page_link(txt)
+    link_to(image_tag("help.png") + " How to use this page.", 'javascript:void(0);', onclick: txt)
+  end
+
+
+  def help_required_message
+    raw "<br><strong>#{t('form_help.required')}</strong>"
+  end
+
+  def help_optional_message
+    raw "<br><strong>#{t('form_help.optional')}</strong>"
+  end
+
+
+
   def new_instructor_reserve(type)
     if @request_reserve && @request_reserve.type == type
       return @request_reserve

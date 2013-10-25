@@ -1,5 +1,6 @@
 <p class="form-help">
   This form will make a digital copy of a journal or print article available on the website. The library will link to already licensed content or attempt to aquire the rights and do a fair use evaluation before publishing to the students.
+  <br /><%= how_to_use_page_link('startArticle()') %>
 </p>
 
 <%= simple_form_for object, :html => {id: "article_form"}, :url => course_reserves_path(object.course.id) do |f| %>
@@ -36,3 +37,45 @@
     </div>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  function startArticle(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('#article_form .instructor_reserve_request_title')[0],
+            intro: "<%= t('form_help.article_title') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#article_form .instructor_reserve_request_citation')[0],
+            intro: "<%= t('form_help.citation') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#article_form .instructor_reserve_request_needed_by')[0],
+            intro: "<%= t('form_help.date_needed') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#article_form .instructor_reserve_request_library')[0],
+            intro: "<%= t('form_help.library') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#article_form .instructor_reserve_request_note')[0],
+            intro: "<%= t('form_help.special_instructions') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#article_form .instructor_reserve_request_requestor_has_an_electronic_copy')[0],
+            intro: "<%= t('form_help.has_electronic') %> ",
+            position: 'right'
+          },
+        ]
+      });
+      intro.start();
+  }
+</script>

@@ -1,5 +1,7 @@
 
-<p class="form-help">This form will place a physical copy of the book on reserve at the library.  The book will be listed in the course on the website and students will be able to check its availability. </p>
+<p class="form-help">This form will place a physical copy of the book on reserve at the library.  The book will be listed in the course on the website and students will be able to check its availability.
+<br /><%= how_to_use_page_link('startBook()') %>
+</p>
 
 <%= simple_form_for object, :html => {id: "book_form"}, :url => course_reserves_path() do |f| %>
 
@@ -35,3 +37,49 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+  function startBook(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('#book_form .instructor_reserve_request_title')[0],
+            intro: "<%= t('form_help.book_title') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_citation')[0],
+            intro: "<%= t('form_help.citation') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_needed_by')[0],
+            intro: "<%= t('form_help.date_needed') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_number_of_copies')[0],
+            intro: "<%= t('form_help.number_copies') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_library')[0],
+            intro: "<%= t('form_help.book_library') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_note')[0],
+            intro: "<%= t('form_help.special_instructions') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#book_form .instructor_reserve_request_requestor_owns_a_copy')[0],
+            intro: "<%= t('form_help.own_copy') %> ",
+            position: 'right'
+          },
+        ]
+      });
+      intro.start();
+  }
+</script>

@@ -1,6 +1,7 @@
 /*
 *= require search
 *= require jquery-ui-1.10.2.custom
+*= require introjs.css
 */
 
 .page-header h1 { margin-bottom: 0; }
@@ -163,4 +164,13 @@ input[type="text"] {
   min-width: 0;
 }
 
+.hero-unit p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+}
 
+.introjs-helperNumberLayer {
+  height: 30px;
+  width: 30px;
+}

@@ -1,5 +1,6 @@
 <p class="form-help">
   This form will make a digital steam of the video available on the website.  The library will do the digitization and do a fair use evaluation before publishing to the students.
+  <br /><%= how_to_use_page_link('startVideo()') %>
 </p>
 
 <%= simple_form_for object, :html => {id: "video_form"}, :url => course_reserves_path() do |f| %>
@@ -35,3 +36,55 @@
     </div>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  function startVideo(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('#video_form .instructor_reserve_request_title')[0],
+            intro: "<%= t('form_help.article_title') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_creator')[0],
+            intro: "<%= t('form_help.director_publisher') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_needed_by')[0],
+            intro: "<%= t('form_help.date_needed') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_language_track')[0],
+            intro: "<%= t('form_help.audio_language') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_subtitle_language')[0],
+            intro: "<%= t('form_help.subtitle_language') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_length')[0],
+            intro: "<%= t('form_help.digitized_clips') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_physical_reserve')[0],
+            intro: "<%= t('form_help.not_streamed') %> ",
+            position: 'right'
+          },
+          {
+            element: $('#video_form .instructor_reserve_request_note')[0],
+            intro: "<%= t('form_help.special_instructions') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+        ]
+      });
+      intro.start();
+  }
+</script>
