@@ -9,13 +9,33 @@ class ReserveMigrator
       convert_courses_for_term!(term)
     end
 
-    process_courses!
+    fix_courses_that_did_not_get_copied
+
+    #process_courses!
 
     #BookReserveImporter.new.import!
   end
 
 
   private
+
+
+    def fix_courses_that_did_not_get_copied
+      current_user = User.where(username: 'jhartzle').first
+
+      res = []
+      @converted_courses.each_pair do | from_course_id, cc |
+        cc.each do | to_course |
+          count = Request.where(course_id: to_course).count
+          if count == 0
+            res << "#{from_course_id} -> #{to_course}: #{count}"
+            CopyOldCourseReservesForm.new(current_user, { course_id: to_course, from_course_id: from_course_id, term: '201310', auto_complete: true }).copy!
+          end
+        end
+      end
+
+      res
+    end
 
 
     def process_courses!
