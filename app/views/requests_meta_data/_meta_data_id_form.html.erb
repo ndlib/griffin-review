@@ -1,5 +1,7 @@
 <div id="discovery_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? 'display:none;' : '') %>">
-
+  <p class="form-help">
+    Find this form to connect this item to our catalog.  Connecting to our catalog will fill out the display meta data and connect to existing electronic resources.
+  </p>
   <div class="pull-right">
     <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
       <i class="icon icon-arrow-up"></i> Test Record Id</a>
@@ -16,6 +18,9 @@
 <%= f.input :overwrite_nd_meta_data, as: :hidden %>
 
 <div id="full_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? '' : 'display:none;') %>">
+  <p class="form-help">
+    Fill out this form if this item is not in our catalog or it can't be found.
+  </p>
   <%= f.input :title %>
 
   <%= f.input :creator %>
