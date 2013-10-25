@@ -36,4 +36,5 @@ describe FindUserSectionInCourse do
     UserIsAdminPolicy.any_instance.stub(:is_admin?).and_return(true)
     expect(FindUserSectionInCourse.new(@course, @user).find.id).to eq(@section1.id)
   end
+
 end
