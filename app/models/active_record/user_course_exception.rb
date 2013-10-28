@@ -5,6 +5,8 @@ class UserCourseException < ActiveRecord::Base
 
 
   def self.create_enrollment_exception!(course_id, term, netid)
+    netid = netid.downcase.strip
+
     ucx = self.new(course_id: course_id, term: term, netid: netid, role: 'enrollment')
     ucx.save!
     ucx
@@ -12,6 +14,8 @@ class UserCourseException < ActiveRecord::Base
 
 
   def self.create_instructor_exception!(course_id, term, netid)
+    netid = netid.downcase.strip
+
     ucx = self.new(course_id: course_id, term: term, netid: netid, role: 'instructor')
     ucx.save!
     ucx

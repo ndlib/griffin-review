@@ -125,12 +125,12 @@ class Course
 
 
     def banner_enrollment_netids
-      @banner_enromment_netids ||= sections.collect{ | s | s.enrollment_netids }.flatten.map { | s | s.downcase.strip }.map(&:downcase)
+      @banner_enromment_netids ||= sections.collect{ | s | s.enrollment_netids }.flatten.map { | s | s.downcase.strip }
     end
 
 
     def exception_enrollment_netids
-      @exception_enrollment_netids ||= UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid }.map(&:downcase)
+      @exception_enrollment_netids ||= UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid.downcase.strip }
     end
 
 
@@ -140,7 +140,7 @@ class Course
 
 
     def exception_instructors_netids
-      @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid }.map(&:downcase)
+      @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid.downcase.strip }.map(&:downcase)
     end
 
 
