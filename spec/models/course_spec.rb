@@ -126,7 +126,7 @@ describe Course do
     end
 
 
-    it "strips all enromment netids" do
+    it "strips all instructor netids" do
       @crosslist_course.sections.first.stub(:instructor_netids).and_return([' strip '])
       expect(@crosslist_course.instructor_netids.include?('strip')).to be_true
       expect(@crosslist_course.instructor_netids.include?(' strip ')).to be_false

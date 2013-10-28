@@ -81,6 +81,16 @@ describe UserCourseException do
         UserCourseException.create_enrollment_exception!("course_id", semester.id , "netid")
       }.should_not raise_error
     end
+
+    it "lowers the netid" do
+      u = UserCourseException.create_enrollment_exception!("course_id", semester.id , "NETID")
+      expect(u.netid).to eq("netid")
+    end
+
+    it "strips the netid" do
+      u = UserCourseException.create_enrollment_exception!("course_id", semester.id , " netid ")
+      expect(u.netid).to eq("netid")
+    end
   end
 
 
@@ -90,6 +100,17 @@ describe UserCourseException do
         UserCourseException.create_instructor_exception!("course_id", semester.id, "netid")
       }.should_not raise_error
     end
+
+    it "lowers the netid" do
+      u = UserCourseException.create_instructor_exception!("course_id", semester.id , "NETID")
+      expect(u.netid).to eq("netid")
+    end
+
+    it "strips the netid" do
+      u = UserCourseException.create_instructor_exception!("course_id", semester.id , " netid ")
+      expect(u.netid).to eq("netid")
+    end
+
 
   end
 end
