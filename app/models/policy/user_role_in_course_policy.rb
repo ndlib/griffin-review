@@ -7,12 +7,12 @@ class UserRoleInCoursePolicy
 
 
   def user_enrolled_in_course?
-    @course.enrollment_netids.include?(@user.username)
+    @course.enrollment_netids.include?(@user.username.downcase)
   end
 
 
   def user_instructs_course?
-    @course.instructor_netids.include?(@user.username)
+    @course.instructor_netids.include?(@user.username.downcase)
   end
 
 

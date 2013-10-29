@@ -43,4 +43,5 @@ describe AdminReserveRow do
     AdminReserveRow.new(Reserve.new, ApplicationController.new).respond_to?(:course_col)
   end
 
+
 end

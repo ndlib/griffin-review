@@ -5,7 +5,7 @@ describe ErrorLog do
 
   before(:each) do
     @user = double(User, id: 1, username: 'username')
-    @request = double( path: '/path/to/url', params: { id: 'id', contorller: 'controller'} )
+    @request = double( path: '/path/to/url', params: { id: 'id', contorller: 'controller'}, user_agent: 'user_agent' )
     @exception = double(Exception, message: 'message', backtrace: [ 'line 1', 'line 2' ])
 
     @controller = double(ApplicationController, current_user: @user, request: @request)
@@ -17,6 +17,15 @@ describe ErrorLog do
 
   it "logs an error " do
     expect(@error_log.valid?).to be_true
+  end
+
+
+  it "logs the error class" do
+    expect(@error_log.exception_class).to eq("RSpec::Mocks::Mock")
+  end
+
+  it "logs the user agent " do
+    expect(@error_log.user_agent).to eq("user_agent")
   end
 
 

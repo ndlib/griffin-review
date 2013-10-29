@@ -18,6 +18,14 @@ FactoryGirl.define do
     pdf { fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf') }
   end
 
+  factory :item_on_order, class: Item do
+    title "book chapter reserve"
+    type "BookChapterReserve"
+    pdf { fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf') }
+    on_order true
+  end
+
+
 
   factory :item_journal_file, class: Item do
     title "jourlnal file reserve"
@@ -58,6 +66,5 @@ FactoryGirl.define do
     type "BookReserve"
     nd_meta_data_id "ndu_aleph001368481"
   end
-
 
 end

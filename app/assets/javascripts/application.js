@@ -4,4 +4,5 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require frontend
+//= require intro.js
 

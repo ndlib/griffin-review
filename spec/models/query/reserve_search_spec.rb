@@ -146,6 +146,24 @@ describe ReserveSearch do
           expect(result.collect { | r | r.id }).to eq([ @inprocess_semester2.id ])
         end
 
+        it "excludes items that are on order" do
+          on_order_item = mock_reserve FactoryGirl.create(:request, :on_order, :inprocess, :library => 'library1', :semester_id => semester.id), @course
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all', semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
+
+        it "includes on_order values of false" do
+          @inprocess_semester1.on_order = false
+          @inprocess_semester1.save!
+
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all', semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
+
 
         it "returns all future items when there is no semester passed in" do
           result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all')
@@ -169,6 +187,19 @@ describe ReserveSearch do
           expect(result.size).to eq(1)
           expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
         end
+      end
+
+
+      context :on_order do
+        it "includes items that are on order" do
+          on_order_item = mock_reserve FactoryGirl.create(:request, :on_order, :inprocess, :library => 'library1', :semester_id => semester.id), @course
+          result = ReserveSearch.new.admin_requests('on_order', 'all', 'all', semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ on_order_item.id ])
+        end
+
+
       end
 
 

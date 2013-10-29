@@ -1,9 +1,11 @@
 <% content_for(:content_title) do %>
-  <h1>Meta Data </h1>
+  <h1>Update Meta Data </h1>
 <% end %>
+<%
+breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request_path(@request.id)), "Update Meta Data" ])
+%>
 
-
-<div class="four columns">
+<div class="five columns">
   <%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
 
     <% if !@show_files %>
@@ -24,7 +26,7 @@
   <% end %>
 </div>
 
-<div class="eight columns find-resources">
+<div class="seven columns find-resources">
   <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
 </div>
 

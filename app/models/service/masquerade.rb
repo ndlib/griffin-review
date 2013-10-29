@@ -8,8 +8,12 @@ class Masquerade
 
   def start!(username)
     if !masquerading?
-      user = find_or_create_user(username)
-      if !user
+      begin
+        user = find_or_create_user(username)
+        if !user
+          return false
+        end
+      rescue User::LDAPException
         return false
       end
 

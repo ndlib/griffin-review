@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016142317) do
+ActiveRecord::Schema.define(version: 20131029140222) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 20131016142317) do
   create_table "error_logs", force: true do |t|
     t.string   "netid"
     t.string   "path"
-    t.string   "message"
+    t.text     "message"
     t.text     "params"
     t.text     "stack_trace"
     t.datetime "created_at"
     t.string   "state"
+    t.text     "user_agent"
+    t.string   "exception_class"
   end
 
   create_table "fair_use_questions", force: true do |t|

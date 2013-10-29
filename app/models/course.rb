@@ -130,17 +130,17 @@ class Course
 
 
     def exception_enrollment_netids
-      @exception_enrollment_netids ||= UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid }
+      @exception_enrollment_netids ||= UserCourseException.course_enrollment_exceptions(self.id, self.term).collect { | e | e.netid.downcase.strip }
     end
 
 
     def banner_instructor_netids
-      @banner_instructor_netids ||= sections.collect{ | s | s.instructor_netids }.flatten.uniq.map { | s | s.downcase.strip }
+      @banner_instructor_netids ||= sections.collect{ | s | s.instructor_netids }.flatten.uniq.map { | s | s.downcase.strip }.map(&:downcase)
     end
 
 
     def exception_instructors_netids
-      @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid }
+      @exception_instructors_netids ||= UserCourseException.course_instructor_exceptions(self.id, self.term).collect { | e | e.netid.downcase.strip }.map(&:downcase)
     end
 
 

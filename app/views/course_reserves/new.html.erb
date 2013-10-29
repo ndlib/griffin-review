@@ -16,7 +16,7 @@
       <a href="#video" class="btn <%= @request_reserve && @request_reserve.video_request? ? 'active' : '' %>" data-toggle="tab">Video</a>
       <!-- a href="#audio" class="btn <%= @request_reserve && @request_reserve.audio_request? ? 'active' : '' %>" data-toggle="tab">Audio</a> -->
 
-      <%= link_to 'Cancel Request', course_reserves_path(@new_reserve.course.id), :id => 'cancel_button', :class => "" %>
+      <%= link_to 'Cancel', course_reserves_path(@new_reserve.course.id), :id => 'cancel_button', :class => "" %>
     </p>
   </div>
 

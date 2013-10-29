@@ -14,7 +14,7 @@ module AssetsHelper
 
 
   def breadcrumb(*crumbs)
-    crumbs.unshift(link_to("Hesburgh Libraries", "https://library.nd.edu"))
+    crumbs.unshift(link_to("Home", root_path()))
     content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))
   end
 

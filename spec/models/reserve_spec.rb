@@ -70,12 +70,6 @@ describe Reserve do
     end
 
 
-    it "can be placed on order" do
-      @reserve.start!
-      @reserve.order!
-
-      expect(@reserve.workflow_state).to eq("on_order")
-    end
 
     it "can be completed" do
       @reserve.complete!

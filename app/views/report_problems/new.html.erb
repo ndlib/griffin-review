@@ -1,0 +1,23 @@
+<% content_for(:content_title) do %>
+  <div class="page-header"><h1>Site Feedback</h1></div>
+<% end %>
+<p>Please take a moment and give us some feedback on the changes to the reserve system.</p>
+<%
+breadcrumb(['Site Feedback'])
+%>
+
+<%= form_tag report_problem_path(), method: 'post' do | f | %>
+<%
+
+#Please provide as much detail as you are able."
+%>
+  <fieldset>
+    <!-- label for="comments">Describe the issue you are having:</label -->
+
+    <textarea id="comments" style="width: 75%;height: 7em;" name="comments" placeholder=""></textarea>
+  </fieldset>
+
+  <input type="hidden" name="path" value="<%= params[:path] %>">
+
+  <input type="submit" class="btn btn-primary" value="Submit Report">
+<% end %>

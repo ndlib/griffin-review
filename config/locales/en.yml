@@ -24,3 +24,26 @@ en:
       not_found: ''
       already_confirmed: ''
       not_locked: ''
+
+  form_help:
+    required: This field is required.
+    optional: This field is optional.
+    book_title: Fill in the "Book Title".
+    citation: Fill in the "Citation".  This is the primary way we can ensure that we are placing the exact title you want on reserve.
+    date_needed: Fill in the "Date Needed By" with the date that your students will need this content to complete their course requirements.  Please note that we do ask for a 10 day lead time to ensure we have time to fulfill the request.
+    number_copies: Fill in the "Number of copies needed at the reserves desk" with the minimum number of copies you think will be necessary to serve your class size.
+    book_library: Select the "Library to hold the reserved item" with the library you wish the reserved item to be on hold within.
+    special_instructions: Fill in "Special Instructions" if there is something unusual about the work or the presentation of the work to the students.
+    own_copy: Checking "I own a copy" can make the process of placing the content on reserver easier.  It may be that we are unable or find it difficult to acquire the content.  If you have a copy that can be used it may expedite the process.
+    chapter_pages: Fill in "Chapter / Pages to digitize" with the selection of the book you want digitized.
+    library: Select the "Fulfillment Library" to indicate which library you want to process the request.
+    has_electronic: Check "I already have an electronic copy." If you have already digitized the content.  Then attach your file to the form.  This will help speed up the process of getting the content published.
+    article_title: Fill in the "Article Title".
+    video_title: Fill in the "Video Title".
+    director_publisher: Fill in the "Director or Publisher" with the director and/or the publisher of the video.
+    audio_language: Fill in the "Audio Language" if you wish for the video to be digitized in a language other than English.
+    subtitle_language: Fill in the "Subtitle Language" if you wish the video to be digitized with subtitles and in what language.
+    digitized_clips: Fill in the "Desired Clips" if you wish for only a section of the work to be digitized.
+    not_streamed: Check "I do not want this video to be streamed" if you wish your students to checkout and watch the original medial and do not want the media streamed at a lower quality online.
+
+

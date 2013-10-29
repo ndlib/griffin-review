@@ -1,26 +1,88 @@
 <div id="discovery_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? 'display:none;' : '') %>">
-
+  <p class="form-help">
+    Find this form to connect this item to our catalog.  Connecting to our catalog will fill out the display meta data and connect to existing electronic resources.
+    <br /><%= how_to_use_page_link('startRecordId()') %>
+  </p>
   <div class="pull-right">
     <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
       <i class="icon icon-arrow-up"></i> Test Record Id</a>
   </div>
-  <%= f.input :nd_meta_data_id, label: "Record Id" %>
+  <%= f.input :nd_meta_data_id, label: "Record Id", id: 'step1' %>
 
   <div class="clearfix">
     <%= f.input :display_length, label: "Distinguishing Title" %>
   </div>
 
-  <%= link_to "Not in our Records", "#", class: "btn show_full_meta_data" %>
+  <%= link_to "Not in our Records", "#", class: "btn show_full_meta_data", id: "not_in_our_records" %>
 </div>
 
 <%= f.input :overwrite_nd_meta_data, as: :hidden %>
 
 <div id="full_meta_data" style="<%= (f.object.overwrite_nd_meta_data? ? '' : 'display:none;') %>">
+  <p class="form-help">
+    Fill out this form if this item is not in our catalog or it can't be found.
+    <br /><%= how_to_use_page_link('starNotinRecordsId()') %>
+  </p>
   <%= f.input :title %>
 
-  <%= f.input :creator %>
+  <%= f.input :creator, label: 'Author or Creator of the work' %>
 
   <%= f.input :details, label: "Publisher / Journal and Volume" %>
 
-  <%= link_to "Link to Meta Data", "#", class: "btn use_meta_data_id" %>
+  <%= link_to "Link to Meta Data", "#", class: "btn use_meta_data_id", id: "use_meta_data_id" %>
 </div>
+
+<script type="text/javascript">
+  function startRecordId(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('.admin_update_meta_data_nd_meta_data_id')[0],
+            intro: "Fill this field in with the aleph record id.  On <a href=\"http://onesearch.library.nd.edu/primo_library/libweb/action/display.do?tabs=detailsTab&ct=display&fn=search&doc=ndu_aleph001368481&indx=2&recIds=ndu_aleph001368481&recIdxs=1&elementId=1&renderMode=poppedOut&displayMode=full&frbrVersion=4&dscnt=2&frbg=&tab=onesearch&dstmp=1382722281256&srt=rank&mode=Basic&dum=true&fromLogin=true&vl(freeText0)=book&vid=NDU\" target=\"_blank\">this</a> page it is labeled \"Record ID\""
+          },
+          {
+            element: $('#test_meta_data')[0],
+            intro: "Tests that the record id is valid.  This will popup a window and display the record from our catalog."
+          },
+          {
+            element: $('.admin_update_meta_data_display_length')[0],
+            intro: "Distinguishing Title is used when you have more then one record with the same meta data.  <br><br>For example the instuctor wants her students to read chapter 2 and chapter 4 from The Catcher in the Rye.  You would enter Chapter 2 into the record that has the pdf of chapter 2 and Chapter 4 into the record that has the pdf of chapter 4.",
+          },
+          {
+            element: $('#not_in_our_records')[0],
+            intro: 'Select this button if you want to link this record to the meta data in the catalog.',
+            position: 'right'
+          }
+        ]
+      });
+
+      intro.start();
+  }
+
+  function starNotinRecordsId() {
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('.admin_update_meta_data_title')[0],
+            intro: "Fill this field in with the title of the work"
+          },
+          {
+            element: $('.admin_update_meta_data_creator')[0],
+            intro: "Fill this field in with your best estimate at who the author or creator is."
+          },
+          {
+            element: $('.admin_update_meta_data_details')[0],
+            intro: "Fill this field in with publisher information or the Journal Information for articles."
+          },
+          {
+            element: $('#use_meta_data_id')[0],
+            intro: 'Select this button if the record is not in our catalog.  You will be able to enter the meta data yourself. d',
+            position: 'right'
+          }
+        ]
+      });
+      intro.start();
+  }
+</script>

@@ -24,6 +24,8 @@ class ErrorLog  < ActiveRecord::Base
       netid: write_netid_text(controller),
       path: controller.request.path,
       params: controller.request.params.to_s,
+      exception_class: determine_exception_class(exception),
+      user_agent: controller.request.user_agent,
       stack_trace: determine_backtrace(exception)
     )
 
@@ -69,7 +71,15 @@ class ErrorLog  < ActiveRecord::Base
     else
       exception.backtrace.join("\n")
     end
+  end
 
+
+  def self.determine_exception_class(exception)
+    if exception.blank?
+      "No Exception Thrown"
+    else
+      exception.class.to_s
+    end
   end
 
 

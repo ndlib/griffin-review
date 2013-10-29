@@ -37,14 +37,14 @@ class Reserve
     end
 
 
-    event :order do
-      transition [:inprocess] => :on_order
+    event :purchased do
+      transition [:on_order] => :inprocess
     end
+
 
     state :new
     state :inproess
     state :available
-    state :on_order
     state :removed
   end
 
