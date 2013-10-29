@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016142317) do
+ActiveRecord::Schema.define(version: 20131029130815) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131016142317) do
   create_table "error_logs", force: true do |t|
     t.string   "netid"
     t.string   "path"
-    t.string   "message"
+    t.text     "message"
     t.text     "params"
     t.text     "stack_trace"
     t.datetime "created_at"
