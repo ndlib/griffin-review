@@ -45,7 +45,7 @@ class ReserveSearch
       if status == 'on_order'
         search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? ', true)
       elsif status == 'inprocess'
-        search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? ', false)
+        search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? || items.on_order is null', false)
       else
         search = search.where('requests.workflow_state = ? ', status)
       end
