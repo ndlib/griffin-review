@@ -46,13 +46,18 @@ class SakaiIntegratorController < ApplicationController
 
 
   def sakai_callback(context_id, sakai_user)
+    course_id = nil
+    begin
       si = SakaiIntegrator.new(self)
       si.site_id = context_id
       si.sakai_user = sakai_user
       external_site_id = si.get_site_property('externalSiteId')
       course_id, term = si.translate_external_site_id(external_site_id)
       cache_sakai_context(context_id, course_id, external_site_id, sakai_user, term)
-      course_id
+    rescue
+      return
+    end
+    course_id
   end
 
   def cache_sakai_context(context_id, course_id, external_site_id, sakai_user, term)
