@@ -154,6 +154,16 @@ describe ReserveSearch do
           expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
         end
 
+        it "includes on_order values of false" do
+          @inprocess_semester1.on_order = false
+          @inprocess_semester1.save!
+
+          result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all', semester)
+
+          expect(result.size).to eq(1)
+          expect(result.collect { | r | r.id }).to eq([ @inprocess_semester1.id ])
+        end
+
 
         it "returns all future items when there is no semester passed in" do
           result = ReserveSearch.new.admin_requests('inprocess', 'all', 'all')
@@ -188,6 +198,8 @@ describe ReserveSearch do
           expect(result.size).to eq(1)
           expect(result.collect { | r | r.id }).to eq([ on_order_item.id ])
         end
+
+
       end
 
 
