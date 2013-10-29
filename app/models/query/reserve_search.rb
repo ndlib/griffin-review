@@ -37,12 +37,20 @@ class ReserveSearch
   def admin_requests(status, types, libraries, semester = false)
     search = @relation.
               includes(:item).
+              references(:item).
               where('requests.semester_id IN(?)', determine_search_semesters(semester)).
               order('needed_by')
 
     if status != 'all'
-      search = search.where('requests.workflow_state = ? ', status)
+      if status == 'on_order'
+        search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? ', true)
+      elsif status == 'inprocess'
+        search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? ', false)
+      else
+        search = search.where('requests.workflow_state = ? ', status)
+      end
     end
+
     if libraries != 'all'
       search = search.where('requests.library IN(?)', libraries)
     end

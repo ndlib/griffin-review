@@ -44,6 +44,10 @@ FactoryGirl.define do
     association(:item, factory: :item_journal_url)
   end
 
+  trait :on_order do
+    association(:item, factory: :item_on_order)
+  end
+
   trait :video do
     association(:item, factory: :item_video)
   end

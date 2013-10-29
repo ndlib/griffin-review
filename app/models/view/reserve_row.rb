@@ -44,6 +44,6 @@ class ReserveRow
 
 
   def show_pages?
-    reserve.type == 'BookChapterReserve'
+    reserve.type == 'BookChapterReserve' && reserve.length.present?
   end
 end
