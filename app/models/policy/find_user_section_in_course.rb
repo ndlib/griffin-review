@@ -16,6 +16,11 @@ class FindUserSectionInCourse
           return section
         end
       end
+      # they are an exception
+      if @course.enrollment_netids.include?(@user.username)
+        return @course.sections.first
+      end
+
     end
 
     return nil

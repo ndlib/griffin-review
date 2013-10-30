@@ -9,7 +9,7 @@ describe FindUserSectionInCourse do
     @section1 = double(CourseSection, id: '1', enrollment_netids: [ ] )
     @section2 = double(CourseSection, id: '2', enrollment_netids: [ @user.username ] )
 
-    @course = double(Course, id: '1',  sections: [ @section1, @section2 ] )
+    @course = double(Course, id: '1',  sections: [ @section1, @section2 ], enrollment_netids: []  )
 
     UserRoleInCoursePolicy.any_instance.stub(:user_instructs_course?).and_return(false)
     UserIsAdminPolicy.any_instance.stub(:is_admin?).and_return(false)
@@ -37,4 +37,9 @@ describe FindUserSectionInCourse do
     expect(FindUserSectionInCourse.new(@course, @user).find.id).to eq(@section1.id)
   end
 
+
+  it "uses the first section if i can't find them in a section but they are enrolled (they are an exception) " do
+    @course = double(Course, id: '1',  sections: [ @section1, @section2 ], enrollment_netids: [@other_user.username]  )
+    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@section1)
+  end
 end
