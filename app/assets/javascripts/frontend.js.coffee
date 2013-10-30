@@ -1,5 +1,12 @@
 jQuery ($) ->
 
+  $('.check_availability_link').click ->
+    $('#check_availability').modal()
+    $('#check_availability .modal-body').html('<img src="/assets/ajax-bar-loader.gif" >')
+    $.get $(this).attr('href'), (data) ->
+      $("#check_availability .modal-body").html data
+    return false
+
 
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
@@ -241,4 +248,7 @@ jQuery ($) ->
       $('#video_needed_by_modal').modal(
         show: true
       )
+
+
+
 
