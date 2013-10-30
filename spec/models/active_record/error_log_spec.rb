@@ -8,7 +8,7 @@ describe ErrorLog do
     @request = double( path: '/path/to/url', params: { id: 'id', contorller: 'controller'}, user_agent: 'user_agent' )
     @exception = double(Exception, message: 'message', backtrace: [ 'line 1', 'line 2' ])
 
-    @controller = double(ApplicationController, current_user: @user, request: @request)
+    @controller = double(ApplicationController, current_user: @user, request: @request, params: { id: 'id', contorller: 'controller'})
 
     Masquerade.any_instance.stub(:masquerading?).and_return
     @error_log = ErrorLog.log_error(@controller, @exception)
