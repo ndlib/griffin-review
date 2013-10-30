@@ -21,10 +21,10 @@ module API
     end
 
 
-    def self.rta(rta_id)
+    def self.rta(rta_id, key = false)
       path = "rta/#{rta_id}"
 
-      get_json(path)
+      get_json(path, { test: key })
     end
 
   end

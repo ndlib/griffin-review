@@ -23,7 +23,7 @@ class ErrorLog  < ActiveRecord::Base
       message: determine_message(exception),
       netid: write_netid_text(controller),
       path: controller.request.path,
-      params: controller.request.params.to_s,
+      params: controller.params.to_s,
       exception_class: determine_exception_class(exception),
       user_agent: controller.request.user_agent,
       stack_trace: determine_backtrace(exception)
