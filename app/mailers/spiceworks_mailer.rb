@@ -1,7 +1,7 @@
 class SpiceworksMailer < ActionMailer::Base
 
   def create_ticket(current_user, path, comment)
-    @comment = comment
+    @comments = comment
     @path = path
     @current_user = current_user
 
