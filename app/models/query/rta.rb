@@ -1,7 +1,7 @@
 class Rta
 
-  def initialize(rta_id)
-    @items = search(rta_id)
+  def initialize(rta_id, key = false)
+    @items = search(rta_id, key)
   end
 
 
@@ -12,8 +12,8 @@ class Rta
 
   private
 
-    def search(rta_id)
-      res = API::PrintReserves.rta(rta_id).collect { | d | RtaHolding.new(d) }
+    def search(rta_id, key = false)
+      res = API::PrintReserves.rta(rta_id, key).collect { | d | RtaHolding.new(d) }
 
       res.sort { | a,b | a.sort <=> b.sort }
     end
