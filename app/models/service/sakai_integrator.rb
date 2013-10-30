@@ -1,3 +1,8 @@
+class SakaiIntegratorException < Exception
+  class TranslationError < SakaiIntegratorException; end
+end
+
+
 class SakaiIntegrator
 
   attr_reader :session_id
@@ -24,7 +29,7 @@ class SakaiIntegrator
     (search_type, search_value, search_term) = parse_external_site_id(external_site_id)
     section_group = nil
     if search_type == 'empty'
-      raise Exception.new("Sakai external site id empty")
+      raise SakaiIntegratorException::TranslationError.new("Sakai external site id empty")
     else
       course_search = CourseSearch.new
       course_search.all_courses(@sakai_user, search_term).each do |course|

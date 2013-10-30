@@ -12,6 +12,8 @@ class SakaiIntegratorController < ApplicationController
       else
         raise_404("Sakai user could not be matched to course via context id")
       end
+    rescue SakaiIntegratorException::TranslationError
+      redirect_to '/sakai/courses'
     rescue Exception => e
       log_error(e)
       redirect_to '/sakai/courses'
