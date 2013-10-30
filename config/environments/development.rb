@@ -60,7 +60,7 @@ Griffin::Application.configure do
   config.reserves_cas_validate            = 'https://cas.library.nd.edu/cas/serviceValidate'
   config.reserves_cas_logout              = 'https://cas.library.nd.edu/cas/logout'
 
-  config.api_url                          = "http://localhost:3005/"
+  config.api_url                          = "https://apipprd.library.nd.edu/"
   config.api_token                        = "srDhuT6CjWS2as8eyMtR"
 
 #  config.api_url                          = "https://api.library.nd.edu/"
