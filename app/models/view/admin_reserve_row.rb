@@ -55,6 +55,11 @@ class AdminReserveRow
   end
 
 
+  def cache_key
+    "admin-reserve-#{@reserve.id}-#{@reserve.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}"
+  end
+
+
   def subtitles
     ret = ""
     if @reserve.language_track.present?
