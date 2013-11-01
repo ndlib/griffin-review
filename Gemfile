@@ -54,6 +54,8 @@ gem 'therubyracer'
 
 gem "state_machine"
 
+gem "faraday"
+
 gem 'virtus'
 
 gem "paperclip"
