@@ -1,13 +1,13 @@
 class AdminReserveRow
+  include RailsHelpers
 
   attr_accessor :reserve
 
   delegate :id, :workflow_state, to: :reserve
 
 
-  def initialize(reserve, context)
+  def initialize(reserve)
     @reserve = reserve
-    @context = context
   end
 
 
@@ -36,17 +36,17 @@ class AdminReserveRow
 
 
   def title
-    @context.link_to(reserve.title, @context.request_path(reserve.id) )
+    helpers.link_to(reserve.title, routes.request_path(reserve.id) )
   end
 
 
   def course_col
-    @context.link_to(reserve.course.full_title.truncate(40), @context.course_reserves_path(reserve.course.id), target: '_blank' )
+    helpers.link_to(reserve.course.full_title.truncate(40), routes.course_reserves_path(reserve.course.id), target: '_blank' )
   end
 
 
   def requestor_col
-    @context.link_to(@reserve.requestor_name, @context.new_masquerades_path(:username => @reserve.requestor_netid))
+    helpers.link_to(@reserve.requestor_name, routes.new_masquerades_path(:username => @reserve.requestor_netid))
   end
 
 
@@ -70,7 +70,7 @@ class AdminReserveRow
       ret += "Subtitle: #{@reserve.subtitle_language}"
     end
 
-    @context.raw(ret)
+    raw(ret)
   end
 
 
@@ -88,6 +88,10 @@ class AdminReserveRow
     ret.join(' ')
   end
 
+
+  def to_json
+    [needed_by, title, request_date, requestor_col, course_col, type]
+  end
 
   private
 
