@@ -277,10 +277,10 @@ describe CopyReserve do
     end
 
 
-    it "converts Engeneering to engeneering" do
-      @old_reserve.stub(:group_name).and_return 'Engeneering'
+    it "converts Engineering to engineering" do
+      @old_reserve.stub(:group_name).and_return 'Engineering'
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      expect(@new_reserve.library).to eq('engeneering')
+      expect(@new_reserve.library).to eq('engineering')
     end
 
 

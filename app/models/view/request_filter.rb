@@ -2,7 +2,7 @@ class RequestFilter
   attr_accessor :library_filters, :type_filters, :semester_filter
 
   VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
-  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engeneering']
+  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering']
 
   def initialize(controller, current_user = false)
     @controller = controller

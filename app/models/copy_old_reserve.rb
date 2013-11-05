@@ -6,7 +6,7 @@ class CopyOldReserve
         "Chemistry/Physics" => 'chem',
         "Business" => 'business',
         'Architecture' => 'architecture',
-        'Engeneering' => 'engeneering'
+        'Engineering' => 'engineering'
       }
 
   def initialize(current_user, to_course, old_reserve, approve_reserve = false)
