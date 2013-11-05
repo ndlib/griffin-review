@@ -18,7 +18,7 @@
   top: 50%;
   left: 50%;
   width: 250px;
-  height: 55px;
+  height: 60px;
   margin-left: -125px;
   margin-top: -15px;
   padding: 14px 0 2px 0;
@@ -26,7 +26,7 @@
   text-align: center;
   color: #999;
   font-size: 14px;
-  background-color: white;
+  background: white url('/assets/ajax-bar-loader.gif') no-repeat center bottom;
 }
 
 .instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
