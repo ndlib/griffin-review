@@ -1,13 +1,21 @@
 <% content_for(:content_title) do %>
-  <h1>How do I?...</h1>
+  <h1>What is Library Reserves</h1>
 <% end %>
-
-
 <%
 breadcrumb(['Help'])
 %>
 
-<ul class="nav nav-tabs">
+<p>
+  <%= t('documentation.what_is_reserves') %>
+</p>
+
+<p class="text-center">
+
+  <%= link_to 'I am a Student', documentation_path('student-access'), class: 'btn btn-primary' %>
+  <%= link_to 'I am an Instructor', documentation_path('instructor-access'), class: 'btn btn-primary' %>
+</p>
+
+<!-- ul class="nav nav-tabs">
     <li class="active"><a href="#request" data-toggle="tab">Place a reserves request</a></li>
     <li><a href="#view" data-toggle="tab">View my course reserves</a></li>
     <li><a href="#sakai" data-toggle="tab">View reserves in Sakai</a></li>
@@ -27,5 +35,5 @@ breadcrumb(['Help'])
       <div class="tab-pane" id="troubleshooting">
         <%= render :partial => 'troubleshooting' %>
       </div>
-</div>
+</div -->
 

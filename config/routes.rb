@@ -40,11 +40,9 @@ Griffin::Application.routes.draw do
     course_routes
   end
 
+  get 'documentation/troubleshooting', to: 'documentation#troubleshooting'
+  resources :documentation
 
-  scope '/documentation' do
-    get '/', to: 'documentation#index'
-    get '/troubleshooting', to: 'documentation#troubleshooting'
-  end
 
   resources :documentation_admin
 

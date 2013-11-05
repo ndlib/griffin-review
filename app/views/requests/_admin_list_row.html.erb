@@ -1,4 +1,4 @@
-<% object = AdminReserveRow.new(object, self) %>
+<% object = AdminReserveRow.new(object) %>
 <% cache (object.cache_key) do %>
   <tr>
     <td><%= object.needed_by %></td>
