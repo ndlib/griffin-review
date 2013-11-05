@@ -27,7 +27,7 @@ class AddUserExeceptionForm
 
 
   def save_user_exception
-    if valid?
+    if valid? && test_user?
       persist!
       true
     else
@@ -52,4 +52,17 @@ class AddUserExeceptionForm
     end
 
 
+    def test_user?
+      begin
+        u = User.where(username: self.netid).first || User.new(username: self.netid)
+        if u.new_record?
+          u.save!
+        end
+      rescue User::LDAPException
+        self.errors.add(:netid, 'Cannot find the netid in LDAP.')
+        return false
+      end
+
+      return true
+    end
 end
