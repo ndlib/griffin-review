@@ -1,20 +1,16 @@
 <%
 breadcrumb(['Site Feedback'])
 %>
-
 <div class="hero-unit">
-  <h1>Feedback Submitted Successfully</h1>
-  <%
-  #Someone from reserves will contact you about a resolution.
-  %>
-  <p>Thank you for your feedback.  </p>
+  <h1>Report Submitted Successfully</h1>
+  <p>Someone from reserves will contact you about a resolution.</p>
   <p>
     Issue: <br />
     <%= params[:comments] %>
   </p>
   <p>
-    <a href="<%= params[:path] %>" class="btn btn-primary btn-large">
-      Back
+    <a href="<%= root_path %>" class="btn btn-primary btn-large">
+      Home
     </a>
   </p>
 </div>
