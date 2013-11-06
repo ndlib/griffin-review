@@ -169,6 +169,24 @@ jQuery ($) ->
         iDisplayLength: 500
         bProcessing: true
         sAjaxSource: window.location.href
+        aoColumnDefs: [
+          iDataSort: 6
+          aTargets: [2]
+        ,
+          iDataSort: 7
+          aTargets: [0]
+        ,
+          bSortable: false
+          bSearchable: false
+          bVisible: false
+          aTargets: [6]
+        ,
+          bSortable: false
+          bSearchable: false
+          bVisible: false
+          aTargets: [7]
+        ]
+
       )
 
 

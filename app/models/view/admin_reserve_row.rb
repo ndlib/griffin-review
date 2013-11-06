@@ -30,6 +30,15 @@ class AdminReserveRow
   end
 
 
+  def needed_by_json
+    if !@reserve.needed_by.nil?
+      @reserve.needed_by.to_time.to_i
+    else
+      9999999999
+    end
+  end
+
+
   def request_date
     @reserve.created_at.to_date.to_s(:short)
   end
@@ -90,7 +99,7 @@ class AdminReserveRow
 
 
   def to_json
-    [needed_by, title, request_date, requestor_col, course_col, type]
+    [needed_by, title, request_date, requestor_col, course_col, type,  @reserve.created_at.to_time.to_i, needed_by_json]
   end
 
   private
