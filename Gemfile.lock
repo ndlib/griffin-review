@@ -201,7 +201,6 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.9)
     mysql2 (0.3.12)
-    nested_form (0.3.2)
     net-ldap (0.3.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -388,7 +387,6 @@ DEPENDENCIES
   launchy (~> 2.1.0)
   looksee
   mysql2 (~> 0.3.11)
-  nested_form
   net-ldap
   paper_trail!
   paperclip

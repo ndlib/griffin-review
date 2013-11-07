@@ -41,7 +41,6 @@ gem 'net-ldap'
 
 # form generation
 gem 'simple_form', '~> 3.0.0.rc'
-gem 'nested_form'
 
 # so that activerecord is happy with US dates
 gem 'american_date'
