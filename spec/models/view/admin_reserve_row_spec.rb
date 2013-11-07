@@ -67,7 +67,7 @@ describe AdminReserveRow do
     r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve')
     r.save!
 
-    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\">json</a>", " 6 Nov", "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400])
+    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400])
   end
 
 
