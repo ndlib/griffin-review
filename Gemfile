@@ -68,6 +68,9 @@ gem 'uglifier', '>= 1.2.4'
 
 gem "whenever", :require => false
 
+# Deploy with Capistrano
+gem 'capistrano'
+
 # development only
 group :development do
   gem 'looksee'
@@ -75,6 +78,7 @@ group :development do
   gem 'awesome_print'
   gem 'sextant'
   gem 'bullet'
+  gem 'quiet_assets'
 end
 
 # testing
@@ -119,9 +123,6 @@ end
 
 # Use unicorn as the web server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
