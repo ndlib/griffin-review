@@ -51,10 +51,21 @@ describe CopyReserve do
 
   it "resets the created at and updated at" do
     @reserve.request.created_at = 6.days.ago
+
     @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
 
     new_reserve = @copy_reserve.copy
     expect(new_reserve.created_at.to_s ).to eq(Time.now.to_s)
+  end
+
+
+  it "resets the needed by to be nil (not entered) " do
+    @reserve.request.created_at = 6.days.ago
+
+    @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
+
+    new_reserve = @copy_reserve.copy
+    expect(new_reserve.needed_by ).to eq(nil)
   end
 
 
