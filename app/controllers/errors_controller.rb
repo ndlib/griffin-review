@@ -1,7 +1,7 @@
 class ErrorsController < ApplicationController
   include ErrorHelper
 
-  layout :determine_layout
+  layout 'errors'
 
   def index
     check_admin_or_admin_masquerading_permission!
