@@ -16,6 +16,42 @@ class AdminEditButton
   end
 
 
+  def meta_data_notes
+    # record id required  - physical no id
+    # sychronized on: date  ndu_aleph23423423424 - if id
+    # requires review. - no physical no review
+    # meta data manually entered - no phys review no id
+  end
+
+
+  def electronic_resource_notes
+    uls = []
+    if requires_external_resource?
+      if external_resouce_comeplete?
+        uls << "Streaming Video"
+      else
+        uls << "Requires: Streaming Video"
+      end
+    else
+      uls << "Not Required"
+    end
+  end
+
+
+  def fair_use_notes
+    uls = []
+    if requires_fair_use?
+      if fair_use_complete?
+        uls << @reserve.fair_use.state.titleize
+      else
+        uls << "Requires: Completion"
+      end
+    else
+      uls << "Not Required"
+    end
+  end
+
+
   def complete?
     ReserveCheckIsComplete.new(@reserve).complete?
   end

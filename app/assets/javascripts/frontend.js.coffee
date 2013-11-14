@@ -204,15 +204,20 @@ jQuery ($) ->
     $('#admin_update_meta_data_details').keyup ->
       $('.details').html($(this).val())
 
+    $('#admin_update_meta_data_length').keyup ->
+      $('.length').html($(this).val())
+
     $('.show_full_meta_data').click ->
       $('#admin_update_meta_data_overwrite_nd_meta_data').val("1")
       $('#full_meta_data').show()
-      $('#discovery_meta_data').hide()
+      $('#resync_meta_data').hide()
+      false
 
     $('.use_meta_data_id').click ->
       $('#admin_update_meta_data_overwrite_nd_meta_data').val("0")
       $('#full_meta_data').hide()
-      $('#discovery_meta_data').show()
+      $('resync_meta_data').show()
+      false
 
     $('#test_meta_data').click ->
       $(this).removeData "modal"

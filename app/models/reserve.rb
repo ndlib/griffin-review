@@ -78,16 +78,6 @@ class Reserve
   end
 
 
-  def item
-    @item ||= (request.item || request.build_item)
-  end
-
-
-  def item_id
-    item.id
-  end
-
-
   def requestor_name
     if requestor_netid == 'import'
       return "imported"
@@ -102,6 +92,16 @@ class Reserve
   end
 
 
+  def item
+    @item ||= (request.item || request.build_item)
+  end
+
+
+  def item_id
+    item.id
+  end
+
+
   def requestor
     @user ||= User.where(:username => self.requestor_netid).first
   end
@@ -109,6 +109,16 @@ class Reserve
 
   def request
     @request ||= Request.new
+  end
+
+
+  def course
+    @course ||= CourseSearch.new.get(self.course_id)
+  end
+
+
+  def fair_use
+    @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
   end
 
 
@@ -134,16 +144,6 @@ class Reserve
 
   def persisted?
     false
-  end
-
-
-  def course
-    @course ||= CourseSearch.new.get(self.course_id)
-  end
-
-
-  def fair_use
-    @fair_use ||= ( FairUse.request(self).first || FairUse.new(request: request) )
   end
 
 

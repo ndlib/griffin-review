@@ -13,7 +13,7 @@ class RequestsController  < ApplicationController
 
   def show
     check_admin_permission!
-    @admin_reserve = AdminReserve.new(current_user, self, params)
+    @admin_reserve = RequestDetail.new(self)
   end
 
 

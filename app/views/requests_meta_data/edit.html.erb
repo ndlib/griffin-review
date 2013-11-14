@@ -1,34 +1,73 @@
 <% content_for(:content_title) do %>
-  <h1>Update Meta Data </h1>
+  <% @admin_reserve = RequestDetail.new(self.controller) %>
+  <div class="page-header">
+    <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
+    <p class="lead">
+      <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %><br />
+      <small>
+        <%= @admin_reserve.crosslist_and_sections %> <br />
+      </small>
+    </p>
+  </div>
 <% end %>
 <%
 breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request_path(@request.id)), "Update Meta Data" ])
 %>
 
-<div class="five columns">
-  <%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
+<h2>Update Meta Data</h2>
+<p class="form-help">
+  Find this form to connect this item to our catalog.  Connecting to our catalog will fill out the display meta data and connect to existing electronic resources.
+  <br /><%= how_to_use_page_link('startRecordId()') %>
+</p>
 
-    <% if !@show_files %>
-      <%= render :partial => 'meta_data_id_form', locals: { f: f } %>
+
+<%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
+
+  <div class="five columns">
+
+    <div class="pull-right">
+      <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
+        <i class="icon icon-arrow-up"></i> Test Record Id</a>
+    </div>
+    <%= f.input :nd_meta_data_id, label: "Record Id", id: 'step1' %>
+    <hr>
+    <div id="resync_meta_data" style="<%= f.object.nd_meta_data_id.present? ? '' : 'display:none;' %>">
+      <p><%= link_to "Re-sync Meta Data", "#", class: 'btn' %> <%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data' %> </p>
+    </div>
+    <div id="full_meta_data" style="<%= !f.object.nd_meta_data_id.present? ? '' : 'display:none;' %>">
+      <%= f.input :title %>
+
+      <%= f.input :creator, label: 'Author or Creator of the work' %>
+
+      <%= f.input :details, label: "Journal and Volume" %>
+
+      <%= f.input :publisher_provider, label: "Publisher" %>
+    </div>
+    <% if f.object.type == 'BookChapterReserve' %>
+      <%= f.input :length, label: "Reading Length" %>
     <% end %>
+
+  </div>
+
+  <div class="seven columns find-resources">
+    <h4>Citation</h4>
+    <%= @admin_reserve.citation %>
+    <%= link_to raw("<i class=\"icon icon-chevron-right\"></i> Search in One Search"), '#' %>
+
+    <h4>Special Instructions</h4>
+    <%= @admin_reserve.special_instructions %>
 
     <hr>
+    <h4>Record Preview</h4>
+    <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
+  </div>
+  <div class="form-actions twelve columns">
+    <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
 
-    <%= f.input :on_order, label: false do %>
-      <%= f.input_field :on_order, as: :boolean, inline_label: "On Order", label: false %>
-    <% end %>
+    <%= link_to 'Cancel', request_path(@request.id) %>
+  </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
-
-      <%= link_to 'Cancel', request_path(@request.id) %>
-    </div>
-  <% end %>
-</div>
-
-<div class="seven columns find-resources">
-  <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
-</div>
+<% end %>
 
 
 <!-- Modal -->

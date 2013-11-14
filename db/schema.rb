@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029140222) do
+ActiveRecord::Schema.define(version: 20131108143534) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "error_logs", force: true do |t|
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20131029140222) do
     t.text     "citation"
     t.boolean  "physical_reserve"
     t.string   "realtime_availability_id"
+    t.boolean  "electronic_reserve"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
@@ -97,8 +98,8 @@ ActiveRecord::Schema.define(version: 20131029140222) do
     t.string   "language"
     t.string   "subtitles"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
@@ -151,8 +152,8 @@ ActiveRecord::Schema.define(version: 20131029140222) do
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "movie_directory"
   end
 
@@ -177,8 +178,8 @@ ActiveRecord::Schema.define(version: 20131029140222) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "admin"
     t.string   "admin_preferences"
   end

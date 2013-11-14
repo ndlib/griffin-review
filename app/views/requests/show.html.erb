@@ -1,32 +1,91 @@
 <% content_for(:content_title) do %>
-  <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
-  <p class="lead well">
-    <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %> <br>
-    <small>
-      <%= @admin_reserve.course.crosslisted_course_ids.join(", ") %> - <%= @admin_reserve.course.section_numbers.join(", ") %> <br />
-    </small>
-    Requestor: <%= @admin_reserve.requestor %> <br>
-  </p>
+  <div class="page-header">
+    <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
+    <p class="lead">
+      <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %><br />
+      <small>
+        <%= @admin_reserve.crosslist_and_sections %> <br />
+      </small>
+    </p>
+  </div>
 <% end %>
 <% content_for(:content_title_links) do %>
-  <%= render partial: '/requests/admin_row_button', locals: { button: @admin_reserve.button } %>
+  <% # render partial: '/requests/admin_row_button', locals: { button: @admin_reserve.button } %>
 <% end %>
 
 <%
 breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow_state)), h(@admin_reserve.title) ])
 %>
-<div class="find-resources">
-  <h4>Record Display</h4>
-  <%= render :partial => '/course_reserves/list_record', :locals => { object: @admin_reserve.reserve } %>
+<div class="three columns">
+  <% status = @admin_reserve.button %>
+  <dl class="navigation">
+    <% if status.meta_data_complete? %>
+      <dt>
+        <%= link_to raw("Edit Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-success" %>
+      </dt>
+      <dd>Meta Data Manually Entered.</dd>
+    <% else %>
+      <dt><%= link_to raw("Review Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-warning" %></dt>
+      <dd>Requires Meta Data Id</dd>
+    <% end %>
+    <% if status.requires_external_resource? %>
+      <% if status.external_resouce_comeplete? %>
+        <dt>
+          <%= link_to raw(" Edit Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-success" %>
+        </dt>
+        <dd><%= status.electronic_resource_notes.join(raw("<br>")) %></dd>
+      <% else %>
+        <dt><%= link_to raw(" Add Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-warning" %></dt>
+        <dd><%= status.electronic_resource_notes.join(raw("<br>")) %></dd>
+      <% end %>
+    <% else %>
+      <dt class="muted">No Electronic Resource Required</a></dt>
+      <dd> </dd>
+    <% end %>
 
-  <div class="record">
-    <h4>Citation</h4>
-    <%= raw @admin_reserve.citation %>
+    <% if status.requires_fair_use? %>
+      <% if status.fair_use_complete? %>
+        <dt><%= link_to raw("Edit Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-success" %></dt>
+        <dd><%= status.fair_use_notes.join(raw("<br>")) %></dd>
+      <% else %>
+        <dt><%= link_to raw("Add Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-warning" %></dt>
+        <dd><%= status.fair_use_notes.join(raw("<br>")) %></dd>
+      <% end %>
+    <% else %>
+      <dt class="muted"><i class="icon-tasks"></i> No Fair Use Assessment Required </dt>
+      <dd> </dd>
+    <% end %>
+  </dl>
+  <hr>
+  <p>
+    <%= link_to raw("<i class=\"icon-share-alt\"></i> Place On Order"), edit_resource_path(status.reserve_id), class: "btn" %>
+  </p>
+  <p>
+    <%= link_to raw("<i class=\"icon-remove\"></i> Delete Reserve"), "#", class: 'btn text-error' %>
+  </p>
 
-    <h4>Notes</h4>
-    <%= raw @admin_reserve.info_list %>
-    <%= raw @admin_reserve.note %>
+
+</div>
+<div class="nine columns">
+
+  <table class="table table-striped table-hover">
+    <tbody>
+    <tr><td style="width:25%">Needed By: </td><td><%= @admin_reserve.needed_by %></td></tr>
+    <tr><td>Requestor:</td><td><%= @admin_reserve.requestor %></td></tr>
+    <tr><td>Requested On: </td><td><%= @admin_reserve.created_at.to_s(:long) %></td></tr>
+    <tr><td>Citation:</td><td><%= raw @admin_reserve.citation %></td></tr>
+    <tr><td>Special Instructions:</td><td><%= raw @admin_reserve.special_instructions %></td></tr>
+    <tr><td>Fair Use Comments:</td><td><%= @admin_reserve.fair_use_comments %></td></tr>
+    <tr><td>Type:</td><td>Physical and Electronic Reserve. <%= link_to 'Change', '#' %></td></tr>
+    </tbody>
+  </table>
+
+  <div class="find-resources">
+    <h4>Record Preview</h4>
+    <%= render :partial => '/course_reserves/list_record', :locals => { object: @admin_reserve.reserve } %>
   </div>
+
+  <hr>
 
   <h4>Statistics</h4>
   <dl class="dl-horizontal long-dt">

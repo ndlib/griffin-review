@@ -17,6 +17,7 @@ module API
 
     def self.get(path, params = {}, format = nil)
       require 'open-uri'
+      puts api_url(path, params, format)
       open(api_url(path, params, format)).read
     end
 

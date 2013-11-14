@@ -1,16 +1,14 @@
-class AdminReserve
+class RequestDetail
 
-  include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::UrlHelper
+  include RailsHelpers
 
   attr_accessor :reserve
 
-  delegate :workflow_state, :title, :length, to: :reserve
+  delegate :workflow_state, :title, :length, :created_at, :course, to: :reserve
 
-  def initialize(current_user, context, params)
-    @current_user = current_user
-    @context = context
-    @reserve = reserve_search.get(params[:id])
+  def initialize(controller)
+    @controller = controller
+    @reserve = reserve_search(@controller.params[:id])
 
     ReserveCheckInprogress.new(@reserve).check!
   end
@@ -76,22 +74,26 @@ class AdminReserve
     cite = @reserve.citation.to_s.gsub( %r{http://[^\s<]+} ) do |url|
       "<a target=\"_blank\" href='#{url}'>#{url.truncate(100)}</a>"
     end
-    simple_format(cite)
+    helpers.simple_format(cite)
   end
 
 
-  def note
-    simple_format(@reserve.note)
+  def special_instructions
+    if (@reserve.note.nil? || @reserve.note.empty?)
+      "<p class=\"muted\">None</p>"
+    else
+      helpers.simple_format(@reserve.note)
+    end
   end
 
 
-  def course
-    @reserve.course
+  def crosslist_and_sections
+    "#{@reserve.course.crosslisted_course_ids.join(", ")} - #{@reserve.course.section_numbers.join(", ")}"
   end
 
 
   def instructor
-    @context.link_to(@reserve.course.primary_instructor, @context.new_masquerades_path(:username => @reserve.requestor_netid))
+    helpers.link_to(@reserve.course.primary_instructor, routes.new_masquerades_path(:username => @reserve.requestor_netid))
   end
 
 
@@ -99,19 +101,19 @@ class AdminReserve
     if @reserve.requestor_name == "imported"
       "Imported"
     else
-      link_to(@reserve.requestor_name, @context.new_masquerades_path(:username => @reserve.requestor_netid)) + " - #{@reserve.requestor.email} "
+      helpers.link_to(@reserve.requestor_name, routes.new_masquerades_path(:username => @reserve.requestor_netid)) + " - #{@reserve.requestor.email} "
     end
   end
 
 
 
   def number_of_views_for_current_request
-    ReserveStat.all_request_stats(@reserve).size
+    ReserveStat.all_request_stats(@reserve).count
   end
 
 
   def number_of_views_all_time
-    ReserveStat.all_item_stats(@reserve).size
+    ReserveStat.all_item_stats(@reserve).count
   end
 
 
@@ -120,11 +122,14 @@ class AdminReserve
   end
 
 
-  private
-
-    def reserve_search
-      @search ||= ReserveSearch.new
+  def needed_by
+    if @reserve.needed_by.nil?
+      "Not Entered"
+    else
+      @reserve.needed_by.to_s(:long)
     end
+  end
+
 
 
 
@@ -144,12 +149,21 @@ class AdminReserve
       raise " Invalid fair use state in admin reserve  "
     end
 
-    txt
+    helpers.raw(txt)
   end
 
 
   def fair_use_comments
-    simple_format(@reserve.fair_use.comments)
+    helpers.simple_format(@reserve.fair_use.comments)
   end
+
+
+  private
+
+    def reserve_search(id)
+      ReserveSearch.new.get(id)
+    end
+
+
 
 end

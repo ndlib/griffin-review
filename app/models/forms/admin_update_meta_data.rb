@@ -12,6 +12,7 @@ class AdminUpdateMetaData
   attribute :details, String
   attribute :publisher, String
   attribute :journal_title, String
+  attribute :length, String
   attribute :nd_meta_data_id, String
   attribute :display_length, String
   attribute :on_order, Boolean

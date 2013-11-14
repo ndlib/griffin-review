@@ -1,0 +1,13 @@
+<% form = ReserveTypeForm.new(self.controller)
+<%= simple_form_for @request, :url => meta_data_path(@request.reserve_id), :method=>'put' do | f | %>
+
+  <%= f.input :physical_reserve, label: false do %>
+    <%= f.input_field :on_order, as: :boolean, inline_label: "On Order", label: false %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+    <%= link_to 'Cancel', request_path(@request.id) %>
+  </div>
+<% end %>

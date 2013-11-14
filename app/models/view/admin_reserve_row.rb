@@ -69,57 +69,8 @@ class AdminReserveRow
   end
 
 
-  def subtitles
-    ret = ""
-    if @reserve.language_track.present?
-      ret += "Language: #{@reserve.language_track} <br>"
-    end
-
-    if @reserve.subtitle_language.present?
-      ret += "Subtitle: #{@reserve.subtitle_language}"
-    end
-
-    raw(ret)
-  end
-
-
-  def missing_data
-    ret = [self.workflow_state]
-
-    if self.workflow_state != 'new'
-      ret << 'fair_use' if !fair_use_policy.complete?
-      ret << 'meta_data' if !meta_data_policy.complete?
-      ret << 'resource' if !external_resource_policy.complete?
-      ret << 'on_order' if !awaiting_purchase_policy.complete?
-      ""
-    end
-
-    ret.join(' ')
-  end
-
-
   def to_json
     [needed_by, title, request_date, requestor_col, course_col, type,  @reserve.created_at.to_time.to_i, needed_by_json]
   end
 
-  private
-
-    def fair_use_policy
-      @fair_use_policy ||= ReserveFairUsePolicy.new(@reserve)
-    end
-
-
-    def meta_data_policy
-      @meta_data_policy ||= ReserveMetaDataPolicy.new(@reserve)
-    end
-
-
-    def external_resource_policy
-      @external_resource_policy ||= ReserveResourcePolicy.new(@reserve)
-    end
-
-
-    def awaiting_purchase_policy
-      @awaiting_purchase_policy ||= ReserveAwaitingPurchasePolicy.new(@reserve)
-    end
 end
