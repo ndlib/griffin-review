@@ -8,12 +8,14 @@ describe CopyReserve do
 
   before(:each) do
 
-    @from_course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-    @to_course = double(Course, id: 'id', semester: FactoryGirl.create(:previous_semester))
+    @from_course = double(Course, id: 'from_id', semester: FactoryGirl.create(:semester))
+    @to_course = double(Course, id: 'to_id', semester: FactoryGirl.create(:previous_semester))
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
 
     @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
+
+    CourseSearch.any_instance.stub(:get).and_return(@to_course)
   end
 
 

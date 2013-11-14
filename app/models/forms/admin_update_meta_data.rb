@@ -77,7 +77,7 @@ class AdminUpdateMetaData
   private
 
     def requires_nd_meta_data_id?
-      (!overwrite_nd_meta_data?)
+      ReserveMetaDataPolicy.new(@reserve).meta_data_id_required?
     end
 
 

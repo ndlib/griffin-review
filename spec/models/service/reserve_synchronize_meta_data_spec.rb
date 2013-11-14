@@ -65,7 +65,6 @@ describe ReserveSynchronizeMetaData do
 
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
         @reserve.url.should == "old_url"
-
       end
 
 

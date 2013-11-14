@@ -145,8 +145,9 @@ describe AdminUpdateMetaData do
     it "calls save! on the reserve " do
       @update_meta_data.stub(:valid?).and_return(true)
       @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
+      ReserveCheckIsComplete.any_instance.stub(:complete?).and_return(false)
       Reserve.any_instance.should_receive(:save!)
+
       @update_meta_data.save_meta_data
     end
 

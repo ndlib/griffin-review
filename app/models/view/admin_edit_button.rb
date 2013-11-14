@@ -17,10 +17,23 @@ class AdminEditButton
 
 
   def meta_data_notes
-    # record id required  - physical no id
-    # sychronized on: date  ndu_aleph23423423424 - if id
-    # requires review. - no physical no review
-    # meta data manually entered - no phys review no id
+    policy = ReserveMetaDataPolicy.new(@reserve)
+    uls = []
+    if @reserve.nd_meta_data_id.present?
+      uls << "Record ID: #{@reserve.nd_meta_data_id}"
+      uls << "Syncronized on #{@reserve.metadata_synchronization_date.to_s(:long)}"
+
+    elsif policy.meta_data_id_required? && !policy.complete?
+      uls << "Requires Record ID"
+    else
+      if policy.complete?
+        uls << "Meta Data Manually Entered"
+      else
+        uls << "Requires Meta Data Review"
+      end
+    end
+
+    return uls
   end
 
 

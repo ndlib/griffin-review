@@ -10,7 +10,21 @@ class ReserveMetaDataPolicy
   end
 
 
+  def meta_data_id_required?
+    PhysicalReserve.new(@reserve).is_physical_reserve?
+  end
+
+
+  def meta_data_reviewed?
+    true
+  end
+
+
   def complete?
-    @reserve.nd_meta_data_id.present? || @reserve.overwrite_nd_meta_data?
+    if (meta_data_id_required?)
+      return @reserve.nd_meta_data_id.present?
+    else
+      return meta_data_reviewed?
+    end
   end
 end

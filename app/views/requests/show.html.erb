@@ -23,21 +23,19 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
       <dt>
         <%= link_to raw("Edit Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-success" %>
       </dt>
-      <dd>Meta Data Manually Entered.</dd>
     <% else %>
       <dt><%= link_to raw("Review Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-warning" %></dt>
-      <dd>Requires Meta Data Id</dd>
     <% end %>
+    <dd><%= raw status.meta_data_notes.join(raw("<br>")) %></dd>
     <% if status.requires_external_resource? %>
       <% if status.external_resouce_comeplete? %>
         <dt>
           <%= link_to raw(" Edit Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-success" %>
         </dt>
-        <dd><%= status.electronic_resource_notes.join(raw("<br>")) %></dd>
       <% else %>
         <dt><%= link_to raw(" Add Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-warning" %></dt>
-        <dd><%= status.electronic_resource_notes.join(raw("<br>")) %></dd>
       <% end %>
+      <dd><%= raw status.electronic_resource_notes.join(raw("<br>")) %></dd>
     <% else %>
       <dt class="muted">No Electronic Resource Required</a></dt>
       <dd> </dd>
@@ -46,11 +44,10 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
     <% if status.requires_fair_use? %>
       <% if status.fair_use_complete? %>
         <dt><%= link_to raw("Edit Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-success" %></dt>
-        <dd><%= status.fair_use_notes.join(raw("<br>")) %></dd>
       <% else %>
         <dt><%= link_to raw("Add Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-warning" %></dt>
-        <dd><%= status.fair_use_notes.join(raw("<br>")) %></dd>
       <% end %>
+      <dd><%= raw status.fair_use_notes.join(raw("<br>")) %></dd>
     <% else %>
       <dt class="muted"><i class="icon-tasks"></i> No Fair Use Assessment Required </dt>
       <dd> </dd>
