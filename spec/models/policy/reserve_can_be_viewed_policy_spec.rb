@@ -42,7 +42,7 @@ describe ReserveCanBeViewedPolicy do
       @policy.stub(:current_semester?).and_return(false)
       @policy.stub(:user_is_administrator?).and_return(false)
       @policy.stub(:instructor_can_preview?).and_return(false)
-      @policy.stub(:physical_reserve?).and_return(false)
+      @policy.stub(:electronic_reserve?).and_return(true)
     end
 
 
@@ -70,7 +70,7 @@ describe ReserveCanBeViewedPolicy do
 
 
     it "returns false if the resource is a physical item " do
-      @policy.stub(:physical_reserve?).and_return(true)
+      @policy.stub(:electronic_reserve?).and_return(false)
       expect(@policy.can_be_viewed?).to be_false
     end
   end

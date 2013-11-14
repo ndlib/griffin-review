@@ -61,6 +61,6 @@ class ReserveResourcePolicy
 
 
   def physical_reserve_only?
-    @reserve.physical_reserve?
+    PhysicalReserve.new(@reserve).is_physical_reserve? && !ElectronicReserve.new(@reserve).is_electronic_reserve?
   end
 end

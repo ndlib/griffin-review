@@ -177,6 +177,7 @@ describe ReserveResourcePolicy do
     it "returns false if it is a physical only reserve" do
       reserve = mock_reserve FactoryGirl.create(:request, :audio), nil
       reserve.physical_reserve = true
+      reserve.electronic_reserve = false
 
       policy = ReserveResourcePolicy.new(reserve)
       policy.can_have_url_resource?.should be_false
