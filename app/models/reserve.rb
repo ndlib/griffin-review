@@ -11,6 +11,12 @@ class Reserve
   delegate :created_at, :updated_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
   delegate :id=, :semester=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
 
+  def chapter_title
+  end
+
+  def chapter_title=(val)
+  end
+
   attr_accessor :course, :request
   attr_accessor :requestor_has_an_electronic_copy
   attr_accessor :fair_use, :requestor
