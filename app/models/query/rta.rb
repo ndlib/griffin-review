@@ -1,11 +1,21 @@
 class Rta
 
   def initialize(rta_id, key = false)
-    @items = search(rta_id, key)
+    @rta_id = rta_id
+    @key = key
+
   end
 
 
   def items
+    return @items if @items
+
+    begin
+      @items = search(@rta_id, @key)
+    rescue OpenURI::HTTPError
+      @items = search(@rta_id, @key)
+    end
+
     @items
   end
 
