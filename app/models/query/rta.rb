@@ -13,6 +13,7 @@ class Rta
     begin
       @items = search(@rta_id, @key)
     rescue OpenURI::HTTPError
+      ErrorLog.log_message("no netid", 'Second RTA Attempt')
       @items = search(@rta_id, @key)
     end
 

@@ -35,6 +35,18 @@ class ErrorLog  < ActiveRecord::Base
   end
 
 
+  def self.log_message(netid, text)
+    error = ErrorLog.create(
+      message: text,
+      netid: netid,
+      path: "",
+      params: "",
+      exception_class: "",
+      user_agent: "",
+      stack_trace: ""
+    )
+  end
+
   def self.errors
     self.default_order.limit(100).where("state != ? ", 'resolved')
   end
