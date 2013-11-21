@@ -1,14 +1,5 @@
 <% content_for(:content_title) do %>
-  <% @admin_reserve = RequestDetail.new(self.controller) %>
-  <div class="page-header">
-    <h1><%= h @admin_reserve.title %> <small><%= h @admin_reserve.type %></small></h1>
-    <p class="lead">
-      <%= link_to @admin_reserve.course.title, course_reserves_path(@admin_reserve.course.id) %><br />
-      <small>
-        <%= @admin_reserve.crosslist_and_sections %> <br />
-      </small>
-    </p>
-  </div>
+  <%= render partial: '/requests/request_header', locals: { reserve: @request.reserve } %>
 <% end %>
 <%
 breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request_path(@request.id)), "Update Meta Data" ])
@@ -55,11 +46,11 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
   <div class="seven columns find-resources">
     <h4>Citation</h4>
-    <%= @admin_reserve.citation %>
+    <%= raw f.object.citation %>
     <%= link_to raw("<i class=\"icon icon-chevron-right\"></i> Search in One Search"), f.object.catalog_search_href, target: '_blank' %>
 
     <h4>Special Instructions</h4>
-    <%= raw @admin_reserve.special_instructions %>
+    <%= raw f.object.special_instructions %>
 
     <hr>
     <h4>Record Preview</h4>

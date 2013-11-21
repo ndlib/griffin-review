@@ -33,11 +33,7 @@ class RequestDetail
 
 
   def special_instructions
-    if (@reserve.note.nil? || @reserve.note.empty?)
-      "<p class=\"muted\">None</p>"
-    else
-      helpers.simple_format(@reserve.note)
-    end
+    helpers.simple_format(@reserve.note)
   end
 
 
@@ -83,8 +79,6 @@ class RequestDetail
       @reserve.needed_by.to_s(:long)
     end
   end
-
-
 
 
   def fair_use

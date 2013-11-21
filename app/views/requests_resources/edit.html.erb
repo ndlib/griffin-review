@@ -1,23 +1,20 @@
 <% content_for(:content_title) do %>
-  <h1>Set Reserve Resources </h1>
+  <%= render partial: '/requests/request_header', locals: { reserve: @request.reserve } %>
 <% end %>
 
+<h3>Electronic Resource</h3>
 
 <div class="row">
  <div class="span6">
     <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+      <% if @request.show_video_form? %>
+          <%= render partial: 'streaming_form', locals: { f: f } %>
+      <% end %>
       <% if @request.show_url_form? %>
-        <% if @request.show_video_form? %>
-          <%= f.input :url, :label => (@request.steaming_server_full_url? ? 'Video URL' : 'Streaming Server Filename') %>
-          <a href="#" class="btn toggle_video_form" data-state="<%= (@request.steaming_server_full_url? ? 'streaming_server' : 'internet') %>"><%= (@request.steaming_server_full_url? ? 'Video on our streaming server' :  'Video is on the internet') %></a>
-        <% else %>
-          <%= f.input :url, :label => 'Link to external site' %>
-        <% end %>
+          <%= render partial: 'url_form', locals: { f: f } %>
       <% end %>
       <% if @request.show_file_upload_form? %>
-        <p>Current File: <%= @request.pdf_file_name %></p>
-        <%= f.input :pdf, :label => 'Upload a pdf', :as => :file %>
-
+          <%= render partial: 'file_form', locals: { f: f } %>
       <% end %>
 
       <div class="form-actions">

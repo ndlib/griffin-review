@@ -1,5 +1,6 @@
 class AdminUpdateMetaData
   include Virtus
+  include RailsHelpers
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -98,6 +99,17 @@ class AdminUpdateMetaData
       ""
     end
   end
+
+
+  def citation
+    helpers.simple_format(@reserve.citation)
+  end
+
+
+  def special_instructions
+    helpers.simple_format(@reserve.note)
+  end
+
 
 
   private
