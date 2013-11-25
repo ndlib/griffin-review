@@ -3,12 +3,11 @@ require 'spec_helper'
 
 describe ReserveRemoveForm do
 
-  let(:user) { mock_model(User, id: 1, username: 'username')}
-
   before(:each) do
-    semester = FactoryGirl.create(:semester)
-    @course = double(Course, id: 'id', crosslist_id: 'crosslist_id', semester: semester)
+    @course = double(Course, id: 'id')
     @reserve = double(Reserve, id: 1, course: @course)
+
+    @controller = double(ApplicationController, params: { id: @reserve.id })
 
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   end
@@ -19,7 +18,7 @@ describe ReserveRemoveForm do
     it "raises a routing error if the reserve is not found" do
       ReserveSearch.any_instance.stub(:get).and_raise(ActiveRecord::RecordNotFound)
       lambda {
-        ReserveRemoveForm.new(user, { course_id: 'course_id', id: '324234' })
+        ReserveRemoveForm.new(@controller)
       }.should raise_error ActionController::RoutingError
     end
   end
@@ -28,7 +27,7 @@ describe ReserveRemoveForm do
   describe :course do
 
     it "returns the coures for the current reserve" do
-      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: @reserve.id })
+      form = ReserveRemoveForm.new(@controller)
       expect(form.course).to eq(@course)
     end
   end
@@ -37,7 +36,7 @@ describe ReserveRemoveForm do
   describe :remove! do
 
     it "changes the state to remove when it is removed" do
-      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: @reserve.id })
+      form = ReserveRemoveForm.new(@controller)
 
       @reserve.should_receive(:remove)
       form.remove!

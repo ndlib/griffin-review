@@ -1,17 +1,14 @@
 class ReserveRemoveForm
   include Virtus
   include ModelErrorTrapping
-  include GetCourse
 
 
   attribute :reserve, Reserve
   attribute :course, Course
 
 
-  def initialize(current_user, params)
-    @current_user = current_user
-
-    self.reserve = load_reserve(params[:id])
+  def initialize(controller)
+    self.reserve = load_reserve(controller.params[:id])
   end
 
 
