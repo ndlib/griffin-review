@@ -44,7 +44,7 @@ class ReserveSynchronizeMetaData
 
 
     def synchronize_url_from_meta_data?
-      @reserve.url.nil? && reserve_resource_policy.can_have_url_resource? && !reserve_resource_policy.streaming_service_resource? && discovery_record.fulltext_available?
+      @reserve.url.nil? && electionic_resource_policy.can_have_url_resource? && discovery_record.fulltext_available?
     end
 
 
@@ -53,7 +53,7 @@ class ReserveSynchronizeMetaData
     end
 
 
-    def reserve_resource_policy
-      @policy ||= ReserveResourcePolicy.new(@reserve)
+    def electionic_resource_policy
+      @policy ||= ElectronicReservePolicy.new(@reserve)
     end
 end

@@ -1,0 +1,43 @@
+<% status = RequestEditForm.new(reserve) %>
+<dl class="navigation">
+  <% if status.meta_data_complete? %>
+    <dt>
+      <%= link_to raw("Edit Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-success" %>
+    </dt>
+  <% else %>
+    <dt><%= link_to raw("Review Meta Data"), edit_meta_data_path(status.reserve_id), class: "text-warning" %></dt>
+  <% end %>
+  <dd><%= raw status.meta_data_notes.join(raw("<br>")) %></dd>
+  <% if status.requires_electronic_resource? %>
+    <% if status.electronic_resouce_comeplete? %>
+      <dt>
+        <%= link_to raw(" Edit Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-success" %>
+      </dt>
+    <% else %>
+      <dt><%= link_to raw(" Add Electronic Resource"), edit_resource_path(status.reserve_id), class: "text-warning" %></dt>
+    <% end %>
+    <dd><%= raw status.electronic_resource_notes.join(raw("<br>")) %></dd>
+  <% else %>
+    <dt class="muted">No Electronic Resource Required</a></dt>
+    <dd> </dd>
+  <% end %>
+
+  <% if status.requires_fair_use? %>
+    <% if status.fair_use_complete? %>
+      <dt><%= link_to raw("Edit Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-success" %></dt>
+    <% else %>
+      <dt><%= link_to raw("Add Fair Use Assessment"), edit_fair_use_path(status.reserve_id), class: "text-warning" %></dt>
+    <% end %>
+    <dd><%= raw status.fair_use_notes.join(raw("<br>")) %></dd>
+  <% else %>
+    <dt class="muted"><i class="icon-tasks"></i> No Fair Use Assessment Required </dt>
+    <dd> </dd>
+  <% end %>
+</dl>
+<hr>
+<p>
+  <%= link_to raw("<i class=\"icon-share-alt\"></i> Place On Order"), edit_resource_path(status.reserve_id), class: "btn" %>
+</p>
+<p>
+  <%= status.delete_link %>
+</p>

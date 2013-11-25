@@ -6,22 +6,44 @@
 
 <div class="row">
  <div class="span6">
-    <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
-      <% if @request.show_video_form? %>
-          <%= render partial: 'streaming_form', locals: { f: f } %>
-      <% end %>
-      <% if @request.show_url_form? %>
-          <%= render partial: 'url_form', locals: { f: f } %>
-      <% end %>
-      <% if @request.show_file_upload_form? %>
-          <%= render partial: 'file_form', locals: { f: f } %>
-      <% end %>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+    <% if @request.has_resource? %>
 
-        <%= link_to 'Cancel', request_path(@request.id) %>
-      </div>
+      <p>Current File: <a>blabla.pdf</a></p>
+      <p>Current URL: <a>http://www.google.com</a></p>
+      <p>Steaming URL: <a>moviename.mov</a></p>
+
+      <p><%= link_to 'Delete', '#', class: 'btn btn-danger' %></p>
+    <% else %>
+      <p class="help-text">Select the type of electronic resource you are creating</p>
+      <p>
+        <%= link_to "Streaming Video", '#streaming', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "File", '#file', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
+      </p>
+
+      <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+        <div class="tab-content">
+
+          <div class="tab-pane" id="streaming">
+            <%= render partial: 'streaming_form', locals: { f: f } %>
+          </div>
+
+          <div class="tab-pane" id="url">
+            <%= render partial: 'url_form', locals: { f: f } %>
+          </div>
+
+          <div class="tab-pane" id="file">
+            <%= render partial: 'file_form', locals: { f: f } %>
+          </div>
+
+          <div class="tab-pane" id="sipx">
+            SPIX !!!
+          </div>
+        </div>
+
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -1,5 +1,6 @@
-class AdminEditButton
+class RequestEditForm
 
+  include RailsHelpers
 
   def initialize(reserve)
     @reserve = reserve
@@ -16,6 +17,17 @@ class AdminEditButton
   end
 
 
+  def delete_link
+    helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i> Delete Reserve"),
+                    routes.request_path(@reserve.id),
+                    data: { confirm: 'Are you sure you wish to remove this reserve from this semester?' },
+                    :method => :delete,
+                    class: 'btn text-error',
+                    :id => "delete_reserve_#{@reserve.id}")
+
+  end
+
+
   def meta_data_notes
     policy = ReserveMetaDataPolicy.new(@reserve)
     uls = []
@@ -24,7 +36,7 @@ class AdminEditButton
       uls << "Syncronized on #{@reserve.metadata_synchronization_date.to_s(:long)}"
 
     elsif policy.meta_data_id_required? && !policy.complete?
-      uls << "Requires Record ID"
+      uls << "Requires: Record ID"
     else
       if policy.complete?
         uls << "Meta Data Manually Entered"
@@ -39,11 +51,11 @@ class AdminEditButton
 
   def electronic_resource_notes
     uls = []
-    if requires_external_resource?
-      if external_resouce_comeplete?
-        uls << "Streaming Video"
+    if requires_electronic_resource?
+      if electronic_resouce_comeplete?
+        uls << ElectronicReservePolicy.new(@reserve).electronic_resource_type
       else
-        uls << "Requires: Streaming Video"
+        uls << "Requires an Electroinc Resource"
       end
     else
       uls << "Not Required"
@@ -57,7 +69,7 @@ class AdminEditButton
       if fair_use_complete?
         uls << @reserve.fair_use.state.titleize
       else
-        uls << "Requires: Completion"
+        uls << "Requires Form Completion"
       end
     else
       uls << "Not Required"
@@ -75,23 +87,13 @@ class AdminEditButton
   end
 
 
-  def meta_data_css_class
-    meta_data_complete? ? 'icon-ok' : ''
+  def requires_electronic_resource?
+    ElectronicReservePolicy.new(@reserve).can_have_resource?
   end
 
 
-  def requires_external_resource?
-    ReserveResourcePolicy.new(@reserve).can_have_resource?
-  end
-
-
-  def external_resouce_comeplete?
-    ReserveResourcePolicy.new(@reserve).has_resource?
-  end
-
-
-  def external_resource_css_class
-    external_resouce_comeplete? ? 'icon-ok' : ''
+  def electronic_resouce_comeplete?
+    ElectronicReservePolicy.new(@reserve).complete?
   end
 
 
@@ -102,11 +104,6 @@ class AdminEditButton
 
   def fair_use_complete?
     ReserveFairUsePolicy.new(@reserve).complete?
-  end
-
-
-  def fair_use_css_class
-    fair_use_complete? ? 'icon-ok' : ''
   end
 
 

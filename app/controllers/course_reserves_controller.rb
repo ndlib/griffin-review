@@ -59,7 +59,7 @@ class CourseReservesController < ApplicationController
 
 
   def destroy
-    @destroy = InstructorReserveRemoveForm.new(current_user, params)
+    @destroy = ReserveRemoveForm.new(current_user, params)
 
     @destroy.remove!
 

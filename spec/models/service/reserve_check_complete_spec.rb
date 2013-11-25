@@ -37,7 +37,7 @@ describe ReserveCheckIsComplete do
       ReserveFairUsePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveAwaitingPurchasePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
-      ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
+      ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
       ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_true
     end
@@ -48,7 +48,7 @@ describe ReserveCheckIsComplete do
       ReserveFairUsePolicy.any_instance.stub(:complete?).and_return(false)
       ReserveAwaitingPurchasePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
-      ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
+      ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
       ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
     end
@@ -59,7 +59,7 @@ describe ReserveCheckIsComplete do
       ReserveFairUsePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveAwaitingPurchasePolicy.any_instance.stub(:complete?).and_return(false)
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
-      ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
+      ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
       ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
     end
@@ -70,18 +70,18 @@ describe ReserveCheckIsComplete do
       ReserveFairUsePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveAwaitingPurchasePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(false)
-      ReserveResourcePolicy.any_instance.stub(:complete?).and_return(true)
+      ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
       ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
     end
 
 
-    it "returns false if the ReserveResourcePolicy is false " do
+    it "returns false if the ElectronicReservePolicy is false " do
 
       ReserveFairUsePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveAwaitingPurchasePolicy.any_instance.stub(:complete?).and_return(true)
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
-      ReserveResourcePolicy.any_instance.stub(:complete?).and_return(false)
+      ElectronicReservePolicy.any_instance.stub(:complete?).and_return(false)
 
       ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
     end

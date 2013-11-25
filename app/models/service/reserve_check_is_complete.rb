@@ -18,7 +18,7 @@ class ReserveCheckIsComplete
     ReserveFairUsePolicy.new(@reserve).complete? &&
     ReserveAwaitingPurchasePolicy.new(@reserve).complete? &&
     ReserveMetaDataPolicy.new(@reserve).complete? &&
-    ReserveResourcePolicy.new(@reserve).complete?
+    ElectronicReservePolicy.new(@reserve).complete?
   end
 
 

@@ -13,14 +13,14 @@ class ReserveCanBeViewedPolicy
 
 
   def can_be_viewed?
-    resource_completed? && ( current_semester? || user_is_administrator? || instructor_can_preview? ) && electronic_reserve?
+    electronic_reserve? && resource_completed? && ( current_semester? || user_is_administrator? || instructor_can_preview? )
   end
 
 
   private
 
     def resource_completed?
-      ReserveResourcePolicy.new(@reserve).has_resource?
+      ElectronicReservePolicy.new(@reserve).has_resource?
     end
 
 
@@ -40,6 +40,6 @@ class ReserveCanBeViewedPolicy
 
 
     def electronic_reserve?
-      ElectronicReserve.new(@reserve).is_electronic_reserve?
+      ElectronicReservePolicy.new(@reserve).is_electronic_reserve?
     end
 end

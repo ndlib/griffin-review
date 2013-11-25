@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe InstructorReserveRemoveForm do
+describe ReserveRemoveForm do
 
   let(:user) { mock_model(User, id: 1, username: 'username')}
 
@@ -17,7 +17,7 @@ describe InstructorReserveRemoveForm do
     it "raises a routing error if the course is not found" do
       CourseSearch.any_instance.stub(:get).and_return(nil)
       lambda {
-        InstructorReserveRemoveForm.new(user, { course_id: 'not_a_course_id', id: 1 })
+        ReserveRemoveForm.new(user, { course_id: 'not_a_course_id', id: 1 })
       }.should raise_error ActionController::RoutingError
     end
 
@@ -26,7 +26,7 @@ describe InstructorReserveRemoveForm do
       CourseSearch.any_instance.stub(:get).and_return(@course)
 
       lambda {
-        InstructorReserveRemoveForm.new(user, { course_id: 'course_id', id: 1231231 })
+        ReserveRemoveForm.new(user, { course_id: 'course_id', id: 1231231 })
       }.should raise_error ActionController::RoutingError
     end
 
@@ -39,7 +39,7 @@ describe InstructorReserveRemoveForm do
       CourseSearch.any_instance.stub(:get).and_return(@course)
       reserve = mock_reserve FactoryGirl.create(:request), @course
 
-      form = InstructorReserveRemoveForm.new(user, { course_id: 'course_id', id: reserve.id })
+      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: reserve.id })
 
       form.remove!
 

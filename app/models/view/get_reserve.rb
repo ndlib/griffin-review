@@ -40,7 +40,7 @@ class GetReserve
 
 
   def download_listing?
-    ReserveResourcePolicy.new(@reserve).has_file_resource?
+    ElectronicReservePolicy.new(@reserve).has_file_resource?
   end
 
 
@@ -55,7 +55,7 @@ class GetReserve
 
 
   def download_file_path
-    ReserveResourcePolicy.new(@reserve).reserve_file_path
+    ElectronicReservePolicy.new(@reserve).download_file_path
   end
 
 
@@ -65,8 +65,8 @@ class GetReserve
 
 
   def streaming_server_file?
-    rp = ReserveResourcePolicy.new(@reserve)
-    rp.streaming_service_resource? && !rp.streaming_service_redirect?
+    rp = ElectronicReservePolicy.new(@reserve)
+    rp.has_streaming_resource?
   end
 
 

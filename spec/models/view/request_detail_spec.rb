@@ -32,13 +32,13 @@ describe RequestDetail do
 
       it "returns none if the instructions are nil" do
         @reserve.stub(:note).and_return(nil)
-        expect(@request_detail.special_instructions).to eq("<p class=\"muted\">None</p>")
+        expect(@request_detail.special_instructions).to eq("<p></p>")
       end
 
 
       it "returns none if the instructions are nil" do
         @reserve.stub(:note).and_return("")
-        expect(@request_detail.special_instructions).to eq("<p class=\"muted\">None</p>")
+        expect(@request_detail.special_instructions).to eq("<p></p>")
       end
     end
 

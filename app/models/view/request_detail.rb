@@ -14,14 +14,18 @@ class RequestDetail
   end
 
 
-  def button
-    @button ||= AdminEditButton.new(@reserve)
+  def workflow_state
+    if @reserve.workflow_state == 'available'
+      css_class = 'text-success'
+    elsif @reserve.workflow_state == 'deleted'
+      css_class = 'text-danger'
+    else
+      css_class = 'text-warning'
+    end
+
+    "<span class=\"#{css_class}\">#{@reserve.workflow_state}</span>"
   end
 
-
-  def type
-    reserve.type.gsub('Reserve', '')
-  end
 
 
   def citation
@@ -34,11 +38,6 @@ class RequestDetail
 
   def special_instructions
     helpers.simple_format(@reserve.note)
-  end
-
-
-  def crosslist_and_sections
-    "#{@reserve.course.crosslisted_course_ids.join(", ")} - #{@reserve.course.section_numbers.join(", ")}"
   end
 
 
@@ -78,26 +77,6 @@ class RequestDetail
     else
       @reserve.needed_by.to_s(:long)
     end
-  end
-
-
-  def fair_use
-    txt = ""
-    if !ReserveFairUsePolicy.new(@reserve).requires_fair_use?
-      txt = "<span class=\"text-success\">Not Required</span>"
-    elsif @reserve.fair_use.update?
-      txt = "<span class=\"text-error\">Not Done</span>"
-    elsif @reserve.fair_use.approved?
-      txt = "<span class=\"text-success\">Approved</span>"
-    elsif @reserve.fair_use.denied?
-      txt = "<span class=\"text-warning\">Denied</span>"
-    elsif @reserve.fair_use.temporary_approval?
-      txt = "<span class=\"text-info\">Temporarily Approved</span>"
-    else
-      raise " Invalid fair use state in admin reserve  "
-    end
-
-    helpers.raw(txt)
   end
 
 

@@ -48,6 +48,7 @@ describe ReserveSynchronizeMetaData do
 
 
       it "will synchronize the url if the discovery record has a full text available and the reserve is a type that can have urls" do
+        @reserve.electronic_reserve = true
         @reserve.type = 'JournalReserve'
         @discovery_record.stub(:fulltext_available?).and_return(true)
         @discovery_record.stub(:fulltext_url).and_return("http://www.google.com")
@@ -58,6 +59,7 @@ describe ReserveSynchronizeMetaData do
 
 
       it "only synchronizes the url if it is nil " do
+        @reserve.electronic_reserve = true
         @reserve.type = 'JournalReserve'
         @reserve.url = "old_url"
         @discovery_record.stub(:fulltext_available?).and_return(true)

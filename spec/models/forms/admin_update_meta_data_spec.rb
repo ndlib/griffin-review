@@ -29,13 +29,6 @@ describe AdminUpdateMetaData do
 
   describe :validations do
 
-    it "requires a nd_meta_data_id if overwrite_nd_meta_data is false" do
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
-
-      @update_meta_data.should have(1).error_on(:nd_meta_data_id)
-    end
-
-
     it "does not require nd_meta_data_id if we have set the item to overwrite nd meta data" do
       @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 

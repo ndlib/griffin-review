@@ -22,4 +22,5 @@ class RequestHeader
   def course_link
     helpers.link_to @reserve.course.title, routes.course_reserves_path(@reserve.course.id)
   end
+
 end

@@ -1,0 +1,11 @@
+<% request_header = RequestHeader.new(reserve) %>
+
+<div class="page-header">
+  <h1><%= request_header.title %> <small><%= request_header.type %></small></h1>
+  <p class="lead">
+    <%= request_header.course_link %><br />
+    <small>
+      <%= request_header.crosslist_and_sections %> <br />
+    </small>
+  </p>
+</div>

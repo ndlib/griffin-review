@@ -1,4 +1,4 @@
-class InstructorReserveRemoveForm
+class ReserveRemoveForm
   include Virtus
   include ModelErrorTrapping
   include GetCourse

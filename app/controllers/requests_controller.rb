@@ -17,4 +17,11 @@ class RequestsController  < ApplicationController
   end
 
 
+  def destroy
+    @destroy = ReserveRemoveForm.new(current_user, params)
+
+    @destroy.remove!
+
+    redirect_to request_path(@destroy.reserve.id)
+  end
 end
