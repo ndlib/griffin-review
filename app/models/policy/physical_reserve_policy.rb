@@ -1,5 +1,5 @@
 
-class PhysicalReserve
+class PhysicalReservePolicy
 
 
   def initialize(reserve)

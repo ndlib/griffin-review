@@ -11,7 +11,7 @@ class ReserveMetaDataPolicy
 
 
   def meta_data_id_required?
-    PhysicalReserve.new(@reserve).is_physical_reserve?
+    PhysicalReservePolicy.new(@reserve).is_physical_reserve?
   end
 
 
