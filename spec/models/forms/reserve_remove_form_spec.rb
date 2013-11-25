@@ -8,45 +8,39 @@ describe ReserveRemoveForm do
   before(:each) do
     semester = FactoryGirl.create(:semester)
     @course = double(Course, id: 'id', crosslist_id: 'crosslist_id', semester: semester)
+    @reserve = double(Reserve, id: 1, course: @course)
 
+    ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   end
 
 
   describe :validations do
 
-    it "raises a routing error if the course is not found" do
-      CourseSearch.any_instance.stub(:get).and_return(nil)
+    it "raises a routing error if the reserve is not found" do
+      ReserveSearch.any_instance.stub(:get).and_raise(ActiveRecord::RecordNotFound)
       lambda {
-        ReserveRemoveForm.new(user, { course_id: 'not_a_course_id', id: 1 })
+        ReserveRemoveForm.new(user, { course_id: 'course_id', id: '324234' })
       }.should raise_error ActionController::RoutingError
     end
+  end
 
 
-    it "raises a routing error if there is no reserve" do
-      CourseSearch.any_instance.stub(:get).and_return(@course)
+  describe :course do
 
-      lambda {
-        ReserveRemoveForm.new(user, { course_id: 'course_id', id: 1231231 })
-      }.should raise_error ActionController::RoutingError
+    it "returns the coures for the current reserve" do
+      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: @reserve.id })
+      expect(form.course).to eq(@course)
     end
-
   end
 
 
   describe :remove! do
 
     it "changes the state to remove when it is removed" do
-      CourseSearch.any_instance.stub(:get).and_return(@course)
-      reserve = mock_reserve FactoryGirl.create(:request), @course
+      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: @reserve.id })
 
-      form = ReserveRemoveForm.new(user, { course_id: 'course_id', id: reserve.id })
-
+      @reserve.should_receive(:remove)
       form.remove!
-
-      reserve.request.reload
-      reserve.workflow_state.should == "removed"
     end
-
   end
-
 end

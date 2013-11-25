@@ -19,7 +19,7 @@ class RequestEditForm
 
   def delete_link
     helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i> Delete Reserve"),
-                    routes.request_path(@reserve.id),
+                    routes.course_reserve_path(@reserve.course.id, @reserve.id, redirect_to: 'admin'),
                     data: { confirm: 'Are you sure you wish to remove this reserve from this semester?' },
                     :method => :delete,
                     class: 'btn text-error',

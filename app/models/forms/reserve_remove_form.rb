@@ -11,8 +11,7 @@ class ReserveRemoveForm
   def initialize(current_user, params)
     @current_user = current_user
 
-    self.course  = get_course(params[:course_id])
-    self.reserve = load_reserve(params[:id], @course)
+    self.reserve = load_reserve(params[:id])
   end
 
 
@@ -23,6 +22,11 @@ class ReserveRemoveForm
   end
 
 
+  def course
+    self.reserve.course
+  end
+
+
   private
 
     def reserve_search
@@ -30,10 +34,10 @@ class ReserveRemoveForm
     end
 
 
-    def load_reserve(id, course)
+    def load_reserve(id)
       begin
 
-        reserve_search.get(id, course)
+        reserve_search.get(id)
 
       rescue ActiveRecord::RecordNotFound => e
         raise_404

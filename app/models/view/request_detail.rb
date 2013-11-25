@@ -13,12 +13,11 @@ class RequestDetail
     ReserveCheckInprogress.new(@reserve).check!
   end
 
-
   def workflow_state
     if @reserve.workflow_state == 'available'
       css_class = 'text-success'
-    elsif @reserve.workflow_state == 'deleted'
-      css_class = 'text-danger'
+    elsif @reserve.workflow_state == 'removed'
+      css_class = 'text-error'
     else
       css_class = 'text-warning'
     end

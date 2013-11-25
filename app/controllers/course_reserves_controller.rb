@@ -61,9 +61,15 @@ class CourseReservesController < ApplicationController
   def destroy
     @destroy = ReserveRemoveForm.new(current_user, params)
 
+    check_instructor_permissions!(@destroy.course)
+
     @destroy.remove!
 
-    redirect_to course_reserves_path(@destroy.course.id)
+    if params[:redirect_to] == 'admin'
+      redirect_to request_path(@destroy.reserve.id)
+    else
+      redirect_to course_reserves_path(@destroy.course.id)
+    end
   end
 
 
