@@ -43,6 +43,11 @@ class AdminUpdateResource
   end
 
 
+  def delete_link
+    DeleteReserveElectronicResourceForm.new(@reserve).delete_link
+  end
+
+
   def course
     @reserve.course
   end

@@ -34,7 +34,7 @@ describe RequestsResourcesController do
       reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
       lambda {
         get :edit, { id: reserve.id }
-      }.should render_template(nil) 
+      }.should render_template(nil)
     end
 
 
@@ -47,7 +47,7 @@ describe RequestsResourcesController do
 
       lambda {
         get :edit, id: reserve.id
-      }.should render_template(nil) 
+      }.should render_template(nil)
     end
   end
 
@@ -87,5 +87,33 @@ describe RequestsResourcesController do
 
   end
 
+
+  describe :destroy do
+
+    it "redirects to the edit page " do
+      reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+
+      delete :destroy, id: reserve.id
+      expect(response).to redirect_to edit_resource_path(reserve.id)
+    end
+
+    it "removes an loaded file " do
+      reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+
+      delete :destroy, id: reserve.id
+      reserve.item.reload()
+      expect(reserve.pdf.present?).to be_false
+    end
+
+
+    it "removes a url " do
+      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+
+      delete :destroy, id: reserve.id
+
+      reserve.item.reload()
+      expect(reserve.url.present?).to be_false
+    end
+  end
 
 end

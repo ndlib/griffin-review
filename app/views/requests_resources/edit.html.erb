@@ -11,7 +11,7 @@
 
       <p><%= @request.current_resource_type %>: <%= link_to @request.current_resource_name, course_reserve_path(@request.course.id, @request.id), target: '_blank' %></p>
 
-      <p><%= link_to 'Delete', '#', class: 'btn btn-danger' %></p>
+      <p><%= @request.delete_link %></p>
     <% else %>
       <p class="help-text">Select the type of electronic resource you are creating</p>
       <p>

@@ -58,7 +58,8 @@ class RequestEditNav
     uls = []
     if requires_electronic_resource?
       if electronic_resouce_comeplete?
-        uls << ElectronicReservePolicy.new(@reserve).electronic_resource_type
+        erpolicy = ElectronicReservePolicy.new(@reserve)
+        uls << "#{erpolicy.electronic_resource_type}: #{erpolicy.resource_name}"
       else
         uls << "Requires an Electroinc Resource"
       end
