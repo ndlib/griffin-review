@@ -5,7 +5,8 @@ describe RequestDetail do
   # setup
   before(:each) do
     @controller = double(ApplicationController, params: { id: 1 })
-    @reserve = double(Reserve, id: 1, start: false, save!: true, workflow_state: 'inprocess')
+    @course = double(Course, id: 'id')
+    @reserve = double(Reserve, id: 1, start: false, save!: true, workflow_state: 'inprocess', course: @course)
     RequestDetail.any_instance.stub(:reserve_search).and_return(@reserve)
 
     @request_detail = RequestDetail.new(@controller)
@@ -79,6 +80,14 @@ describe RequestDetail do
     it "truncates a long url" do
       @reserve.stub(:citation).and_return("http://www.google.com?dfsasdfasfasdfadsfadsfadsfasdfafasdfdajsfkljasdflkjasklfjalskdfjklasdjfklasdjflasdfjasdfjasdfas")
       expect(@request_detail.citation).to eq("<p><a href=\"http://www.google.com?dfsasdfasfasdfadsfadsfadsfasdfafasdfdajsfkljasdflkjasklfjalskdfjklasdjfklasdjflasdfjasdfjasdfas\">http://www.google.com?dfsasdfasfasdfadsfadsfadsfasdfafasdfdajsfkljasdflkjasklfjalskdfjklasdjfklas...</a></p>")
+    end
+  end
+
+
+  describe :delete_link do
+
+    it "returns a link to delete the reserve from the course and return to this page " do
+      expect(@request_detail.delete_link).to eq("<a class=\"btn btn-danger\" data-confirm=\"Are you sure you wish to remove this reserve from this semester?\" data-method=\"delete\" href=\"/courses/id/reserves/1?redirect_to=admin\" id=\"delete_reserve_1\" rel=\"nofollow\"><i class=\"icon-remove\"></i> Delete Reserve</a>")
     end
   end
 end

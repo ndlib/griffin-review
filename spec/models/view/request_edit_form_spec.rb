@@ -39,13 +39,5 @@ describe RequestEditNav do
     end
   end
 
-
-  describe :delete_link do
-
-    it "returns a link to delete the reserve from the course and return to this page " do
-      aeb = RequestEditNav.new(@reserve)
-      expect(aeb.delete_link).to eq("<a class=\"btn text-error\" data-confirm=\"Are you sure you wish to remove this reserve from this semester?\" data-method=\"delete\" href=\"/courses/1/reserves/1?redirect_to=admin\" id=\"delete_reserve_1\" rel=\"nofollow\"><i class=\"icon-remove\"></i> Delete Reserve</a>")
-    end
-  end
 end
 

@@ -22,17 +22,6 @@ class RequestEditNav
   end
 
 
-  def delete_link
-    helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i> Delete Reserve"),
-                    routes.course_reserve_path(@reserve.course.id, @reserve.id, redirect_to: 'admin'),
-                    data: { confirm: 'Are you sure you wish to remove this reserve from this semester?' },
-                    :method => :delete,
-                    class: 'btn text-error',
-                    :id => "delete_reserve_#{@reserve.id}")
-
-  end
-
-
   def meta_data_notes
     policy = ReserveMetaDataPolicy.new(@reserve)
     uls = []
