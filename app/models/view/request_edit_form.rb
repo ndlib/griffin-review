@@ -17,6 +17,11 @@ class RequestEditForm
   end
 
 
+  def on_order_form
+    PlaceItemOnOrderForm.new(@reserve)
+  end
+
+
   def delete_link
     helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i> Delete Reserve"),
                     routes.course_reserve_path(@reserve.course.id, @reserve.id, redirect_to: 'admin'),

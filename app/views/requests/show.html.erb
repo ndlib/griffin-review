@@ -1,9 +1,6 @@
 <% content_for(:content_title) do %>
   <%= render partial: '/requests/request_header', locals: { reserve: @admin_reserve.reserve } %>
 <% end %>
-<% content_for(:content_title_links) do %>
-  <% # render partial: '/requests/admin_row_button', locals: { button: @admin_reserve.button } %>
-<% end %>
 
 <%
 breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow_state)), h(@admin_reserve.title) ])
@@ -42,6 +39,9 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
 
 </div>
 
+<hr>
+
+<a class="btn">Delete Reserve</a>
 
 
 

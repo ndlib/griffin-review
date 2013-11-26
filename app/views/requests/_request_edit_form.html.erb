@@ -36,11 +36,11 @@
     <% end %>
   </dl>
   <hr>
+
+  <%= render partial: 'on_order_form', locals: { on_order_form: status.on_order_form } %>
+
   <p>
-    <%= link_to raw("<i class=\"icon-share-alt\"></i> Place On Order"), edit_resource_path(status.reserve_id), class: "btn" %>
-  </p>
-  <p>
-    <%= status.delete_link %>
+    <%# status.delete_link %>
   </p>
 <% else %>
   <p class="text-error">This reserve has been removed from this course.</p>
