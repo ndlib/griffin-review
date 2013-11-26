@@ -15,7 +15,7 @@
     <% else %>
       <p class="help-text">Select the type of electronic resource you are creating</p>
       <p>
-        <%= link_to "Streaming Video", '#streaming', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Streaming Video", '#streaming', class: 'btn ', "data-toggle" => 'tab' %>
         <%= link_to "File", '#file', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
@@ -23,7 +23,7 @@
 
       <div class="tab-content">
 
-        <div class="tab-pane" id="streaming">
+        <div class="tab-pane <%= @request.default_to_streaming? ? 'active' : '' %>" id="streaming">
           <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
             <%= render partial: 'streaming_form', locals: { f: f } %>
           <% end %>

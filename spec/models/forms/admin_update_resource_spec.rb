@@ -35,8 +35,21 @@ describe AdminUpdateResource do
       expect(@form.current_resource_name).to eq("whatever")
     end
 
+
     it "#course returns the current course" do
       expect(@form.course).to eq(@course)
+    end
+
+
+    it "default_to_streaming? returns true for video files" do
+      @reserve.stub(:type).and_return('VideoReserve')
+      expect(@form.default_to_streaming?).to be_true
+    end
+
+
+    it "default_to_streaming? returns true for audio files" do
+      @reserve.stub(:type).and_return('AudioReserve')
+      expect(@form.default_to_streaming?).to be_true
     end
   end
 
@@ -51,6 +64,7 @@ describe AdminUpdateResource do
     before(:each) do
       Reserve.any_instance.stub(:course).and_return(@course)
     end
+
 
     it "saves a new file " do
       mock_file = fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf')

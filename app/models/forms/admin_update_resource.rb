@@ -48,6 +48,11 @@ class AdminUpdateResource
   end
 
 
+  def default_to_streaming?
+    @reserve.type == 'VideoReserve' || @reserve.type == 'AudioReserve'
+  end
+
+
   def course
     @reserve.course
   end
