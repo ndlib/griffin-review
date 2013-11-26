@@ -5,42 +5,52 @@ describe AdminUpdateResource do
   before(:each) do
     @user = double(User, :username => 'admin')
     @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+  end
 
-    Reserve.any_instance.stub(:course).and_return(@course)
+
+  describe "current resource methods" do
+    before(:each) do
+      @reserve = double(Reserve, id: 1, electronic_reserve?: true, course: @course)
+      ReserveSearch.any_instance.stub(:get).and_return(@reserve)
+
+      AdminUpdateResource.any_instance.should_receive(:check_is_complete!).and_return(true)
+      @form = AdminUpdateResource.new(@user, { id: 1 })
+    end
+
+
+    it "#has_resource? returns what the electronic_reserve_policy says" do
+      ElectronicReservePolicy.any_instance.stub(:has_resource?).and_return("whatever")
+      expect(@form.has_resource?).to eq("whatever")
+    end
+
+
+    it "#current_resource_type returns what the electronic_reserve_policy says" do
+      ElectronicReservePolicy.any_instance.stub(:electronic_resource_type).and_return("whatever")
+      expect(@form.current_resource_type).to eq("whatever")
+    end
+
+
+    it "#current_resource_name returns what the electronic_reserve_policy says" do
+      ElectronicReservePolicy.any_instance.stub(:resource_name).and_return("whatever")
+      expect(@form.current_resource_name).to eq("whatever")
+    end
+
+    it "#course returns the current course" do
+      expect(@form.course).to eq(@course)
+    end
   end
 
 
   describe :validations  do
 
-    it "only allows pdfs to be set if it can have pdfs " do
-      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
-      ElectronicReservePolicy.any_instance.stub(:can_have_file_resource?).and_return(false)
-
-      aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { :pdf => 'filefile' }})
-      aur.should have(1).error_on(:pdf)
-    end
-
-
-    it "only allows links to be set if it can have links " do
-      pdf_reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
-      ElectronicReservePolicy.any_instance.stub(:can_have_url_resource?).and_return(false)
-
-      aur = AdminUpdateResource.new(@user, { :id => pdf_reserve.id, :admin_update_resource => { :url => 'urlurl' }})
-
-      aur.should have(1).error_on(:url)
-    end
-
-
-    it "renders a 404 if the type does not allow a file or a url " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
-      lambda {
-        AdminUpdateResource.new(@user, { :id => reserve.id })
-      }.should raise_error ActionController::RoutingError
-    end
   end
 
 
   describe :persistance do
+
+    before(:each) do
+      Reserve.any_instance.stub(:course).and_return(@course)
+    end
 
     it "saves a new file " do
       mock_file = fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf')
@@ -80,8 +90,5 @@ describe AdminUpdateResource do
 
       aur.save_resource
     end
-
-
   end
-
 end

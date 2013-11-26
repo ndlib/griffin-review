@@ -9,9 +9,7 @@
 
     <% if @request.has_resource? %>
 
-      <p>Current File: <a>blabla.pdf</a></p>
-      <p>Current URL: <a>http://www.google.com</a></p>
-      <p>Steaming URL: <a>moviename.mov</a></p>
+      <p><%= @request.current_resource_type %>: <%= link_to @request.current_resource_name, course_reserve_path(@request.course.id, @request.id), target: '_blank' %></p>
 
       <p><%= link_to 'Delete', '#', class: 'btn btn-danger' %></p>
     <% else %>
@@ -23,27 +21,30 @@
         <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
       </p>
 
-      <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
-        <div class="tab-content">
+      <div class="tab-content">
 
-          <div class="tab-pane" id="streaming">
+        <div class="tab-pane" id="streaming">
+          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
             <%= render partial: 'streaming_form', locals: { f: f } %>
-          </div>
-
-          <div class="tab-pane" id="url">
-            <%= render partial: 'url_form', locals: { f: f } %>
-          </div>
-
-          <div class="tab-pane" id="file">
-            <%= render partial: 'file_form', locals: { f: f } %>
-          </div>
-
-          <div class="tab-pane" id="sipx">
-            SPIX !!!
-          </div>
+          <% end %>
         </div>
 
-      <% end %>
+        <div class="tab-pane" id="url">
+          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+            <%= render partial: 'url_form', locals: { f: f } %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="file">
+          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+            <%= render partial: 'file_form', locals: { f: f } %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="sipx">
+          SPIX !!!
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

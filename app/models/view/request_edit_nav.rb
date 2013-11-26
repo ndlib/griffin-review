@@ -1,4 +1,4 @@
-class RequestEditForm
+class RequestEditNav
 
   include RailsHelpers
 

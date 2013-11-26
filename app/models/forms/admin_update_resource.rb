@@ -14,46 +14,37 @@ class AdminUpdateResource
   delegate :workflow_state, :id, to: :reserve
 
 
-  validate :pdf_cannot_have_a_value, :url_cannot_have_a_value
-
-
   def initialize(current_user, params)
     @reserve = reserve_search.get(params[:id], nil)
     @current_user = current_user
 
     if params[:admin_update_resource]
       self.attributes = params[:admin_update_resource]
-    else
-      self.url = @reserve.url
     end
 
     validate_input!
 
-    ReserveCheckInprogress.new(@reserve).check!
+    check_is_complete!
   end
 
 
-  def show_file_upload_form?
-    ElectronicReservePolicy.new(reserve).can_have_file_resource?
+  def has_resource?
+    electronic_reserve.has_resource?
   end
 
 
-  def show_url_form?
-    ElectronicReservePolicy.new(reserve).can_have_url_resource?
+  def current_resource_type
+    electronic_reserve.electronic_resource_type
   end
 
 
-  def show_video_form?
-    ElectronicReservePolicy.new(reserve).can_have_streaming_resource?
+  def current_resource_name
+    electronic_reserve.resource_name
   end
 
 
-  def show_sipx_form?
-    false
-  end
-
-  def steaming_server_full_url?
-    show_video_form? && TextIsUriPolicy.uri?(reserve.url)
+  def course
+    @reserve.course
   end
 
 
@@ -67,22 +58,14 @@ class AdminUpdateResource
   end
 
 
-  def pdf_file_name
-    @reserve.item.pdf_file_name
-  end
-
-
-  def has_resource?
-    true
-  end
-
   private
 
-    def validate_input!
-      fp = ElectronicReservePolicy.new(@reserve)
-      up = ElectronicReservePolicy.new(@reserve)
+    def check_is_complete!
+      ReserveCheckInprogress.new(@reserve).check!
+    end
 
-      if !fp.can_have_file_resource? && !up.can_have_url_resource?
+    def validate_input!
+      if !electronic_reserve.is_electronic_reserve?
         raise_404
       end
     end
@@ -107,19 +90,8 @@ class AdminUpdateResource
     end
 
 
-    def pdf_cannot_have_a_value
-      policy = ElectronicReservePolicy.new(@reserve)
-      if !policy.can_have_file_resource? && pdf.present?
-        errors.add(:pdf, "can't upload a file for this type.")
-      end
-    end
-
-
-    def url_cannot_have_a_value
-      policy = ElectronicReservePolicy.new(@reserve)
-      if !policy.can_have_url_resource? && url.present?
-        errors.add(:url, "can't add a url for this type.")
-      end
+    def electronic_reserve
+      @epolicy ||= ElectronicReservePolicy.new(@reserve)
     end
 
 end

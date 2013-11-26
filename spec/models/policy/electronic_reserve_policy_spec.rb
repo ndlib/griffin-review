@@ -55,8 +55,43 @@ describe ElectronicReservePolicy do
     it "returns empty string if the item is not electronic" do
       expect(@policy.electronic_resource_type).to eq("")
     end
+  end
 
 
+  describe :electronic_resource_name do
+    before(:each) do
+      @policy.stub(:has_file_resource?).and_return(false)
+      @policy.stub(:has_streaming_resource?).and_return(false)
+      @policy.stub(:has_url_resource?).and_return(false)
+    end
+
+
+    it "returns empty string if there is no resource" do
+      expect(@policy.resource_name).to eq("")
+    end
+
+    it "returns the name of the file if there is a file attached" do
+      @policy.stub(:has_file_resource?).and_return(true)
+      @pdf.stub(:original_filename).and_return("original.file")
+
+      expect(@policy.resource_name).to eq("original.file")
+    end
+
+
+    it "returns the name of the streaming movie if there is a streaming movie" do
+      @policy.stub(:has_streaming_resource?).and_return(true)
+      @reserve.stub(:url).and_return("streaming.mov")
+
+      expect(@policy.resource_name).to eq("streaming.mov")
+    end
+
+
+    it "returns the url if there is a url " do
+      @policy.stub(:has_url_resource?).and_return(true)
+      @reserve.stub(:url).and_return("url")
+
+      expect(@policy.resource_name).to eq("url")
+    end
   end
 
 

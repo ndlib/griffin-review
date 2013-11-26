@@ -27,6 +27,17 @@ class ElectronicReservePolicy
   end
 
 
+  def resource_name
+    if !has_resource?
+      ""
+    elsif has_file_resource?
+      @reserve.pdf.original_filename
+    else
+      @reserve.url
+    end
+  end
+
+
   def can_have_resource?
     is_electronic_reserve?
   end
