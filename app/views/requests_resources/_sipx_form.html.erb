@@ -1,12 +1,19 @@
+<h5> Instructions </h5>
+<div class="twelve columns">
+  <ol>
+    <li><%= f.object.sipx_button %></li>
+    <li>Find the item in the search.</li>
+    <li>Upload the pdf of the item.</li>
+    <li>Select Student View</li>
+    <li>Paste that url into the box labeled SIPX URL below click "Save".</li>
+  </ol>
+</div>
+
 <h5>SIPX URL</h5>
 
 <%= f.input :url, :label => false %>
 
-<div class="six columns">
-  <%= f.object.sipx_button %>
-</div>
-
-<div class="form-actions" style="clear:both; margin-top: 50px;">
+<div class="form-actions">
   <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
 
   <%= link_to 'Cancel', request_path(@request.id) %>

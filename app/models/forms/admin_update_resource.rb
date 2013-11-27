@@ -1,4 +1,5 @@
 class AdminUpdateResource
+  include RailsHelpers
   include Virtus
   include ModelErrorTrapping
 
@@ -54,7 +55,7 @@ class AdminUpdateResource
 
 
   def sipx_button
-    SipxCourseButton.new(@reserve.course).goto_sipx_button
+    helpers.link_to(helpers.raw("<i class=\"icon icon-arrow-up\"></i> Go To Sipx</a>"), routes.course_sipx_admin_redirect_path(course.id), class: "btn", target: "_blank")
   end
 
   def course

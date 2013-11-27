@@ -17,7 +17,9 @@ Griffin::Application.routes.draw do
   # can be encapsulated at different places but located once in the routes file
   def course_routes
     resources :courses, controller: 'courses', only: [ 'index', 'create' ] do
-      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy']
+      resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy'] do
+        get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
+      end
 
       get 'streaming/:token/:id', to: "streaming#show"
       get 'streaming/test', to: "streaming#test"
@@ -28,6 +30,8 @@ Griffin::Application.routes.draw do
       get 'copy_old_reserves', to: 'copy_old_reserves#new'
       post 'copy_old_reserves', to: 'copy_old_reserves#create'
       resources :users, controller: 'course_users', only: [:new, :create, :index, :destroy]
+
+      get 'sipx_admin_redirect', to: 'sipx_redirect#admin_redirect'
     end
 
     resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]

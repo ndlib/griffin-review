@@ -92,6 +92,11 @@ class Course
   end
 
 
+  def crosslisted_course_number
+    "#{crosslisted_course_ids.join(", ")} - #{section_numbers.join(", ")}"
+  end
+
+
   def section_numbers
     @sections.collect { | s | s.section_number }.uniq
   end
