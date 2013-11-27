@@ -53,6 +53,10 @@ class AdminUpdateResource
   end
 
 
+  def sipx_button
+    SipxCourseButton.new(@reserve.course).goto_sipx_button
+  end
+
   def course
     @reserve.course
   end
@@ -74,11 +78,13 @@ class AdminUpdateResource
       ReserveCheckInprogress.new(@reserve).check!
     end
 
+
     def validate_input!
       if !electronic_reserve.is_electronic_reserve?
         raise_404
       end
     end
+
 
     def persisted?
       false

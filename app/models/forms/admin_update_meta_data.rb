@@ -42,7 +42,7 @@ class AdminUpdateMetaData
 
     self.overwrite_nd_meta_data ||= false
 
-    ReserveCheckInprogress.new(@reserve).check!
+    chcek_is_complete!
   end
 
 
@@ -119,22 +119,6 @@ class AdminUpdateMetaData
     end
 
 
-    def requires_creator?
-
-    end
-
-
-    def requires_journal?
-
-    end
-
-
-    def requires_publisher?
-
-    end
-
-
-
     def persist!
       @reserve.attributes = self.attributes
 
@@ -142,7 +126,7 @@ class AdminUpdateMetaData
 
       synchronize_meta_data!
 
-      ReserveCheckIsComplete.new(@reserve).check!
+      chcek_is_complete!
     end
 
 
@@ -155,6 +139,11 @@ class AdminUpdateMetaData
       if requires_nd_meta_data_id?
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
+    end
+
+
+    def chcek_is_complete!
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 end

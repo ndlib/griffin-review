@@ -1,0 +1,13 @@
+<h5>SIPX URL</h5>
+
+<%= f.input :url, :label => false %>
+
+<div class="six columns">
+  <%= f.object.sipx_button %>
+</div>
+
+<div class="form-actions" style="clear:both; margin-top: 50px;">
+  <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+  <%= link_to 'Cancel', request_path(@request.id) %>
+</div>

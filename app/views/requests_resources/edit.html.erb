@@ -42,7 +42,9 @@
         </div>
 
         <div class="tab-pane" id="sipx">
-          SPIX !!!
+          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+            <%= render partial: 'sipx_form', locals: { f: f } %>
+          <% end %>
         </div>
       </div>
     <% end %>
