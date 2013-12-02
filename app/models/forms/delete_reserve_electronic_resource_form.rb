@@ -26,6 +26,7 @@ class DeleteReserveElectronicResourceForm
 
     @reserve.save!
 
+    ReserveCheckIsComplete.new(@reserve).check!
     true
   end
 end
