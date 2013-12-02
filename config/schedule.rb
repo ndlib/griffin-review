@@ -37,6 +37,6 @@ job_type :runner, "cd :path && :bundler exec :rails_exec runner -e :environment 
 
 
 
-every "0 */4 * * *" do
+every "30 5 * * *" do
   runner "BookReserveImporter.import!"
 end
