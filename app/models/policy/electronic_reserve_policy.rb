@@ -17,6 +17,8 @@ class ElectronicReservePolicy
       "File"
     elsif has_streaming_resource?
       "Streaming Video"
+    elsif has_sipx_resource?
+      "SIPX"
     elsif has_url_resource?
       "Website Redirect"
     elsif is_electronic_reserve?
@@ -58,8 +60,13 @@ class ElectronicReservePolicy
   end
 
 
+  def can_have_sipx_resource?
+    is_electronic_reserve?
+  end
+
+
   def has_resource?
-    has_url_resource? || has_file_resource? || has_streaming_resource?
+    has_url_resource? || has_file_resource? || has_streaming_resource? || has_sipx_resource?
   end
 
 
@@ -69,12 +76,17 @@ class ElectronicReservePolicy
 
 
   def has_url_resource?
-    can_have_url_resource? && !has_streaming_resource? && @reserve.url.present?
+    can_have_url_resource? && !has_streaming_resource? && !has_sipx_resource? && @reserve.url.present?
   end
 
 
   def has_streaming_resource?
     can_have_streaming_resource? && @reserve.url.present? && !TextIsUriPolicy.uri?(@reserve.url)
+  end
+
+
+  def has_sipx_resource?
+    can_have_sipx_resource? && @reserve.url.present? && @reserve.url.scan(/^http[s]?:\/\/service.sipx.com/).present?
   end
 
 

@@ -95,7 +95,7 @@ describe AdminUpdateMetaData do
       reserve = mock_reserve(FactoryGirl.create(:request, :new), @course)
       reserve.workflow_state.should == "new"
       params = { id: reserve.id }
-
+      binding.pry
       AdminUpdateMetaData.new(@user, params)
 
       reserve.request.reload()

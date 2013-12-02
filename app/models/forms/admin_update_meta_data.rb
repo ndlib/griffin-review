@@ -42,7 +42,7 @@ class AdminUpdateMetaData
 
     self.overwrite_nd_meta_data ||= false
 
-    chcek_is_complete!
+    check_is_complete!
   end
 
 
@@ -126,7 +126,7 @@ class AdminUpdateMetaData
 
       synchronize_meta_data!
 
-      chcek_is_complete!
+      check_is_complete!
     end
 
 
@@ -142,7 +142,7 @@ class AdminUpdateMetaData
     end
 
 
-    def chcek_is_complete!
+    def check_is_complete!
       ReserveCheckIsComplete.new(@reserve).check!
     end
 

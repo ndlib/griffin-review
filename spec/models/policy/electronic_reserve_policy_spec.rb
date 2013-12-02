@@ -29,6 +29,7 @@ describe ElectronicReservePolicy do
       @policy.stub(:has_file_resource?).and_return(false)
       @policy.stub(:has_streaming_resource?).and_return(false)
       @policy.stub(:has_url_resource?).and_return(false)
+      @policy.stub(:has_sipx_resource?).and_return(false)
       @policy.stub(:is_electronic_reserve?).and_return(false)
     end
 
@@ -40,6 +41,11 @@ describe ElectronicReservePolicy do
     it "returns Streaming Video if the type is streaming" do
       @policy.stub(:has_streaming_resource?).and_return(true)
       expect(@policy.electronic_resource_type).to eq("Streaming Video")
+    end
+
+    it "returns Streaming Video if the type is streaming" do
+      @policy.stub(:has_sipx_resource?).and_return(true)
+      expect(@policy.electronic_resource_type).to eq("SIPX")
     end
 
     it "returns Website Redirect if the type is url" do
@@ -63,6 +69,7 @@ describe ElectronicReservePolicy do
       @policy.stub(:has_file_resource?).and_return(false)
       @policy.stub(:has_streaming_resource?).and_return(false)
       @policy.stub(:has_url_resource?).and_return(false)
+      @policy.stub(:has_sipx_resource?).and_return(false)
     end
 
 
@@ -83,6 +90,13 @@ describe ElectronicReservePolicy do
       @reserve.stub(:url).and_return("streaming.mov")
 
       expect(@policy.resource_name).to eq("streaming.mov")
+    end
+
+    it "returns the name of the sipx url if there is a sipx url" do
+      @policy.stub(:has_sipx_resource?).and_return(true)
+      @reserve.stub(:url).and_return("https://service.sipx.com")
+
+      expect(@policy.resource_name).to eq("https://service.sipx.com")
     end
 
 
@@ -175,6 +189,39 @@ describe ElectronicReservePolicy do
   end
 
 
+  describe :can_have_sipx_resource? do
+    context :electronic do |variable|
+      before(:each) do
+        @policy.stub(:is_electronic_reserve?).and_return(true)
+      end
+
+
+      it "returns true if the reserve is electronic" do
+        expect(@policy.can_have_sipx_resource?).to be_true
+      end
+
+
+      it "returns true if no matter the type of the request as long as the reserves is electronic" do
+        ['BookChapterReserve', 'BookReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].each do | type |
+          @reserve.stub(:type).and_return(type)
+          expect(@policy.can_have_sipx_resource?).to be_true
+        end
+      end
+    end
+
+    context :physical_only_resource do
+      before(:each) do
+        @policy.stub(:is_electronic_reserve?).and_return(false)
+      end
+
+
+      it "returns false if the reserve is not electronic" do
+        expect(@policy.can_have_sipx_resource?).to be_false
+      end
+    end
+  end
+
+
   describe :can_have_streaming_resource? do
     context :electronic do |variable|
       before(:each) do
@@ -216,6 +263,7 @@ describe ElectronicReservePolicy do
       @policy.stub(:has_url_resource?).and_return(false)
       @policy.stub(:has_file_resource?).and_return(false)
       @policy.stub(:has_streaming_resource?).and_return(false)
+      @policy.stub(:has_sipx_resource?).and_return(false)
     end
 
     it "is false if it does not have any resources" do
@@ -234,6 +282,11 @@ describe ElectronicReservePolicy do
 
     it "is true if it has streaming" do
       @policy.stub(:has_streaming_resource?).and_return(true)
+      expect(@policy.has_resource?).to be_true
+    end
+
+    it "is true if it has sipx" do
+      @policy.stub(:has_sipx_resource?).and_return(true)
       expect(@policy.has_resource?).to be_true
     end
   end
@@ -311,6 +364,50 @@ describe ElectronicReservePolicy do
 
       it "returns false if the reserve does not have a url" do
         expect(@policy.has_url_resource?).to be_false
+      end
+    end
+  end
+
+
+  describe :has_sipx_resource? do
+
+    context :can_have_sipx_resource do
+      before(:each) do
+        @policy.stub(:can_have_sipx_resource?).and_return(true)
+      end
+
+      it "returns true if the reserve has a url " do
+        @reserve.stub(:url).and_return("https://service.sipx.com")
+        expect(@policy.has_sipx_resource?).to be_true
+      end
+
+      it "returns false if the url is not a sipx url" do
+        @reserve.stub(:url).and_return("https://www.google.com")
+        expect(@policy.has_sipx_resource?).to be_false
+      end
+
+      it "returns false if the reserve url is nil" do
+        expect(@policy.has_sipx_resource?).to be_false
+      end
+
+      it "returns false if the reserve url is empty " do
+        @reserve.stub(:url).and_return("")
+        expect(@policy.has_sipx_resource?).to be_false
+      end
+    end
+
+    context :cannot_have_sipx_resource do
+      before(:each) do
+        @policy.stub(:can_have_sipx_resource?).and_return(false)
+      end
+
+      it "returns false if the reserve has a url " do
+        @reserve.stub(:url).and_return("url")
+        expect(@policy.has_sipx_resource?).to be_false
+      end
+
+      it "returns false if the reserve does not have a url" do
+        expect(@policy.has_sipx_resource?).to be_false
       end
     end
   end
