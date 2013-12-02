@@ -90,6 +90,13 @@ class ElectronicReservePolicy
   end
 
 
+  def sipx_url
+    return false if !has_sipx_resource?
+
+    return @reserve.url
+  end
+
+
   def streaming_download_file
     return false if !has_streaming_resource?
 

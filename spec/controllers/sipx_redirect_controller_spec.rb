@@ -45,4 +45,16 @@ describe SipxRedirectController do
       expect(response).to redirect_to 'http://www.google.com'
     end
   end
+
+
+  describe :course_redirect do
+    before(:each) do
+      @url = 'http://service.sipx.com/blabla?id=23'
+
+      ReserveSearch.any_instance.stub(:get).and_return(@reserve)
+      ElectronicReservePolicy.any_instance.stub(:has_sipx_resource?).and_return(true)
+      ElectronicReservePolicy.any_instance.stub(:redirect_url).and_return(@url)
+    end
+
+  end
 end

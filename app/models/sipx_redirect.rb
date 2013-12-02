@@ -24,11 +24,15 @@ class SipxRedirect
   end
 
 
-  def course_redirect_url
+  def course_redirect_url(overwrite_url = false)
     request = connection.post(API_PATH, post_params('student'))
     response = parse_response(request.body)
 
-    "#{response[:url]}&sipx_lms_token=#{response[:token]}"
+    if overwrite_url
+      "#{overwrite_url}#{overwrite_url.scan(/[?]/).present? ? '&' : '?'}sipx_lms_token=#{response[:token]}"
+    else
+      "#{response[:url]}&sipx_lms_token=#{response[:token]}"
+    end
   end
 
 

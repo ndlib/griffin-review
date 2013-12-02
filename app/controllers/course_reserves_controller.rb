@@ -105,16 +105,18 @@ class CourseReservesController < ApplicationController
         if get_reserve.download_listing?
           send_file(get_reserve.download_file_path)
 
-        elsif get_reserve.redirect_to_listing?
-
-          if get_reserve.streaming_server_file?
+        elsif get_reserve.streaming_server_file?
 #            send_file(get_reserve.mov_file_path, :disposition => 'inline', :type => 'video/quicktime')
 #            headers['Content-Length'] = File.size(get_reserve.mov_file_path).to_s
-            url = {controller: 'streaming', action: 'show', course_id: params[:course_id], token: get_reserve.get_course_token, id: get_reserve.reserve.id}
-            redirect_to url
-          else
-            redirect_to get_reserve.redirect_uri
-          end
+          url = {controller: 'streaming', action: 'show', course_id: params[:course_id], token: get_reserve.get_course_token, id: get_reserve.reserve.id}
+          redirect_to url
+        elsif get_reserve.sipx_redirect?
+
+          url = {controller: 'sipx_redirect', action: 'resource_redirect', course_id: params[:course_id], id: get_reserve.reserve.id}
+          redirect_to url
+        elsif get_reserve.redirect_to_listing?
+
+          redirect_to get_reserve.redirect_uri
         else
           raise "Attempt to get the resource of a listing that cannot be downloaded or redirected to. "
         end

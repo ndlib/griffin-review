@@ -60,13 +60,18 @@ class GetReserve
 
 
   def redirect_uri
-    @reserve.url
+    ElectronicReservePolicy.new(@reserve).redirect_url
   end
 
 
   def streaming_server_file?
     rp = ElectronicReservePolicy.new(@reserve)
     rp.has_streaming_resource?
+  end
+
+
+  def sipx_redirect?
+    ElectronicReservePolicy.new(@reserve).has_sipx_resource?
   end
 
 

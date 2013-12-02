@@ -79,8 +79,19 @@ describe SipxRedirect do
       @sipx_redirect.send(:connection).stub(:post).and_return(response)
     end
 
+
     it "returns the correct url for a student" do
       expect(@sipx_redirect.course_redirect_url).to eq("http://service.sipx.com/service/php/user_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c&sipx_lms_token=n0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTV7kVw2KswH8,")
+    end
+
+
+    it "allows the url to be overwritten " do
+      expect(@sipx_redirect.course_redirect_url('http://www.google.com')).to eq("http://www.google.com?sipx_lms_token=n0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTV7kVw2KswH8,")
+    end
+
+
+    it "allows the overwritten url to have query params" do
+      expect(@sipx_redirect.course_redirect_url('http://www.google.com?a=1')).to eq("http://www.google.com?a=1&sipx_lms_token=n0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTV7kVw2KswH8,")
     end
   end
 

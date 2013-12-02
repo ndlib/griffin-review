@@ -31,6 +31,7 @@ Griffin::Application.routes.draw do
       post 'copy_old_reserves', to: 'copy_old_reserves#create'
       resources :users, controller: 'course_users', only: [:new, :create, :index, :destroy]
 
+      get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
       get 'sipx_admin_redirect', to: 'sipx_redirect#admin_redirect'
     end
 
