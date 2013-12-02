@@ -42,7 +42,8 @@ class AdminUpdateMetaData
 
     self.overwrite_nd_meta_data ||= false
 
-    check_is_complete!
+
+    ReserveCheckInprogress.new(@reserve).check!
   end
 
 
@@ -126,7 +127,7 @@ class AdminUpdateMetaData
 
       synchronize_meta_data!
 
-      check_is_complete!
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 
@@ -141,10 +142,6 @@ class AdminUpdateMetaData
       end
     end
 
-
-    def check_is_complete!
-      ReserveCheckIsComplete.new(@reserve).check!
-    end
 
 end
 
