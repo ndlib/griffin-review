@@ -10,6 +10,9 @@ class ReserveCheckIsComplete
     if !already_completed? && complete?
       @reserve.complete
       @reserve.save!
+    elsif already_completed? && !complete?
+      @reserve.restart
+      @reserve.save!
     end
   end
 

@@ -27,6 +27,33 @@ describe ReserveCheckIsComplete do
       reserve.request.reload()
       reserve.workflow_state.should == "inprocess"
     end
+
+    context :already_complete do
+      before(:each) do
+        @reserve = double(Reserve)
+        @policy = ReserveCheckIsComplete.new(@reserve)
+        @policy.stub(:already_completed?).and_return(true)
+      end
+
+
+      it "restarts a reserve if is no longer complete" do
+        @policy.stub(:complete?).and_return(false)
+
+        @reserve.should_receive(:restart)
+        @reserve.should_receive(:save!)
+
+        @policy.check!
+      end
+
+      it "does not restart the the reserve if the item is still complete" do
+        @policy.stub(:complete?).and_return(true)
+
+        @reserve.should_not_receive(:restart)
+
+        @policy.check!
+
+      end
+    end
   end
 
 
