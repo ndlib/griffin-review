@@ -45,6 +45,9 @@ describe "Instructor New Reserve" do
 
     expect(page).to have_selector('.title', text: 'title')
 
+    reserve = Reserve.factory(Request.last)
+    expect(reserve.physical_reserve?).to be_true
+    expect(reserve.electronic_reserve?).to be_false
   end
 
 
@@ -67,6 +70,10 @@ describe "Instructor New Reserve" do
     click_link('I am Done')
 
     expect(page).to have_selector('.title', text: 'title')
+
+    reserve = Reserve.factory(Request.last)
+    expect(reserve.physical_reserve?).to be_false
+    expect(reserve.electronic_reserve?).to be_true
   end
 
 
@@ -88,6 +95,10 @@ describe "Instructor New Reserve" do
     click_link('I am Done')
 
     expect(page).to have_selector('.title', text: 'title')
+
+    reserve = Reserve.factory(Request.last)
+    expect(reserve.physical_reserve?).to be_false
+    expect(reserve.electronic_reserve?).to be_true
   end
 
 
@@ -108,6 +119,29 @@ describe "Instructor New Reserve" do
     click_link('I am Done')
 
     expect(page).to have_selector('.title', text: 'title')
+
+    reserve = Reserve.factory(Request.last)
+    expect(reserve.physical_reserve?).to be_true
+    expect(reserve.electronic_reserve?).to be_true
+  end
+
+
+  it "allows the video to be not electronic" do
+    VCR.use_cassette 'new-instructor-video-page' do
+      visit new_course_reserve_path(@current_course.id)
+    end
+
+    within("#video_form") do
+      fill_in("Title", with: 'title')
+      fill_in("video_needed_by_id", with: 22.days.from_now)
+      check "instructor_reserve_request_electronic_reserve"
+
+      click_button "Save"
+    end
+
+    reserve = Reserve.factory(Request.last)
+    expect(reserve.physical_reserve?).to be_true
+    expect(reserve.electronic_reserve?).to be_false
   end
 
 
@@ -132,10 +166,6 @@ describe "Instructor New Reserve" do
     click_link('I am Done')
 
     expect(page).to have_selector('.title', text: long_string.truncate(250))
-
   end
-
-
-  it "allows an instrucotr to add an article request"
 
 end

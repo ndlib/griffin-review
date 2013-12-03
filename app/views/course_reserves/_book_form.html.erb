@@ -17,8 +17,6 @@
 
   <%= f.input :number_of_copies, label: "Number of copies needed at the reserves desk" %>
 
-  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', true %>
-
   <%= library_select_form(f, "Library to hold the reserved item.") %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
@@ -28,6 +26,8 @@
   <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the book.", label: false %>
 
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'BookReserve' %>
+  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', true %>
+  <%= hidden_field_tag 'instructor_reserve_request[electronic_reserve]', false %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>

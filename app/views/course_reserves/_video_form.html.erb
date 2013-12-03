@@ -20,7 +20,11 @@
     <%= f.input_field :length, placeholder: "e.g. 24:24 - 50:34 or whole video" %>
   <% end %>
 
-  <%= f.input :physical_reserve, as: :boolean, inline_label: "I do not want this video to be streamed.", label: false %>
+  <%= f.input :electronic_reserve, as: :boolean, label: false do %>
+    <label class="checkbox">
+      <%= f.check_box :electronic_reserve, {}, "false", "true" %> I do not want this video to be streamed.
+    </label>
+  <% end %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
     <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work or for the presentation of the work. ", rows: 3, style: "width: 100%" %>
@@ -28,6 +32,10 @@
 
   <%= hidden_field_tag 'instructor_reserve_request[library]', 'Hesburgh' %>
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'VideoReserve' %>
+
+
+  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', true %>
+
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
