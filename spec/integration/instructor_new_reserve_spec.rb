@@ -22,7 +22,6 @@ describe "Instructor New Reserve" do
     VCR.use_cassette current_course_key do
       @current_course = CourseSearch.new.get(reserve_course)
     end
-
   end
 
 
