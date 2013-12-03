@@ -39,6 +39,8 @@ class ReserveMigrator
 
 
     def process_courses!
+      return
+
       current_user = User.where(username: 'jhartzle').first
 
       @converted_courses.each_pair do | from_course_id, to_courses |
