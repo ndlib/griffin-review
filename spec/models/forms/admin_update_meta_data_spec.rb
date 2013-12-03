@@ -163,7 +163,7 @@ describe AdminUpdateMetaData do
     end
 
 
-    it "chechs if the reserve is complete" do
+    it "checks if the reserve is complete" do
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
 
       @update_meta_data.stub(:valid?).and_return(true)
