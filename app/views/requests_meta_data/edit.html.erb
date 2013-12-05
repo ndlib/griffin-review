@@ -26,7 +26,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
       <p><%= link_to "Re-sync Meta Data", "#", class: 'btn' %> <%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data' %> </p>
     </div>
     <% if f.object.type == 'BookChapterReserve' %>
-      <%= f.input :chapter_title, label: "Chapter Title" %>
+      <%= f.input :selection_title, label: "Chapter Title" %>
     <% end %>
 
     <div id="full_meta_data" style="<%= !f.object.nd_meta_data_id.present? ? '' : 'display:none;' %>">

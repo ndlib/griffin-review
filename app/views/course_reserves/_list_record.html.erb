@@ -7,16 +7,11 @@
   </div>
   <div class="summary">
     <h2 class="title">
-      <% if object.link_to_get_listing? %>
-        <%= link_to h(object.title), course_reserve_path(object.course.id, object.id), target: '_blank' %>
-      <% else %>
-        <%= h object.title %>
-      <% end %>
+      <%= object.title %>
     </h2>
     <h3 class="author"><%= h object.creator_contributor %></h3>
     <p class="details"><%= h object.details %></p>
     <p class="publisher"><%= h object.publisher_provider %></p>
-
       <% if object.show_pages? %>
           <p class="length">Reading Length: <%= object.length %></p>
       <% end %>

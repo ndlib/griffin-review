@@ -101,10 +101,24 @@ describe CopyReserve do
       @new_reserve.type.should == "BookChapterReserve"
     end
 
+
     it "should not auto complete this reserve" do
       @new_reserve.workflow_state.should == "new"
     end
+  end
 
+
+  describe :copy_book_chapter_with_chapter_title do
+    before(:each) do
+      old_reserve = mock_model(OpenItem, item_type: 'chapter', location: 'test.pdf', book_title: 'book_title', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "1 - 2", journal_name: "", group_name: "Admin")
+      @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
+    end
+
+
+    it "sets the selection_title with the chapter title" do
+      expect(@new_reserve.selection_title).to eq("title")
+      expect(@new_reserve.title).to eq("book_title")
+    end
   end
 
 

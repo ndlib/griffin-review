@@ -50,6 +50,8 @@ class CopyOldReserve
     def copy_shared_fields!
       # shared data
       @new_request.title   = determine_title(@old_reserve)
+      @new_request.selection_title = determine_selection_title(@old_reserve)
+
       @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
       @new_request.journal_title = @old_reserve.journal_name
       @new_request.length  = @old_reserve.pages
@@ -142,12 +144,23 @@ class CopyOldReserve
 
 
     def determine_title(reserve)
-      if reserve.title.present?
+      if reserve.book_title.present? && reserve.title.present?
+        reserve.book_title
+      elsif reserve.title.present?
         reserve.title
       elsif reserve.book_title.present?
         reserve.book_title
       else
         "#{reserve.author_firstname} #{reserve.author_lastname}"
+      end
+    end
+
+
+    def determine_selection_title(reserve)
+      if reserve.book_title.present? && reserve.title.present?
+        reserve.title
+      else
+        ""
       end
     end
 

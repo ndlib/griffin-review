@@ -1,4 +1,5 @@
 class ReserveRow
+  include RailsHelpers
 
   delegate :id, :file, :url, :title, :length, :course, :creator_contributor, :details, :publisher_provider, :realtime_availability_id, to: :reserve
 
@@ -28,6 +29,19 @@ class ReserveRow
   end
 
 
+  def title
+    if link_to_get_listing?
+      if @reserve.selection_title.present?
+        helpers.raw "#{helpers.link_to @reserve.selection_title, routes.course_reserve_path(@reserve.course.id, @reserve.id), target: '_blank'}<br><span class=\"subtitle\">#{@reserve.title}</span>"
+      else
+        helpers.link_to @reserve.title, routes.course_reserve_path(@reserve.course.id, @reserve.id), target: '_blank'
+      end
+    else
+      @reserve.title
+    end
+  end
+
+
   def link_to_get_listing?
     ReserveCanBeViewedPolicy.new(@reserve, @current_user).can_be_viewed?
   end
@@ -46,4 +60,5 @@ class ReserveRow
   def show_pages?
     reserve.type == 'BookChapterReserve' && reserve.length.present?
   end
+
 end

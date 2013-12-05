@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108143534) do
+ActiveRecord::Schema.define(version: 20131205142303) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20131108143534) do
   add_index "fair_uses", ["request_id"], name: "index_fair_uses_on_request_id", using: :btree
 
   create_table "items", force: true do |t|
-    t.string   "name"
+    t.string   "selection_title"
     t.text     "description"
     t.integer  "item_type_id"
     t.datetime "created_at",                    null: false

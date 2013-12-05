@@ -14,19 +14,19 @@ class AdminUpdateMetaData
   attribute :publisher, String
   attribute :journal_title, String
   attribute :length, String
-  attribute :chapter_title, String
   attribute :nd_meta_data_id, String
   attribute :display_length, String
   attribute :on_order, Boolean
   attribute :overwrite_nd_meta_data, Boolean
+  attribute :selection_title, String
 
   #validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
   validates :title, presence: true, unless: :requires_nd_meta_data_id?
 
   validates_with ValidateMetaDataId, if: :requires_nd_meta_data_id?
 
-
   delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
+
 
   def initialize(current_user, params)
     @reserve = reserve_search.get(params[:id], nil)
@@ -41,7 +41,6 @@ class AdminUpdateMetaData
     end
 
     self.overwrite_nd_meta_data ||= false
-
 
     ReserveCheckInprogress.new(@reserve).check!
   end
@@ -112,7 +111,6 @@ class AdminUpdateMetaData
   end
 
 
-
   private
 
     def requires_nd_meta_data_id?
@@ -141,7 +139,6 @@ class AdminUpdateMetaData
         ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
       end
     end
-
 
 end
 
