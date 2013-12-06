@@ -1,7 +1,9 @@
 <% content_for(:content_title) do %>
   <%= render partial: '/requests/request_header', locals: { reserve: @request.reserve } %>
 <% end %>
-
+<%
+breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title, request_path(@request.reserve.id)), "Manage Electronic Resource" ])
+%>
 <h3>Electronic Resource</h3>
 
 <div class="row">
@@ -19,6 +21,7 @@
         <%= link_to "File", '#file', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Cancel", request_path(@request.id) %>
       </p>
 
       <div class="tab-content">

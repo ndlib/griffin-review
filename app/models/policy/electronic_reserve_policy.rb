@@ -1,4 +1,4 @@
-# ReserveResourcePolicy
+
 class ElectronicReservePolicy
   attr_accessor :reserve
 

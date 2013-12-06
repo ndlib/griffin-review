@@ -37,7 +37,11 @@ class ReserveRow
         helpers.link_to @reserve.title, routes.course_reserve_path(@reserve.course.id, @reserve.id), target: '_blank'
       end
     else
-      @reserve.title
+      if @reserve.selection_title.present?
+        helpers.raw "#{@reserve.selection_title}<br><span class=\"subtitle\">#{@reserve.title}</span>"
+      else
+        @reserve.title
+      end
     end
   end
 

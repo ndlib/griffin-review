@@ -2,13 +2,14 @@ class RequestsMetaDataController  < ApplicationController
 
   def edit
     check_admin_permission!
-    @request = AdminUpdateMetaData.new(current_user, params)
+    @request = AdminUpdateMetaData.build_from_params(self)
   end
 
 
   def update
     check_admin_permission!
-    @request = AdminUpdateMetaData.new(current_user, params)
+    @request = AdminUpdateMetaData.build_from_params(self)
+
     if @request.save_meta_data
       flash[:success] = "Meta Data Saved"
       redirect_to request_path(@request.id)

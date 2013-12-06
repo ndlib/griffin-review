@@ -22,10 +22,6 @@ class CopyOldReserve
     copy_shared_fields!
     copy_item_by_type!
 
-    # check if the reserve is already in the course
-
-    # check if the reserves should be skipped.
-
     @new_request.save!
 
     if @approve_reserve

@@ -3,25 +3,72 @@ require 'spec_helper'
 describe AdminUpdateMetaData do
 
   before(:each) do
-
-    @user = double(User, :username => 'admin')
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-
-    @reserve = mock_reserve(FactoryGirl.create(:request), @course)
-    Reserve.any_instance.stub(:course).and_return(@course)
-
-    @params = { id: @reserve.id }
-    @update_meta_data = AdminUpdateMetaData.new(@user, @params)
+    @course = double(Course, id: 'id')
+    @reserve = mock_model(Reserve, start: false, id: 'id', title: 'title', selection_title: "selection_title", creator: 'creator', details: 'details', publisher: 'publisher', journal_title: 'journal_title', length: 'length', nd_meta_data_id: 'nd_meta_data_id', display_length: 'display_length', overwrite_nd_meta_data: 'overwrite_nd_meta_data')
   end
+
+
+  describe :build_from_params do
+    before(:each) do
+      @controller = double(ApplicationController, params: { id: 'id' })
+      ReserveSearch.any_instance.stub(:get).and_return(@reserve)
+    end
+
+    it "passes the reserve from the id to the object" do
+      expect(AdminUpdateMetaData.build_from_params(@controller).reserve).to eq(@reserve)
+    end
+
+
+    it "passes the params from the controller to the reserve" do
+      @controller.params[:admin_update_meta_data] = { title: 'newtitle'}
+
+      expect(AdminUpdateMetaData.build_from_params(@controller).title).to eq('newtitle')
+    end
+  end
+
+
+  describe :initialize do
+
+    it "sets reserve attributes to the virtus attributes" do
+      @form = AdminUpdateMetaData.new(@reserve, {})
+      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id', 'display_length', 'overwrite_nd_meta_data'].each do | field |
+        expect(@form.send(field)).to eq(field)
+      end
+    end
+
+
+    it "overwrites the values with what is in params" do
+      params = {title: 'titleparams', creator: 'creatorparams', details: 'detailsparams', publisher: 'publisherparams', journal_title: 'journal_titleparams', length: 'lengthparams', selection_title: 'selection_titleparams', nd_meta_data_id: 'nd_meta_data_idparams', display_length: 'display_lengthparams', overwrite_nd_meta_data: 'overwrite_nd_meta_dataparams'}
+      @form = AdminUpdateMetaData.new(@reserve, params)
+
+      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id', 'display_length', 'overwrite_nd_meta_data'].each do | field |
+        expect(@form.send(field)).to eq("#{field}params")
+      end
+    end
+
+
+    it "checks if the the state is at least in process" do
+      ReserveCheckInprogress.any_instance.should_receive(:check!)
+      @form = AdminUpdateMetaData.new(@reserve, {})
+    end
+
+
+    it "presets overwrite_nd_meta_data to false if it is nil on the model " do
+      @reserve.overwrite_nd_meta_data=nil
+      #@reserve.stub(:overwrite_nd_meta_data).and_return(nil)
+      #@reserve.should_receive('overwrite_nd_meta_data||=').with(false)
+
+      AdminUpdateMetaData.new(@reserve, {})
+    end
+  end
+
 
   describe :overwrite_nd_meta_data do
 
     it "presets overwrite_nd_meta_data to false if it is nil on the model " do
-      @reserve.overwrite_nd_meta_data = nil
-      @reserve.save!
+      @reserve.stub(:overwrite_nd_meta_data).and_return(nil)
 
-      @params = { id: @reserve.id }
-      @update_meta_data = AdminUpdateMetaData.new(@user, @params)
+      update_meta_data = AdminUpdateMetaData.new(@reserve, {})
       expect(@update_meta_data.overwrite_nd_meta_data).to be_false
     end
 
@@ -83,38 +130,6 @@ describe AdminUpdateMetaData do
   end
 
 
-  describe "workflow_state" do
-
-    it "updates checks ensure_state_is_inprogress! when the object is loaded." do
-      ReserveCheckInprogress.any_instance.should_receive(:check!)
-      AdminUpdateMetaData.new(@user, { id: @reserve.id})
-    end
-
-
-    it "updates the reserve to be in progress if it is new" do
-      reserve = mock_reserve(FactoryGirl.create(:request, :new), @course)
-      reserve.workflow_state.should == "new"
-      params = { id: reserve.id }
-
-      AdminUpdateMetaData.new(@user, params)
-
-      reserve.request.reload()
-      reserve.workflow_state.should == "inprocess"
-    end
-
-
-    it "does not update the workflow_state if it is available " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :available), @course)
-      reserve.workflow_state.should == "available"
-
-      params = { id: reserve.id }
-      AdminUpdateMetaData.new(@user, params)
-
-      reserve.workflow_state.should == "available"
-    end
-
-  end
-
 
   describe "presistance" do
 
@@ -156,7 +171,8 @@ describe AdminUpdateMetaData do
 
     it "calls the update meta data id if it should" do
       ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
+      Reserve.any_instance.stub(:nd_meta_data_id).and_return("nd_id")
+
       @update_meta_data.stub(:valid?).and_return(true)
 
       @update_meta_data.save_meta_data
@@ -175,10 +191,11 @@ describe AdminUpdateMetaData do
 
 
     it "trims the nd_meta_data_id " do
-      @params = { id: @reserve.id, :admin_update_meta_data  => { nd_meta_data_id: ' asdf '} }
-      @update_meta_data = AdminUpdateMetaData.new(@user, @params)
+      ReserveCheckIsComplete.any_instance.stub(:check!).and_return(true)
 
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
+      @params = { id: @reserve.id, :admin_update_meta_data  => { nd_meta_data_id: ' asdf '} }
+
+      @update_meta_data = AdminUpdateMetaData.new(@user, @params)
       @update_meta_data.stub(:valid?).and_return(true)
 
       @update_meta_data.save_meta_data

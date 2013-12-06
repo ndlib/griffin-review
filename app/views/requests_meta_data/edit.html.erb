@@ -21,15 +21,17 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
         <i class="icon icon-arrow-up"></i> Test Record Id</a>
     </div>
     <%= f.input :nd_meta_data_id, label: "Record Id", id: 'step1' %>
+    <p><%= link_to "Re-sync Meta Data", "#", class: "btn", style: (f.object.nd_meta_data_id.present? ? '' : 'display:none;')%></p>
     <hr>
-    <div id="resync_meta_data" style="<%= f.object.nd_meta_data_id.present? ? '' : 'display:none;' %>">
-      <p><%= link_to "Re-sync Meta Data", "#", class: 'btn' %> <%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data' %> </p>
-    </div>
+    <p><%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data', id: "resync_meta_data", style: (!f.object.overwrite_nd_meta_data ? '' : 'display:none;') %></p>
+
     <% if f.object.type == 'BookChapterReserve' %>
       <%= f.input :selection_title, label: "Chapter Title" %>
     <% end %>
 
-    <div id="full_meta_data" style="<%= !f.object.nd_meta_data_id.present? ? '' : 'display:none;' %>">
+    <%= f.hidden_field :overwrite_nd_meta_data %>
+
+    <div id="full_meta_data" style="<%= f.object.overwrite_nd_meta_data ? '' : 'display:none;' %>">
       <%= f.input :title, label: f.object.title_field_name %>
 
       <%= f.input :creator, label: 'Author or Creator of the work' %>
