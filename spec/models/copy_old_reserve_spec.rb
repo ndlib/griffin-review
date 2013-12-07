@@ -74,7 +74,7 @@ describe CopyReserve do
     end
 
     it "should attempt to synchonize the metadata " do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
       CopyOldReserve.new(user, to_course, @old_reserve).copy
     end
 
@@ -205,7 +205,7 @@ describe CopyReserve do
 
 
     it "should attempt to synchonize the metadata " do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
       CopyOldReserve.new(user, to_course, @old_reserve).copy
     end
 
@@ -252,7 +252,7 @@ describe CopyReserve do
 
 
     it "should attempt to synchonize the metadata " do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
       CopyOldReserve.new(user, to_course, @old_reserve).copy
     end
   end

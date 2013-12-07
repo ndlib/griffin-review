@@ -136,8 +136,8 @@ class AdminUpdateMetaData
 
 
     def synchronize_meta_data!
-      if @reserve.nd_meta_data_id.present?
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+      if @reserve.nd_meta_data_id.present? && @reserve.metadata_synchronization_date.nil?
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
       end
     end
 

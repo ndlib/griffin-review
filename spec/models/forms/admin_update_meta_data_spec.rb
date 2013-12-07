@@ -170,7 +170,7 @@ describe AdminUpdateMetaData do
 
 
     it "calls the update meta data id if it should" do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
       Reserve.any_instance.stub(:nd_meta_data_id).and_return("nd_id")
 
       @update_meta_data.stub(:valid?).and_return(true)

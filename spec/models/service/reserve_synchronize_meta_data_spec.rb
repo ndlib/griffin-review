@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe ReserveSynchronizeMetaData do
 
-  describe :check_synchronized! do
+  describe :synchronize! do
 
     context "reserve can be synchronized " do
 
@@ -18,31 +18,31 @@ describe ReserveSynchronizeMetaData do
       end
 
       it "synchronizes the title" do
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.title.should == "title"
       end
 
 
       it "synchonizes the creator_contributor "  do
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.creator_contributor.should == "creator_contributor"
       end
 
 
       it "synchonizes the publisher_provider"  do
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.publisher_provider.should == "publisher_provider"
       end
 
       it "synchronizes the details "  do
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.details.should == "details"
       end
 
 
       it "sets the metadata_synchronization_date to time.now" do
         @reserve.metadata_synchronization_date.should == nil
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.metadata_synchronization_date.to_s.should == Time.now.to_s
       end
 
@@ -53,7 +53,7 @@ describe ReserveSynchronizeMetaData do
         @discovery_record.stub(:fulltext_available?).and_return(true)
         @discovery_record.stub(:fulltext_url).and_return("http://www.google.com")
 
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.url.should == "http://www.google.com"
       end
 
@@ -65,16 +65,16 @@ describe ReserveSynchronizeMetaData do
         @discovery_record.stub(:fulltext_available?).and_return(true)
         @discovery_record.stub(:fulltext_url).and_return("http://www.google.com")
 
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
         @reserve.url.should == "old_url"
       end
 
 
-      it "will not synch if the meta data should not be overwritten" do
-        @reserve.overwrite_nd_meta_data = true
+      it "will not synch if there is no meta data id" do
+        @reserve.nd_meta_data_id = nil
 
         ReserveSynchronizeMetaData.any_instance.should_not_receive(:synchonize!)
-        ReserveSynchronizeMetaData.new(@reserve).check_synchronized!
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
       end
 
 

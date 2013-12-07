@@ -34,7 +34,7 @@ class BookReserveImport
         ActiveRecord::Base.transaction do
           reserve.save!
 
-          ReserveSynchronizeMetaData.new(reserve).check_synchronized!
+          ReserveSynchronizeMetaData.new(reserve).synchronize!
           ReserveCheckIsComplete.new(reserve).check!
         end
       rescue Exception => e

@@ -40,7 +40,7 @@ describe BookReserveImport do
     end
 
     it "syncs the meta data" do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:check_synchronized!)
+      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
       @ibr.import!
     end
 

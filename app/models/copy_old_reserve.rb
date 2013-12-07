@@ -179,7 +179,7 @@ class CopyOldReserve
     def synchronize_meta_data!
       if @new_request.nd_meta_data_id.present?
         @new_request.overwrite_nd_meta_data = false
-        ReserveSynchronizeMetaData.new(@new_request).check_synchronized!
+        ReserveSynchronizeMetaData.new(@new_request).synchronize!
       end
     end
 

@@ -6,7 +6,7 @@ class ReserveSynchronizeMetaData
   end
 
 
-  def check_synchronized!
+  def synchronize!
     if can_be_synchronized?
       synchonize!
     end
@@ -21,7 +21,7 @@ class ReserveSynchronizeMetaData
   private
 
     def can_be_synchronized?
-      !@reserve.overwrite_nd_meta_data?
+      @reserve.nd_meta_data_id.present?
     end
 
 
