@@ -16,7 +16,6 @@ class AdminUpdateMetaData
   attribute :journal_title, String
   attribute :length, String
   attribute :nd_meta_data_id, String
-  attribute :display_length, String
   attribute :overwrite_nd_meta_data, Boolean
   attribute :selection_title, String
 
@@ -37,6 +36,8 @@ class AdminUpdateMetaData
     @reserve = reserve
 
     set_attributes_from_model(reserve)
+
+    fix_params(params)
     set_attributes_from_params(params)
 
     self.overwrite_nd_meta_data ||= false
@@ -141,5 +142,11 @@ class AdminUpdateMetaData
       end
     end
 
+
+    def fix_params(params)
+      if params && params[:nd_meta_data_id]
+        params[:nd_meta_data_id].strip!
+      end
+    end
 end
 

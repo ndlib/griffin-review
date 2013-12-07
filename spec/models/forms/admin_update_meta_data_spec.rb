@@ -4,7 +4,9 @@ describe AdminUpdateMetaData do
 
   before(:each) do
     @course = double(Course, id: 'id')
-    @reserve = mock_model(Reserve, start: false, id: 'id', title: 'title', selection_title: "selection_title", creator: 'creator', details: 'details', publisher: 'publisher', journal_title: 'journal_title', length: 'length', nd_meta_data_id: 'nd_meta_data_id', display_length: 'display_length', overwrite_nd_meta_data: 'overwrite_nd_meta_data')
+
+    @reserve = Reserve.new(id: 'id', title: 'title', selection_title: "selection_title", creator: 'creator', details: 'details', publisher: 'publisher', journal_title: 'journal_title', length: 'length', nd_meta_data_id: 'nd_meta_data_id', overwrite_nd_meta_data: true)
+    @reserve.stub(:save!).and_return(true)
   end
 
 
@@ -31,19 +33,21 @@ describe AdminUpdateMetaData do
 
     it "sets reserve attributes to the virtus attributes" do
       @form = AdminUpdateMetaData.new(@reserve, {})
-      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id', 'display_length', 'overwrite_nd_meta_data'].each do | field |
+      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id' ].each do | field |
         expect(@form.send(field)).to eq(field)
       end
+      expect(@form.overwrite_nd_meta_data).to be_true
     end
 
 
     it "overwrites the values with what is in params" do
-      params = {title: 'titleparams', creator: 'creatorparams', details: 'detailsparams', publisher: 'publisherparams', journal_title: 'journal_titleparams', length: 'lengthparams', selection_title: 'selection_titleparams', nd_meta_data_id: 'nd_meta_data_idparams', display_length: 'display_lengthparams', overwrite_nd_meta_data: 'overwrite_nd_meta_dataparams'}
+      params = {title: 'titleparams', creator: 'creatorparams', details: 'detailsparams', publisher: 'publisherparams', journal_title: 'journal_titleparams', length: 'lengthparams', selection_title: 'selection_titleparams', nd_meta_data_id: 'nd_meta_data_idparams', overwrite_nd_meta_data: false}
       @form = AdminUpdateMetaData.new(@reserve, params)
 
-      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id', 'display_length', 'overwrite_nd_meta_data'].each do | field |
+      ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id'].each do | field |
         expect(@form.send(field)).to eq("#{field}params")
       end
+      expect(@form.overwrite_nd_meta_data).to be_false
     end
 
 
@@ -64,17 +68,28 @@ describe AdminUpdateMetaData do
 
 
   describe :overwrite_nd_meta_data do
+    before(:each) do
+      @reserve = Reserve.new
+      @reserve.stub(:save!).and_return(true)
+    end
 
     it "presets overwrite_nd_meta_data to false if it is nil on the model " do
-      @reserve.stub(:overwrite_nd_meta_data).and_return(nil)
-
       update_meta_data = AdminUpdateMetaData.new(@reserve, {})
-      expect(@update_meta_data.overwrite_nd_meta_data).to be_false
+      expect(@reserve.overwrite_nd_meta_data).to be_false
     end
 
   end
 
   describe :validations do
+    before(:each) do
+      @course = double(Course, id: 'id')
+
+      @reserve = Reserve.new(id: 1)
+      @reserve.should_receive(:save!).and_return(true)
+
+      @update_meta_data = AdminUpdateMetaData.new(@reserve, {})
+    end
+
 
     it "does not require nd_meta_data_id if we have set the item to overwrite nd meta data" do
       @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
@@ -132,6 +147,13 @@ describe AdminUpdateMetaData do
 
 
   describe "presistance" do
+    before(:each) do
+      @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+
+      @reserve = Reserve.new(id: 1, title: 'title', type: 'BookReserve', course: @course, requestor_netid: 'username')
+
+      @update_meta_data = AdminUpdateMetaData.new(@reserve, {})
+    end
 
 
     it "returns true if the update is valid" do
@@ -191,12 +213,10 @@ describe AdminUpdateMetaData do
 
 
     it "trims the nd_meta_data_id " do
-      ReserveCheckIsComplete.any_instance.stub(:check!).and_return(true)
+      @reserve.metadata_synchronization_date = Time.now
+      @params = { nd_meta_data_id: ' asdf '}
 
-      @params = { id: @reserve.id, :admin_update_meta_data  => { nd_meta_data_id: ' asdf '} }
-
-      @update_meta_data = AdminUpdateMetaData.new(@user, @params)
-      @update_meta_data.stub(:valid?).and_return(true)
+      @update_meta_data = AdminUpdateMetaData.new(@reserve, @params)
 
       @update_meta_data.save_meta_data
 
