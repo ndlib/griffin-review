@@ -113,6 +113,10 @@ class AdminUpdateMetaData
   end
 
 
+  def resync_button
+    ResyncReserveButton.new(@reserve).button
+  end
+
   private
 
     def requires_nd_meta_data_id?

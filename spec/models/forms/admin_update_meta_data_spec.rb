@@ -164,6 +164,7 @@ describe AdminUpdateMetaData do
       @update_meta_data.save_meta_data.should be_true
     end
 
+
     it "returns false if the udates is invalid" do
       @update_meta_data.stub(:valid?).and_return(false)
       @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
@@ -172,9 +173,11 @@ describe AdminUpdateMetaData do
 
     end
 
+
     it "calls save! on the reserve " do
       @update_meta_data.stub(:valid?).and_return(true)
       @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
+
       ReserveCheckIsComplete.any_instance.stub(:complete?).and_return(false)
       Reserve.any_instance.should_receive(:save!)
 

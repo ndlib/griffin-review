@@ -21,7 +21,8 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
         <i class="icon icon-arrow-up"></i> Test Record Id</a>
     </div>
     <%= f.input :nd_meta_data_id, label: "Record Id", id: 'step1' %>
-    <p><%= link_to "Re-sync Meta Data", "#", class: "btn", style: (f.object.nd_meta_data_id.present? ? '' : 'display:none;')%></p>
+
+    <p><%= f.object.resync_button %></p>
     <hr>
     <p><%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data', id: "resync_meta_data", style: (!f.object.overwrite_nd_meta_data ? '' : 'display:none;') %></p>
 

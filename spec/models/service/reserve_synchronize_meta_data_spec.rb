@@ -40,6 +40,12 @@ describe ReserveSynchronizeMetaData do
       end
 
 
+      it "sets the overwrite_nd_meta_data back to false" do
+        @reserve.overwrite_nd_meta_data = true
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
+        @reserve.overwrite_nd_meta_data.should be_false
+      end
+
       it "sets the metadata_synchronization_date to time.now" do
         @reserve.metadata_synchronization_date.should == nil
         ReserveSynchronizeMetaData.new(@reserve).synchronize!

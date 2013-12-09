@@ -4,6 +4,20 @@ describe ResyncReserveButton do
 
 
   describe :build_from_params do
+    before(:each) do
+      @controller = double(ApplicationController, params: { id: 1})
+    end
+
+    it "finds the reserve in the params" do
+      ReserveSearch.any_instance.should_receive(:get).with(1)
+      ResyncReserveButton.build_from_params(@controller)
+    end
+
+
+    it "returns an instance of ResyncReserveButton " do
+      ReserveSearch.any_instance.stub(:get).and_return(double(Reserve, id: 1))
+      expect(ResyncReserveButton.build_from_params(@controller).class).to eq(ResyncReserveButton)
+    end
 
   end
 
@@ -42,19 +56,26 @@ describe ResyncReserveButton do
 
   describe :button do
     before(:each) do
-      @reserve = double(Reserve, id: 1)
+      @reserve = double(Reserve, id: 1, overwrite_nd_meta_data: false)
       @button = ResyncReserveButton.new(@reserve)
     end
 
 
     it "returns a button if the reserve can be synched" do
       ResyncReserveButton.any_instance.stub(:can_be_resynced?).and_return(true)
-      expect(@button.button).to eq("<a class=\"btn\" href=\"#\">Re-sync Meta Data</a>")
+      expect(@button.button).to eq("<a class=\"btn\" data-method=\"put\" href=\"/admin/resync/1\" rel=\"nofollow\">Re-sync Meta Data</a>")
     end
 
     it "returns emptu sring if the the reserve cannot be synched " do
       ResyncReserveButton.any_instance.stub(:can_be_resynced?).and_return(false)
       expect(@button.button).to eq("")
+    end
+
+    it "sets a confirmation if the meta data has beeen overwritten" do
+      ResyncReserveButton.any_instance.stub(:can_be_resynced?).and_return(true)
+      @reserve.stub(:overwrite_nd_meta_data).and_return(true)
+
+      expect(@button.button).to eq("<a class=\"btn\" data-confirm=\"The meta data has been manually edited clicking &quot;ok&quot; will overwrite those changes.\" data-method=\"put\" href=\"/admin/resync/1\" rel=\"nofollow\">Re-sync Meta Data</a>")
     end
 
   end

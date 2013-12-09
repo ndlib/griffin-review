@@ -55,6 +55,7 @@ Griffin::Application.routes.draw do
   scope '/admin' do
     resources :requests
     resources :on_order, controller: 'requests_on_order'
+    resources :resync, controller: 'requests_resync', only: ['update']
     resources :meta_datas, controller: 'requests_meta_data'
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'

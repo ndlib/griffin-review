@@ -37,6 +37,7 @@ class ReserveSynchronizeMetaData
         @reserve.url = discovery_record.fulltext_url
       end
 
+      @reserve.overwrite_nd_meta_data = false
       @reserve.metadata_synchronization_date = Time.now
 
       @reserve.save!
