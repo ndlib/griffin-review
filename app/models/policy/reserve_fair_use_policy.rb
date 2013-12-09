@@ -9,7 +9,8 @@ class ReserveFairUsePolicy
   def requires_fair_use?
     return true if ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
 
-    return true if ['BookChapterReserve', 'JournalReserve'].include?(@reserve.type) && @reserve.pdf.present?
+    policy = ElectronicReservePolicy.new(@reserve)
+    return true if policy.has_file_resource? || policy.has_sipx_resource?
 
     return false
   end

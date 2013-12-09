@@ -79,6 +79,21 @@ describe FairUse do
       f.state.should == "approved"
     end
 
+    it "can transition from update to sipx_cleared" do
+      f = FairUse.new(:user_id => 1)
+      f.clear_with_sipx
+
+      f.state.should == "sipx_cleared"
+    end
+
+
+    it "can transition from update to copy_rights_cleared" do
+      f = FairUse.new(:user_id => 1)
+      f.clear_with_copy_rights
+
+      f.state.should == "copy_rights_cleared"
+    end
+
 
     it "can transition to denied from update " do
       f = FairUse.new(:user_id => 1)
@@ -146,9 +161,19 @@ describe FairUse do
     end
 
 
+    it "is complete if the state is sipx_cleared" do
+      FairUse.new(user_id: 1, state: "sipx_cleared").complete?.should be_true
+    end
+
+
+    it "is complete if the state is copy_rights_cleared" do
+      FairUse.new(user_id: 1, state: "copy_rights_cleared").complete?.should be_true
+    end
+
     it "is not complete if the state is update" do
       FairUse.new(user_id: 1, state: "update").complete?.should be_false
     end
+
 
   end
 

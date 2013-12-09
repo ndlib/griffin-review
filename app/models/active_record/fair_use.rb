@@ -14,11 +14,22 @@ class FairUse < ActiveRecord::Base
   state_machine :state, :initial => :update do
 
     event :approve do
-      transition [ :update, :temporary_approval ] => :approved
+      transition [ :update, :temporary_approval, :copy_rights_cleared, :sipx_cleared ] => :approved
     end
 
+
+    event :clear_with_sipx do
+      transition [ :update, :temporary_approval, :approved, :copy_rights_cleared, :sipx_cleared ] => :sipx_cleared
+    end
+
+
+    event :clear_with_copy_rights do
+      transition [ :update, :temporary_approval, :approved, :copy_rights_cleared, :sipx_cleared ] => :copy_rights_cleared
+    end
+
+
     event :deny do
-      transition [ :update, :approved, :temporary_approval ] => :denied
+      transition [ :update, :approved, :temporary_approval, :copy_rights_cleared, :sipx_cleared ] => :denied
     end
 
     event :temporary_approval do
@@ -28,6 +39,8 @@ class FairUse < ActiveRecord::Base
     state :update
     state :temporary_approval
     state :approved
+    state :copy_rights_cleared
+    state :sipx_cleared
     state :denied
   end
 
@@ -57,7 +70,7 @@ class FairUse < ActiveRecord::Base
 
 
   def complete?
-    (state == 'approved' || state == 'denied' || state == 'temporary_approval')
+    (state != 'update')
   end
 
 end

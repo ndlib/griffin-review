@@ -53,10 +53,18 @@
         <span class="label label-success">Approve</span> - Request is Fair Use.
       </label>
     <% end %>
+    <% if @request.state_transition_available?('sipx_cleared', 'clear_with_sipx') %>
       <label class="radio">
-        <input type="radio" name="admin_fair_use_form[event]"  value="approve" >
+        <input type="radio" name="admin_fair_use_form[event]"  value="clear_with_sipx" <%= @request.is_state?('sipx_cleared') ? 'checked="true"' : '' %>>
+        <span class="label label-info">Sipx</span>
+      </label>
+    <% end %>
+    <% if @request.state_transition_available?('copy_rights_cleared', 'clear_with_copy_rights') %>
+      <label class="radio">
+        <input type="radio" name="admin_fair_use_form[event]"  value="clear_with_copy_rights" <%= @request.is_state?('copy_rights_cleared') ? 'checked="true"' : '' %>>
         <span class="label label-info">Copy Rights Cleared</span>
       </label>
+    <% end %>
     <% if @request.state_transition_available?('denied', 'deny') %>
       <label class="radio">
         <input type="radio" name="admin_fair_use_form[event]" value="deny" <%= @request.is_state?('denied') ? 'checked="true"' : '' %>>

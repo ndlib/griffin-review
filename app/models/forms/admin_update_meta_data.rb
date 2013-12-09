@@ -96,7 +96,7 @@ class AdminUpdateMetaData
     elsif @reserve.type == 'BookReserve' || @reserve.type == 'BookChapterReserve'
       "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?dscnt=0&vl(16772486UI3)=books&scp.scps=scope%3A%28hathi_pub%29%2Cscope%3A%28ndulawrestricted%29%2Cscope%3A%28dtlrestricted%29%2Cscope%3A%28NDU%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28ndu_digitool%29&tab=nd_campus&dstmp=1384463665396&srt=rank&mode=Advanced&vl(1UIStartWith1)=contains&indx=1&tb=t&vl(freeText0)=#{search_term}&fn=search&vid=NDU&vl(freeText2)=&title1=1&vl(24400451UI4)=all_items&frbg=&ct=search&vl(16833818UI1)=any&vl(1UIStartWith2)=contains&dum=true&vl(16833819UI2)=any&vl(1UIStartWith0)=contains&vl(16833817UI0)=title&Submit=Search&vl(freeText1)="
     elsif @reserve.type == 'JournalReserve'
-      ""
+      "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?dscnt=0&vl(16772486UI3)=articles&tab=onesearch&dstmp=1386599942538&srt=rank&mode=Advanced&vl(1UIStartWith1)=contains&indx=1&tb=t&vl(freeText0)=#{search_term}&fn=search&vid=NDU&vl(freeText2)=&frbg=&vl(24400451UI4)=all_items&ct=search&vl(16833818UI1)=any&vl(1UIStartWith2)=contains&dum=true&vl(16833819UI2)=any&vl(1UIStartWith0)=contains&vl(16833817UI0)=title&Submit=Search&vl(freeText1)="
     else
       ""
     end
