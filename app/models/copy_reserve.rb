@@ -12,6 +12,7 @@ class CopyReserve
     new_request = @reserve.request.dup
 
     new_request.created_at = Time.now
+    new_request.updated_at = Time.now
     new_request.course_id = @course_to.id
     new_request.workflow_state = 'new'
     new_request.semester  = @course_to.semester

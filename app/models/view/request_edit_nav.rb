@@ -33,7 +33,7 @@ class RequestEditNav
       uls << "Requires: Record ID"
     else
       if policy.complete?
-        uls << "Meta Data Manually Entered"
+        uls << "Meta Data Not Syncronized."
       else
         uls << "Requires Meta Data Review"
       end

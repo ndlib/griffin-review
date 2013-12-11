@@ -45,6 +45,9 @@ class CopyOldReserve
 
     def copy_shared_fields!
       # shared data
+      @new_request.request.created_at = Time.now
+      @new_request.request.updated_at = Time.now
+
       @new_request.title   = determine_title(@old_reserve)
       @new_request.selection_title = determine_selection_title(@old_reserve)
 
@@ -99,6 +102,9 @@ class CopyOldReserve
       else
         @new_request.url = @old_reserve.url
       end
+
+      @new_request.electronic_reserve = true
+
     end
 
 
@@ -111,6 +117,8 @@ class CopyOldReserve
         @new_request.url = @old_reserve.url
         @new_request.complete
       end
+      @new_request.electronic_reserve = true
+
     end
 
 
@@ -118,6 +126,8 @@ class CopyOldReserve
       @new_request.type = "VideoReserve"
       @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
+      @new_request.electronic_reserve = true
+
       @new_request.nd_meta_data_id = determine_nd_meta_data_id(@new_request)
     end
 
@@ -126,6 +136,8 @@ class CopyOldReserve
       @new_request.type = "AudioReserve"
       @new_request.realtime_availability_id = @old_reserve.sourceId
       @new_request.physical_reserve = true
+      @new_request.electronic_reserve = true
+
       @new_request.nd_meta_data_id = determine_nd_meta_data_id(@new_request)
     end
 
