@@ -48,13 +48,9 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
   </div>
 
   <div class="seven columns find-resources">
-    <h4>Citation</h4>
-    <%= raw f.object.citation %>
+    <h4>Instructor Input</h4>
+    <%= raw f.object.instructor_notes  %>
     <%= link_to raw("<i class=\"icon icon-chevron-right\"></i> Search in One Search"), f.object.catalog_search_href, target: '_blank' %>
-
-    <h4>Special Instructions</h4>
-    <%= raw f.object.special_instructions %>
-
     <hr>
     <h4>Record Preview</h4>
     <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>

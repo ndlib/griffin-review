@@ -38,17 +38,8 @@ class RequestDetail
   end
 
 
-
-  def citation
-    cite = @reserve.citation.to_s.gsub( %r{http://[^\s<]+} ) do |url|
-      "<a target=\"_blank\" href='#{url}'>#{url.truncate(100)}</a>"
-    end
-    helpers.simple_format(cite)
-  end
-
-
-  def special_instructions
-    helpers.simple_format(@reserve.note)
+  def instructor_notes
+    ReserveInstructorNotes.new(@reserve).display
   end
 
 

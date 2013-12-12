@@ -30,7 +30,7 @@ class RequestEditNav
       uls << "Syncronized on #{@reserve.metadata_synchronization_date.to_s(:long)}"
 
     elsif policy.meta_data_id_required? && !policy.complete?
-      uls << "Requires: Record ID"
+      uls << "Requires a Record ID"
     else
       if policy.complete?
         uls << "Meta Data Not Syncronized."

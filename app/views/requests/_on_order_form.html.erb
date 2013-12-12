@@ -2,5 +2,8 @@
   <p>
     <%= f.button raw("<i class=\"icon-share-alt\"></i> #{on_order_form.button_title}"), class: on_order_form.button_css %>
   </p>
+  <% if f.object.currently_on_order? %>
+  <p> Click the Item Purchased button to indicated that this item has been purchased and is no longer on order.</p>
+  <% end %>
 <% end %>
 
