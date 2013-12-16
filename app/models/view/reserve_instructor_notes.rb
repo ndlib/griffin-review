@@ -26,41 +26,70 @@ class ReserveInstructorNotes
 
 
     def special_instructions
-      inst = "<h5>Special Instructions</h5>"
-      inst += helpers.simple_format(@reserve.note)
+      inst = ""
+      if @reserve.note.present?
+        inst += "<h5>Special Instructions</h5>"
+        inst += helpers.simple_format(@reserve.note)
+      end
 
-      helpers.raw(inst)
+      helpers.raw inst
     end
 
 
-    def has_special_instructions?
-      @reserve.note.present?
-    end
-
-
-    def display_citation
-      txt = citation
-
-      if has_special_instructions?
-        txt += special_instructions
+    def number_of_copies
+      txt = ""
+      if @reserve.number_of_copies.present?
+        txt += "<p>Number of Copies: #{@reserve.number_of_copies}</p>"
       end
 
       helpers.raw txt
     end
 
 
-    def display_video
+    def instructor_owns_a_copy
       txt = ""
+
+      if @reserve.type == 'BookReserve' || @reserve.type == 'BookChapterReserve'
+        if @reserve.requestor_owns_a_copy
+          txt += "<p>Instructor Owns a Copy</p>"
+        else
+          txt += "<p>Instructor did not Indicate they owned a copy.</p>"
+        end
+      end
+
+      helpers.raw txt
+    end
+
+
+    def display_citation
+      txt = "<div class=\"display_instructor_text\">"
+
+      txt += citation
+      txt += special_instructions
+      txt += number_of_copies
+      txt += instructor_owns_a_copy
+
+      txt += "</div>"
+
+      helpers.raw txt
+    end
+
+
+    def display_video
+      txt = "<div class=\"display_instructor_text\">"
       if @reserve.language_track.present?
         txt += "<p>Language Track: #{@reserve.language_track}</p>"
       end
       if @reserve.subtitle_language.present?
         txt +="<p>Subtitle Language: #{@reserve.subtitle_language}</p>"
       end
-
-      if has_special_instructions?
-        txt += special_instructions
+      if @reserve.length.present?
+        txt += "<p>Clips: #{@reserve.length}</p>"
       end
+
+
+      txt += special_instructions
+      txt += "</div>"
 
       helpers.raw txt
     end

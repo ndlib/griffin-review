@@ -197,3 +197,7 @@ input[type="text"] {
 h2 span.subtitle {
   font-size: .9em;
 }
+
+div.display_instructor_text h5 + p {
+  margin-left: 1em;
+}
