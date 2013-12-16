@@ -59,6 +59,8 @@ Griffin::Application.routes.draw do
     resources :meta_datas, controller: 'requests_meta_data'
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'
+    resources :types, controller: 'requests_type', only: ['update', 'edit']
+
     resources :semesters, controller: 'semesters'
     resources :scipt, controller: 'script'
 

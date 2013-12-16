@@ -1,0 +1,25 @@
+<% content_for(:content_title) do %>
+  <%= render partial: '/requests/request_header', locals: { reserve: @form.reserve } %>
+<% end %>
+
+<%
+breadcrumb([link_to('Requests', requests_path), link_to(h(@form.reserve.title), request_path(@form.reserve.id)), 'Edit Reserve Type' ])
+%>
+
+
+<h2>Change the Reserve Type </h2>
+<p>
+  Use the checkboxes to change the type of the reserve.
+</p>
+<%= simple_form_for @form, url: type_path(@form.reserve.id), method: 'put' do | f | %>
+
+  <%= f.input :physical_reserve, as: :boolean, inline_label: "Physical Reserve", label: false %>
+  <%= f.input :electronic_reserve, as: :boolean, inline_label: "Electronic Reserve", label: false %>
+
+  <div class="form-actions twelve columns">
+    <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+    <%= link_to 'Cancel', request_path(@form.reserve.id) %>
+  </div>
+<% end %>
+

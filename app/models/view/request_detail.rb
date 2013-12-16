@@ -87,6 +87,11 @@ class RequestDetail
   end
 
 
+  def physical_electronic_link
+    PhysicalElectronicReserveForm.new(@reserve, {}).link_to_form
+  end
+
+
   private
 
     def reserve_search(id)

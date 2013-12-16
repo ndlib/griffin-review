@@ -26,6 +26,7 @@ class AdminUpdateMetaData
 
   delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
 
+
   def self.build_from_params(controller)
     reserve = ReserveSearch.new.get(controller.params[:id])
     self.new(reserve, controller.params[:admin_update_meta_data])

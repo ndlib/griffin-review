@@ -16,7 +16,7 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
       <tr><td>Requested On: </td><td><%= @admin_reserve.created_at.to_s(:long) %></td></tr>
       <tr><td>Requestor:</td><td><%= @admin_reserve.requestor %></td></tr>
       <tr><td>Instructor Input:</td><td><%= @admin_reserve.instructor_notes %></td></tr>
-      <tr><td>Type:</td><td>Physical Reserve. <%= link_to 'Change', '#' %></td></tr>
+      <tr><td>Type:</td><td><%= @admin_reserve.physical_electronic_link %></td></tr>
     </tbody>
   </table>
   <div class="find-resources">
