@@ -16,7 +16,7 @@ class ReserveMetaDataPolicy
 
 
   def meta_data_needs_reviewed?
-    (@reserve.request.created_at == @reserve.request.updated_at && @reserve.workflow_state == 'inprocess')
+    (!@reserve.reviewed?)
   end
 
 

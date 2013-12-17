@@ -35,7 +35,7 @@ class RequestEditNav
       if policy.complete?
         uls << "Meta Data Not Syncronized."
       else
-        uls << "Requires Meta Data Review"
+        uls << "Requires Meta Data Review <br> Go to the meta data page and review it and click save."
       end
     end
 

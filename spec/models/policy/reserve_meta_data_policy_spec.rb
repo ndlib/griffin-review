@@ -34,24 +34,15 @@ describe ReserveMetaDataPolicy do
 
 
       it "returns true if the reserve has been reviewed and it is in process" do
-        @reserve.request.stub(:updated_at).and_return(4.days.from_now)
+        @reserve.stub(:reviewed?).and_return(true)
         @reserve.stub(:workflow_state).and_return('inprocess')
 
         ReserveMetaDataPolicy.new(@reserve).complete?.should be_true
       end
 
 
-      it "returns true if the workflow state is not inprocess" do
-        ['available','removed'].each do |state|
-          @reserve.stub(:workflow_state).and_return(state)
-          ReserveMetaDataPolicy.new(@reserve).complete?.should be_true
-        end
-      end
-
-
       it "returns false if the reserve has not been reviewed and it is not a physical_reserve" do
-        @reserve.request.stub(:updated_at).and_return(@reserve.request.created_at)
-        @reserve.stub(:workflow_state).and_return('inprocess')
+        @reserve.stub(:reviewed?).and_return(false)
 
         ReserveMetaDataPolicy.new(@reserve).complete?.should be_false
       end

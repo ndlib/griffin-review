@@ -122,6 +122,7 @@ class AdminUpdateMetaData
 
     def persist!
       @reserve.attributes = self.attributes
+      @reserve.reviewed = true
 
       @reserve.save!
 

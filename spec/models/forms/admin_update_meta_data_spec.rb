@@ -156,6 +156,13 @@ describe AdminUpdateMetaData do
     end
 
 
+    it "sets the reviewed to be true when it is saved" do
+      expect(@update_meta_data.reserve.reviewed?).to be_false
+      @update_meta_data.save_meta_data
+      expect(@update_meta_data.reserve.reviewed?).to be_true
+    end
+
+
     it "returns true if the update is valid" do
 
       @update_meta_data.stub(:valid?).and_return(true)
