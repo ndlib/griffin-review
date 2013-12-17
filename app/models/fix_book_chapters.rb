@@ -44,5 +44,9 @@ class FixBookChapters
       i.save!
     end
 
+    Item.where(type: 'VideoReserve').where("display_length is not null OR display_length != ''").each do | i |
+      i.title = "#{i.title} - #{i.display_length}"
+      i.save!
+    end
   end
 end
