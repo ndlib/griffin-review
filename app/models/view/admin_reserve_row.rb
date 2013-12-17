@@ -69,8 +69,21 @@ class AdminReserveRow
   end
 
 
+  def search_keywords
+    txt = ""
+    if reserve.electronic_reserve?
+      txt += 'electronic'
+    end
+    if reserve.physical_reserve?
+      txt += ' physical'
+    end
+
+    txt
+  end
+
+
   def to_json
-    [needed_by, title, request_date, requestor_col, course_col, type,  @reserve.created_at.to_time.to_i, needed_by_json]
+    [needed_by, title, request_date, requestor_col, course_col, type,  @reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
   end
 
 end

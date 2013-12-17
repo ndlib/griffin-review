@@ -185,6 +185,9 @@ jQuery ($) ->
           bSearchable: false
           bVisible: false
           aTargets: [7]
+        ,
+          bVisible: false
+          aTargets: [8]
         ]
 
       )
