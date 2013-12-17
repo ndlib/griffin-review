@@ -12,6 +12,9 @@ describe CopyReserve do
       @new_reserve = CopyOldReserve.new(user, to_course, old_reserve).copy
     end
 
+    it "sets reviewed to be true " do
+      expect(@new_reserve.reviewed?).to be_true
+    end
 
     it "sets the book chapter title" do
       @new_reserve.title.should == "title"

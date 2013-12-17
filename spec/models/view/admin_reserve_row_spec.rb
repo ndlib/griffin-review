@@ -64,10 +64,10 @@ describe AdminReserveRow do
 
   it "makes an array for json rendering" do
     Reserve.any_instance.stub(:course).and_return(double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), full_title: 'Course'))
-    r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve')
+    r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false)
     r.save!
 
-    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400])
+    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, " physical"])
   end
 
 

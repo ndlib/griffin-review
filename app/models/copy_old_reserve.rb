@@ -50,6 +50,7 @@ class CopyOldReserve
 
       @new_request.title   = determine_title(@old_reserve)
       @new_request.selection_title = determine_selection_title(@old_reserve)
+      @new_request.reviewed = true
 
       @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
       @new_request.journal_title = @old_reserve.journal_name
