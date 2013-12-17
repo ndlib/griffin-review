@@ -4,7 +4,7 @@ describe ReserveInstructorNotes do
 
   context :video_reserve do
     before(:each) do
-      @reserve = double(Reserve, id: 1, type: 'VideoReserve', note: "", language_track: "", subtitle_language: "", number_of_copies: "", requestor_owns_a_copy: false, length: "")
+      @reserve = double(Reserve, id: 1, type: 'VideoReserve', note: "", language_track: "", subtitle_language: "", number_of_copies: "", requestor_owns_a_copy: false, length: "", creator: "")
       @notes = ReserveInstructorNotes.new(@reserve)
     end
 
@@ -32,6 +32,14 @@ describe ReserveInstructorNotes do
       @reserve.stub(:subtitle_language).and_return("lang")
 
       expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p>Subtitle Language: lang</p></div>")
+    end
+
+
+    it "includes the creator if they entered it" do
+      @reserve.stub(:creator).and_return("creator")
+
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p>Director/Publisher: creator</p></div>")
+
     end
 
 
@@ -80,21 +88,21 @@ describe ReserveInstructorNotes do
     it "adds the citation to the into the display" do
       @reserve.stub(:citation).and_return("citation")
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5>citation</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p>citation</p></div>")
     end
 
 
     it "adds the special instructions to the display " do
       @reserve.stub(:note).and_return("note")
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5></p><h5>Special Instructions</h5><p>note</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p></p><h5>Special Instructions</h5><p>note</p></div>")
     end
 
 
     it "adds the number of copies needed if it is set" do
       @reserve.stub(:number_of_copies).and_return("4")
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5></p><p>Number of Copies: 4</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p></p><p>Number of Copies: 4</p></div>")
     end
 
 
@@ -102,7 +110,7 @@ describe ReserveInstructorNotes do
       @reserve.stub(:requestor_owns_a_copy).and_return(true)
       @reserve.stub(:type).and_return('BookReserve')
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5></p><p>Instructor Owns a Copy</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p></p><p>Instructor Owns a Copy</p></div>")
     end
 
 
@@ -110,7 +118,7 @@ describe ReserveInstructorNotes do
       @reserve.stub(:requestor_owns_a_copy).and_return(false)
       @reserve.stub(:type).and_return('BookReserve')
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5></p><p>Instructor did not Indicate they owned a copy.</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p></p><p>Instructor did not Indicate they owned a copy.</p></div>")
     end
 
 
@@ -119,7 +127,7 @@ describe ReserveInstructorNotes do
       @reserve.stub(:note).and_return("note")
       @reserve.stub(:number_of_copies).and_return("4")
 
-      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><p><h5>Citation</h5>citation</p><h5>Special Instructions</h5><p>note</p><p>Number of Copies: 4</p></div>")
+      expect(@notes.display).to eq("<div class=\"display_instructor_text\"><h5>Citation</h5><p>citation</p><h5>Special Instructions</h5><p>note</p><p>Number of Copies: 4</p></div>")
     end
 
   end

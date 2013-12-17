@@ -7,11 +7,7 @@ class ReserveFairUsePolicy
 
 
   def requires_fair_use?
-    return true if ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
-
-    return true if electronic_reserve_policy.has_file_resource? || electronic_reserve_policy.has_sipx_resource?
-
-    return false
+    (electronic_reserve_policy.has_file_resource? || electronic_reserve_policy.has_sipx_resource? || electronic_reserve_policy.has_streaming_resource?)
   end
 
 

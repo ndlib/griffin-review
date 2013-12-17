@@ -17,11 +17,12 @@ class ReserveInstructorNotes
   private
 
     def citation
-      cite = "<h5>Citation</h5>"
-      cite += @reserve.citation.to_s.gsub( %r{http://[^\s<]+} ) do |url|
+      cite = @reserve.citation.to_s.gsub( %r{http://[^\s<]+} ) do |url|
         "<a target=\"_blank\" href='#{url}'>#{url.truncate(100)}</a>"
       end
-      helpers.simple_format(cite)
+      cite = helpers.simple_format(cite)
+
+      cite = "<h5>Citation</h5>" + cite
     end
 
 
@@ -77,12 +78,16 @@ class ReserveInstructorNotes
 
     def display_video
       txt = "<div class=\"display_instructor_text\">"
+      if @reserve.creator.present?
+        txt += "<p>Director/Publisher: #{@reserve.creator}</p>"
+      end
       if @reserve.language_track.present?
         txt += "<p>Language Track: #{@reserve.language_track}</p>"
       end
       if @reserve.subtitle_language.present?
         txt +="<p>Subtitle Language: #{@reserve.subtitle_language}</p>"
       end
+
       if @reserve.length.present?
         txt += "<p>Clips: #{@reserve.length}</p>"
       end

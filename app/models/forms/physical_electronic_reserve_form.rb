@@ -78,6 +78,8 @@ class PhysicalElectronicReserveForm
     def persist!
       @reserve.attributes = self.attributes
       @reserve.save!
+
+      ReserveCheckIsComplete.new(@reserve).check!
     end
 
 end
