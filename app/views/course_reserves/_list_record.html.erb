@@ -9,9 +9,9 @@
     <h2 class="title">
       <%= object.title %>
     </h2>
-    <h3 class="author"><%= h object.creator_contributor %></h3>
-    <p class="details"><%= h object.details %></p>
-    <p class="publisher"><%= h object.publisher_provider %></p>
+    <h3 class="author"><%= object.creator_contributor %></h3>
+    <p class="details"><%= raw object.details %></p>
+    <p class="publisher"><%= raw object.publisher_provider %></p>
       <% if object.show_pages? %>
           <p class="length">Reading Length: <%= object.length %></p>
       <% end %>
