@@ -67,7 +67,7 @@ describe CopyReserve do
     @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
 
     new_reserve = @copy_reserve.copy
-    expect(new_reserve.needed_by ).to eq(nil)
+    expect(new_reserve.needed_by ).to eq(2.weeks.from_now.to_date)
   end
 
 
