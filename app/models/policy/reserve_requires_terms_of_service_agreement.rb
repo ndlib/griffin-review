@@ -6,7 +6,8 @@ class ReserveRequiresTermsOfServiceAgreement
 
 
   def requires_agreement?
-    ReserveFairUsePolicy.new(@reserve).requires_fair_use?
+    policy = ElectronicReservePolicy.new(@reserve)
+    policy.has_file_resource? || policy.has_streaming_resource?
   end
 
 end
