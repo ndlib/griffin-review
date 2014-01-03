@@ -20,6 +20,8 @@ class CopyReserve
     new_request.workflow_state = 'new'
     new_request.semester  = @course_to.semester
 
+    new_request.requestor_netid = @user.username
+
     new_request.save!
 
     @reserve.fair_use.copy_to_new_request!(new_request, @user)

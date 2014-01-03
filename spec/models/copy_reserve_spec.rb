@@ -4,7 +4,7 @@ describe CopyReserve do
 
   let(:semester) { FactoryGirl.create(:semester) }
   let(:course_search) { CourseSearch.new }
-  let(:user) { mock_model(User, id: 1 )}
+  let(:user) { mock_model(User, id: 1, username: 'bobbobbers' )}
 
   before(:each) do
 
@@ -50,6 +50,11 @@ describe CopyReserve do
     new_reserve.item.id.should == @reserve.item.id
   end
 
+
+  it "sets the requestor id of the person coping the item" do
+    new_reserve = @copy_reserve.copy
+    expect(new_reserve.requestor_netid).to eq("bobbobbers")
+  end
 
   it "resets the created at and updated at" do
     @reserve.request.created_at = 6.days.ago
