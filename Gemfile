@@ -18,7 +18,7 @@ gem 'mysql2', "~> 0.3.11"
 gem 'savon', '2.2.0'
 
 #memcache
-#gem 'dalli'
+gem 'dalli'
 
 # authentication
 gem 'rubycas-client'
