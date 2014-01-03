@@ -29,7 +29,7 @@ set :repository, "git@git.library.nd.edu:griffin"
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
-  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_rsa)
   ssh_options[:paranoid] = false
 
   set :rails_env, 'pre_production'
