@@ -19,7 +19,8 @@ set :use_sudo, false
 #############################################################
 
 set :scm, 'git'
-set :scm_command,   '/usr/bin/git'
+# moved below because wowza is different then prod server for now.
+# set :scm_command,   '/usr/bin/git'
 set :repository, "git@git.library.nd.edu:griffin"
 
 
@@ -34,7 +35,9 @@ task :pre_production do
 
   set :rails_env, 'pre_production'
   set :deploy_to, "/home/app/#{application}"
-  set :ruby_bin,  '/opt/ruby/current/bin'
+  set :ruby_bin,  '/opt/ruby/current/bin/ruby'
+  set :scm_command,   '/usr/bin/git'
+
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
@@ -54,6 +57,8 @@ task :production do
   set :rails_env, 'production'
   set :deploy_to, "/shared/reserves_prod/data/app_home/#{application}"
   set :ruby_bin,  '/shared/reserves_prod/ruby/1.9.3/bin'
+  set :scm_command,   '/shared/git/bin/git'
+
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
