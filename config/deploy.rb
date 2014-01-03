@@ -19,7 +19,7 @@ set :use_sudo, false
 #############################################################
 
 set :scm, 'git'
-set :scm_command,   '/bin/git'
+set :scm_command,   '/usr/bin/git'
 set :repository, "git@git.library.nd.edu:griffin"
 
 
