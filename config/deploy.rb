@@ -44,7 +44,7 @@ task :pre_production do
   set :user,      'app'
   set :domain,    'wowzapprd.library.nd.edu'
   set :site_url,  'wowzapprd.library.nd.edu'
-  set :branch,    'master'
+  set :branch,    'nginx'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
