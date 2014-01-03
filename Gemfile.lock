@@ -105,7 +105,6 @@ GEM
     coffee-script-source (1.6.3)
     crack (0.4.0)
       safe_yaml (~> 0.9.0)
-    dalli (2.6.2)
     database_cleaner (1.0.1)
     descendants_tracker (0.0.1)
     devise (3.0.3)
@@ -370,7 +369,6 @@ DEPENDENCIES
   capybara
   coffee-rails
   compendium!
-  dalli
   database_cleaner
   devise
   devise_cas_authenticatable
