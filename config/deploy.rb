@@ -33,15 +33,15 @@ task :pre_production do
   ssh_options[:paranoid] = false
 
   set :rails_env, 'pre_production'
-  set :deploy_to, "/shared/reserves_pprd/data/app_home/#{application}"
+  set :deploy_to, "/home/app/#{application}"
   set :ruby_bin,  '/shared/reserves_pprd/ruby/1.9.3/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
-  set :user,      'rpprd'
-  set :domain,    'reservespprd.library.nd.edu'
-  set :site_url,  'reservespprd.library.nd.edu'
-  set :branch,    '1.2'
+  set :user,      'app'
+  set :domain,    'wowzapprd.library.nd.edu'
+  set :site_url,  'wowzapprd.library.nd.edu'
+  set :branch,    'master'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
