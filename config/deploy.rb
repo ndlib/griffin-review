@@ -35,7 +35,7 @@ task :pre_production do
 
   set :rails_env, 'pre_production'
   set :deploy_to, "/home/app/#{application}"
-  set :ruby_bin,  '/opt/ruby/current/bin/ruby'
+  set :ruby_bin,  '/opt/ruby/current/bin'
   set :scm_command,   '/usr/bin/git'
 
   set :ruby,      File.join(ruby_bin, 'ruby')
