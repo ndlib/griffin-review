@@ -34,7 +34,7 @@ task :pre_production do
 
   set :rails_env, 'pre_production'
   set :deploy_to, "/home/app/#{application}"
-  set :ruby_bin,  '/shared/reserves_pprd/ruby/1.9.3/bin'
+  set :ruby_bin,  '/opt/ruby/current/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
