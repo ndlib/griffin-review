@@ -2,10 +2,21 @@
 
 describe AdminReserveRow do
 
-
   it "has a title" do
     expect(AdminReserveRow.new(Reserve.new).respond_to?(:title)).to be_true
   end
+
+  it "links to the title" do
+    row = AdminReserveRow.new(Reserve.new(title: 'title'))
+    expect(row.title).to eq("<a href=\"/admin/requests/\" target=\"_blank\">title</a>")
+  end
+
+
+  it "shows the selection title when there is a selection title" do
+    row = AdminReserveRow.new(Reserve.new(title: 'title', selection_title: 'selection_title'))
+    expect(row.title).to eq("<a href=\"/admin/requests/\" target=\"_blank\">selection_title</a><br>title")
+  end
+
 
   it "has an id" do
     expect(AdminReserveRow.new(Reserve.new).respond_to?(:id)).to be_true
@@ -67,7 +78,7 @@ describe AdminReserveRow do
     r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false)
     r.save!
 
-    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, " physical"])
+    expect(AdminReserveRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=jhartzle\"></a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, " physical"])
   end
 
 

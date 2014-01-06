@@ -45,7 +45,11 @@ class AdminReserveRow
 
 
   def title
-    helpers.link_to(reserve.title, routes.request_path(reserve.id) )
+    if @reserve.selection_title.present?
+      helpers.raw "#{helpers.link_to @reserve.selection_title, routes.request_path(reserve.id), target: '_blank'}<br>#{@reserve.title}"
+    else
+      helpers.link_to @reserve.title, routes.request_path(reserve.id), target: '_blank'
+    end
   end
 
 
