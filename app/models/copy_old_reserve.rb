@@ -52,6 +52,8 @@ class CopyOldReserve
       @new_request.selection_title = determine_selection_title(@old_reserve)
       @new_request.reviewed = true
 
+      @new_request.needed_by = 2.weeks.from_now
+
       @new_request.creator = "#{@old_reserve.author_firstname} #{@old_reserve.author_lastname}"
       @new_request.journal_title = @old_reserve.journal_name
       @new_request.length  = @old_reserve.pages

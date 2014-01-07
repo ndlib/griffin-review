@@ -45,6 +45,11 @@ describe CopyReserve do
       @new_reserve.length.should == "1 - 2"
     end
 
+
+    it "sets a needed by date 2 weeks into the future" do
+      expect(@new_reserve.needed_by).to eq(2.weeks.from_now.to_date)
+    end
+
   end
 
 
