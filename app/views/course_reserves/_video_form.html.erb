@@ -22,7 +22,7 @@
 
   <%= f.input :electronic_reserve, as: :boolean, label: false do %>
     <label class="checkbox instructor_reserve_request_physical_reserve">
-      <%= f.check_box :electronic_reserve, { }, "false", "true" %> I do not want this video to be streamed.
+      <%= f.check_box :electronic_reserve, { }, false, true %> I do not want this video to be streamed.
     </label>
   <% end %>
 
@@ -38,7 +38,7 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit, "Save", :class => 'btn-primary' %>
+    <%= f.button :submit, "Save", :class => 'btn-primary video_button' %>
     <div class="pull-right">
       <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
     </div>
