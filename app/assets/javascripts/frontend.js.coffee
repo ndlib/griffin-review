@@ -273,6 +273,10 @@ jQuery ($) ->
       $('#video_needed_by_modal').modal(
         show: true
       )
+      $(this).parents('.control-group').addClass('error')
+      $(this).val("")
+    else
+      $(this).parents('.control-group').removeClass('error')
 
 
 
