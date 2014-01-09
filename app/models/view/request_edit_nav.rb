@@ -50,7 +50,7 @@ class RequestEditNav
         erpolicy = ElectronicReservePolicy.new(@reserve)
         uls << "#{erpolicy.electronic_resource_type}: #{erpolicy.resource_name.truncate(40)}"
       else
-        uls << "Requires an Electroinc Resource"
+        uls << "Requires an Electronic Resource"
       end
     else
       uls << "Not Required"
