@@ -51,7 +51,7 @@ end
 
 desc "Setup for the Production environment"
 task :production do
-  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_rsa)
   ssh_options[:paranoid] = false
 
   set :rails_env, 'production'
