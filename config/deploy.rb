@@ -42,8 +42,8 @@ task :pre_production do
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
   set :user,      'app'
-  set :domain,    'wowzapprd.library.nd.edu'
-  set :site_url,  'wowzapprd.library.nd.edu'
+  set :domain,    'reservespprd.library.nd.edu'
+  set :site_url,  'reservespprd.library.nd.edu'
   set :branch,    'nginx'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
