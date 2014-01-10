@@ -28,6 +28,11 @@ describe DiscoveryApi do
       end
     end
 
+    it "has a type" do
+      expect(@discovery_api.type).to eq('book')
+    end
+
+
     it "has a title" do
       @discovery_api.title.should == "The once and future king."
     end

@@ -14,6 +14,8 @@ class BookReserveImporter
 
       save_result(ibr)
     end
+
+    log_result
   end
 
 
@@ -44,6 +46,21 @@ class BookReserveImporter
     def add_succsses(ibr)
       @successes ||= []
       @successes << { bib_id: ibr.bib_id, course_id: ibr.course_id }
+    end
+
+
+    def log_result
+      if !@errors.nil? && @errors.size > 0
+        txt = "Aleph Importer Finished with errors "
+
+        @errors.each do | e |
+          txt += "\nBIB_ID: #{e[:bib_id]} COURSE: #{e[:course_id]} ERRORS: #{e[:errors].join(", ")}"
+        end
+      else
+        txt = "Aleph Importer Finished without errors"
+      end
+
+      ErrorLog.log_message('aleph_import', txt)
     end
 
 end

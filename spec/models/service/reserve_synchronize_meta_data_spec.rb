@@ -13,7 +13,7 @@ describe ReserveSynchronizeMetaData do
 
         @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", requestor_netid: 'netid', course: course)
 
-        @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "")
+        @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "", type: 'book')
         DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
       end
 

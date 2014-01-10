@@ -14,7 +14,7 @@ class BookReserveImport
   def import!
     if can_import?
       reserve.title = bib_title
-      reserve.type  ||= "BookReserve"
+
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
@@ -28,6 +28,16 @@ class BookReserveImport
 
       if !reserve.nd_meta_data_id.nil?
         reserve.overwrite_nd_meta_data = false
+      end
+
+      reserve.type = format_to_type[format]
+      if reserve.type.nil?
+        add_error("format of #{format} not found in the list of traped formats")
+        return false
+      end
+
+      if reserve.type == 'VideoReserve' && reserve.electronic_reserve.nil?
+        reserve.electronic_reserve = true
       end
 
       begin
@@ -88,6 +98,23 @@ class BookReserveImport
 
   def bib_title
     @api_data['title']
+  end
+
+
+  def format
+    puts @api_data.inspect
+    @api_data['format'].downcase
+  end
+
+
+  def format_to_type
+    {
+      'book' => 'BookReserve',
+      'bound serial' => 'BookReserve',
+      'serial (unbound issue)' => 'BookReserve',
+      'dvd (visual)' => 'VideoReserve',
+      'video cassette (visual)' => 'VideoReserve'
+    }
   end
 
   private
