@@ -55,16 +55,16 @@ task :production do
   ssh_options[:paranoid] = false
 
   set :rails_env, 'production'
-  set :deploy_to, "/shared/reserves_prod/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/reserves_prod/ruby/1.9.3/bin'
-  set :scm_command,   '/shared/git/bin/git'
+  set :deploy_to, "/home/app/#{application}"
+  set :ruby_bin,  '/opt/ruby/current/bin'
+  set :scm_command,   '/usr/bin/git'
 
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(ruby_bin, 'rake')
-  set :user,      'rprod'
-  set :domain,    'reserves.library.nd.edu'
-  set :site_url,  'reserves.library.nd.edu'
+  set :user,      'app'
+  set :domain,    'wowzaprod.library.nd.edu'
+  set :site_url,  'wowzaprod.library.nd.edu'
   set :branch,    'master'
   set :git_shallow_clone, 1
 
