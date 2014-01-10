@@ -17,6 +17,9 @@ gem 'mysql2', "~> 0.3.11"
 # SOAP interface
 gem 'savon', '2.2.0'
 
+#memcache
+gem 'dalli'
+
 # authentication
 gem 'rubycas-client'
 gem 'devise'

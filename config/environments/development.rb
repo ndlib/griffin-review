@@ -26,7 +26,9 @@ Griffin::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
+  config.cache_store = :mem_cache_store, '127.0.0.1:11211', { compress: true }
+  # /usr/local/opt/memcached/bin/memcached -m 500 -l 127.0.0.1 -p 11211 -vv
 
   # Error routing
   config.exceptions_app = self.routes
