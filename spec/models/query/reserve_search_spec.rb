@@ -95,7 +95,6 @@ describe ReserveSearch do
       @available_semester1 = mock_reserve FactoryGirl.create(:request, :audio, :available, :library => 'library1', :semester_id => semester.id), @course
       @available_semester2 = mock_reserve FactoryGirl.create(:request, :book, :available, :library => 'library1', :semester_id => previous_semester.id), @course
       @available_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :available, :library => 'library2', :semester_id => next_semester.id), @course
-
     end
 
 
@@ -293,6 +292,41 @@ describe ReserveSearch do
 
           expect(result.size).to eq(2)
         end
+      end
+
+
+      describe :not_in_aleph do
+
+        it "returns all the physical items that are not currently listed in aleph" do
+          result = ReserveSearch.new.admin_requests('not_in_aleph', 'all', 'all')
+          expect(result.size).to eq(1)
+        end
+
+        it "does not return items that are in aleph" do
+          @new_semester1.currently_in_aleph = true
+          @new_semester1.save!
+
+          result = ReserveSearch.new.admin_requests('not_in_aleph', 'all', 'all')
+          expect(result.size).to eq(0)
+        end
+
+
+        it "does not return items that are not physical" do
+          @new_semester1.physical_reserve = false
+          @new_semester1.save!
+
+          result = ReserveSearch.new.admin_requests('not_in_aleph', 'all', 'all')
+          expect(result.size).to eq(0)
+        end
+
+        it "does not return items that have been removed" do
+          @new_semester1.remove
+          @new_semester1.save!
+
+          result = ReserveSearch.new.admin_requests('not_in_aleph', 'all', 'all')
+          expect(result.size).to eq(0)
+        end
+
       end
     end
   end

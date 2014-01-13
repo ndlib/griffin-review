@@ -18,9 +18,12 @@ class BookReserveImport
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
+
       if reserve.physical_reserve.nil?
         reserve.physical_reserve = true
       end
+
+      reserve.currently_in_aleph = true
 
       if reserve.requestor_netid.nil?
         reserve.requestor_netid = 'import'
@@ -32,7 +35,7 @@ class BookReserveImport
 
       reserve.type = format_to_type[format]
       if reserve.type.nil?
-        add_error("format of #{format} not found in the list of traped formats")
+        add_error("format of '#{format}' not found in the list of traped formats")
         return false
       end
 
@@ -102,7 +105,6 @@ class BookReserveImport
 
 
   def format
-    puts @api_data.inspect
     @api_data['format'].downcase
   end
 

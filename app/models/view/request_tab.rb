@@ -1,7 +1,7 @@
 class RequestTab
   attr_accessor :filter, :library_filters, :type_filters
 
-  VALID_FILTERS = ['new', 'inprocess', 'available', 'on_order', 'removed', 'all']
+  VALID_FILTERS = ['new', 'inprocess', 'available', 'on_order', 'removed', 'all', 'not_in_aleph']
 
   def initialize(filter = false)
     if !filter

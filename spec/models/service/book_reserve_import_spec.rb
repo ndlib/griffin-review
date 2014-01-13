@@ -55,6 +55,12 @@ describe BookReserveImport do
       expect(@ibr.reserve.type).to eq("BookReserve")
     end
 
+    it "sets the reserve as being currently in aleph" do
+      @ibr.import!
+      expect(@ibr.reserve.currently_in_aleph).to be_true
+    end
+
+
     it "messages if it discovers an item that is not of the known format types"
 
   end
@@ -101,7 +107,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.errors).to eq(["format of not_a_format not found in the list of traped formats"])
+      expect(@ibr.errors).to eq(["format of 'not_a_format' not found in the list of traped formats"])
     end
   end
 

@@ -46,6 +46,8 @@ class ReserveSearch
         search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? ', true)
       elsif status == 'inprocess'
         search = search.where('requests.workflow_state = ? ', 'inprocess').where('items.on_order = ? || items.on_order is null', false)
+      elsif status == 'not_in_aleph'
+        search = search.where('requests.currently_in_aleph = ? || requests.currently_in_aleph is null', false).where('items.physical_reserve = ?', true).where('requests.workflow_state != ? ', 'removed')
       else
         search = search.where('requests.workflow_state = ? ', status)
       end

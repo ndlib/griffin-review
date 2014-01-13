@@ -74,6 +74,17 @@ describe RequestTab do
   end
 
 
+  describe "not_in_aleph" do
+    it "sets the not_in_aleph params" do
+      arf = RequestTab.new('not_in_aleph')
+      test_status_filter!('not_in_aleph', arf)
+      test_css_class!('not_in_aleph', arf)
+
+      "#{arf}".should == "not_in_aleph"
+    end
+  end
+
+
   describe "invalid filter" do
 
     it " raises an error if an ivalid filter is passed in " do

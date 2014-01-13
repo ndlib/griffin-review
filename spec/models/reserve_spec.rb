@@ -56,6 +56,10 @@ describe Reserve do
       expect(course_listing.respond_to?(:physical_reserve)).to be_true
     end
 
+    it "has a currently_in_aleph" do
+      expect(course_listing.respond_to?(:currently_in_aleph)).to be_true
+    end
+
   end
 
 

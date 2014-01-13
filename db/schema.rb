@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217165708) do
+ActiveRecord::Schema.define(version: 20140113155015) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20131217165708) do
     t.string   "requestor_netid"
     t.integer  "item_id"
     t.boolean  "reviewed"
+    t.boolean  "currently_in_aleph"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
