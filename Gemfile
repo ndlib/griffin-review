@@ -62,7 +62,7 @@ gem 'virtus'
 
 gem "paperclip"
 
-gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
+# gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
 # gem "paper_trail"
 
 gem 'jquery-datatables-rails'
