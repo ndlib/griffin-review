@@ -8,7 +8,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     task :update_crontab, :roles => :app do
       puts "update crontab"
       # this can be removed when we update to the infatructure gem.
-      _cset :binstubs_path,  File.join(shared_path, 'vendor/bundle/ruby/1.9.1/bin')
+      _cset :binstubs_path,  File.join(shared_path, 'vendor/bundle/ruby/2.0.0/bin')
       _cset(:whenever_command)      { "whenever" }
       _cset(:whenever_identifier)   { fetch :application }
       _cset(:whenever_environment)  { fetch :rails_env, "production" }
