@@ -13,17 +13,21 @@ class BookReserveImport
 
   def import!
     if can_import?
+
+      process_reserve_type
+
       reserve.title = bib_title
+      reserve.creator = creator
+      reserve.journal_title = publisher
 
       reserve.nd_meta_data_id = bib_id
       reserve.realtime_availability_id = realtime_availability_id
       reserve.course = course
-
-      if reserve.physical_reserve.nil?
-        reserve.physical_reserve = true
-      end
-
       reserve.currently_in_aleph = true
+
+      if reserve.library.nil?
+        reserve.library = 'hesburgh'
+      end
 
       if reserve.requestor_netid.nil?
         reserve.requestor_netid = 'import'
@@ -33,21 +37,15 @@ class BookReserveImport
         reserve.overwrite_nd_meta_data = false
       end
 
-      reserve.type = format_to_type[format]
-      if reserve.type.nil?
-        add_error("format of '#{format}' not found in the list of traped formats")
-        return false
-      end
 
-      if reserve.type == 'VideoReserve' && reserve.electronic_reserve.nil?
-        reserve.electronic_reserve = true
+      if !success?
+        return
       end
 
       begin
         ActiveRecord::Base.transaction do
-          reserve.save!
+          save_reserve!
 
-          ReserveSynchronizeMetaData.new(reserve).synchronize!
           ReserveCheckIsComplete.new(reserve).check!
         end
       rescue Exception => e
@@ -84,8 +82,22 @@ class BookReserveImport
   end
 
 
+  def creator
+    @api_data['creator']
+  end
+
+
+  def publisher
+    @api_data['publisher']
+  end
+
   def bib_id
     "ndu_aleph#{@api_data['bib_id']}"
+  end
+
+
+  def sid_id
+    @api_data['sid']
   end
 
 
@@ -109,16 +121,6 @@ class BookReserveImport
   end
 
 
-  def format_to_type
-    {
-      'book' => 'BookReserve',
-      'bound serial' => 'BookReserve',
-      'serial (unbound issue)' => 'BookReserve',
-      'dvd (visual)' => 'VideoReserve',
-      'video cassette (visual)' => 'VideoReserve'
-    }
-  end
-
   private
 
     def add_error(msg)
@@ -135,6 +137,31 @@ class BookReserveImport
 
     def can_import?
       course.present?
+    end
+
+
+    def save_reserve!
+      if AlephImporter::PersonalCopy.new(@api_data).personal_copy?
+        reserve.overwrite_nd_meta_data = true
+
+        reserve.save!
+      else
+        ReserveSynchronizeMetaData.new(reserve).synchronize!
+      end
+    end
+
+
+    def process_reserve_type
+      reserve_type = AlephImporter::DetermineReserveType.new(@api_data)
+      reserve.type = reserve_type.determine_type
+
+      if reserve.type.nil?
+        add_error("format of '#{format}' not found in the list of traped formats")
+        return false
+      end
+
+      reserve.electronic_reserve = reserve_type.determine_electronic_reserve(reserve)
+      reserve.physical_reserve   = reserve_type.determine_physical_reserve(reserve)
     end
 
 end

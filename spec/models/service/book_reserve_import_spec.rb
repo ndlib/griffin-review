@@ -8,7 +8,7 @@ describe BookReserveImport do
 
     stub_discovery!
 
-    @api_data =  {"bib_id" => "generic","sid" => "NDU30-000047838-THEO-60853-01", "doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology", 'format' => 'Book'}
+    @api_data =  {"bib_id" => "generic","sid" => "NDU01-000047838-THEO-60853-01", "doc_number" => "000047839", "crosslist_id" => "crosslist_id", "section_group_id" => "current_multisection_crosslisted", "course_triple" => "201300_THEO_60853", "title" => "Blackwell Companion to Political Theology", 'format' => 'Book', 'creator' => 'creator', 'publisher' => 'publisher'}
     @course = double(Course, id: 'crosslist_id', semester: semester)
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
@@ -27,6 +27,11 @@ describe BookReserveImport do
       expect(@ibr.reserve.physical_reserve).to be_true
     end
 
+
+    it "sets the library to hesburgh" do
+      @ibr.import!
+      expect(@ibr.reserve.library).to eq("hesburgh")
+    end
 
     it "imports a book that does not have an existing reserve to the course" do
       @ibr.import!
@@ -66,6 +71,16 @@ describe BookReserveImport do
   end
 
 
+  describe :new_non_catalog_reserve do
+
+    before(:each) do
+      @api_data["sid"] = "NDU30-000047838-THEO-60853-01"
+      @ibr = BookReserveImport.new(@api_data)
+    end
+
+  end
+
+
   describe :new_video_reserve do
 
     it "sets the item to be a video if it is a dvd" do
@@ -101,6 +116,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       expect(@ibr.import!).to be_false
     end
+
 
     it "logs an error for this " do
       @api_data['format'] = "not_a_format"
