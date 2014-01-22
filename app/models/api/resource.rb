@@ -18,5 +18,14 @@ module API
       end
     end
 
+
+    def self.fix_id(id)
+      if id.match(/^[0-9]{9}$/)
+        "ndu_aleph#{id}"
+      else
+        id
+      end
+    end
+
   end
 end

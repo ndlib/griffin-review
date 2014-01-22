@@ -147,6 +147,7 @@ class AdminUpdateMetaData
     def fix_params(params)
       if params && params[:nd_meta_data_id]
         params[:nd_meta_data_id].strip!
+        params[:nd_meta_data_id] = params[:nd_meta_data_id].gsub(/^ndu_aleph/, '').rjust(9, "0")
       end
     end
 end
