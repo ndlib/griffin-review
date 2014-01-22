@@ -9,6 +9,7 @@ module API
 
 
     def self.search_catalog(q)
+      q = fix_id(q)
       result = get_json("search/id", {:q => q})
 
       if result["records"].nil?
