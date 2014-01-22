@@ -91,8 +91,9 @@ class BookReserveImport
     @api_data['publisher']
   end
 
+
   def bib_id
-    "ndu_aleph#{@api_data['bib_id']}"
+    @api_data['bib_id']
   end
 
 

@@ -20,7 +20,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
       <a href="/admin/discovery_id_test/" base_url="/admin/discovery_id_test/" class="" id="test_meta_data" data-toggle="modal" data-target="#meta_data_test_modal">
         <i class="icon icon-arrow-up"></i> Test Record Id</a>
     </div>
-    <%= f.input :nd_meta_data_id, label: "Record Id", id: 'step1' %>
+    <%= f.input :nd_meta_data_id, label: "Record Id / System Number", id: 'step1' %>
 
     <p><%= f.object.resync_button %></p>
     <hr>

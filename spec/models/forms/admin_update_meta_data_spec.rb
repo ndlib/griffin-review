@@ -230,7 +230,20 @@ describe AdminUpdateMetaData do
 
       @update_meta_data.save_meta_data
 
-      expect(@update_meta_data.reserve.nd_meta_data_id).to eq("asdf")
+      expect(@update_meta_data.reserve.nd_meta_data_id).to eq("00000asdf")
     end
+
+
+    it "removes the ndu_aleph designation" do
+      @reserve.metadata_synchronization_date = Time.now
+      @params = { nd_meta_data_id: 'ndu_alephasdf '}
+
+      @update_meta_data = AdminUpdateMetaData.new(@reserve, @params)
+
+      @update_meta_data.save_meta_data
+
+      expect(@update_meta_data.reserve.nd_meta_data_id).to eq("00000asdf")
+    end
+
   end
 end
