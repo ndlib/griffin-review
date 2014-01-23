@@ -144,6 +144,7 @@ class BookReserveImport
     def save_reserve!
       if AlephImporter::PersonalCopy.new(@api_data).personal_copy?
         reserve.overwrite_nd_meta_data = true
+        reserve.metadata_synchronization_date = Time.now
 
         reserve.save!
       else
