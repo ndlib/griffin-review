@@ -8,7 +8,7 @@ class ReserveSynchronizeMetaData
 
   def synchronize!
     if can_be_synchronized?
-      synchonize!
+      map_data!
     end
   end
 
@@ -25,7 +25,7 @@ class ReserveSynchronizeMetaData
     end
 
 
-    def synchonize!
+    def map_data!
       return if !valid_discovery_id?
 
       @reserve.title =  discovery_record.title

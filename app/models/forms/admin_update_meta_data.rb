@@ -119,9 +119,11 @@ class AdminUpdateMetaData
       ReserveMetaDataPolicy.new(@reserve).meta_data_id_required?
     end
 
+
     def test_meta_data_id?
-      @reserve.nd_meta_data_id.present?
+      nd_meta_data_id.present?
     end
+
 
     def persist!
       @reserve.attributes = self.attributes
@@ -148,7 +150,7 @@ class AdminUpdateMetaData
 
 
     def fix_params(params)
-      if params && params[:nd_meta_data_id]
+      if params && params[:nd_meta_data_id].present?
         params[:nd_meta_data_id].strip!
         params[:nd_meta_data_id] = params[:nd_meta_data_id].gsub(/^ndu_aleph/, '').rjust(9, "0")
       end
