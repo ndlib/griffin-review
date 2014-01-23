@@ -22,7 +22,7 @@ class AdminUpdateMetaData
   #validates :nd_meta_data_id, presence: true, if: :requires_nd_meta_data_id?
   validates :title, presence: true, unless: :requires_nd_meta_data_id?
 
-  validates_with ValidateMetaDataId, if: :requires_nd_meta_data_id?
+  validates_with ValidateMetaDataId, if: :test_meta_data_id?
 
   delegate :id, :workflow_state, :semester, :type, :creator_contributor, :publisher_provider, to: :reserve
 
@@ -119,6 +119,9 @@ class AdminUpdateMetaData
       ReserveMetaDataPolicy.new(@reserve).meta_data_id_required?
     end
 
+    def test_meta_data_id?
+      @reserve.nd_meta_data_id.present?
+    end
 
     def persist!
       @reserve.attributes = self.attributes

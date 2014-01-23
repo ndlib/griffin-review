@@ -13,9 +13,6 @@ describe BookReserveImport do
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end
 
-  it "converts the bib id to have the ndu_aleph prefix" do
-    expect(BookReserveImport.new(@api_data).bib_id).to eq("ndu_alephgeneric")
-  end
 
   describe :new_reserve do
     before(:each) do
@@ -63,6 +60,11 @@ describe BookReserveImport do
     it "sets the reserve as being currently in aleph" do
       @ibr.import!
       expect(@ibr.reserve.currently_in_aleph).to be_true
+    end
+
+    it "sets the synchronization date" do
+      @ibr.import!
+      expect(@ibr.reserve.metadata_synchronization_date.to_s).to eq(Time.now.to_s)
     end
 
 
