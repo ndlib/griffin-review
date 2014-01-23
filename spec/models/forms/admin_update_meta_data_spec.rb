@@ -59,26 +59,31 @@ describe AdminUpdateMetaData do
 
     it "presets overwrite_nd_meta_data to false if it is nil on the model " do
       @reserve.overwrite_nd_meta_data=nil
-      #@reserve.stub(:overwrite_nd_meta_data).and_return(nil)
-      #@reserve.should_receive('overwrite_nd_meta_data||=').with(false)
-
       AdminUpdateMetaData.new(@reserve, {})
     end
-  end
 
 
-  describe :overwrite_nd_meta_data do
-    before(:each) do
-      @reserve = Reserve.new
-      @reserve.stub(:save!).and_return(true)
+    it "calls fixes the record id" do
     end
 
-    it "presets overwrite_nd_meta_data to false if it is nil on the model " do
-      update_meta_data = AdminUpdateMetaData.new(@reserve, {})
-      expect(@reserve.overwrite_nd_meta_data).to be_false
+
+    it "trims the nd_meta_data_id " do
+      @params = { nd_meta_data_id: ' asdf '}
+      u = AdminUpdateMetaData.new(@reserve, @params)
+
+      expect(u.nd_meta_data_id).to eq("00000asdf")
     end
 
+
+    it "removes the ndu_aleph designation" do
+      @params = { nd_meta_data_id: 'ndu_alephasdf'}
+
+      u = AdminUpdateMetaData.new(@reserve, @params)
+
+      expect(u.nd_meta_data_id).to eq("00000asdf")
+    end
   end
+
 
   describe :validations do
     before(:each) do
@@ -88,13 +93,6 @@ describe AdminUpdateMetaData do
       @reserve.should_receive(:save!).and_return(true)
 
       @update_meta_data = AdminUpdateMetaData.new(@reserve, {})
-    end
-
-
-    it "does not require nd_meta_data_id if we have set the item to overwrite nd meta data" do
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
-      @update_meta_data.should have(0).error_on(:nd_meta_data_id)
     end
 
 
@@ -121,7 +119,7 @@ describe AdminUpdateMetaData do
     it "errors if the nd meta data id passed in is not valid" do
       @update_meta_data.nd_meta_data_id = "invalid id"
 
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(true)
+      @update_meta_data.stub(:test_meta_data_id?).and_return(true)
       ReserveSynchronizeMetaData.any_instance.stub(:valid_discovery_id?).and_return(false)
 
       @update_meta_data.should have(1).error_on(:nd_meta_data_id)
@@ -137,6 +135,13 @@ describe AdminUpdateMetaData do
     end
 
 
+    it "returns false if the udates is invalid" do
+      @update_meta_data.stub(:valid?).and_return(false)
+
+      expect(@update_meta_data.save_meta_data).to be_false
+    end
+
+
     it "requires creator if overwrite_nd_meta_data is true" do
       #@update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
 
@@ -145,105 +150,97 @@ describe AdminUpdateMetaData do
   end
 
 
+  describe :pers do
+    before(:each) do
+      @params
+    end
 
-  describe "presistance" do
+  end
+
+  describe :persistance do
+
     before(:each) do
       @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-
       @reserve = Reserve.new(id: 1, title: 'title', type: 'BookReserve', course: @course, requestor_netid: 'username')
 
-      @update_meta_data = AdminUpdateMetaData.new(@reserve, {})
+    end
+
+    describe "no record id" do
+      before(:each) do
+        @params = {}
+
+        @update_admin_meta_data = AdminUpdateMetaData.new(@reserve, @params)
+      end
+
+
+      it "sets the reviewed to be true when it is saved" do
+        expect(@reserve.reviewed?).to be_false
+
+        @update_admin_meta_data.save_meta_data
+        expect(@reserve.reviewed?).to be_true
+      end
+
+
+      it "returns true if the update is valid" do
+        expect(@update_admin_meta_data.save_meta_data).to be_true
+      end
+
+
+      it "calls save! on the reserve " do
+        @reserve.should_receive(:save!).twice
+
+        @update_admin_meta_data.save_meta_data
+      end
+
+
+      it "checks to see if the item is complete" do
+        ReserveCheckIsComplete.any_instance.should_receive(:check!)
+
+        @update_admin_meta_data.save_meta_data
+      end
     end
 
 
-    it "sets the reviewed to be true when it is saved" do
-      expect(@update_meta_data.reserve.reviewed?).to be_false
-      @update_meta_data.save_meta_data
-      expect(@update_meta_data.reserve.reviewed?).to be_true
+    describe "persistance add valid record id" do
+      before(:each) do
+        @params = {nd_meta_data_id: '224323426' }
+
+        @update_admin_meta_data = AdminUpdateMetaData.new(@reserve, @params)
+
+        #don't test with the validator
+        AdminUpdateMetaData.any_instance.stub(:test_meta_data_id?).and_return(false)
+      end
+
+
+      it "attempts to synchronize the metadata id" do
+        ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
+
+        @update_admin_meta_data.save_meta_data
+      end
     end
 
 
-    it "returns true if the update is valid" do
+    describe "replaces the record id with a new one" do
+      before(:each) do
+        @reserve.nd_meta_data_id = "new_id"
 
-      @update_meta_data.stub(:valid?).and_return(true)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
+        @params = {nd_meta_data_id: '224323426' }
 
-      @update_meta_data.save_meta_data.should be_true
+        @update_admin_meta_data = AdminUpdateMetaData.new(@reserve, @params)
+
+        #don't test with the validator
+        AdminUpdateMetaData.any_instance.stub(:test_meta_data_id?).and_return(false)
+        ReserveSynchronizeMetaData.any_instance.stub(:synchronize!).and_return(true)
+      end
+
+
+      it "attempts to synchronize the metadata id" do
+        @update_admin_meta_data.save_meta_data
+
+        expect(@reserve.nd_meta_data_id).to eq("224323426")
+      end
     end
 
-
-    it "returns false if the udates is invalid" do
-      @update_meta_data.stub(:valid?).and_return(false)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
-      @update_meta_data.save_meta_data.should be_false
-
-    end
-
-
-    it "calls save! on the reserve " do
-      @update_meta_data.stub(:valid?).and_return(true)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
-      ReserveCheckIsComplete.any_instance.stub(:complete?).and_return(false)
-      Reserve.any_instance.should_receive(:save!)
-
-      @update_meta_data.save_meta_data
-    end
-
-
-    it "checks to see if the item is complete" do
-      ReserveCheckIsComplete.any_instance.should_receive(:check!)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
-      @update_meta_data.stub(:valid?).and_return(true)
-      @update_meta_data.save_meta_data
-    end
-
-
-    it "calls the update meta data id if it should" do
-      ReserveSynchronizeMetaData.any_instance.should_receive(:synchronize!)
-      Reserve.any_instance.stub(:nd_meta_data_id).and_return("nd_id")
-
-      @update_meta_data.stub(:valid?).and_return(true)
-
-      @update_meta_data.save_meta_data
-    end
-
-
-    it "checks if the reserve is complete" do
-      ReserveCheckIsComplete.any_instance.should_receive(:check!)
-
-      @update_meta_data.stub(:valid?).and_return(true)
-      @update_meta_data.stub(:requires_nd_meta_data_id?).and_return(false)
-
-      @update_meta_data.save_meta_data
-    end
-
-
-
-    it "trims the nd_meta_data_id " do
-      @reserve.metadata_synchronization_date = Time.now
-      @params = { nd_meta_data_id: ' asdf '}
-
-      @update_meta_data = AdminUpdateMetaData.new(@reserve, @params)
-
-      @update_meta_data.save_meta_data
-
-      expect(@update_meta_data.reserve.nd_meta_data_id).to eq("00000asdf")
-    end
-
-
-    it "removes the ndu_aleph designation" do
-      @reserve.metadata_synchronization_date = Time.now
-      @params = { nd_meta_data_id: 'ndu_alephasdf '}
-
-      @update_meta_data = AdminUpdateMetaData.new(@reserve, @params)
-
-      @update_meta_data.save_meta_data
-
-      expect(@update_meta_data.reserve.nd_meta_data_id).to eq("00000asdf")
-    end
 
   end
 end
