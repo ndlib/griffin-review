@@ -58,6 +58,35 @@ describe AlephImporter::DetermineReserveType do
     end
 
 
+    it "determines AudioReserve from compact disc (sound recording) " do
+      @api_data['format'] = 'Compact disc (sound recording)'
+      expect(@api.determine_type).to eq("AudioReserve")
+    end
+
+
+    it "determines AudioReserve from audio (sound recordings) " do
+      @api_data['format'] = 'Audio (sound recordings)'
+      expect(@api.determine_type).to eq("AudioReserve")
+    end
+
+
+    it "determines BookReserve from score " do
+      @api_data['format'] = 'score'
+      expect(@api.determine_type).to eq("BookReserve")
+    end
+
+
+    it "determines AudioReserve from audio (sound recordings) " do
+      @api_data['format'] = 'kit'
+      expect(@api.determine_type).to eq("BookReserve")
+    end
+
+
+    it "determines BookReserve from score " do
+      @api_data['format'] = 'graphic (2d pict., poster etc)'
+      expect(@api.determine_type).to eq("BookReserve")
+    end
+
 
     it "returns nil if the format is not found" do
       @api_data['format'] = 'something'

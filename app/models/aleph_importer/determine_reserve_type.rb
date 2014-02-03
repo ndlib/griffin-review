@@ -44,7 +44,12 @@ class AlephImporter::DetermineReserveType
       'serial (unbound issue)' => 'BookReserve',
       'dvd (visual)' => 'VideoReserve',
       'video cassette (visual)' => 'VideoReserve',
-      'digital form (software, etc.)' => 'VideoReserve'
+      'digital form (software, etc.)' => 'VideoReserve',
+      'compact disc (sound recording)' => 'AudioReserve',
+      'audio (sound recordings)' => 'AudioReserve',
+      'score' => 'BookReserve',
+      'kit' => 'BookReserve',
+      'graphic (2d pict., poster etc)' => 'BookReserve',
     }
   end
 
