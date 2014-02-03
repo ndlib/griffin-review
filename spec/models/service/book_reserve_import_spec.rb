@@ -36,6 +36,11 @@ describe BookReserveImport do
     end
 
 
+    it "sets a needed by date 2 weeks in the future" do
+      @ibr.import!
+      expect(@ibr.reserve.needed_by).to eq(2.weeks.from_now.to_date)
+    end
+
     it "sets the title of the book to be the data from the meta data service" do
       @ibr.import!
       expect(@ibr.reserve.title).to eq("Book.")
@@ -174,6 +179,22 @@ describe BookReserveImport do
       expect(@existing_reserve.type).to eq("VideoReserve")
       expect(@existing_reserve.electronic_reserve).to be_false
     end
+
+
+    it "does not change an existing needed_by date" do
+      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, needed_by: 6.weeks.ago, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve.type = 'BookReserve'
+      @existing_reserve.physical_reserve = false
+      @existing_reserve.save!
+
+      BookReserveImport.any_instance.stub(:reserve).and_return(@existing_reserve)
+      @ibr = BookReserveImport.new(@api_data)
+      @ibr.import!
+
+      @existing_reserve.item.reload()
+      expect(@existing_reserve.needed_by).to eq(6.weeks.ago.to_date)
+    end
+
   end
 
 

@@ -25,6 +25,10 @@ class BookReserveImport
       reserve.course = course
       reserve.currently_in_aleph = true
 
+      if reserve.needed_by.nil?
+        reserve.needed_by = 2.weeks.from_now
+      end
+
       if reserve.library.nil?
         reserve.library = 'hesburgh'
       end
