@@ -78,11 +78,13 @@
               <%= content_for(:content_title) %>
             </div>
 
-            <div class="alert alert-error">
-              <h4>Server Maintenance Saturday Night and Sunday Morning</h4>
+          <% if "2/9/2014 6:00am".to_time > Time.now %>
+          <div class="alert alert-error">
+              <h4>Server Maintenance Saturday Night to Sunday Morning</h4>
 
               The OIT will be performing server maintenance during this timeframe and the reserves system will have intermittent access during this time.
-            </div>
+          </div>
+          <% end %>
 
             <%= yield %>
 
