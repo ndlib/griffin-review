@@ -9,6 +9,9 @@ Griffin::Application.configure do
   config.action_controller.perform_caching = true
   config.cache_store = :mem_cache_store, '127.0.0.1:11211', { compress: true }
 
+
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+
   # Error routing
   config.exceptions_app = self.routes
 
