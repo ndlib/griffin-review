@@ -101,7 +101,7 @@ jQuery ($) ->
     input.attr('placeholder', "Author name or Title")
 
     if ($('.show_popover_help').size() > 0)
-      input.attr('data-content', 'Type the title or author of the work you need.')
+      input.attr('data-content', 'Type the title or course name.')
       input.attr('data-title', 'Search')
 
       input.popover({ trigger: 'manual',  })
