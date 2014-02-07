@@ -8,5 +8,7 @@ class ScriptController < ApplicationController
     #SaveRequest.update_all
 
     response.headers['X-Accel-Redirect'] = '/protected_videos/test.txt'
+
+    render :nothing => true
   end
 end
