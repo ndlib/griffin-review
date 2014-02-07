@@ -7,6 +7,6 @@ class ScriptController < ApplicationController
 
     #SaveRequest.update_all
 
-    response.headers["X-Accel-Redirect"] = '/protected_videos'
+    send_file('/protected_videos/test.txt')
   end
 end
