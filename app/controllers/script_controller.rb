@@ -7,8 +7,7 @@ class ScriptController < ApplicationController
 
     #SaveRequest.update_all
 
-    response.headers['X-Accel-Redirect'] = '/reference/gis_mapping.shtml'
-
+    response.headers['X-Accel-Redirect'] = '/protected_files/reference/gis_mapping.shtml'
     render :nothing => true
   end
 end
