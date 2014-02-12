@@ -8,14 +8,17 @@ describe InstructorReserveRequest do
 
 
   before(:each) do
+
     @course = double(Course, :id => "course_id", :title => 'title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :full_title => 'full_title')
     @course.stub(:semester).and_return(semester)
     @course.stub(:reserve_id).and_return('reserve_id')
 
     basic_params = { :course_id => @course.id }
 
+    @controller = double(current_user: user, params: basic_params)
+
     InstructorReserveRequest.any_instance.stub(:get_course).with("course_id").and_return(@course)
-    @instructor_reserve = InstructorReserveRequest.new(user, basic_params)
+    @instructor_reserve = InstructorReserveRequest.new(@controller)
   end
 
 
@@ -135,26 +138,26 @@ describe InstructorReserveRequest do
   describe "make_request" do
 
     it "creates the reserve with valid params" do
-      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } }
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } })
 
 
-      @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request.should be_true
     end
 
 
     it "does not create a reserve when there are not valid params" do
-      invalid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve" } }
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve" } })
 
-      @instructor_reserve = InstructorReserveRequest.new(user, invalid_atts)
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request.should be_false
     end
 
 
     it "starts the reserve out in the new workflow_state" do
-      valid_atts = { :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" } }
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", creator: "creator", needed_by: Time.now, library: "Hesburgh" } })
 
-      @instructor_reserve = InstructorReserveRequest.new(user, valid_atts)
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request
 
       @instructor_reserve.reserve.workflow_state == "new"

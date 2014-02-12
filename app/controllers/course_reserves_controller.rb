@@ -31,14 +31,14 @@ class CourseReservesController < ApplicationController
 
 
   def new
-    @new_reserve = InstructorReserveRequest.new(current_user, params)
+    @new_reserve = InstructorReserveRequest.new(self)
 
     check_instructor_permissions!(@new_reserve.course)
   end
 
 
   def create
-    @request_reserve = InstructorReserveRequest.new(current_user, params)
+    @request_reserve = InstructorReserveRequest.new(self)
 
     check_instructor_permissions!(@request_reserve.course)
 
@@ -49,7 +49,7 @@ class CourseReservesController < ApplicationController
       return
     else
 
-      @new_reserve = InstructorReserveRequest.new(current_user, params)
+      @new_reserve = InstructorReserveRequest.new(self)
 
       flash.now[:error] = "Your form submission has errors in it.  Please correct them and resubmit."
     end

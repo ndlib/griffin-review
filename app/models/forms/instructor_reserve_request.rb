@@ -37,11 +37,11 @@ class InstructorReserveRequest
   # validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 2.weeks } }
 
 
-  def initialize(current_user, params)
-    @current_user = current_user
-    @course = get_course(params[:course_id])
+  def initialize(controller)
+    @current_user = controller.current_user
+    @course = get_course(controller.params[:course_id])
 
-    self.attributes = params[:instructor_reserve_request] || {}
+    self.attributes = controller.params[:instructor_reserve_request] || {}
 
     validate_inputs!
   end

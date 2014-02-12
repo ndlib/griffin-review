@@ -24,6 +24,8 @@ describe "Instructor Frontend Course Listing Access" do
 
     stub_ssi!
     turn_on_ldap!
+    User.stub(:ldap_lookup).and_return( { givenname: ['Bob'], sn: ['SN'], ndvanityname: ['ndvanityname'], mail: ['mail@nd.edu'], displayname: ['displayname'] } )
+
 
     VCR.use_cassette current_course_key do
       @current_course = CourseSearch.new.get(reserve_course)
