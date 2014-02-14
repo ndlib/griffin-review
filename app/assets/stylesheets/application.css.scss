@@ -201,3 +201,13 @@ h2 span.subtitle {
 div.display_instructor_text h5 + p {
   margin-left: 1em;
 }
+
+label.checkbox.last {
+  padding-bottom: 20px;
+}
+
+
+.controls > .radio:first-child,
+.controls > .checkbox:first-child {
+  padding-top: 0px;
+}

@@ -31,6 +31,16 @@ class ApplicationController < ActionController::Base
     request.path.starts_with?('/sakai')
   end
 
+
+  def add_flash(type, msg, now = false)
+    if now
+      flash.now[type] = msg
+    else
+      flash[type] = msg
+    end
+  end
+
+
   protected
 
     def determine_layout

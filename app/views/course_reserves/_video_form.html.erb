@@ -20,9 +20,15 @@
     <%= f.input_field :length, placeholder: "e.g. 24:24 - 50:34 or whole video" %>
   <% end %>
 
-  <%= f.input :electronic_reserve, as: :boolean, label: false do %>
-    <label class="checkbox instructor_reserve_request_physical_reserve">
-      <%= f.check_box :electronic_reserve, { }, false, true %> I do not want this video to be streamed.
+  <%= f.input :electronic_reserve, label: "This video shoule be:", required: true do %>
+    <label class="checkbox">
+      <%= f.radio_button :resource_format, 'electronic' %> streamed
+    </label>
+    <label class="checkbox">
+      <%= f.radio_button :resource_format, 'physical' %> on reserve at the Music and Media Desk
+    </label>
+    <label class="checkbox last">
+      <%= f.radio_button :resource_format, 'both' %> both streamed and on reserve
     </label>
   <% end %>
 
@@ -32,9 +38,6 @@
 
   <%= hidden_field_tag 'instructor_reserve_request[library]', 'Hesburgh' %>
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'VideoReserve' %>
-
-
-  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', true %>
 
 
   <div class="form-actions">

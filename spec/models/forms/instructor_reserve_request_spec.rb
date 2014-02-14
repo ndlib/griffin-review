@@ -15,7 +15,7 @@ describe InstructorReserveRequest do
 
     basic_params = { :course_id => @course.id }
 
-    @controller = double(current_user: user, params: basic_params)
+    @controller = double(current_user: user, params: basic_params, add_flash: true )
 
     InstructorReserveRequest.any_instance.stub(:get_course).with("course_id").and_return(@course)
     @instructor_reserve = InstructorReserveRequest.new(@controller)
@@ -62,6 +62,12 @@ describe InstructorReserveRequest do
       it "requires a library" do
         @instructor_reserve.should have(1).error_on(:library)
       end
+
+
+      it "requires a resource_format" do
+        @instructor_reserve.should have(2).error_on(:resource_format)
+      end
+
     end
 
 
@@ -135,11 +141,20 @@ describe InstructorReserveRequest do
   end
 
 
+  describe :save_attributes do
+    it "removes the resource_format form the attributes" do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'resource_format' => 'both', 'title' => "title", type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
+
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+      expect(@instructor_reserve.send(:save_attributes)[:resource_format]).to be_nil
+    end
+  end
+
+
   describe "make_request" do
 
     it "creates the reserve with valid params" do
-      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" } })
-
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'both', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
 
       @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request.should be_true
@@ -164,6 +179,53 @@ describe InstructorReserveRequest do
     end
 
 
+    it "adds a flash message on success " do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'both', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+
+      expect(@controller).to receive(:add_flash).with(:success, "<h4>New Request Made</h4><p> Your request has been received and will be processed as soon as possible.  </p><a href=\"/courses/course_id/reserves\" class=\"btn btn-primary\">I am Done</a>")
+      @instructor_reserve.make_request
+    end
+
+
+    it "adds a flahs message on failure" do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve" } })
+
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+
+      expect(@controller).to receive(:add_flash).with(:error, "Your form submission has errors in it.  Please correct them and resubmit.", true)
+      @instructor_reserve.make_request
+    end
+
+
+    it "resource_format of electronic sets the reserve to be electronic" do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'electronic', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+      @instructor_reserve.make_request
+
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_true
+      expect(@instructor_reserve.reserve.physical_reserve).to be_false
+    end
+
+
+    it "resource_format of both sets both electronic and physical" do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'both', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+      @instructor_reserve.make_request
+
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_true
+      expect(@instructor_reserve.reserve.physical_reserve).to be_true
+    end
+
+
+    it "resource_format of physical sets physical" do
+      @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'physical', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
+      @instructor_reserve = InstructorReserveRequest.new(@controller)
+      @instructor_reserve.make_request
+
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_false
+      expect(@instructor_reserve.reserve.physical_reserve).to be_true
+    end
   end
 
 end
