@@ -1,9 +1,10 @@
 
-class AdminCourseList
+class CourseSearchList
   attr_accessor :semester, :search
 
-  def initialize(current_user, params)
-    @current_user = current_user
+  def initialize(controller)
+    params = controller.params
+
     @semester = determine_semester(params)
     @search = params[:q]
   end
