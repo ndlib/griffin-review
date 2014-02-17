@@ -29,8 +29,7 @@
   <% end %>
 
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'JournalReserve' %>
-  <%= hidden_field_tag 'instructor_reserve_request[physical_reserve]', false %>
-  <%= hidden_field_tag 'instructor_reserve_request[electronic_reserve]', true %>
+  <%= hidden_field_tag 'instructor_reserve_request[resource_format]', 'electronic' %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
