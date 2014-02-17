@@ -1,4 +1,4 @@
-class AdminReserveList
+class RequestList
   attr_accessor :request_tabs, :request_filter
 
   def initialize(controller)

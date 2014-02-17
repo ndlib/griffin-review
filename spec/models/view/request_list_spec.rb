@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AdminReserveList do
+describe RequestList do
 
   before(:each) do
     RequestFilter.stub(:new).and_return(double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'], semester_filter: false ))
@@ -12,7 +12,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], false)
     @controller.params[:tab] = 'new'
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -21,7 +21,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], false)
     @controller.stub(:params).and_return({})
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -30,7 +30,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('inprocess', ['type'], [ 'library1' ], false)
     @controller.params[:tab] = 'inprocess'
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -39,7 +39,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
     @controller.params[:tab] = 'available'
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -48,7 +48,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
     @controller.params[:tab] = 'available'
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -57,7 +57,7 @@ describe AdminReserveList do
     ReserveSearch.any_instance.should_receive(:admin_requests)
     @controller.params[:tab] = 'all'
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -70,7 +70,7 @@ describe AdminReserveList do
 
     @controller.stub(:params).and_return( {  })
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.reserves
   end
 
@@ -78,7 +78,7 @@ describe AdminReserveList do
   it "has a request_tabs" do
     @controller.stub(:params).and_return({})
 
-    arl = AdminReserveList.new(@controller)
+    arl = RequestList.new(@controller)
     arl.respond_to?(:request_tabs)
     arl.request_tabs.class.should == RequestTab
   end
