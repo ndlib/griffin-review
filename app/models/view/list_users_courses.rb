@@ -1,7 +1,13 @@
-class UserCourseListing
+class ListUsersCourses
   include ModelErrorTrapping
 
   attr_accessor :semester
+
+
+  def self.build_from_params(controller)
+    self.new(controller.current_user)
+  end
+
 
   def initialize(current_user)
     @user = current_user

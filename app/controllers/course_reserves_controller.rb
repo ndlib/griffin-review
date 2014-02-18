@@ -46,12 +46,11 @@ class CourseReservesController < ApplicationController
 
       redirect_to new_course_reserve_path(@request_reserve.course.id)
       return
+
     else
-
       @new_reserve = InstructorReserveRequest.new(self)
+      render :new
     end
-
-    render :new
   end
 
 
