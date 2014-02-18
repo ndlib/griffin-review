@@ -1,4 +1,4 @@
-class RequestList
+class ListRequests
   attr_accessor  :request_filter, :request_tabs
 
 
@@ -6,7 +6,7 @@ class RequestList
     filter = RequestFilter.new(controller)
     tab = RequestTab.new(controller.params[:tab])
 
-    RequestList.new(tab, filter)
+    self.new(tab, filter)
   end
 
 

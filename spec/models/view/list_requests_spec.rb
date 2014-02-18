@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RequestList do
+describe ListRequests do
 
   before(:each) do
     @request_filter = double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'], semester_filter: false )
@@ -17,18 +17,18 @@ describe RequestList do
     end
 
     it "creates a valid object" do
-      expect(RequestList.build_from_params(@controller).class).to eq(RequestList)
+      expect(ListRequests.build_from_params(@controller).class).to eq(ListRequests)
     end
 
     it "builds the request tabs from empty params" do
       @controller.params[:tab] = 'new'
-      list = RequestList.build_from_params(@controller)
+      list = ListRequests.build_from_params(@controller)
       expect(list.request_tabs.filter).to eq("new")
     end
 
     it "builds the request tabs from a passed in params" do
       @controller.params[:tab] = 'inprocess'
-      list = RequestList.build_from_params(@controller)
+      list = ListRequests.build_from_params(@controller)
       expect(list.request_tabs.filter).to eq("inprocess")
     end
 
@@ -40,31 +40,31 @@ describe RequestList do
 
   it "gets incomplete listings when the filter is new " do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], false)
-    RequestList.new(@new_tab, @request_filter).reserves
+    ListRequests.new(@new_tab, @request_filter).reserves
   end
 
 
   it "gets incomplete listings when the filter is inprocess" do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('inprocess', ['type'], [ 'library1' ], false)
-    RequestList.new(@inprocess_tab, @request_filter).reserves
+    ListRequests.new(@inprocess_tab, @request_filter).reserves
   end
 
 
   it "gets complete only listings when the filter is complete" do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
-    RequestList.new(@available_tab, @request_filter).reserves
+    ListRequests.new(@available_tab, @request_filter).reserves
   end
 
 
   it "gets removed only listings when the filter is removed" do
     ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
-    RequestList.new(@available_tab, @request_filter).reserves
+    ListRequests.new(@available_tab, @request_filter).reserves
   end
 
 
   it "returns all the reserves when the filter is all " do
     ReserveSearch.any_instance.should_receive(:admin_requests)
-    RequestList.new(@all_tab, @request_filter).reserves
+    ListRequests.new(@all_tab, @request_filter).reserves
   end
 
 
@@ -76,14 +76,14 @@ describe RequestList do
 
     @controller.stub(:params).and_return( {  })
 
-    RequestList.new(@new_tab, filter).reserves
+    ListRequests.new(@new_tab, filter).reserves
   end
 
 
   it "has a request_tabs" do
     @controller.stub(:params).and_return({})
 
-    list = RequestList.new(@new_tab, @request_filter)
+    list = ListRequests.new(@new_tab, @request_filter)
 
     list.respond_to?(:request_tabs)
     expect(list.request_tabs).to eq(@new_tab)
