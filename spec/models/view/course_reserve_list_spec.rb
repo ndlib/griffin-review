@@ -7,17 +7,20 @@ describe CourseReserveList do
     @course = double(Course, :id => 1, :title => 'title', :primary_instructor => double(User, display_name: 'name'))
     CourseReserveList.any_instance.stub(:get_course).with("course_id").and_return(@course)
 
-    @user_course_show = CourseReserveList.new(user, {:course_id => "course_id"})
+    @user_course_show = CourseReserveList.new(@course, user)
   end
 
+  describe :build_from_params do
+    it "raises an error if the course is not found" do
+      CourseSearch.any_instance.stub(:get).with("not_a_course_id").and_return(nil)
+      controller = double(ApplicationController, current_user: user, params: { course_id: 'not_a_course_id' })
 
-  it "raises an error if the course is not found" do
-    CourseReserveList.any_instance.stub(:get_course).with("not_a_course_id").and_return(nil)
-
-    lambda {
-      @user_course_show = CourseReserveList.new(user, {:course_id => "not_a_course_id"})
-    }.should raise_error ActionController::RoutingError
+      lambda {
+        @user_course_show = CourseReserveList.build_from_params(controller)
+      }.should raise_error ActionController::RoutingError
+    end
   end
+
 
 
   it "has a title" do

@@ -5,7 +5,7 @@ class CourseReservesController < ApplicationController
   def index
     # begin code can be removed after fall 2013
     begin
-      @user_course_show = CourseReserveList.new(current_user, params)
+      @user_course_show = CourseReserveList.build_from_params(self)
     rescue OpenURI::HTTPError
       lookup = API::CourseSearchApi.course_id(params[:course_id])
       if lookup['section_groups'].first['crosslist_id']
