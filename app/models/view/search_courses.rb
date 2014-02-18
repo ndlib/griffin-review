@@ -1,5 +1,5 @@
 
-class CourseSearchList
+class SearchCourses
   attr_accessor :semester, :search
 
   def initialize(controller)
