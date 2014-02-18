@@ -1,9 +1,18 @@
 class RequestList
-  attr_accessor :request_tabs, :request_filter
+  attr_accessor  :request_filter, :request_tabs
 
-  def initialize(controller)
-    @request_tabs   = RequestTab.new(controller.params[:tab])
-    @request_filter = RequestFilter.new(controller)
+
+  def self.build_from_params(controller)
+    filter = RequestFilter.new(controller)
+    tab = RequestTab.new(controller.params[:tab])
+
+    RequestList.new(tab, filter)
+  end
+
+
+  def initialize(tab, filter)
+    @request_tabs = tab
+    @request_filter = filter
   end
 
 
@@ -19,6 +28,8 @@ class RequestList
       "for Current and Upcoming Semesters"
     end
   end
+
+
 
 
   private

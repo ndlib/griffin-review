@@ -3,7 +3,7 @@ class RequestsController  < ApplicationController
   def index
     check_admin_permission!
 
-    @admin_request_listing = RequestList.new(self)
+    @admin_request_listing = RequestList.build_from_params(self)
 
     respond_to do | format |
       format.html
