@@ -1,2 +1,0 @@
-module Admin::TechnicalMetadataHelper
-end
