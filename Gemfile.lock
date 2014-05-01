@@ -370,6 +370,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  addressable
   american_date
   awesome_print
   breach-mitigation-rails

@@ -7,7 +7,13 @@ require 'hesburgh/rails'
 require 'hesburgh/rails_db'
 require 'hesburgh/jenkins'
 require 'hesburgh/whenever'
-set :application_symlinks, ['config/sakai.yml']
+set :application_symlinks, [
+  'config/sakai.yml',
+  { 'data/movs' => 'uploads/movs' },
+  { 'data/reserves_files' => 'uploads/pdfs/reserves_files' },
+  { 'data/old_files' => 'uploads/old_files' }
+]
+
 
 set :application, 'reserves'
 set :repository,  "git@git.library.nd.edu:griffin"
