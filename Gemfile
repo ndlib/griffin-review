@@ -76,6 +76,8 @@ gem "whenever", :require => false
 # Deploy with Capistrano
 gem 'capistrano'
 
+gem 'newrelic_rpm'
+
 # development only
 group :development do
   gem 'looksee'
