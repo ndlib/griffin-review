@@ -17,23 +17,11 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-if environment == 'pre_production'
-  set :bundler, "/opt/ruby/current/bin/bundle"
-elsif environment == 'production'
-  set :bundler, "/opt/ruby/current/bin/bundle"
-else
-  set :bundler, "bundle"
-end
 
+set :output, "log/cron_log.log"
 
-if environment == 'pre_production' || environment == 'production'
-  set :rails_exec, '/home/app/reserves/shared/vendor/bundle/ruby/2.0.0/bin/rails'
-else
-  set :rails_exec, 'rails'
-end
-
-
-job_type :runner, "cd :path && :bundler exec :rails_exec runner -e :environment ':task' :output"
+job_type :runner, "cd :path && bundle exec rails runner -e :environment ':task' :output"
+job_type :rake,   "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
 
 
