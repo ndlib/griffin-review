@@ -10,6 +10,8 @@ gem 'rails', '4.0'
 gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
+gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
+
 
 # db backends
 gem 'mysql2', "~> 0.3.11"
@@ -77,6 +79,8 @@ gem "whenever", :require => false
 gem 'capistrano'
 
 gem 'newrelic_rpm'
+
+gem 'hipchat'
 
 # development only
 group :development do

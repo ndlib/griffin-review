@@ -19,6 +19,14 @@ GIT
       uglifier (>= 1.0.3)
 
 GIT
+  remote: git@git.library.nd.edu:hesburgh_infrastructure
+  revision: 6d252a83d28b38f56181927c6356883bb1dec874
+  specs:
+    hesburgh_infrastructure (0.1.0)
+      capistrano (~> 2.15.0)
+      rails
+
+GIT
   remote: ssh://git@git.library.nd.edu/compendium
   revision: d9f3ffcd4b41d73f529de5407122b8bff0c0788f
   specs:
@@ -166,7 +174,12 @@ GEM
       builder (>= 2.1.2)
     highline (1.6.19)
     hike (1.2.3)
+    hipchat (1.1.0)
+      httparty
     http_parser.rb (0.5.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpi (2.0.2)
       rack
     i18n (0.6.5)
@@ -196,6 +209,7 @@ GEM
     mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.9)
+    multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.12)
     net-ldap (0.3.1)
@@ -383,6 +397,8 @@ DEPENDENCIES
   guard-shell
   guard-spork
   hesburgh_assets!
+  hesburgh_infrastructure!
+  hipchat
   jquery-datatables-rails
   json
   json_spec
