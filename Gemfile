@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0'
+gem 'rails','~> 4.0.0'
 
 # '3.2.13'
 # Bundle edge Rails instead:
@@ -46,7 +46,7 @@ gem 'json'
 gem 'net-ldap'
 
 # form generation
-gem 'simple_form', '~> 3.0.0.rc'
+gem 'simple_form', '~> 3.0.0'
 
 # so that activerecord is happy with US dates
 gem 'american_date'
