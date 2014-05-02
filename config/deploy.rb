@@ -11,7 +11,7 @@ require 'hesburgh/whenever'
 set :application_symlinks, [
   'config/sakai.yml',
   { 'data/movs' => 'uploads/movs' },
-  { 'data/reserves_files' => 'uploads/pdfs/reserves_files' },
+  { 'data/reserves_files' => 'uploads/pdfs' },
   { 'data/old_files' => 'uploads/old_files' }
 ]
 
