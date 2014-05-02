@@ -7,14 +7,14 @@ describe AdminReserveRow do
   end
 
   it "links to the title" do
-    row = AdminReserveRow.new(Reserve.new(title: 'title'))
-    expect(row.title).to eq("<a href=\"/admin/requests/\" target=\"_blank\">title</a>")
+    row = AdminReserveRow.new(Reserve.new(id: 1, title: 'title'))
+    expect(row.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">title</a>")
   end
 
 
   it "shows the selection title when there is a selection title" do
-    row = AdminReserveRow.new(Reserve.new(title: 'title', selection_title: 'selection_title'))
-    expect(row.title).to eq("<a href=\"/admin/requests/\" target=\"_blank\">selection_title</a><br>title")
+    row = AdminReserveRow.new(Reserve.new(id: 1, title: 'title', selection_title: 'selection_title'))
+    expect(row.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">selection_title</a><br>title")
   end
 
 
