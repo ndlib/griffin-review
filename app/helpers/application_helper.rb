@@ -68,8 +68,14 @@ module ApplicationHelper
     end
 
 
-    def jwplayer(options = {})
-      options = { id: 'jwplayer', flashplayer: '/assets/jwplayer.flash.swf', width: '400', height: '300'}.merge(options)
+    def jwplayer(file_name, options = {})
+      sources =  [{
+            file: "rtmp://wowza.library.nd.edu:1935/vod/mp4:#{file_name}"
+        },{
+            file: "http://wowza.library.nd.edu:1935/vod/#{file_name}/playlist.m3u8"
+        }]
+
+      options = { id: 'jwplayer', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
 
       result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
                   <script type='text/javascript'>
