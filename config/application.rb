@@ -52,6 +52,9 @@ module Griffin
 
     # Additional asset paths
     config.assets.paths << Rails.root.join("app", "assets", "videos")
+    config.assets.paths << Rails.root.join("app", "assets", "swf")
+
+    config.assets.precompile << "jwplayer.js"
 
     # Rspec Testing configs
     config.generators do |g|
@@ -68,8 +71,6 @@ module Griffin
 
     # Sakai admin access
     ENV.update YAML.load(File.read(File.expand_path('../sakai.yml', __FILE__)))
-
-
 
 
     # Custom configs

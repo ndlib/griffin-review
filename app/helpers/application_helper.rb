@@ -60,4 +60,23 @@ module ApplicationHelper
       @new_reserve
     end
   end
+
+
+    # Includes JWPlayer javascript library
+    def jwplayer_assets
+      javascript_include_tag "jwplayer"
+    end
+
+
+    def jwplayer(options = {})
+      options = { id: 'jwplayer', flashplayer: '/assets/jwplayer.flash.swf', width: '400', height: '300'}.merge(options)
+
+      result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
+                  <script type='text/javascript'>
+                    jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
+                  </script>}
+
+      result.respond_to?(:html_safe) ? result.html_safe : result
+    end
+
 end
