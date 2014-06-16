@@ -85,10 +85,19 @@ class ReserveSearch
       first
   end
 
+
+  def reserves_for_semester(semester)
+    @relation.
+      includes(:item).
+      references(:item).
+      where('requests.semester_id = ? ', semester.id).
+      collect { | r | load_in_reserve(r, false) }
+  end
+
   private
 
     def determine_search_semesters(semester)
-      (semester ? [semester] : Semester.future_semesters)
+      (semester ? [semester] : Semester.future_semesters.collect { | s | s.id })
     end
 
 

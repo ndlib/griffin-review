@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0'
+gem 'rails','~> 4.0.0'
 
 # '3.2.13'
 # Bundle edge Rails instead:
@@ -10,6 +10,9 @@ gem 'rails', '4.0'
 gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
 gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
+gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
+
+gem 'addressable'
 
 # db backends
 gem 'mysql2', "~> 0.3.11"
@@ -43,7 +46,7 @@ gem 'json'
 gem 'net-ldap'
 
 # form generation
-gem 'simple_form', '~> 3.0.0.rc'
+gem 'simple_form', '~> 3.0.0'
 
 # so that activerecord is happy with US dates
 gem 'american_date'
@@ -75,6 +78,12 @@ gem "whenever", :require => false
 
 # Deploy with Capistrano
 gem 'capistrano'
+
+gem 'newrelic_rpm'
+
+gem 'hipchat'
+
+
 
 # development only
 group :development do

@@ -1,4 +1,7 @@
 class SeedInitialRoles < ActiveRecord::Migration
+  class Role < ActiveRecord::Base
+  end
+
   def up
     Role.where(:name => 'Administrator').first_or_create(:description => 'This role allows the user to create and update most objects in the system.')
     Role.where(:name => 'Reserves Technician').first_or_create(:description => 'The reserves technician can add and update courses, items, and student permissions.')
