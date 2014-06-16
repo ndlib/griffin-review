@@ -75,7 +75,7 @@ module ApplicationHelper
             file: "http://wowza.library.nd.edu:1935/vod/#{file_name}/playlist.m3u8"
         }]
 
-      options = { id: 'jwplayer', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
+      options = { id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
 
       result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
                   <script type='text/javascript'>
