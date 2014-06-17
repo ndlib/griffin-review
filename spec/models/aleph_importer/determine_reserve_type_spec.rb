@@ -104,12 +104,12 @@ describe AlephImporter::DetermineReserveType do
 
       it "returns true if the electronic_reserve has not been set and the type is VideoReserve" do
         @api.stub(:determine_type).and_return('VideoReserve')
-        expect(@api.determine_electronic_reserve(@reserve)).to be(true)
+        expect(@api.determine_electronic_reserve(@reserve)).to be(false)
       end
 
       it "returns true if the electronic_reserve has not been set and the type is AudioReserve" do
         @api.stub(:determine_type).and_return('VideoReserve')
-        expect(@api.determine_electronic_reserve(@reserve)).to be(true)
+        expect(@api.determine_electronic_reserve(@reserve)).to be(false)
       end
 
       it "returns true if the electronic_reserve has not been set and the type is BookReserve" do

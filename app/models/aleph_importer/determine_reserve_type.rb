@@ -12,11 +12,7 @@ class AlephImporter::DetermineReserveType
 
 
   def determine_electronic_reserve(current_reserve)
-    if current_reserve.electronic_reserve.nil?
-      ['VideoReserve', 'AudioReserve'].include?(determine_type)
-    else
-      current_reserve.electronic_reserve
-    end
+    current_reserve.electronic_reserve
   end
 
 
