@@ -1,0 +1,13 @@
+<%= render partial: '/course_reserves/reserve_header', locals: { reserve: @get_reserve.reserve } %>
+
+<% breadcrumb([
+    link_to('Courses', courses_path),
+    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course)),
+    @get_reserve.reserve.title
+   ]) %>
+
+<% content_for(:content_title_links) do %>
+  <p><a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a></p>
+<% end %>
+
+<%= jwplayer(@get_reserve.mov_file_path) %>
