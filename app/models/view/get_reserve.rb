@@ -76,7 +76,7 @@ class GetReserve
 
 
   def mov_file_path
-    MovFileGenerator.new(@reserve).mov_file_path
+    @reserve.url
   end
 
 

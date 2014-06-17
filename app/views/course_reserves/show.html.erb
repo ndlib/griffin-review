@@ -1,5 +1,11 @@
+<%= render partial: '/course_reserves/reserve_header', locals: { reserve: @get_reserve.reserve } %>
 
-<h1>WARNING CONCERNING COPYRIGHT RESTRICTIONS</h1>
+<% breadcrumb([
+    link_to('Courses', courses_path),
+    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course)),
+    @get_reserve.reserve.title
+   ]) %>
+<h2>WARNING CONCERNING COPYRIGHT RESTRICTIONS</h2>
 
 <p>
   The copyright law of the United States (Title 17, United States Code) governs the making of photocopies or other reproductions of copyrighted material. Under certain conditions specified in the law, libraries and archives are authorized to furnish a photocopy or other reproduction. One of these specified conditions is that the photocopy or reproduction is not to be used for any purpose other than private study, scholarship or research. If electronic transmission of reserve material is used for purposes in excess of what constitutes "fair use" that user may be liable for copyright infringement.
