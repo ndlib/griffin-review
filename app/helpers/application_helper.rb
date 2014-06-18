@@ -70,17 +70,20 @@ module ApplicationHelper
 
     def jwplayer(file_name, options = {})
       sources =  [{
-            file: "rtmp://wowza.library.nd.edu:1935/vod/mp4:#{file_name}"
+            file: "http://wowza.library.nd.edu:1935/vod/mp4:#{file_name}/playlist.m3u8"
         },{
-            file: "http://wowza.library.nd.edu:1935/vod/#{file_name}/playlist.m3u8"
-        }]
+            file: "rtmpt://wowza.library.nd.edu:1935/vod/mp4:#{file_name}"
+        }
+      ]
 
-      options = { primary: 'html5', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
+      options = { primary: 'flash', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
 
       result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
                   <script type='text/javascript'>
                     jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
-                  </script>}
+                  </script>
+                  <a href="rtsp://wowza.library.nd.edu:1935/vod/mp4:#{file_name}">Android</a>
+                }
 
       result.respond_to?(:html_safe) ? result.html_safe : result
     end
