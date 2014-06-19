@@ -18,7 +18,7 @@ class Jwplayer
 
 
   def rstp_link
-    helpers.link_to("Play Video", wowza_url_generator.rtsp)
+    helpers.link_to("Play Video", wowza_url_generator.rtsp, class: 'android-play-link')
   end
 
 
