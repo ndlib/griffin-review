@@ -17,8 +17,10 @@ class Jwplayer
   end
 
 
-  def rstp_link
-    helpers.link_to("Play Video", wowza_url_generator.rtsp, class: 'android-play-link')
+  def rstp_link(options = {})
+    options = default_options.merge(options)
+
+    result = %Q{<div id='#{options[:id]}'>#{helpers.link_to("Play Video", wowza_url_generator.rtsp)}</div>}
   end
 
 
