@@ -18,7 +18,7 @@
     </div>
   </div>
   <p>
-    <a>Back to Course</a>
+    <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id)) %>
   </p>
   <p>
     <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
