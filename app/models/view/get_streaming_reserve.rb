@@ -17,8 +17,7 @@ class GetStreamingReserve
 
 
   def android?
-    @android_agent ||= user_agent_parser.parse(controller.request.env['HTTP_USER_AGENT'])
-    (@android_agent.os == 'Android')
+    (request_os == 'Android')
   end
 
 
@@ -45,6 +44,12 @@ class GetStreamingReserve
 
     def streaming_filename
       @filename ||= ElectronicReservePolicy.new(@reserve).streaming_download_file
+    end
+
+
+    def request_os
+      @android_agent ||= user_agent_parser.parse(controller.request.env['HTTP_USER_AGENT'])
+      @android_agent.os
     end
 
 

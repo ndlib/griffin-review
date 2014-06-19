@@ -6,6 +6,7 @@
     @get_reserve.reserve.title
    ]) %>
 
+<div class="twelve columns">
 <div class="six columns">
   <%= @get_reserve.video_player %>
 </div>
@@ -18,10 +19,18 @@
     </div>
   </div>
   <p>
-    <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id)) %>
-  </p>
-  <p>
     <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
   </p>
+  <p>
+    <%= @get_reserve.send(:request_os) %>
+  </p>
+</div>
+</div>
 
+<div>
+<div class="six columns">
+  <p>
+    <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id), class: 'btn') %>
+  </p>
+</div>
 </div>
