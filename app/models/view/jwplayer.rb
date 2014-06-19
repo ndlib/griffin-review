@@ -21,6 +21,7 @@ class Jwplayer
     options = default_options.merge(options)
 
     result = %Q{<div id='#{options[:id]}'>#{helpers.link_to("Play Video", wowza_url_generator.rtsp)}</div>}
+    result.respond_to?(:html_safe) ? result.html_safe : result
   end
 
 
