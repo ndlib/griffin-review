@@ -83,6 +83,7 @@ gem 'newrelic_rpm'
 
 gem 'hipchat'
 
+gem 'user_agent_parser'
 
 
 # development only

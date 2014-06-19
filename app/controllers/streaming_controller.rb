@@ -1,12 +1,8 @@
 class StreamingController < ApplicationController
 
-  skip_before_filter :authenticate_user!
-
 
   def show
-    @get_reserve = GetReserve.new(self)
-
-    authenticate_user!
+    @get_reserve = GetStreamingReserve.new(self)
     check_view_permissions!(@get_reserve.course)
   end
 

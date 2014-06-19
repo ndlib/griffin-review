@@ -2,12 +2,26 @@
 
 <% breadcrumb([
     link_to('Courses', courses_path),
-    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course)),
+    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course.id)),
     @get_reserve.reserve.title
    ]) %>
 
-<% content_for(:content_title_links) do %>
-  <p><a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a></p>
-<% end %>
+<div class="six columns">
+  <%= @get_reserve.video_player %>
+</div>
+<div class="six columns find-resources">
+  <div class="record record-video">
+    <div class="summary no-margin">
+      <h3 class="author"><%= @get_reserve.creator_contributor %></h3>
+      <p class="details"><%= raw @get_reserve.details %></p>
+      <p class="publisher"><%= raw @get_reserve.publisher_provider %></p>
+    </div>
+  </div>
+  <p>
+    <a>Back to Course</a>
+  </p>
+  <p>
+    <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
+  </p>
 
-<%= jwplayer(@get_reserve.mov_file_path) %>
+</div>

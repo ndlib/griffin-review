@@ -76,7 +76,7 @@ module ApplicationHelper
         }
       ]
 
-      options = { primary: 'flash', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
+      options = { fallback: false, primary: 'flash', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
 
       result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
                   <script type='text/javascript'>
