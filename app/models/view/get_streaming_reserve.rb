@@ -49,7 +49,7 @@ class GetStreamingReserve
 
     def request_os
       @android_agent ||= user_agent_parser.parse(controller.request.env['HTTP_USER_AGENT'])
-      @android_agent.os
+      @android_agent.os.to_s
     end
 
 
