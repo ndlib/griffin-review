@@ -17,7 +17,7 @@ class GetStreamingReserve
 
 
   def android?
-    (request_os == 'Android')
+    (request_os ~= /Android/)
   end
 
 
