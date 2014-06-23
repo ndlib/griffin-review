@@ -217,3 +217,57 @@ label.checkbox.last {
 
   a { font-size: 1.5em; }
 }
+
+
+.btn-group h2{
+  white-space: normal;
+}
+
+/* Media Query */
+
+@media (max-width: 480px) {
+  .courses-index, .semesters-index {
+    .table-striped {
+      thead {
+        display: none;
+      }
+    }
+  }
+  .courses-index {
+    tbody {
+      tr {
+        td,th {
+          display: block !important;
+          border: none !important;
+          width: 100% !important;
+          &:last-child {
+            border-bottom: 1px solid #ccc !important;
+          }
+          &:before {font-weight: bold;}
+          &:nth-of-type(1):before { content: "Course: "; }
+          &:nth-of-type(2):before { content: "Instructor: "; }
+          &:nth-of-type(3):before { content: "Cross Listings: "; }
+          &:nth-of-type(4):before { content: "Sections: "; }
+        }
+      }
+    }
+  }
+  .semesters-index {
+    tbody {
+      tr {
+        td,th {
+          display: block !important;
+          border: none !important;
+          width: 100% !important;
+          &:last-child {
+            border-bottom: 1px solid #ccc !important;
+          }
+          &:before {font-weight: bold;}
+          &:nth-of-type(1):before { content: "Semester: "; }
+          &:nth-of-type(2):before { content: "Code: "; }
+          &:nth-of-type(3):before { content: "Dates: "; }
+        }
+      }
+    }
+  }
+}
