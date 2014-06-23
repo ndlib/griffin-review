@@ -30,7 +30,6 @@ class Jwplayer
     def default_options
       {
         fallback: false,
-        primary: 'flash',
         id: 'jwplayer',
         html5player: '/assets/jwplayer.html5.js',
         flashplayer: '/assets/jwplayer.flash.swf',
