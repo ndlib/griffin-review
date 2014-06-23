@@ -11,7 +11,7 @@ class Jwplayer
   def jwplayer(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>Loading the player...</div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
+    result = %Q{<div id='#{options[:id]}'>Loading the player...<br><a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a></div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
 
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
@@ -35,16 +35,17 @@ class Jwplayer
         html5player: '/assets/jwplayer.html5.js',
         flashplayer: '/assets/jwplayer.flash.swf',
         autostart: true,
-        sources: sources,
         width: "100%",
-        aspectratio: "16:9"
+        aspectratio: "16:9",
+        playlist: [ { sources: sources}
+        ]
       }
     end
 
 
     def sources
       [{
-          file: wowza_url_generator.html5
+          file: wowza_url_generator.html5,
       },{
           file: wowza_url_generator.rtmp
       }]
