@@ -96,31 +96,10 @@ describe AlephImporter::DetermineReserveType do
 
 
   describe :determine_electronic_reserve do
-    context :nil do
-      before(:each) do
-        @reserve = double(Reserve, electronic_reserve: nil)
-      end
-
-
-      it "returns true if the electronic_reserve has not been set and the type is VideoReserve" do
-        @api.stub(:determine_type).and_return('VideoReserve')
-        expect(@api.determine_electronic_reserve(@reserve)).to be(false)
-      end
-
-      it "returns true if the electronic_reserve has not been set and the type is AudioReserve" do
-        @api.stub(:determine_type).and_return('VideoReserve')
-        expect(@api.determine_electronic_reserve(@reserve)).to be(false)
-      end
-
-      it "returns true if the electronic_reserve has not been set and the type is BookReserve" do
-        @api.stub(:determine_type).and_return('BookReserve')
-        expect(@api.determine_electronic_reserve(@reserve)).to be(false)
-      end
-    end
 
     context :true do
       before(:each) do
-        @reserve = double(Reserve, electronic_reserve: true)
+        @reserve = double(Reserve, electronic_reserve?: true)
       end
 
       it "returns true if the electronic_reserve has not been set" do
@@ -130,7 +109,7 @@ describe AlephImporter::DetermineReserveType do
 
     context :false do
       before(:each) do
-        @reserve = double(Reserve, electronic_reserve: false)
+        @reserve = double(Reserve, electronic_reserve?: false)
       end
 
       it "returns true if the electronic_reserve has not been set" do

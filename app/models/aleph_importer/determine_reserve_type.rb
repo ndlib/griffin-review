@@ -12,7 +12,7 @@ class AlephImporter::DetermineReserveType
 
 
   def determine_electronic_reserve(current_reserve)
-    current_reserve.electronic_reserve
+    current_reserve.electronic_reserve?
   end
 
 

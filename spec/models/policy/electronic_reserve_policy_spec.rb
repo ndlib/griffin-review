@@ -510,8 +510,9 @@ describe ElectronicReservePolicy do
     context :has_file do
 
       it "returns the file path" do
-        # binding.pry
         @policy.stub(:has_streaming_resource?).and_return(true)
+        @reserve.stub(:url).and_return("/file/path")
+
         expect(@policy.streaming_download_file).to eq("/file/path")
       end
     end

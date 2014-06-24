@@ -106,12 +106,12 @@ describe BookReserveImport do
       expect(@ibr.reserve.type).to eq("VideoReserve")
     end
 
-    it "sets videos to be both physical and electronic if electronic is nil" do
+    it "sets videos to be physical if electronic is nil" do
       @api_data['format'] = "Video Cassette (visual)"
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.reserve.electronic_reserve).to be_true
+      expect(@ibr.reserve.electronic_reserve).to be_false
     end
 
   end
