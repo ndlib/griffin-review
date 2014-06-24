@@ -11,7 +11,7 @@ class Jwplayer
   def jwplayer(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>Loading the player...<br><a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a></div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
+    result = %Q{<div id='#{options[:id]}'>Loading the player...</div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
 
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
@@ -20,8 +20,13 @@ class Jwplayer
   def rstp_link(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>#{helpers.link_to("Play Video", wowza_url_generator.rtsp)}</div>}
+    result = %Q{<div id='#{options[:id]}'>#{helpers.link_to("Play Video", rstp_url)}</div>}
     result.respond_to?(:html_safe) ? result.html_safe : result
+  end
+
+
+  def rstp_url
+    wowza_url_generator.rtsp
   end
 
 
