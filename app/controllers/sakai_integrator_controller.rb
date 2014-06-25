@@ -7,7 +7,7 @@ class SakaiIntegratorController < ApplicationController
   def sakai_redirect
     begin
       course_id = get_course_id(params[:context_id], params[:lis_person_sourcedid])
-      if !course_id.blank? && user_is_part_of_course?(netid, course_id)
+      if !course_id.blank? && user_is_part_of_course?(params[:lis_person_sourcedid], course_id)
         redirect_to '/sakai' + course_reserves_path(:course_id => course_id)
       else
         raise_404("Sakai user could not be matched to course via context id")
