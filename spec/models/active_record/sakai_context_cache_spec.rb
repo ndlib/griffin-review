@@ -13,18 +13,8 @@ describe SakaiContextCache do
   end
 
 
-  it "requires a external id" do
-    SakaiContextCache.new.should have(1).error_on(:external_id)
-  end
-
-
   it "requires a course id" do
     SakaiContextCache.new.should have(1).error_on(:course_id)
-  end
-
-
-  it "requires a user id" do
-    SakaiContextCache.new.should have(1).error_on(:user_id)
   end
 
 
