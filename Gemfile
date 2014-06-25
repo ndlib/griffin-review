@@ -85,6 +85,8 @@ gem 'hipchat'
 
 gem 'user_agent_parser'
 
+gem 'rb-readline'
+
 
 # development only
 group :development do
@@ -129,7 +131,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
-  gem 'rb-readline'
 end
 
 
