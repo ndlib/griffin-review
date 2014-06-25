@@ -15,7 +15,6 @@ describe SakaiIntegratorController do
   end
 
   it "should redirect to /sakai/courses if course not found" do
-    SakaiIntegrator
     SakaiIntegratorController.any_instance.stub(:sakai_callback).and_return(nil)
 
     post :sakai_redirect, context_id: "1590942-4d68-4f83-8529-da22ea02fd0e", lis_person_sourcedid: "bwright6"

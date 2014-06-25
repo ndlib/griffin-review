@@ -83,7 +83,7 @@ gem 'newrelic_rpm'
 
 gem 'hipchat'
 
-
+gem 'rb-readline'
 
 # development only
 group :development do
@@ -128,7 +128,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
-  gem 'rb-readline', '~> 0.4.2' # specified to this version becase 0.5.0 was not working with pry in ruby 1.9.3
 end
 
 
