@@ -22,27 +22,35 @@ class SakaiIntegratorController < ApplicationController
 
   private
 
+  def user_is_part_of_course?(netid, course_id)
+    if course_id.blank?
+      false
+    else
+      course = get_course(course_id)
+      u = User.username(netid).first || User.new(username: netid)
+      policy = UserRoleInCoursePolicy.new(course, u)
+
+      policy.user_enrolled_in_course? || policy.user_instructs_course?
+    end
+  end
+
 
   def get_course_id(context_id, sakai_user)
-    course_id = sakai_cache(context_id, sakai_user)
+    course_id = sakai_cache(context_id)
     if course_id.blank?
-      course_id = sakai_callback(context_id, sakai_user) 
+      course_id = sakai_callback(context_id, sakai_user)
     end
     course_id
   end
 
 
-  def sakai_cache(context_id, sakai_user)
-    context_record = SakaiContextCache.where("context_id = ? AND user_id = ?", context_id, sakai_user).first
-    course_id = nil
-    unless context_record.blank?
-      course = get_course(context_record.course_id)
-      if course.enrollment_netids.include?(sakai_user)
-        course_id = context_record.course_id
-      elsif course.instructor_netids.include?(sakai_user)
-        course_id = context_record.course_id
-      end
-      course_id
+  def sakai_cache(context_id)
+    context_record = SakaiContextCache.where("context_id = ?", context_id).first
+
+    if context_record.blank?
+      nil
+    else
+      context_record.course_id
     end
   end
 
@@ -62,8 +70,8 @@ class SakaiIntegratorController < ApplicationController
     course_id
   end
 
-  def cache_sakai_context(context_id, course_id, external_site_id, sakai_user, term)
-    scc = SakaiContextCache.new context_id: context_id, course_id: course_id, external_id: external_site_id, user_id: sakai_user, term: term
+  def cache_sakai_context(context_id, course_id, term)
+    scc = SakaiContextCache.new context_id: context_id, course_id: course_id, term: term
     if scc.valid?
       scc.save!
     end

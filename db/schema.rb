@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113155015) do
+ActiveRecord::Schema.define(version: 20140624195343) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "error_logs", force: true do |t|
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140113155015) do
     t.string   "selection_title"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "creator"
     t.string   "title"
     t.string   "journal_title"
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20140113155015) do
     t.string   "language"
     t.string   "subtitles"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "workflow_state"
     t.datetime "workflow_state_change_date"
     t.integer  "workflow_state_change_user"
@@ -135,27 +135,23 @@ ActiveRecord::Schema.define(version: 20140113155015) do
 
   create_table "sakai_context_cache", force: true do |t|
     t.string   "context_id"
-    t.string   "external_id"
     t.string   "course_id"
     t.string   "term"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_id"
   end
 
   add_index "sakai_context_cache", ["context_id"], name: "index_sakai_context_cache_on_context_id", using: :btree
   add_index "sakai_context_cache", ["course_id"], name: "index_sakai_context_cache_on_course_id", using: :btree
-  add_index "sakai_context_cache", ["external_id"], name: "index_sakai_context_cache_on_external_id", using: :btree
   add_index "sakai_context_cache", ["term"], name: "index_sakai_context_cache_on_term", using: :btree
-  add_index "sakai_context_cache", ["user_id"], name: "index_sakai_context_cache_on_user_id", using: :btree
 
   create_table "semesters", force: true do |t|
     t.string   "code"
     t.string   "full_name"
     t.date     "date_begin"
     t.date     "date_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "movie_directory"
   end
 
@@ -180,8 +176,8 @@ ActiveRecord::Schema.define(version: 20140113155015) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "admin"
     t.string   "admin_preferences"
   end
