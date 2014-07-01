@@ -8,22 +8,15 @@ class FindUserSectionInCourse
 
 
   def find
-    if UserRoleInCoursePolicy.new(@course, @user).user_instructs_course? || UserIsAdminPolicy.new(@user).is_admin?
-      return @course.sections.first
-    else
-      @course.sections.each do | section |
-        if section.enrollment_netids.include?(@user.username)
-          return section
-        end
+    # finds the students section
+    @course.sections.each do | section |
+      if section.enrollment_netids.include?(@user.username)
+        return section
       end
-      # they are an exception
-      if @course.enrollment_netids.include?(@user.username)
-        return @course.sections.first
-      end
-
     end
 
-    return nil
+    # otherwise returns the first section
+    return @course.sections.first
   end
 
 end
