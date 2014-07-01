@@ -54,6 +54,27 @@
                 }
             },
             {
+                "id": "cclark2",
+                "identifier_contexts": {
+                    "ldap": "uid",
+                    "staff_directory": "email"
+                },
+                "identifier": "by_netid",
+                "netid": "cclark2",
+                "first_name": "Chris",
+                "last_name": "Clack",
+                "full_name": "Chris Clack",
+                "ndguid": "nd.edu.nd12345",
+                "position_title": "Master of Reserves",
+                "campus_department": "Hesburgh Libraries",
+                "primary_affiliation": "Staff",
+                "contact_information": {
+                    "email": "cclark2@nd.edu",
+                    "campus_address": "208 Hesburgh Library&#10;Notre Dame, IN 46556",
+                    "phone": "+1 574 631 1234"
+                }
+            },
+            {
                 "id": "lgekeler",
                 "identifier_contexts": {
                     "ldap": "uid",
@@ -105,7 +126,6 @@
                     "jkennel",
                     "rmalott",
                     "prader",
-                    "cclark2",
                     "awulfsoh",
                     "lcira",
                     "awetheri",
