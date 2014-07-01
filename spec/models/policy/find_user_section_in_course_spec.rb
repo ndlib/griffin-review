@@ -21,25 +21,25 @@ describe FindUserSectionInCourse do
   end
 
 
-  it "returns nil if the user is not involved with the course at all " do
-    expect(FindUserSectionInCourse.new(@course, @other_user).find).to be_nil
+  it "returns first if the user is not involved with the course at all " do
+    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@course.sections.first)
   end
 
 
   it "finds the first section if the user is an instructor" do
     UserRoleInCoursePolicy.any_instance.stub(:user_instructs_course?).and_return(true)
-    expect(FindUserSectionInCourse.new(@course, @user).find).to eq(@section1)
+    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@course.sections.first)
   end
 
 
   it "finds the first section if the user is an administrator" do
     UserIsAdminPolicy.any_instance.stub(:is_admin?).and_return(true)
-    expect(FindUserSectionInCourse.new(@course, @user).find.id).to eq(@section1.id)
+    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@course.sections.first)
   end
 
 
   it "uses the first section if i can't find them in a section but they are enrolled (they are an exception) " do
     @course = double(Course, id: '1',  sections: [ @section1, @section2 ], enrollment_netids: [@other_user.username]  )
-    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@section1)
+    expect(FindUserSectionInCourse.new(@course, @other_user).find).to eq(@course.sections.first)
   end
 end
