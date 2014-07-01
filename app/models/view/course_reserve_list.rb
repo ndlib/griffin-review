@@ -50,9 +50,9 @@ class CourseReserveList
 
 
   def show_partial
-    if enrolled_in_course?
+    if instructs_course?
       { partial: 'enrolled_course_show', locals: { user_course_show: self }}
-    elsif instructs_course?
+    elsif enrolled_in_course?
       { partial: 'instructed_course_show', locals: { user_course_show: self }}
     else
       raise "unable to determin partial"
