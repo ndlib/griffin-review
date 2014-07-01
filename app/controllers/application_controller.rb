@@ -104,6 +104,10 @@ class ApplicationController < ActionController::Base
         :netid => (current_user ? current_user.username : ''),
         :location => current_path_is_sakai? ? 'sakai' : 'library'
       }
+
+      if current_user.wse_admin?
+        Rack::MiniProfiler.authorize_request
+      end
     end
 
 

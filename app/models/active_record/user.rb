@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
   end
 
 
+  def wse_admin?
+    ['rfox2', 'jhartzle'].include?(self.username)
+  end
+
+
   def set_admin!
     self.admin = true
     self.save!
