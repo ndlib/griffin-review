@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
         :location => current_path_is_sakai? ? 'sakai' : 'library'
       }
 
-      if current_user.wse_admin?
+      if current_user && current_user.wse_admin?
         Rack::MiniProfiler.authorize_request
       end
     end
