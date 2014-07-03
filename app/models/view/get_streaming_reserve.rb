@@ -38,9 +38,18 @@ class GetStreamingReserve
   private
 
     def jwplayer
-      @jwplayer = Jwplayer.new(streaming_filename)
+      @jwplayer = Jwplayer.new(streaming_filename, current_username, current_ip_address)
     end
 
+
+    def current_username
+      @controller.current_user.username
+    end
+
+
+    def current_ip_address
+      @controller.request.remote_ip
+    end
 
     def streaming_filename
       @filename ||= ElectronicReservePolicy.new(@reserve).streaming_download_file
