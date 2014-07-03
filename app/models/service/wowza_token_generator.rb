@@ -10,7 +10,7 @@ class WowzaTokenGenerator
 
 
   def generate(username, ip)
-    @database_token ||= WowzaToken.create( username: username, ip: ip, token: hashed_token )
+    @database_token ||= WowzaToken.create( username: username, ip: ip, token: hashed_token, timestamp: Time.now.to_i )
   end
 
 

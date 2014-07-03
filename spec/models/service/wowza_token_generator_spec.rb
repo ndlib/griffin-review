@@ -22,6 +22,9 @@ describe WowzaTokenGenerator do
       expect(subject.generate('username', 'ipaddress').ip).to eq("ipaddress")
     end
 
+    it "creates a timestamp" do
+      expect(subject.generate('username', 'ipaddress').timestamp).to eq(Time.now.to_i)
+    end
 
     it "creates a database token with a ipaddress" do
       subject.stub(:hashed_token).and_return("token")
