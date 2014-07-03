@@ -197,9 +197,12 @@ ActiveRecord::Schema.define(version: 20140703125614) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "wowza_tokens", force: true do |t|
-    t.string "username"
-    t.string "token"
-    t.string "ip"
+    t.string   "username"
+    t.string   "token"
+    t.string   "ip"
+    t.string   "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
