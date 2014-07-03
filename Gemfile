@@ -127,7 +127,6 @@ group :test do
 end
 
 
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
