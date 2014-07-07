@@ -57,7 +57,7 @@ class SakaiIntegratorController < ApplicationController
 
   def sakai_callback(context_id, sakai_user)
     course_id = nil
-    begin
+#    begin
       si = SakaiIntegrator.new(self)
       si.site_id = context_id
       si.sakai_user = sakai_user
@@ -68,9 +68,10 @@ class SakaiIntegratorController < ApplicationController
       logger.debug "__________________"
       course_id, term = si.translate_external_site_id(external_site_id)
       cache_sakai_context(context_id, course_id, external_site_id, sakai_user, term)
-    rescue
+#    rescue
+
       return
-    end
+#    end
     course_id
   end
 
