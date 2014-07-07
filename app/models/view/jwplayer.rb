@@ -3,10 +3,12 @@ class Jwplayer
 
   attr_accessor :filename
 
-  def initialize(filename, username, ipaddress)
+  def initialize(filename, username, ipaddress, specific_token = false)
     @filename = filename
     @username = username
     @ipaddress = ipaddress
+    @specific_token = specific_token
+
   end
 
 
@@ -60,7 +62,7 @@ class Jwplayer
 
 
     def wowza_url_generator
-      @wowza_url_generator ||= WowzaUrlGenerator.new(filename, @username, @ipaddress)
+      @wowza_url_generator ||= WowzaUrlGenerator.new(filename, @username, @ipaddress, @specific_token)
     end
 
 end
