@@ -7,22 +7,15 @@
     <ol>
       <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> </li>
       <li>If students are having issues with streaming videos they can always use a computer in one of the labs on campus.</li>
+      <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
     </ol>
     <h3>Android</h3>
-    <ol>
-      <li>The video is supported in most android versions (> 3.0).  If you are having trouble on your android device it may be an unsupported device.  You will to switch to a desktop version of chrome. <%= link_to 'Test Android Player', player.rstp_url(), target: '_blank' %></li>
-    </ol>
-
-    <h3>Firefox</h3>
-    <ol>
-      <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
-    </ol>
-
-    <h3>Internet Explorer</h3>
-    <ol>
-      <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
-    </ol>
-
+      <p>The video is supported in most android versions > 3.0 but playback is dependent on the device manufature.</p>
+      <p>  Playing the video in Android requires you to play the video in the system video player.  Select <%= link_to("Play Video", image_path('android_play_link.png'), target: 'blank') %> to start the Android video player.
+      </p>
+      <p>
+        If you are having trouble on your Android device it may be an unsupported device.  You can switch to a desktop version of chrome. <%= link_to 'Test Android Player', player.rstp_url(), target: '_blank' %>
+      </p>
   </div>
 
   <div class="four columns">
