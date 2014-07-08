@@ -6,7 +6,7 @@ class WowzaTokens < ActiveRecord::Migration
       t.string :username
       t.string :token
       t.string :ip
-      t.string :timestamp
+      t.integer :timestamp
 
       t.timestamps
     end

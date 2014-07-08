@@ -1,6 +1,8 @@
 
 
-<%= @jwplayer.jwplayer%>
+<% if !params[:no_player] %>
+  <%= @jwplayer.jwplayer%>
+<% end %>
 
 <%= @jwplayer.rstp_link %>
 
