@@ -1,4 +1,4 @@
-<% player = Jwplayer.new('BigBuckBunny.mp4', 'troubleshooting', '10.0.0.1') %>
+<% player = Jwplayer.new('BigBuckBunny.mp4', 'troubleshooting', controller.request.remote_ip) %>
 <div class="tab-content" style="margin-right: 100px;">
   <style>
     li { line-height: 28px; }
