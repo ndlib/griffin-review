@@ -100,7 +100,7 @@ class ElectronicReservePolicy
   def streaming_download_file
     return false if !has_streaming_resource?
 
-    MovFileGenerator.new(@reserve).mov_file_path
+    @reserve.url
   end
 
 

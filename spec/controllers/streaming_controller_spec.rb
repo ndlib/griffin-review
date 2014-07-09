@@ -25,22 +25,6 @@ describe StreamingController do
     }.to render_template(nil)
   end
 
-  it "allows you in if the token is valid and there is no session " do
-    get :show, token: 'token', id: 'id', course_id: @current_course.id
-    expect(response.status).to eq(200)
-  end
-
-
-  it "even with a valid token if we can check cas and you don't have access it will deny you" do
-    turn_on_ldap!
-
-    u = FactoryGirl.create(:student, username: 'bcarrico')
-    sign_in u
-
-    expect {
-      get :show, token: 'token', id: 'id', course_id: @current_course.id
-    }.to render_template(nil)
-  end
 
 
   it "will let you download the mov if you have a valid token and access to the class with cas" do
@@ -52,10 +36,4 @@ describe StreamingController do
     get :show, token: 'token', id: 'id', course_id: @current_course.id
   end
 
-
-  it "the token has expried it will redirect you back to the course to try again" do
-    get :show, token: 'expired_token', id: 'id', course_id: @current_course.id
-    expect(response.status).to eq(302)
-    expect(flash[:error]).to_not be_nil
-  end
 end

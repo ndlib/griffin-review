@@ -5,7 +5,7 @@ class CourseReservesController < ApplicationController
   def index
     # begin code can be removed after fall 2013
     begin
-      @user_course_show = CourseReserveList.new(current_user, params)
+      @user_course_show = CourseReserveList.build_from_params(self)
     rescue OpenURI::HTTPError
       lookup = API::CourseSearchApi.course_id(params[:course_id])
       if lookup['section_groups'].first['crosslist_id']
@@ -31,30 +31,26 @@ class CourseReservesController < ApplicationController
 
 
   def new
-    @new_reserve = InstructorReserveRequest.new(current_user, params)
+    @new_reserve = InstructorReserveRequest.new(self)
 
     check_instructor_permissions!(@new_reserve.course)
   end
 
 
   def create
-    @request_reserve = InstructorReserveRequest.new(current_user, params)
+    @request_reserve = InstructorReserveRequest.new(self)
 
     check_instructor_permissions!(@request_reserve.course)
 
     if @request_reserve.make_request
-      flash[:success] = "<h4>New Request Made</h4><p> Your request has been received and will be processed as soon as possible.  </p><a href=\"#{course_reserves_path(@request_reserve.course.id)}\" class=\"btn btn-primary\">I am Done</a>"
 
       redirect_to new_course_reserve_path(@request_reserve.course.id)
       return
+
     else
-
-      @new_reserve = InstructorReserveRequest.new(current_user, params)
-
-      flash.now[:error] = "Your form submission has errors in it.  Please correct them and resubmit."
+      @new_reserve = InstructorReserveRequest.new(self)
+      render :new
     end
-
-    render :new
   end
 
 

@@ -5,7 +5,7 @@ describe GetReserve do
   before(:each) do
     @user = FactoryGirl.create(:student)
 
-    semester = FactoryGirl.create(:semester)
+    @semester = FactoryGirl.create(:semester)
 
     @course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
 
@@ -19,6 +19,21 @@ describe GetReserve do
     @valid_params = { course_id: @course.id, id: @reserve.id }
 
     @controller = double(ApplicationController, current_user: @user, current_path_is_sakai?: false, params: @valid_params)
+  end
+
+
+  describe :mov_file_path do
+
+    it "returns the url from the reserve" do
+      @reserve = double(Reserve, url: 'url', electronic_reserve?: true, type: 'VideoReserve', pdf: '', semester: @semester)
+      ReserveSearch.any_instance.stub(:get).and_return(@reserve)
+
+      gcl = GetReserve.new(@controller)
+
+      expect(gcl.mov_file_path).to eq("url")
+    end
+
+
   end
 
 

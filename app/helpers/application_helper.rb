@@ -9,13 +9,13 @@ module ApplicationHelper
 
   def user_top_nav()
     render partial: '/layouts/user_nav',
-      locals: { user_course_listing: UserCourseListing.new(current_user) }
+      locals: { user_course_listing: ListUsersCourses.new(current_user) }
   end
 
 
   def sakai_top_nav
     render partial: '/layouts/sakai_nav',
-                locals: { user_course_listing: UserCourseListing.new(current_user) }
+                locals: { user_course_listing: ListUsersCourses.new(current_user) }
   end
 
 
@@ -60,4 +60,32 @@ module ApplicationHelper
       @new_reserve
     end
   end
+
+
+    # Includes JWPlayer javascript library
+    def jwplayer_assets
+      javascript_include_tag "jwplayer"
+    end
+
+
+    def jwplayer(file_name, options = {})
+      sources =  [{
+            file: "http://wowza.library.nd.edu:1935/vod/mp4:#{file_name}/playlist.m3u8"
+        },{
+            file: "rtmpt://wowza.library.nd.edu:1935/vod/mp4:#{file_name}"
+        }
+      ]
+
+      options = { fallback: false, primary: 'flash', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', flashplayer: '/assets/jwplayer.flash.swf', autostart: true, sources: sources }.merge(options)
+
+      result = %Q{<div id='#{options[:id]}'>Loading the player...</div>
+                  <script type='text/javascript'>
+                    jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
+                  </script>
+                  <a href="rtsp://wowza.library.nd.edu:1935/vod/mp4:#{file_name}">Android</a>
+                }
+
+      result.respond_to?(:html_safe) ? result.html_safe : result
+    end
+
 end

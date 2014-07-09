@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserCourseListing do
+describe ListUsersCourses do
 
   let(:student_user) { double(User, :username => 'student') }
   let(:instructor_user) { double(User, :username => 'instructor') }
@@ -15,6 +15,17 @@ describe UserCourseListing do
   end
 
 
+  describe :build_from_params do
+    before(:each) do
+      @controller = double(ApplicationController, current_user: student_user)
+    end
+
+
+    it "builds the object form the controller" do
+      expect(ListUsersCourses.build_from_params(@controller).class).to eq(ListUsersCourses)
+    end
+  end
+
 
   describe :instructed_courses do
 
@@ -25,7 +36,7 @@ describe UserCourseListing do
 
 
     it "returns a list of both the current upcoming instructed courses" do
-      reserves = UserCourseListing.new(instructor_user)
+      reserves = ListUsersCourses.new(instructor_user)
       reserves.instructed_courses.size.should == 2
     end
 
@@ -33,7 +44,7 @@ describe UserCourseListing do
 
     describe :current_instructed_courses do
       it "returns all the instructed courses" do
-        reserves = UserCourseListing.new(instructor_user)
+        reserves = ListUsersCourses.new(instructor_user)
         reserves.current_instructed_courses.size.should == 1
         reserves.current_instructed_courses.first.id.should == "id"
       end
@@ -42,14 +53,14 @@ describe UserCourseListing do
 
     describe :upcoming_instructed_courses do
       it "returns all the instructed courses for the next semester" do
-        reserves = UserCourseListing.new(instructor_user)
+        reserves = ListUsersCourses.new(instructor_user)
         reserves.upcoming_instructed_courses.size.should == 1
         reserves.upcoming_instructed_courses.first.id.should == "next_id"
       end
 
 
       it "returns an empty array if there is no next semester" do
-        reserves = UserCourseListing.new(instructor_user)
+        reserves = ListUsersCourses.new(instructor_user)
         reserves.stub(:has_next_semester?).and_return(false)
 
         reserves.upcoming_instructed_courses.should == []
@@ -70,7 +81,7 @@ describe UserCourseListing do
     end
 
     it "returns a list of courses that have reserves for the current user" do
-      reserves = UserCourseListing.new(student_user)
+      reserves = ListUsersCourses.new(student_user)
       reserves.enrolled_courses.size.should == 1
     end
 
@@ -78,13 +89,13 @@ describe UserCourseListing do
     it "return [] if the student has no reserves in the specified semester" do
       @course.stub(:published_reserves).and_return( [ ])
 
-      reserves = UserCourseListing.new(student_user)
+      reserves = ListUsersCourses.new(student_user)
       reserves.enrolled_courses.should == []
     end
 
 
     it "only returns courses with reserves" do
-      reserves = UserCourseListing.new(student_user)
+      reserves = ListUsersCourses.new(student_user)
       expect(reserves.enrolled_courses.include?(@no_reserve_course)).to be_false
     end
 
@@ -96,7 +107,7 @@ describe UserCourseListing do
 
 
     it "orders them cronologically" do
-      reserves = UserCourseListing.new(instructor_user)
+      reserves = ListUsersCourses.new(instructor_user)
       second_semester = @upcoming_course.semester
       first_semester = @course.semester
 
@@ -109,7 +120,7 @@ describe UserCourseListing do
   describe :current_semester do
 
     it "selects the current semester" do
-      reserves = UserCourseListing.new(instructor_user)
+      reserves = ListUsersCourses.new(instructor_user)
       next_semester = @upcoming_course.semester
       current_semester = @course.semester
 
@@ -123,7 +134,7 @@ describe UserCourseListing do
     it "gets the next semester after the current semester" do
       next_semester = @upcoming_course.semester
 
-      reserves = UserCourseListing.new(instructor_user)
+      reserves = ListUsersCourses.new(instructor_user)
       reserves.next_semester.should == next_semester
     end
   end

@@ -77,5 +77,5 @@ Griffin::Application.routes.draw do
   resource :report_problem
 
   get "video/request/new", to: "homepage#index"
-
+  get "jwtest", to: 'jwtest#index'
 end

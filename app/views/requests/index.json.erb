@@ -2,7 +2,7 @@
 <%
   first = true
   @admin_request_listing.reserves.each do  | reserve |
-    reserve = AdminReserveRow.new(reserve)
+    reserve = RequestRow.new(reserve)
     if !first
 %>, <% end %><% cache (reserve.cache_key) do %>
   <%= raw reserve.to_json %>

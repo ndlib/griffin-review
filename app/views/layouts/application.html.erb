@@ -5,7 +5,6 @@
     <title>Hesburgh Library Reserves</title>
     <meta name="description" content="Information resources and collections of the Hesburgh Libraries, University of Notre Dame." />
 
-    <meta name="viewport" content="width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" sizes="128x128" href="http://library.nd.edu/icons/favicon-152.png">
     <link rel="apple-touch-icon" href="http://library.nd.edu/icons/favicon-152.png">
@@ -19,13 +18,15 @@
 
     <%= csrf_meta_tags %>
 
-
     <link type="text/css" media="screen" rel="stylesheet" href="/assets/responsive-tables.css" />
     <script type="text/javascript" src="/assets/responsive-tables.js"></script>
 
+    <%= jwplayer_assets %>
+    <script type="text/javascript">jwplayer.key="7SdTZX7u32woAkiZKrebDsv/UljBWNQSgUONjQIxqxY=";</script>
+
 
   </head>
-  <body>
+  <body class="<%= controller.controller_name %>-<%= controller.action_name %>">
     <div class="frame" id="frame">
       <div class="row header">
         <div class="twelve columns">

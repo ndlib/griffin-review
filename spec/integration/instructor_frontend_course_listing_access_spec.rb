@@ -24,6 +24,8 @@ describe "Instructor Frontend Course Listing Access" do
 
     stub_ssi!
     turn_on_ldap!
+    User.stub(:ldap_lookup).and_return( { givenname: ['Bob'], sn: ['SN'], ndvanityname: ['ndvanityname'], mail: ['mail@nd.edu'], displayname: ['displayname'] } )
+
 
     VCR.use_cassette current_course_key do
       @current_course = CourseSearch.new.get(reserve_course)
@@ -67,9 +69,9 @@ describe "Instructor Frontend Course Listing Access" do
 
   describe :instructor_has_no_courses do
     before(:each) do
-      UserCourseListing.any_instance.stub(:enrolled_courses).and_return([])
-      UserCourseListing.any_instance.stub(:current_instructed_courses).and_return([])
-      UserCourseListing.any_instance.stub(:upcoming_instructed_courses).and_return([])
+      ListUsersCourses.any_instance.stub(:enrolled_courses).and_return([])
+      ListUsersCourses.any_instance.stub(:current_instructed_courses).and_return([])
+      ListUsersCourses.any_instance.stub(:upcoming_instructed_courses).and_return([])
     end
 
 

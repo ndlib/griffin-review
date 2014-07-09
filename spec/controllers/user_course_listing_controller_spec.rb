@@ -30,7 +30,7 @@ describe CoursesController do
         get :index
 
         assigns(:user_course_listing).should_not be_nil
-        assigns(:user_course_listing).class.should == UserCourseListing
+        assigns(:user_course_listing).class.should == ListUsersCourses
       end
     end
   end

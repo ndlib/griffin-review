@@ -31,6 +31,16 @@ class ApplicationController < ActionController::Base
     request.path.starts_with?('/sakai')
   end
 
+
+  def add_flash(type, msg, now = false)
+    if now
+      flash.now[type] = msg
+    else
+      flash[type] = msg
+    end
+  end
+
+
   protected
 
     def determine_layout
@@ -94,6 +104,10 @@ class ApplicationController < ActionController::Base
         :netid => (current_user ? current_user.username : ''),
         :location => current_path_is_sakai? ? 'sakai' : 'library'
       }
+
+      if current_user && current_user.wse_admin?
+        Rack::MiniProfiler.authorize_request
+      end
     end
 
 

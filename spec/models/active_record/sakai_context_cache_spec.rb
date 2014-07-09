@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SakaiContextCache do
 
   it "basic valid sakai_context_cache passes validation" do
-    valid_params = {:context_id => 'context id', :external_id => 'external id', :course_id => 'course id', :user_id => 'user id', :term => 'term'}
+    valid_params = {:context_id => 'context id', :course_id => 'course id' }
     SakaiContextCache.new(valid_params).should be_valid
   end
 
@@ -15,11 +15,6 @@ describe SakaiContextCache do
 
   it "requires a course id" do
     SakaiContextCache.new.should have(1).error_on(:course_id)
-  end
-
-
-  it "requires a term" do
-    SakaiContextCache.new.should have(1).error_on(:term)
   end
 
 end

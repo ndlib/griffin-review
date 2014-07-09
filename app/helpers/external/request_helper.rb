@@ -1,2 +1,0 @@
-module External::RequestHelper
-end

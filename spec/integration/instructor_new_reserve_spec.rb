@@ -1,4 +1,3 @@
-require 'spec_helper'
 
 describe "Instructor New Reserve" do
 
@@ -110,6 +109,8 @@ describe "Instructor New Reserve" do
       fill_in("Title", with: 'title')
       fill_in("video_needed_by_id", with: 22.days.from_now)
 
+      choose "instructor_reserve_request_resource_format_both"
+
       click_button "Save"
     end
 
@@ -125,24 +126,6 @@ describe "Instructor New Reserve" do
   end
 
 
-  it "allows the video to be not electronic" do
-    VCR.use_cassette 'new-instructor-video-page' do
-      visit new_course_reserve_path(@current_course.id)
-    end
-
-    within("#video_form") do
-      fill_in("Title", with: 'title')
-      fill_in("video_needed_by_id", with: 22.days.from_now)
-      check "instructor_reserve_request_electronic_reserve"
-
-      click_button "Save"
-    end
-
-    reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_true
-    expect(reserve.electronic_reserve?).to be_false
-  end
-
 
   it "does not allow more then 255 characters to be added to the fields" do
     VCR.use_cassette 'new-instructor-video-page' do
@@ -156,6 +139,7 @@ describe "Instructor New Reserve" do
       fill_in("Title", with: long_string)
       fill_in("Director or Publisher", with: long_string)
       fill_in("video_needed_by_id", with: 22.days.from_now)
+      choose "instructor_reserve_request_resource_format_both"
 
       click_button "Save"
     end

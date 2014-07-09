@@ -8,6 +8,7 @@ describe SakaiIntegratorController do
 
   it "redirects to the proper crosslisted course page" do
     SakaiIntegratorController.any_instance.stub(:sakai_callback).and_return('201300_33')
+    SakaiIntegratorController.any_instance.stub(:user_is_part_of_course?).and_return(true)
 
     post :sakai_redirect, context_id: "21590942-4d68-4f83-8529-da22ea02fd0e", lis_person_sourcedid: "bwright6"
     expect(response.status).to eq(302)

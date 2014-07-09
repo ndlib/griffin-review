@@ -7,11 +7,18 @@ class CourseReserveList
 
   delegate :title, to: :course
 
-  def initialize(current_user, params)
-    @current_user = current_user
-    @course = get_course(params[:course_id])
 
-    @show_deleted = params[:deleted] ? true : false
+  def self.build_from_params(controller)
+    course = CourseSearch.new.get(controller.params[:course_id])
+    current_user = controller.current_user
+
+    self.new(course, current_user)
+  end
+
+
+  def initialize(course, current_user)
+    @current_user = current_user
+    @course = course
 
     validate_inputs!
   end

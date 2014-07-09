@@ -6,6 +6,7 @@ require 'hesburgh/vm'
 require 'hesburgh/rails'
 require 'hesburgh/rails_db'
 require 'hesburgh/jenkins'
+require 'hesburgh/prompt_branch'
 require 'hesburgh/whenever'
 
 set :application_symlinks, [

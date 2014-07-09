@@ -83,7 +83,10 @@ gem 'newrelic_rpm'
 
 gem 'hipchat'
 
+gem 'user_agent_parser'
+
 gem 'rb-readline'
+
 
 # development only
 group :development do
@@ -124,12 +127,12 @@ group :test do
 end
 
 
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
 end
 
+gem 'rack-mini-profiler'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

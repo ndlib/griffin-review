@@ -65,6 +65,7 @@ class SakaiIntegratorController < ApplicationController
       course_id, term = si.translate_external_site_id(external_site_id)
       cache_sakai_context(context_id, course_id, external_site_id, sakai_user, term)
     rescue
+
       return
     end
     course_id

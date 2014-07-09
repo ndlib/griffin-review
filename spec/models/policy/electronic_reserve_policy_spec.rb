@@ -506,14 +506,13 @@ describe ElectronicReservePolicy do
 
 
   describe :streaming_download_file do
-    before(:each) do
-      MovFileGenerator.any_instance.stub(:mov_file_path).and_return("/file/path")
-    end
 
     context :has_file do
 
       it "returns the file path" do
         @policy.stub(:has_streaming_resource?).and_return(true)
+        @reserve.stub(:url).and_return("/file/path")
+
         expect(@policy.streaming_download_file).to eq("/file/path")
       end
     end

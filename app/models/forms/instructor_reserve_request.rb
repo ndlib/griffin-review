@@ -2,6 +2,7 @@ class InstructorReserveRequest
   include Virtus
   include ModelErrorTrapping
   include GetCourse
+  include RailsHelpers
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -23,6 +24,9 @@ class InstructorReserveRequest
   attribute :requestor_has_an_electronic_copy, Boolean
   attribute :physical_reserve, Boolean
   attribute :electronic_reserve, Boolean
+
+  attribute :resource_format, String
+
   attribute :library, String
   attribute :number_of_copies, Integer
   attribute :type, String
@@ -33,15 +37,19 @@ class InstructorReserveRequest
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :citation, :presence => true, :if => :citation_required?
+  validates :resource_format, :presence => true, :inclusion => { :in => %w( electronic physical both) }
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
   # validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 2.weeks } }
 
 
-  def initialize(current_user, params)
-    @current_user = current_user
-    @course = get_course(params[:course_id])
+  def initialize(controller)
+    @controller = controller
+    @current_user = controller.current_user
+    @course = get_course(controller.params[:course_id])
 
-    self.attributes = params[:instructor_reserve_request] || {}
+    self.attributes = controller.params[:instructor_reserve_request] || {}
+
+    set_resource_format
 
     validate_inputs!
   end
@@ -55,9 +63,10 @@ class InstructorReserveRequest
   def make_request
     if valid?
       persist!
-      notify!
+      success_notify
       true
     else
+      error_notify
       false
     end
   end
@@ -140,10 +149,12 @@ class InstructorReserveRequest
 
 
     def persist!
-      reserve.attributes = self.attributes
+      reserve.attributes = save_attributes
 
       reserve.requestor_netid = @current_user.username
       reserve.course          = @course
+
+      save_resource_format
 
       reserve.save!
     end
@@ -160,8 +171,47 @@ class InstructorReserveRequest
     end
 
 
-    def notify!
+
+    def success_notify
       ReserveMailer.new_request_notifier(reserve).deliver
+
+      @controller.add_flash(:success, "<h4>New Request Made</h4><p> Your request has been received and will be processed as soon as possible.  </p><a href=\"#{routes.course_reserves_path(reserve.course.id)}\" class=\"btn btn-primary\">I am Done</a>")
     end
+
+
+    def error_notify
+      @controller.add_flash(:error, "Your form submission has errors in it.  Please correct them and resubmit.", true)
+    end
+
+
+    def save_attributes
+      self.attributes.reject { | key, value |  key.to_s == 'resource_format'}
+    end
+
+
+    def set_resource_format
+      if self.electronic_reserve && self.physical_reserve
+        self.resource_format = 'both'
+      elsif self.electronic_reserve
+        self.resource_format = 'electronic'
+      elsif self.physical_reserve
+        self.resource_format = 'physical'
+      end
+    end
+
+
+    def save_resource_format
+      if self.resource_format == 'both'
+        reserve.electronic_reserve = true
+        reserve.physical_reserve = true
+      elsif self.resource_format == 'electronic'
+        reserve.electronic_reserve = true
+        reserve.physical_reserve = false
+      elsif self.resource_format == 'physical'
+        reserve.electronic_reserve = false
+        reserve.physical_reserve = true
+      end
+    end
+
 
 end
