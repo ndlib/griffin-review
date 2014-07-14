@@ -2,7 +2,7 @@
 
 <% breadcrumb([
     link_to('Courses', courses_path),
-    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course)),
+    link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course.id)),
     @get_reserve.reserve.title
    ]) %>
 <h2>WARNING CONCERNING COPYRIGHT RESTRICTIONS</h2>
