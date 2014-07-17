@@ -1,5 +1,4 @@
 class WowzaUrlGenerator
-  BASE_URL = "wowza.library.nd.edu:1935/vod/mp4:"
 
   attr_accessor :filename
 
@@ -12,17 +11,17 @@ class WowzaUrlGenerator
 
 
   def html5
-    "http://#{BASE_URL}#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}#{filename}/playlist.m3u8?#{token}"
   end
 
 
   def rtmp
-    "rtmpt://#{BASE_URL}#{filename}?#{token}"
+    "rtmpt://#{base_url}#{filename}?#{token}"
   end
 
 
   def rtsp
-    "rtsp://#{BASE_URL}#{filename}?#{token}"
+    "rtsp://#{base_url}#{filename}?#{token}"
   end
 
 
@@ -39,6 +38,16 @@ class WowzaUrlGenerator
       else
         wowza_token_generator.generate(@username, @ipaddress)
         "t=#{wowza_token_generator.token}"
+      end
+    end
+
+
+
+    def base_url
+      if Rails.env == 'production'
+        "wowza.library.nd.edu:1935/vod/mp4:"
+      else
+        "wowza-pprd-vm.library.nd.edu:1935/vod/mp4:"
       end
     end
 end
