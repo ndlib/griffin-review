@@ -43,7 +43,7 @@ class Jwplayer
         id: 'jwplayer',
         html5player: '/assets/jwplayer.html5.js',
         flashplayer: '/assets/jwplayer.flash.swf',
-        autostart: false,
+        autostart: true,
         width: "100%",
         aspectratio: "16:9",
         playlist: [ { sources: sources}
