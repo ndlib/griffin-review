@@ -16,11 +16,13 @@ describe Reserve do
       course_listing.respond_to?(:title).should be_true
     end
 
-
     it "has a creator" do
       course_listing.respond_to?(:creator).should be_true
     end
 
+    it "has a contributor" do
+      course_listing.respond_to?(:contributor).should be_true
+    end
 
     it "has a journal title" do
       course_listing.respond_to?(:journal_title).should be_true

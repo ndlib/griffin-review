@@ -6,7 +6,7 @@
 <%= simple_form_for object, :html => {id: "audio_form"}, :url => course_reserves_path() do |f| %>
   <%= f.input :title, label: "Album / Title" %>
   <%= f.input :creator, label: "Composer" %>
-  <%# f.input :journal_title, label: "Artist" %>
+  <%= f.input :contributor, label: "Artist" %>
   <%= f.input :length, label: "Tracks / Clips" do %>
     <%= f.input_field :length %>
   <% end %>
@@ -48,11 +48,11 @@
             intro: "<%= t('form_help.composer') %> <%= help_optional_message %>",
             position: 'right'
           },
-          /*{
-            element: $('#audio_form .instructor_reserve_request_journal_title')[0],
+          {
+            element: $('#audio_form .instructor_reserve_request_contributor')[0],
             intro: "<%= t('form_help.artist') %> <%= help_optional_message %>",
             position: 'right'
-          },*/
+          },
           {
             element: $('#audio_form .instructor_reserve_request_length')[0],
             intro: "<%= t('form_help.tracks') %> <%= help_optional_message %>",

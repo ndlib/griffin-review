@@ -16,6 +16,7 @@ class InstructorReserveRequest
   attribute :language_track, String
   attribute :subtitle_language, String
   attribute :creator, String
+  attribute :contributor, String
   attribute :citation, String
   attribute :length, String
   attribute :note, String
