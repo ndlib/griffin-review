@@ -23,20 +23,23 @@ class RequestEditNav
 
 
   def meta_data_notes
-    policy = ReserveMetaDataPolicy.new(@reserve)
     uls = []
     if @reserve.nd_meta_data_id.present?
       uls << "Record ID: #{@reserve.nd_meta_data_id}"
       uls << "Syncronized on #{@reserve.metadata_synchronization_date.to_s(:long)}"
 
-    elsif policy.meta_data_id_required? && !policy.complete?
+    elsif meta_data_policy.meta_data_id_required? && !meta_data_policy.complete?
       uls << "Requires a Record ID"
     else
-      if policy.complete?
+      if meta_data_policy.complete?
         uls << "Meta Data Not Syncronized."
       else
         uls << "Requires Meta Data Review <br> Go to the meta data page and review it and click save."
       end
+    end
+
+    if physical_reserve? && !reserve_in_aleph?
+      uls << "This reserve has not been found in the nightly aleph export.  Make sure it has been entered into aleph."
     end
 
     return uls
@@ -100,6 +103,23 @@ class RequestEditNav
   def fair_use_complete?
     ReserveFairUsePolicy.new(@reserve).complete?
   end
+
+
+  def physical_reserve?
+    PhysicalReservePolicy.new(@reserve).is_physical_reserve?
+  end
+
+
+  def reserve_in_aleph?
+    ReserveInAlephPolicy.new(@reserve).in_aleph?
+  end
+
+  private
+
+    def meta_data_policy
+      @policy ||= ReserveMetaDataPolicy.new(@reserve)
+    end
+
 
 
 end
