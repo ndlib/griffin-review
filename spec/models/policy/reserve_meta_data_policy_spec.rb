@@ -4,47 +4,52 @@ require 'spec_helper'
 describe ReserveMetaDataPolicy do
 
   describe :complete? do
-    before(:each) do
-      @reserve = double(Reserve, nd_meta_data_id: nil)
-    end
-
     context :physical_reserve do
-      before(:each) do
-        @reserve.stub(:physical_reserve?).and_return(true)
-      end
 
-      it "returns true if there is an internal meta data id" do
-        @reserve.stub(:nd_meta_data_id).and_return("metadataid")
+      let(:reserve) { double(Reserve, nd_meta_data_id: nil, physical_reserve?: true )}
 
-        ReserveMetaDataPolicy.new(@reserve).complete?.should be_true
+      subject { described_class.new(reserve)}
+
+      it "returns true if there is an internal meta data id and it is in aleph" do
+        reserve.stub(:nd_meta_data_id).and_return("metadataid")
+        subject.stub(:reserve_in_aleph?).and_return(true)
+
+        subject.complete?.should be_true
       end
 
 
       it "returns false if the record id has not been set" do
-        ReserveMetaDataPolicy.new(@reserve).complete?.should be_false
+        subject.stub(:reserve_in_aleph?).and_return(true)
+
+        subject.complete?.should be_false
+      end
+
+      it "returns false if it is not currently in aleph " do
+        @reserve.stub(:nd_meta_data_id).and_return("metadataid")
+        subject.complete?.should be_false
       end
 
     end
 
     context :electronic_reserve do
-      before(:each) do
-        @reserve.stub(:physical_reserve?).and_return(false)
-        @reserve.stub(:request).and_return(double(Request, created_at: Time.now, updated_at: 1.day.from_now))
-      end
+      let(:reserve) { double(Reserve,  physical_reserve?: false, request: double(Request, created_at: Time.now, updated_at: 1.day.from_now))}
+
+      subject { described_class.new(reserve)}
+
 
 
       it "returns true if the reserve has been reviewed and it is in process" do
-        @reserve.stub(:reviewed?).and_return(true)
-        @reserve.stub(:workflow_state).and_return('inprocess')
+        reserve.stub(:reviewed?).and_return(true)
+        reserve.stub(:workflow_state).and_return('inprocess')
 
-        ReserveMetaDataPolicy.new(@reserve).complete?.should be_true
+        subject.complete?.should be_true
       end
 
 
       it "returns false if the reserve has not been reviewed and it is not a physical_reserve" do
-        @reserve.stub(:reviewed?).and_return(false)
+        reserve.stub(:reviewed?).and_return(false)
 
-        ReserveMetaDataPolicy.new(@reserve).complete?.should be_false
+        subject.complete?.should be_false
       end
 
     end

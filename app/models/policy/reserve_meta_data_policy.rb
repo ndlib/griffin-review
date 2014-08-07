@@ -20,9 +20,14 @@ class ReserveMetaDataPolicy
   end
 
 
+  def reserve_in_aleph?
+    ReserveInAlephPolicy.new(@reserve).in_aleph?
+  end
+
+
   def complete?
     if (meta_data_id_required?)
-      return @reserve.nd_meta_data_id.present?
+      return (@reserve.nd_meta_data_id.present? && reserve_in_aleph?)
     else
       return !meta_data_needs_reviewed?
     end
