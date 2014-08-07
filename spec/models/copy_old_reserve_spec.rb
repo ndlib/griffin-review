@@ -73,7 +73,7 @@ describe CopyReserve do
 
     it "should auto complete this reserve" do
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      @new_reserve.workflow_state.should == "available"
+      @new_reserve.workflow_state.should == "new"
     end
 
     it "should look up the nd_meta_data_id for this item" do
