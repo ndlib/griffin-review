@@ -40,7 +40,7 @@ class InstructorCourseRow
 
   def edit_link
     if can_edit?
-      helpers.link_to(helpers.raw("<i class=\"icon-edit\"></i>"), routes.request_path(@reserve.id), target: '_blank', title: "Edit this Reserve")
+      helpers.link_to(helpers.raw("<i class=\"icon-edit\"></i>"), routes.request_path(@reserve.id), target: '_blank', title: "Admins: Edit this Reserve")
     else
       ""
     end
