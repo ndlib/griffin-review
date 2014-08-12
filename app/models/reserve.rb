@@ -33,7 +33,7 @@ class Reserve
 
 
     event :restart do
-      transition [:available] => :inprocess
+      transition [:available, :removed] => :inprocess
     end
 
 

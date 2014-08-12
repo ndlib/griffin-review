@@ -130,6 +130,13 @@ describe Reserve do
       @reserve.workflow_state.should == "removed"
     end
 
+    it "can be changed to inprocess from removed" do
+      @reserve.remove!
+      @reserve.restart!
+
+      expect(@reserve.workflow_state).to eq("inprocess")
+    end
+
 
     it "destroy the reserve by changing the state" do
       @reserve.title = 'ttile '

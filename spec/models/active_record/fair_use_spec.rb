@@ -67,63 +67,17 @@ describe FairUse do
 
   describe :state do
 
-    it "starts in the update state" do
-      FairUse.new.state.should == "update"
-    end
+    [:update, :temporary_approval, :approved, :copy_rights_cleared, :sipx_cleared, :denied].each do | state|
+      { approve: :approved, clear_with_sipx: :sipx_cleared, clear_with_copy_rights: :copy_rights_cleared, deny: :denied, temporary_approval: :temporary_approval }.each do | event, final_state |
 
+        it "should change from state #{state} to #{final_state} using #{event}" do
+          f = FairUse.new(:user_id => 1, :state => state)
+          f.send(event)
 
-    it "can transition to approved from update " do
-      f = FairUse.new(:user_id => 1)
-      f.approve
+          expect(f.state.to_s).to eq(final_state.to_s)
+        end
 
-      f.state.should == "approved"
-    end
-
-    it "can transition from update to sipx_cleared" do
-      f = FairUse.new(:user_id => 1)
-      f.clear_with_sipx
-
-      f.state.should == "sipx_cleared"
-    end
-
-
-    it "can transition from update to copy_rights_cleared" do
-      f = FairUse.new(:user_id => 1)
-      f.clear_with_copy_rights
-
-      f.state.should == "copy_rights_cleared"
-    end
-
-
-    it "can transition to denied from update " do
-      f = FairUse.new(:user_id => 1)
-      f.deny
-
-      f.state.should == "denied"
-    end
-
-
-    it "can transition to temporary_approval from update" do
-      f = FairUse.new(:user_id => 1)
-      f.temporary_approval
-
-      f.state.should == "temporary_approval"
-    end
-
-
-    it "can transition to denied from approved " do
-      f = FairUse.new(:user_id => 1, :state => 'approved')
-      f.deny
-
-      f.state.should == "denied"
-    end
-
-
-    it "can transition to denied from temporary_approval " do
-      f = FairUse.new(:user_id => 1, :state => 'temporary_approval')
-      f.deny
-
-      f.state.should == "denied"
+      end
     end
 
   end
