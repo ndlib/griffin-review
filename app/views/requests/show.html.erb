@@ -9,9 +9,22 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
   <%= render partial: 'request_edit_form', locals: { reserve: @admin_reserve.reserve } %>
 </div>
 <div class="nine columns">
-  <table class="table table-striped table-hover">
+  <table class="table table-striped table-hover" id="request_item_info">
     <tbody>
       <tr><td>State: </td><td><%= raw @admin_reserve.workflow_state %></td></tr>
+      <tr>
+        <td>Fulfillment Library: </td>
+        <td id="fulfillment_library">
+          <%= raw @admin_reserve.library %> 
+          <span id="fulfillment_change"><a href="">change</a></span>
+        </td>
+        <td id="fulfillment_library_select" nowrap>
+          <%= simple_form_for @library_form, url: library_path(@library_form.reserve.id), method: 'put' do | f | %>
+            <%= library_select_form(f, false) %>
+            <%= f.button :submit, "Save", :class => 'btn btn-primary horizontal-button' %>
+          <% end %>
+        </td>
+      </tr>
       <tr><td style="width:25%">Needed By: </td><td><%= @admin_reserve.needed_by %></td></tr>
       <tr><td>Requested On: </td><td><%= @admin_reserve.created_at.to_s(:long) %></td></tr>
       <tr><td>Requestor:</td><td><%= @admin_reserve.requestor %></td></tr>
