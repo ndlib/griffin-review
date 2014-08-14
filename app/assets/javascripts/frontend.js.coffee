@@ -7,6 +7,10 @@ jQuery ($) ->
       $("#check_availability .modal-body").html data
     return false
 
+  $('#fulfillment_change').click ->
+    $('#fulfillment_library_select').show()
+    $('#fulfillment_library').hide()
+    return false
 
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
@@ -277,7 +281,4 @@ jQuery ($) ->
       $(this).val("")
     else
       $(this).parents('.control-group').removeClass('error')
-
-
-
 
