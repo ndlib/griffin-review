@@ -6,7 +6,7 @@ describe RequestDetail do
   before(:each) do
     @controller = double(ApplicationController, params: { id: 1 })
     @course = double(Course, id: 'id')
-    @reserve = double(Reserve, id: 1, start: false, save!: true, workflow_state: 'inprocess', course: @course)
+    @reserve = double(Reserve, id: 1, start: false, save!: true, workflow_state: 'inprocess', course: @course, library: 'hesburgh')
     RequestDetail.any_instance.stub(:reserve_search).and_return(@reserve)
 
     @request_detail = RequestDetail.new(@controller)
@@ -24,6 +24,14 @@ describe RequestDetail do
       ReserveCheckInprogress.any_instance.should_receive(:check!)
       RequestDetail.new(@controller)
     end
+  end
+
+  describe '#library' do
+
+    it "translates the library code into the proper library name" do
+      expect(@request_detail.library).to eq 'Hesburgh Library'
+    end
+
   end
 
 
