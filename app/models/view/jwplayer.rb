@@ -46,7 +46,6 @@ class Jwplayer
         autostart: true,
         width: "100%",
         aspectratio: "16:9",
-        androidhls: true,
         playlist: [ { sources: sources} ]
       }
     end
