@@ -82,6 +82,16 @@ class RequestDetail
   end
 
 
+  def library
+    if @reserve.library.nil?
+      "Not Entered"
+    else
+      library_code = @reserve.library
+      I18n.t "libraries.#{library_code}"
+    end
+  end
+
+
   def fair_use_comments
     helpers.simple_format(@reserve.fair_use.comments)
   end
