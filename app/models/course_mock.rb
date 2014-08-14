@@ -1,7 +1,7 @@
 class CourseMock < Course
-  
+
   def semester
-    Semester.semester_for_code(Semester.current.first.code)
+    @semeseter ||= Semester.current.first
   end
 
 
