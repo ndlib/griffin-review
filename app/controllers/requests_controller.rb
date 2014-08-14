@@ -15,6 +15,7 @@ class RequestsController  < ApplicationController
   def show
     check_admin_permission!
     @admin_reserve = RequestDetail.new(self)
+    @library_form = LibraryReserveForm.build_from_params(self)
   end
 
 
