@@ -1,7 +1,6 @@
 { "aaData": [
 <%
   row_list = RequestRowList.new(@admin_request_listing)
-  row_list.rows.each_with_index do |row, index|
-%><%= index > 0 ? ',' : '' %>
-  <%= row.cached_json %><% end %>
+%>
+  <%= row_list.to_json %>
 ] }
