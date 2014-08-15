@@ -198,7 +198,6 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
-    looksee (2.1.1)
     lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -405,7 +404,6 @@ DEPENDENCIES
   json
   json_spec
   launchy (~> 2.1.0)
-  looksee
   mysql2 (~> 0.3.11)
   net-ldap
   newrelic_rpm
