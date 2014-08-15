@@ -93,6 +93,11 @@ class RequestRow < Draper::Decorator
     txt
   end
 
+  def cached_json
+    Rails.cache.fetch(cache_key) do
+      h.raw(to_json)
+    end
+  end
 
   def to_json
     [needed_by, title, request_date, requestor_col, course_col, type,  reserve.created_at.to_time.to_i, needed_by_json, search_keywords]

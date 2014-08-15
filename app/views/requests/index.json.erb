@@ -1,14 +1,11 @@
 { "aaData": [
 <%
-  first = true
-  @admin_request_listing.reserves.each do  | reserve |
+  @admin_request_listing.reserves.each_with_index do  | reserve, index |
     reserve = RequestRow.new(reserve)
-    if !first
-%>, <% end %><% cache (reserve.cache_key) do %>
-  <%= raw reserve.to_json %>
-<%
-    end
-    first = false
+    if index == 0
+%>, <% end %>
+  <%= raw reserve.cached_json %>
+  <%
   end
 %>
 ] }
