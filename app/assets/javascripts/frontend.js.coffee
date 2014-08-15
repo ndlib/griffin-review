@@ -12,6 +12,12 @@ jQuery ($) ->
     $('#fulfillment_library').hide()
     return false
 
+  $('#needed_by_change').click ->
+    $('#needed_by_select').show()
+    $('#needed_by_date').hide()
+    $('#needed_by_reserve_form_needed_by').datepicker()
+    return false
+
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
       # For student table

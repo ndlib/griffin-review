@@ -2,6 +2,8 @@
 *= require search
 *= require jquery-ui-1.10.2.custom
 *= require introjs.css
+*= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
+*= require datatables.custom.css
 */
 
 .page-header h1 { margin-bottom: 0; }
@@ -43,6 +45,10 @@
   display: none;
 }
 
+#needed_by_select {
+  display: none;
+}
+
 .horizontal-button {
   display: inline;
   white-space: nowrap;
@@ -63,6 +69,12 @@
 #library_reserve_form_library {
   vertical-align: middle;
   margin: 0px 4px 0px 0px;
+}
+
+#needed_by_reserve_form_needed_by {
+  width: auto;
+  margin: 5px;
+  display: inline;
 }
 
 #copy-overlay {
