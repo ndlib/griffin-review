@@ -1,29 +1,32 @@
-class RequestRow
-  include RailsHelpers
-
-  attr_accessor :reserve
+class RequestRow < Draper::Decorator
 
   delegate :id, :workflow_state, to: :reserve
 
-
-  def initialize(reserve)
-    @reserve = reserve
+  def reserve
+    object
   end
 
+  def helpers
+    h
+  end
+
+  def routes
+    h
+  end
 
   def request_date
-    @reserve.created_at.to_date.to_s(:short)
+    reserve.created_at.to_date.to_s(:short)
   end
 
 
   def button
-    @button ||= AdminEditButton.new(@reserve)
+    @button ||= AdminEditButton.new(reserve)
   end
 
 
   def needed_by
-    if !@reserve.needed_by.nil?
-      @reserve.needed_by.to_date.to_s(:short)
+    if !reserve.needed_by.nil?
+      reserve.needed_by.to_date.to_s(:short)
     else
       "Not Entered"
     end
@@ -31,8 +34,8 @@ class RequestRow
 
 
   def needed_by_json
-    if !@reserve.needed_by.nil?
-      @reserve.needed_by.to_time.to_i
+    if !reserve.needed_by.nil?
+      reserve.needed_by.to_time.to_i
     else
       9999999999
     end
@@ -40,15 +43,15 @@ class RequestRow
 
 
   def request_date
-    @reserve.created_at.to_date.to_s(:short)
+    reserve.created_at.to_date.to_s(:short)
   end
 
 
   def title
-    if @reserve.selection_title.present?
-      helpers.raw "#{helpers.link_to @reserve.selection_title, routes.request_path(reserve.id), target: '_blank'}<br>#{@reserve.title}"
+    if reserve.selection_title.present?
+      helpers.raw "#{helpers.link_to reserve.selection_title, routes.request_path(reserve.id), target: '_blank'}<br>#{reserve.title}"
     else
-      helpers.link_to @reserve.title, routes.request_path(reserve.id), target: '_blank'
+      helpers.link_to reserve.title, routes.request_path(reserve.id), target: '_blank'
     end
   end
 
@@ -59,7 +62,7 @@ class RequestRow
 
 
   def requestor_col
-    helpers.link_to(@reserve.requestor_name, routes.new_masquerades_path(:username => @reserve.requestor_netid))
+    helpers.link_to(reserve.requestor_name, routes.new_masquerades_path(:username => reserve.requestor_netid))
   end
 
 
@@ -69,7 +72,7 @@ class RequestRow
 
 
   def cache_key
-    "admin-reserve-#{@reserve.id}-#{@reserve.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}#{@reserve.item.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}"
+    "admin-reserve-#{reserve.id}-#{reserve.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}#{reserve.item.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}"
   end
 
 
@@ -87,7 +90,7 @@ class RequestRow
 
 
   def to_json
-    [needed_by, title, request_date, requestor_col, course_col, type,  @reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
+    [needed_by, title, request_date, requestor_col, course_col, type,  reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
   end
 
 end
