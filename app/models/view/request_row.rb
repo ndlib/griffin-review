@@ -61,6 +61,11 @@ class RequestRow
   end
 
 
+  def instructor_col
+    instructor = @reserve.course.primary_instructor
+    helpers.link_to("#{instructor.last_name}, #{instructor.first_name}", routes.new_masquerades_path(:username => instructor.username))
+  end
+
   def type
     reserve.type.gsub('Reserve', '')
   end
@@ -90,7 +95,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, requestor_col, course_col, type,  reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
+    [needed_by, title, request_date, instructor_col, course_col, type,  reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
   end
 
 end

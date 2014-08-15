@@ -11,6 +11,7 @@ class AdminUpdateMetaData
 
   attribute :title, String
   attribute :creator, String
+  attribute :contributor, String
   attribute :details, String
   attribute :publisher, String
   attribute :journal_title, String

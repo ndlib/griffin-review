@@ -11,7 +11,15 @@ class Item < ActiveRecord::Base
   store :description, accessors: [ :subtitle_language, :language_track ]
 
   def creator_contributor
-    self.creator
+    if !self.creator.blank? and !self.contributor.blank?
+      self.creator + ", " + self.contributor
+    elsif !self.creator.blank?
+      self.creator
+    elsif !self.contributor.blank?
+      self.contributor
+    else
+      ""
+    end
   end
 
 

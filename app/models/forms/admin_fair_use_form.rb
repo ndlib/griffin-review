@@ -110,6 +110,9 @@ class AdminFairUseForm
       if @fair_use.denied?
         @fair_use.reserve.remove
         @fair_use.reserve.save!
+      elsif @fair_use.reserve.removed?
+        @fair_use.reserve.restart
+        @fair_use.reserve.save!
       end
 
       @fair_use.save!
