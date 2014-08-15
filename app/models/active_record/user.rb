@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
 
   def username
-    self[:username].downcase.strip
+    self[:username].to_s.downcase.strip
   end
 
   # roles
