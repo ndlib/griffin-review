@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721154328) do
+ActiveRecord::Schema.define(version: 20140805171034) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140721154328) do
     t.boolean  "physical_reserve"
     t.string   "realtime_availability_id"
     t.boolean  "electronic_reserve"
+    t.string   "contributor"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree

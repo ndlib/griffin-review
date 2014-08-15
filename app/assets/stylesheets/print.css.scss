@@ -1,0 +1,26 @@
+@media print {
+  .navbar {
+    display: none;
+  }
+  .breadcrumb {
+    display: inline-block;
+  }
+  .header {
+    height: 50px;
+    h2 {
+      margin-top: 0;
+    }
+  }
+  form.form-search {
+    display: none;
+  }
+  a[href]:after {
+    content:"" !important;
+  }
+  .btn {
+    display: none;
+  }
+  .librarieslogo {
+    display: none;
+  }
+}

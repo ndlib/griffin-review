@@ -1,4 +1,4 @@
-<% row = InstructorCourseRow.new(object) %>
+<% row = InstructorCourseRow.new(object, controller) %>
 <tr class="reserve_<%= object.id %>">
   <td>
     <%= render :partial => 'list_record', :locals => { object: row.reserve} %>
@@ -8,6 +8,7 @@
     <% # render partial: '/topics/add_topics_form', locals: { reserve: object } %>
   </td -->
   <td><%= row.workflow_state %></td>
-  <td><%= row.delete_link %></td>
+  <td><p class="text-center"><%= row.edit_link %></p></td>
+  <td><p class="text-center"><%= row.delete_link %></p></td>
   <td><%= row.delete_sort %></td>
 </tr>
