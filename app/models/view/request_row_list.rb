@@ -23,9 +23,17 @@ class RequestRowList < Draper::Decorator
 
   def build_groups
     group_objects = []
-    rows.group_by{|row| row.reserve.id.round(-2) }.each do |base_id, grouped_rows|
+    rows.group_by{|row| row_id_group(row) }.each do |base_id, grouped_rows|
       group_objects << RequestRowListGroup.new(grouped_rows)
     end
     group_objects
+  end
+
+  def row_id_group(row)
+    (row.id / row_group_size) * row_group_size
+  end
+
+  def row_group_size
+    100
   end
 end
