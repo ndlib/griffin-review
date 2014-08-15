@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140721154328) do
     t.boolean  "physical_reserve"
     t.string   "realtime_availability_id"
     t.boolean  "electronic_reserve"
+    t.string   "contributor"
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree

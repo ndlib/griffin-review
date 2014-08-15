@@ -149,6 +149,17 @@ describe AdminFairUseForm do
     end
 
 
+    it "undeletes a removed item when it is changed to a undeleted state" do
+      @reserve.remove
+      @reserve.save!
+
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
+      afuf.save_fair_use
+
+      expect(@reserve.workflow_state).to eq("inprocess")
+    end
+
+
     it "removes the reserve if the fair use is denied " do
       expect(@reserve).to receive(:save!)
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { event: 'deny'} } )

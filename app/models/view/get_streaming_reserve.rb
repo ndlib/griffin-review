@@ -27,6 +27,9 @@ class GetStreamingReserve
     else
       jwplayer.jwplayer
     end
+
+    jwplayer.jwplayer
+
   end
 
 

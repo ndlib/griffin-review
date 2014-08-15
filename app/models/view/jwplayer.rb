@@ -46,8 +46,7 @@ class Jwplayer
         autostart: true,
         width: "100%",
         aspectratio: "16:9",
-        playlist: [ { sources: sources}
-        ]
+        playlist: [ { sources: sources} ]
       }
     end
 

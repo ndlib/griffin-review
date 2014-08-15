@@ -4,8 +4,9 @@ class InstructorCourseRow
 
   delegate :id, to: :reserve
 
-  def initialize(reserve)
+  def initialize(reserve, controller)
     @reserve = reserve
+    @controller = controller
   end
 
 
@@ -32,12 +33,27 @@ class InstructorCourseRow
   end
 
 
+  def can_edit?
+    permission.current_user_is_administrator? || permission.current_user_is_admin_in_masquerade?
+  end
+
+
+  def edit_link
+    if can_edit?
+      helpers.link_to(helpers.raw("<i class=\"icon-edit\"></i>"), routes.request_path(@reserve.id), target: '_blank', title: "Admins: Edit this Reserve")
+    else
+      ""
+    end
+  end
+
+
   def delete_link
     if can_delete?
       helpers.link_to(helpers.raw("<i class=\"icon-remove\"></i>"),
                       routes.course_reserve_path(@reserve.course.id, @reserve.id),
                       data: { confirm: 'Are you sure you wish to remove this reserve from your course?' },
                       :method => :delete,
+                      title: "Delete this Reserve",
                       :id => "delete_reserve_#{@reserve.id}")
     else
       ""
@@ -65,5 +81,9 @@ class InstructorCourseRow
       Rails.application.routes.url_helpers
     end
 
+
+    def permission
+      @permission ||= Permission.new(@controller.current_user, @controller)
+    end
 end
 
