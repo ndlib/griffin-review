@@ -1,9 +1,9 @@
 { "aaData": [
 <%
   request_rows = @admin_request_listing.reserves.collect {|reserve| RequestRow.new(reserve)}
+  request_rows.first.to_json
   threaded_collection = ThreadedCollection.new(request_rows)
-  start = Time.now
-  json_array = request_rows.collect{|row| row.cached_json}
+  json_array = threaded_collection.collect{|row| row.cached_json}
   json_array.each_with_index do |json, index|
 %><%= index > 0 ? ',' : '' %>
   <%= json %><% end %>
