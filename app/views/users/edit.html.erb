@@ -1,7 +1,9 @@
 <% content_for(:content_title) do %>
   <div class="page-header"><h1>Edit <%= @user.display_name %></h1></div>
 <% end %>
-
+<div>
+<p>Select the types of reserves and library locations this user should administer. </p>
+</div>
 <%= form_for @user do | f | %>
 
   <%= render partial: 'request_types_form', locals: { filter: @filter } %>
