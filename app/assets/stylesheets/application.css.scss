@@ -39,6 +39,32 @@
   margin-top: 10px;
 }
 
+#fulfillment_library_select {
+  display: none;
+}
+
+.horizontal-button {
+  display: inline;
+  white-space: nowrap;
+}
+
+#new_library_reserve_form {
+  width: 80%;
+  margin: 5px;
+  display: inline;
+}
+
+#library_select_list {
+  width: 80%;
+  margin: 5px;
+  display: inline;
+}
+
+#library_reserve_form_library {
+  vertical-align: middle;
+  margin: 0px 4px 0px 0px;
+}
+
 #copy-overlay {
   display: none;
   padding: 25px 25px 5px 25px;

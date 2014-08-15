@@ -45,6 +45,13 @@ en:
     subtitle_language: Fill in the "Subtitle Language" if you wish the video to be digitized with subtitles and in what language.
     digitized_clips: Fill in the "Desired Clips" if you wish for only a section of the work to be digitized.
     not_streamed: Check "I do not want this video to be streamed" if you wish your students to checkout and watch the original medial and do not want the media streamed at a lower quality online.
+  libraries:
+    hesburgh: "Hesburgh Library"
+    math: "O' Meara Mathmatics Library"
+    chem: "Chemistry - Physics Library"
+    business: "Mahaffey Business Library"
+    architecture: "Architecture Library"
+    engineering: "Engineering Library"
   documentation:
     what_is_reserves: "Library Reserves is a tool that course instructors can use to make library content available online to their students.  Library Reserves provides access to books, book chapters, journal articles, streaming videos, and audio."
     student:

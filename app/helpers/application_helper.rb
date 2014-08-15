@@ -20,10 +20,11 @@ module ApplicationHelper
 
 
   def library_select_form(f, label = "")
-    f.input :library,
+    f.input_field :library,
       as: "select",
-      collection: { 'Hesburgh Library' => :hesburgh , 'O\' Meara Mathmatics Library' => :math, 'Chemestry - Physics Library' => :chem, 'Mahaffey Business Library' => :business, 'Architecture Library' => :architecture, 'Engineering Library' => :engineering },
-      :selected => 'Hesburgh',
+      wrapper_html: { id: 'library_select_list' },
+      collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Chemestry - Physics Library' => :chem, 'Engineering Library' => :engineering, 'Mahaffey Business Library' => :business, 'O\' Meara Mathmatics Library' => :math },
+      :default => 'Hesburgh',
       label: label
   end
 
