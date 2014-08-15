@@ -1,45 +1,32 @@
 require 'csv'
 
+# for exporting reserves data into a CSV file format
 class StatsExporter
-
   attr_accessor :courses
 
-  def self.export!
-    self.new.export!
-  end
-
-
-  def initialize
-    @semester = Semester.current.first
+  def initialize(semester_id = Semester.current.last.id)
+    @semester = Semester.find(semester_id)
     @courses = {}
-    @current_user = User.where(:username => 'jhartzle').first
   end
 
-
-  def export!
+  def stats_content
     reserves.each do | r |
-      if r.removed?
-        next
-      end
+      next if r.removed?
       add_course(r)
       add_reading(r)
     end
-
-    write_output!
+    generate_csv
   end
-
 
   def reserves
     ReserveSearch.new.reserves_for_semester(@semester)
   end
 
   def add_course(reserve)
-    puts reserve.id
-
-    header = CourseHeader.new(reserve.course, @current_user)
     @courses[reserve.course_id] ||= {
-      primary_instructor: header.instructor_name,
-      course_code: header.instructor_name,
+      title: reserve.course.title,
+      primary_instructor: reserve.course.primary_instructor_hash['full_name'],
+      course_code: reserve.course.crosslisted_course_ids.first,
       uploaded_readings: 0,
       url_readings: 0,
       videos: 0,
@@ -66,19 +53,27 @@ class StatsExporter
     end
   end
 
-
   def increment_stat(r, stat)
     @courses[r.course_id][stat] += 1
   end
 
-
-  def write_output!
-    CSV.open(Rails.root.join('stats', "#{@semester.code}.csv"), "wb") do |csv|
-      csv << ['id', 'instructor', 'course_code', 'uploaded_readings', 'url_readings', 'videos', 'sipx', 'physical_reserves']
+  def generate_csv
+    CSV.generate do |csv|
+      csv << output_fields
       @courses.each do | key, value |
-        csv << [key, value[:primary_instructor], value[:course_code], value[:uploaded_readings], value[:url_readings], value[:videos], value[:sipx], value[:physical_reserves]]
+        csv << [
+          key, value[:title], value[:primary_instructor], value[:course_code],
+          value[:uploaded_readings], value[:url_readings], value[:videos],
+          value[:sipx], value[:physical_reserves]
+        ]
       end
     end
+  end
 
+  def output_fields
+    %w(
+      id title instructor course_code uploaded_readings
+      url_readings videos sipx physical_reserves
+    )
   end
 end
