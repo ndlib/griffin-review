@@ -1,7 +1,7 @@
 class ThreadedCollection
   attr_reader :collection, :thread_count
 
-  def initialize(collection, thread_count = 5)
+  def initialize(collection, thread_count = 4)
     @collection = collection
     @thread_count = thread_count
   end
