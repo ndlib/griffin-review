@@ -90,7 +90,7 @@ class RequestRow
 
   def cached_json
     Rails.cache.fetch(cache_key) do
-      helpers.raw(to_json)
+      to_json
     end
   end
 
