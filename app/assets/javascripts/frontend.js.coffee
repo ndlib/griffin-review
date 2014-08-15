@@ -180,7 +180,8 @@ jQuery ($) ->
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
         bLengthChange: false
-        iDisplayLength: 500
+        deferRender: true
+        iDisplayLength: 100
         bProcessing: true
         sAjaxSource: window.location.href
         aoColumnDefs: [
