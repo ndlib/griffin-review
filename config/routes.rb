@@ -63,6 +63,7 @@ Griffin::Application.routes.draw do
     resources :libraries, controller: 'requests_library', only: ['update']
 
     resources :semesters, controller: 'semesters'
+    get 'semesters/csv/:semester_id', controller: 'semesters', action: :csv_report, as: 'csv_report'
     resources :scipt, controller: 'script'
 
     resources :users
