@@ -1,11 +1,8 @@
 { "aaData": [
 <%
-  @admin_request_listing.reserves.each_with_index do  | reserve, index |
-    reserve = RequestRow.new(reserve)
-    if index == 0
-%>, <% end %>
-  <%= raw reserve.cached_json %>
-  <%
-  end
-%>
+  request_rows = @admin_request_listing.reserves.collect {|reserve| RequestRow.new(reserve)}
+  json_array = request_rows.collect{|row| row.cached_json}
+  json_array.each_with_index do |json, index|
+%><%= index > 0 ? ',' : '' %>
+  <%= json %><% end %>
 ] }
