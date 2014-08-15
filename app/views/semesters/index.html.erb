@@ -12,6 +12,7 @@
     <th>Semester</th>
     <th>Code</th>
     <th>Dates</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
         <td><%= link_to h(semester.name), edit_semester_path(semester) %></td>
         <td><%= semester.code %></td>
         <td><%= semester.date_begin.to_s(:long_ordinal) %> - <%= semester.date_end.to_s(:long_ordinal) %></td>
+        <td><%= link_to 'Stats Report', csv_report_path(semester) %></td>
       </tr>
     <% end %>
   </tbody>

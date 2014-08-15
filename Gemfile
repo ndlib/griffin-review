@@ -87,10 +87,11 @@ gem 'user_agent_parser'
 
 gem 'rb-readline'
 
+gem 'draper'
+
 
 # development only
 group :development do
-  gem 'looksee'
   gem 'rdoc'
   gem 'awesome_print'
   gem 'sextant'
