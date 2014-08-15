@@ -39,7 +39,7 @@ class ReserveSearch
               includes(:item).
               references(:item).
               where('requests.semester_id IN(?)', determine_search_semesters(semester)).
-              order('needed_by')
+              order('requests.id')
 
     if status != 'all'
       if status == 'on_order'

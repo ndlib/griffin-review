@@ -89,7 +89,9 @@ class RequestRow
   end
 
   def cached_json
+    # puts "Item to_json - #{cache_key}"
     Rails.cache.fetch(cache_key) do
+      # puts "MISS on #{cache_key}"
       to_json
     end
   end
