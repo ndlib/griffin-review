@@ -25,7 +25,7 @@ class ReserveCanBeViewedPolicy
 
 
     def current_semester?
-      @reserve.semester.current?
+      @reserve.course.semester.current?
     end
 
 
