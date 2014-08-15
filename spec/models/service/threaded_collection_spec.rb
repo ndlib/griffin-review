@@ -13,17 +13,6 @@ describe ThreadedCollection do
       end
       expect(new_array.count).to eq(collection.count)
     end
-
-    it 'is threaded' do
-      threaded_collection = described_class.new((1..10).to_a, 10)
-      start = Time.new
-      threaded_collection.each do |item|
-        sleep(item / 100.0)
-      end
-      duration = Time.now - start
-      expect(duration).to be < 0.11
-      expect(duration).to be >= 0.1
-    end
   end
 
   describe '#collect' do
