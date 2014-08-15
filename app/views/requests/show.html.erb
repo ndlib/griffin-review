@@ -25,7 +25,19 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
           <% end %>
         </td>
       </tr>
-      <tr><td style="width:25%">Needed By: </td><td><%= @admin_reserve.needed_by %></td></tr>
+      <tr>
+        <td style="width:25%">Needed By: </td>
+        <td id="needed_by_date">
+          <%= @admin_reserve.needed_by %>
+          <span id="needed_by_change"><a href="">change</a></span>
+        </td>
+        <td id="needed_by_select" nowrap>
+          <%= simple_form_for @needed_by_form, url: needed_by_path(@needed_by_form.reserve.id), method: 'put' do | f | %>
+            <%= f.input_field :needed_by, as: "string", label: false %>
+            <%= f.button :submit, "Save", :class => 'btn btn-primary horizontal-button' %>
+          <% end %>
+        </td>
+      </tr>
       <tr><td>Requested On: </td><td><%= @admin_reserve.created_at.to_s(:long) %></td></tr>
       <tr><td>Requestor:</td><td><%= @admin_reserve.requestor %></td></tr>
       <tr><td>Instructor Input:</td><td><%= @admin_reserve.instructor_notes %></td></tr>
