@@ -10,4 +10,8 @@ class RequestRowList < Draper::Decorator
   def rows
     reserves.collect {|reserve| RequestRow.new(reserve)}
   end
+
+  def to_json
+    h.raw rows.collect{|row| row.cached_json}.join(",")
+  end
 end
