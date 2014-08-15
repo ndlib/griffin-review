@@ -7,7 +7,7 @@ describe GetReserve do
 
     @semester = FactoryGirl.create(:semester)
 
-    @course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id')
+    @course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id', semester: @semester)
 
     @reserve =  mock_reserve FactoryGirl.create(:request, :book_chapter), @course
     @reserve.stub(:course).and_return(@course)
@@ -25,7 +25,7 @@ describe GetReserve do
   describe :mov_file_path do
 
     it "returns the url from the reserve" do
-      @reserve = double(Reserve, url: 'url', electronic_reserve?: true, type: 'VideoReserve', pdf: '', semester: @semester)
+      @reserve = double(Reserve, url: 'url', electronic_reserve?: true, type: 'VideoReserve', pdf: '', course: @course)
       ReserveSearch.any_instance.stub(:get).and_return(@reserve)
 
       gcl = GetReserve.new(@controller)
