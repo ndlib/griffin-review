@@ -4,9 +4,10 @@
 <div>
 <p>Select the types of reserves and library locations this user should administer. </p>
 </div>
+<% @admin_params = RequestParams.new(self, @user) %>
 <%= form_for @user do | f | %>
 
-  <%= render partial: 'request_types_form', locals: { filter: @filter } %>
+  <%= render partial: 'request_types_form', locals: { admin_params: @admin_params } %>
 
 
   <div class="form-actions">
