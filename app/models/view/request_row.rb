@@ -1,17 +1,12 @@
-class RequestRow < Draper::Decorator
+class RequestRow
+  include RailsHelpers
+
+  attr_reader :reserve
 
   delegate :id, :workflow_state, to: :reserve
 
-  def reserve
-    object
-  end
-
-  def helpers
-    h
-  end
-
-  def routes
-    h
+  def initialize(reserve)
+    @reserve = reserve
   end
 
   def request_date
@@ -95,7 +90,7 @@ class RequestRow < Draper::Decorator
 
   def cached_json
     Rails.cache.fetch(cache_key) do
-      h.raw(to_json)
+      helpers.raw(to_json)
     end
   end
 
