@@ -56,6 +56,13 @@ class SemestersController < ApplicationController
     redirect_to semesters_path
   end
 
+  def csv_report
+    check_admin_permission!
+    se = StatsExporter.new(params[:semester_id])
+    semester_code = params[:semester_id] ? Semester.find(params[:semester_id]).code : Semester.current.last.code
+    send_data(se.stats_content, :filename => "#{semester_code}.csv")
+  end
+
 
   private
 
