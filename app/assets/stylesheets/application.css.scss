@@ -44,6 +44,10 @@
   display: none;
 }
 
+#needed_by_select {
+  display: none;
+}
+
 .horizontal-button {
   display: inline;
   white-space: nowrap;
@@ -64,6 +68,12 @@
 #library_reserve_form_library {
   vertical-align: middle;
   margin: 0px 4px 0px 0px;
+}
+
+#needed_by_reserve_form_needed_by {
+  width: auto;
+  margin: 5px;
+  display: inline;
 }
 
 #copy-overlay {
