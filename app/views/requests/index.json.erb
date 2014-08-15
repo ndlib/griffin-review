@@ -1,14 +1,10 @@
 { "aaData": [
 <%
-  first = true
-  @admin_request_listing.reserves.each do  | reserve |
-    reserve = RequestRow.new(reserve)
-    if !first
-%>, <% end %><% cache (reserve.cache_key) do %>
-  <%= raw reserve.to_json %>
-<%
-    end
-    first = false
-  end
-%>
+  request_rows = @admin_request_listing.reserves.collect {|reserve| RequestRow.new(reserve)}
+  request_rows.first.to_json
+  threaded_collection = ThreadedCollection.new(request_rows)
+  json_array = threaded_collection.collect{|row| row.cached_json}
+  json_array.each_with_index do |json, index|
+%><%= index > 0 ? ',' : '' %>
+  <%= json %><% end %>
 ] }
