@@ -67,7 +67,7 @@
                 ]
         }
         ],
-            "crosslist_id": "missing_course"
+            "crosslist_id": "{missing_id}"
     }
     ],
         "supersections": null

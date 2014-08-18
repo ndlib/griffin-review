@@ -35,7 +35,7 @@ class CourseSearch
         parse_crosslist_to_object(crosslist_id, courses)
       end
     rescue OpenURI::HTTPError
-      parse_crosslist_to_object('missing_course', CourseMock.missing_data, true)
+      parse_crosslist_to_object(crosslist_id, CourseMock.missing_data(crosslist_id), true)
 
     end
   end

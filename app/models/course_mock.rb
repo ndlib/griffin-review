@@ -10,7 +10,7 @@ class CourseMock < Course
   end
 
 
-  def self.missing_data
-    JSON.parse( IO.read(File.join(Rails.root, 'config', 'course_missing.json')) )
+  def self.missing_data(id)
+    JSON.parse( IO.read(File.join(Rails.root, 'config', 'course_missing.json')).gsub("{missing_id}", id) )
   end
 end
