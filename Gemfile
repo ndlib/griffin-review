@@ -90,7 +90,7 @@ gem 'rb-readline'
 
 # development only
 group :development do
-  gem 'looksee'
+  #gem 'looksee'
   gem 'rdoc'
   gem 'awesome_print'
   gem 'sextant'
