@@ -1,7 +1,7 @@
 class CourseMock < Course
-  
+
   def semester
-    Semester.semester_for_code(Semester.current.first.code)
+    Semester.current.first
   end
 
 
@@ -9,4 +9,8 @@ class CourseMock < Course
     JSON.parse( IO.read(File.join(Rails.root, 'config', 'course_mock.json')) )
   end
 
+
+  def self.missing_data
+    JSON.parse( IO.read(File.join(Rails.root, 'config', 'course_missing.json')) )
+  end
 end
