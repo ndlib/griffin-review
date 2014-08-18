@@ -131,6 +131,9 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
+
+  gem 'growl'
+  gem 'growl-rspec'
 end
 
 gem 'rack-mini-profiler'
