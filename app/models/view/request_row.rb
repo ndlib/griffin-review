@@ -62,7 +62,7 @@ class RequestRow
 
 
   def instructor_col
-    instructor = @reserve.course.primary_instructor
+    instructor = reserve.course.primary_instructor
     helpers.link_to("#{instructor.last_name}, #{instructor.first_name}", routes.new_masquerades_path(:username => instructor.username))
   end
 
