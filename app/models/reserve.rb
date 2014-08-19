@@ -129,11 +129,17 @@ class Reserve
       request.item = item
       request.course_id = course.id
       request.semester_id = course.semester.id
+      copy_item_fields
 
       request.save!
     end
   end
 
+  def copy_item_fields
+    [:title, :selection_title, :type, :physical_reserve, :electronic_reserve].each do |item_field|
+      request.send("item_#{item_field}=", item.send(item_field))
+    end
+  end
 
   def destroy!
     if self.remove
