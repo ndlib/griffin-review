@@ -4,10 +4,14 @@ describe Reserve do
 
   let(:course_listing) { Reserve.new() }
   let(:course_search) { CourseSearch.new }
+  let(:semester) { FactoryGirl.create(:semester) }
+  let(:course) { double(Course, id: 'crossid', semester: semester) }
+
+  subject { course_listing }
 
   before(:each) do
-    @semester = FactoryGirl.create(:semester)
-    @course = double(Course, id: 'crossid', semester: @semester)
+    @semester = semester
+    @course = course
   end
 
   describe "attribute fields" do
@@ -198,6 +202,36 @@ describe Reserve do
 
   end
 
+  describe 'valid reserve' do
+    let(:request) { FactoryGirl.create(:request) }
+    let(:item) { request.item }
+    subject { described_class.factory(request, course)}
+
+    describe '#save!' do
+      it 'saves the course id to the request' do
+        expect(request.course_id).to_not eq(course.id)
+        subject.save!
+        expect(request.course_id).to eq(course.id)
+      end
+
+      it 'calls copy_item_fields' do
+        expect(subject).to receive(:copy_item_fields)
+        subject.save!
+      end
+    end
+
+    describe '#copy_item_fields' do
+      it 'copies fields from the item to the' do
+        subject.copy_item_fields
+        expect(request.item_title).to eq(item.title)
+        expect(request.item_selection_title).to eq(item.selection_title)
+        expect(request.item_type).to eq(item.type)
+        expect(request.item_electronic_reserve).to eq(item.electronic_reserve)
+        expect(request.item_physical_reserve).to eq(item.physical_reserve)
+      end
+    end
+  end
+
 
   describe "presistance" do
     before(:each) do
@@ -219,7 +253,7 @@ describe Reserve do
       @reserve.course = @course
       lambda {
         @reserve.save!
-      }.should raise_error
+      }.should raise_error(ActiveRecord::RecordInvalid)
     end
 
 
