@@ -91,6 +91,18 @@ class RequestRow
     keywords.join(' ')
   end
 
+  def request_statuses
+    statuses = []
+    if workflow_state == 'inprocess'
+      if reserve.item_on_order?
+        statuses << 'on_order'
+      else
+        statuses << 'inprocess'
+      end
+    end
+    statuses.join(' ')
+  end
+
   def cached_json
     # puts "Item to_json - #{cache_key}"
     Rails.cache.fetch(cache_key) do

@@ -54,6 +54,20 @@ describe RequestRow do
     end
   end
 
+  describe '#request_statuses' do
+    it 'can include on_order' do
+      request.stub(:workflow_state).and_return('inprocess')
+      request.stub(:item_on_order?).and_return(true)
+      expect(subject.request_statuses).to eq('on_order')
+    end
+
+    it 'can include in_process' do
+      request.stub(:workflow_state).and_return('inprocess')
+      request.stub(:item_on_order?).and_return(false)
+      expect(subject.request_statuses).to eq('inprocess')
+    end
+  end
+
   describe '#type' do
     it "exists" do
       expect(subject).to respond_to(:type)
