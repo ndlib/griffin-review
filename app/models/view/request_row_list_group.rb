@@ -22,7 +22,7 @@ class RequestRowListGroup < Draper::Decorator
   end
 
   def rows_identifier
-    @rows_identifier ||= Digest::SHA1.hexdigest(plain_rows_identifier)
+    Digest::SHA1.hexdigest(plain_rows_identifier)
   end
 
   def to_json_uncached
