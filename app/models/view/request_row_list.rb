@@ -4,7 +4,7 @@ class RequestRowList < Draper::Decorator
   end
 
   def reserves
-    request_list.reserves
+    @reserves ||= request_list.reserves
   end
 
   def groups
@@ -12,7 +12,7 @@ class RequestRowList < Draper::Decorator
   end
 
   def rows
-    @rows ||= reserves.collect {|reserve| RequestRow.new(reserve)}
+    @rows ||= build_rows
   end
 
   def to_json
@@ -27,6 +27,10 @@ class RequestRowList < Draper::Decorator
       group_objects << RequestRowListGroup.new(grouped_rows)
     end
     group_objects
+  end
+
+  def build_rows
+    reserves.collect {|reserve| RequestRow.new(reserve)}
   end
 
   def row_id_group(row)

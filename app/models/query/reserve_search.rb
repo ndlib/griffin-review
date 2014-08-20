@@ -35,9 +35,8 @@ class ReserveSearch
 
 
   def admin_requests(status, types, libraries, semester = false)
-    search = @relation.
-              includes(:item).
-              references(:item).
+    search = relation.
+              joins(:item).
               where('requests.semester_id IN(?)', determine_search_semesters(semester)).
               order('requests.id')
 
