@@ -42,8 +42,16 @@ describe RequestRow do
   end
 
 
-  it "has a request date " do
-    expect(RequestRow.new(Reserve.new).respond_to?(:request_date)).to be_true
+  it "has a request date" do
+    expect(request).to receive(:created_at).and_return(DateTime.parse('2014-08-10'))
+    expect(subject.request_date).to eq('10 Aug')
+  end
+
+  describe '#request_date_timestamp' do
+    it 'is the integer value of the request#created_at' do
+      expect(request).to receive(:created_at).and_return(DateTime.parse('2014-08-10'))
+      expect(subject.request_date_timestamp).to eq(1407628800)
+    end
   end
 
   describe '#type' do
