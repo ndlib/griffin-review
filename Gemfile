@@ -107,8 +107,6 @@ group :test do
   gem 'faker'
   gem 'selenium-webdriver'
 
-	gem 'growl'
-	gem 'growl-rspec'
 	gem 'rb-fsevent'
   gem 'database_cleaner'
 	gem 'factory_girl', "~> 2.6.0"
