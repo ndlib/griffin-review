@@ -1,16 +1,17 @@
 
-<h3>Audio Request Details</h3>
+<p class="form-help">This form will make a digital copy of a recording available on the website. The library will digitize the required content and do a fair use evaluation before publishing to the students.
+<br /><%= how_to_use_page_link('startAudio()') %>
+</p>
 
 <%= simple_form_for object, :html => {id: "audio_form"}, :url => course_reserves_path() do |f| %>
-  <%= f.input :journal_title, label: 'Album' %>
-  <%= f.input :title %>
-  <%= f.input :creator %>
-
+  <%= f.input :title, label: "Album / Title" %>
+  <%= f.input :creator, label: "Composer" %>
+  <%= f.input :contributor, label: "Artist" %>
   <%= f.input :length, label: "Tracks / Clips" do %>
-    <%= f.input_field :length %>
+    <%= f.input_field :length, as: "text", style: "width: 100%; height: 75px;", placeholder: "The specific tracks or clips if they are not the whole album." %>
   <% end %>
 
-  <%= f.input :needed_by do %>
+  <%= f.input :needed_by, label: "Date Needed By" do %>
     <%= f.input_field :needed_by, as: "string", id: "audio_needed_by_id", class: 'datepicker span2 needed_by_datepicker' %>
   <% end %>
 
@@ -18,11 +19,62 @@
     <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work. ", rows: 5 %>
   <% end %>
 
+  <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the recording.", label: false %>
+
   <%= hidden_field_tag 'instructor_reserve_request[library]', 'Hesburgh' %>
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'AudioReserve' %>
+  <%= hidden_field_tag 'instructor_reserve_request[resource_format]', 'electronic' %>
+
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary' %>
     <%= link_to 'Cancel', course_reserves_path(object.course.id) %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  function startAudio(){
+    var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: $('#audio_form .instructor_reserve_request_title')[0],
+            intro: "<%= t('form_help.audio_title') %> <%= help_required_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_creator')[0],
+            intro: "<%= t('form_help.composer') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_contributor')[0],
+            intro: "<%= t('form_help.artist') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_length')[0],
+            intro: "<%= t('form_help.tracks') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_needed_by')[0],
+            intro: "<%= t('form_help.date_needed') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_note')[0],
+            intro: "<%= t('form_help.special_instructions') %> <%= help_optional_message %>",
+            position: 'right'
+          },
+          {
+            element: $('#audio_form .instructor_reserve_request_requestor_owns_a_copy')[0],
+            intro: "<%= t('form_help.own_copy') %> ",
+            position: 'right'
+          },
+        ]
+      });
+      intro.start();
+  }
+</script>

@@ -16,6 +16,7 @@ class InstructorReserveRequest
   attribute :language_track, String
   attribute :subtitle_language, String
   attribute :creator, String
+  attribute :contributor, String
   attribute :citation, String
   attribute :length, String
   attribute :note, String
@@ -34,6 +35,7 @@ class InstructorReserveRequest
 
   validates :title, :needed_by, :library, :presence => true
   validates :creator, :presence => true, :if => :creator_required?
+  validates :contributor, :presence => true, :if => :contributor_required?
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :citation, :presence => true, :if => :citation_required?
@@ -76,6 +78,9 @@ class InstructorReserveRequest
     [].include?(type)
   end
 
+  def contributor_required?
+    [].include?(type)
+  end
 
   def length_required?
     ['BookChapterReserve'].include?(type)
@@ -167,6 +172,7 @@ class InstructorReserveRequest
 
       self.title = self.title.to_s.truncate(250).strip
       self.creator = self.creator.to_s.truncate(250).strip
+      self.contributor = self.contributor.to_s.truncate(250).strip
       self.journal_title = self.journal_title.to_s.truncate(250).strip
     end
 

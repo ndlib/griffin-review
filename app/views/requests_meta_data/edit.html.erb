@@ -37,6 +37,10 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
       <%= f.input :creator, label: 'Author or Creator of the work' %>
 
+      <% if f.object.type == 'AudioReserve' %>
+        <%= f.input :contributor, label: "Contributor or Performing Artist of the work" %>
+      <% end %>
+
       <%= f.input :details, label: "Journal and Volume" %>
 
       <%= f.input :journal_title, label: "Publisher" %>

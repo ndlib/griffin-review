@@ -6,7 +6,9 @@ describe InstructorCourseRow do
     @fair_use = double(FairUse, id: 1, temporary_approval?: false)
     @course = double(Course, id: 2)
     @reserve = double(Reserve, id: 'id', title: 'title', workflow_state_events: [ 'someevent' ] , workflow_state: 'new', fair_use: @fair_use, course: @course )
-    @course_row = InstructorCourseRow.new(@reserve)
+    @user = double(User, admin?: false)
+    @controller = double(ApplicationController, current_user: @user)
+    @course_row = InstructorCourseRow.new(@reserve, @controller)
   end
 
 
@@ -75,6 +77,45 @@ describe InstructorCourseRow do
     it "returns a link if the row can be deleted " do
       @course_row.stub(:can_delete?).and_return(true)
       expect(@course_row.delete_link.match(/<a.*data-confirm="/)).to be_true
+    end
+  end
+
+
+  describe :can_edit? do
+    it "returns true if the user is an admin" do
+      Permission.any_instance.stub(:current_user_is_administrator?).and_return(true)
+      Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(false)
+
+      expect(@course_row.can_edit?).to be_true
+    end
+
+    it "returns true if the user is an admin in masq" do
+      Permission.any_instance.stub(:current_user_is_administrator?).and_return(false)
+      Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(true)
+
+      expect(@course_row.can_edit?).to be_true
+    end
+
+    it "returns false if the user is not an admin" do
+      Permission.any_instance.stub(:current_user_is_administrator?).and_return(false)
+      Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(false)
+
+      expect(@course_row.can_edit?).to be_false
+    end
+  end
+
+
+  describe :edit_link do
+
+    it "returns nothing if the row can be edited " do
+      @course_row.stub(:can_edit?).and_return(false)
+      expect(@course_row.edit_link).to eq("")
+    end
+
+
+    it "returns a link if the row can be edit " do
+      @course_row.stub(:can_edit?).and_return(true)
+      expect(@course_row.edit_link.match(/<a.*href="/)).to be_true
     end
 
   end

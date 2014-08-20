@@ -4,8 +4,8 @@ class Reserve
   extend ActiveModel::Naming
   extend ActiveModel::Callbacks
 
-  delegate :selection_title, :realtime_availability_id, :electronic_reserve, :physical_reserve, :citation, :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :on_order?, :details, :type, :publisher, :title, :journal_title, :creator, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
-  delegate :selection_title=, :realtime_availability_id=, :electronic_reserve=, :physical_reserve=, :citation=, :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
+  delegate :selection_title, :realtime_availability_id, :electronic_reserve, :physical_reserve, :citation, :display_length, :language_track, :subtitle_language, :metadata_synchronization_date, :on_order, :on_order?, :details, :type, :publisher, :title, :journal_title, :creator, :contributor, :length, :url, :nd_meta_data_id, :overwrite_nd_meta_data, :overwrite_nd_meta_data?, to: :item
+  delegate :selection_title=, :realtime_availability_id=, :electronic_reserve=, :physical_reserve=, :citation=, :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :contributor=,:length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
   delegate :electronic_reserve?, :physical_reserve?, :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 
   delegate :currently_in_aleph, :reviewed?, :reviewed, :created_at, :updated_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
@@ -33,7 +33,7 @@ class Reserve
 
 
     event :restart do
-      transition [:available] => :inprocess
+      transition [:available, :removed] => :inprocess
     end
 
 

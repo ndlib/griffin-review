@@ -95,22 +95,36 @@ describe CourseSearch do
 
 
   describe :get do
-    before(:each) do
-      VCR.use_cassette "course_search/201310_JE_JH_JJ_JK" do
-        @course =  course_search.get('201310_JE_JH_JJ_JK')
+
+    context :found_search do
+      before(:each) do
+        VCR.use_cassette "course_search/201310_JE_JH_JJ_JK" do
+          @course =  course_search.get('201310_JE_JH_JJ_JK')
+        end
+      end
+
+      it "returns the course specified" do
+        expect(@course.id).to eq("201310_JE_JH_JJ_JK")
+      end
+
+      it "combines sections from crosslistings into one result " do
+        res = ["201310_ACCT_20100", "201310_BAAL_20100", "201310_BAEG_20100", "201310_BASC_20100"]
+        expect(@course.sections.collect(&:triple).uniq).to eq(res)
       end
     end
 
-    it "returns the course specified" do
-      expect(@course.id).to eq("201310_JE_JH_JJ_JK")
-    end
+    context :missing_course_404 do
+      before(:each) do
+        VCR.use_cassette "course_search/missing" do
+          @course =  course_search.get('not_a_course_id')
+        end
+      end
 
-    it "combines sections from crosslistings into one result " do
-      res = ["201310_ACCT_20100", "201310_BAAL_20100", "201310_BAEG_20100", "201310_BASC_20100"]
-      expect(@course.sections.collect(&:triple).uniq).to eq(res)
-    end
+      it "returns the missing course object" do
+        expect(@course.class).to be(CourseMock)
+      end
 
-    it "handles empty response"
+    end
 
     it "handles a 500 response from the api"
 
