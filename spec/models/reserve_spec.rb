@@ -9,10 +9,6 @@ describe Reserve do
 
   subject { course_listing }
 
-  before(:each) do
-    @semester = semester
-    @course = course
-  end
 
   describe "attribute fields" do
 
@@ -147,7 +143,7 @@ describe Reserve do
       @reserve.type="BookChapter"
       @reserve.requestor_netid = "nid"
 
-      @reserve.course = @course
+      @reserve.course = course
 
       @reserve.save!
 
@@ -234,13 +230,9 @@ describe Reserve do
 
 
   describe "presistance" do
-    before(:each) do
-      @reserve = Reserve.new
-    end
 
     it "addes the course reserve id to the reserve record" do
       request = FactoryGirl.create(:request)
-      course = @course
       reserve = Reserve.factory(request, course)
       reserve.save!
 
@@ -250,9 +242,9 @@ describe Reserve do
     end
 
     it "raises invalid record if the record is not valid" do
-      @reserve.course = @course
+      subject.course = course
       lambda {
-        @reserve.save!
+        subject.save!
       }.should raise_error(ActiveRecord::RecordInvalid)
     end
 
