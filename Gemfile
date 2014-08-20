@@ -39,6 +39,12 @@ gem 'acts-as-taggable-on'
 # workflow functionality
 gem 'workflow', '0.8.1'
 
+# external service interaction
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'typhoeus'
+gem 'excon'
+
 
 gem 'json'
 
@@ -58,8 +64,6 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'therubyracer'
 
 gem "state_machine"
-
-gem "faraday"
 
 gem 'virtus'
 
