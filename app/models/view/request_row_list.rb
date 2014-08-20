@@ -26,11 +26,9 @@ class RequestRowList < Draper::Decorator
   end
 
   def build_groups
-    group_objects = []
-    grouped_rows.each do |base_id, row_array|
-      group_objects << build_group(row_array)
+    grouped_rows.collect do |base_id, row_array|
+      build_group(row_array)
     end
-    group_objects
   end
 
   def build_group(row_array)
