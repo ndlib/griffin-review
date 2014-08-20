@@ -224,6 +224,7 @@ describe Reserve do
         expect(request.item_type).to eq(item.type)
         expect(request.item_electronic_reserve).to eq(item.electronic_reserve)
         expect(request.item_physical_reserve).to eq(item.physical_reserve)
+        expect(request.item_on_order).to eq(item.on_order)
       end
     end
   end
