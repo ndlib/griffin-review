@@ -66,6 +66,21 @@ describe RequestRow do
       request.stub(:item_on_order?).and_return(false)
       expect(subject.request_statuses).to eq('inprocess')
     end
+
+    it 'can include new' do
+      request.stub(:workflow_state).and_return('new')
+      expect(subject.request_statuses).to eq('new')
+    end
+
+    it 'can include available' do
+      request.stub(:workflow_state).and_return('available')
+      expect(subject.request_statuses).to eq('available')
+    end
+
+    it 'can include removed' do
+      request.stub(:workflow_state).and_return('removed')
+      expect(subject.request_statuses).to eq('removed')
+    end
   end
 
   describe '#type' do

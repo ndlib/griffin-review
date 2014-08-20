@@ -99,6 +99,8 @@ class RequestRow
       else
         statuses << 'inprocess'
       end
+    else
+      statuses << workflow_state
     end
     statuses.join(' ')
   end
