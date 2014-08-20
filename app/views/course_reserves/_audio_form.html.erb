@@ -8,7 +8,7 @@
   <%= f.input :creator, label: "Composer" %>
   <%= f.input :contributor, label: "Artist" %>
   <%= f.input :length, label: "Tracks / Clips" do %>
-    <%= f.input_field :length %>
+    <%= f.input_field :length, as: "text", style: "width: 100%; height: 75px;", placeholder: "The specific tracks or clips if they are not the whole album." %>
   <% end %>
 
   <%= f.input :needed_by, label: "Date Needed By" do %>

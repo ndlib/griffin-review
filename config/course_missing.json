@@ -1,0 +1,75 @@
+[
+
+{
+    "term_prefix": "201410",
+    "alpha_prefix": "MISSING",
+    "number": 100000001,
+    "course_title": "Missing Course",
+    "section_groups": [
+    {
+        "section_group_id": "12345678_54321_LR",
+        "primary_instructor":             {
+                "id": "cclark2",
+                "identifier_contexts": {
+                    "ldap": "uid",
+                    "staff_directory": "email"
+                },
+                "identifier": "by_netid",
+                "netid": "jhartzle",
+                "first_name": "No",
+                "last_name": "Instructor",
+                "full_name": "No Instructor",
+                "ndguid": "nd.edu.nd12345",
+                "position_title": "Master of Reserves",
+                "campus_department": "Hesburgh Libraries",
+                "primary_affiliation": "Staff",
+                "contact_information": {
+                    "email": "cclark2@nd.edu",
+                    "campus_address": "208 Hesburgh Library&#10;Notre Dame, IN 46556",
+                    "phone": "+1 574 631 1234"
+                }
+            },
+        "sections": [
+        {
+            "section_id": "201300_54321",
+            "supersection_id": null,
+            "instructors": [
+            {
+                "id": "jhartzle",
+                "identifier_contexts": {
+                    "ldap": "uid",
+                    "staff_directory": "email"
+                },
+                "identifier": "by_netid",
+                "netid": "jhartzle",
+                "first_name": "No",
+                "last_name": "Instructor",
+                "full_name": "No Instructor",
+                "ndguid": "nd.edu.nd12345",
+                "position_title": "Master of Reserves",
+                "campus_department": "Hesburgh Libraries",
+                "primary_affiliation": "Staff",
+                "contact_information": {
+                    "email": "jhartzle@nd.edu",
+                    "campus_address": "208 Hesburgh Library&#10;Notre Dame, IN 46556",
+                    "phone": "+1 574 631 1234"
+                }
+            }
+            ],
+                "term": "201410",
+                "course_triple": "201300_LIBRES_100000001",
+                "course_title": "Course Missing",
+                "alpha_prefix": "missing",
+                "number": 100000001,
+                "section_number": 1,
+                "crn": "54321",
+                "enrollments": [
+                ]
+        }
+        ],
+            "crosslist_id": "{missing_id}"
+    }
+    ],
+        "supersections": null
+}
+]

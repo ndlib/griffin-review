@@ -26,27 +26,18 @@ class CourseSearch
 
 
 
-  def get(course_id)
-    res = course_api.course_id(course_id)
-    res = search_for_section_group(res, course_id)
-
-    if res
-      return new_course(res)
-    else
-      return nil
-    end
-  end
-
-
   def get(crosslist_id)
+    begin
+      if crosslist_id == '12345678_54321_LR'
+        parse_crosslist_to_object(crosslist_id, CourseMock.mock_data, true)
+      else
+        courses = course_api.courses_by_crosslist_id(crosslist_id)
+        parse_crosslist_to_object(crosslist_id, courses)
+      end
+    rescue OpenURI::HTTPError
+      parse_crosslist_to_object(crosslist_id, CourseMock.missing_data(crosslist_id), true)
 
-    if crosslist_id == '12345678_54321_LR'
-      parse_crosslist_to_object(crosslist_id, CourseMock.mock_data, true)
-    else
-      courses = course_api.courses_by_crosslist_id(crosslist_id)
-      parse_crosslist_to_object(crosslist_id, courses)
     end
-
   end
 
 

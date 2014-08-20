@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140805171034) do
     t.string   "selection_title"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "creator"
     t.text     "title"
     t.string   "journal_title"
