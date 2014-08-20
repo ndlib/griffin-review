@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20140820170026) do
     t.datetime "updated_at",                    null: false
     t.string   "creator"
     t.text     "title"
-    t.text     "journal_title"
+    t.string   "journal_title"
     t.string   "nd_meta_data_id"
     t.boolean  "overwrite_nd_meta_data"
-    t.text     "length"
+    t.string   "length"
     t.string   "pdf_file_name"
     t.string   "pdf_file_size"
     t.string   "pdf_content_type"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20140820170026) do
     t.string   "item_type"
     t.boolean  "item_physical_reserve"
     t.boolean  "item_electronic_reserve"
+    t.boolean  "item_on_order"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
