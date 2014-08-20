@@ -7,14 +7,6 @@ GIT
       spork (>= 1.0rc0)
 
 GIT
-  remote: git@git.library.nd.edu:hesburgh_infrastructure
-  revision: 6d252a83d28b38f56181927c6356883bb1dec874
-  specs:
-    hesburgh_infrastructure (0.1.0)
-      capistrano (~> 2.15.0)
-      rails
-
-GIT
   remote: git@git.library.nd.edu:assets
   revision: 98d6b5e88cca6b90c81aa15de3e5d8c98d379192
   specs:
@@ -25,6 +17,14 @@ GIT
       sass-rails (>= 3.2.3)
       twitter-bootstrap-rails
       uglifier (>= 1.0.3)
+
+GIT
+  remote: git@git.library.nd.edu:hesburgh_infrastructure
+  revision: 6d252a83d28b38f56181927c6356883bb1dec874
+  specs:
+    hesburgh_infrastructure (0.1.0)
+      capistrano (~> 2.15.0)
+      rails
 
 GIT
   remote: ssh://git@git.library.nd.edu/compendium
