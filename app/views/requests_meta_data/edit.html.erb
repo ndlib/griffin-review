@@ -43,7 +43,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
       <%= f.input :details, label: "Journal and Volume" %>
 
-      <%= f.input :publisher_provider, label: "Publisher" %>
+      <%= f.input :journal_title, label: "Publisher" %>
     </div>
     <% if f.object.type == 'BookChapterReserve' %>
       <%= f.input :length, label: "Reading Length" %>
