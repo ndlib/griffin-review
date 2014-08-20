@@ -67,7 +67,7 @@ class RequestRow
   end
 
   def type
-    reserve.type.gsub('Reserve', '')
+    reserve.item_type.to_s.gsub('Reserve', '')
   end
 
 
