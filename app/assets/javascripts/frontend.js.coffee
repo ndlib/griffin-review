@@ -178,6 +178,17 @@ jQuery ($) ->
     # For admin table
 
     if $(".admin_datatable").size() > 0
+      adminIndexes =
+        dateNeededDisplay: 0
+        title: 1
+        requestDateDisplay: 2
+        instructor: 3
+        course: 4
+        type: 5
+        requestDateTimestamp: 6
+        dateNeededTimestamp: 7
+        searchKeywords: 8
+
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
         bLengthChange: false
@@ -186,24 +197,24 @@ jQuery ($) ->
         bProcessing: true
         sAjaxSource: window.location.href
         aoColumnDefs: [
-          iDataSort: 6
-          aTargets: [2]
+          iDataSort: adminIndexes['requestDateTimestamp']
+          aTargets: [adminIndexes['requestDateDisplay']]
         ,
-          iDataSort: 7
-          aTargets: [0]
-        ,
-          bSortable: false
-          bSearchable: false
-          bVisible: false
-          aTargets: [6]
+          iDataSort: adminIndexes['dateNeededTimestamp']
+          aTargets: [adminIndexes['dateNeededDisplay']]
         ,
           bSortable: false
           bSearchable: false
           bVisible: false
-          aTargets: [7]
+          aTargets: [adminIndexes['requestDateTimestamp']]
+        ,
+          bSortable: false
+          bSearchable: false
+          bVisible: false
+          aTargets: [adminIndexes['dateNeededTimestamp']]
         ,
           bVisible: false
-          aTargets: [8]
+          aTargets: [adminIndexes['searchKeywords']]
         ]
 
       )
