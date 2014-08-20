@@ -30,7 +30,11 @@ class RequestRowList < Draper::Decorator
   end
 
   def build_rows
-    reserves.collect {|reserve| RequestRow.new(reserve)}
+    reserves.collect {|reserve| build_row(reserve)}
+  end
+
+  def build_row(reserve)
+    RequestRow.new(reserve)
   end
 
   def row_id_group(row)
