@@ -137,7 +137,7 @@ class Reserve
   end
 
   def copy_item_fields
-    [:title, :selection_title, :type, :physical_reserve, :electronic_reserve].each do |item_field|
+    [:title, :selection_title, :type, :physical_reserve, :electronic_reserve, :on_order].each do |item_field|
       request.send("item_#{item_field}=", item.send(item_field))
     end
   end
