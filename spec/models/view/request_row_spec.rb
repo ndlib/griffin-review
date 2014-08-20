@@ -67,6 +67,28 @@ describe RequestRow do
     end
   end
 
+  describe '#search_keywords' do
+    it 'is blank by default' do
+      expect(subject.search_keywords).to eq('')
+    end
+
+    it 'is electronic' do
+      request.item_electronic_reserve = true
+      expect(subject.search_keywords).to eq('electronic')
+    end
+
+    it 'is physical' do
+      request.item_physical_reserve = true
+      expect(subject.search_keywords).to eq('physical')
+    end
+
+    it 'is both physical and electronic' do
+      request.item_physical_reserve = true
+      request.item_electronic_reserve = true
+      expect(subject.search_keywords).to eq('electronic physical')
+    end
+  end
+
 
   it "has the workflow state" do
     expect(RequestRow.new(Reserve.new).respond_to?(:workflow_state)).to be_true
@@ -103,7 +125,7 @@ describe RequestRow do
     r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false)
     r.save!
 
-    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, " physical"])
+    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, "physical"])
   end
 
 
