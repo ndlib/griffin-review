@@ -77,15 +77,15 @@ class RequestRow
 
 
   def search_keywords
-    txt = ""
-    if reserve.electronic_reserve?
-      txt += 'electronic'
+    keywords = []
+    if reserve.item_electronic_reserve?
+      keywords << 'electronic'
     end
-    if reserve.physical_reserve?
-      txt += ' physical'
+    if reserve.item_physical_reserve?
+      keywords << 'physical'
     end
 
-    txt
+    keywords.join(' ')
   end
 
   def cached_json
