@@ -1,20 +1,25 @@
-
+require 'spec_helper'
 
 describe RequestRow do
+  let(:reserve) { Reserve.factory(request) }
+  let(:request) { Request.new(item: item, id: 1) }
+  let(:item) { Item.new }
+  subject { described_class.new(reserve) }
 
   it "has a title" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:title)).to be_true
+    expect(subject.respond_to?(:title)).to be_true
   end
 
-  it "links to the title" do
-    row = RequestRow.new(Reserve.new(id: 1, title: 'title'))
-    expect(row.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">title</a>")
+  it "links to the request item_title" do
+    request.item_title = 'title'
+    expect(subject.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">title</a>")
   end
 
 
   it "shows the selection title when there is a selection title" do
-    row = RequestRow.new(Reserve.new(id: 1, title: 'title', selection_title: 'selection_title'))
-    expect(row.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">selection_title</a><br>title")
+    request.item_title = 'title'
+    request.item_selection_title = 'selection_title'
+    expect(subject.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">selection_title</a><br>title")
   end
 
 

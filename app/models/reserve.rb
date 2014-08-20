@@ -10,6 +10,7 @@ class Reserve
 
   delegate :currently_in_aleph?, :currently_in_aleph, :reviewed?, :reviewed, :created_at, :updated_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
   delegate :currently_in_aleph=, :reviewed=, :id=, :semester=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
+  delegate :item_title, :item_selection_title, :item_type, :item_physical_reserve, :item_electronic_reserve, :item_physical_reserve?, :item_electronic_reserve?, to: :request
 
   attr_accessor :course, :request
   attr_accessor :requestor_has_an_electronic_copy

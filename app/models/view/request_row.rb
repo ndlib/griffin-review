@@ -43,10 +43,10 @@ class RequestRow
 
 
   def title
-    if reserve.selection_title.present?
-      helpers.raw "#{helpers.link_to reserve.selection_title, routes.request_path(reserve.id), target: '_blank'}<br>#{reserve.title}"
+    if reserve.item_selection_title.present?
+      helpers.raw "#{helpers.link_to reserve.item_selection_title, routes.request_path(reserve.id), target: '_blank'}<br>#{reserve.item_title}"
     else
-      helpers.link_to reserve.title, routes.request_path(reserve.id), target: '_blank'
+      helpers.link_to reserve.item_title, routes.request_path(reserve.id), target: '_blank'
     end
   end
 
