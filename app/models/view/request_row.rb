@@ -72,7 +72,7 @@ class RequestRow
 
 
   def cache_key
-    "admin-reserve-#{reserve.id}-#{reserve.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}#{reserve.item.updated_at.to_s.gsub(' ', '-').gsub('/', '-')}"
+    "admin-reserve-#{reserve.id}-#{reserve.updated_at.to_i}"
   end
 
 
