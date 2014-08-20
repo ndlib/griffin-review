@@ -46,9 +46,25 @@ describe RequestRow do
     expect(RequestRow.new(Reserve.new).respond_to?(:request_date)).to be_true
   end
 
+  describe '#type' do
+    it "exists" do
+      expect(subject).to respond_to(:type)
+    end
 
-  it "has a type" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:type)).to be_true
+    it "pulls the type from the request#item_type" do
+      request.item_type = "type"
+      expect(subject.type).to eq("type")
+    end
+
+    it "strips 'Reserve'" do
+      request.item_type = "Reserve"
+      expect(subject.type).to eq("")
+    end
+
+    it "works with nil" do
+      request.item_type = nil
+      expect(subject.type).to eq("")
+    end
   end
 
 
