@@ -78,15 +78,15 @@ class AdminDataTable
 
   applyTypeFilter: ->
     values = []
-    $('.dataTables_filter .request_type_filter input:checked').each ->
-      values.push($(this).val())
+    @typeCheckboxes.filter(':checked').each ->
+      values.push(jQuery(this).val())
     values = values.join('|')
     @table.column(adminIndexes['type']).search(values, true).draw()
 
   applyLibraryFilter: ->
     values = []
-    $('.dataTables_filter .request_library_filter input:checked').each ->
-      values.push($(this).val())
+    @libraryCheckboxes.filter(':checked').each ->
+      values.push(jQuery(this).val())
     values = values.join('|')
     @table.column(adminIndexes['library']).search(values, true).draw()
 
@@ -94,8 +94,9 @@ jQuery ($) ->
 
 
   setupAdminDatatable = () ->
-    if $(".admin_datatable").size() > 0
-      new AdminDataTable($(".admin_datatable"))
+    table = $(".admin_datatable")
+    if table.size() > 0
+      new AdminDataTable(table)
 
   ready = ->
     setupAdminDatatable()
