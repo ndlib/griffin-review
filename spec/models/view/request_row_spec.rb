@@ -206,7 +206,7 @@ describe RequestRow do
 
   it "makes the key out of the reserve" do
     reserve = mock_reserve FactoryGirl.create(:request), nil
-    expect(RequestRow.new(reserve).cache_key).to eq("admin-reserve-#{reserve.id}-#{reserve.updated_at.to_i}")
+    expect(RequestRow.new(reserve).cache_key).to eq("admin-reserve-v1-#{reserve.id}-#{reserve.updated_at.to_i}")
   end
 
 
