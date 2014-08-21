@@ -30,6 +30,7 @@ jQuery ($) ->
           aTargets: [1]
         ]
       )
+      setupTableFilters()
 
 
   setupInstructorDatatable = () ->
@@ -61,6 +62,8 @@ jQuery ($) ->
           oTable.fnFilter("available", 4, true, false, false)
           $(this).text('Deleted Reserves')
 
+      setupTableFilters()
+
 
 
   setupCopyOldReserveDatatable = () ->
@@ -76,6 +79,8 @@ jQuery ($) ->
           aTargets: [4]
         ]
       )
+
+      setupTableFilters()
 
 
   setupUsersDatatable = () ->
@@ -98,6 +103,8 @@ jQuery ($) ->
           aTargets: [5]
         ]
       )
+
+      setupTableFilters()
 
 
 
@@ -172,8 +179,6 @@ jQuery ($) ->
 
   $('.datepicker').datepicker()
 
-
-
   setupAdminDatatable = () ->
     # For admin table
 
@@ -234,7 +239,7 @@ jQuery ($) ->
 
       )
 
-
+      setupTableFilters()
 
   setupMetaDataForm = () ->
     $('#admin_update_meta_data_title').keyup ->
@@ -292,8 +297,6 @@ jQuery ($) ->
   setupInstructorDatatable()
   setupCopyOldReserveDatatable()
   setupUsersDatatable()
-
-  setupTableFilters()
 
 
   $('.needed_by_datepicker').change ->
