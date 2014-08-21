@@ -14,7 +14,10 @@ filter = @admin_request_listing.request_filter
 breadcrumb(['Requests'])
 %>
 
-<%= render :partial => 'request_tabs', locals: { :filter => @admin_request_listing.request_tabs }%>
+
+<div class="request_status_filter">
+  <%= render :partial => 'request_tabs', locals: { :filter => @admin_request_listing.request_tabs }%>
+</div>
 
 <div class="table_filter">
   <%= render :partial => "/users/request_types_form", :locals => { :filter => filter } %>
