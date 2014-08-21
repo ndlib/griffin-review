@@ -120,7 +120,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords]
+    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords, request_statuses]
   end
 
 end

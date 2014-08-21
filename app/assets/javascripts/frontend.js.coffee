@@ -187,6 +187,7 @@ jQuery ($) ->
         requestDateTimestamp: 6
         dateNeededTimestamp: 7
         searchKeywords: 8
+        status: 9
 
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
@@ -214,6 +215,10 @@ jQuery ($) ->
         ,
           bVisible: false
           aTargets: [adminIndexes['searchKeywords']]
+        ,
+          aTargets: [adminIndexes['status']]
+          bVisible: false
+          bSearchable: false
         ]
 
       )
