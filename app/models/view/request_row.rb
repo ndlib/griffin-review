@@ -79,7 +79,7 @@ class RequestRow
 
 
   def cache_key
-    "admin-reserve-#{reserve.id}-#{reserve.updated_at.to_i}"
+    "admin-reserve-v1-#{reserve.id}-#{reserve.updated_at.to_i}"
   end
 
   def not_in_aleph?
