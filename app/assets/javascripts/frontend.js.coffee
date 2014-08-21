@@ -178,68 +178,6 @@ jQuery ($) ->
 
   $('.datepicker').datepicker()
 
-  setupAdminDatatable = () ->
-    # For admin table
-
-    if $(".admin_datatable").size() > 0
-      adminIndexes =
-        dateNeededDisplay: 0
-        title: 1
-        requestDateDisplay: 2
-        instructor: 3
-        course: 4
-        typeDisplay: 5
-        requestDateTimestamp: 6
-        dateNeededTimestamp: 7
-        searchKeywords: 8
-        status: 9
-        library: 10
-        type: 11
-
-      oTable = $(".admin_datatable").dataTable(
-        sPaginationType: "bootstrap"
-        bLengthChange: false
-        deferRender: true
-        iDisplayLength: 100
-        bProcessing: true
-        sAjaxSource: window.location.href
-        aoColumnDefs: [
-          iDataSort: adminIndexes['requestDateTimestamp']
-          aTargets: [adminIndexes['requestDateDisplay']]
-        ,
-          iDataSort: adminIndexes['dateNeededTimestamp']
-          aTargets: [adminIndexes['dateNeededDisplay']]
-        ,
-          bSortable: false
-          bSearchable: false
-          bVisible: false
-          aTargets: [adminIndexes['requestDateTimestamp']]
-        ,
-          bSortable: false
-          bSearchable: false
-          bVisible: false
-          aTargets: [adminIndexes['dateNeededTimestamp']]
-        ,
-          bVisible: false
-          aTargets: [adminIndexes['searchKeywords']]
-        ,
-          aTargets: [adminIndexes['status']]
-          bVisible: false
-          bSearchable: false
-        ,
-          aTargets: [adminIndexes['library']]
-          bVisible: false
-          bSearchable: false
-        ,
-          aTargets: [adminIndexes['type']]
-          bVisible: false
-          bSearchable: false
-        ]
-
-      )
-
-      setupTableFilters()
-
   setupMetaDataForm = () ->
     $('#admin_update_meta_data_title').keyup ->
       $('.title').html($(this).val())
@@ -290,8 +228,6 @@ jQuery ($) ->
 
   setupMetaDataForm()
   setupResourceForm()
-
-  setupAdminDatatable()
   setupStudentDatatable()
   setupInstructorDatatable()
   setupCopyOldReserveDatatable()
