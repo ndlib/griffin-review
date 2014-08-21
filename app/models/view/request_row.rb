@@ -69,8 +69,12 @@ class RequestRow
     helpers.link_to("#{instructor.last_name}, #{instructor.first_name}", routes.new_masquerades_path(:username => instructor.username))
   end
 
+  def type_display
+    type.gsub('Reserve', '')
+  end
+
   def type
-    reserve.item_type.to_s.gsub('Reserve', '')
+    reserve.item_type.to_s
   end
 
 
@@ -124,7 +128,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords, request_statuses, library]
+    [needed_by, title, request_date, instructor_col, course_col, type_display,  request_date_timestamp, needed_by_json, search_keywords, request_statuses, library, type]
   end
 
 end

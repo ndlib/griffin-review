@@ -184,12 +184,13 @@ jQuery ($) ->
         requestDateDisplay: 2
         instructor: 3
         course: 4
-        type: 5
+        typeDisplay: 5
         requestDateTimestamp: 6
         dateNeededTimestamp: 7
         searchKeywords: 8
         status: 9
         library: 10
+        type: 11
 
       oTable = $(".admin_datatable").dataTable(
         sPaginationType: "bootstrap"
@@ -223,6 +224,10 @@ jQuery ($) ->
           bSearchable: false
         ,
           aTargets: [adminIndexes['library']]
+          bVisible: false
+          bSearchable: false
+        ,
+          aTargets: [adminIndexes['type']]
           bVisible: false
           bSearchable: false
         ]
