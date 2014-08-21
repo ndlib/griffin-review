@@ -64,6 +64,7 @@ class AdminDataTable
     @filterContainer.append jQuery('.table_filter').html()
     @typeCheckboxes = @filterContainer.find('.request_type_filter input')
     @libraryCheckboxes = @filterContainer.find('.request_library_filter input')
+    @statusTabs = jQuery('.request_status_filter li')
 
   setupFilters: ->
     object = @
@@ -75,6 +76,11 @@ class AdminDataTable
 
     @libraryCheckboxes.change ->
       object.applyLibraryFilter()
+
+    @statusTabs.click (event) ->
+      event.preventDefault()
+      link = jQuery(this).find('a')
+      object.filterStatus(link.attr('filter'))
 
   applyTypeFilter: ->
     values = []
@@ -89,6 +95,14 @@ class AdminDataTable
       values.push(jQuery(this).val())
     values = values.join('|')
     @table.column(adminIndexes['library']).search(values, true).draw()
+
+  filterStatus: (status) ->
+    if status == 'all'
+      value = ''
+    else
+      value = status
+    @statusTabs.removeClass('active').find("a[filter=#{status}]").parent().addClass('active')
+    @table.column(adminIndexes['status']).search(value, true).draw()
 
 jQuery ($) ->
 

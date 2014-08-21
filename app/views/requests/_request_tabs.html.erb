@@ -13,13 +13,13 @@
       <a class="tab" filter="complete" href="<%= requests_path(:tab => 'available') %>">Published</a>
     </li>
     <li class="<%= filter.css_class('removed') %>">
-      <a class="tab" filter="complete" href="<%= requests_path(:tab => 'removed') %>">Deleted</a>
+      <a class="tab" filter="removed" href="<%= requests_path(:tab => 'removed') %>">Deleted</a>
     </li>
     <li class="<%= filter.css_class('all') %>">
-      <a class="tab" filter="complete" href="<%= requests_path(:tab => 'all') %>">All</a>
+      <a class="tab" filter="all" href="<%= requests_path(:tab => 'all') %>">All</a>
     </li>
     <li class="<%= filter.css_class('not_in_aleph') %>">
-      <a class="tab" filter="complete" href="<%= requests_path(:tab => 'not_in_aleph') %>">Not In Aleph</a>
+      <a class="tab" filter="not_in_aleph" href="<%= requests_path(:tab => 'not_in_aleph') %>">Not In Aleph</a>
     </li>
   </ul>
 </div>
