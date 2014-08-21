@@ -19,12 +19,13 @@ jQuery ($) ->
         type: 11
 
       oTable = $(".admin_datatable").dataTable(
-        sPaginationType: "bootstrap"
-        bLengthChange: false
+        pagingType: "bootstrap"
+        lengthChange: false
         deferRender: true
-        iDisplayLength: 100
-        bProcessing: true
-        sAjaxSource: window.location.href
+        pageLength: 100
+        processing: true
+        ajax:
+          url: window.location.href
         aoColumnDefs: [
           iDataSort: adminIndexes['requestDateTimestamp']
           aTargets: [adminIndexes['requestDateDisplay']]
