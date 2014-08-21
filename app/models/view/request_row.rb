@@ -111,6 +111,10 @@ class RequestRow
     statuses.join(' ')
   end
 
+  def library
+    reserve.library
+  end
+
   def cached_json
     # puts "Item to_json - #{cache_key}"
     Rails.cache.fetch(cache_key) do
@@ -120,7 +124,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords, request_statuses]
+    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords, request_statuses, library]
   end
 
 end
