@@ -78,6 +78,9 @@ class RequestRow
     "admin-reserve-#{reserve.id}-#{reserve.updated_at.to_i}"
   end
 
+  def not_in_aleph?
+    workflow_state != 'removed' && reserve.item_physical_reserve? && !reserve.currently_in_aleph?
+  end
 
   def search_keywords
     keywords = []
@@ -101,6 +104,9 @@ class RequestRow
       end
     else
       statuses << workflow_state
+    end
+    if not_in_aleph?
+      statuses << 'not_in_aleph'
     end
     statuses.join(' ')
   end

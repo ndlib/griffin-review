@@ -54,6 +54,35 @@ describe RequestRow do
     end
   end
 
+  describe '#not_in_aleph?' do
+    describe 'physical reserve not in aleph' do
+      before do
+        request.stub(:currently_in_aleph?).and_return(false)
+        request.stub(:item_physical_reserve?).and_return(true)
+        request.stub(:workflow_state).and_return('inprocess')
+      end
+
+      it 'is true' do
+        expect(subject.not_in_aleph?).to be_true
+      end
+
+      it 'is false for removed' do
+        request.stub(:workflow_state).and_return('removed')
+        expect(subject.not_in_aleph?).to be_false
+      end
+
+      it 'is false if not a physical reserve' do
+        request.stub(:item_physical_reserve?).and_return(false)
+        expect(subject.not_in_aleph?).to be_false
+      end
+
+      it 'is false if currently in aleph' do
+        request.stub(:currently_in_aleph?).and_return(true)
+        expect(subject.not_in_aleph?).to be_false
+      end
+    end
+  end
+
   describe '#request_statuses' do
     it 'can include on_order' do
       request.stub(:workflow_state).and_return('inprocess')
@@ -80,6 +109,18 @@ describe RequestRow do
     it 'can include removed' do
       request.stub(:workflow_state).and_return('removed')
       expect(subject.request_statuses).to eq('removed')
+    end
+
+    it 'includes not_in_aleph if #not_in_aleph? is true' do
+      request.stub(:workflow_state).and_return('inprocess')
+      subject.stub(:not_in_aleph?).and_return(true)
+      expect(subject.request_statuses).to eq('inprocess not_in_aleph')
+    end
+
+    it 'does not include not_in_aleph if #not_in_aleph? is false' do
+      request.stub(:workflow_state).and_return('inprocess')
+      subject.stub(:not_in_aleph?).and_return(false)
+      expect(subject.request_statuses).to eq('inprocess')
     end
   end
 

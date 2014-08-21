@@ -8,7 +8,7 @@ class Reserve
   delegate :selection_title=, :realtime_availability_id=, :electronic_reserve=, :physical_reserve=, :citation=, :display_length=, :language_track=, :subtitle_language=, :metadata_synchronization_date=, :on_order=, :details=, :type=, :publisher=, :title=, :journal_title=, :creator=, :contributor=,:length=, :pdf, :pdf=, :url=, :nd_meta_data_id=, :overwrite_nd_meta_data=, :overwrite_nd_meta_data=, to: :item
   delegate :electronic_reserve?, :physical_reserve?, :details, :available_library, :availability, :publisher_provider, :creator_contributor, to: :item
 
-  delegate :currently_in_aleph, :reviewed?, :reviewed, :created_at, :updated_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
+  delegate :currently_in_aleph, :currently_in_aleph?, :reviewed?, :reviewed, :created_at, :updated_at, :id, :semester, :workflow_state, :course_id, :crosslist_id, :requestor_netid, :needed_by, :number_of_copies, :note, :requestor_owns_a_copy, :library, :requestor_netid, to: :request
   delegate :currently_in_aleph=, :reviewed=, :id=, :semester=, :workflow_state=, :course_id=, :requestor_netid=, :needed_by=, :number_of_copies=, :note=, :requestor_owns_a_copy=, :library=, :requestor_netid=, to: :request
   delegate :item_title, :item_selection_title, :item_type, :item_physical_reserve, :item_electronic_reserve, :item_physical_reserve?, :item_electronic_reserve?, :item_on_order?, to: :request
 
