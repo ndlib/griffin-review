@@ -26,37 +26,37 @@ jQuery ($) ->
         processing: true
         ajax:
           url: window.location.href
-        aoColumnDefs: [
-          iDataSort: adminIndexes['requestDateTimestamp']
-          aTargets: [adminIndexes['requestDateDisplay']]
+        columnDefs: [
+          targets: adminIndexes['requestDateDisplay']
+          orderData: [adminIndexes['requestDateTimestamp']]
         ,
-          iDataSort: adminIndexes['dateNeededTimestamp']
-          aTargets: [adminIndexes['dateNeededDisplay']]
+          targets: adminIndexes['dateNeededDisplay']
+          orderData: [adminIndexes['dateNeededTimestamp']]
         ,
-          bSortable: false
-          bSearchable: false
-          bVisible: false
-          aTargets: [adminIndexes['requestDateTimestamp']]
+          targets: adminIndexes['requestDateTimestamp']
+          sortable: false
+          searchable: false
+          visible: false
         ,
-          bSortable: false
-          bSearchable: false
-          bVisible: false
-          aTargets: [adminIndexes['dateNeededTimestamp']]
+          targets: adminIndexes['dateNeededTimestamp']
+          sortable: false
+          searchable: false
+          visible: false
         ,
-          bVisible: false
-          aTargets: [adminIndexes['searchKeywords']]
+          targets: adminIndexes['searchKeywords']
+          visible: false
         ,
-          aTargets: [adminIndexes['status']]
-          bVisible: false
-          bSearchable: false
+          targets: adminIndexes['status']
+          visible: false
+          searchable: false
         ,
-          aTargets: [adminIndexes['library']]
-          bVisible: false
-          bSearchable: false
+          targets: adminIndexes['library']
+          visible: false
+          searchable: false
         ,
-          aTargets: [adminIndexes['type']]
-          bVisible: false
-          bSearchable: false
+          targets: adminIndexes['type']
+          visible: false
+          searchable: false
         ]
 
       )
