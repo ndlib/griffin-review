@@ -1,22 +1,20 @@
 jQuery ($) ->
+  adminIndexes =
+    dateNeededDisplay: 0
+    title: 1
+    requestDateDisplay: 2
+    instructor: 3
+    course: 4
+    typeDisplay: 5
+    requestDateTimestamp: 6
+    dateNeededTimestamp: 7
+    searchKeywords: 8
+    status: 9
+    library: 10
+    type: 11
 
   setupAdminDatatable = () ->
-    # For admin table
-
     if $(".admin_datatable").size() > 0
-      adminIndexes =
-        dateNeededDisplay: 0
-        title: 1
-        requestDateDisplay: 2
-        instructor: 3
-        course: 4
-        typeDisplay: 5
-        requestDateTimestamp: 6
-        dateNeededTimestamp: 7
-        searchKeywords: 8
-        status: 9
-        library: 10
-        type: 11
 
       oTable = $(".admin_datatable").dataTable(
         pagingType: "bootstrap"
@@ -48,33 +46,39 @@ jQuery ($) ->
         ,
           targets: adminIndexes['status']
           visible: false
-          searchable: false
         ,
           targets: adminIndexes['library']
-          visible: false
-          searchable: false
+          visible: true
         ,
           targets: adminIndexes['type']
           visible: false
-          searchable: false
         ]
 
       )
 
-      setupTableFilters()
+      table = oTable.DataTable()
 
-  setupTableFilters = () ->
+      setupTableFilters(table)
+
+  setupTableFilters = (table) ->
     oTable = $(".datatable").dataTable()
     if oTable.size() == 0
       return
 
+    input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
+    input.attr('placeholder', "Author name or Title")
+
     $('.dataTables_filter').append $('.table_filter').html()
+
+
+    $('.dataTables_filter .request_type_filter input').change ->
+      applyTypeFilter(table)
+
+    $('.dataTables_filter .request_library_filter input').change ->
+      applyLibraryFilter(table)
 
     $('.topic_filter').change ->
       oTable.fnFilter($(this).val(), 1, true, false, false)
-
-    input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
-    input.attr('placeholder', "Author name or Title")
 
     if ($('.show_popover_help').size() > 0)
       input.attr('data-content', 'Type the title or course name.')
@@ -98,6 +102,20 @@ jQuery ($) ->
         $(this).popover('hide')
 
       input.focus()
+
+  applyTypeFilter = (table) ->
+    values = []
+    $('.dataTables_filter .request_type_filter input:checked').each ->
+      values.push($(this).val())
+    values = values.join('|')
+    table.column(adminIndexes['type']).search(values, true).draw()
+
+  applyLibraryFilter = (table) ->
+    values = []
+    $('.dataTables_filter .request_library_filter input:checked').each ->
+      values.push($(this).val())
+    values = values.join('|')
+    table.column(adminIndexes['library']).search(values, true).draw()
 
   ready = ->
     setupAdminDatatable()

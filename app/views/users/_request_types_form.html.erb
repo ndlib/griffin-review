@@ -1,11 +1,11 @@
-<fieldset id="topic_list">
+<fieldset class="request_type_filter">
   <legend>For Types</legend>
  <% RequestFilter::VALID_TYPES.each do | type | %>
 <label class="checkbox"><input name="admin_request_filter[types][]" value="<%= type %>" type="checkbox" <%= filter.type_selected?(type) ? 'checked="true"' : '' %>> <%= type.gsub('Reserve', '') %></label>
   <% end %>
 </fieldset>
 
-<fieldset id="topic_list">
+<fieldset class="request_library_filter">
   <legend>For Library </legend>
   <% RequestFilter::VALID_LIBRARIES.each do | library | %>
     <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= library.titleize %></label>
