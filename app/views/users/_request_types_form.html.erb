@@ -28,7 +28,9 @@
       <%= check_box_tag("request_library_filter", '', true, class: 'all') %> All Libraries
     </label>
     <% RequestFilter::VALID_LIBRARIES.each do | library | %>
-      <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= t("libraries.#{library}") %></label>
+      <label class="checkbox">
+        <%= check_box_tag("request_library_filter", library, false) %> <%= t("libraries.#{library}") %>
+      </label>
     <% end %>
   </div>
 </div>

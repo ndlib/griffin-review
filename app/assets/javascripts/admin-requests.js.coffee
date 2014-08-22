@@ -67,70 +67,45 @@ class AdminDataTable
     object = @
     @filterContainer.addClass('well').addClass('well-small')
     @filterContainer.html jQuery('.table_filter').html()
-    @statusCheckboxes = @filterContainer.find('.request_status_filter input')
-    @typeCheckboxes = @filterContainer.find('.request_type_filter input')
-    @libraryCheckboxes = @filterContainer.find('.request_library_filter input')
     @searchBox = @filterContainer.find('#filter_keyword')
-    @statusTabs = jQuery('.request_status_filter li')
+    jQuery('.request_status_filter_tabs').hide()
     @container.removeClass('form-inline')
 
-    @searchBox.change ->
+    @searchBox.on 'change keyup', ->
       object.applyKeywordFilter()
 
-    @searchBox.keyup ->
-      object.applyKeywordFilter()
+    @setupCheckboxesFilter('request_status_filter', adminIndexes['status'])
 
-    @filterOnCheckboxes @statusCheckboxes, ->
-      object.applyStatusFilter()
+    @setupCheckboxesFilter('request_type_filter', adminIndexes['type'])
 
-    @filterOnCheckboxes @typeCheckboxes, ->
-      object.applyTypeFilter()
+    @setupCheckboxesFilter('request_library_filter', adminIndexes['library'])
 
-    @filterOnCheckboxes @libraryCheckboxes, ->
-      object.applyLibraryFilter()
-
-    @statusTabs.click (event) ->
-      event.preventDefault()
-      link = jQuery(this).find('a')
-      object.filterStatus(link.attr('filter'))
-
-  filterOnCheckboxes: (checkboxes, callback) ->
+  setupCheckboxesFilter: (containerClass, columnIndex) ->
+    column = @table.column(columnIndex)
+    checkboxes = @filterContainer.find(".#{containerClass} input[type=checkbox]")
     allCheckbox = checkboxes.filter('.all')
     filterCheckboxes = checkboxes.not('.all')
-    checkboxes.click (event) ->
-      checkbox = jQuery(this)
-      if checkbox.hasClass('all')
-        if checkbox.prop('checked')
-          filterCheckboxes.prop('checked', false)
-        else
-          event.preventDefault()
+    object = @
+    filterCheckboxes.change ->
+      if filterCheckboxes.filter(':checked').length == 0
+        allCheckbox.prop('checked', true)
       else
-        if checkbox.prop('checked')
-          allCheckbox.prop('checked', false)
-        else if checkboxes.filter(':checked').length == 0
-          allCheckbox.prop('checked', true)
-      callback()
-      return
+        allCheckbox.prop('checked', false)
+      object.searchCheckboxes(filterCheckboxes, column)
+    allCheckbox.change ->
+      if allCheckbox.prop('checked')
+        filterCheckboxes.prop('checked', false)
+      else
+        allCheckbox.prop('checked', true)
+      object.searchCheckboxes(filterCheckboxes, column)
 
-    return
+  searchCheckboxes: (checkboxes, columnIndex) ->
+    values = @checkboxSearchExpression(checkboxes)
+    @table.column(columnIndex).search(values, true)
+    @draw()
 
   applyKeywordFilter: ->
     @table.search(@searchBox.val())
-    @draw()
-
-  applyStatusFilter: ->
-    values = @checkboxSearchExpression(@statusCheckboxes)
-    @table.column(adminIndexes['status']).search(values, true)
-    @draw()
-
-  applyTypeFilter: ->
-    values = @checkboxSearchExpression(@typeCheckboxes)
-    @table.column(adminIndexes['type']).search(values, true)
-    @draw()
-
-  applyLibraryFilter: ->
-    values = @checkboxSearchExpression(@libraryCheckboxes)
-    @table.column(adminIndexes['library']).search(values, true)
     @draw()
 
   checkboxSearchExpression: (checkboxes) ->
@@ -146,16 +121,6 @@ class AdminDataTable
     setTimeout ->
       object.table.draw()
     , 10
-
-
-  filterStatus: (status) ->
-    if status == 'all'
-      value = ''
-    else
-      value = status
-    @statusTabs.removeClass('active').find("a[filter=#{status}]").parent().addClass('active')
-    @table.column(adminIndexes['status']).search(value, true)
-    @draw()
 
 jQuery ($) ->
 
