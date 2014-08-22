@@ -3,14 +3,30 @@
     <%= label_tag('filter_keyword', 'Search') %>
     <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
   </div>
+  <div class="span3 request_status_filter">
+    <label class="checkbox">
+      <%= check_box_tag("request_status_filter", '', true) %> All Statuses
+    </label>
+    <% RequestTab.statuses.reject{|s| s == 'all'}.each do |status| %>
+      <label class="checkbox">
+        <%= check_box_tag("request_status_filter", status, false) %> <%= t("request_status.#{status}") %>
+      </label>
+    <% end %>
+  </div>
   <div class="span2 request_type_filter">
-    <%= label_tag('request_type_filter', 'Type') %>
+    <label class="checkbox">
+      <%= check_box_tag("request_type_filter", '', true) %> All Types
+    </label>
     <% RequestFilter::VALID_TYPES.each do | type | %>
-      <label class="checkbox"><input name="admin_request_filter[types][]" value="<%= type %>" type="checkbox" <%= filter.type_selected?(type) ? 'checked="true"' : '' %>> <%= type.gsub('Reserve', '') %></label>
+      <label class="checkbox">
+        <%= check_box_tag("request_type_filter", type, false) %> <%= type.gsub('Reserve', '') %>
+      </label>
     <% end %>
   </div>
   <div class="span3 request_library_filter">
-    <%= label_tag('request_type_filter', 'Library') %>
+    <label class="checkbox">
+      <%= check_box_tag("request_library_filter", '', true) %> All Libraries
+    </label>
     <% RequestFilter::VALID_LIBRARIES.each do | library | %>
       <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= t("libraries.#{library}") %></label>
     <% end %>

@@ -67,23 +67,27 @@ class AdminDataTable
     object = @
     @filterContainer.addClass('well').addClass('well-small')
     @filterContainer.html jQuery('.table_filter').html()
+    @statusCheckboxes = @filterContainer.find('.request_status_filter input')
     @typeCheckboxes = @filterContainer.find('.request_type_filter input')
     @libraryCheckboxes = @filterContainer.find('.request_library_filter input')
     @searchBox = @filterContainer.find('#filter_keyword')
     @statusTabs = jQuery('.request_status_filter li')
     @container.removeClass('form-inline')
 
-    @typeCheckboxes.change ->
-      object.applyTypeFilter()
-
-    @libraryCheckboxes.change ->
-      object.applyLibraryFilter()
-
     @searchBox.change ->
       object.applyKeywordFilter()
 
     @searchBox.keyup ->
       object.applyKeywordFilter()
+
+    @statusCheckboxes.change ->
+      object.applyStatusFilter()
+
+    @typeCheckboxes.change ->
+      object.applyTypeFilter()
+
+    @libraryCheckboxes.change ->
+      object.applyLibraryFilter()
 
     @statusTabs.click (event) ->
       event.preventDefault()
@@ -94,21 +98,28 @@ class AdminDataTable
     @table.search(@searchBox.val())
     @draw()
 
+  applyStatusFilter: ->
+    values = @checkboxSearchExpression(@statusCheckboxes)
+    @table.column(adminIndexes['status']).search(values, true)
+    @draw()
+
   applyTypeFilter: ->
-    values = []
-    @typeCheckboxes.filter(':checked').each ->
-      values.push(jQuery(this).val())
-    values = values.join('|')
+    values = @checkboxSearchExpression(@typeCheckboxes)
     @table.column(adminIndexes['type']).search(values, true)
     @draw()
 
   applyLibraryFilter: ->
-    values = []
-    @libraryCheckboxes.filter(':checked').each ->
-      values.push(jQuery(this).val())
-    values = values.join('|')
+    values = @checkboxSearchExpression(@libraryCheckboxes)
     @table.column(adminIndexes['library']).search(values, true)
     @draw()
+
+  checkboxSearchExpression: (checkboxes) ->
+    values = []
+    checkboxes.filter(':checked').each ->
+      value = jQuery(this).val()
+      if value && value != 'all'
+        values.push(value)
+    values.join('|')
 
   draw: ->
     object = @
