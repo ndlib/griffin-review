@@ -7,7 +7,7 @@ adminIndexes =
   typeDisplay: 5
   requestDateTimestamp: 6
   dateNeededTimestamp: 7
-  searchKeywords: 8
+  physicalElectronic: 8
   status: 9
   library: 10
   type: 11
@@ -45,7 +45,7 @@ class AdminDataTable
         searchable: false
         visible: false
       ,
-        targets: adminIndexes['searchKeywords']
+        targets: adminIndexes['physicalElectronic']
         visible: false
       ,
         targets: adminIndexes['status']
@@ -61,7 +61,6 @@ class AdminDataTable
 
     @container = @tableElement.parent()
     @filterContainer = @container.find('.dataTables_filter')
-    @searchInput = @filterContainer.find('input')
 
   setupFilters: ->
     object = @
@@ -80,24 +79,28 @@ class AdminDataTable
 
     @setupCheckboxesFilter('request_library_filter', adminIndexes['library'])
 
+    @setupCheckboxesFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
+
   setupCheckboxesFilter: (containerClass, columnIndex) ->
     column = @table.column(columnIndex)
-    checkboxes = @filterContainer.find(".#{containerClass} input[type=checkbox]")
+    checkboxes = @filterContainer.find(".#{containerClass} input")
     allCheckbox = checkboxes.filter('.all')
     filterCheckboxes = checkboxes.not('.all')
     object = @
+    applyFilter = ->
+      object.searchCheckboxes(filterCheckboxes, column)
     filterCheckboxes.change ->
       if filterCheckboxes.filter(':checked').length == 0
         allCheckbox.prop('checked', true)
       else
         allCheckbox.prop('checked', false)
-      object.searchCheckboxes(filterCheckboxes, column)
+      applyFilter()
     allCheckbox.change ->
       if allCheckbox.prop('checked')
         filterCheckboxes.prop('checked', false)
       else
         allCheckbox.prop('checked', true)
-      object.searchCheckboxes(filterCheckboxes, column)
+      applyFilter()
 
   searchCheckboxes: (checkboxes, columnIndex) ->
     values = @checkboxSearchExpression(checkboxes)
