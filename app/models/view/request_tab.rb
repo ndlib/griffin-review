@@ -5,7 +5,7 @@ class RequestTab
 
   def initialize(filter = false)
     if !filter
-      @filter = 'new'
+      @filter = 'all'
     else
       @filter = filter
     end
