@@ -91,23 +91,31 @@ class AdminDataTable
       object.filterStatus(link.attr('filter'))
 
   applyKeywordFilter: ->
-    @table
-      .search(@searchBox.val())
-      .draw()
+    @table.search(@searchBox.val())
+    @draw()
 
   applyTypeFilter: ->
     values = []
     @typeCheckboxes.filter(':checked').each ->
       values.push(jQuery(this).val())
     values = values.join('|')
-    @table.column(adminIndexes['type']).search(values, true).draw()
+    @table.column(adminIndexes['type']).search(values, true)
+    @draw()
 
   applyLibraryFilter: ->
     values = []
     @libraryCheckboxes.filter(':checked').each ->
       values.push(jQuery(this).val())
     values = values.join('|')
-    @table.column(adminIndexes['library']).search(values, true).draw()
+    @table.column(adminIndexes['library']).search(values, true)
+    @draw()
+
+  draw: ->
+    object = @
+    setTimeout ->
+      object.table.draw()
+    , 10
+
 
   filterStatus: (status) ->
     if status == 'all'
@@ -115,7 +123,8 @@ class AdminDataTable
     else
       value = status
     @statusTabs.removeClass('active').find("a[filter=#{status}]").parent().addClass('active')
-    @table.column(adminIndexes['status']).search(value, true).draw()
+    @table.column(adminIndexes['status']).search(value, true)
+    @draw()
 
 jQuery ($) ->
 
