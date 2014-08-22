@@ -5,7 +5,7 @@
   </div>
   <div class="span3 request_status_filter">
     <label class="checkbox">
-      <%= check_box_tag("request_status_filter", '', true) %> All Statuses
+      <%= check_box_tag("request_status_filter", '', true, class: 'all') %> All Statuses
     </label>
     <% RequestTab.statuses.reject{|s| s == 'all'}.each do |status| %>
       <label class="checkbox">
@@ -15,7 +15,7 @@
   </div>
   <div class="span2 request_type_filter">
     <label class="checkbox">
-      <%= check_box_tag("request_type_filter", '', true) %> All Types
+      <%= check_box_tag("request_type_filter", '', true, class: 'all') %> All Types
     </label>
     <% RequestFilter::VALID_TYPES.each do | type | %>
       <label class="checkbox">
@@ -25,7 +25,7 @@
   </div>
   <div class="span3 request_library_filter">
     <label class="checkbox">
-      <%= check_box_tag("request_library_filter", '', true) %> All Libraries
+      <%= check_box_tag("request_library_filter", '', true, class: 'all') %> All Libraries
     </label>
     <% RequestFilter::VALID_LIBRARIES.each do | library | %>
       <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= filter.library_selected?(library) ? 'checked="true"' : '' %> > <%= t("libraries.#{library}") %></label>
