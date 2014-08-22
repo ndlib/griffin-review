@@ -6,3 +6,9 @@ div.dataTables_paginate {
   float: none;
   margin: 20px 0;
 }
+
+.ndl-datatables-filters {
+  input {
+    height: auto;
+  }
+}

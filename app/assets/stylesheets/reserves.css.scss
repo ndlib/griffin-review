@@ -1,0 +1,304 @@
+
+.page-header h1 { margin-bottom: 0; }
+.page-header { margin-top: 0;}
+
+
+.dataTables_filter input { height: 30px;}
+
+/*
+ * Processing indicator
+ */
+.dataTables_processing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 60px;
+  margin-left: -125px;
+  margin-top: -15px;
+  padding: 14px 0 2px 0;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  background: white url('/assets/ajax-bar-loader.gif') no-repeat center bottom;
+}
+
+.instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
+
+.table_filter { display: none; }
+
+.has_electronic_copy {
+  display: none;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#fulfillment_library_select {
+  display: none;
+}
+
+#needed_by_select {
+  display: none;
+}
+
+.horizontal-button {
+  display: inline;
+  white-space: nowrap;
+}
+
+#new_library_reserve_form {
+  width: 80%;
+  margin: 5px;
+  display: inline;
+}
+
+#library_select_list {
+  width: 80%;
+  margin: 5px;
+  display: inline;
+}
+
+#library_reserve_form_library {
+  vertical-align: middle;
+  margin: 0px 4px 0px 0px;
+}
+
+#needed_by_reserve_form_needed_by {
+  width: auto;
+  margin: 5px;
+  display: inline;
+}
+
+#copy-overlay {
+  display: none;
+  padding: 25px 25px 5px 25px;
+  position: fixed;
+  right: 10px;
+  bottom: 0px;
+  background-color: white;
+  border: 4px black solid;
+}
+
+.topic_form .topic_list label {
+  display: block;
+}
+
+.topic_form .add_topic_input {
+  width: 75%;
+  height: 30px;
+}
+
+.complete_text { color: #468847;}
+.missing_text { color: #f89406;}
+
+.masquerade_text, .navbar .nav > li > a.masquerade_text { color: #f89406; }
+
+.footer {
+    border-top: 1px solid #B7A765;
+    padding-top: 15px;
+    margin-top: 50px;
+    .columns {
+        text-align:center;
+    }
+    .three {
+        width:24%;
+    }
+    .six {
+        width:43%;
+    }
+    p {
+        font-size:12px;
+    }
+    img {
+        vertical-align: baseline;
+    }
+}
+
+body.empty {
+  background-color: white;
+}
+
+
+.nav.pull-right:last-child {
+  padding-right: 20px;
+}
+
+.navbar .brand {
+  margin-left: 0px;
+}
+
+.navbar .nav > li > a.help {
+  color: #0088cc;
+}
+
+
+#pg-title .pull-right {
+  margin-top: 8px;
+}
+
+/*
+ * Sorting
+ */
+.sorting { background: image-url('dataTables/sort_both.png') no-repeat center right; }
+.sorting_asc { background: image-url('dataTables/sort_asc.png') no-repeat center right; }
+.sorting_desc { background: image-url('dataTables/sort_desc.png') no-repeat center right; }
+
+.sorting_asc_disabled { background: image-url('dataTables/sort_asc_disabled.png') no-repeat center right; }
+.sorting_desc_disabled { background: image-url('dataTables/sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable thead th:active,
+table.dataTable thead td:active {
+  outline: none;
+}
+
+
+/*
+ * Scrolling
+ */
+.dataTables_scroll {
+  clear: both;
+}
+
+.dataTables_scrollBody {
+  *margin-top: -1px;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+table.dataTable thead th {
+  padding: 7px 20px 7px 10px;
+  cursor: pointer;
+  *cursor: hand;
+}
+
+table.dataTable tfoot th {
+  padding: 3px 18px 3px 10px;
+  border-top: 1px solid black;
+  font-weight: bold;
+}
+
+.dl-horizontal.long-dt dt {
+  width: 200px;
+}
+
+.dl-horizontal.long-dt dd {
+  margin-left: 220px;
+}
+
+.help-block {
+  font-style: italic;
+  padding-left: 5px;
+  margin-bottom: 15px;
+  font-size: .8em;
+}
+
+.instructor_form .tab-pane {
+  margin-top: 2em;
+}
+
+.form-help {
+  margin-bottom: 1.6em;
+}
+
+input[type="text"] {
+  height: 25px;
+}
+
+.row {
+  min-width: 0;
+}
+
+.hero-unit p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+}
+
+.introjs-helperNumberLayer {
+  height: 30px;
+  width: 30px;
+}
+
+.navigation dd {
+  margin-bottom: 10px;
+  margin-left: 18px;
+}
+
+h2 span.subtitle {
+  font-size: .9em;
+}
+
+div.display_instructor_text h5 + p {
+  margin-left: 1em;
+}
+
+label.checkbox.last {
+  padding-bottom: 20px;
+}
+
+
+.controls > .radio:first-child,
+.controls > .checkbox:first-child {
+  padding-top: 0px;
+}
+
+#jwplayer {
+  padding-bottom: 2em;
+
+  a { font-size: 1.5em; }
+}
+
+
+.btn-group h2{
+  white-space: normal;
+}
+
+/* Media Query */
+
+@media (max-width: 480px) {
+  .courses-index, .semesters-index {
+    .table-striped {
+      thead {
+        display: none;
+      }
+    }
+  }
+  .courses-index {
+    tbody {
+      tr {
+        td,th {
+          display: block !important;
+          border: none !important;
+          width: 100% !important;
+          &:last-child {
+            border-bottom: 1px solid #ccc !important;
+          }
+          &:before {font-weight: bold;}
+          &:nth-of-type(1):before { content: "Course: "; }
+          &:nth-of-type(2):before { content: "Instructor: "; }
+          &:nth-of-type(3):before { content: "Cross Listings: "; }
+          &:nth-of-type(4):before { content: "Sections: "; }
+        }
+      }
+    }
+  }
+  .semesters-index {
+    tbody {
+      tr {
+        td,th {
+          display: block !important;
+          border: none !important;
+          width: 100% !important;
+          &:last-child {
+            border-bottom: 1px solid #ccc !important;
+          }
+          &:before {font-weight: bold;}
+          &:nth-of-type(1):before { content: "Semester: "; }
+          &:nth-of-type(2):before { content: "Code: "; }
+          &:nth-of-type(3):before { content: "Dates: "; }
+        }
+      }
+    }
+  }
+}
