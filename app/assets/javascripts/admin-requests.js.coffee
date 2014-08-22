@@ -80,19 +80,39 @@ class AdminDataTable
     @searchBox.keyup ->
       object.applyKeywordFilter()
 
-    @statusCheckboxes.change ->
+    @filterOnCheckboxes @statusCheckboxes, ->
       object.applyStatusFilter()
 
-    @typeCheckboxes.change ->
+    @filterOnCheckboxes @typeCheckboxes, ->
       object.applyTypeFilter()
 
-    @libraryCheckboxes.change ->
+    @filterOnCheckboxes @libraryCheckboxes, ->
       object.applyLibraryFilter()
 
     @statusTabs.click (event) ->
       event.preventDefault()
       link = jQuery(this).find('a')
       object.filterStatus(link.attr('filter'))
+
+  filterOnCheckboxes: (checkboxes, callback) ->
+    allCheckbox = checkboxes.filter('.all')
+    filterCheckboxes = checkboxes.not('.all')
+    checkboxes.click (event) ->
+      checkbox = jQuery(this)
+      if checkbox.hasClass('all')
+        if checkbox.prop('checked')
+          filterCheckboxes.prop('checked', false)
+        else
+          event.preventDefault()
+      else
+        if checkbox.prop('checked')
+          allCheckbox.prop('checked', false)
+        else if checkboxes.filter(':checked').length == 0
+          allCheckbox.prop('checked', true)
+      callback()
+      return
+
+    return
 
   applyKeywordFilter: ->
     @table.search(@searchBox.val())
