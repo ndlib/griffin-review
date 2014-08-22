@@ -13,9 +13,9 @@
       </label>
     <% end %>
   </div>
-  <div class="span2 request_type_filter">
+  <div class="span3 request_type_filter">
     <label class="checkbox">
-      <%= check_box_tag("request_type_filter", '', true, class: 'all') %> All Types
+      <%= check_box_tag("request_type_filter", '', true, class: 'all') %> All Material Types
     </label>
     <% RequestFilter::VALID_TYPES.each do | type | %>
       <label class="checkbox">
@@ -35,12 +35,15 @@
   </div>
   <div class="span3 request_physical_electronic_filter">
     <label class="radio">
-      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all') %> Physical and Electronic
+      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all') %> All Reserve Types
     </label>
     <% ['physical','electronic'].each do | type | %>
       <label class="radio">
         <%= radio_button_tag("request_physical_electronic_filter", type, false) %> <%= type.titleize %>
       </label>
     <% end %>
+    <label class="radio">
+      <%= radio_button_tag("request_physical_electronic_filter", 'physical electronic', false) %>Physical and Electronic
+    </label>
   </div>
 </div>
