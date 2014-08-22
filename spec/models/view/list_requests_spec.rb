@@ -39,25 +39,25 @@ describe ListRequests do
 
 
   it "gets incomplete listings when the filter is new " do
-    ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], false)
+    ReserveSearch.any_instance.should_receive(:admin_requests).with(false)
     ListRequests.new(@new_tab, @request_filter).reserves
   end
 
 
   it "gets incomplete listings when the filter is inprocess" do
-    ReserveSearch.any_instance.should_receive(:admin_requests).with('inprocess', ['type'], [ 'library1' ], false)
+    ReserveSearch.any_instance.should_receive(:admin_requests).with(false)
     ListRequests.new(@inprocess_tab, @request_filter).reserves
   end
 
 
   it "gets complete only listings when the filter is complete" do
-    ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
+    ReserveSearch.any_instance.should_receive(:admin_requests).with(false)
     ListRequests.new(@available_tab, @request_filter).reserves
   end
 
 
   it "gets removed only listings when the filter is removed" do
-    ReserveSearch.any_instance.should_receive(:admin_requests).with('available', ['type'], [ 'library1' ], false)
+    ReserveSearch.any_instance.should_receive(:admin_requests).with(false)
     ListRequests.new(@available_tab, @request_filter).reserves
   end
 
@@ -72,7 +72,7 @@ describe ListRequests do
     s = FactoryGirl.create(:previous_semester)
 
     filter = double(RequestFilter, library_filters: [ 'library1' ], type_filters: [ 'type'], semester_filter: s.id )
-    ReserveSearch.any_instance.should_receive(:admin_requests).with('new', ['type'], [ 'library1' ], s)
+    ReserveSearch.any_instance.should_receive(:admin_requests).with(s)
 
     @controller.stub(:params).and_return( {  })
 

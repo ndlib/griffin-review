@@ -17,7 +17,7 @@ class ListRequests
 
 
   def reserves
-    reserve_search.admin_requests(request_tabs.filter, request_filter.type_filters, request_filter.library_filters, determine_semester)
+    reserve_search.admin_requests(determine_semester)
   end
 
 
