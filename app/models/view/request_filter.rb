@@ -1,5 +1,7 @@
 class RequestFilter
   attr_accessor :library_filters, :type_filters, :semester_filter
+  attr_reader :controller, :user
+  delegate :session, :params, to: :controller
 
   VALID_TYPES = RequestParams::VALID_TYPES
   VALID_LIBRARIES = RequestParams::VALID_LIBRARIES
@@ -8,9 +10,9 @@ class RequestFilter
     @controller = controller
 
     if !current_user
-      @current_user = @controller.current_user
+      @user = @controller.current_user
     else
-      @current_user = current_user
+      @user = current_user
     end
 
     determine_filters
@@ -29,23 +31,23 @@ class RequestFilter
 
 
   def save_filter_for_user!
-    @current_user.libraries = @library_filters
-    @current_user.types = @type_filters
-    @current_user.save!
+    user.libraries = @library_filters
+    user.types = @type_filters
+    user.save!
   end
 
 
   private
 
     def determine_filters
-      if @controller.session[:admin_request_filter]
-        @library_filters = @controller.session[:admin_request_filter][:libraries]
-        @type_filters    = @controller.session[:admin_request_filter][:types]
-        @semester_filter = @controller.session[:admin_request_filter][:semester]
+      if session[:admin_request_filter]
+        @library_filters = session[:admin_request_filter][:libraries]
+        @type_filters    = session[:admin_request_filter][:types]
+        @semester_filter = session[:admin_request_filter][:semester]
 
-      elsif !@controller.current_user.admin_preferences.nil? && !@controller.current_user.admin_preferences.empty?
-        @library_filters = @controller.current_user.libraries
-        @type_filters    = @controller.current_user.types
+      elsif user.admin_preferences.present?
+        @library_filters = user.libraries
+        @type_filters    = user.types
         @semester_filter = false
 
       else
@@ -58,16 +60,16 @@ class RequestFilter
 
 
     def process_params
-      if @controller.params[:admin_request_filter]
-        if @controller.params[:admin_request_filter][:libraries]
-          @library_filters = @controller.params[:admin_request_filter][:libraries]
+      if params[:admin_request_filter]
+        if params[:admin_request_filter][:libraries]
+          @library_filters = params[:admin_request_filter][:libraries]
         end
-        if @controller.params[:admin_request_filter][:types]
-          @type_filters = @controller.params[:admin_request_filter][:types]
+        if params[:admin_request_filter][:types]
+          @type_filters = params[:admin_request_filter][:types]
         end
-        if @controller.params[:admin_request_filter][:semester_id]
-          if @controller.params[:admin_request_filter][:semester_id] != 'false'
-            @semester_filter = @controller.params[:admin_request_filter][:semester_id]
+        if params[:admin_request_filter][:semester_id]
+          if params[:admin_request_filter][:semester_id] != 'false'
+            @semester_filter = params[:admin_request_filter][:semester_id]
           else
             @semester_filter = false
           end
@@ -80,10 +82,10 @@ class RequestFilter
 
 
     def save_in_session!
-      @controller.session[:admin_request_filter] ||= {}
-      @controller.session[:admin_request_filter][:libraries] = @library_filters
-      @controller.session[:admin_request_filter][:types] = @type_filters
-      @controller.session[:admin_request_filter][:semester] = @semester_filter
+      session[:admin_request_filter] ||= {}
+      session[:admin_request_filter][:libraries] = @library_filters
+      session[:admin_request_filter][:types] = @type_filters
+      session[:admin_request_filter][:semester] = @semester_filter
 
     end
 end
