@@ -25,7 +25,7 @@
       <td><%= link_to u.display_name, edit_user_path(u) %></td>
       <td>
         <ul>
-          <% if u.types.size < 5 %>
+          <% if u.types && u.types.size < 5 %>
           <% u.types.each do | type | %>
           <li><%= type %></li>
           <% end %>
@@ -36,7 +36,7 @@
       </td>
       <td>
         <ul>
-          <% if u.libraries.size < 6 %>
+          <% if u.libraries && u.libraries.size < 6 %>
           <% u.libraries.each do | library | %>
           <li><%= library %></li>
           <% end %>
