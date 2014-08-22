@@ -7,7 +7,7 @@ filter = @admin_request_listing.request_filter
   </div>
 <% end %>
 <% content_for(:content_title_links) do %>
-  <a href="#filter_form" data-toggle="modal" class="btn btn-primary">Filter Request Results</a>
+  <a href="#filter_form" data-toggle="modal" class="btn btn-primary">Change Semester</a>
 <% end %>
 
 <%
@@ -48,7 +48,7 @@ breadcrumb(['Requests'])
 <div class="modal hide" id="filter_form">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Filter Requests for</h3>
+    <h3>Change Semester</h3>
   </div>
   <form src="<%= requests_path() %>" method="get">
     <div class="modal-body">
