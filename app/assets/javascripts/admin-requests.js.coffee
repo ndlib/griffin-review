@@ -52,7 +52,7 @@ class AdminDataTable
         visible: false
       ,
         targets: adminIndexes['library']
-        visible: true
+        visible: false
       ,
         targets: adminIndexes['type']
         visible: false
