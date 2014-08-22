@@ -33,4 +33,14 @@
       </label>
     <% end %>
   </div>
+  <div class="span3 request_physical_electronic_filter">
+    <label class="radio">
+      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all') %> Physical and Electronic
+    </label>
+    <% ['physical','electronic'].each do | type | %>
+      <label class="radio">
+        <%= radio_button_tag("request_physical_electronic_filter", type, false) %> <%= type.titleize %>
+      </label>
+    <% end %>
+  </div>
 </div>
