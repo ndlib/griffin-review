@@ -20,6 +20,7 @@ class AdminDataTable
 
   setupTable: ->
     @table = @tableElement.DataTable(
+      dom: "f<'row-fluid'<'span12'ip>r>t<'row-fluid'<'span12'ip>>",
       pagingType: "bootstrap"
       lengthChange: false
       deferRender: true
@@ -61,15 +62,16 @@ class AdminDataTable
     @container = @tableElement.parent()
     @filterContainer = @container.find('.dataTables_filter')
     @searchInput = @filterContainer.find('input')
-    @filterContainer.append jQuery('.table_filter').html()
-    @typeCheckboxes = @filterContainer.find('.request_type_filter input')
-    @libraryCheckboxes = @filterContainer.find('.request_library_filter input')
-    @statusTabs = jQuery('.request_status_filter li')
 
   setupFilters: ->
     object = @
     @filterContainer.addClass('well').addClass('well-small')
-    @searchInput.attr('placeholder', "Author name or Title")
+    @filterContainer.html jQuery('.table_filter').html()
+    @typeCheckboxes = @filterContainer.find('.request_type_filter input')
+    @libraryCheckboxes = @filterContainer.find('.request_library_filter input')
+    @searchBox = @filterContainer.find('#filter_keyword')
+    @statusTabs = jQuery('.request_status_filter li')
+    @container.removeClass('form-inline')
 
     @typeCheckboxes.change ->
       object.applyTypeFilter()
@@ -77,10 +79,21 @@ class AdminDataTable
     @libraryCheckboxes.change ->
       object.applyLibraryFilter()
 
+    @searchBox.change ->
+      object.applyKeywordFilter()
+
+    @searchBox.keyup ->
+      object.applyKeywordFilter()
+
     @statusTabs.click (event) ->
       event.preventDefault()
       link = jQuery(this).find('a')
       object.filterStatus(link.attr('filter'))
+
+  applyKeywordFilter: ->
+    @table
+      .search(@searchBox.val())
+      .draw()
 
   applyTypeFilter: ->
     values = []
