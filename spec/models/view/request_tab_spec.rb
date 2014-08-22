@@ -94,6 +94,16 @@ describe RequestTab do
     end
   end
 
+  describe 'self' do
+    subject { described_class }
+
+    describe '#statuses' do
+      it 'is a list of all filters' do
+        expect(subject.statuses).to eq(subject::VALID_FILTERS)
+      end
+    end
+  end
+
 
   def test_status_filter!(filter, object)
     (RequestTab::VALID_FILTERS - [filter]).each do | f |
