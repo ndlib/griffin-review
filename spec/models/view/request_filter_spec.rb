@@ -17,20 +17,17 @@ describe RequestFilter do
 
   describe :session_saving do
 
-    it "saves the status value in the session when it is changed " do
-      params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ], semester_id: 1  }
+    it "saves the semester value in the session when it is changed " do
+      params[:admin_request_filter] = { semester_id: 1  }
 
-      expect(subject.library_filters).to eq([ 'library1', 'library2'])
-      expect(subject.type_filters).to eq([ 'types' ])
       expect(subject.semester_filter).to eq(1)
     end
 
 
     it "saves the new params over the old session data " do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
-      params[:admin_request_filter] = { libraries: [ 'library1'], types: [ 'type1' ], semester_id: 1  }
+      params[:admin_request_filter] = { semester_id: 1  }
 
-      expect(subject.session).to eq( { admin_request_filter: { libraries: [ 'library1'], types: [ 'type1' ], semester: 1 } } )
+      expect(subject.session).to eq( { admin_request_filter: { semester: 1 } } )
     end
   end
 
@@ -44,11 +41,9 @@ describe RequestFilter do
     end
 
 
-    it "reloads from the session " do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ], semester: 1  }
+    it "reloads the semester from the session " do
+      session[:admin_request_filter] = { semester: 1  }
 
-      expect(subject.library_filters).to eq([ 'library1', 'library2'])
-      expect(subject.type_filters).to eq([ 'types' ])
       expect(subject.semester_filter).to eq(1)
     end
 
@@ -78,14 +73,14 @@ describe RequestFilter do
   describe :library_selected? do
 
     it "returns true if the library selected is in the filters for the library" do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+      params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
       expect(subject.library_selected?('library1')).to be_true
     end
 
 
-    it "returns fakse if the library selected is in the filters for the library" do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+    it "returns false if the library selected is in the filters for the library" do
+      params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
       expect(subject.library_selected?('library3')).to be_false
     end
@@ -95,14 +90,14 @@ describe RequestFilter do
   describe :type_selected? do
 
     it "returns true if the type selected is in the filters for the type" do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+      params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
       expect(subject.type_selected?('types')).to be_true
     end
 
 
-    it "returns fakse if the type selected is in the filters for the types" do
-      session[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
+    it "returns false if the type selected is in the filters for the types" do
+      params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
       expect(subject.type_selected?('other type')).to be_false
     end
