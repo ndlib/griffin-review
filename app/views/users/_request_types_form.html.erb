@@ -1,40 +1,52 @@
-<div class="row-fluid ndl-datatables-filters">
-  <div class="span3">
-    <%= label_tag('filter_keyword', 'Search') %>
-    <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
-    <div class="request_status_filter">
-      <label class="filter-label">Status</label>
-      <% status_options = options_for_select([['All','']] + filter.all_statuses.collect{|status| [t("request_status.#{status}"), status]}, filter.default_status) %>
-      <%= select_tag('request_status_filter', status_options, default: filter.default_status, class: 'input-medium') %>
+<div class="ndl-datatables-filters">
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="request_status_filter">
+        <%= label_tag("request_status_filter", "Status") %>
+        <% status_options = options_for_select([['All','']] + filter.all_statuses.collect{|status| [t("request_status.#{status}"), status]}, filter.default_status) %>
+        <%= select_tag('request_status_filter', status_options, default: filter.default_status, class: 'input-medium') %>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="request_keyword_filter">
+        <%= label_tag('filter_keyword', 'Search') %>
+        <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
+      </div>
     </div>
   </div>
-  <div class="span2 request_type_filter">
-    <label class="filter-label">Material Type</label>
-    <% filter.all_types.each do | type | %>
-      <label class="checkbox">
-        <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil)) %> <%= type.gsub('Reserve', '') %>
-      </label>
-    <% end %>
-  </div>
-  <div class="span3 request_library_filter">
-    <label class="filter-label">Library</label>
-    <% filter.all_libraries.each do | library | %>
-      <label class="checkbox">
-        <%= check_box_tag("request_library_filter", library, filter.library_selected?(library), class: (filter.default_library?(library) ? 'default' : nil)) %> <%= t("libraries.#{library}") %>
-      </label>
-    <% end %>
-  </div>
-  <div class="span2">
-    <div class="request_physical_electronic_filter">
-      <label class="filter-label">Reserve Type</label>
-      <% physical_electronic_options = options_for_select([['All',''],['Physical','physical'],['Electronic','electronic'],['Physical & Electronic','physical electronic']]) %>
-      <%= select_tag('request_physical_electronic_filter', physical_electronic_options) %>
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="request_type_filter">
+        <%= label_tag("request_type_filter", "Material Type") %>
+        <% filter.all_types.each do | type | %>
+          <label class="checkbox">
+            <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil), id: "request_type_filter_#{type}") %> <%= type.gsub('Reserve', '') %>
+          </label>
+        <% end %>
+      </div>
     </div>
-    <div class="request_instructor_filter">
-      <%= label_tag('filter_instructor_range_begin', 'Instructor Last Initial') %>
-      <%= select_tag('filter_instructor_range_begin', options_for_select(('A'..'Z'), 'A'), class: 'input-mini') %> to
-      <%= select_tag('filter_instructor_range_end', options_for_select(('A'..'Z'), 'Z'), class: 'input-mini') %>
+    <div class="span3">
+      <div class="request_library_filter">
+        <%= label_tag("request_library_filter", "Library") %>
+        <% filter.all_libraries.each do | library | %>
+          <label class="checkbox">
+            <%= check_box_tag("request_library_filter", library, filter.library_selected?(library), class: (filter.default_library?(library) ? 'default' : nil), id: "request_library_filter_#{library}") %> <%= t("libraries.#{library}") %>
+          </label>
+        <% end %>
+      </div>
     </div>
-  </div>
+    <div class="span2">
+      <div class="request_physical_electronic_filter">
+        <%= label_tag("request_physical_electronic_filter", "Reserve Type") %>
+        <% physical_electronic_options = options_for_select([['All',''],['Physical','physical'],['Electronic','electronic'],['Physical & Electronic','physical electronic']]) %>
+        <%= select_tag('request_physical_electronic_filter', physical_electronic_options) %>
+      </div>
+      <div class="request_instructor_filter">
+        <%= label_tag('filter_instructor_range_begin', 'Instructor Last Initial') %>
+        <%= select_tag('filter_instructor_range_begin', options_for_select(('A'..'Z'), 'A'), class: 'input-mini') %> to
+        <%= select_tag('filter_instructor_range_end', options_for_select(('A'..'Z'), 'Z'), class: 'input-mini') %>
+      </div>
+    </div>
 
+  </div>
 </div>
