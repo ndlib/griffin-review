@@ -2,6 +2,9 @@
   <div class="span3">
     <%= label_tag('filter_keyword', 'Search') %>
     <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
+    <%= label_tag('filter_instructor_range_begin', 'Instructor Last Initial') %>
+    <%= select_tag('filter_instructor_range_begin', options_for_select(('A'..'Z'), 'A'), class: 'input-mini') %> to
+    <%= select_tag('filter_instructor_range_end', options_for_select(('A'..'Z'), 'Z'), class: 'input-mini') %>
   </div>
   <div class="span2 request_status_filter">
     <span class="filter-label">Status</span>

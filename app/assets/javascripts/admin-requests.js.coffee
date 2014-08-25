@@ -81,6 +81,8 @@ class AdminDataTable
 
     @setupCheckboxesFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
 
+    @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
+
   setupCheckboxesFilter: (containerClass, columnIndex) ->
     column = @table.column(columnIndex)
     checkboxes = @filterContainer.find(".#{containerClass} input")
@@ -119,6 +121,26 @@ class AdminDataTable
       if value && value != 'all'
         values.push(value)
     values.join('|')
+
+  setupInstructorFilter: (rangeBeginSelect, rangeEndSelect) ->
+    object = @
+    applyFilter = ->
+      object.applyInstructorFilter(rangeBeginSelect, rangeEndSelect)
+    rangeBeginSelect.add(rangeEndSelect).change ->
+      applyFilter()
+    applyFilter()
+
+  applyInstructorFilter: (rangeBeginSelect, rangeEndSelect) ->
+    rangeBegin = rangeBeginSelect.val()
+    rangeEnd = rangeEndSelect.val()
+    if rangeBegin == 'A' && rangeEnd == 'Z'
+      expression = ''
+    else
+      expression = "^[#{rangeBegin}-#{rangeEnd}]"
+    console.log("search: #{expression}")
+    @table.column(adminIndexes['instructor']).search(expression, true)
+    @draw()
+
 
   draw: ->
     object = @
