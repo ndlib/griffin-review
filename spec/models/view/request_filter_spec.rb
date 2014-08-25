@@ -153,4 +153,24 @@ describe RequestFilter do
     end
   end
 
+  describe '#status_selected?' do
+    it 'is true for new|inprocess' do
+      expect(subject.status_selected?('new|inprocess')).to be_true
+    end
+
+    it 'is false for another status' do
+      expect(subject.status_selected?('new')).to be_false
+    end
+  end
+
+  describe '#default_status?' do
+    it 'is true for new|inprocess' do
+      expect(subject.default_status?('new|inprocess')).to be_true
+    end
+
+    it 'is false for another status' do
+      expect(subject.default_status?('new')).to be_false
+    end
+  end
+
 end

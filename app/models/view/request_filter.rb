@@ -19,33 +19,8 @@ class RequestFilter
     process_params
   end
 
-
-  def library_selected?(library)
-    library_filters.include?(library)
-  end
-
-
-  def type_selected?(type)
-    type_filters.include?(type)
-  end
-
-
-  def save_filter_for_user!
-    user.libraries = library_filters
-    user.types = type_filters
-    user.save!
-  end
-
-  def default_library?(library)
-    default_library_filters.include?(library)
-  end
-
-  def default_type?(type)
-    default_type_filters.include?(type)
-  end
-
   def all_statuses
-    ['new|inprocess'] + RequestTab.statuses.reject{|s| s == 'all'}
+    [new_in_process_status] + RequestTab.statuses.reject{|s| s == 'all'}
   end
 
   def all_libraries
@@ -56,6 +31,36 @@ class RequestFilter
     VALID_TYPES
   end
 
+  def library_selected?(library)
+    library_filters.include?(library)
+  end
+
+  def type_selected?(type)
+    type_filters.include?(type)
+  end
+
+  def status_selected?(status)
+    default_status?(status)
+  end
+
+  def default_library?(library)
+    default_library_filters.include?(library)
+  end
+
+  def default_type?(type)
+    default_type_filters.include?(type)
+  end
+
+  def default_status?(status)
+    status == new_in_process_status
+  end
+
+  def save_filter_for_user!
+    user.libraries = library_filters
+    user.types = type_filters
+    user.save!
+  end
+
   private
 
     def default_library_filters
@@ -64,6 +69,10 @@ class RequestFilter
 
     def default_type_filters
       @default_type_filters ||= build_default_type_filters
+    end
+
+    def new_in_process_status
+      'new|inprocess'
     end
 
     def build_default_library_filters

@@ -6,11 +6,11 @@
   <div class="span2 request_status_filter">
     <span class="filter-label">Status</span>
     <label class="radio">
-      <%= radio_button_tag("request_status_filter", '', true, class: 'all') %> All
+      <%= radio_button_tag("request_status_filter", '', false, class: 'all') %> All
     </label>
     <% filter.all_statuses.each do |status| %>
       <label class="radio">
-        <%= radio_button_tag("request_status_filter", status, false) %> <%= t("request_status.#{status}") %>
+        <%= radio_button_tag("request_status_filter", status, filter.status_selected?(status), class: (filter.default_status?(status) ? 'default' : nil)) %> <%= t("request_status.#{status}") %>
       </label>
     <% end %>
   </div>
