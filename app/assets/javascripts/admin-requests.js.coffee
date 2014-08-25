@@ -66,6 +66,7 @@ class AdminDataTable
     object = @
     @filterContainer.addClass('well').addClass('well-small')
     @filterContainer.html jQuery('.table_filter').html()
+    jQuery('.table_filter').remove()
     @searchBox = @filterContainer.find('#filter_keyword')
     jQuery('.request_status_filter_tabs').hide()
     @container.removeClass('form-inline')
