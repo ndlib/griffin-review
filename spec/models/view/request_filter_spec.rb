@@ -31,6 +31,18 @@ describe RequestFilter do
     end
   end
 
+  describe '#all_types' do
+    it "is all types" do
+      expect(subject.all_types).to eq(["BookReserve", "BookChapterReserve", "JournalReserve", "AudioReserve", "VideoReserve"])
+    end
+  end
+
+  describe '#all_libraries' do
+    it "is all libraries" do
+      expect(subject.all_libraries).to eq(["hesburgh", "math", "chem", "business", "architecture", "engineering"])
+    end
+  end
+
 
   describe :determine_filters do
 

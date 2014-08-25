@@ -44,6 +44,14 @@ class RequestFilter
     default_type_filters.include?(type)
   end
 
+  def all_libraries
+    VALID_LIBRARIES
+  end
+
+  def all_types
+    VALID_TYPES
+  end
+
   private
 
     def default_library_filters
