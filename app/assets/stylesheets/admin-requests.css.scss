@@ -1,0 +1,17 @@
+.ndl-datatables-filters {
+
+  .request_physical_electronic_filter select {
+    width: auto;
+  }
+
+  .request_status_filter, .request_keyword_filter {
+    label {
+      // display: none;
+    }
+
+    select, input {
+      width: 100%;
+    }
+  }
+
+}

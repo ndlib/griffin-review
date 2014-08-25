@@ -6,5 +6,6 @@
 *= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 *= require reserves.css
 *= require datatables.custom.css
+*= require admin-requests.css
 */
 

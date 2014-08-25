@@ -3,14 +3,14 @@
     <div class="span2">
       <div class="request_status_filter">
         <%= label_tag("request_status_filter", "Status") %>
-        <% status_options = options_for_select([['All','']] + filter.all_statuses.collect{|status| [t("request_status.#{status}"), status]}, filter.default_status) %>
+        <% status_options = options_for_select([['All Statuses','']] + filter.all_statuses.collect{|status| [t("request_status.#{status}"), status]}, filter.default_status) %>
         <%= select_tag('request_status_filter', status_options, default: filter.default_status, class: 'input-medium') %>
       </div>
     </div>
     <div class="span3">
       <div class="request_keyword_filter">
         <%= label_tag('filter_keyword', 'Search') %>
-        <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
+        <%= text_field_tag('filter_keyword', "", placeholder: "Search Title, Instructor or Course") %>
       </div>
     </div>
   </div>
