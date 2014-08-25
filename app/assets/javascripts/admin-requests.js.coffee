@@ -79,7 +79,7 @@ class AdminDataTable
 
     @setupCheckboxesFilter('request_library_filter', adminIndexes['library'])
 
-    @setupCheckboxesFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
+    @setupSelectFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
 
     @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
 

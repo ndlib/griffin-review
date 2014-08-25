@@ -29,16 +29,7 @@
   </div>
   <div class="span2 request_physical_electronic_filter">
     <label class="filter-label">Reserve Type</label>
-    <label class="radio">
-      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all default') %> All
-    </label>
-    <% ['physical','electronic'].each do | type | %>
-      <label class="radio">
-        <%= radio_button_tag("request_physical_electronic_filter", type, false) %> <%= type.titleize %>
-      </label>
-    <% end %>
-    <label class="radio">
-      <%= radio_button_tag("request_physical_electronic_filter", 'physical electronic', false) %>Physical &amp; Electronic
-    </label>
+    <% physical_electronic_options = options_for_select([['All',''],['Physical','physical'],['Electronic','electronic'],['Physical & Electronic','physical electronic']]) %>
+    <%= select_tag('request_physical_electronic_filter', physical_electronic_options) %>
   </div>
 </div>
