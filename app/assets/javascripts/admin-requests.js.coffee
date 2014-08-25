@@ -73,7 +73,7 @@ class AdminDataTable
     @searchBox.on 'change keyup', ->
       object.applyKeywordFilter()
 
-    @setupCheckboxesFilter('request_status_filter', adminIndexes['status'])
+    @setupSelectFilter('request_status_filter', adminIndexes['status'])
 
     @setupCheckboxesFilter('request_type_filter', adminIndexes['type'])
 
@@ -82,6 +82,16 @@ class AdminDataTable
     @setupCheckboxesFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
 
     @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
+
+  setupSelectFilter: (containerClass, columnIndex) ->
+    select = @filterContainer.find(".#{containerClass} select")
+    object = @
+    applyFilter = ->
+      object.searchColumn(columnIndex, select.val())
+
+    select.change ->
+      applyFilter()
+    applyFilter()
 
   setupCheckboxesFilter: (containerClass, columnIndex) ->
     column = @table.column(columnIndex)
@@ -107,8 +117,7 @@ class AdminDataTable
 
   searchCheckboxes: (checkboxes, columnIndex) ->
     values = @checkboxSearchExpression(checkboxes)
-    @table.column(columnIndex).search(values, true)
-    @draw()
+    @searchColumn(columnIndex, values)
 
   applyKeywordFilter: ->
     @table.search(@searchBox.val())
@@ -137,8 +146,10 @@ class AdminDataTable
       expression = ''
     else
       expression = "^[#{rangeBegin}-#{rangeEnd}]"
-    console.log("search: #{expression}")
-    @table.column(adminIndexes['instructor']).search(expression, true)
+    @searchColumn(adminIndexes['instructor'], expression)
+
+  searchColumn: (columnIndex, expression) ->
+    @table.column(columnIndex).search(expression, true)
     @draw()
 
 

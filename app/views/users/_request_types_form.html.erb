@@ -7,18 +7,12 @@
     <%= select_tag('filter_instructor_range_end', options_for_select(('A'..'Z'), 'Z'), class: 'input-mini') %>
   </div>
   <div class="span2 request_status_filter">
-    <span class="filter-label">Status</span>
-    <label class="radio">
-      <%= radio_button_tag("request_status_filter", '', false, class: 'all') %> All
-    </label>
-    <% filter.all_statuses.each do |status| %>
-      <label class="radio">
-        <%= radio_button_tag("request_status_filter", status, filter.status_selected?(status), class: (filter.default_status?(status) ? 'default' : nil)) %> <%= t("request_status.#{status}") %>
-      </label>
-    <% end %>
+    <label class="filter-label">Status</label>
+    <% status_options = options_for_select([['All','']] + filter.all_statuses.collect{|status| [t("request_status.#{status}"), status]}, filter.default_status) %>
+    <%= select_tag('request_status_filter', status_options, default: filter.default_status, class: 'input-medium') %>
   </div>
   <div class="span2 request_type_filter">
-    <span class="filter-label">Material Type</span>
+    <label class="filter-label">Material Type</label>
     <% filter.all_types.each do | type | %>
       <label class="checkbox">
         <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil)) %> <%= type.gsub('Reserve', '') %>
@@ -26,7 +20,7 @@
     <% end %>
   </div>
   <div class="span3 request_library_filter">
-    <span class="filter-label">Library</span>
+    <label class="filter-label">Library</label>
     <% filter.all_libraries.each do | library | %>
       <label class="checkbox">
         <%= check_box_tag("request_library_filter", library, filter.library_selected?(library), class: (filter.default_library?(library) ? 'default' : nil)) %> <%= t("libraries.#{library}") %>
@@ -34,7 +28,7 @@
     <% end %>
   </div>
   <div class="span2 request_physical_electronic_filter">
-    <span class="filter-label">Reserve Type</span>
+    <label class="filter-label">Reserve Type</label>
     <label class="radio">
       <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all default') %> All
     </label>
