@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805171034) do
+ActiveRecord::Schema.define(version: 20140825125513) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140805171034) do
     t.datetime "updated_at"
     t.string   "creator"
     t.text     "title"
-    t.string   "journal_title"
+    t.text     "journal_title"
     t.string   "nd_meta_data_id"
     t.boolean  "overwrite_nd_meta_data"
     t.string   "length"
