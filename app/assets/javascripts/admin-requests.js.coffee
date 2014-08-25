@@ -101,6 +101,7 @@ class AdminDataTable
       else
         allCheckbox.prop('checked', true)
       applyFilter()
+    applyFilter()
 
   searchCheckboxes: (checkboxes, columnIndex) ->
     values = @checkboxSearchExpression(checkboxes)
