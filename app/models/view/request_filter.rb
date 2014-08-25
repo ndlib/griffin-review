@@ -52,7 +52,11 @@ class RequestFilter
   end
 
   def default_status?(status)
-    status == new_in_process_status
+    status == default_status
+  end
+
+  def default_status
+    new_in_process_status
   end
 
   def save_filter_for_user!
