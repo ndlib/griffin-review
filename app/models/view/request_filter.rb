@@ -41,20 +41,17 @@ class RequestFilter
 
     def determine_filters
       if session[:admin_request_filter]
-        self.library_filters = session[:admin_request_filter][:libraries]
-        self.type_filters    = session[:admin_request_filter][:types]
         self.semester_filter = session[:admin_request_filter][:semester]
+      else
+        self.semester_filter = false
+      end
 
-      elsif user.admin_preferences.present?
+      if user.admin_preferences.present?
         self.library_filters = user.libraries
         self.type_filters    = user.types
-        self.semester_filter = false
-
       else
         self.library_filters = VALID_LIBRARIES
         self.type_filters    = VALID_TYPES
-        self.semester_filter = false
-
       end
     end
 
@@ -83,8 +80,6 @@ class RequestFilter
 
     def save_in_session!
       session[:admin_request_filter] ||= {}
-      session[:admin_request_filter][:libraries] = library_filters
-      session[:admin_request_filter][:types] = type_filters
       session[:admin_request_filter][:semester] = semester_filter
 
     end
