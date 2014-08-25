@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825125513) do
+ActiveRecord::Schema.define(version: 20140825125943) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20140825125513) do
     t.text     "journal_title"
     t.string   "nd_meta_data_id"
     t.boolean  "overwrite_nd_meta_data"
-    t.string   "length"
+    t.text     "length"
     t.string   "pdf_file_name"
     t.string   "pdf_file_size"
     t.string   "pdf_content_type"
