@@ -23,7 +23,7 @@ module ApplicationHelper
     f.input_field :library,
       as: "select",
       wrapper_html: { id: 'library_select_list' },
-      collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Chemestry - Physics Library' => :chem, 'Engineering Library' => :engineering, 'Mahaffey Business Library' => :business, 'O\' Meara Mathmatics Library' => :math },
+      collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Chemestry - Physics Library' => :chem, 'Engineering Library' => :engineering, 'Mahaffey Business Library' => :business, 'O\' Meara Mathematics Library' => :math },
       :default => 'Hesburgh',
       label: label
   end
