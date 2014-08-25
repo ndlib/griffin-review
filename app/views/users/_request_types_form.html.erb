@@ -8,7 +8,7 @@
     <label class="radio">
       <%= radio_button_tag("request_status_filter", '', true, class: 'all') %> All
     </label>
-    <% RequestTab.statuses.reject{|s| s == 'all'}.each do |status| %>
+    <% filter.all_statuses.each do |status| %>
       <label class="radio">
         <%= radio_button_tag("request_status_filter", status, false) %> <%= t("request_status.#{status}") %>
       </label>

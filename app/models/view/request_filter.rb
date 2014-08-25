@@ -44,6 +44,10 @@ class RequestFilter
     default_type_filters.include?(type)
   end
 
+  def all_statuses
+    ['new|inprocess'] + RequestTab.statuses.reject{|s| s == 'all'}
+  end
+
   def all_libraries
     VALID_LIBRARIES
   end

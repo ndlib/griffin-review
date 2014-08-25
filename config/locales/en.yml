@@ -61,6 +61,7 @@ en:
     artist: Fill in the "Artist" of the work.
     tracks: Fill in which "Tracks / Clips" are needed.
   request_status:
+    new|inprocess: "New & In Process"
     new: "New"
     inprocess: "In Process"
     on_order: "On Order"

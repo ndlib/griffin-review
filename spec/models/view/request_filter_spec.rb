@@ -43,6 +43,12 @@ describe RequestFilter do
     end
   end
 
+  describe '#all_statuses' do
+    it "is all statuses plus a combined new & in process" do
+      expect(subject.all_statuses).to eq(["new|inprocess", "new", "inprocess", "on_order", "available", "removed", "not_in_aleph"])
+    end
+  end
+
 
   describe :determine_filters do
 
