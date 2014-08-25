@@ -36,8 +36,39 @@ class RequestFilter
     user.save!
   end
 
+  def default_library?(library)
+    default_library_filters.include?(library)
+  end
+
+  def default_type?(type)
+    default_type_filters.include?(type)
+  end
 
   private
+
+    def default_library_filters
+      @default_library_filters ||= build_default_library_filters
+    end
+
+    def default_type_filters
+      @default_type_filters ||= build_default_type_filters
+    end
+
+    def build_default_library_filters
+      if user.admin_preferences.present?
+        user.libraries
+      else
+        VALID_LIBRARIES
+      end
+    end
+
+    def build_default_type_filters
+      if user.admin_preferences.present?
+        user.types
+      else
+        VALID_TYPES
+      end
+    end
 
     def determine_filters
       if session[:admin_request_filter]
@@ -46,13 +77,8 @@ class RequestFilter
         self.semester_filter = false
       end
 
-      if user.admin_preferences.present?
-        self.library_filters = user.libraries
-        self.type_filters    = user.types
-      else
-        self.library_filters = VALID_LIBRARIES
-        self.type_filters    = VALID_TYPES
-      end
+      self.library_filters = default_library_filters
+      self.type_filters = default_type_filters
     end
 
 
