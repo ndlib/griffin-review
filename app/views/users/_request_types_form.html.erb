@@ -1,19 +1,22 @@
-<div class="row ndl-datatables-filters">
+<div class="row-fluid ndl-datatables-filters">
   <div class="span3">
     <%= label_tag('filter_keyword', 'Search') %>
     <%= text_field_tag('filter_keyword', "", placeholder: "Title, Instructor or Course") %>
   </div>
-  <div class="span3 request_status_filter">
+  <div class="span2 request_status_filter">
     <span class="filter-label">Status</span>
+    <label class="radio">
+      <%= radio_button_tag("request_status_filter", '', true, class: 'all') %> All
+    </label>
     <% RequestTab.statuses.reject{|s| s == 'all'}.each do |status| %>
-      <label class="checkbox">
-        <%= check_box_tag("request_status_filter", status, false) %> <%= t("request_status.#{status}") %>
+      <label class="radio">
+        <%= radio_button_tag("request_status_filter", status, false) %> <%= t("request_status.#{status}") %>
       </label>
     <% end %>
   </div>
-  <div class="span3 request_type_filter">
+  <div class="span2 request_type_filter">
     <span class="filter-label">Material Type</span>
-    <% RequestFilter::VALID_TYPES.each do | type | %>
+    <% filter.all_types.each do | type | %>
       <label class="checkbox">
         <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil)) %> <%= type.gsub('Reserve', '') %>
       </label>
@@ -21,16 +24,16 @@
   </div>
   <div class="span3 request_library_filter">
     <span class="filter-label">Library</span>
-    <% RequestFilter::VALID_LIBRARIES.each do | library | %>
+    <% filter.all_libraries.each do | library | %>
       <label class="checkbox">
         <%= check_box_tag("request_library_filter", library, filter.library_selected?(library), class: (filter.default_library?(library) ? 'default' : nil)) %> <%= t("libraries.#{library}") %>
       </label>
     <% end %>
   </div>
-  <div class="span3 request_physical_electronic_filter">
+  <div class="span2 request_physical_electronic_filter">
     <span class="filter-label">Reserve Type</span>
     <label class="radio">
-      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all default') %> All Reserve Types
+      <%= radio_button_tag("request_physical_electronic_filter", '', true, class: 'all default') %> All
     </label>
     <% ['physical','electronic'].each do | type | %>
       <label class="radio">
@@ -38,7 +41,7 @@
       </label>
     <% end %>
     <label class="radio">
-      <%= radio_button_tag("request_physical_electronic_filter", 'physical electronic', false) %>Physical and Electronic
+      <%= radio_button_tag("request_physical_electronic_filter", 'physical electronic', false) %>Physical &amp; Electronic
     </label>
   </div>
 </div>
