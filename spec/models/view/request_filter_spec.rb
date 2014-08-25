@@ -51,13 +51,13 @@ describe RequestFilter do
       before do
         user.stub(:admin_preferences).and_return({:libraries => '32432423'})
         user.stub(:libraries).and_return([ 'library1', 'library2'])
-        user.stub(:types).and_return( [ 'types' ] )
+        user.stub(:types).and_return( [ 'type1', 'type2' ] )
       end
 
       it "loads the filters from the user record" do
 
         expect(subject.library_filters).to eq([ 'library1', 'library2'])
-        expect(subject.type_filters).to eq([ 'types' ])
+        expect(subject.type_filters).to eq([ 'type1', 'type2' ])
       end
 
 
@@ -65,6 +65,38 @@ describe RequestFilter do
         user.stub(:semeseter).and_return( 1 )
 
         expect(subject.semester_filter).to be(false)
+      end
+
+      describe '#default_library?' do
+        it 'is true for library1' do
+          expect(subject.default_library?('library1')).to be_true
+        end
+
+        it 'is false for library3' do
+          expect(subject.default_library?('library3')).to be_false
+        end
+
+        it 'is true if the params change the selected libraries' do
+          params[:admin_request_filter] = { libraries: [ 'library3', 'library4'] }
+          expect(subject.library_selected?('library1')).to be_false
+          expect(subject.default_library?('library1')).to be_true
+        end
+      end
+
+      describe '#default_type?' do
+        it 'is true for type1' do
+          expect(subject.default_type?('type1')).to be_true
+        end
+
+        it 'is false for type3' do
+          expect(subject.default_type?('type3')).to be_false
+        end
+
+        it 'is true if the params change the selected types' do
+          params[:admin_request_filter] = { types: [ 'type3', 'type4' ] }
+          expect(subject.type_selected?('type1')).to be_false
+          expect(subject.default_type?('type1')).to be_true
+        end
       end
     end
   end
