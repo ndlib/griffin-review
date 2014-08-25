@@ -60,10 +60,6 @@ en:
     business: "Mahaffey Business Library"
     architecture: "Architecture Library"
     engineering: "Engineering Library"
-    audio_title: Fill in the "Album / Title".
-    composer: Fill in the "Composer" of the work.
-    artist: Fill in the "Artist" of the work.
-    tracks: Fill in which "Tracks / Clips" are needed.
   request_status:
     new|inprocess: "New & In Process"
     new: "New"
