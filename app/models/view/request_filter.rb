@@ -6,6 +6,7 @@ class RequestFilter
   VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
   VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering']
   RESERVE_TYPES = ["physical","electronic","physical electronic"]
+  INSTRUCTOR_RANGE_VALUES = ("A".."Z").to_a
 
   def initialize(controller, current_user = false)
     @controller = controller
@@ -66,6 +67,18 @@ class RequestFilter
 
   def default_reserve_type
     ""
+  end
+
+  def all_instructor_range_values
+    INSTRUCTOR_RANGE_VALUES
+  end
+
+  def default_instructor_range_begin
+    all_instructor_range_values.first
+  end
+
+  def default_instructor_range_end
+    all_instructor_range_values.last
   end
 
   def save_filter_for_user!
