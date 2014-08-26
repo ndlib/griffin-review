@@ -55,6 +55,12 @@ describe RequestFilter do
     end
   end
 
+  describe '#all_instructor_range_values' do
+    it "is the alphabet" do
+      expect(subject.all_instructor_range_values).to eq(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+    end
+  end
+
 
   describe :determine_filters do
 
@@ -182,6 +188,18 @@ describe RequestFilter do
   describe '#default_reserve_type' do
     it 'is blank for all' do
       expect(subject.default_reserve_type).to eq("")
+    end
+  end
+
+  describe '#default_instructor_range_begin' do
+    it 'is A' do
+      expect(subject.default_instructor_range_begin).to eq("A")
+    end
+  end
+
+  describe '#default_instructor_range_end' do
+    it 'is Z' do
+      expect(subject.default_instructor_range_end).to eq("Z")
     end
   end
 
