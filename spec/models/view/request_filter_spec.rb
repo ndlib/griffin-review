@@ -65,7 +65,7 @@ describe RequestFilter do
   describe :determine_filters do
 
     it "defaults to everything if there is nothing to choose from" do
-      expect(subject.library_filters).to eq(described_class::VALID_LIBRARIES)
+      expect(subject.libraries).to eq(described_class::VALID_LIBRARIES)
       expect(subject.types).to eq(described_class::VALID_TYPES)
       expect(subject.semester_filter).to be(false)
     end
@@ -86,7 +86,7 @@ describe RequestFilter do
 
       it "loads the filters from the user record" do
 
-        expect(subject.library_filters).to eq([ 'library1', 'library2'])
+        expect(subject.libraries).to eq([ 'library1', 'library2'])
         expect(subject.types).to eq([ 'type1', 'type2' ])
       end
 

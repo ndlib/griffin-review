@@ -1,5 +1,5 @@
 class RequestFilter
-  attr_accessor :library_filters, :types, :semester_filter, :reserve_type, :instructor_range_begin, :instructor_range_end
+  attr_accessor :libraries, :types, :semester_filter, :reserve_type, :instructor_range_begin, :instructor_range_end
   attr_reader :controller, :user
   delegate :session, :params, to: :controller
 
@@ -38,7 +38,7 @@ class RequestFilter
   end
 
   def library_selected?(library)
-    library_filters.include?(library)
+    libraries.include?(library)
   end
 
   def type_selected?(type)
@@ -50,7 +50,7 @@ class RequestFilter
   end
 
   def default_library?(library)
-    default_library_filters.include?(library)
+    default_libraries.include?(library)
   end
 
   def default_type?(type)
@@ -82,7 +82,7 @@ class RequestFilter
   end
 
   def save_filter_for_user!
-    user.libraries = library_filters
+    user.libraries = libraries
     user.types = types
     user.save!
   end
@@ -96,7 +96,7 @@ class RequestFilter
       end
     end
 
-    def default_library_filters
+    def default_libraries
       user_preference(:libraries) || all_libraries
     end
 
@@ -115,7 +115,7 @@ class RequestFilter
         self.semester_filter = false
       end
 
-      self.library_filters = default_library_filters
+      self.libraries = default_libraries
       self.types = default_types
       self.reserve_type = default_reserve_type
       self.instructor_range_begin = default_instructor_range_begin
@@ -126,7 +126,7 @@ class RequestFilter
     def process_params
       if params[:admin_request_filter]
         if params[:admin_request_filter][:libraries]
-          self.library_filters = params[:admin_request_filter][:libraries]
+          self.libraries = params[:admin_request_filter][:libraries]
         end
         if params[:admin_request_filter][:types]
           self.types = params[:admin_request_filter][:types]
