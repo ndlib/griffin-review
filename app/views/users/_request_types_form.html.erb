@@ -27,11 +27,7 @@
                 <div class="span4">
                   <div class="request_type_filter">
                     <%= label_tag("request_type_filter", "Material Type") %>
-                    <% filter.all_types.each do | type | %>
-                      <label class="checkbox">
-                        <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil), id: "request_type_filter_#{type}") %> <%= type.gsub('Reserve', '') %>
-                      </label>
-                    <% end %>
+                    <%= render partial: "users/request_filter_material_type", locals: {filter: filter} %>
                   </div>
                 </div>
                 <div class="span4">
