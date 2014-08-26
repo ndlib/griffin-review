@@ -60,6 +60,14 @@ en:
     business: "Mahaffey Business Library"
     architecture: "Architecture Library"
     engineering: "Engineering Library"
+  requests_admin:
+    libraries:
+      hesburgh: "Hesburgh"
+      math: "Mathematics"
+      chem: "Chemistry - Physics"
+      business: "Business"
+      architecture: "Architecture"
+      engineering: "Engineering"
   request_status:
     new|inprocess: "New & In Process"
     new: "New"
