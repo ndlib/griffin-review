@@ -68,6 +68,10 @@ en:
       business: "Business"
       architecture: "Architecture"
       engineering: "Engineering"
+    reserve_types:
+      physical: "Physical"
+      electronic: "Electronic"
+      physical electronic: "Physical & Electronic"
   request_status:
     new|inprocess: "New & In Process"
     new: "New"

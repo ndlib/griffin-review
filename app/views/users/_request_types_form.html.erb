@@ -47,7 +47,7 @@
                 <div class="span4">
                   <div class="request_physical_electronic_filter">
                     <%= label_tag("request_physical_electronic_filter", "Reserve Type") %>
-                    <% physical_electronic_options = options_for_select([['All',''],['Physical','physical'],['Electronic','electronic'],['Physical & Electronic','physical electronic']]) %>
+                    <% physical_electronic_options = options_for_select([['All','']] + filter.all_reserve_types.collect{|type| [t("requests_admin.reserve_types.#{type}")]}, filter.default_reserve_type) %>
                     <%= select_tag('request_physical_electronic_filter', physical_electronic_options) %>
                   </div>
                   <div class="request_instructor_filter">

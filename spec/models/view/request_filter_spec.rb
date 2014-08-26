@@ -49,6 +49,12 @@ describe RequestFilter do
     end
   end
 
+  describe '#all_reserve_types' do
+    it "is all reserve types" do
+      expect(subject.all_reserve_types).to eq(["physical", "electronic", "physical electronic"])
+    end
+  end
+
 
   describe :determine_filters do
 
@@ -170,6 +176,12 @@ describe RequestFilter do
 
     it 'is false for another status' do
       expect(subject.default_status?('new')).to be_false
+    end
+  end
+
+  describe '#default_reserve_type' do
+    it 'is blank for all' do
+      expect(subject.default_reserve_type).to eq("")
     end
   end
 

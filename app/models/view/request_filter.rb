@@ -3,16 +3,17 @@ class RequestFilter
   attr_reader :controller, :user
   delegate :session, :params, to: :controller
 
-  VALID_TYPES = RequestParams::VALID_TYPES
-  VALID_LIBRARIES = RequestParams::VALID_LIBRARIES
+  VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
+  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering']
+  RESERVE_TYPES = ["physical","electronic","physical electronic"]
 
   def initialize(controller, current_user = false)
     @controller = controller
 
-    if !current_user
-      @user = @controller.current_user
-    else
+    if current_user
       @user = current_user
+    else
+      @user = @controller.current_user
     end
 
     determine_filters
@@ -29,6 +30,10 @@ class RequestFilter
 
   def all_types
     VALID_TYPES
+  end
+
+  def all_reserve_types
+    RESERVE_TYPES
   end
 
   def library_selected?(library)
@@ -57,6 +62,10 @@ class RequestFilter
 
   def default_status
     new_in_process_status
+  end
+
+  def default_reserve_type
+    ""
   end
 
   def save_filter_for_user!
