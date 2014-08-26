@@ -1,5 +1,5 @@
 class RequestFilter
-  attr_accessor :library_filters, :type_filters, :semester_filter
+  attr_accessor :library_filters, :types, :semester_filter, :reserve_type, :instructor_range_begin, :instructor_range_end
   attr_reader :controller, :user
   delegate :session, :params, to: :controller
 
@@ -42,7 +42,7 @@ class RequestFilter
   end
 
   def type_selected?(type)
-    type_filters.include?(type)
+    types.include?(type)
   end
 
   def status_selected?(status)
@@ -54,7 +54,7 @@ class RequestFilter
   end
 
   def default_type?(type)
-    default_type_filters.include?(type)
+    default_types.include?(type)
   end
 
   def default_status?(status)
@@ -66,7 +66,7 @@ class RequestFilter
   end
 
   def default_reserve_type
-    ""
+    user_preference(:reserve_type) || ""
   end
 
   def all_instructor_range_values
@@ -83,7 +83,7 @@ class RequestFilter
 
   def save_filter_for_user!
     user.libraries = library_filters
-    user.types = type_filters
+    user.types = types
     user.save!
   end
 
@@ -100,7 +100,7 @@ class RequestFilter
       user_preference(:libraries) || all_libraries
     end
 
-    def default_type_filters
+    def default_types
       user_preference(:types) || all_types
     end
 
@@ -116,7 +116,10 @@ class RequestFilter
       end
 
       self.library_filters = default_library_filters
-      self.type_filters = default_type_filters
+      self.types = default_types
+      self.reserve_type = default_reserve_type
+      self.instructor_range_begin = default_instructor_range_begin
+      self.instructor_range_end = default_instructor_range_end
     end
 
 
@@ -126,7 +129,7 @@ class RequestFilter
           self.library_filters = params[:admin_request_filter][:libraries]
         end
         if params[:admin_request_filter][:types]
-          self.type_filters = params[:admin_request_filter][:types]
+          self.types = params[:admin_request_filter][:types]
         end
         if params[:admin_request_filter][:semester_id]
           if params[:admin_request_filter][:semester_id] != 'false'
