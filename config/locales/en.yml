@@ -24,6 +24,7 @@ en:
       not_found: ''
       already_confirmed: ''
       not_locked: ''
+      form_error: "Your form submission has errors in it.  Please correct them and resubmit."
 
   form_help:
     required: This field is required.
