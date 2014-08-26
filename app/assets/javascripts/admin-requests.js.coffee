@@ -19,6 +19,9 @@ class AdminDataTable
       @setupFilters()
 
   setupTable: ->
+    object = @
+    infoCallback = (settings, start, end, max, total, pre) ->
+      object.infoCallback(settings, start, end, max, total, pre)
     @table = @tableElement.DataTable(
       dom: "f<'row-fluid'<'span12'ip>r>t<'row-fluid'<'span12'ip>>",
       pagingType: "bootstrap"
@@ -26,6 +29,7 @@ class AdminDataTable
       deferRender: true
       pageLength: 100
       processing: true
+      infoCallback: infoCallback
       ajax:
         url: window.location.href
       columnDefs: [
@@ -153,12 +157,23 @@ class AdminDataTable
     @table.column(columnIndex).search(expression, true)
     @draw()
 
-
   draw: ->
     object = @
     setTimeout ->
       object.table.draw()
     , 10
+
+  infoCallback: (settings, start, end, max, total, pre) ->
+    if end == 0
+      text = "No requests match your search criteria."
+    else
+      text = "Showing #{@numberWithCommas(start)} to #{@numberWithCommas(end)} of #{@numberWithCommas(total)} requests"
+    if total < max
+      text += " (filtered from #{@numberWithCommas(max)} total requests)"
+    text
+
+  numberWithCommas: (x) ->
+    x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
 jQuery ($) ->
 
