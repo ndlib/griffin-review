@@ -89,12 +89,21 @@ class AdminDataTable
     @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
 
   setupSelectFilter: (containerClass, columnIndex) ->
-    select = @filterContainer.find(".#{containerClass} select")
+    $container = @filterContainer.find(".#{containerClass}")
+    $select = $container.find("select")
+    $label = $container.find("label").first()
+    labelText = $label.text().trim()
     object = @
     applyFilter = ->
-      object.searchColumn(columnIndex, select.val())
+      if $select.val()
+        selectedOption = $select.find('option:selected')
+        filterDescription = "#{labelText}: #{selectedOption.text()}"
+      else
+        filterDescription = ''
+      object.setFilterDescription(columnIndex, filterDescription)
+      object.searchColumn(columnIndex, $select.val())
 
-    select.change ->
+    $select.change ->
       applyFilter()
     applyFilter()
 
@@ -110,6 +119,9 @@ class AdminDataTable
   searchCheckboxes: (checkboxes, columnIndex) ->
     values = @checkboxSearchExpression(checkboxes)
     @searchColumn(columnIndex, values)
+
+  setFilterDescription: (columnIndex, description) ->
+    console.log(columnIndex, description)
 
   applyKeywordFilter: ->
     @table.search(@searchBox.val())
