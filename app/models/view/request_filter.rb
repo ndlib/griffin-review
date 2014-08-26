@@ -84,6 +84,9 @@ class RequestFilter
   def save_filter_for_user!
     user.libraries = libraries
     user.types = types
+    user.reserve_type = reserve_type
+    user.instructor_range_begin = instructor_range_begin
+    user.instructor_range_end = instructor_range_end
     user.save!
   end
 
@@ -122,18 +125,20 @@ class RequestFilter
       self.instructor_range_end = default_instructor_range_end
     end
 
+    def filter_params
+      params[:admin_request_filter]
+    end
 
     def process_params
-      if params[:admin_request_filter]
-        if params[:admin_request_filter][:libraries]
-          self.libraries = params[:admin_request_filter][:libraries]
+      if filter_params
+        [:libraries, :types, :reserve_type, :instructor_range_begin, :instructor_range_end].each do |method|
+          if filter_params[method]
+            self.send("#{method}=", filter_params[method])
+          end
         end
-        if params[:admin_request_filter][:types]
-          self.types = params[:admin_request_filter][:types]
-        end
-        if params[:admin_request_filter][:semester_id]
-          if params[:admin_request_filter][:semester_id] != 'false'
-            self.semester_filter = params[:admin_request_filter][:semester_id]
+        if filter_params[:semester_id]
+          if filter_params[:semester_id] != 'false'
+            self.semester_filter = filter_params[:semester_id]
           else
             self.semester_filter = false
           end

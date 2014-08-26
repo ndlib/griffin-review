@@ -61,6 +61,21 @@ describe RequestFilter do
     end
   end
 
+  describe '#save_filter_for_user!' do
+    it 'saves the values' do
+      expect(user).to receive(:save!).and_return('saved')
+      hash = {}
+      [:libraries, :types, :reserve_type, :instructor_range_begin, :instructor_range_end].each do |method|
+        hash[method] = method.to_s
+        subject.send("#{method}=", method.to_s)
+      end
+      expect(subject.save_filter_for_user!).to eq('saved')
+      hash.each do |key, value|
+        expect(user.send(key)).to eq(value)
+      end
+    end
+  end
+
 
   describe :determine_filters do
 
