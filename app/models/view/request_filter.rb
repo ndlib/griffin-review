@@ -88,33 +88,24 @@ class RequestFilter
   end
 
   private
+    def user_preference(method)
+      if user.admin_preferences.present?
+        user.send(method)
+      else
+        nil
+      end
+    end
 
     def default_library_filters
-      @default_library_filters ||= build_default_library_filters
+      user_preference(:libraries) || all_libraries
     end
 
     def default_type_filters
-      @default_type_filters ||= build_default_type_filters
+      user_preference(:types) || all_types
     end
 
     def new_in_process_status
       'new|inprocess'
-    end
-
-    def build_default_library_filters
-      if user.admin_preferences.present?
-        user.libraries
-      else
-        VALID_LIBRARIES
-      end
-    end
-
-    def build_default_type_filters
-      if user.admin_preferences.present?
-        user.types
-      else
-        VALID_TYPES
-      end
     end
 
     def determine_filters
