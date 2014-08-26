@@ -1,8 +1,8 @@
 class RequestParams
   attr_accessor :library_filters, :type_filters, :semester_filter
 
-  VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
-  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering']
+  VALID_TYPES = RequestFilter::VALID_TYPES
+  VALID_LIBRARIES = RequestFilter::VALID_LIBRARIES
 
   def initialize(controller, user)
     @controller = controller
