@@ -1,0 +1,5 @@
+<% filter.all_libraries.each do | library | %>
+  <label class="checkbox">
+    <%= check_box_tag("request_library_filter", library, filter.library_selected?(library), class: (filter.default_library?(library) ? 'default' : nil), id: "request_library_filter_#{library}") %> <%= t("requests_admin.libraries.#{library}") %>
+  </label>
+<% end %>
