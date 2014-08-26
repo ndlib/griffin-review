@@ -3,6 +3,11 @@
   <p class="text-error">This reserve has been removed from this course.</p>
 <% end %>
 
+<% if status.show_fix_course_id? %>
+  <p><%= link_to "Fix Missing Course", edit_fix_missing_course_path(status.reserve_id), class: 'btn' %></p>
+<% end %>
+
+
 <dl class="navigation">
   <% if status.meta_data_complete? %>
     <dt>
