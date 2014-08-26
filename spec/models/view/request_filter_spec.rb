@@ -128,6 +128,20 @@ describe RequestFilter do
           expect(subject.default_type?('type1')).to be_true
         end
       end
+
+      describe '#default_instructor_range_begin' do
+        it 'can be set as a user preference' do
+          user.stub(:instructor_range_begin).and_return('B')
+          expect(subject.default_instructor_range_begin).to eq('B')
+        end
+      end
+
+      describe '#default_instructor_range_end' do
+        it 'can be set as a user preference' do
+          user.stub(:instructor_range_end).and_return('Y')
+          expect(subject.default_instructor_range_end).to eq('Y')
+        end
+      end
     end
   end
 

@@ -74,11 +74,11 @@ class RequestFilter
   end
 
   def default_instructor_range_begin
-    all_instructor_range_values.first
+    user_preference(:instructor_range_begin) || all_instructor_range_values.first
   end
 
   def default_instructor_range_end
-    all_instructor_range_values.last
+    user_preference(:instructor_range_end) || all_instructor_range_values.last
   end
 
   def save_filter_for_user!
