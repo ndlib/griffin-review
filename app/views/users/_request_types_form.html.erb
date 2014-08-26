@@ -43,8 +43,7 @@
                   </div>
                   <div class="request_instructor_filter">
                     <%= label_tag('filter_instructor_range_begin', 'Instructor Last Initial') %>
-                    <%= select_tag('filter_instructor_range_begin', options_for_select(filter.all_instructor_range_values, filter.default_instructor_range_begin), class: 'input-mini') %> to
-                    <%= select_tag('filter_instructor_range_end', options_for_select(filter.all_instructor_range_values, filter.default_instructor_range_end), class: 'input-mini') %>
+                    <%= render partial: "users/request_filter_instructor", locals: {filter: filter} %>
                   </div>
                 </div>
               </div>
