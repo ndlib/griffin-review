@@ -1,0 +1,5 @@
+<% filter.all_types.each do | type | %>
+  <label class="checkbox">
+    <%= check_box_tag("request_type_filter", type, filter.type_selected?(type), class: (filter.default_type?(type) ? 'default' : nil), id: "request_type_filter_#{type}") %> <%= type.gsub('Reserve', '') %>
+  </label>
+<% end %>
