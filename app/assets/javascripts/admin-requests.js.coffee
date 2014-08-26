@@ -18,13 +18,14 @@ class AdminDataTable
     if @tableElement.length > 0
       @setupTable()
       @setupFilters()
+      @setupForm()
 
   setupTable: ->
     object = @
     infoCallback = (settings, start, end, max, total, pre) ->
       object.infoCallback(settings, start, end, max, total, pre)
     @table = @tableElement.DataTable(
-      dom: "f<'row-fluid'<'span12'ip>r>t<'row-fluid'<'span12'ip>>",
+      dom: "f<'row-fluid'<'span6'i><'span6 paginate-right'p>r>t<'row-fluid'<'span6'i><'span6 paginate-right'p>>",
       pagingType: "bootstrap"
       lengthChange: false
       deferRender: true
@@ -88,6 +89,15 @@ class AdminDataTable
     @setupSelectFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
 
     @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
+
+  setupForm: ->
+    $advancedForm = @container.find('#advancedSearchForm')
+    $toggleIcon = @container.find('.advanced-toggle-icon')
+    $advancedForm.on 'hide', ->
+      $toggleIcon.removeClass('icon-chevron-down').addClass('icon-chevron-right')
+    $advancedForm.on 'show', ->
+      $toggleIcon.removeClass('icon-chevron-right').addClass('icon-chevron-down')
+
 
   setupSelectFilter: (containerClass, columnIndex) ->
     $container = @filterContainer.find(".#{containerClass}")
