@@ -99,24 +99,11 @@ class AdminDataTable
     applyFilter()
 
   setupCheckboxesFilter: (containerClass, columnIndex) ->
-    column = @table.column(columnIndex)
     checkboxes = @filterContainer.find(".#{containerClass} input")
-    allCheckbox = checkboxes.filter('.all')
-    filterCheckboxes = checkboxes.not('.all')
     object = @
     applyFilter = ->
-      object.searchCheckboxes(filterCheckboxes, column)
-    filterCheckboxes.change ->
-      if filterCheckboxes.filter(':checked').length == 0
-        allCheckbox.prop('checked', true)
-      else
-        allCheckbox.prop('checked', false)
-      applyFilter()
-    allCheckbox.change ->
-      if allCheckbox.prop('checked')
-        filterCheckboxes.prop('checked', false)
-      else
-        allCheckbox.prop('checked', true)
+      object.searchCheckboxes(checkboxes, columnIndex)
+    checkboxes.change ->
       applyFilter()
     applyFilter()
 
