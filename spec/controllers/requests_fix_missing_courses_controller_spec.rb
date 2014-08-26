@@ -4,7 +4,8 @@ describe RequestsFixMissingCoursesController do
 
 
   before(:each) do
-    ReserveSearch.any_instance.stub(:get).and_return(double(Reserve, id: 1, nd_meta_data_id: 'id'))
+    ReserveSearch.any_instance.stub(:get).and_return(double(Reserve, id: 1, nd_meta_data_id: 'id', course_id: 'old_course_id', course: double(Course, id: 'old_course_id')))
+    CourseSearch.any_instance.stub(:get).and_return(double(Course, id: 'new_course_id'))
   end
 
 
@@ -24,10 +25,10 @@ describe RequestsFixMissingCoursesController do
     end
 
 
-    it "redirects back to the request on error" do
-
+    it "renders edit on error" do
+      RequestFixMissingCourseForm.any_instance.stub(:update_course_id!).and_return(false)
       put :update, id: 1
-      expect(response).to redirect_to(edit_fix_missing_course_path('1'))
+      expect(response).to be_success
     end
 
     it "displays the edit page" do
