@@ -1,13 +1,9 @@
 <fieldset id="topic_list">
   <legend>For Types</legend>
-  <% RequestParams::VALID_TYPES.each do | type | %>
-    <label class="checkbox"><input name="admin_request_filter[types][]" value="<%= type %>" type="checkbox" <%= admin_params.type_selected?(type) ? 'checked="true"' : '' %>> <%= type.gsub('Reserve', '') %></label>
-  <% end %>
+  <%= render partial: "users/request_filter_material_type", locals: {filter: filter} %>
 </fieldset>
 
 <fieldset id="topic_list">
   <legend>For Library </legend>
-  <% RequestParams::VALID_LIBRARIES.each do | library | %>
-    <label class="checkbox"><input name="admin_request_filter[libraries][]" value="<%= library %>" type="checkbox" <%= admin_params.library_selected?(library) ? 'checked="true"' : '' %> > <%= library.titleize %></label>
-  <% end %>
+  <%= render partial: "users/request_filter_library", locals: {filter: filter} %>
 </fieldset>
