@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe RequestFilter do
-  let(:user) { double(User, id: 1, username: 'username', admin_preferences: {}) }
+  let(:user) { User.new(id: 1, username: 'username') }
   let(:session) { {} }
   let(:params) { {} }
   let(:controller) do
@@ -66,7 +66,7 @@ describe RequestFilter do
 
     it "defaults to everything if there is nothing to choose from" do
       expect(subject.library_filters).to eq(described_class::VALID_LIBRARIES)
-      expect(subject.type_filters).to eq(described_class::VALID_TYPES)
+      expect(subject.types).to eq(described_class::VALID_TYPES)
       expect(subject.semester_filter).to be(false)
     end
 
@@ -87,7 +87,7 @@ describe RequestFilter do
       it "loads the filters from the user record" do
 
         expect(subject.library_filters).to eq([ 'library1', 'library2'])
-        expect(subject.type_filters).to eq([ 'type1', 'type2' ])
+        expect(subject.types).to eq([ 'type1', 'type2' ])
       end
 
 
@@ -140,6 +140,13 @@ describe RequestFilter do
         it 'can be set as a user preference' do
           user.stub(:instructor_range_end).and_return('Y')
           expect(subject.default_instructor_range_end).to eq('Y')
+        end
+      end
+
+      describe '#default_reserve_type' do
+        it 'can be set as a user preference' do
+          user.stub(:reserve_type).and_return('new')
+          expect(subject.default_reserve_type).to eq('new')
         end
       end
     end
