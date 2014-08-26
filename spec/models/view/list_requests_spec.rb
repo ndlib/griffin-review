@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ListRequests do
 
   before(:each) do
-    @request_filter = double(RequestFilter, library_filters: [ 'library1' ], types: [ 'type'], semester_filter: false )
+    @request_filter = double(RequestFilter, libraries: [ 'library1' ], types: [ 'type'], semester_filter: false )
 
     @new_tab = double(RequestTab, filter: 'new')
     @inprocess_tab = double(RequestTab, filter: 'inprocess')
@@ -71,7 +71,7 @@ describe ListRequests do
   it "switches the semester to the one passed in" do
     s = FactoryGirl.create(:previous_semester)
 
-    filter = double(RequestFilter, library_filters: [ 'library1' ], types: [ 'type'], semester_filter: s.id )
+    filter = double(RequestFilter, libraries: [ 'library1' ], types: [ 'type'], semester_filter: s.id )
     ReserveSearch.any_instance.should_receive(:admin_requests).with(s)
 
     @controller.stub(:params).and_return( {  })
