@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20140820170026) do
     t.datetime "updated_at",                    null: false
     t.string   "creator"
     t.text     "title"
-    t.string   "journal_title"
+    t.text     "journal_title"
     t.string   "nd_meta_data_id"
     t.boolean  "overwrite_nd_meta_data"
-    t.string   "length"
+    t.text     "length"
     t.string   "pdf_file_name"
     t.string   "pdf_file_size"
     t.string   "pdf_content_type"
