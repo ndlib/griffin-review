@@ -7,6 +7,14 @@ div.dataTables_paginate {
   margin: 20px 0;
 }
 
+.paginate-right {
+
+  div.dataTables_paginate {
+    float: right;
+    margin-top: 0;
+  }
+}
+
 .ndl-datatables-filters {
   input {
     height: auto;

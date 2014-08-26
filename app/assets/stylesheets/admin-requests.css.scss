@@ -6,12 +6,31 @@
 
   .request_status_filter, .request_keyword_filter {
     label {
-      // display: none;
+      display: none;
     }
 
     select, input {
       width: 100%;
+      margin-bottom: 0;
     }
+  }
+
+  .accordion {
+    margin-bottom: 0px;
+  }
+
+  .accordion-heading .accordion-toggle {
+    padding-top: 4px;
+    padding-bottom: 5px;
+  }
+
+  .accordion-group {
+    border: none;
+  }
+
+  .accordion-toggle, .accordion-inner {
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }
