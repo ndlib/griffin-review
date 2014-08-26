@@ -131,20 +131,18 @@ class AdminDataTable
 
   setFilterDescription: (columnIndex, description) ->
     @filterDescriptions[columnIndex] = description
-    console.log(@filterDescription())
 
-  filterDescription: ->
+  filterDescriptionArray: ->
     descriptions = []
     for description in @filterDescriptions
       if description
         descriptions.push description
-    descriptions.join('; ')
-
+    descriptions
 
   applyKeywordFilter: ->
     value = @searchBox.val()
     if value
-      filterDescription = "Keyword: #{value}"
+      filterDescription = "Keyword: #{@escape(value)}"
     else
       filterDescription = ""
     @setFilterDescription(adminIndexes['title'], filterDescription)
@@ -203,6 +201,9 @@ class AdminDataTable
 
   numberWithCommas: (x) ->
     x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+  escape: (string) ->
+    jQuery('<span></span>').text(string).html()
 
 jQuery ($) ->
 
