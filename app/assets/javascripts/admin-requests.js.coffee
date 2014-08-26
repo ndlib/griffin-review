@@ -14,6 +14,7 @@ adminIndexes =
 
 class AdminDataTable
   constructor: (@tableElement) ->
+    @filterDescriptions = []
     if @tableElement.length > 0
       @setupTable()
       @setupFilters()
@@ -108,31 +109,60 @@ class AdminDataTable
     applyFilter()
 
   setupCheckboxesFilter: (containerClass, columnIndex) ->
-    checkboxes = @filterContainer.find(".#{containerClass} input")
+    $container = @filterContainer.find(".#{containerClass}")
+    $checkboxes = $container.find("input")
+    $label = $container.find("label").first()
+    labelText = $label.text().trim()
     object = @
     applyFilter = ->
-      object.searchCheckboxes(checkboxes, columnIndex)
-    checkboxes.change ->
+      $selectedCheckboxes = $checkboxes.filter(':checked')
+      if $selectedCheckboxes.length > 0 && $selectedCheckboxes.length < $checkboxes.length
+        searchExpression = object.checkboxSearchExpression($selectedCheckboxes)
+        labels = object.checkboxLabels($selectedCheckboxes)
+        filterDescription = "#{labelText}: #{labels.join(', ')}"
+      else
+        searchExpression = ''
+        filterDescription = ''
+      object.setFilterDescription(columnIndex, filterDescription)
+      object.searchColumn(columnIndex, searchExpression)
+    $checkboxes.change ->
       applyFilter()
     applyFilter()
 
-  searchCheckboxes: (checkboxes, columnIndex) ->
-    values = @checkboxSearchExpression(checkboxes)
-    @searchColumn(columnIndex, values)
-
   setFilterDescription: (columnIndex, description) ->
-    console.log(columnIndex, description)
+    @filterDescriptions[columnIndex] = description
+    console.log(@filterDescription())
+
+  filterDescription: ->
+    descriptions = []
+    for description in @filterDescriptions
+      if description
+        descriptions.push description
+    descriptions.join('; ')
+
 
   applyKeywordFilter: ->
-    @table.search(@searchBox.val())
+    value = @searchBox.val()
+    if value
+      filterDescription = "Keyword: #{value}"
+    else
+      filterDescription = ""
+    @setFilterDescription(adminIndexes['title'], filterDescription)
+    @table.search(value)
     @draw()
+
+  checkboxLabels: (checkboxes) ->
+    labels = []
+    checkboxes.parent('label').each ->
+      label = jQuery(this).text().trim()
+      labels.push(label)
+    labels
 
   checkboxSearchExpression: (checkboxes) ->
     values = []
-    checkboxes.filter(':checked').each ->
+    checkboxes.each ->
       value = jQuery(this).val()
-      if value && value != 'all'
-        values.push(value)
+      values.push(value)
     values.join('|')
 
   setupInstructorFilter: (rangeBeginSelect, rangeEndSelect) ->
