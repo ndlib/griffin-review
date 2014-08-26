@@ -13,6 +13,10 @@ class ReserveSearch
   end
 
 
+  def all_reserves_for_course(course)
+    instructor_reserves_for_course(course)
+  end
+
   def instructor_reserves_for_course(course)
     @relation.
         includes(:item).

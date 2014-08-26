@@ -24,6 +24,10 @@ en:
       not_found: ''
       already_confirmed: ''
       not_locked: ''
+      form_error: "Your form submission has errors in it.  Please correct them and resubmit."
+  successes:
+    messages:
+      fix_missing_courses: "Course IDs for course %{old_course_id} have been changed to %{new_course_id}"
 
   form_help:
     required: This field is required.

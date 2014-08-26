@@ -62,6 +62,7 @@ Griffin::Application.routes.draw do
     resources :types, controller: 'requests_type', only: ['update', 'edit']
     resources :libraries, controller: 'requests_library', only: ['update']
     resources :needed_by, controller: 'requests_needed_by', only: ['update']
+    resources :fix_missing_course, controller: 'requests_fix_missing_courses', only: ['update', 'edit']
 
     resources :semesters, controller: 'semesters'
     get 'semesters/csv/:semester_id', controller: 'semesters', action: :csv_report, as: 'csv_report'

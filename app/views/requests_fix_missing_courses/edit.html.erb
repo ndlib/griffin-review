@@ -1,0 +1,44 @@
+<% content_for(:content_title) do %>
+  <h1>Fix Missing Course Id, <%= @request.old_course_id %></h1>
+<% end %>
+<%
+breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request_path(@request.id)), "Fix missing course id" ])
+%>
+
+<div class="twelve columns">
+<div class="six columns">
+
+<p> You can correct the problem by updateing the course id below</p>
+
+<%= simple_form_for(@request, url: fix_missing_course_path(@request.id), method: :put) do | f | %>
+  <%= f.input :new_course_id %>
+
+  <h4>Press Save Below to change the course id for these reserves</h4>
+  <ul>
+    <% @request.all_reserves_missing_this_course.each do | reserve | %>
+      <li><%= reserve.title %></li>
+    <% end %>
+  </ul>
+
+  <div class="form-actions twelve columns">
+    <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', request_path(@request.id) %>
+  </div>
+<% end %>
+
+</div>
+
+<div class="six columns">
+
+  <h4>How to Find the correct course id:</h4>
+  <ol>
+    <li>Go to the course search page</li>
+    <li>Search for the new course</li>
+    <li>Click on the course</li>
+    <li>Look at the url.</li>
+    <li>The course id is the number between /courses/ and /reserves</li>
+    <li>For example in https://reserves.library.nd.edu/courses/201410_17486_KD/reserves the id is 201410_17486</li>
+    <li>Copy that number in the box labeled New Course Id and press save</li>
+    <li>It will update all reserves that have the incorrect course id to have the new correct course id</li>
+</div>
+</div>
