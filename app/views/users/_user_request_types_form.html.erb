@@ -1,9 +1,19 @@
-<fieldset id="topic_list">
-  <legend>For Types</legend>
+<fieldset>
+  <legend>Material Types</legend>
   <%= render partial: "users/request_filter_material_type", locals: {filter: filter} %>
 </fieldset>
 
-<fieldset id="library_list">
-  <legend>For Library </legend>
+<fieldset>
+  <legend>Libraries</legend>
   <%= render partial: "users/request_filter_library", locals: {filter: filter} %>
+</fieldset>
+
+<fieldset>
+  <legend>Instructor Last Initial</legend>
+  <%= render partial: "users/request_filter_instructor", locals: {filter: filter} %>
+</fieldset>
+
+<fieldset>
+  <legend>Reserve Type</legend>
+  <%= render partial: "users/request_filter_reserve_type", locals: {filter: filter} %>
 </fieldset>
