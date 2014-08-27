@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140827175713) do
     t.boolean  "item_physical_reserve"
     t.boolean  "item_electronic_reserve"
     t.boolean  "item_on_order"
+    t.text     "sortable_title"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
