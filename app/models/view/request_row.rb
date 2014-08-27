@@ -53,6 +53,21 @@ class RequestRow
     end
   end
 
+  def raw_title
+    if reserve.item_selection_title.present?
+      reserve.item_selection_title
+    else
+      reserve.item_title
+    end
+  end
+
+  def sort_title
+    if @sort_title.nil?
+      @sort_title = raw_title.to_s.strip
+      @sort_title.gsub!(/^['"`“‘]+\s*/, '')
+    end
+    @sort_title
+  end
 
   def course_col
     helpers.link_to(reserve.course.full_title.truncate(40), routes.course_reserves_path(reserve.course.id), target: '_blank' )

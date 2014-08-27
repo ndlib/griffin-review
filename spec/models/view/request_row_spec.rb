@@ -174,6 +174,37 @@ describe RequestRow do
     end
   end
 
+  describe '#raw_title' do
+    it 'uses the selection title when it is present' do
+      request.item_title = 'title'
+      request.item_selection_title = 'selection_title'
+      expect(subject.raw_title).to eq('selection_title')
+    end
+
+    it 'uses the item title when there is not a selection_title' do
+      request.item_title = 'title'
+      request.item_selection_title = nil
+      expect(subject.raw_title).to eq('title')
+    end
+  end
+
+  describe '#sort_title' do
+    it 'returns the raw title' do
+      subject.stub(:raw_title).and_return('raw_title')
+      expect(subject.sort_title).to eq('raw_title')
+    end
+
+    it 'removes quotes from the beginning' do
+      subject.stub(:raw_title).and_return('"raw_title"')
+      expect(subject.sort_title).to eq('raw_title"')
+    end
+
+    it 'removes leading and trailing whitespace' do
+      subject.stub(:raw_title).and_return(' raw_title ')
+      expect(subject.sort_title).to eq('raw_title')
+    end
+  end
+
 
   it "has the workflow state" do
     expect(RequestRow.new(Reserve.new).respond_to?(:workflow_state)).to be_true
