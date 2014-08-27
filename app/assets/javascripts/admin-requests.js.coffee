@@ -68,7 +68,7 @@ class AdminDataTable
         visible: false
       ,
         targets: adminIndexes['sortableTitle']
-        visible: false
+        visible: true
         searchable: false
       ]
     )
