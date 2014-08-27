@@ -318,6 +318,8 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.4.5)
+    sort_alphabetical (1.0.1)
+      unicode_utils (>= 1.2.2)
     spork (1.0.0rc3)
     sprockets (2.12.1)
       hike (~> 1.2)
@@ -348,6 +350,7 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicode_utils (1.4.0)
     uniform_notifier (1.2.0)
     user_agent_parser (2.1.5)
     validates_timeliness (3.0.14)
@@ -430,6 +433,7 @@ DEPENDENCIES
   selenium-webdriver
   sextant
   simple_form (~> 3.0.0)
+  sort_alphabetical
   spork-rails!
   state_machine
   therubyracer

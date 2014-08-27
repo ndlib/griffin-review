@@ -45,6 +45,11 @@ describe SortableTitleConverter do
         expect(subject.converted_title).to eq('article')
       end
     end
+
+    it 'handles special characters' do
+      subject.stub(:original_title).and_return("Émile Durkheim.")
+      expect(subject.converted_title).to eq('emile durkheim.')
+    end
   end
 
   describe 'self' do
