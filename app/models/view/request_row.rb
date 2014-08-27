@@ -53,21 +53,8 @@ class RequestRow
     end
   end
 
-  def raw_title
-    if reserve.item_selection_title.present?
-      reserve.item_selection_title
-    else
-      reserve.item_title
-    end
-  end
-
-  def sort_title
-    if @sort_title.nil?
-      @sort_title = raw_title.to_s.strip.downcase
-      @sort_title.sub!(/^['"`“‘]+\s*/, '')
-      @sort_title.sub!(/^(the|a|an)\s+/i, '')
-    end
-    @sort_title
+  def sortable_title
+    reserve.sortable_title
   end
 
   def course_col

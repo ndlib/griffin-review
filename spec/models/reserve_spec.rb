@@ -2,7 +2,8 @@
 
 describe Reserve do
 
-  let(:course_listing) { Reserve.new() }
+  let(:course_listing) { Reserve.new(request: request) }
+  let(:request) { Request.new }
   let(:course_search) { CourseSearch.new }
   let(:semester) { FactoryGirl.create(:semester) }
   let(:course) { double(Course, id: 'crossid', semester: semester) }
@@ -60,6 +61,11 @@ describe Reserve do
 
     it "has a currently_in_aleph" do
       expect(course_listing.respond_to?(:currently_in_aleph)).to be_true
+    end
+
+    it 'delegates sortable_title to request' do
+      expect(request).to receive(:sortable_title).and_return('sortable_title')
+      expect(subject.sortable_title).to eq('sortable_title')
     end
 
   end

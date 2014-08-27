@@ -174,46 +174,10 @@ describe RequestRow do
     end
   end
 
-  describe '#raw_title' do
-    it 'uses the selection title when it is present' do
-      request.item_title = 'title'
-      request.item_selection_title = 'selection_title'
-      expect(subject.raw_title).to eq('selection_title')
-    end
-
-    it 'uses the item title when there is not a selection_title' do
-      request.item_title = 'title'
-      request.item_selection_title = nil
-      expect(subject.raw_title).to eq('title')
-    end
-  end
-
-  describe '#sort_title' do
-    it 'returns the raw title' do
-      subject.stub(:raw_title).and_return('raw_title')
-      expect(subject.sort_title).to eq('raw_title')
-    end
-
-    it 'removes leading and trailing whitespace' do
-      subject.stub(:raw_title).and_return(' raw_title ')
-      expect(subject.sort_title).to eq('raw_title')
-    end
-
-    it 'makes the title lowercase' do
-      subject.stub(:raw_title).and_return('Upper Title')
-      expect(subject.sort_title).to eq('upper title')
-    end
-
-    it 'removes quotes from the beginning' do
-      subject.stub(:raw_title).and_return('"raw_title"')
-      expect(subject.sort_title).to eq('raw_title"')
-    end
-
-    %w(a an the).each do |article|
-      it "removes leading '#{article}'" do
-        subject.stub(:raw_title).and_return("#{article} article")
-        expect(subject.sort_title).to eq('article')
-      end
+  describe '#sortable_title' do
+    it 'returns the request#sortable_title' do
+      expect(reserve).to receive(:sortable_title).and_return('sortable_title')
+      expect(subject.sortable_title).to eq('sortable_title')
     end
   end
 
