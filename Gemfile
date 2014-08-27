@@ -88,6 +88,7 @@ gem 'user_agent_parser'
 gem 'rb-readline'
 
 gem 'draper'
+gem 'sort_alphabetical'
 
 
 # development only
