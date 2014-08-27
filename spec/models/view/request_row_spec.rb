@@ -219,10 +219,10 @@ describe RequestRow do
 
   it "makes an array for json rendering" do
     Reserve.any_instance.stub(:course).and_return(double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), full_title: 'Course', primary_instructor: double(User, first_name: 'fname', last_name: 'lname', username: 'username')))
-    r = Reserve.new(title: 'json', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false, library: 'hesburgh')
+    r = Reserve.new(title: 'Title', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false, library: 'hesburgh')
     r.save!
 
-    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">json</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, "physical", "new not_in_aleph", "hesburgh", "VideoReserve"])
+    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">Title</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, "physical", "new not_in_aleph", "hesburgh", "VideoReserve", "title"])
   end
 
 
