@@ -27,9 +27,11 @@ describe SortableTitleConverter do
       expect(subject.converted_title).to eq('upper title')
     end
 
-    it 'removes quotes from the beginning' do
-      subject.stub(:original_title).and_return('"raw_title"')
-      expect(subject.converted_title).to eq('raw_title"')
+    %w(' " ` “ ‘).each do |quote|
+      it "removes #{quote} quotes" do
+        subject.stub(:original_title).and_return("#{quote} quote#{quote} quote")
+        expect(subject.converted_title).to eq('quote quote')
+      end
     end
 
     %w(a an the).each do |article|
