@@ -194,14 +194,26 @@ describe RequestRow do
       expect(subject.sort_title).to eq('raw_title')
     end
 
+    it 'removes leading and trailing whitespace' do
+      subject.stub(:raw_title).and_return(' raw_title ')
+      expect(subject.sort_title).to eq('raw_title')
+    end
+
+    it 'makes the title lowercase' do
+      subject.stub(:raw_title).and_return('Upper Title')
+      expect(subject.sort_title).to eq('upper title')
+    end
+
     it 'removes quotes from the beginning' do
       subject.stub(:raw_title).and_return('"raw_title"')
       expect(subject.sort_title).to eq('raw_title"')
     end
 
-    it 'removes leading and trailing whitespace' do
-      subject.stub(:raw_title).and_return(' raw_title ')
-      expect(subject.sort_title).to eq('raw_title')
+    %w(a an the).each do |article|
+      it "removes leading '#{article}'" do
+        subject.stub(:raw_title).and_return("#{article} article")
+        expect(subject.sort_title).to eq('article')
+      end
     end
   end
 

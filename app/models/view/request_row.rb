@@ -63,8 +63,9 @@ class RequestRow
 
   def sort_title
     if @sort_title.nil?
-      @sort_title = raw_title.to_s.strip
-      @sort_title.gsub!(/^['"`“‘]+\s*/, '')
+      @sort_title = raw_title.to_s.strip.downcase
+      @sort_title.sub!(/^['"`“‘]+\s*/, '')
+      @sort_title.sub!(/^(the|a|an)\s+/i, '')
     end
     @sort_title
   end
