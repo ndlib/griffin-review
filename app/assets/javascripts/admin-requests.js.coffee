@@ -11,6 +11,7 @@ adminIndexes =
   status: 9
   library: 10
   type: 11
+  sortable_title: 12
 
 class AdminDataTable
   constructor: (@tableElement) ->
