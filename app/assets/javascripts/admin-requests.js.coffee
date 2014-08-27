@@ -88,7 +88,7 @@ class AdminDataTable
 
     @setupSelectFilter('request_physical_electronic_filter', adminIndexes['physicalElectronic'])
 
-    @setupInstructorFilter(@filterContainer.find('#filter_instructor_range_begin'), @filterContainer.find('#filter_instructor_range_end'))
+    @setupInstructorFilter(@filterContainer.find('.range-begin'), @filterContainer.find('.range-end'))
 
   setupForm: ->
     $advancedForm = @container.find('#advancedSearchForm')
@@ -178,13 +178,16 @@ class AdminDataTable
     applyFilter = ->
       object.applyInstructorFilter(rangeBeginSelect, rangeEndSelect)
     rangeBeginSelect.add(rangeEndSelect).change ->
+      # If the end letter is before the begin letter, change it to be the same as the begin letter
+      if rangeEndSelect.val().charCodeAt(0) < rangeBeginSelect.val().charCodeAt(0)
+        rangeEndSelect.val(rangeBeginSelect.val())
       applyFilter()
     applyFilter()
 
   applyInstructorFilter: (rangeBeginSelect, rangeEndSelect) ->
     rangeBegin = rangeBeginSelect.val()
     rangeEnd = rangeEndSelect.val()
-    if rangeBegin == 'A' && rangeEnd == 'Z'
+    if rangeBegin == 'A' && rangeEnd == 'Z' || (!rangeBegin && !rangeEnd)
       expression = ''
     else
       expression = "^[#{rangeBegin}-#{rangeEnd}]"
