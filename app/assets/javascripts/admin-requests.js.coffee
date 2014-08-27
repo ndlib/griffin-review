@@ -11,7 +11,7 @@ adminIndexes =
   status: 9
   library: 10
   type: 11
-  sortable_title: 12
+  sortableTitle: 12
 
 class AdminDataTable
   constructor: (@tableElement) ->
@@ -42,6 +42,9 @@ class AdminDataTable
         targets: adminIndexes['dateNeededDisplay']
         orderData: [adminIndexes['dateNeededTimestamp']]
       ,
+        targets: adminIndexes['title']
+        orderData: [adminIndexes['sortableTitle']]
+      ,
         targets: adminIndexes['requestDateTimestamp']
         sortable: false
         searchable: false
@@ -63,6 +66,10 @@ class AdminDataTable
       ,
         targets: adminIndexes['type']
         visible: false
+      ,
+        targets: adminIndexes['sortableTitle']
+        visible: false
+        searchable: false
       ]
     )
 
