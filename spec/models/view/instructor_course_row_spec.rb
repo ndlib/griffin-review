@@ -12,6 +12,13 @@ describe InstructorCourseRow do
     expect(subject.row_css_class).to eq("reserve_#{reserve.id}")
   end
 
+  describe '#sortable_title' do
+    it 'returns the reserve#sortable_title' do
+      expect(reserve).to receive(:sortable_title).and_return('sortable_title')
+      expect(subject.sortable_title).to eq('sortable_title')
+    end
+  end
+
 
   describe :workflow_state do
 

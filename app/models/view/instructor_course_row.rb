@@ -2,7 +2,7 @@ class InstructorCourseRow
 
   attr_accessor :reserve
 
-  delegate :id, to: :reserve
+  delegate :id, :sortable_title, to: :reserve
 
   def initialize(reserve, controller)
     @reserve = reserve

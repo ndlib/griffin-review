@@ -34,19 +34,34 @@ jQuery ($) ->
 
 
   setupInstructorDatatable = () ->
+    instructorIndexes =
+      title: 0
+      status: 1
+      editLink: 2
+      deleteLink: 3
+      deleteSort: 4
+      sortableTitle: 5
     if $(".instructor_datatable").size() > 0
       # For instructor table
       oTable = $(".instructor_datatable").dataTable(
-        sPaginationType: "bootstrap"
-        iDisplayLength: 1000
-        bLengthChange: false
-        aoColumnDefs: [
-            bVisible: false
-            aTargets: [4]
-          ,
-          bSortable: false
-          bSearchable: false
-          aTargets: [3, 2]
+        pagingType: "bootstrap"
+        pageLength: 1000
+        lengthChange: false
+        columnDefs: [
+          targets: instructorIndexes['title']
+          orderData: [instructorIndexes['sortableTitle']]
+        ,
+          visible: false
+          targets: [instructorIndexes['deleteSort']]
+        ,
+          sortable: false
+          searchable: false
+          targets: [instructorIndexes['editLink'], instructorIndexes['deleteLink']]
+        ,
+          sortable: false
+          searchable: false
+          visible: false
+          targets: [instructorIndexes['sortableTitle']]
         ]
       )
 
