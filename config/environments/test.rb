@@ -65,5 +65,9 @@ Griffin::Application.configure do
   config.sakai_domain                     = "https://nd-test.rsmart.com"
 
   config.sakai_domain                     = "https://nd-test.rsmart.com"
+  
+  # ND Calendar
+  config.nd_calendar                    = 'http://calendar.nd.edu'
+  config.nd_calendar_path               = '/webcache/v1.0/xmlDays/356/list-xml/%28catuid%3D%272c936ab1-29f6bcb3-012a-15374ec0-00000e64%27%29.xml'
 
 end
