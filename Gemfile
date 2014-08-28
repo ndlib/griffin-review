@@ -40,7 +40,7 @@ gem 'acts-as-taggable-on'
 gem 'workflow', '0.8.1'
 
 # external service interaction
-gem 'faraday'
+gem 'faraday', '0.9.0'
 gem 'faraday_middleware'
 gem 'typhoeus'
 gem 'excon'
@@ -93,6 +93,8 @@ gem 'rb-readline'
 
 gem 'draper'
 gem 'sort_alphabetical'
+  
+gem 'xml-simple'
 
 
 # development only
