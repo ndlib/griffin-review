@@ -1,16 +1,16 @@
-<% player = Jwplayer.new('BigBuckBunny.mp4', 'troubleshooting', controller.request.remote_ip) %>
+<% player = Jwplayer.new('BigBuckBunny.mp4', 'troubleshooting', controller.request.remote_ip, "video") %>
 <div class="tab-content" style="margin-right: 100px;">
   <style>
     li { line-height: 28px; }
   </style>
   <div class="eight columns">
     <ol>
-      <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> </li>
+      <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a>. </li>
       <li>If students are having issues with streaming videos they can always use a computer in one of the labs on campus.</li>
       <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
     </ol>
     <h3>Android</h3>
-      <p>The video is supported in most android versions > 3.0 but playback is dependent on the device manufature.</p>
+      <p>The video is supported in most android versions > 3.0 but playback is dependent on the device manufaturer.</p>
       <p>  Playing the video in Android requires you to play the video in another video player.  Select <%= link_to("Play Video", image_path('android_play_link.png'), target: 'blank') %> to start your default Android video player.  If the system video player does not play the video you may be able to get another video player from the app store to work.
       </p>
       <p>

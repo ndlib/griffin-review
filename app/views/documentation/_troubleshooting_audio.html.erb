@@ -1,0 +1,24 @@
+<% player = Jwplayer.new('C00139/C00139_0114.mp3', 'troubleshooting-audio', controller.request.remote_ip, "audio") %>
+<div class="tab-content" style="margin-right: 100px;">
+  <style>
+    li { line-height: 28px; }
+  </style>
+  <div class="eight columns">
+    <ol>
+      <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a>. </li>
+      <li>If students are having issues with streaming videos they can always use a computer in one of the labs on campus.</li>
+      <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
+    </ol>
+    <h3>Android</h3>
+      <p>Audio playback is not officially supported on Android devices. Playback is dependent on the applications installed and the device manufaturer.</p>
+      <p>
+        If you are having trouble on your Android device it, you can switch to a desktop version of chrome. <%= link_to 'Test Android Player', player.rstp_url(), target: '_blank' %>
+      </p>
+  </div>
+
+  <div class="four columns">
+    <h4>Test Audio Clip</h4>
+    <%= player.jwplayer(autostart: false) %>
+
+  </div>
+</div>

@@ -46,6 +46,7 @@ Griffin::Application.routes.draw do
   end
 
   get 'documentation/troubleshooting', to: 'documentation#troubleshooting'
+  get 'documentation/troubleshooting-audio', to: 'documentation#troubleshooting-audio'
   resources :documentation
 
 

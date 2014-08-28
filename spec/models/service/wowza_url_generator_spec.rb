@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe WowzaUrlGenerator do
   let(:filename) { 'filename.mov' }
-  subject { described_class.new(filename, "username", "ipaddress") }
+  let(:media_type) { 'video' }
+  subject { described_class.new(filename, "username", "ipaddress", media_type) }
 
   describe "token generated" do
     before(:each) do
@@ -25,7 +26,7 @@ describe WowzaUrlGenerator do
   end
 
   describe "token passed in" do
-    subject { described_class.new(filename, "username", "ipaddress", "passedintoken") }
+    subject { described_class.new(filename, "username", "ipaddress", media_type, "passedintoken") }
 
     it "uses the token I specifically send in" do
       expect(subject.html5).to eq("http://wowza-pprd-vm.library.nd.edu:1935/vod/mp4:filename.mov/playlist.m3u8?t=passedintoken")

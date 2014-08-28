@@ -2,26 +2,28 @@ class WowzaUrlGenerator
 
   attr_accessor :filename
 
-  def initialize(filename, username, ipaddress, specific_token = false)
+  def initialize(filename, username, ipaddress, media_type, specific_token = false)
     @filename = filename
     @username = username
     @ipaddress = ipaddress
     @specific_token = specific_token
+    @media_type = media_type
+
   end
 
 
   def html5
-    "http://#{base_url}#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}/#{media_string}#{filename}/playlist.m3u8?#{token}"
   end
 
 
   def rtmp
-    "rtmpt://#{base_url}#{filename}?#{token}"
+    "rtmpt://#{base_url}/#{media_string}#{filename}?#{token}"
   end
 
 
   def rtsp
-    "rtsp://#{base_url}#{filename}?#{token}"
+    "rtsp://#{base_url}/#{media_string}#{filename}?#{token}"
   end
 
 
@@ -45,9 +47,17 @@ class WowzaUrlGenerator
 
     def base_url
       if Rails.env == 'production'
-        "wowza.library.nd.edu:1935/vod/mp4:"
+        "wowza.library.nd.edu:1935"
       else
-        "wowza-pprd-vm.library.nd.edu:1935/vod/mp4:"
+        "wowza-pprd-vm.library.nd.edu:1935"
+      end
+    end
+
+    def media_string
+      if @media_type == "video"
+        "vod/mp4:"
+      else
+        "aod/_definst_/mp3:"
       end
     end
 end

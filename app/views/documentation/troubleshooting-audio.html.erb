@@ -1,0 +1,12 @@
+<% content_for(:content_title) do %>
+  <div class="page-header">
+    <h1>Audio Troubleshooting Tips</h1>
+  </div>
+<% end %>
+
+<%
+    breadcrumb([link_to('Help', '/documentation'), 'Troubleshooting'])
+  %>
+
+<%= render :partial => 'troubleshooting_audio' %>
+
