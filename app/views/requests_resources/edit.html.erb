@@ -6,8 +6,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
 %>
 <h3>Electronic Resource</h3>
 
-<div class="row">
- <div class="span6">
+<div class="six columns">
 
     <% if @request.has_resource? %>
 
@@ -21,6 +20,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
         <%= link_to "File", '#file', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Media Playlist", '#playlist', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Cancel", request_path(@request.id) %>
       </p>
 
@@ -49,7 +49,12 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
             <%= render partial: 'sipx_form', locals: { f: f } %>
           <% end %>
         </div>
+        <div class="tab-pane" id="playlist">
+          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+            <%= render partial: 'playlist_form', locals: { f: f } %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-  </div>
+
 </div>

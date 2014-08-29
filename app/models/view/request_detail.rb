@@ -25,7 +25,7 @@ class RequestDetail
   end
 
 
-  def workflow_state
+  def workflow_state_html
     if @reserve.workflow_state == 'available'
       css_class = 'text-success'
     elsif @reserve.workflow_state == 'removed'
