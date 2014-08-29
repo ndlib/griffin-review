@@ -1,0 +1,58 @@
+<h5> Playlist </h5>
+
+
+<ul id="playlist_fields">
+
+
+</ul>
+<div>
+  <button id="new_row_button" type="button">New Row</button>
+  <button id="new_category_button" type="button">New Category</button>
+</div>
+<div class="form-actions">
+  <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+  <%= link_to 'Cancel', request_path(@request.id) %>
+</div>
+
+
+<li id="add_row" class="demo_row playlist_row twelve columns">
+  <div class="five columns">
+    <input type="text" placeholder="Media Title" name="playlist[]['title']">
+  </div>
+  <div class="five columns">
+    <input type="text" placeholder="Filename" name="playlist[]['filename']">
+  </div>
+  <div class="two columns">
+    <button type="button" class="delete_row">Delete</button>
+  </div>
+</li>
+<li id="add_category_row" class="demo_row playlist_row twelve columns">
+  <div class="five columns">
+    <input type="text" placeholder="Category Title" name="playlist[]['title']">
+  </div>
+  <div class="five columns">
+    &nbsp;
+  </div>
+  <div class="two columns">
+    <button type="button" class="delete_row">Delete</button>
+  </div>
+</li>
+
+<script type="text/javascript">
+  $('#new_row_button').click(function () {
+    $("#add_row").clone(false).removeAttr("id").removeClass('demo_row').appendTo($("#playlist_fields"));
+  });
+  $('#new_category_button').click(function () {
+    $('#add_category_row').clone(false).removeAttr("id").removeClass('demo_row').appendTo($("#playlist_fields"));
+  });
+  $('#playlist_fields').on('click', '.delete_row', function () {
+    if (confirm("Are you sure you wish to remove this row from the playlist?")) {
+      $(this).parents('.playlist_row').remove();
+    }
+  });
+</script>
+
+<style>
+  .demo_row { display: none; }
+</style>
