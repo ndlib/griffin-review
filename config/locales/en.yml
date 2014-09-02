@@ -72,6 +72,8 @@ en:
       physical: "Physical"
       electronic: "Electronic"
       physical electronic: "Physical & Electronic"
+      ^physical$: "Physical Only"
+      ^electronic$: "Electronic Only"
   request_status:
     new|inprocess: "New & In Process"
     new: "New"
