@@ -1,2 +1,2 @@
-<% physical_electronic_options = options_for_select([['All','']] + filter.all_reserve_types.collect{|type| [t("requests_admin.reserve_types.#{type}")]}, filter.reserve_type) %>
+<% physical_electronic_options = options_for_select([['All','']] + filter.all_reserve_types.collect{|type| [t("requests_admin.reserve_types.#{type}"), type]}, filter.reserve_type) %>
 <%= select_tag('admin_request_filter[reserve_type]', physical_electronic_options) %>

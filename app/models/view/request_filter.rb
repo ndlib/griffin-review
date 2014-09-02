@@ -5,7 +5,7 @@ class RequestFilter
 
   VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
   VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering']
-  RESERVE_TYPES = ["physical","electronic","physical electronic"]
+  RESERVE_TYPES = ["physical","electronic","physical electronic", "^physical$", "^electronic$"]
   INSTRUCTOR_RANGE_VALUES = ("A".."Z").to_a
 
   def initialize(controller, current_user = false)

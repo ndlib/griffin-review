@@ -51,7 +51,7 @@ describe RequestFilter do
 
   describe '#all_reserve_types' do
     it "is all reserve types" do
-      expect(subject.all_reserve_types).to eq(["physical", "electronic", "physical electronic"])
+      expect(subject.all_reserve_types).to eq(["physical", "electronic", "physical electronic", "^physical$", "^electronic$"])
     end
   end
 
