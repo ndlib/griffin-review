@@ -68,6 +68,10 @@ describe Reserve do
       expect(subject.sortable_title).to eq('sortable_title')
     end
 
+    it "has a mediaplaylist" do
+      expect(course_listing).to respond_to(:media_playlist)
+    end
+
   end
 
 
