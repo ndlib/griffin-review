@@ -14,5 +14,9 @@ describe Item do
   end
 
 
+  it "has a media_playlist " do
+    expect(subject).to respond_to(:media_playlist)
+    expect(subject).to respond_to(:media_playlist=)
+  end
 
 end

@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
 
   has_many :requests
+  has_one :media_playlist
 
   validates :title, :type, presence: true
 
