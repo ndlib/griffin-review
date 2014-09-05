@@ -11,6 +11,8 @@ class CopyReserve
   def copy
     new_request = @reserve.request.dup
 
+    new_request.currently_in_aleph = false
+
     new_request.created_at = Time.now
     new_request.updated_at = Time.now
 

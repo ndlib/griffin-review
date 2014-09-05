@@ -31,6 +31,13 @@ describe CopyReserve do
   end
 
 
+  it "sets the copyied reserve to not be found in aleph" do
+    @reserve.currently_in_aleph = true
+    @reserve.save!
+
+    expect(@copy_reserve.copy.currently_in_aleph).to be_false
+  end
+
   it "changes the course to the new course" do
     new_reserve = @copy_reserve.copy
 
