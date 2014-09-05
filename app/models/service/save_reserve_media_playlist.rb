@@ -4,7 +4,7 @@ class SaveReserveMediaPlaylist
   def self.call(reserve)
     object = new(reserve)
     object.reset
-    yield(object)
+    yield(object) if block_given?
     object.create
   end
 
@@ -36,7 +36,13 @@ class SaveReserveMediaPlaylist
     end
 
     def media_playlist
-      @playlist ||= @reseve.media_playlist || MediaPlaylist.new(item_id: reserve.item_id)
+      return @playlist if @playlist
+
+      if reserve.media_playlist.nil?
+        reserve.media_playlist = MediaPlaylist.new(item_id: reserve.item_id)
+      end
+
+      @playlist = reserve.media_playlist
     end
 end
 

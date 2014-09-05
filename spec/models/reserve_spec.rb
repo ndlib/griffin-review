@@ -70,6 +70,7 @@ describe Reserve do
 
     it "has a mediaplaylist" do
       expect(course_listing).to respond_to(:media_playlist)
+      expect(course_listing).to respond_to(:media_playlist=)
     end
 
   end
