@@ -11,6 +11,7 @@ class AdminUpdateResource
 
   attribute :pdf, String
   attribute :url, String
+  attribute :playlist_rows, Array
 
   delegate :workflow_state, :id, to: :reserve
 
@@ -95,6 +96,12 @@ class AdminUpdateResource
     def persist!
       @reserve.pdf = pdf
       @reserve.url = url
+
+      SaveReserveMediaPlaylist.call(@reserve) do | srmp |
+        playlist_rows.each do | row |
+          srmp.add_row(row['title'], row['file'])
+        end
+      end
 
       @reserve.save!
 

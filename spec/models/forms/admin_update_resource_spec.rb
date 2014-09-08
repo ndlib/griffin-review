@@ -91,6 +91,9 @@ describe AdminUpdateResource do
       aur.reserve.url.should == "url"
     end
 
+    it "saves a playlist" do
+
+    end
 
 
     it "checks to seed if the item is complete" do
