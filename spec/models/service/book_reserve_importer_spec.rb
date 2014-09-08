@@ -5,6 +5,7 @@ describe BookReserveImporter do
   before(:each) do
     @bri = BookReserveImporter.new
     @bri.stub(:print_reserves).and_return([ {'bib_id' => 'id'} ])
+    BookReserveImport.any_instance.stub(:reserve).and_return(double(Reserve, id: 'id'))
   end
 
 
@@ -16,7 +17,7 @@ describe BookReserveImporter do
     BookReserveImport.any_instance.stub(:validate!).and_return(true)
 
     @bri.import!
-    expect(@bri.successes).to eq([ { bib_id: "bib_id", course_id: "course_id" } ])
+    expect(@bri.successes).to eq( [{:bib_id=>"bib_id", :course_id=>"course_id", :reserve_id=>"id"}] )
   end
 
 
