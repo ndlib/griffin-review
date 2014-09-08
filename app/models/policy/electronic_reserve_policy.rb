@@ -1,4 +1,3 @@
-
 class ElectronicReservePolicy
   attr_accessor :reserve
 
@@ -6,11 +5,9 @@ class ElectronicReservePolicy
     @reserve = reserve
   end
 
-
   def is_electronic_reserve?
     @reserve.electronic_reserve?
   end
-
 
   def electronic_resource_type
     if has_file_resource?
@@ -27,7 +24,6 @@ class ElectronicReservePolicy
       ""
     end
   end
-
 
   def resource_name
     if !has_resource?
