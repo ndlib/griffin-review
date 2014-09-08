@@ -57,7 +57,7 @@ class ReserveRow
 
 
   def show_check_availability?
-    @reserve.realtime_availability_id && @reserve.physical_reserve?
+    @reserve.realtime_availability_id && @reserve.physical_reserve? && @reserve.currently_in_aleph?
   end
 
 
