@@ -1,32 +1,31 @@
 class SaveReserveMediaPlaylist
   attr_accessor :reserve
 
-  def self.call(reserve)
-    object = new(reserve)
-    object.reset
+  delegate :type, :type=, to: :media_playlist
+
+  def self.call(reserve, type)
+    object = new(reserve, type)
     yield(object) if block_given?
     object.create
   end
 
-  def initialize(reserve)
+  def initialize(reserve, type)
     @reserve = reserve
+    media_playlist.type = type
   end
 
   def add_row(title, file)
+    media_playlist.rows ||= []
     media_playlist.rows << { title: title, file: file }
   end
 
   def create()
     if media_playlist.valid?
       persist!
-      media_playlist
+      reserve.media_playlist = media_playlist
     else
       false
     end
-  end
-
-  def reset
-    media_playlist.rows = []
   end
 
   private
@@ -38,11 +37,11 @@ class SaveReserveMediaPlaylist
     def media_playlist
       return @playlist if @playlist
 
-      if reserve.media_playlist.nil?
-        reserve.media_playlist = MediaPlaylist.new(item_id: reserve.item_id)
+      if reserve.media_playlist.present?
+        reserve.media_playlist.destroy
       end
 
-      @playlist = reserve.media_playlist
+      @playlist = MediaPlaylist.new(item_id: reserve.item_id)
     end
 end
 

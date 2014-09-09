@@ -95,7 +95,7 @@ describe AdminUpdateResource do
       url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
       url_reserve.save!
 
-      aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { playlist_rows: [ {'title' => 'title', 'filename' => 'file'} ] }})
+      aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { playlist_type: 'audio', playlist_rows: [ {'title' => 'title', 'filename' => 'file'} ] }})
       expect(aur.save_resource).to be_true
 
       url_reserve.item.reload()
