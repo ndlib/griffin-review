@@ -4,7 +4,7 @@ class DiscoveryIdTestController < ApplicationController
 
   def show
     check_admin_permission!
-    records = DiscoveryApi.search_by_ids(params[:id])
+    records = DiscoveryApi.search_by_ids(params[:id].strip)
 
     if records.size != 0
       @record = records.first.data
