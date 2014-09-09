@@ -99,7 +99,7 @@ class AdminUpdateResource
 
       SaveReserveMediaPlaylist.call(@reserve) do | srmp |
         playlist_rows.each do | row |
-          srmp.add_row(row['title'], row['file'])
+          srmp.add_row(row['title'], row['filename'])
         end
       end
 
