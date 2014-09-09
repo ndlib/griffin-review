@@ -12,6 +12,7 @@ class AdminUpdateResource
   attribute :pdf, String
   attribute :url, String
   attribute :playlist_rows, Array
+  attribute :playlist_type, String
 
   delegate :workflow_state, :id, to: :reserve
 
@@ -97,17 +98,26 @@ class AdminUpdateResource
       @reserve.pdf = pdf
       @reserve.url = url
 
-      SaveReserveMediaPlaylist.call(@reserve) do | srmp |
-        playlist_rows.each do | row |
-          srmp.add_row(row['title'], row['filename'])
-        end
-      end
+      create_new_playlist!
 
       @reserve.save!
 
       ReserveCheckIsComplete.new(@reserve).check!
     end
 
+    def remove_current_playlist!
+      if reserve.media_playlist.present?
+        reserve.media_playlist.destroy
+      end
+    end
+
+    def create_new_playlist!
+      SaveReserveMediaPlaylist.call(@reserve, playlist_type) do | srmp |
+        playlist_rows.each do | row |
+          srmp.add_row(row['title'], row['filename'])
+        end
+      end
+    end
 
     def reserve_search
       @search ||= ReserveSearch.new

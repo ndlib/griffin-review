@@ -28,7 +28,6 @@ describe MediaPlaylist do
 
   it "expects type to be audio or video " do
     subject.type = 'audio'
-    binding.pry
     expect(subject).to have(0).error_on(:type)
 
     subject.type = 'video'
