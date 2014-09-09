@@ -4,7 +4,7 @@ describe DeleteReserveElectronicResourceForm do
 
 
   before(:each) do
-    @reserve = double(Reserve, id: 1, pdf: double("PDF"), restart: true)
+    @reserve = double(Reserve, id: 1, pdf: double("PDF"), media_playlist: double(MediaPlaylist, destroy: true, present?: true), restart: true)
     @form = DeleteReserveElectronicResourceForm.new(@reserve)
   end
 
@@ -21,6 +21,7 @@ describe DeleteReserveElectronicResourceForm do
     it "removes the url, the file, calls save and checks that the item is still complete " do
       @reserve.should_receive('url=')
       @reserve.pdf.should_receive(:clear)
+      @reserve.media_playlist.should_receive(:destroy)
       @reserve.should_receive(:save!)
 
       ReserveCheckIsComplete.any_instance.should_receive(:check!)

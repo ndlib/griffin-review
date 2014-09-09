@@ -23,6 +23,8 @@ class DeleteReserveElectronicResourceForm
   def remove!
     @reserve.url = nil
     @reserve.pdf.clear
+    @reserve.media_playlist.destroy if @reserve.media_playlist.present?
+
 
     @reserve.save!
 
