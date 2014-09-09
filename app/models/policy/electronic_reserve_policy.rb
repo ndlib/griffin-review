@@ -18,6 +18,8 @@ class ElectronicReservePolicy
       "SIPX"
     elsif has_url_resource?
       "Website Redirect"
+    elsif has_media_playlist?
+      "Media Playlist"
     elsif is_electronic_reserve?
       "Not Completed"
     else
@@ -30,6 +32,8 @@ class ElectronicReservePolicy
       ""
     elsif has_file_resource?
       @reserve.pdf.original_filename
+    elsif has_media_playlist?
+      @reserve.media_playlist.type
     else
       @reserve.url
     end
@@ -55,31 +59,34 @@ class ElectronicReservePolicy
     is_electronic_reserve? && ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
   end
 
+  def can_have_media_playlist?
+    is_electronic_reserve? && ['VideoReserve', 'AudioReserve'].include?(@reserve.type)
+  end
+
 
   def can_have_sipx_resource?
     is_electronic_reserve?
   end
 
-
   def has_resource?
-    has_url_resource? || has_file_resource? || has_streaming_resource? || has_sipx_resource?
+    has_url_resource? || has_file_resource? || has_streaming_resource? || has_sipx_resource? || has_media_playlist?
   end
-
 
   def has_file_resource?
     (can_have_file_resource? && @reserve.pdf.present?)
   end
 
-
   def has_url_resource?
     can_have_url_resource? && !has_streaming_resource? && !has_sipx_resource? && @reserve.url.present?
   end
-
 
   def has_streaming_resource?
     can_have_streaming_resource? && @reserve.url.present? && !TextIsUriPolicy.uri?(@reserve.url)
   end
 
+  def has_media_playlist?
+    can_have_media_playlist? && @reserve.media_playlist.present?
+  end
 
   def has_sipx_resource?
     can_have_sipx_resource? && @reserve.url.present? && @reserve.url.scan(/^http[s]?:\/\/service.sipx.com/).present?

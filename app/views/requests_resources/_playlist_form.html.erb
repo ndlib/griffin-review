@@ -1,19 +1,23 @@
-<h5> Playlist </h5>
 
 <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
-<ul id="playlist_fields">
+  <%= f.input :playlist_type, as: :radio_buttons, collection: [:audio, :video] %>
+
+  <h5> Playlist </h5>
+
+  <ul id="playlist_fields">
 
 
-</ul>
-<div>
-  <button id="new_row_button" type="button">New Row</button>
-  <button id="new_category_button" type="button">New Category</button>
-</div>
-<div class="form-actions">
-  <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+  </ul>
 
-  <%= link_to 'Cancel', request_path(@request.id) %>
-</div>
+  <div>
+    <button id="new_row_button" type="button">New Row</button>
+    <button id="new_category_button" type="button">New Category</button>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
+
+    <%= link_to 'Cancel', request_path(@request.id) %>
+  </div>
 
 <% end %>
 

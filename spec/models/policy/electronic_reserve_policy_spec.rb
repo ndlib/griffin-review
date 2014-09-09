@@ -30,6 +30,7 @@ describe ElectronicReservePolicy do
       @policy.stub(:has_streaming_resource?).and_return(false)
       @policy.stub(:has_url_resource?).and_return(false)
       @policy.stub(:has_sipx_resource?).and_return(false)
+      @policy.stub(:has_media_playlist?).and_return(false)
       @policy.stub(:is_electronic_reserve?).and_return(false)
     end
 
@@ -51,6 +52,11 @@ describe ElectronicReservePolicy do
     it "returns Website Redirect if the type is url" do
       @policy.stub(:has_url_resource?).and_return(true)
       expect(@policy.electronic_resource_type).to eq("Website Redirect")
+    end
+
+    it "returns Media Playlist if the type is url" do
+      @policy.stub(:has_media_playlist?).and_return(true)
+      expect(@policy.electronic_resource_type).to eq("Media Playlist")
     end
 
     it "returns Not comleted if the item is electronic but not done" do
@@ -84,6 +90,12 @@ describe ElectronicReservePolicy do
       expect(@policy.resource_name).to eq("original.file")
     end
 
+    it "returns the type of medisa playlist if it is a media playlist" do
+      @policy.stub(:has_media_playlist?).and_return(true)
+      @reserve.stub(:media_playlist).and_return(MediaPlaylist.new(type: 'video'))
+
+      expect(@policy.resource_name).to eq("video")
+    end
 
     it "returns the name of the streaming movie if there is a streaming movie" do
       @policy.stub(:has_streaming_resource?).and_return(true)
@@ -258,12 +270,49 @@ describe ElectronicReservePolicy do
   end
 
 
+  describe :can_have_media_playlist? do
+    context :electronic do |variable|
+      before(:each) do
+        @policy.stub(:is_electronic_reserve?).and_return(true)
+      end
+
+
+      it "returns true if the reserve is electronic and it is video or audio" do
+        ['VideoReserve', 'AudioReserve'].each do | type |
+          @reserve.stub(:type).and_return(type)
+          expect(@policy.can_have_media_playlist?).to be_true
+        end
+      end
+
+
+      it "returns true if no matter the type of the request as long as the reserves is electronic" do
+        ['BookChapterReserve', 'BookReserve', 'JournalReserve'].each do | type |
+          @reserve.stub(:type).and_return(type)
+          expect(@policy.can_have_media_playlist?).to be_false
+        end
+      end
+    end
+
+    context :physical_only_resource do
+      before(:each) do
+        @policy.stub(:is_electronic_reserve?).and_return(false)
+      end
+
+
+      it "returns false if the reserve is not electronic" do
+        expect(@policy.can_have_media_playlist?).to be_false
+      end
+    end
+  end
+
+
   describe :has_resource? do
     before(:each) do
       @policy.stub(:has_url_resource?).and_return(false)
       @policy.stub(:has_file_resource?).and_return(false)
       @policy.stub(:has_streaming_resource?).and_return(false)
       @policy.stub(:has_sipx_resource?).and_return(false)
+      @policy.stub(:has_media_playlist?).and_return(false)
     end
 
     it "is false if it does not have any resources" do
@@ -282,6 +331,11 @@ describe ElectronicReservePolicy do
 
     it "is true if it has streaming" do
       @policy.stub(:has_streaming_resource?).and_return(true)
+      expect(@policy.has_resource?).to be_true
+    end
+
+    it "is true if it has a media_playlist" do
+      @policy.stub(:has_media_playlist?).and_return(true)
       expect(@policy.has_resource?).to be_true
     end
 
@@ -458,6 +512,40 @@ describe ElectronicReservePolicy do
         expect(@policy.has_streaming_resource?).to be_false
       end
 
+    end
+  end
+
+  describe :has_media_playlist? do
+    context :can_have_media_playlist do
+      before(:each) do
+        @policy.stub(:can_have_media_playlist?).and_return(true)
+      end
+
+      it "returns true if the media playlist is present" do
+        @reserve.stub(:media_playlist).and_return(MediaPlaylist.new)
+        expect(@policy.has_media_playlist?).to be_true
+      end
+
+      it "returns false if the media playlist is not present" do
+        @reserve.stub(:media_playlist).and_return(nil)
+        expect(@policy.has_media_playlist?).to be_false
+      end
+    end
+
+    context :can_have_media_playlist do
+      before(:each) do
+        @policy.stub(:can_have_media_playlist?).and_return(false)
+      end
+
+      it "returns false if the media playlist is present" do
+        @reserve.stub(:media_playlist).and_return(MediaPlaylist.new)
+        expect(@policy.has_media_playlist?).to be_false
+      end
+
+      it "returns false if the media playlst is not present" do
+        @reserve.stub(:media_playlist).and_return(nil)
+        expect(@policy.has_media_playlist?).to be_false
+      end
     end
   end
 
