@@ -55,7 +55,6 @@ class AdminUpdateResource
     @reserve.type == 'VideoReserve' || @reserve.type == 'AudioReserve'
   end
 
-
   def sipx_button
     helpers.link_to(helpers.raw("<i class=\"icon icon-arrow-up\"></i> Go To Sipx</a>"), routes.course_sipx_admin_redirect_path(course.id), class: "btn", target: "_blank")
   end
@@ -63,7 +62,6 @@ class AdminUpdateResource
   def course
     @reserve.course
   end
-
 
   def save_resource
     if valid?

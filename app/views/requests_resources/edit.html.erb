@@ -50,7 +50,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
           <% end %>
         </div>
         <div class="tab-pane" id="playlist">
-          <%= render partial: 'playlist_form', locals: { f: f } %>
+          <%= render partial: 'playlist_form' %>
         </div>
       </div>
     <% end %>
