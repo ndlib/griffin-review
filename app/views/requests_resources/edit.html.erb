@@ -12,6 +12,10 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
 
       <p><%= @request.current_resource_type %>: <%= link_to @request.current_resource_name, course_reserve_path(@request.course.id, @request.id), target: '_blank' %></p>
 
+
+      <% if @request.media_playlist? %>
+        <%= render partial: 'playlist_form' %>
+      <% end %>
       <p><%= @request.delete_link %></p>
     <% else %>
       <p class="help-text">Select the type of electronic resource you are creating</p>
