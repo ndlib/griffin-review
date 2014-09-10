@@ -1,4 +1,6 @@
 class AdminUpdateResource
+  attr_reader :reserve
+
   include RailsHelpers
   include Virtus
   include ModelErrorTrapping
@@ -23,6 +25,9 @@ class AdminUpdateResource
 
     if params[:admin_update_resource]
       self.attributes = params[:admin_update_resource]
+    elsif electronic_reserve.has_media_playlist?
+      self.playlist_type = reserve.media_playlist.type
+      self.playlist_rows = reserve.media_playlist.rows
     end
 
     validate_input!
@@ -33,6 +38,10 @@ class AdminUpdateResource
 
   def has_resource?
     electronic_reserve.has_resource?
+  end
+
+  def media_playlist?
+    electronic_reserve.has_media_playlist?
   end
 
 
