@@ -25,6 +25,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
         <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Media Playlist", '#playlist', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Upload Playlist", '#upload_playlist', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Cancel", request_path(@request.id) %>
       </p>
 
@@ -55,6 +56,10 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
         </div>
         <div class="tab-pane" id="playlist">
           <%= render partial: 'playlist_form' %>
+        </div>
+
+        <div class="tab-pane" id="upload_playlist">
+          <%= render partial: 'upload_playlist_form' %>
         </div>
       </div>
     <% end %>
