@@ -1,3 +1,5 @@
+<h3>Create Media Playlist</h3>
+
 
 <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
   <%= f.input :playlist_type, as: :radio_buttons, collection: [:audio, :video] %>
