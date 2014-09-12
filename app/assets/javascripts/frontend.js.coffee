@@ -79,6 +79,32 @@ jQuery ($) ->
 
       setupTableFilters()
 
+  setupCopyReserveDatatable = () ->
+    copyReserveIndexes =
+      copy: 0
+      title: 1
+      sortableTitle: 2
+    if $(".copy_reserve_datatable").size() > 0
+      oTable = $(".copy_reserve_datatable").dataTable(
+        pagingType: "bootstrap"
+        searching: false
+        pageLength: 1000
+        lengthChange: false
+        order: [ copyReserveIndexes['title'], 'asc' ]
+        columnDefs: [
+          sortable: false
+          searchable: false
+          targets: copyReserveIndexes['copy']
+        ,
+          targets: copyReserveIndexes['title']
+          orderData: [copyReserveIndexes['sortableTitle']]
+        ,
+          visible: false
+          targets: copyReserveIndexes['sortableTitle']
+        ]
+      )
+
+      setupTableFilters()
 
 
   setupCopyOldReserveDatatable = () ->
@@ -246,6 +272,7 @@ jQuery ($) ->
   setupResourceForm()
   setupStudentDatatable()
   setupInstructorDatatable()
+  setupCopyReserveDatatable()
   setupCopyOldReserveDatatable()
   setupUsersDatatable()
 
