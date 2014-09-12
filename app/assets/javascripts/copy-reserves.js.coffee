@@ -1,6 +1,6 @@
 jQuery ($) ->
 
-  $(document).on 'change', ".copy",  ->
+  $(document).on 'change', ".copy-reserve",  ->
     txt = $(this).parents("tr").find(".title").text()
     input = "<input type=\"hidden\" name=\"reserve_ids[]\" value=\"#{$(this).val()}\">"
     if $("#copy-overlay ul li:contains(" + txt + ")").size() > 0
@@ -18,7 +18,7 @@ jQuery ($) ->
   $("#copy-overlay .cancel").click ->
     $("#copy-overlay ul li").remove()
     $("#copy-overlay").hide()
-    $(".copy").each ->
+    $(".copy-reserve").each ->
       @checked = false
 
     false
