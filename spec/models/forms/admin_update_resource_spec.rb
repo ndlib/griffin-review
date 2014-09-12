@@ -10,7 +10,7 @@ describe AdminUpdateResource do
 
   describe "current resource methods" do
     before(:each) do
-      @reserve = double(Reserve, id: 1, electronic_reserve?: true, course: @course)
+      @reserve = double(Reserve, id: 1, electronic_reserve?: true, course: @course, type: 'VideoReserve', media_playlist: double(MediaPlaylist, type: 'audio', rows: []))
       ReserveSearch.any_instance.stub(:get).and_return(@reserve)
 
       AdminUpdateResource.any_instance.should_receive(:check_is_complete!).and_return(true)
