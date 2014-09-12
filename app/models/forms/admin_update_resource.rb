@@ -15,6 +15,7 @@ class AdminUpdateResource
   attribute :url, String
   attribute :playlist_rows, Array
   attribute :playlist_type, String
+  attribute :playlist_file, ActionDispatch::Http::UploadedFile
 
   delegate :workflow_state, :id, to: :reserve
 
@@ -120,7 +121,7 @@ class AdminUpdateResource
 
     def create_new_playlist!
       SaveReserveMediaPlaylist.call(@reserve, playlist_type) do | srmp |
-        playlist_rows.each do | row |
+        determine_playlist_rows.each do | row |
           srmp.add_row(row['title'], row['filename'])
         end
       end
@@ -133,6 +134,17 @@ class AdminUpdateResource
 
     def electronic_reserve
       @epolicy ||= ElectronicReservePolicy.new(@reserve)
+    end
+
+
+    def determine_playlist_rows
+      if playlist_rows.present?
+        playlist_rows
+      elsif playlist_file
+        ParsePlaylistCsv.rows(playlist_file)
+      else
+        []
+      end
     end
 
 end
