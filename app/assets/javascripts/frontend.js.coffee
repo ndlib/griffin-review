@@ -132,10 +132,11 @@ jQuery ($) ->
   $(document).on 'change', ".copy",  ->
     txt = $(this).parents("tr").find(".title").text()
     input = "<input type=\"hidden\" name=\"reserve_ids[]\" value=\"#{$(this).val()}\">"
-    if $("#copy-overlay ul li:contains(" + txt + ")").size() > 0
-      $("#copy-overlay ul li:contains(" + txt + ")").remove()
+    contains_txt = txt.replace(/[(].*[)]/, "")
+    if $("#copy-overlay ul li:contains(" + contains_txt + ")").size() > 0
+      $("#copy-overlay ul li:contains(" + contains_txt + ")").remove()
     else
-      row = $("<li>" + txt + "</li>")
+      row = $("<li>" + contains_txt + "</li>")
       $("#copy-overlay ul").append row
       $("#copy-overlay form").append input
       row.effect "highlight", {}, 3000
