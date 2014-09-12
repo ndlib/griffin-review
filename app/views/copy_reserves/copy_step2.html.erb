@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @copy_course_listing.copy_from_reserves.each do | reserve | %>
-      <tr>
+      <tr id="copyReserveRow<%= reserve.id %>" class="copy-reserve-row" data-id="<%= reserve.id %>" data-title="<%= reserve.title %>">
         <td>
           <%= check_box_tag 'copy', reserve.id, false, class: "copy-reserve" %>
         </td>
