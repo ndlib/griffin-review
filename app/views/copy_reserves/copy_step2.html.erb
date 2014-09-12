@@ -5,7 +5,7 @@
 <%= render partial: 'copy_form', locals: { from_course: @copy_course_listing.from_course, to_course: @copy_course_listing.to_course } %>
 
 <% if @copy_course_listing.copy_from_reserves.size > 0 %>
-<table class="table table-striped find-resources copy_reserve_datatable datatable">
+<table class="table table-striped find-resources copy_reserve_datatable datatable" id="copyReservesTable">
   <thead>
     <tr>
       <th>Copy</th>
@@ -17,7 +17,7 @@
     <% @copy_course_listing.copy_from_reserves.each do | reserve | %>
       <tr>
         <td>
-          <%= check_box_tag 'copy', reserve.id, false, class: "copy" %>
+          <%= check_box_tag 'copy', reserve.id, false, class: "copy-reserve" %>
         </td>
         <td>
           <%= render :partial => '/course_reserves/list_record', :locals => { object: reserve} %>
