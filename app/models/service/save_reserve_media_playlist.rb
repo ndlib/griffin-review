@@ -16,7 +16,9 @@ class SaveReserveMediaPlaylist
 
   def add_row(title, file)
     media_playlist.rows ||= []
-    media_playlist.rows << { title: title, file: file }
+    if !title.nil? && title.present?
+      media_playlist.rows << { title: title, file: file }
+    end
   end
 
   def create()
