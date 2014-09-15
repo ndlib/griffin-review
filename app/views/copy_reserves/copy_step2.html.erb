@@ -1,5 +1,10 @@
 <% content_for(:content_title) do %>
   <h1>Copy From <%= h @copy_course_listing.from_course_title %> <small>To <%= h @copy_course_listing.to_course_title %></small></h1>
+  <p class="lead">
+    <small>
+      <%= t("reserves.copy.instructions_html") %>
+    </small>
+  </p>
 <% end %>
 
 <%= render partial: 'copy_form', locals: { from_course: @copy_course_listing.from_course, to_course: @copy_course_listing.to_course } %>
@@ -8,7 +13,9 @@
 <table class="table table-striped find-resources copy_reserve_datatable datatable" id="copyReservesTable">
   <thead>
     <tr>
-      <th>Copy</th>
+      <th id="copyReserveHeader">
+        <label class="checkbox"><input type="checkbox" id="selectAllReserves"> Select All</label>
+      </th>
       <th>Reserve</th>
       <th>Sortable Title</th>
     </tr>

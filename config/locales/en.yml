@@ -83,6 +83,12 @@ en:
     removed: "Deleted"
     all: "All"
     not_in_aleph: "Not In Aleph"
+  reserves:
+    copy:
+      instructions_html: |
+        Click the checkbox next to a reserve to add it to the list of reserves to be copied.
+        Click the "Select All" checkbox to add all reserves on the page to the list of reserves to be copied.
+        <br> When you are done selecting reserves click the "Copy Material" button in the lower right corner to copy all selected reserves to the new course.
   documentation:
     what_is_reserves: "Library Reserves is a tool that course instructors can use to make library content available online to their students.  Library Reserves provides access to books, book chapters, journal articles, streaming videos, and audio."
     student:

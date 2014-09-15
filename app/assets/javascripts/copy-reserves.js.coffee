@@ -8,10 +8,12 @@ class copyReservePage
 
   setupForm: ->
     @form = new copyReserveForm(@find('#copy-overlay'))
+    @selectAll = @find('#selectAllReserves')
 
   setupEvents: ->
     $document = @document
     form = @form
+    selectAll = @selectAll
     @document.on 'change', ".copy-reserve", ->
       checkbox = $(this)
       row = checkbox.parents('.copy-reserve-row')
@@ -19,7 +21,15 @@ class copyReservePage
       if checkbox.prop('checked')
         form.addReserve(reserveRow)
       else
+        selectAll.prop('checked', false)
         form.removeReserve(reserveRow)
+
+    selectAll.change ->
+      if selectAll.prop('checked')
+        $document.find(".copy-reserve:not(:checked)").click()
+      else
+        $document.find(".copy-reserve:checked").click()
+
     form.cancelButton().click (event) ->
       event.preventDefault()
       $document.find(".copy-reserve:checked").click()
