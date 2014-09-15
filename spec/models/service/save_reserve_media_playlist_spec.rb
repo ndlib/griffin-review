@@ -37,4 +37,11 @@ describe SaveReserveMediaPlaylist do
     expect(playlist.rows).to eq([{"title"=>"title", "file"=>"file"}])
   end
 
+  it "does not add empty rows" do
+    playlist = SaveReserveMediaPlaylist.call(reserve, 'audio') do | srmp |
+      srmp.add_row('', '')
+    end
+    expect(playlist).to be_false  # can't add with no rows
+  end
+
 end
