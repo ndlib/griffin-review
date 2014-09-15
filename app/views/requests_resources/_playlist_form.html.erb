@@ -5,6 +5,7 @@
   <%= f.input :playlist_type, as: :radio_buttons, collection: [:audio, :video] %>
 
   <h5> Playlist </h5>
+  <p>Click and Drag to reorder </p>
 
   <ul id="playlist_fields">
 
@@ -29,28 +30,11 @@
 
 <% end %>
 
-<ul>
+<ul id="playlist_demo_rows">
   <%= render partial: 'media_playlist_file_row' %>
   <%= render partial: 'media_playlist_category_row' %>
 </ul>
 
-<script type="text/javascript">
-  $('#new_row_button').click(function () {
-    $("#add_row").clone(false).removeAttr("id").removeClass('demo_row').appendTo($("#playlist_fields"));
-  });
-  $('#new_category_button').click(function () {
-    $('#add_category_row').clone(false).removeAttr("id").removeClass('demo_row').appendTo($("#playlist_fields"));
-  });
-  $('#playlist_fields').on('click', '.delete_row', function () {
-    if (confirm("Are you sure you wish to remove this row from the playlist?")) {
-      $(this).parents('.playlist_row').remove();
-    }
-  });
-  $( "#playlist_fields" ).sortable({
-      revert: true
-  });
-</script>
 
 <style>
-  .demo_row { display: none; }
 </style>
