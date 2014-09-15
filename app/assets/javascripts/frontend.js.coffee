@@ -241,6 +241,22 @@ jQuery ($) ->
       return false
 
 
+  setupPlaylistForm = () ->
+    if $('#playlist_fields')
+      $("#new_row_button").click ->
+        $("#add_row").clone(false).removeAttr("id").removeClass("demo_row").appendTo $("#playlist_fields")
+        return
+
+      $("#new_category_button").click ->
+        $("#add_category_row").clone(false).removeAttr("id").removeClass("demo_row").appendTo $("#playlist_fields")
+        return
+
+      $("#playlist_fields").on "click", ".delete_row", ->
+        $(this).parents(".playlist_row").remove()  if confirm("Are you sure you wish to remove this row from the playlist?")
+        return
+
+      $("#playlist_fields").sortable revert: true
+
 
   setupMetaDataForm()
   setupResourceForm()
@@ -249,7 +265,7 @@ jQuery ($) ->
   setupCopyReserveDatatable()
   setupCopyOldReserveDatatable()
   setupUsersDatatable()
-
+  setupPlaylistForm()
 
   $('.needed_by_datepicker').change ->
     d = Date.parse($(this).val())
@@ -274,4 +290,6 @@ jQuery ($) ->
       $(this).val("")
     else
       $(this).parents('.control-group').removeClass('error')
+
+
 
