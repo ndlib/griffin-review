@@ -7,7 +7,7 @@ describe CopyCourseReservesForm do
   let(:semester) { FactoryGirl.create(:semester) }
   let(:next_semester) { FactoryGirl.create(:next_semester) }
   let(:from_course) { double(Course, semester: semester, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'from_reserve_id') }
-  let(:to_course) { double(Course, semester: semester, :id => 'to_course_id', :title => 'to title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'to_reserve_id') }
+  let(:to_course) { double(Course, semester: next_semester, :id => 'to_course_id', :title => 'to title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'to_reserve_id') }
   let(:valid_params) { { course_id: to_course.id, from_course_id: from_course.id } }
   subject { described_class.new(user, valid_params) }
   before(:each) do
@@ -21,27 +21,27 @@ describe CopyCourseReservesForm do
 
 
   it "displays the from course title" do
-    @copy_course.from_course_title.should == "#{from_course.title} - #{from_course.semester.full_name}"
+    expect(subject.from_course_title).to eq "#{from_course.title} - #{from_course.semester.full_name}"
   end
 
 
   it "displays the to course title" do
-    @copy_course.to_course_title.should == "#{to_course.title} - #{to_course.semester.full_name}"
+    expect(subject.to_course_title).to eq "#{to_course.title} - #{to_course.semester.full_name}"
   end
 
 
   describe :copy do
 
     it "is returns true when it is successful" do
-      @reserve = Reserve.factory(FactoryGirl.create(:request, :available), from_course)
-      from_course.stub(:reserve).with(@reserve.id).and_return(@reserve)
+      reserve = Reserve.factory(FactoryGirl.create(:request, :available), from_course)
+      from_course.stub(:reserve).with(reserve.id).and_return(reserve)
 
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id, reserve_ids: [ @reserve.id ] }
-      @copy_course = CopyCourseReservesForm.new(user, valid_params)
+      valid_params[:reserve_ids] = [ reserve.id ]
 
-      reserves = @copy_course.copy_items()
-      reserves.first.id.should_not == @reserve.id
-      reserves.first.item.title.should == @reserve.item.title
+      subject = described_class.new(user, valid_params)
+      reserves = subject.copy_items()
+      expect(reserves.first.id).to_not eq reserve.id
+      expect(reserves.first.item.title).to eq reserve.item.title
     end
 
 
