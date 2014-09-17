@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CopyCourseReservesForm do
 
-  let(:user) { mock_model(User, :id => 1, :username => 'instructor') }
+  let(:user) { mock_model(User, :id => 1, :username => 'instructor', :admin? => false) }
   let(:course_search) { CourseSearch.new }
   let(:semester) { FactoryGirl.create(:semester) }
   let(:next_semester) { FactoryGirl.create(:next_semester) }
@@ -60,6 +60,29 @@ describe CopyCourseReservesForm do
 
       reserves = @copy_course.copy_items()
       reserves.should == []
+    end
+  end
+
+  describe '#instructor' do
+    it 'is the user' do
+      expect(subject.instructor).to eq(user)
+    end
+
+    describe 'admin' do
+      let(:user) { mock_model(User, :id => 1, :username => 'instructor', :admin? => true) }
+
+      it 'is the to_course instructor' do
+        expect(subject.instructor).to eq(to_course.primary_instructor)
+        expect(subject.instructor).to_not eq(user)
+      end
+    end
+  end
+
+  describe '#semester_instructed_courses' do
+    it 'calls CourseSearch#instructed_courses with the instructor netid' do
+      subject.stub(:instructor).and_return(double(User, username: 'newinstructor'))
+      expect_any_instance_of(CourseSearch).to receive(:instructed_courses).with('newinstructor', semester.code).and_return(['courses'])
+      expect(subject.semester_instructed_courses(semester)).to eq(['courses'])
     end
   end
 
