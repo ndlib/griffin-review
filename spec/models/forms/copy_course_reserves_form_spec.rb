@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe CopyCourseReservesForm do
 
+  def build_controller(params)
+    double(CopyReservesController, params: params)
+  end
+
   let(:user) { mock_model(User, :id => 1, :username => 'instructor', :admin? => false) }
   let(:course_search) { CourseSearch.new }
   let(:semester) { FactoryGirl.create(:semester) }
@@ -9,14 +13,15 @@ describe CopyCourseReservesForm do
   let(:from_course) { double(Course, semester: semester, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'from_reserve_id') }
   let(:to_course) { double(Course, semester: next_semester, :id => 'to_course_id', :title => 'to title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'to_reserve_id') }
   let(:valid_params) { { course_id: to_course.id, from_course_id: from_course.id } }
-  subject { described_class.new(user, valid_params) }
+  let(:controller) { build_controller(valid_params) }
+
+  subject { described_class.new(user, controller) }
   before(:each) do
 
     CourseSearch.any_instance.stub(:get).and_return(nil)
     CourseSearch.any_instance.stub(:get).with(from_course.id).and_return(from_course)
     CourseSearch.any_instance.stub(:get).with(to_course.id).and_return(to_course)
 
-    @copy_course = subject
   end
 
 
@@ -36,9 +41,7 @@ describe CopyCourseReservesForm do
       reserve = Reserve.factory(FactoryGirl.create(:request, :available), from_course)
       from_course.stub(:reserve).with(reserve.id).and_return(reserve)
 
-      valid_params[:reserve_ids] = [ reserve.id ]
-
-      subject = described_class.new(user, valid_params)
+      valid_params.merge!({reserve_ids: [ reserve.id ]})
       reserves = subject.copy_items()
       expect(reserves.first.id).to_not eq reserve.id
       expect(reserves.first.item.title).to eq reserve.item.title
@@ -46,19 +49,16 @@ describe CopyCourseReservesForm do
 
 
     it "skips reserve ids that are not real reserves" do
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id, reserve_ids: [  5234234, "a", Object.new ] }
-      @copy_course = CopyCourseReservesForm.new(user, valid_params)
+      valid_params.merge!({ reserve_ids: [  5234234, "a", Object.new ] })
 
-      reserves = @copy_course.copy_items()
+      reserves = subject.copy_items()
       reserves.should == []
     end
 
 
     it "skips if nothing is passed in" do
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id }
-      @copy_course = CopyCourseReservesForm.new(user, valid_params)
 
-      reserves = @copy_course.copy_items()
+      reserves = subject.copy_items()
       reserves.should == []
     end
   end
@@ -90,14 +90,13 @@ describe CopyCourseReservesForm do
   describe :step1? do
 
     it "returns true if the to course is set and the from course is not " do
-      valid_params = { course_id: to_course.id }
-      CopyCourseReservesForm.new(user, valid_params).step1?.should be_true
+      valid_params.delete(:from_course_id)
+      subject.step1?.should be_true
     end
 
 
     it "returns false if the to course is set" do
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id }
-      CopyCourseReservesForm.new(user, valid_params).step1?.should be_false
+      subject.step1?.should be_false
     end
 
   end
@@ -106,13 +105,12 @@ describe CopyCourseReservesForm do
   describe :step2 do
 
     it "returns true if both the from course and the to course are set " do
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id }
-      CopyCourseReservesForm.new(user, valid_params).step2?.should be_true
+      subject.step2?.should be_true
     end
 
-    it "returns false if the the to course is not set " do
-      valid_params = { course_id: to_course.id  }
-      CopyCourseReservesForm.new(user, valid_params).step2?.should be_false
+    it "returns false if the the from course is not set " do
+      valid_params.delete(:from_course_id)
+      subject.step2?.should be_false
     end
 
   end
@@ -121,47 +119,46 @@ describe CopyCourseReservesForm do
   describe :validations do
 
     it "sends a 404 if the from_course is not found" do
-      valid_params = { course_id: 'not_a_course', from_course_id: from_course.id }
+      valid_params.merge!({ course_id: 'not_a_course' })
 
       lambda {
-        CopyCourseReservesForm.new(user, valid_params)
+        subject
       }.should raise_error ActionController::RoutingError
     end
 
 
-    it "allows only the from_course to be set " do
-      valid_params = { course_id: from_course.id }
+    it "allows to_course to be set " do
+      valid_params.delete(:from_course_id)
 
       lambda {
-        CopyCourseReservesForm.new(user, valid_params)
+        subject
       }.should_not raise_error
     end
 
 
-    it "does fails if there is no from course " do
-      valid_params = {  from_course_id: from_course.id }
+    it "does fails if there is no to_course " do
+      valid_params.delete(:course_id)
 
       lambda {
-        CopyCourseReservesForm.new(user, valid_params)
+        subject
       }.should raise_error ActionController::RoutingError
 
     end
 
-    it "sends a 404 if the to course is not found" do
-      valid_params = { course_id: from_course.id, from_course_id: 'not_a_course' }
+    it "sends a 404 if the from course is not found" do
+      valid_params.merge!({ from_course_id: 'not_a_course' })
 
       lambda {
-        CopyCourseReservesForm.new(user, valid_params)
+        subject
       }.should raise_error ActionController::RoutingError
     end
 
 
     it "sends a 404 if the to course cannot have new reserves added to it" do
       CreateNewReservesPolicy.any_instance.stub(:can_create_new_reserves?).and_return(false)
-      valid_params = { course_id: to_course.id, from_course_id: from_course.id }
 
       lambda {
-        CopyCourseReservesForm.new(user, valid_params)
+        subject
       }.should raise_error ActionController::RoutingError
     end
 

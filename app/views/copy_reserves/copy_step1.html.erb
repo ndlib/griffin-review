@@ -5,24 +5,53 @@
   <a class="btn btn-info"><i class="icon-question-sign"></i> Help</a>
 <% end %>
 
+<% if @copy_course_listing.course_search_allowed? %>
+  <form class="well form-search">
+    <p>
+      <label for="q">
+        Search For
+      </label>
+      <input id="q" class="input-large" type="text" name="q" value="<%= params[:q] %>" style="width:200px; height: 30px;" placeholder="Course or Instructor Name" /> in
+      <select name="semester_id" class="search_select">
+        <%= options_for_select(@copy_course_listing.search_list.semester_option_array, @copy_course_listing.search_list.semester.id) %>
+      </select>
+      <button type="submit" class="btn">Go</button>
+    </p>
+  </form>
 
-<% found_items = false %>
-<% @copy_course_listing.all_semesters.each do | semester | %>
-  <% if @copy_course_listing.semester_has_courses?(semester) %>
-    <% found_items = true %>
-    <%= render :partial => 'copy_course_list',
-          locals: {
-            instructed_courses: @copy_course_listing.semester_instructed_courses_with_reserves(semester),
-            to_course: @copy_course_listing.to_course,
-            title: semester.full_name }
-      %>
+  <% if @copy_course_listing.search_list.has_searched? %>
+
+    <% if !@copy_course_listing.search_list.has_results? %>
+      <div class="alert">There are no courses for your search.</div>
+    <% else %>
+      <%= render :partial => 'copy_course_list',
+            locals: {
+              instructed_courses: @copy_course_listing.search_list.search,
+              to_course: @copy_course_listing.to_course,
+              display_instructor: true }
+        %>
+    <% end %>
   <% end %>
-<% end %>
+<% else %>
 
-<% if !found_items %>
-  <p class="alert">
-    You do not have any courses that have reaserves to copy from.
-  </p>
+  <% found_items = false %>
+  <% @copy_course_listing.all_semesters.each do | semester | %>
+    <% if @copy_course_listing.semester_has_courses?(semester) %>
+      <% found_items = true %>
+      <%= render :partial => 'copy_course_list',
+            locals: {
+              instructed_courses: @copy_course_listing.semester_instructed_courses_with_reserves(semester),
+              to_course: @copy_course_listing.to_course,
+              display_instructor: false }
+        %>
+    <% end %>
+  <% end %>
+
+  <% if !found_items %>
+    <p class="alert">
+      You do not have any courses that have reaserves to copy from.
+    </p>
+  <% end %>
 <% end %>
 
 <h4>Note about courses from the old reserves system</h4>

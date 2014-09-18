@@ -3,6 +3,9 @@
   <thead>
     <tr>
       <th>Course</th>
+      <% if display_instructor %>
+        <th>Instructor</th>
+      <% end %>
       <th>Semester</th>
       <th>Cross Listings</th>
       <th>Sections</th>
@@ -14,6 +17,11 @@
       <td>
         <%= link_to course.title, :controller => "copy_reserves", :action => "copy_step2", :course_id => to_course.id, :from_course_id => course.id %>
       </td>
+      <% if display_instructor %>
+        <td>
+          <%= course.primary_instructor.display_name %>
+        </td>
+      <% end %>
       <td>
         <%= h course.semester.full_name %>
       </td>

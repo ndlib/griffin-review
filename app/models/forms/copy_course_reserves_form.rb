@@ -1,10 +1,12 @@
 class CopyCourseReservesForm
   include ModelErrorTrapping
 
-  attr_reader :from_course, :to_course, :user, :items_to_copy, :params
+  attr_reader :from_course, :to_course, :user, :items_to_copy, :controller
+  delegate :params, to: :controller
 
-  def initialize(current_user, params)
-    @params = params
+  def initialize(current_user, controller)
+    @controller = controller
+
     @to_course = get_course(params[:course_id])
 
     if params.has_key?(:from_course_id)
@@ -99,6 +101,14 @@ class CopyCourseReservesForm
 
   def to_course_can_have_new_reserves?
     CreateNewReservesPolicy.new(to_course).can_create_new_reserves?
+  end
+
+  def course_search_allowed?
+    current_user_is_administrator?
+  end
+
+  def search_list
+    @search_list ||= SearchCourses.new(controller)
   end
 
 

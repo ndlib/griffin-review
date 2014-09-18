@@ -3,7 +3,7 @@ class CopyReservesController < ApplicationController
   layout :determine_layout
 
   def copy
-    @copy_course_listing = CopyCourseReservesForm.new(current_user, params)
+    @copy_course_listing = CopyCourseReservesForm.new(current_user, self)
 
     check_instructor_permissions!(@copy_course_listing.from_course)
     check_instructor_permissions!(@copy_course_listing.to_course)
@@ -15,7 +15,7 @@ class CopyReservesController < ApplicationController
 
 
   def copy_step1
-    @copy_course_listing = CopyCourseReservesForm.new(current_user, params)
+    @copy_course_listing = CopyCourseReservesForm.new(current_user, self)
 
     check_instructor_permissions!(@copy_course_listing.to_course)
 
@@ -26,7 +26,7 @@ class CopyReservesController < ApplicationController
 
 
   def copy_step2
-    @copy_course_listing = CopyCourseReservesForm.new(current_user, params)
+    @copy_course_listing = CopyCourseReservesForm.new(current_user, self)
 
     check_instructor_permissions!(@copy_course_listing.from_course)
     check_instructor_permissions!(@copy_course_listing.to_course)
