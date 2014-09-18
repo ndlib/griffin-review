@@ -11,7 +11,8 @@ if params[:type] && params[:type] == 'audio'
     '1' => {
       title: 'audio 1',
       file: 'wowza-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3',
-      token: ''
+      token: '',
+      type: "mp3"
     },
     'cat' => {
       title: 'category',
@@ -20,7 +21,8 @@ if params[:type] && params[:type] == 'audio'
     '2' => {
       title: 'audio 2',
       file: 'wowza-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3',
-      token: ''
+      token: '',
+      type: "mp3"
     }
   }
 else
@@ -29,7 +31,8 @@ else
     '1' => {
       title: 'big buck bunny 1',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93'
+      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93',
+      type: "mp4"
     },
     'cat' => {
       title: 'category',
@@ -38,7 +41,8 @@ else
     '2' => {
       title: 'big buck bunny 2',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93'
+      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93',
+      type: "mp4"
     }
   }
 end
@@ -97,8 +101,8 @@ jwplayer('jwplayer').setup({
   <% playlist.each do | id, list | %>
     {
     "sources":[
-      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>"},
-      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>"}
+      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>", "type": "<%= list[:type] %>"},
+      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>", "type": "<%= list[:type] %>"}
     ],
     "title": "<%= list[:title] %>"
     },
