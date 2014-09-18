@@ -63,6 +63,15 @@ describe CopyCourseReservesForm do
     end
   end
 
+  describe '#copy_from_reserves' do
+    it 'does not include removed reserves' do
+      reserve1 = double(Reserve, workflow_state: 'available')
+      reserve2 = double(Reserve, workflow_state: 'removed')
+      from_course.stub(:reserves).and_return([reserve1, reserve2])
+      expect(subject.copy_from_reserves).to eq([reserve1])
+    end
+  end
+
   describe '#instructor' do
     it 'is the user' do
       expect(subject.instructor).to eq(user)
