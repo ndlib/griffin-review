@@ -32,8 +32,11 @@
         %>
     <% end %>
   <% end %>
-<% else %>
-
+<% end %>
+<% if @copy_course_listing.show_instructor_courses? %>
+  <% if @copy_course_listing.course_search_allowed? %>
+    <h4>Courses for <%= @copy_course_listing.instructor.display_name %></h4>
+  <% end %>
   <% found_items = false %>
   <% @copy_course_listing.all_semesters.each do | semester | %>
     <% if @copy_course_listing.semester_has_courses?(semester) %>
@@ -42,7 +45,7 @@
             locals: {
               instructed_courses: @copy_course_listing.semester_instructed_courses_with_reserves(semester),
               to_course: @copy_course_listing.to_course,
-              display_instructor: false }
+              display_instructor: @copy_course_listing.course_search_allowed? }
         %>
     <% end %>
   <% end %>

@@ -107,6 +107,10 @@ class CopyCourseReservesForm
     current_user_is_administrator?
   end
 
+  def show_instructor_courses?
+    !course_search_allowed? || (course_search_allowed? && !search_list.has_searched?)
+  end
+
   def search_list
     @search_list ||= SearchCourses.new(controller)
   end
