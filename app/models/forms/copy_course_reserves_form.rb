@@ -60,7 +60,7 @@ class CopyCourseReservesForm
 
 
   def copy_from_reserves
-    from_course.reserves
+    from_course_reserves.reject{|r| r.workflow_state == 'removed'}
   end
 
 
@@ -149,4 +149,7 @@ class CopyCourseReservesForm
       end
     end
 
+    def from_course_reserves
+      from_course.reserves
+    end
 end
