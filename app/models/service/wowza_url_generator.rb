@@ -1,9 +1,10 @@
 class WowzaUrlGenerator
 
-  attr_accessor :filename
+  attr_reader :type, :username, :ipaddress, :specific_token
 
-  def initialize(filename, username, ipaddress, specific_token = false)
+  def initialize(filename, type, username, ipaddress, specific_token = false)
     @filename = filename
+    @type = type
     @username = username
     @ipaddress = ipaddress
     @specific_token = specific_token
@@ -33,21 +34,36 @@ class WowzaUrlGenerator
 
 
     def token
-      if @specific_token
-        "t=#{@specific_token}"
+      if specific_token
+        "t=#{specific_token}"
       else
-        wowza_token_generator.generate(@username, @ipaddress)
+        wowza_token_generator.generate(username, ipaddress)
         "t=#{wowza_token_generator.token}"
       end
     end
 
 
+    def filename
+      "#{type}:#{@filename}"
+    end
+
+
+    def type
+      if @type == 'audio'
+        'aod/_definst_/mp3'
+      elsif @type == 'video'
+        'vod/mp4'
+      else
+        raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
+      end
+    end
+
 
     def base_url
-      if Rails.env == 'production'
-        "wowza.library.nd.edu:1935/vod/mp4:"
-      else
-        "wowza-pprd-vm.library.nd.edu:1935/vod/mp4:"
-      end
+#      if Rails.env == 'production'
+        "wowza.library.nd.edu:1935/"
+#      else
+#        "wowza-pprd-vm.library.nd.edu:1935/"
+#      end
     end
 end
