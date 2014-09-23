@@ -66,7 +66,7 @@ class GetReserve
 
   def streaming_server_file?
     rp = ElectronicReservePolicy.new(@reserve)
-    rp.has_streaming_resource?
+    rp.has_streaming_resource? || rp.has_media_playlist?
   end
 
 
