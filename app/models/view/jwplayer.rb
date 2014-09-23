@@ -87,7 +87,7 @@ class Jwplayer
           height: 480,
           listbar: {
             position: "bottom",
-            size: '400',
+            size: '422',
             layout: 'basic'
         }})
       else
