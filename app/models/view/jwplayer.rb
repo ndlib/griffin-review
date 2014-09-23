@@ -120,14 +120,24 @@ class Jwplayer
       ret = []
 
       media_playlist.rows.each do | row |
-        ret << {
-          sources: [{
-              file: wowza_url_generator(row[:file]).rtmp
-          },{
-              file: wowza_url_generator(row[:file]).html5,
-          }],
-          title: row[:title]
-        }
+        if audio_playlist?
+          ret << {
+            sources: [{
+                file: wowza_url_generator(row[:file]).rtmp
+            },{
+                file: wowza_url_generator(row[:file]).html5,
+            }],
+            title: row[:title]
+          }
+        else
+            sources: [{
+                file: wowza_url_generator(row[:file]).html5,
+            }, {
+                file: wowza_url_generator(row[:file]).rtmp
+            } ],
+            title: row[:title]
+          }
+        end
       end
 
       ret
@@ -135,7 +145,7 @@ class Jwplayer
 
 
     def wowza_url_generator(filename)
-      @wowza_url_generator ||= WowzaUrlGenerator.new(filename, media_playlist.type, username, ipaddress, specific_token)
+      WowzaUrlGenerator.new(filename, media_playlist.type, username, ipaddress, specific_token)
     end
 
 

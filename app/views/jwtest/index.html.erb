@@ -17,7 +17,7 @@ elsif params[:type] == 'single'
     '1' => {
       title: 'big buck bunny 1',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      token: '?t=cbdb3833e495d7c9230643f90ae16e67',
       type: "hls"
     }
   }
@@ -28,13 +28,13 @@ else
     '1' => {
       title: 'big buck bunny 1',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      token: '?t=cbdb3833e495d7c9230643f90ae16e67',
       type: "hls"
     },
     '2' => {
       title: 'big buck bunny 2',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      token: '?t=cbdb3833e495d7c9230643f90ae16e67',
       type: "hls"
     }
   }
@@ -58,9 +58,9 @@ end
 <% end %>
 
 <div class="twelve columns">
-  <!-- div id='jwplayer'>
+  <div id='jwplayer'>
     <p>dasfads</p><p>asdfdfas</p>
-  </div -->
+  </div>
 </div>
 
 <!-- script type='text/javascript'>
@@ -97,8 +97,8 @@ jwplayer('jwplayer').setup({
   <% playlist.each do | id, list | %>
     {
     "sources":[
-      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>"},
-      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>"}
+      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>"},
+      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>"}
     ],
     "title": "<%= list[:title] %>"
     },
@@ -106,7 +106,9 @@ jwplayer('jwplayer').setup({
     ]}
   );
 </script -->
-<div id='jwplayer'>Loading the player...<h3>Troubleshooting</h3><ol><li>Check to see if you have <a href="http://get.adobe.com/flashplayer/" target="_blank">flash</a> installed.</li><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('jwplayer').setup({"fallback":false,"primary":"html5","html5player":"/assets/jwplayer.html5.js","flashplayer":"/assets/jwplayer.flash.swf","playlist":[{"sources":[{"file":"rtmpt://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3?t=2043d92d58f717551522f7fa3fe75bec"},{"file":"http://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3/playlist.m3u8?t=2043d92d58f717551522f7fa3fe75bec"}],"title":"audio 1"},{"sources":[{"file":"rtmpt://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3?t=2043d92d58f717551522f7fa3fe75bec"},{"file":"http://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3/playlist.m3u8?t=2043d92d58f717551522f7fa3fe75bec"}],"title":"audio2"}],"androidhls":true,"logo":{"file":"/assets/hesburgh.png","link":"http://library.nd.edu"},"autostart":false,"width":480,"height":480,"listbar":{"position":"bottom","size":"400","layout":"basic"}});</script>
+
+<script type='text/javascript'>jwplayer('jwplayer').setup({"fallback":false,"primary":"html5","html5player":"/assets/jwplayer.html5.js","flashplayer":"/assets/jwplayer.flash.swf","autostart":true,"width":"100%","aspectratio":"16:9","playlist":[{"sources":[{"file":"http://wowza-pprd-vm.library.nd.edu:1935/vod/mp4:D065596_Boyz_n_The_Hood.mov/playlist.m3u8?t=73f8af43cf9003d1a106255412baf33d"},{"file":"rtmpt://wowza-pprd-vm.library.nd.edu:1935/vod/mp4:D065596_Boyz_n_The_Hood.mov?t=73f8af43cf9003d1a106255412baf33d"}]}]});</script>
+
 
 <a href="rtsp://wowza-pprd-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3">Play Audio</a>
 
