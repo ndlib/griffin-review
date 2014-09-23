@@ -130,7 +130,7 @@ class Jwplayer
             title: row[:title]
           }
         else
-            sources: [{
+           ret << { sources: [{
                 file: wowza_url_generator(row[:file]).html5,
             }, {
                 file: wowza_url_generator(row[:file]).rtmp
