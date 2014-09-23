@@ -1,33 +1,17 @@
 <%= render partial: '/course_reserves/reserve_header', locals: { reserve: @get_reserve.reserve } %>
 
+<% content_for(:content_title_links) do %>
+  <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
+<% end %>
+
+
 <% breadcrumb([
     link_to('Courses', courses_path),
     link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course.id)),
     @get_reserve.reserve.title
    ]) %>
 
-<div class="twelve columns">
-<div class="six columns">
-  <%= @get_reserve.video_player %>
-</div>
-<div class="six columns find-resources">
-  <div class="record record-video">
-    <div class="summary no-margin">
-      <h3 class="author"><%= @get_reserve.creator_contributor %></h3>
-      <p class="details"><%= raw @get_reserve.details %></p>
-      <p class="publisher"><%= raw @get_reserve.publisher_provider %></p>
-    </div>
-  </div>
-  <p>
-    <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
-  </p>
-</div>
-</div>
-
-<div>
-<div class="six columns">
-  <p>
-    <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id), class: 'btn') %>
-  </p>
-</div>
-</div>
+<%= @get_reserve.video_player %>
+<p>
+  <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id), class: 'btn') %>
+</p>

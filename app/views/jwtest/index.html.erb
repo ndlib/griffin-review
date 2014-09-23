@@ -1,48 +1,41 @@
 
 
 <% if !params[:no_player] %>
-  <% @jwplayer.jwplayer%>
+  <% # @jwplayer.jwplayer%>
 <% end %>
 
 <%
-if params[:type] && params[:type] == 'audio'
-  type = 'audio'
-  playlist = {
-    '1' => {
-      title: 'audio 1',
-      file: 'wowza-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3',
-      token: '',
-      type: "mp3"
-    },
-    'cat' => {
-      title: 'category',
-      file: 'none.mp3'
-    },
-    '2' => {
-      title: 'audio 2',
-      file: 'wowza-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3',
-      token: '',
-      type: "mp3"
-    }
-  }
-else
+params[:type] = 'video' if !params[:type]
+
+if params[:type] == 'audio'
+  media_playlist = MediaPlaylist.new(type: 'audio', rows: [ { title: 'audio 1', file: 'C00139/C00139_0114.mp3' }, { title: 'audio2', file: 'C00139/C00139_0114.mp3' } ])
+
+elsif params[:type] == 'single'
   type = 'video'
+  size = 'single'
   playlist = {
     '1' => {
       title: 'big buck bunny 1',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93',
-      type: "mp4"
-    },
-    'cat' => {
-      title: 'category',
-      file: 'none.mp3'
+      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      type: "hls"
+    }
+  }
+else
+  type = 'video'
+  size = 'multiple'
+  playlist = {
+    '1' => {
+      title: 'big buck bunny 1',
+      file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
+      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      type: "hls"
     },
     '2' => {
       title: 'big buck bunny 2',
       file: 'wowza-pprd-vm.library.nd.edu:1935/vod/mp4:big_buck_bunny_full.mov',
-      token: '?t=87a7a0966c0b5f78a755d9aa57e90e93',
-      type: "mp4"
+      token: '?t=b2778e23387a12487342b796b2cbdec1',
+      type: "hls"
     }
   }
 end
@@ -51,7 +44,7 @@ end
 
 %>
 
-<% @jwplayer.rstp_link %>
+<% # @jwplayer.rstp_link %>
 
 <% content_for(:content_title) do %>
   <h1>Big Buck Bunny</h1>
@@ -65,54 +58,55 @@ end
 <% end %>
 
 <div class="twelve columns">
-  <div id='jwplayer'>
+  <!-- div id='jwplayer'>
     <p>dasfads</p><p>asdfdfas</p>
-  </div>
+  </div -->
 </div>
 
-<script type='text/javascript'>
+<!-- script type='text/javascript'>
 jwplayer('jwplayer').setup({
   "androidhls": true,
   "fallback":true,
-  "primary": 'html5',
   "html5player":"/assets/jwplayer.html5.js",
   "flashplayer":"/assets/jwplayer.flash.swf",
+  "logo": { "file":"/assets/hesburgh.png", "link":"http://library.nd.edu"},
   <% if type == 'audio' %>
     "autostart":false,
     "width": 480,
     "height": 480,
+    <% if size == 'multiple' %>
     "listbar": {
       "layout":"basic",
       "position":"bottom",
-      "size": 452
+      "size": 400
     },
+    <% end %>
   <% else %>
     "autostart":true,
-    "logo": { "file":"/assets/hesburgh.png", "link":"http://library.nd.edu"} ,
     "aspectratio":"16:9",
     "width": '80%',
+    <% if size == 'multiple' %>
     "listbar": {
         "position": "right",
         "size": '20%',
         "layout": 'basic'
       },
+    <% end %>
   <% end %>
   "playlist": [
   <% playlist.each do | id, list | %>
     {
     "sources":[
-      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>", "type": "<%= list[:type] %>"},
-      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>", "type": "<%= list[:type] %>"}
+      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>"},
+      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>"}
     ],
     "title": "<%= list[:title] %>"
     },
   <% end %>
     ]}
   );
-</script>
-<style>
-  li.selected { background-color: yellow;}
-</style>
+</script -->
+<div id='jwplayer'>Loading the player...<h3>Troubleshooting</h3><ol><li>Check to see if you have <a href="http://get.adobe.com/flashplayer/" target="_blank">flash</a> installed.</li><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('jwplayer').setup({"fallback":false,"primary":"html5","html5player":"/assets/jwplayer.html5.js","flashplayer":"/assets/jwplayer.flash.swf","playlist":[{"sources":[{"file":"rtmpt://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3?t=2043d92d58f717551522f7fa3fe75bec"},{"file":"http://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3/playlist.m3u8?t=2043d92d58f717551522f7fa3fe75bec"}],"title":"audio 1"},{"sources":[{"file":"rtmpt://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3?t=2043d92d58f717551522f7fa3fe75bec"},{"file":"http://wowza.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3/playlist.m3u8?t=2043d92d58f717551522f7fa3fe75bec"}],"title":"audio2"}],"androidhls":true,"logo":{"file":"/assets/hesburgh.png","link":"http://library.nd.edu"},"autostart":false,"width":480,"height":480,"listbar":{"position":"bottom","size":"400","layout":"basic"}});</script>
 
 <a href="rtsp://wowza-pprd-vm.library.nd.edu:1935/aod/_definst_/mp3:C00139/C00139_0114.mp3">Play Audio</a>
 
