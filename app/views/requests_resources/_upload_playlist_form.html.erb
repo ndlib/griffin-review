@@ -2,7 +2,6 @@
 <h3>Upload Playlist</h3>
 
 <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
-  <%= f.input :playlist_type, as: :radio_buttons, collection: [:audio, :video] %>
 
   <%= f.input :playlist_audio_directory, label: 'Streaming Audio Base Directory' %>
   <%= f.input :playlist_file, as: :file %>

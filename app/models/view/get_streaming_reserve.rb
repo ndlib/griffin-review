@@ -36,7 +36,7 @@ class GetStreamingReserve
   private
 
     def jwplayer
-      @jwplayer = Jwplayer.new(reserve.media_playlist, current_username, current_ip_address)
+      @jwplayer = Jwplayer.new(reserve, current_username, current_ip_address)
     end
 
     def current_username

@@ -1,7 +1,6 @@
 class MediaPlaylist < ActiveRecord::Base
 
-  validates :item_id, :type, :rows, presence: true
-  validates :type, inclusion: { in: %w(audio video) }
+  validates :item_id, :rows, presence: true
 
   store :data, accessors: [:rows]
 

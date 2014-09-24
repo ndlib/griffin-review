@@ -1,17 +1,14 @@
 class SaveReserveMediaPlaylist
   attr_accessor :reserve
 
-  delegate :type, :type=, to: :media_playlist
-
-  def self.call(reserve, type)
-    object = new(reserve, type)
+  def self.call(reserve)
+    object = new(reserve)
     yield(object) if block_given?
     object.create
   end
 
-  def initialize(reserve, type)
+  def initialize(reserve)
     @reserve = reserve
-    media_playlist.type = type
   end
 
   def add_row(title, file)

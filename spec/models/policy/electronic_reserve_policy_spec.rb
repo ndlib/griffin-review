@@ -92,9 +92,9 @@ describe ElectronicReservePolicy do
 
     it "returns the type of medisa playlist if it is a media playlist" do
       @policy.stub(:has_media_playlist?).and_return(true)
-      @reserve.stub(:media_playlist).and_return(MediaPlaylist.new(type: 'video'))
+      @reserve.stub(:type).and_return('AudioReserve')
 
-      expect(@policy.resource_name).to eq("video")
+      expect(@policy.resource_name).to eq("Audio")
     end
 
     it "returns the name of the streaming movie if there is a streaming movie" do
