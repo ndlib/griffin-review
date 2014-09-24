@@ -15,11 +15,9 @@ class GetStreamingReserve
     @reserve = reserve_search.get(params[:id])
   end
 
-
   def android?
     !!(request_os =~ /android/i)
   end
-
 
   def video_player
     if android?
@@ -29,14 +27,11 @@ class GetStreamingReserve
     end
 
     jwplayer.jwplayer
-
   end
-
 
   def course
     reserve.course
   end
-
 
   private
 
@@ -44,11 +39,9 @@ class GetStreamingReserve
       @jwplayer = Jwplayer.new(reserve.media_playlist, current_username, current_ip_address)
     end
 
-
     def current_username
       @controller.current_user.username
     end
-
 
     def current_ip_address
       @controller.request.remote_ip
@@ -58,22 +51,18 @@ class GetStreamingReserve
       @filename ||= ElectronicReservePolicy.new(@reserve).streaming_download_file
     end
 
-
     def request_os
       @android_agent ||= user_agent_parser.parse(controller.request.env['HTTP_USER_AGENT'])
       @android_agent.os.to_s
     end
 
-
     def user_agent_parser
       @usp ||= UserAgentParser::Parser.new
     end
 
-
     def reserve_requires_approval?
       ReserveRequiresTermsOfServiceAgreement.new(reserve).requires_agreement?
     end
-
 
     def reserve_search
       @search ||= ReserveSearch.new
