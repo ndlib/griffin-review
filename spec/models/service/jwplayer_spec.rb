@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Jwplayer do
   subject { described_class.new(media_playlist, 'username', 'ipaddress') }
 
+  context "blank file" do
+    let(:rows) { [ { title: 'audio 1', file: '' } ] }
+    let(:media_playlist) { double(MediaPlaylist, type: 'audio', rows: rows )}
+
+    it "returns the jwplayer with a blank filename" do
+      expect(subject.jwplayer).to eq("<div id='jwplayer'>Loading the player...<h3>Troubleshooting</h3><ol><li>Check to see if you have <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">flash</a> installed.</li><li>We recommend using <a href=\"https://www.google.com/intl/en/chrome/browser/\" target=\"_blank\">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('jwplayer').setup({\"fallback\":false,\"primary\":\"html5\",\"html5player\":\"/assets/jwplayer.html5.js\",\"flashplayer\":\"/assets/jwplayer.flash.swf\",\"playlist\":[{\"sources\":[{\"file\":\"rtmpt://wowza-pprd-vm.library.nd.edu:1935/aod/_definst_/mp3:4sec.mp3?t=ea73a5472a75b69c6c4cfdd2cccf9e28\"},{\"file\":\"http://wowza-pprd-vm.library.nd.edu:1935/aod/_definst_/mp3:4sec.mp3/playlist.m3u8?t=572e341c3cdebfbd939870a66d6f79c4\"}],\"title\":\"audio 1\"}],\"androidhls\":true,\"logo\":{\"file\":\"/assets/hesburgh.png\",\"link\":\"http://library.nd.edu\"},\"autostart\":false,\"width\":480,\"height\":56});</script>")
+    end
+
+  end
+
   context "single audio" do
     let(:rows) { [ { title: 'audio 1', file: 'C00139/C00139_0114.mp3' } ] }
     let(:media_playlist) { double(MediaPlaylist, type: 'audio', rows: rows )}

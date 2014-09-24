@@ -120,7 +120,16 @@ class Jwplayer
       ret = []
 
       media_playlist.rows.each do | row |
-        if audio_playlist?
+        if row[:file].blank?
+          ret << {
+            sources: [{
+                file: wowza_url_generator('4sec.mp3').rtmp
+            },{
+                file: wowza_url_generator('4sec.mp3').html5,
+            }],
+            title: row[:title]
+          }
+        elsif audio_playlist?
           ret << {
             sources: [{
                 file: wowza_url_generator(row[:file]).rtmp
