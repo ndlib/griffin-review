@@ -14,7 +14,6 @@ class AdminUpdateResource
   attribute :pdf, String
   attribute :url, String
   attribute :playlist_rows, Array
-  attribute :playlist_type, String
   attribute :playlist_file, ActionDispatch::Http::UploadedFile
   attribute :playlist_audio_directory, String
 
@@ -28,7 +27,6 @@ class AdminUpdateResource
     if params[:admin_update_resource]
       self.attributes = params[:admin_update_resource]
     elsif electronic_reserve.has_media_playlist?
-      self.playlist_type = reserve.media_playlist.type
       self.playlist_rows = reserve.media_playlist.rows
     end
 
@@ -121,7 +119,7 @@ class AdminUpdateResource
     end
 
     def create_new_playlist!
-      SaveReserveMediaPlaylist.call(@reserve, playlist_type) do | srmp |
+      SaveReserveMediaPlaylist.call(@reserve) do | srmp |
         determine_playlist_rows.each do | row |
           srmp.add_row(row['title'], row['filename'])
         end

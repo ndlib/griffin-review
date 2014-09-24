@@ -104,6 +104,9 @@ describe 'Student Course Access ' do
     expect(page).to have_selector("div#jwplayer")
   end
 
+  it "show a playlist from the streaming server" do
+    raise
+  end
 
 
   it "does not show a request that is in the new phase" do

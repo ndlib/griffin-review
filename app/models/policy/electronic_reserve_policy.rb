@@ -33,7 +33,7 @@ class ElectronicReservePolicy
     elsif has_file_resource?
       @reserve.pdf.original_filename
     elsif has_media_playlist?
-      @reserve.media_playlist.type
+      @reserve.type.gsub("Reserve", '')
     else
       @reserve.url
     end

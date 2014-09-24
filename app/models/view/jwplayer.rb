@@ -1,10 +1,10 @@
 class Jwplayer
   include RailsHelpers
 
-  attr_reader :media_playlist, :username, :ipaddress, :specific_token
+  attr_reader :reserve, :username, :ipaddress, :specific_token
 
-  def initialize(media_playlist, username, ipaddress, specific_token = false)
-    @media_playlist = media_playlist
+  def initialize(reserve, username, ipaddress, specific_token = false)
+    @reserve = reserve
     @username = username
     @ipaddress = ipaddress
     @specific_token = specific_token
@@ -102,24 +102,24 @@ class Jwplayer
 
 
     def multiple?
-      media_playlist.rows.size > 1
+      reserve.media_playlist.rows.size > 1
     end
 
 
     def audio_playlist?
-      media_playlist.type == 'audio'
+      reserve.type == 'AudioReserve'
     end
 
 
     def video_playlist?
-      media_playlist.type == 'video'
+      reserve.type == 'VideoReserve'
     end
 
 
     def sources
       ret = []
 
-      media_playlist.rows.each do | row |
+      reserve.media_playlist.rows.each do | row |
         if row[:file].blank?
           ret << {
             sources: [{
@@ -154,7 +154,9 @@ class Jwplayer
 
 
     def wowza_url_generator(filename)
-      WowzaUrlGenerator.new(filename, media_playlist.type, username, ipaddress, specific_token)
+      type = audio_playlist? ? 'audio' : 'video'
+
+      WowzaUrlGenerator.new(filename, type, username, ipaddress, specific_token)
     end
 
 
