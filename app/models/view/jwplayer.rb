@@ -154,7 +154,7 @@ class Jwplayer
 
 
     def wowza_url_generator(filename)
-      @wowze_url_generator ||= WowzaUrlGenerator.new(filename, media_playlist.type, username, ipaddress, specific_token)
+      WowzaUrlGenerator.new(filename, media_playlist.type, username, ipaddress, specific_token)
     end
 
 
