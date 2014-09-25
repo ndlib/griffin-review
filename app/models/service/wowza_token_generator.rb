@@ -5,7 +5,10 @@ require 'securerandom'
 class WowzaTokenGenerator
 
   def self.generate(username, ip)
-    new().generate(username, ip).unhashed_token
+    obj = new()
+    obj.generate(username, ip)
+
+    obj.token
   end
 
   def generate(username, ip)
@@ -16,7 +19,8 @@ class WowzaTokenGenerator
   end
 
   def token
-    @token ||= SecureRandom.hex
+    @token = Digest::MD5.hexdigest(username)
+    # @token ||= SecureRandom.hex
   end
 
   private
