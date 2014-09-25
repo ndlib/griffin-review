@@ -51,7 +51,7 @@ class WowzaUrlGenerator
       if @type == 'audio'
         'aod/_definst_/mp3'
       elsif @type == 'video'
-        'vod/mp4'
+        'vod/_definst_/mp4'
       else
         raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
       end
