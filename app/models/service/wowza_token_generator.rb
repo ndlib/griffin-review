@@ -5,7 +5,8 @@ require 'securerandom'
 class WowzaTokenGenerator
 
   def self.generate(username, ip)
-    obj = new().generate(username, ip)
+    obj = new()
+    obj.generate(username, ip)
     obj.token
   end
 
