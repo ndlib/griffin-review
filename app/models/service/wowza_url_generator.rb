@@ -29,7 +29,7 @@ class WowzaUrlGenerator
   private
 
     def wowza_token_generator
-      @wowza_token ||= WowzaTokenGenerator.generate(username, ipaddress).token
+      @wowza_token ||= WowzaTokenGenerator.generate(username, ipaddress)
     end
 
 
