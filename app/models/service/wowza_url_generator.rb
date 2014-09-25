@@ -12,12 +12,12 @@ class WowzaUrlGenerator
 
 
   def html5
-    "http://#{base_url}#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}#{type}?#{token}&#{filename}/playlist.m3u8?#{token}"
   end
 
 
   def rtmp
-    "rtmpt://#{base_url}#{filename}?#{token}"
+    "rtmpt://#{base_url}#{type}?#{token}&#{filename}"
   end
 
 
@@ -43,15 +43,15 @@ class WowzaUrlGenerator
 
 
     def filename
-      "#{type}:#{@filename}"
+      "mp4:#{@filename}"
     end
 
 
     def type
       if @type == 'audio'
-        'aod/_definst_/mp3'
+        'aod'
       elsif @type == 'video'
-        'vod/_definst_/mp4'
+        'vod'
       else
         raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
       end
