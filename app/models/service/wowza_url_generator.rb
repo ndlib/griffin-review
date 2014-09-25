@@ -28,7 +28,7 @@ class WowzaUrlGenerator
 
   private
 
-    def wowza_token
+    def wowza_token_generator
       @wowza_token ||= WowzaTokenGenerator.generate(username, ipaddress).token
     end
 
@@ -37,7 +37,7 @@ class WowzaUrlGenerator
       if specific_token
         "t=#{specific_token}"
       else
-        "t=#{wowza_token}"
+        "t=#{wowza_token_generator.token}"
       end
     end
 
