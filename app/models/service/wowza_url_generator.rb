@@ -12,7 +12,7 @@ class WowzaUrlGenerator
 
 
   def html5
-    "http://#{base_url}#{type}?#{token}&#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}#{type}?#{token}&#{filename}/playlist.m3u8"
   end
 
 
