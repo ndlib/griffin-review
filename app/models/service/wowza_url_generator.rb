@@ -10,6 +10,9 @@ class WowzaUrlGenerator
     @specific_token = specific_token
   end
 
+  def streamer
+    "http://#{base_url}#{type}?#{token}"
+  end
 
   def html5
     "http://#{base_url}#{type}?#{token}#{filename}/playlist.m3u8"
@@ -26,6 +29,10 @@ class WowzaUrlGenerator
   end
 
 
+  def filename
+    "mp4:All+Streamed+Videos/#{@filename}"
+  end
+
   private
 
     def wowza_token
@@ -39,11 +46,6 @@ class WowzaUrlGenerator
       else
         "t=#{wowza_token}"
       end
-    end
-
-
-    def filename
-      "/mp4:All+Streamed+Videos\\#{@filename}"
     end
 
 
