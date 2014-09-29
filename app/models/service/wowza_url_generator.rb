@@ -43,7 +43,7 @@ class WowzaUrlGenerator
 
 
     def filename
-      "\\mp4:All+Streamed+Videos\\#{@filename}"
+      "/mp4:All+Streamed+Videos\\#{@filename}"
     end
 
 
