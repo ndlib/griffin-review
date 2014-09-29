@@ -12,12 +12,12 @@ class WowzaUrlGenerator
 
 
   def html5
-    "http://#{base_url}#{type}?#{token}&#{filename}/playlist.m3u8"
+    "http://#{base_url}#{type}/#{filename}/playlist.m3u8?#{token}"
   end
 
 
   def rtmp
-    "rtmpt://#{base_url}#{type}?#{token}&#{filename}"
+    "rtmpt://#{base_url}#{type}/#{filename}?#{token}"
   end
 
 
