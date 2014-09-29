@@ -30,7 +30,7 @@ class WowzaUrlGenerator
 
 
   def filename
-    "mp4:#{@filename}"
+    "mp4:video/#{@filename}"
   end
 
   private
