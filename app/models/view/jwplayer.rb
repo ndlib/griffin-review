@@ -123,7 +123,8 @@ class Jwplayer
         if row[:file].blank?
           ret << {
             sources: [{
-                file: wowza_url_generator('4sec.mp3').rtmp
+                streamer: wowza_url_generator('4sec.mp3').streamer,
+                file: wowza_url_generator('4sec.mp3').filename
             },{
                 file: wowza_url_generator('4sec.mp3').html5,
             }],
@@ -140,7 +141,8 @@ class Jwplayer
           }
         else
            ret << { sources: [ {
-                file: wowza_url_generator(row[:file]).rtmp
+              streamer: wowza_url_generator('4sec.mp3').streamer,
+              file: wowza_url_generator('4sec.mp3').filename
             }, {
                 file: wowza_url_generator(row[:file]).html5,
             } ],
