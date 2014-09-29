@@ -20,11 +20,11 @@ class GetStreamingReserve
   end
 
   def video_player
-    if android?
-      jwplayer.rstp_link
-    else
-      jwplayer.jwplayer
-    end
+    #if android?
+    #  jwplayer.rstp_link
+    #else
+    #  jwplayer.jwplayer
+    #end
 
     jwplayer.jwplayer
   end
