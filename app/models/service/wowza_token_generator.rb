@@ -20,7 +20,7 @@ class WowzaTokenGenerator
   private
 
     def token(username)
-      @token ||= Digest::MD5.hexdigest(username)
+      username
       # @token ||= SecureRandom.hex
     end
 
