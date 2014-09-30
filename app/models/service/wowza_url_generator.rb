@@ -48,7 +48,7 @@ class WowzaUrlGenerator
 
     def base_directory
       if @type == 'audio'
-        'mp3:StreamingAudio/MP3/'
+        'mp3:StreamingAudio/audio/'
       elsif @type == 'video'
         'mp4:StreamingVideo/'
       else
