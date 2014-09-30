@@ -29,7 +29,7 @@ class WowzaUrlGenerator
     end
 
     def filename
-      "#{base_directory}#{@filename}"
+      "#{base_directory}#{CGI.escape(@filename)}"
     end
 
     def token
