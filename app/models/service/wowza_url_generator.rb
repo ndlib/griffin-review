@@ -29,12 +29,14 @@ class WowzaUrlGenerator
     end
 
     def filename
-      "mp4:#{base_directory}#{@filename}"
+      "#{base_directory}#{@filename}"
     end
 
     def token
       if specific_token
         "t=#{specific_token}"
+      elsif Rails.env == 'development'
+        "t=!localtoken662778!"
       else
         "t=#{wowza_token}"
       end
@@ -46,9 +48,9 @@ class WowzaUrlGenerator
 
     def base_directory
       if @type == 'audio'
-        'StreamingAudio/MP3/'
+        'mp3:StreamingAudio/MP3/'
       elsif @type == 'video'
-        'StreamingVideo/'
+        'mp4:StreamingVideo/'
       else
         raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
       end
