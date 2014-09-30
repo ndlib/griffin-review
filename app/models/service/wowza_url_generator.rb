@@ -29,7 +29,7 @@ class WowzaUrlGenerator
     end
 
     def filename
-      "mp4:#{base_directory}/#{@filename}"
+      "mp4:#{base_directory}#{@filename}"
     end
 
     def token
