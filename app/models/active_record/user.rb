@@ -173,7 +173,7 @@ class User < ActiveRecord::Base
         return [nickname, last_name]
       else
         # If there is more than one word in the nickname assume it the full name
-        return [nickname_array[0], (nickname_array - [nickname_array[0]]).join(' ')]
+        return [nickname_array[0], last_name]
       end
     end
     [first_name, last_name]
