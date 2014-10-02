@@ -43,18 +43,26 @@ class WowzaUrlGenerator
     end
 
     def wowza_application
-      'vod'
-    end
-
-    def base_directory
       if @type == 'audio'
-        'mp3:StreamingAudio/audio/'
+        'aod'
       elsif @type == 'video'
-        'mp4:StreamingVideo/'
+        'vod'
       else
         raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
       end
     end
+
+    def base_directory
+      if @type == 'audio'
+        'mp3:'
+      elsif @type == 'video'
+        'mp4:'
+      else
+        raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
+      end
+    end
+
+
 
     def base_url
       if Rails.env == 'production'

@@ -11,7 +11,6 @@ class Jwplayer
 
   end
 
-
   def jwplayer(options = {})
     options = default_options.merge(options)
 
@@ -20,7 +19,6 @@ class Jwplayer
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
 
-
   def rstp_link(options = {})
     options = default_options.merge(options)
 
@@ -28,14 +26,11 @@ class Jwplayer
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
 
-
   def rstp_url
     wowza_url_generator.rtsp
   end
 
-
   private
-
 
     def default_options
       opts = {
@@ -75,7 +70,6 @@ class Jwplayer
       vo
     end
 
-
     def audio_options
       ao = {
         autostart: false,
@@ -100,21 +94,17 @@ class Jwplayer
       ao
     end
 
-
     def multiple?
       reserve.media_playlist.rows.size > 1
     end
-
 
     def audio_playlist?
       reserve.type == 'AudioReserve'
     end
 
-
     def video_playlist?
       reserve.type == 'VideoReserve'
     end
-
 
     def sources
       ret = []
@@ -123,9 +113,9 @@ class Jwplayer
         if row[:file].blank?
           ret << {
             sources: [{
-                file: wowza_url_generator('4sec.mp3').rtmp
+                file: wowza_category_file.rtmp
             },{
-                file: wowza_url_generator('4sec.mp3').html5,
+                file: wowza_category_file.html5,
             }],
             title: row[:title]
           }
@@ -152,7 +142,6 @@ class Jwplayer
       ret
     end
 
-
     def wowza_url_generator(filename)
       type = audio_playlist? ? 'audio' : 'video'
 
@@ -160,4 +149,7 @@ class Jwplayer
     end
 
 
+    def wowza_category_file
+      @category ||= WowzaUrlGenerator.new('4sec.mp3', 'audio', username, ipaddress, specific_token)
+    end
 end
