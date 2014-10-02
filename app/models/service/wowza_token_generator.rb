@@ -21,7 +21,7 @@ class WowzaTokenGenerator
 
     def token(username)
       username
-      # @token ||= SecureRandom.hex
+      @token ||= SecureRandom.hex
     end
 
     def hashed_token(username)
