@@ -121,25 +121,24 @@ class Jwplayer
           }
         elsif audio_playlist?
           ret << {
-            sources: [{
-                file: wowza_url_generator(row[:file]).rtmp
-            },{
-                file: wowza_url_generator(row[:file]).html5,
-            }],
+            sources: sources_for_filename(row[:file]),
             title: row[:title]
           }
         else
-           ret << { sources: [ {
-                file: wowza_url_generator(row[:file]).rtmp
-            }, {
-                file: wowza_url_generator(row[:file]).html5,
-            } ],
+           ret << { sources: sources_for_filename(row[:file]),
             title: row[:title]
           }
         end
       end
 
       ret
+    end
+
+
+    def sources_for_filename(filename)
+      generator = wowza_url_generator(row[:file])
+
+      [{ file: generator.rtmp },{ file: generator.html5 }]
     end
 
     def wowza_url_generator(filename)
