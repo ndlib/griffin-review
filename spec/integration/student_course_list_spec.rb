@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe 'Student Course Access ' do
 
   let(:username) { 'bcarrico'}
@@ -13,8 +12,9 @@ describe 'Student Course Access ' do
   let(:current_course_key) { "student/#{reserve_course}/#{username}" }
   let(:listing_course_key) { 'student/listing/#{username}' }
 
-  let(:ldap) { Net::LDAP::Entry.new }
 
+  let(:ldap) { Net::LDAP::Entry.new }
+  let(:instructor) { FactoryGirl.create(:instructor, username: 'jhartzle' )}
 
   before(:each) do
     semester = Factory(:semester, code: semester_code)
@@ -29,6 +29,8 @@ describe 'Student Course Access ' do
     VCR.use_cassette current_course_key do
       @current_course = CourseSearch.new.get(reserve_course)
     end
+
+    Course.any_instance.stub(:primary_instructor).and_return(instructor)
 
   end
 

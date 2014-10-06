@@ -22,15 +22,21 @@ class Jwplayer
   def rstp_link(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>#{helpers.link_to("Play Video", rstp_url)}</div>}
+    result = %Q{<div id='#{options[:id]}'>#{rtsp_links.join(helpers.raw("<br>"))}</div>}
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
 
-  def rstp_url
-    wowza_url_generator.rtsp
-  end
-
   private
+
+    def rtsp_links
+      ret = []
+      playlist_files.each do | row |
+        generator = wowza_url_generator(row[:file])
+        ret << helpers.link_to(row[:title], generator.rtsp)
+      end
+
+      ret
+    end
 
     def default_options
       opts = {
@@ -95,7 +101,7 @@ class Jwplayer
     end
 
     def multiple?
-      reserve.media_playlist.rows.size > 1
+      playlist_files.size > 1
     end
 
     def audio_playlist?
@@ -109,7 +115,7 @@ class Jwplayer
     def sources
       ret = []
 
-      reserve.media_playlist.rows.each do | row |
+      playlist_files.each do | row |
         if row[:file].blank?
           ret << {
             sources: [{
@@ -134,6 +140,15 @@ class Jwplayer
       ret
     end
 
+    def playlist_files
+      if reserve.media_playlist && reserve.media_playlist.rows.size > 0
+        reserve.media_playlist.rows
+      elsif reserve.url
+        [{file: reserve.url, title: reserve.title}]
+      else
+        []
+      end
+    end
 
     def sources_for_filename(filename)
       generator = wowza_url_generator(filename)

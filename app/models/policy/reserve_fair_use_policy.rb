@@ -1,20 +1,19 @@
 class ReserveFairUsePolicy
 
-
   def initialize(reserve)
     @reserve = reserve
   end
 
-
   def requires_fair_use?
-    (electronic_reserve_policy.has_file_resource? || electronic_reserve_policy.has_sipx_resource? || electronic_reserve_policy.has_streaming_resource?)
+    (electronic_reserve_policy.has_file_resource? ||
+      electronic_reserve_policy.has_sipx_resource? ||
+      electronic_reserve_policy.has_streaming_resource? ||
+      electronic_reserve_policy.has_media_playlist? )
   end
-
 
   def complete?
     !requires_fair_use? || @reserve.fair_use.complete?
   end
-
 
   private
 

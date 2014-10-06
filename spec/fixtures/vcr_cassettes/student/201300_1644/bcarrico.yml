@@ -48,10 +48,10 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ! '[{"term_prefix":"201300","alpha_prefix":"ACCT","number":20100,"course_title":"Accountancy
-        I","section_groups":[{"section_group_id":"201300_1644","primary_instructor":{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
-        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}},"sections":[{"section_id":"201300_1644","supersection_id":null,"instructors":[{"id":"cwray","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cwray","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        I","section_groups":[{"section_group_id":"201300_1644","primary_instructor":{"id":"jhartzle","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jhartzle","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
+        Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}},"sections":[{"section_id":"201300_1644","supersection_id":null,"instructors":[{"id":"jhartzle","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jhartzle","first_name":"Christopher","last_name":"Wray","full_name":"Christopher
         Wray","ndguid":"nd.edu.ndhn6vr5","primary_affiliation":"Faculty","contact_information":{"email":"Christopher.R.Wray.12@nd.edu"}}],"term":"201300","course_triple":"201300_ACCT_20100","course_title":"Accountancy
         I","alpha_prefix":"ACCT","number":20100,"section_number":1,"crn":"1644","enrollments":["xzhou1","aburgett","arabasa","arobert8","asuckow","bcarrico","bdoyle3","cprosise","jmceldre","jsalles","jwhite31","lchan","mharrel1","mholmes3","nmontoya","nsmith11","nstark1","ntausch","qzhu","rmultap1","rokwara","rstanle2","sday1"]}],"crosslist_id":"201300_1644"}],"supersections":null}]'
-    http_version: 
+    http_version:
   recorded_at: Thu, 29 Aug 2013 18:29:02 GMT
 recorded_with: VCR 2.5.0

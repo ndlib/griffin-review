@@ -15,7 +15,6 @@ class AdminUpdateResource
   attribute :url, String
   attribute :playlist_rows, Array
   attribute :playlist_file, ActionDispatch::Http::UploadedFile
-  attribute :playlist_audio_directory, String
 
   delegate :workflow_state, :id, to: :reserve
 
@@ -140,7 +139,7 @@ class AdminUpdateResource
       if playlist_rows.present?
         playlist_rows
       elsif playlist_file
-        ParsePlaylistCsv.rows(playlist_file, playlist_audio_directory)
+        ParsePlaylistCsv.rows(playlist_file)
       else
         []
       end
