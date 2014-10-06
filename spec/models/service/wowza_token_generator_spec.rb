@@ -7,33 +7,40 @@ describe WowzaTokenGenerator do
   describe :token do
 
     it "generates a token from securerandom" do
-      expect(SecureRandom).to receive(:hex).and_return("token")
-      expect(subject.token).to eq("token")
+      expect(Digest::MD5).to receive(:hexdigest).and_return("token").with('username')
+      expect(subject.send('token', 'username')).to eq("token")
     end
   end
 
 
   describe :generate do
     it "creates a database token with a username" do
-      expect(subject.generate('username', 'ipaddress').username).to eq("username")
+      subject.generate('username', 'ipaddress')
+      expect(WowzaToken.where( username: 'username').size).to eq(1)
     end
 
     it "creates a database token with a ipaddress" do
-      expect(subject.generate('username', 'ipaddress').ip).to eq("ipaddress")
+      subject.generate('username', 'ipaddress')
+      expect(WowzaToken.where( ip: 'ipaddress').size).to eq(1)
     end
 
     it "creates a timestamp" do
-      expect(subject.generate('username', 'ipaddress').timestamp).to eq(Time.now.to_i)
+      subject.generate('username', 'ipaddress')
+      expect(WowzaToken.where(username: 'username', ip: 'ipaddress').first.timestamp).to eq(Time.now.to_i)
     end
 
     it "reuses a token for the same username and ip address " do
       token = subject.generate('username', 'ipaddress')
-      expect(subject.generate('username', 'ipaddress').token).to eq(token.token)
+      subject.generate('username', 'ipaddress')
+
+      expect(WowzaToken.where(username: 'username', ip: 'ipaddress').size).to eq(1)
     end
 
     it "creates a database token with a ipaddress" do
       subject.stub(:hashed_token).and_return("token")
-      expect(subject.generate('username', 'ipaddress').token).to eq("token")
+      subject.generate('username', 'ipaddress')
+
+      expect(WowzaToken.where(username: 'username', ip: 'ipaddress').first.token).to eq("token")
     end
   end
 

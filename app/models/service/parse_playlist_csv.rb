@@ -1,15 +1,14 @@
 require 'csv'
 
 class ParsePlaylistCsv
-  attr_reader :file, :directory
+  attr_reader :file
 
-  def self.rows(file, directory)
-    new(file, directory).rows
+  def self.rows(file)
+    new(file).rows
   end
 
-  def initialize(file, directory)
+  def initialize(file)
     @file = file
-    @directory = directory
   end
 
   def rows
@@ -39,19 +38,16 @@ class ParsePlaylistCsv
       row = row.split(';')
       {
         'title' => row[0],
-        'filename' =>  "#{parsed_directory}#{row[row.size - 2]}"
+        'filename' =>  "#{parsed_directory(row)}/#{filename_from_row(row)}"
       }
     end
 
+    def filename_from_row(row)
+      row[row.size - 2]
+    end
 
-    def parsed_directory
-      @directory.gsub!(/\\/,'/')
-
-      if @directory[-1] != '/'
-        @directory += "/"
-      end
-
-      @directory
+    def parsed_directory(row)
+      filename_from_row(row).match(/^([0-9a-zA-Z]*)([-]|[_])/).captures.first
     end
 
 end

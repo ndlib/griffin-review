@@ -11,15 +11,15 @@ class WowzaUrlGenerator
   end
 
   def html5
-    "http://#{base_url}#{wowza_application}/#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}#{wowza_application}/_definst_/#{filename}/playlist.m3u8?#{token}"
   end
 
   def rtmp
-    "rtmpt://#{base_url}#{wowza_application}?#{token}#{filename}"
+    "rtmpt://#{base_url}#{wowza_application}/?#{token}#{filename}"
   end
 
   def rtsp
-    "rtsp://#{base_url}#{filename}?#{token}"
+    "rtsp://#{base_url}#{wowza_application}/#{filename}?#{token}"
   end
 
   private
@@ -43,20 +43,14 @@ class WowzaUrlGenerator
     end
 
     def wowza_application
-      if @type == 'audio'
-        'aod'
-      elsif @type == 'video'
-        'vod'
-      else
-        raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
-      end
+      'vod'
     end
 
     def base_directory
       if @type == 'audio'
-        'mp3:'
+        'mp3:StreamingAudio/MP3/'
       elsif @type == 'video'
-        'mp4:'
+        'mp4:All Streamed Videos/'
       else
         raise "Invalid type, #{@type} passed into WowzaUrlGenerator"
       end

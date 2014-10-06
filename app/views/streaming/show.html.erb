@@ -11,6 +11,13 @@
     @get_reserve.reserve.title
    ]) %>
 
+<% if @get_reserve.android? %>
+  <p>
+    <h4>Note About Android Devices:</h4>
+    Support for streaming to android devices is not available on all Android devices.  If you are having trouble try using a desktop computer.
+  </p>
+<% end %>
+
 <%= @get_reserve.video_player %>
 <p>
   <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id), class: 'btn') %>
