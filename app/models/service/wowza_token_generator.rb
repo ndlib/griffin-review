@@ -6,7 +6,7 @@ class WowzaTokenGenerator
   attr_reader :database_token, :username, :ip
 
   def self.generate(username, ip)
-    obj = new()
+    obj = new(username, ip)
     obj.generate
   end
 
