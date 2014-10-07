@@ -17,7 +17,6 @@ class GetStreamingReserve
 
   def android?
     !!(request_os =~ /android/i)
-    true
   end
 
   def video_player
