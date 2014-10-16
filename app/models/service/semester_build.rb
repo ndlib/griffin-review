@@ -38,6 +38,12 @@ class SemesterBuild
     end
   end
 
+  def past_drop_dead_date?
+    if Date.today > drop_dead_date
+      true
+    end
+  end
+
   def drop_dead_date
     case @current_semester.full_name 
     when /Fall/
@@ -49,10 +55,9 @@ class SemesterBuild
     end
   end
 
-  def past_drop_dead_date?
-    if Date.today > drop_dead_date
-      true
-    end
+  def send_alert_notification
+    SemesterMailer.semester_notify.deliver
+    :alert_notification_sent
   end
 
 end
