@@ -23,7 +23,10 @@ set :output, "log/cron_log.log"
 job_type :runner, "cd :path && bundle exec rails runner -e :environment ':task' :output"
 job_type :rake,   "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
-
+# every morning check for next semester in ND calendar
+every 1.day, :at => '3:00 am' do
+  rake "semester:check"
+end
 
 every "30 5 * * *" do
   runner "BookReserveImporter.import!"
