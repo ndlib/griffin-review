@@ -73,6 +73,9 @@ module Griffin
     # Sakai admin access
     ENV.update YAML.load(File.read(File.expand_path('../sakai.yml', __FILE__)))
 
+    # Admin list
+    config.admin_list = %w{ jhartzle@nd.edu rfox2@nd.edu jkennel@nd.edu dwolfe2@nd.edu }
+
 
     # Custom configs
     config.reserves_ldap_host = 'directory.nd.edu'
