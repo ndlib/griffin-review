@@ -11,14 +11,15 @@ class ReserveMailer < ActionMailer::Base
 
 
   private
-    def determine_email_for_reserve(reserve)
-      if ['VideoReserve'].include?(reserve.type)
-        'prader@nd.edu'
-      elsif ['AudioReserve'].include?(reserve.type)
-        'Robert.C.Simon.41@nd.edu'
-      else
-        'reserves.1@nd.edu'
-      end
+
+  def determine_email_for_reserve(reserve)
+    if ['VideoReserve'].include?(reserve.type)
+      'prader@nd.edu'
+    elsif ['AudioReserve'].include?(reserve.type)
+      'Robert.C.Simon.41@nd.edu'
+    else
+      'reserves.1@nd.edu'
     end
+  end
 
 end
