@@ -1,4 +1,4 @@
-<% player = Jwplayer.new('BigBuckBunny.mp4', 'troubleshooting', controller.request.remote_ip) %>
+
 <div class="tab-content" style="margin-right: 100px;">
   <style>
     li { line-height: 28px; }
@@ -8,19 +8,10 @@
       <li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> </li>
       <li>If students are having issues with streaming videos they can always use a computer in one of the labs on campus.</li>
       <li>If you see the message "Loading Video Player..." and no player ever loads.  Check to see if you have <a  target="_blank" href="http://get.adobe.com/flashplayer/">flash</a> installed.</li>
+      <li>If you have paused the media and left it in active for a long period of time.  Your session may have timed out and you may need to reload the page.</li>
     </ol>
     <h3>Android</h3>
-      <p>The video is supported in most android versions > 3.0 but playback is dependent on the device manufature.</p>
-      <p>  Playing the video in Android requires you to play the video in another video player.  Select <%= link_to("Play Video", image_path('android_play_link.png'), target: 'blank') %> to start your default Android video player.  If the system video player does not play the video you may be able to get another video player from the app store to work.
-      </p>
-      <p>
-        If you are having trouble on your Android device it may be an unsupported device.  You can switch to a desktop version of chrome. <%= link_to 'Test Android Player', player.rstp_url(), target: '_blank' %>
-      </p>
+      <p> Support for streaming to android devices is not available on all Android devices.  It is manufacturer and version dependent.  That said many versions of Android greater than 4.0 will be able to stream vidoe and audio.  If you are having trouble try using a desktop computer.</p>
   </div>
 
-  <div class="four columns">
-    <h4>Test Video</h4>
-    <%= player.jwplayer(autostart: false) %>
-
-  </div>
 </div>
