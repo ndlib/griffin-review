@@ -41,6 +41,9 @@ class RequestRow
     reserve.created_at.to_date.to_s(:short)
   end
 
+  def request_date_timestamp
+    reserve.created_at.to_i
+  end
 
   def title
     if reserve.item_selection_title.present?
@@ -97,7 +100,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, requestor_col, course_col, type,  reserve.created_at.to_time.to_i, needed_by_json, search_keywords]
+    [needed_by, title, request_date, instructor_col, course_col, type,  request_date_timestamp, needed_by_json, search_keywords]
   end
 
 end
