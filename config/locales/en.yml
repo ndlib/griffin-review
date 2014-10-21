@@ -49,6 +49,13 @@ en:
     composer: Fill in the "Composer" of the work.
     artist: Fill in the "Artist" of the work.
     tracks: Fill in which "Tracks / Clips" are needed.
+  libraries:
+    hesburgh: "Hesburgh Library"
+    math: "O' Meara Mathmatics Library"
+    chem: "Chemistry - Physics Library"
+    business: "Mahaffey Business Library"
+    architecture: "Architecture Library"
+    engineering: "Engineering Library"
   documentation:
     what_is_reserves: "Library Reserves is a tool that course instructors can use to make library content available online to their students.  Library Reserves provides access to books, book chapters, journal articles, streaming videos, and audio."
     student:
