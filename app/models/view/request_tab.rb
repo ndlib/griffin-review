@@ -1,7 +1,7 @@
 class RequestTab
   attr_accessor :filter, :library_filters, :type_filters
 
-  VALID_FILTERS = ['new', 'inprocess', 'available', 'on_order', 'removed', 'all', 'not_in_aleph']
+  VALID_FILTERS = ['new', 'inprocess', 'on_order', 'available', 'removed', 'all', 'not_in_aleph']
 
   def initialize(filter = false)
     if !filter
@@ -64,6 +64,10 @@ class RequestTab
 
   def reserve_status
     @filter
+  end
+
+  def self.statuses
+    VALID_FILTERS
   end
 
   private
