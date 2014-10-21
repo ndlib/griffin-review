@@ -1,7 +1,7 @@
 class CourseMock < Course
 
   def semester
-    Semester.current.first
+    @semeseter ||= Semester.current.first
   end
 
 
