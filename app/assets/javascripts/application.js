@@ -1,6 +1,6 @@
 //
 //= require jquery_ujs
-//= require jquery-ui-1.10.2.custom.js
+//= require jquery-ui.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 //= require frontend
