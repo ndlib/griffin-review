@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20140805171034) do
+ActiveRecord::Schema.define(version: 20140819192204) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -115,6 +115,11 @@ ActiveRecord::Schema.define(version: 20140805171034) do
     t.integer  "item_id"
     t.boolean  "reviewed"
     t.boolean  "currently_in_aleph"
+    t.text     "item_title"
+    t.string   "item_selection_title"
+    t.string   "item_type"
+    t.boolean  "item_physical_reserve"
+    t.boolean  "item_electronic_reserve"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
