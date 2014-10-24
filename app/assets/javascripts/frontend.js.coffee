@@ -18,6 +18,8 @@ jQuery ($) ->
     $('#needed_by_reserve_form_needed_by').datepicker()
     return false
 
+  $('#q').focus()
+
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
       # For student table
