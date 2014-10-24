@@ -152,6 +152,7 @@ class BookReserveImport
         reserve.save!
       else
         ReserveSynchronizeMetaData.new(reserve).synchronize!
+        reserve.save!
       end
     end
 
