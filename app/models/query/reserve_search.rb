@@ -47,25 +47,23 @@ class ReserveSearch
   end
 
 
-  def reserve_by_bib_for_course(course, bib_id)
+  def reserves_by_bib_for_course(course, bib_id)
     @relation.
       includes(:item).
       references(:item).
       where('requests.course_id = ? ', course.id).
       where('items.nd_meta_data_id = ?', bib_id).
-      collect { | r | load_in_reserve(r, false) }.
-      first
+      collect { | r | load_in_reserve(r, false) }
   end
 
 
-  def reserve_by_rta_id_for_course(course, rta_id)
+  def reserves_by_rta_id_for_course(course, rta_id)
     @relation.
       includes(:item).
       references(:item).
       where('requests.course_id = ? ', course.id).
       where('items.realtime_availability_id = ?', rta_id).
-      collect { | r | load_in_reserve(r, false) }.
-      first
+      collect { | r | load_in_reserve(r, false) }
   end
 
 

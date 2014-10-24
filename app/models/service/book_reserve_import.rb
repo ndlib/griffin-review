@@ -13,66 +13,65 @@ class BookReserveImport
 
   def import!
     if can_import?
+      reserves.each do | reserve |
+        process_reserve_type
 
-      process_reserve_type
+        reserve.title = bib_title
+        reserve.creator = creator
+        reserve.journal_title = publisher
 
-      reserve.title = bib_title
-      reserve.creator = creator
-      reserve.journal_title = publisher
+        reserve.nd_meta_data_id = bib_id
+        reserve.realtime_availability_id = realtime_availability_id
+        reserve.course = course
+        reserve.currently_in_aleph = true
 
-      reserve.nd_meta_data_id = bib_id
-      reserve.realtime_availability_id = realtime_availability_id
-      reserve.course = course
-      reserve.currently_in_aleph = true
-
-      if reserve.needed_by.nil?
-        reserve.needed_by = 2.weeks.from_now
-      end
-
-      if reserve.library.nil?
-        reserve.library = 'hesburgh'
-      end
-
-      if reserve.requestor_netid.nil?
-        reserve.requestor_netid = 'import'
-      end
-
-      if !reserve.nd_meta_data_id.nil?
-        reserve.overwrite_nd_meta_data = false
-      end
-
-
-      if !success?
-        return
-      end
-
-      begin
-        ActiveRecord::Base.transaction do
-          save_reserve!
-
-          ReserveCheckIsComplete.new(reserve).check!
+        if reserve.needed_by.nil?
+          reserve.needed_by = 2.weeks.from_now
         end
-      rescue Exception => e
-        add_error(e.message)
-      end
 
+        if reserve.library.nil?
+          reserve.library = 'hesburgh'
+        end
+
+        if reserve.requestor_netid.nil?
+          reserve.requestor_netid = 'import'
+        end
+
+        if !reserve.nd_meta_data_id.nil?
+          reserve.overwrite_nd_meta_data = false
+        end
+
+
+        if !success?
+          return
+        end
+
+        begin
+          ActiveRecord::Base.transaction do
+            save_reserve!(reserve)
+
+            ReserveCheckIsComplete.new(reserve).check!
+          end
+        rescue Exception => e
+          add_error(e.message)
+        end
+      end
     end
 
     success?
   end
 
 
-  def new_reserve?
-    reserve.request.new_record?
-  end
-
-
-  def reserve
+  def reserves
     return @reserve if @reserve
 
-    @reserve ||= ReserveSearch.new.reserve_by_bib_for_course(course, bib_id)
-    @reserve ||= ReserveSearch.new.reserve_by_rta_id_for_course(course, realtime_availability_id)
-    @reserve ||= Reserve.new
+    if (r = ReserveSearch.new.reserves_by_bib_for_course(course, bib_id)).size > 0
+      @reserve = r
+    elsif (r = ReserveSearch.new.reserves_by_rta_id_for_course(course, realtime_availability_id)).size > 0
+      @reserve = r
+    else
+      @reserve ||= [ Reserve.new ]
+    end
   end
 
 
@@ -145,7 +144,7 @@ class BookReserveImport
     end
 
 
-    def save_reserve!
+    def save_reserve!(reserve)
       if AlephImporter::PersonalCopy.new(@api_data).personal_copy?
         reserve.overwrite_nd_meta_data = true
         reserve.metadata_synchronization_date = Time.now
@@ -158,16 +157,18 @@ class BookReserveImport
 
 
     def process_reserve_type
-      reserve_type = AlephImporter::DetermineReserveType.new(@api_data)
-      reserve.type = reserve_type.determine_type
+      reserves.each do | reserve |
+        reserve_type = AlephImporter::DetermineReserveType.new(@api_data)
+        reserve.type = reserve_type.determine_type
 
-      if reserve.type.nil?
-        add_error("format of '#{format}' not found in the list of traped formats")
-        return false
+        if reserve.type.nil?
+          add_error("format of '#{format}' not found in the list of traped formats")
+          return false
+        end
+
+        reserve.electronic_reserve = reserve_type.determine_electronic_reserve(reserve)
+        reserve.physical_reserve   = reserve_type.determine_physical_reserve(reserve)
       end
-
-      reserve.electronic_reserve = reserve_type.determine_electronic_reserve(reserve)
-      reserve.physical_reserve   = reserve_type.determine_physical_reserve(reserve)
     end
 
 end

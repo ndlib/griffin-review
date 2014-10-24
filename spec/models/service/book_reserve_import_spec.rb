@@ -21,29 +21,29 @@ describe BookReserveImport do
 
     it "sets the reserve as being a physical reserve" do
       @ibr.import!
-      expect(@ibr.reserve.physical_reserve).to be_true
+      expect(@ibr.reserves.first.physical_reserve).to be_true
     end
 
 
     it "sets the library to hesburgh" do
       @ibr.import!
-      expect(@ibr.reserve.library).to eq("hesburgh")
+      expect(@ibr.reserves.first.library).to eq("hesburgh")
     end
 
     it "imports a book that does not have an existing reserve to the course" do
       @ibr.import!
-      expect(@ibr.reserve.request.new_record?).to be_false
+      expect(@ibr.reserves.first.request.new_record?).to be_false
     end
 
 
     it "sets a needed by date 2 weeks in the future" do
       @ibr.import!
-      expect(@ibr.reserve.needed_by).to eq(2.weeks.from_now.to_date)
+      expect(@ibr.reserves.first.needed_by).to eq(2.weeks.from_now.to_date)
     end
 
     it "sets the title of the book to be the data from the meta data service" do
       @ibr.import!
-      expect(@ibr.reserve.title).to eq("Book.")
+      expect(@ibr.reserves.first.title).to eq("Book.")
     end
 
     it "syncs the meta data" do
@@ -59,17 +59,17 @@ describe BookReserveImport do
 
     it "makes a book reserve if the format is Book" do
       @ibr.import!
-      expect(@ibr.reserve.type).to eq("BookReserve")
+      expect(@ibr.reserves.first.type).to eq("BookReserve")
     end
 
     it "sets the reserve as being currently in aleph" do
       @ibr.import!
-      expect(@ibr.reserve.currently_in_aleph).to be_true
+      expect(@ibr.reserves.first.currently_in_aleph).to be_true
     end
 
     it "sets the synchronization date" do
       @ibr.import!
-      expect(@ibr.reserve.metadata_synchronization_date.to_s).to eq(Time.now.to_s)
+      expect(@ibr.reserves.first.metadata_synchronization_date.to_s).to eq(Time.now.to_s)
     end
 
 
@@ -95,7 +95,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.reserve.type).to eq("VideoReserve")
+      expect(@ibr.reserves.first.type).to eq("VideoReserve")
     end
 
     it "sets the item to be a video if it is a cassette" do
@@ -103,7 +103,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.reserve.type).to eq("VideoReserve")
+      expect(@ibr.reserves.first.type).to eq("VideoReserve")
     end
 
     it "sets videos to be physical if electronic is nil" do
@@ -111,7 +111,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.reserve.electronic_reserve).to be_false
+      expect(@ibr.reserves.first.electronic_reserve).to be_false
     end
 
   end
@@ -141,7 +141,7 @@ describe BookReserveImport do
       @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), @course
 
       @ibr = BookReserveImport.new(@api_data)
-      @ibr.reserve.should_receive(:save!).exactly(0).times
+      @ibr.reserves.first.should_receive(:save!).exactly(0).times
 
       @ibr.import!
     end

@@ -65,7 +65,7 @@ describe ReserveSearch do
   end
 
 
-  describe :reserve_by_bib_for_course do
+  describe :reserves_by_bib_for_course do
 
     before(:each) do
       stub_discovery!
@@ -75,8 +75,8 @@ describe ReserveSearch do
     it "returns the reserve for the course that has a bib id" do
       reserve_search = ReserveSearch.new
 
-      reserve = reserve_search.reserve_by_bib_for_course(@inprocess_semester.course, @inprocess_semester.nd_meta_data_id)
-      expect(reserve.id).to be(@inprocess_semester.id)
+      reserve = reserve_search.reserves_by_bib_for_course(@inprocess_semester.course, @inprocess_semester.nd_meta_data_id)
+      expect(reserve.first.id).to be(@inprocess_semester.id)
     end
 
   end

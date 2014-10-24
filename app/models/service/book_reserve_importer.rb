@@ -45,7 +45,9 @@ class BookReserveImporter
 
     def add_succsses(ibr)
       @successes ||= []
-      @successes << { bib_id: ibr.bib_id, course_id: ibr.course_id, reserve_id: ibr.reserve.id }
+      ibr.reserves.each do |reserve|
+        @successes << { bib_id: ibr.bib_id, course_id: ibr.course_id, reserve_id: reserve.id }
+      end
     end
 
 
