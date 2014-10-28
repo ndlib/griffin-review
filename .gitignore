@@ -4,6 +4,7 @@ stats/*.csv
 tmp/
 .sass-cache/
 vendor/bundle/ruby/
+vendor/bundle/
 doc/apidocs/
 doc/api/
 doc/app/
