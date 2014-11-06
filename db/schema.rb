@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925160708) do
+ActiveRecord::Schema.define(version: 20140925164142) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140925160708) do
     t.string   "selection_title"
     t.text     "description"
     t.integer  "item_type_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "creator"
     t.text     "title"
     t.text     "journal_title"
@@ -216,7 +216,6 @@ ActiveRecord::Schema.define(version: 20140925160708) do
     t.integer  "timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "unhashed_token"
   end
 
   add_index "wowza_tokens", ["token"], name: "index_wowza_tokens_on_token", using: :btree
