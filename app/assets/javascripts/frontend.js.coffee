@@ -165,7 +165,7 @@ jQuery ($) ->
     input.attr('placeholder', "Author name or Title")
 
     if ($('.show_popover_help').size() > 0)
-      input.attr('data-content', 'Search reserves by title or author.')
+      input.attr('data-content', 'Search for a reserve by title or author.')
       input.attr('data-title', 'Search')
 
       input.popover({ trigger: 'manual',  })
