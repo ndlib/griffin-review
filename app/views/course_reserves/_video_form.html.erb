@@ -21,15 +21,14 @@
   <% end %>
 
   <%= f.input :electronic_reserve, label: "This video shoule be:", required: true do %>
+
     <label class="checkbox">
       <%= f.radio_button :resource_format, 'electronic' %> streamed
     </label>
     <label class="checkbox">
       <%= f.radio_button :resource_format, 'physical' %> on reserve at the Music and Media Desk
     </label>
-    <label class="checkbox last">
-      <%= f.radio_button :resource_format, 'both' %> both streamed and on reserve
-    </label>
+
   <% end %>
 
   <%= f.input :note, label: "Special Instuctions" do %>
