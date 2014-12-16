@@ -46,6 +46,8 @@ Griffin::Application.routes.draw do
   end
 
   get 'documentation/troubleshooting', to: 'documentation#troubleshooting'
+  get 'documentation/getting_started', to: 'documentation#getting_started'
+
   resources :documentation
 
 
