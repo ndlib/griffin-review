@@ -26,7 +26,7 @@ class RequestEditNav
     uls = []
     if reserve.nd_meta_data_id.present?
       uls << "Record ID: #{reserve.nd_meta_data_id}"
-      uls << "Syncronized on #{reserve.metadata_synchronization_date.to_s(:long)}"
+      uls << "Syncronized on #{reserve.metadata_synchronization_date.to_s(:long)}" if reserve.metadata_synchronization_date
 
     elsif meta_data_policy.meta_data_id_required? && !meta_data_policy.complete?
       uls << "Requires a Record ID"
