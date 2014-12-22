@@ -52,7 +52,7 @@ describe SipxRedirect do
   end
 
 
-  describe :response_parsing do
+  describe :response_parsing_with_error do
     before(:each) do
       @body = "SQL error: Column 'api_version' cannot be null\n****************\nn0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTULOBKIbLq4Y,\nhttp://service.sipx.com/service/php/instructor_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c\nhttp://service.sipx.com/service/php/home.php?"
     end
@@ -69,6 +69,26 @@ describe SipxRedirect do
       expect(@sipx_redirect.send(:parse_response, @body)[:url]).to eq("http://service.sipx.com/service/php/instructor_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c")
     end
   end
+
+  describe :response_parsing_without_error do
+    before(:each) do
+      @body = "****************\nn0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTULOBKIbLq4Y,\nhttp://service.sipx.com/service/php/instructor_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c\nhttp://service.sipx.com/service/php/home.php?"
+    end
+    it "parses out the junk at the front of the reseponse" do
+      expect(@sipx_redirect.send(:parse_unused_text_out_of_body, @body)).to eq("n0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTULOBKIbLq4Y,\nhttp://service.sipx.com/service/php/instructor_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c\nhttp://service.sipx.com/service/php/home.php?")
+    end
+
+
+    it "creates a hash with the token to auto login a user" do
+      expect(@sipx_redirect.send(:parse_response, @body)[:token]).to eq("n0XLqWnQKYONoXbLS3X8TcDOUvD1WDTpa7ZK1PfM_tr6_UouoDooyNdYmzeJddmTULOBKIbLq4Y,")
+    end
+
+    it "creates a hash with the url we should go to" do
+      expect(@sipx_redirect.send(:parse_response, @body)[:url]).to eq("http://service.sipx.com/service/php/instructor_inspect_course.php?course_id=c-e58fa126-5790-11e3-b4ce-22000a90058c")
+    end
+  end
+
+
 
 
   describe :course_redirect_url do

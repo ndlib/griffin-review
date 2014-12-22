@@ -92,7 +92,7 @@ class SipxRedirect
 
 
     def parse_unused_text_out_of_body(body)
-      body.gsub(/.*\n[*]{16}\n/, "")
+      body.gsub(/.*\n?[*]{16}\n/, "")
     end
 
 
