@@ -93,7 +93,7 @@ gem 'rb-readline'
 
 gem 'draper'
 gem 'sort_alphabetical'
-  
+
 gem 'xml-simple'
 
 
@@ -141,7 +141,7 @@ group :development, :test do
   gem 'growl-rspec'
 end
 
-gem 'rack-mini-profiler'
+#gem 'rack-mini-profiler'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
