@@ -10,7 +10,7 @@ describe 'Student Course Access ' do
   let(:next_semester_code) { '201310'}
 
   let(:current_course_key) { "student/#{reserve_course}/#{username}" }
-  let(:listing_course_key) { 'student/listing/#{username}' }
+  let(:listing_course_key) { "student/listing/#{username}" }
 
 
   let(:ldap) { Net::LDAP::Entry.new }
@@ -37,14 +37,8 @@ describe 'Student Course Access ' do
 
   it "homepage -> show page" do
     res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
-    ldap['uid'] = 'cwray'
-    ldap['mail'] = 'cwray@nd.edu'
-    ldap['displayname'] = 'Christopher Wray'
-    ldap['givenname'] = 'Christopher'
-    ldap['sn'] = 'Wray'
 
     VCR.use_cassette listing_course_key do
-      expect(User).to receive(:ldap_lookup).with('cwray').and_return(ldap).at_least(:once)
       visit root_path
     end
 

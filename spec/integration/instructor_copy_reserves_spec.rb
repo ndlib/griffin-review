@@ -61,7 +61,7 @@ describe "Instructor Copy Spec" do
         visit course_copy_path(@next_course.id)
       end
 
-      expect(page).to have_selector('p.alert', text: "You do not have any courses that have reaserves to copy from.")
+      expect(page).to have_content("You do not have any courses that have reserves to copy from.")
 
       mock_reserve FactoryGirl.create(:request, :available, :book), @current_course
 

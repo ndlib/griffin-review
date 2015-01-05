@@ -109,7 +109,7 @@ describe "Instructor New Reserve" do
       fill_in("Title", with: 'title')
       fill_in("video_needed_by_id", with: 22.days.from_now)
 
-      choose "instructor_reserve_request_resource_format_both"
+      choose "instructor_reserve_request_resource_format_electronic"
 
       click_button "Save"
     end
@@ -121,7 +121,7 @@ describe "Instructor New Reserve" do
     expect(page).to have_selector('.title', text: 'title')
 
     reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_true
+    expect(reserve.physical_reserve?).to be_false
     expect(reserve.electronic_reserve?).to be_true
   end
 
@@ -139,7 +139,7 @@ describe "Instructor New Reserve" do
       fill_in("Title", with: long_string)
       fill_in("Director or Publisher", with: long_string)
       fill_in("video_needed_by_id", with: 22.days.from_now)
-      choose "instructor_reserve_request_resource_format_both"
+      choose "instructor_reserve_request_resource_format_electronic"
 
       click_button "Save"
     end
