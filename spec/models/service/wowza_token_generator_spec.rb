@@ -29,11 +29,18 @@ describe WowzaTokenGenerator do
       expect(WowzaToken.where(username: 'username', ip: 'ipaddress').first.timestamp).to eq(Time.now.to_i)
     end
 
-    it "reuses a token for the same username and ip address " do
+    it "reuses a token for the same username  " do
       subject.generate()
-      described_class.new('username', 'ipaddress').generate
+      described_class.new('username', 'ipaddress2').generate
 
-      expect(WowzaToken.where(username: 'username', ip: 'ipaddress').size).to eq(1)
+      expect(WowzaToken.where(username: 'username').size).to eq(1)
+    end
+
+    it "changes the token to use the new ip address if it gets a request for the new ip" do
+      subject.generate()
+      described_class.new('username', 'ipaddress2').generate
+
+      expect(WowzaToken.where(username: 'username', ip: 'ipaddress2').size).to eq(1)
     end
 
     it "creates a database token with a ipaddress" do

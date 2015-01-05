@@ -35,7 +35,7 @@ class WowzaTokenGenerator
     end
 
     def build_database_token
-      tokens = WowzaToken.where(username: username, ip: ip)
+      tokens = WowzaToken.where(username: username)
       if tokens.size > 1
         tokens.destroy_all
       end
@@ -45,8 +45,9 @@ class WowzaTokenGenerator
     end
 
     def verify_token_timestamp
-      if database_token.timestamp < 5.minutes.ago.to_i
+      if database_token.timestamp < 5.minutes.ago.to_i || database_token.ip != ip
         database_token.timestamp = Time.now.to_i
+        database_token.ip = ip
         database_token.save!
       end
     end
