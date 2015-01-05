@@ -27,7 +27,7 @@ class ParsePlaylistCsv
   private
 
     def match_extra_row?(row)
-      row.match(/build on .* with Mp3tag v2.50 - the universal Tag editor - http:\/\/www.mp3tag.de\/en\//)
+      row.match(/build on .* with Mp3tag .* - the universal Tag editor - http:\/\/www.mp3tag.de\/en\//)
     end
 
     def playlist_rows
@@ -47,6 +47,8 @@ class ParsePlaylistCsv
     end
 
     def parsed_directory(row)
+      puts filename_from_row(row)
+      puts filename_from_row(row).match(/^([0-9a-zA-Z]*)([-]|[_])/).inspect
       filename_from_row(row).match(/^([0-9a-zA-Z]*)([-]|[_])/).captures.first
     end
 
