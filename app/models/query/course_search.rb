@@ -138,7 +138,7 @@ class CourseSearch
         section_groups['section_groups'].each do | sections |
           c = new_course(sections)
           sections['sections'].each do | section |
-            c.add_section(section)
+            c.add_section(section) if section.present?
           end
           res << c
         end
