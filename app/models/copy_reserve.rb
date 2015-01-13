@@ -1,6 +1,5 @@
 class CopyReserve
 
-
   def initialize(current_user, course_to, reserve)
     @user = current_user
     @course_to = course_to
@@ -10,8 +9,6 @@ class CopyReserve
 
   def copy
     new_request = @reserve.request.dup
-
-    new_request.currently_in_aleph = false
 
     new_request.created_at = Time.now
     new_request.updated_at = Time.now
@@ -23,6 +20,12 @@ class CopyReserve
     new_request.semester  = @course_to.semester
 
     new_request.requestor_netid = @user.username
+
+    if @course_to.semester.id == @reserve.course.semester.id
+        new_request.currently_in_aleph = @reserve.currently_in_aleph
+    else
+        new_request.currently_in_aleph = false
+    end
 
     new_request.save!
 

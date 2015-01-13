@@ -7,8 +7,8 @@ describe CopyReserve do
   let(:user) { mock_model(User, id: 1, username: 'bobbobbers' )}
 
   before(:each) do
-
-    @from_course = double(Course, id: 'from_id', semester: FactoryGirl.create(:semester))
+    @current_semester = FactoryGirl.create(:semester)
+    @from_course = double(Course, id: 'from_id', semester: @current_semester)
     @to_course = double(Course, id: 'to_id', semester: FactoryGirl.create(:previous_semester))
 
     @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
@@ -31,7 +31,7 @@ describe CopyReserve do
   end
 
 
-  it "sets the copyied reserve to not be found in aleph" do
+  it "sets the copyied reserve to not be found in aleph if the semesters are different" do
     @reserve.currently_in_aleph = true
     @reserve.save!
 
@@ -44,6 +44,13 @@ describe CopyReserve do
     new_reserve.course_id.should == @to_course.id
   end
 
+  it "copies the currently_in_aleph flag if the course is in the same semester as the old request" do
+    to_course = double(Course, id: 'to_id', semester: @current_semester)
+    @reserve.currently_in_aleph = true
+    @copy_reserve = CopyReserve.new(user, to_course, @reserve)
+
+    expect(@copy_reserve.copy.currently_in_aleph).to be_true
+  end
 
   it "changes the state to new " do
     new_reserve = @copy_reserve.copy
