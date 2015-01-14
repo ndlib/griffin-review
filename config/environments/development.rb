@@ -68,10 +68,11 @@ Griffin::Application.configure do
   config.api_url                          = "https://api.library.nd.edu/"
   config.api_token                        = "nDKg6F8dAcUkCdzzFqc5"
 
+  config.api_url                        = "https://api2pprd-vm.library.nd.edu"
+  config.api_token                      = "SCSGYmwqLqSyBTmxCQgM"
+
   #config.api_url                          = "http://localhost:3005/"
   #config.api_token                        = "jz4LC72U6nXAKLx6Vssx"
-
-
 
   config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
 
