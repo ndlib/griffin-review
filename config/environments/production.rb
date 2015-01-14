@@ -77,7 +77,7 @@ Griffin::Application.configure do
   config.reserves_cas_logout            = 'https://login.nd.edu/cas/logout'
 
   config.api_url                        = "https://api.library.nd.edu/"
-  config.api_url                        = "https://api2prod-vm.library.nd.edu/"
+  #config.api_url                        = "https://api2prod-vm.library.nd.edu/"
   config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
 
 #  config.api_url                        = "https://apipprd.library.nd.edu/"
