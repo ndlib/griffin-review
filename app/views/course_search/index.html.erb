@@ -10,9 +10,9 @@
 <form class="well form-search">
   <p>
     <label for="q">
-      Search For
+      Search
     </label>
-    <input id="q" class="input-large" type="text" name="q" value="<%= params[:q] %>" style="width:200px; height: 30px;" /> in
+    <input id="q" class="input-large" type="text" name="q" value="<%= params[:q] %>" style="width:400px; height: 30px;" placeholder=" by course number, alpha prefix, instructor or title" /> in
     <select name="semester_id" class="search_select">
       <%= options_for_select(@admin_course_listing.semester_option_array, @admin_course_listing.semester.id) %>
     </select>
