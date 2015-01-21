@@ -80,6 +80,10 @@ Griffin::Application.configure do
   #config.api_url                        = "https://api2prod-vm.library.nd.edu/"
   config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
 
+
+  config.api_url                        = "https://api2prod-vm.library.nd.edu"
+  config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
+
 #  config.api_url                        = "https://apipprd.library.nd.edu/"
 #  config.api_token                      = "SCSGYmwqLqSyBTmxCQgM"
 
