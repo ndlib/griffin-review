@@ -77,16 +77,10 @@ Griffin::Application.configure do
   config.reserves_cas_logout            = 'https://login.nd.edu/cas/logout'
 
   config.api_url                        = "https://api.library.nd.edu/"
-  #config.api_url                        = "https://api2prod-vm.library.nd.edu/"
   config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
 
-
-  config.api_url                        = "https://api2prod-vm.library.nd.edu"
-  config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
-
-#  config.api_url                        = "https://apipprd.library.nd.edu/"
-#  config.api_token                      = "SCSGYmwqLqSyBTmxCQgM"
-
+#  config.api_url                        = "https://api2prod-vm.library.nd.edu"
+#  config.api_token                      = "nDKg6F8dAcUkCdzzFqc5"
 
   config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
 
