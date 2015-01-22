@@ -32,7 +32,9 @@ class Course
 
 
   def add_section(section_json)
-    @sections << CourseSection.factory(id, section_json)
+    if section_json.present?
+      @sections << CourseSection.factory(id, section_json)
+    end
   end
 
 
