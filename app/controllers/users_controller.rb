@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     check_admin_or_admin_masquerading_permission!
-    @users = User.where(admin: true)
+    @users = User.where(admin: true).order(:last_name)
   end
 
 
