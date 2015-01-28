@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def create
     check_admin_or_admin_masquerading_permission!
-    @user = User.new(user_params)
+    @user = User.where(user_params) || User.new(user_params)
     @user.admin = true
 
     if @user.save
