@@ -82,7 +82,7 @@ module Griffin
     config.reserves_ldap_port = 636
     config.reserves_ldap_base = 'o=University of Notre Dame,st=Indiana,c=US'
     config.reserves_ldap_service_dn = 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US'
-    config.reserves_ldap_service_password = 'zfkpqns8'
+    config.reserves_ldap_service_password = 'tNTZT6BLVnIC37EHzmNbzJDAD75gpgC6'
     config.reserves_ldap_attrs = [ 'uid', 'givenname', 'sn', 'ndvanityname', 'nddepartment' ]
   end
 end
