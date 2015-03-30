@@ -9,6 +9,11 @@ class ReserveMailer < ActionMailer::Base
     end
   end
 
+  def delete_request_notifier(reserve)
+    @reserve = reserve
+
+    mail(:to => 'reserves.1@nd.edu', :subject => "Reserve Deleted")
+  end
 
   private
 

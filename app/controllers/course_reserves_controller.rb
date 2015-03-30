@@ -61,6 +61,10 @@ class CourseReservesController < ApplicationController
 
     @destroy.remove!
 
+    if !(permission.current_user_is_admin_in_masquerade? || permission.current_user_is_administrator?)
+      ReserveMailer.delete_request_notifier(@destroy.reserve).deliver
+    end
+
     if params[:redirect_to] == 'admin'
       redirect_to request_path(@destroy.reserve.id)
     else
