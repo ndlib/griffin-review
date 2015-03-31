@@ -35,26 +35,26 @@ describe 'Student Course Access ' do
   end
 
 
-  it "homepage -> show page" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
+  # it "homepage -> show page" do
+  #   res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
 
-    VCR.use_cassette listing_course_key do
-      visit root_path
-    end
+  #   VCR.use_cassette listing_course_key do
+  #     visit root_path
+  #   end
 
-    VCR.use_cassette current_course_key do
-      within("table.enrolled_courses") do
-        click_link @current_course.title
-      end
-    end
-  end
+  #   VCR.use_cassette current_course_key do
+  #     within("table.enrolled_courses") do
+  #       click_link @current_course.title
+  #     end
+  #   end
+  # end
 
 
-  it "does not show courses that have no reserves"  do
-    VCR.use_cassette listing_course_key do
-      visit root_path
-    end
+  # it "does not show courses that have no reserves"  do
+  #   VCR.use_cassette listing_course_key do
+  #     visit root_path
+  #   end
 
-    expect(page).to_not have_selector('table.enrolled_courses', text: @current_course.title)
-  end
+  #   expect(page).to_not have_selector('table.enrolled_courses', text: @current_course.title)
+  # end
 end

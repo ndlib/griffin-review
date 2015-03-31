@@ -1,0 +1,9 @@
+
+<p>
+  YOU ARE CURRENTLY: <%= current_user.username %>
+</p>
+
+<%= form_tag '/sakai', mehtod: :post do %>
+  Context ID <input type="text" name="context_id">
+  <button>Submit</button>
+<% end %>
