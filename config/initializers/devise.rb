@@ -3,8 +3,8 @@
 Devise.setup do |config|
 
   config.cas_base_url = Rails.configuration.reserves_cas_base
-  config.cas_validate_url = Rails.configuration.reserves_cas_validate
-  config.cas_logout_url = Rails.configuration.reserves_cas_logout
+  #config.cas_validate_url = Rails.configuration.reserves_cas_validate
+  #config.cas_logout_url = Rails.configuration.reserves_cas_logout
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -130,7 +130,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 

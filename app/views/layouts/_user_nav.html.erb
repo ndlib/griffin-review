@@ -28,9 +28,7 @@
         <% end %>
         <% if permission.current_user_is_administrator? %>
           <li><%= link_to "Requests", requests_path() %></li>
-          <li>
-          <%= link_to "Courses", courses_path() %>
-          </li>
+          <li><%= link_to "Courses", courses_path() %></li>
           <li><%= link_to "Semesters", semesters_path() %></li>
           <li><%= link_to "Admin Users", users_path %></li>
           <li><%= link_to "Masquerade", new_masquerades_path %></li>
@@ -45,6 +43,15 @@
         <li><a href="/documentation" target="_blank" class="help">Help</a></li>
         <li class="divider-vertical"></li>
         <li><a href="<%= new_report_problem_path(:path => request.path) %>" target="_blank" class="help">Report a Problem</a></li>
+                <li class="divider-vertical"></li>
+        <% if !permission.current_user_is_administrator? %>
+          <li><p>You are logged in as <%= current_user.display_name %> </p></li>
+        <% end %>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete, title: "Sign Out" do %>
+          <%= image_tag 'logout.png', size: '20' %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
