@@ -4,7 +4,7 @@ describe CourseReservesController do
 
   before(:each) do
     @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-    @reserve = double(Reserve, id: 1, course: @course)
+    @reserve = double(Reserve, id: 1, course: @course, title: "title")
 
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   end
