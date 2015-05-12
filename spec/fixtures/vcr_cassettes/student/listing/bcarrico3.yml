@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/bcarrico/201310/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
+    uri: https://apipprd.library.nd.edu/1.0/people/by_netid/bcarrico/201300/courses.json?auth_token=SCSGYmwqLqSyBTmxCQgM
     body:
       encoding: US-ASCII
       string: ''
@@ -27,11 +27,11 @@ http_interactions:
       Status:
       - 500 Internal Server Error
       X-Request-Id:
-      - d90574dc9dafd3017392fbdb6670750b
+      - 45a9d862e3296e78fa5dec67225bf1b8
       X-Runtime:
-      - '1.587001'
+      - '0.241882'
       Date:
-      - Tue, 31 Mar 2015 14:35:22 GMT
+      - Mon, 30 Mar 2015 18:03:44 GMT
       X-Rack-Cache:
       - miss
       X-Powered-By:
@@ -66,6 +66,6 @@ http_interactions:
           </div>
         </body>
         </html>
-    http_version:
-  recorded_at: Tue, 31 Mar 2015 14:35:23 GMT
+    http_version: 
+  recorded_at: Mon, 30 Mar 2015 18:03:44 GMT
 recorded_with: VCR 2.5.0

@@ -41,6 +41,7 @@ Griffin::Application.routes.draw do
   course_routes
 
   post 'sakai_redirect', controller: 'sakai_integrator', path: '/sakai'
+  get 'test', controller: 'sakai_integrator', path: '/sakai_test'
   scope path: '/sakai', :as => 'sakai' do
     course_routes
   end
