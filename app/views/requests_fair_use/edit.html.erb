@@ -34,7 +34,7 @@
     <hr>
     <% if @request.previous_fair_uses.size > 0 %>
       <% @request.previous_fair_uses.each do | fair_use | %>
-        <% if fair_use.comments %>
+        <% if fair_use.comments.present? %>
           <h3>Comments for <%= fair_use.semester.full_name %> </h3>
           <p>
             <%= h fair_use.comments %>
