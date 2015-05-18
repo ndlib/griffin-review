@@ -8,10 +8,13 @@ describe AdminFairUseForm do
   before(:each) {
     FactoryGirl.create(:semester)
 
-    c =  double(Course, id: 1, crosslist_id: 'crosslist_id', semester: Semester.first)
+    @c =  double(Course, id: 1, crosslist_id: 'crosslist_id', semester: Semester.first)
 
-    CourseSearch.any_instance.stub(:get).and_return(c)
-    @reserve = mock_reserve FactoryGirl.create(:request), c
+    CourseSearch.any_instance.stub(:get).and_return(@c)
+
+    @item = FactoryGirl.create(:item)
+    @reserve = mock_reserve FactoryGirl.create(:request, item: @item), @c
+
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   }
 
@@ -65,14 +68,16 @@ describe AdminFairUseForm do
   describe :previous_fair_uses do
 
     it "gets all the previous_comments" do
-      fu1 = FairUse.new(request_id: (@reserve.id + 1), item_id: @reserve.item.id, user_id: 2, created_at: 1.day.ago)
+      @reserve2 = mock_reserve FactoryGirl.create(:request, item: @item), @c
+
+      fu1 = FairUse.new(request_id: (@reserve2.id), item_id: @reserve.item.id, user_id: 2, created_at: 1.day.ago)
       fu1.save!
 
       fu2 = FairUse.new(request_id: @reserve.id, item_id: @reserve.item.id, user_id: 2)
       fu2.save!
 
 
-      afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
+      afuf = AdminFairUseForm.new(user, { id:  @reserve.id})
       afuf.previous_fair_uses.collect{ | a | a.id }.should == [fu1.id]
     end
 
@@ -80,18 +85,21 @@ describe AdminFairUseForm do
       fu2 = FairUse.new(request_id: @reserve.id, item_id: @reserve.item.id, user_id: 2)
       fu2.save!
 
-
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
       afuf.previous_fair_uses.should == []
     end
 
 
     it "orders them chronologically" do
-      fu1 = FairUse.new(request_id: (@reserve.id + 1), item_id: @reserve.item.id, user_id: 2, created_at: 2.days.ago)
+      @reserve2 = mock_reserve FactoryGirl.create(:request, item: @item), @c
+      @reserve3 = mock_reserve FactoryGirl.create(:request, item: @item), @c
+
+      fu1 = FairUse.new(request_id: (@reserve2.id), item_id: @reserve.item.id, user_id: 2, created_at: 2.days.ago)
       fu1.save!
 
-      fu2 = FairUse.new(request_id: (@reserve.id + 2), item_id: @reserve.item.id, user_id: 2, created_at: 1.days.ago)
+      fu2 = FairUse.new(request_id: (@reserve3.id), item_id: @reserve.item.id, user_id: 2, created_at: 1.days.ago)
       fu2.save!
+
       fu3 = FairUse.new(request_id: @reserve.id, item_id: @reserve.item.id, user_id: 2)
       fu3.save!
 

@@ -77,7 +77,7 @@ class AdminFairUseForm
 
 
   def previous_fair_uses
-    @previous_fair_uses ||= FairUse.by_item(@reserve.item).reject { | fu | fu.request_id == @reserve.id }
+    @previous_fair_uses ||= @reserve.item.requests.where('id != ?', @reserve.id).order(:created_at).collect{ | r | Reserve.factory(r).fair_use }
   end
 
 
