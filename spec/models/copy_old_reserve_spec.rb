@@ -57,7 +57,7 @@ describe CopyReserve do
     before(:each) do
       @old_reserve = mock_model(OpenItem, item_type: 'book', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
       API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
-      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details'))
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details', type: 'book'))
     end
 
     it "sets the type correctly" do
@@ -185,7 +185,7 @@ describe CopyReserve do
     before(:each) do
       @old_reserve = mock_model(OpenItem, item_type: 'video', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
       API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
-      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details', fulltext_available?: false))
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details', fulltext_available?: false, type: 'book'))
     end
 
     it "sets the type correctly" do
@@ -232,7 +232,7 @@ describe CopyReserve do
     before(:each) do
       @old_reserve = mock_model(OpenItem, item_type: 'music', title: "title", author_firstname: "fname", author_lastname: "lname", pages: "", journal_name: "", sourceId: 'sid', group_name: "Admin"  )
       API::PrintReserves.stub(:find_by_rta_id_course_id).and_return([ {'bib_id' => 'bib_id' } ])
-      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details', fulltext_available?: false))
+      ReserveSynchronizeMetaData.any_instance.stub(:discovery_record).and_return(double(DiscoveryApi, title: 'title', creator_contributor: 'creator', publisher_provider: 'publisher', details: 'details', fulltext_available?: false, type: 'book'))
     end
 
     it "sets the type correctly" do

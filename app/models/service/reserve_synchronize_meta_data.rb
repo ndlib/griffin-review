@@ -28,9 +28,15 @@ class ReserveSynchronizeMetaData
     def map_data!
       return if !valid_discovery_id?
 
-      @reserve.title =  discovery_record.title
+      if discovery_record.type == 'journal'
+        @reserve.journal_title = discovery_record.title
+      else
+        @reserve.title =  discovery_record.title
+        @reserve.journal_title = discovery_record.publisher_provider
+      end
+
       @reserve.creator = discovery_record.creator_contributor
-      @reserve.journal_title = discovery_record.publisher_provider
+
       @reserve.details = discovery_record.details
 
       if synchronize_url_from_meta_data?

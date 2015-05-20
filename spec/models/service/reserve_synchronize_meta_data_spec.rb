@@ -86,6 +86,28 @@ describe ReserveSynchronizeMetaData do
 
     end
 
+    context "journal" do
+      before(:each) do
+        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryGirl.create(:semester))
+        CourseSearch.any_instance.stub(:get).and_return(course)
+
+        @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", title: 'original_title', requestor_netid: 'netid', course: course)
+
+        @discovery_record = double(title: "title", creator_contributor: "creator_contributor", publisher_provider: "publisher_provider", details: "details", fulltext_available?: false, fulltext_url: "", type: 'journal')
+        DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
+      end
+
+      it "does not set the title" do
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
+        @reserve.title.should == "original_title"
+      end
+
+      it "sets the publisher_provider to the title" do
+        ReserveSynchronizeMetaData.new(@reserve).synchronize!
+        @reserve.publisher_provider == "title"
+      end
+    end
+
 
     context "valid_discovery_id?" do
       before(:each) do
