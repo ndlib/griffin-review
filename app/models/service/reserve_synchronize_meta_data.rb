@@ -29,15 +29,16 @@ class ReserveSynchronizeMetaData
       return if !valid_discovery_id?
 
       if discovery_record.type == 'journal'
-        @reserve.journal_title = discovery_record.title
+        @reserve.journal_title = discovery_record.creator_contributor
+        @reserve.details = discovery_record.title
       else
         @reserve.title =  discovery_record.title
         @reserve.journal_title = discovery_record.publisher_provider
+        @reserve.creator = discovery_record.creator_contributor
+        @reserve.details = discovery_record.details
       end
 
-      @reserve.creator = discovery_record.creator_contributor
 
-      @reserve.details = discovery_record.details
 
       if synchronize_url_from_meta_data?
         @reserve.url = discovery_record.fulltext_url
