@@ -20,9 +20,9 @@
   <li>The registrar's office may not have you listed as an instructor for this course</li>
   <li>You are a teaching assistant or course aide and the registrar's office does not have you listed as an instructor. </li>
 </ul>
+<br>
+<%= link_to "Site Help", documentation_index_path, class: "btn btn-primary" %>
 
-<hr/>
-<p>If you think this may be a mistake on the part of the registrar's office, please contact them. Otherwise, contact the library reserves staff for further assistance.</p>
 </div>
 <div class="alert alert-info three columns">
   <h4>Contact Information</h4>
@@ -30,3 +30,4 @@
   <%= render partial: '/errors/contact_info' %>
   <hr/>
   <%= render partial: '/errors/video_contact_info' %>
+</div>
