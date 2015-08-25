@@ -9,10 +9,17 @@
     <%= render partial: @nav %>
   </div>
 
-  <div class="nine columns">
+  <div class="six columns">
 <% end %>
   <h3><%= t("#{@translation}_title") %></h3>
   <%= t("#{@translation}_html") %>
 <% if @layout %>
   </div>
 <% end %>
+<div class="alert alert-info three columns">
+  <h4>Contact Information</h4>
+  <br/>
+  <%= render partial: '/errors/contact_info' %>
+  <hr/>
+  <%= render partial: '/errors/video_contact_info' %>
+</div>

@@ -36,6 +36,8 @@ Griffin::Application.routes.draw do
     end
 
     resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
+    resource :report_problem
+
   end
 
   course_routes
@@ -82,8 +84,6 @@ Griffin::Application.routes.draw do
   end
 
   resources :realtime_availability
-
-  resource :report_problem
 
   get "video/request/new", to: "homepage#index"
   get "jwtest", to: 'jwtest#index'

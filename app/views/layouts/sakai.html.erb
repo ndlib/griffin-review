@@ -23,8 +23,11 @@
       <% if params[:course_id] %>
         <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="navbar-inner">
-            <ul class="nav">
-              <li class="active"><%= link_to CourseSearch.new.get(params[:course_id]).title, :controller => "course_reserves", :action => "index", :course_id => params[:course_id] %></li>
+            <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
+              <li><a href="/documentation" target="_blank" class="help">Help</a></li>
+              <li class="divider-vertical"></li>
+              <li><a href="<%= new_report_problem_path(:path => request.path) %>" target="_blank" class="help">Contact Us</a></li>
             </ul>
           </div>
         </div>

@@ -1,16 +1,24 @@
 <% content_for(:content_title) do %>
-  <h1>What is Library Reserves</h1>
+  <div class="page-header"><h1>What is Library Reserves</h1></div>
 <% end %>
 <%
 breadcrumb(['Help'])
 %>
+    <div class="eight columns">
+      <p>
+        <%= t('documentation.what_is_reserves') %>
+      </p>
 
-<p>
-  <%= t('documentation.what_is_reserves') %>
-</p>
+    <p class="text-center">
 
-<p class="text-center">
-
-  <%= link_to 'Student FAQ', documentation_path('student-access'), class: 'btn btn-primary' %>
-  <%= link_to 'Instructor FAQ', documentation_path('instructor-access'), class: 'btn btn-primary' %>
-</p>
+      <%= link_to 'Student FAQ', documentation_path('student-access'), class: 'btn btn-primary' %>
+      <%= link_to 'Instructor FAQ', documentation_path('instructor-access'), class: 'btn btn-primary' %>
+    </p>
+    </div>
+    <div class="alert alert-info three columns">
+      <h4>Contact Information</h4>
+      <br/>
+      <%= render partial: '/errors/contact_info' %>
+      <hr/>
+      <%= render partial: '/errors/video_contact_info' %>
+    </div>
