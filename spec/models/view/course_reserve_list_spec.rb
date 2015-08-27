@@ -4,7 +4,7 @@ describe CourseReserveList do
   let(:user) { double(User, :username => 'student', admin?: false) }
 
   before(:each) do
-    @course = double(Course, :id => 1, :title => 'title', :primary_instructor => double(User, display_name: 'name', admin?: false), :instructor_netids => [], :enrolled_netids => [])
+    @course = double(Course, :id => 1, :title => 'title', :primary_instructor => double(User, display_name: 'name', admin?: false), :instructor_netids => [], :enrollment_netids => [])
     CourseReserveList.any_instance.stub(:get_course).with("course_id").and_return(@course)
 
     @user_course_show = CourseReserveList.new(@course, user)
@@ -43,6 +43,13 @@ describe CourseReserveList do
       @user_course_show.show_partial[:locals][:user_course_show].should == @user_course_show
     end
 
+    it "returns the partial for the enrollment if the user can view all courses" do
+      @user_course_show.stub(:can_view_all_courses?).and_return(true)
+
+      @user_course_show.show_partial[:partial].should == 'enrolled_course_show'
+      @user_course_show.show_partial[:locals][:user_course_show].should == @user_course_show
+    end
+
 
     it "returns the partial for instructor if the user instucts the course" do
       @user_course_show.stub(:enrolled_in_course?).and_return(false)
@@ -74,6 +81,14 @@ describe CourseReserveList do
 
     it "returns only the published_reserves when the user is enrolled in the couses" do
       @user_course_show.stub(:enrolled_in_course?).and_return(true)
+      @course.should_receive(:published_reserves)
+      @course.should_not_receive(:reserves)
+
+      @user_course_show.reserves
+    end
+
+    it "returns only the published_reserves when the user can view all courses" do
+      @user_course_show.stub(:can_view_all_courses?).and_return(true)
       @course.should_receive(:published_reserves)
       @course.should_not_receive(:reserves)
 

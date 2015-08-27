@@ -28,14 +28,12 @@ class CourseReserveList
     @course.id
   end
 
-
   def has_deleted_reserves?
     @course.reserves.find { | r | r.removed? }.present?
   end
 
-
   def reserves
-    if enrolled_in_course?
+    if enrolled_in_course? || can_view_all_courses?
       @course.published_reserves
     elsif instructs_course?
       @course.reserves
@@ -44,22 +42,23 @@ class CourseReserveList
     end
   end
 
-
-
   def instructs_course?
     @instructs_course ||= (UserRoleInCoursePolicy.new(@course, @current_user).user_instructs_course? || UserIsAdminPolicy.new(@current_user).is_admin?)
   end
 
-
   def enrolled_in_course?
     @enrolled_course ||= UserRoleInCoursePolicy.new(@course, @current_user).user_enrolled_in_course?
+  end
+
+  def can_view_all_courses?
+    @can_view_all_courses ||= UserCanViewAllCoursesPolicy.new(@current_user).can_view_all_courses?
   end
 
 
   def show_partial
     if instructs_course?
       { partial: 'instructed_course_show', locals: { user_course_show: self }}
-    elsif enrolled_in_course?
+    elsif enrolled_in_course? || can_view_all_courses?
       { partial: 'enrolled_course_show', locals: { user_course_show: self }}
     else
       raise "unable to determin partial"

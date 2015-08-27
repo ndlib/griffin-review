@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe StreamingController do
   let(:current_course) { '201300_3605' }
   let(:username) { 'abuchman'}

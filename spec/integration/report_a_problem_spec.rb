@@ -16,7 +16,7 @@ describe 'Report a Problem Spec' do
 
     fill_in "comments", with: "My problem Comments"
 
-    click_on "Submit Report"
+    click_on "Send Message"
 
     expect(last_email.to.include?('library@nd.edu')).to be_true
   end

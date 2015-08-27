@@ -58,7 +58,10 @@ class ApplicationController < ActionController::Base
         raise_404("Course does not exist")
       end
 
-      if (!permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)) && !permission.current_user_is_administrator?
+      if ((!permission.current_user_instructs_course?(course) && !permission.current_user_enrolled_in_course?(course)) &&
+        !permission.current_user_is_administrator? &&
+        !permission.current_user_views_all_courses?)
+
         raise_404("User cannot view the course")
       end
     end

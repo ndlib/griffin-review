@@ -4,9 +4,23 @@ describe Permission do
   let(:student_user) { double(User, :username => 'student', :admin? => false) }
   let(:instructor_user) { double(User, :username => 'instructor', :admin? => false) }
   let(:inst_stu_user)  { double(User, :username => 'inst_stu', :admin? => false) }
+  let(:circ_user)  { double(User, :username => 'circ', :admin? => false) }
   let(:admin_user) { double(User, username: 'admin', admin?: true) }
   let(:controller) { double(ApplicationController, :session => {} )}
   let(:course) { double(Course) }
+
+
+  describe :current_user_views_all_courses? do
+    it "returns true if the user is the circ user" do
+      UserCanViewAllCoursesPolicy.any_instance.stub(:can_view_all_courses?).and_return(true)
+      Permission.new(circ_user, controller).current_user_views_all_courses?.should be_true
+    end
+
+    it "returns false for another user" do
+      UserCanViewAllCoursesPolicy.any_instance.stub(:can_view_all_courses?).and_return(false)
+      Permission.new(student_user, controller).current_user_views_all_courses?.should be_false
+    end
+  end
 
 
   describe :current_user_instructs_course? do
