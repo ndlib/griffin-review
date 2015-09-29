@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925164142) do
+ActiveRecord::Schema.define(version: 20150929124005) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20140925164142) do
     t.string   "type"
     t.string   "publisher"
     t.boolean  "on_order"
-    t.string   "details"
+    t.text     "details"
     t.datetime "metadata_synchronization_date"
     t.string   "display_length"
     t.text     "citation"
