@@ -38,10 +38,9 @@ desc "Setup for the production environment"
 task :production do
   # Customize production configuration
   set :rails_env, 'production'
-  role :app, "wowzaprod.library.nd.edu"
+  role :app, "reserves.library.nd.edu"
 
   set :hipchat_token, "c290a842542721d6aee18a3cb900a1"
   set :hipchat_room_name, "Web and Software Engineering"
   set :hipchat_announce, false # notify users?
 end
-
