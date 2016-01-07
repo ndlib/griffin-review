@@ -132,7 +132,7 @@ class Course
 
 
     def banner_enrollment_netids
-      @banner_enromment_netids ||= sections.collect{ | s | s.enrollment_netids }.flatten.map { | s | s.downcase.strip }
+      @banner_enromment_netids ||= sections.collect{ | s | s.enrollment_netids }.flatten.reject(&:nil?).map { | s | s.downcase.strip }
     end
 
 
@@ -142,7 +142,7 @@ class Course
 
 
     def banner_instructor_netids
-      @banner_instructor_netids ||= sections.collect{ | s | s.instructor_netids }.flatten.uniq.map { | s | s.downcase.strip }.map(&:downcase)
+      @banner_instructor_netids ||= sections.collect{ | s | s.instructor_netids }.flatten.uniq.reject(&:nil?).map { | s | s.downcase.strip }.map(&:downcase)
     end
 
 
