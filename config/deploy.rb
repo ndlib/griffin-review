@@ -18,7 +18,7 @@ set :application_symlinks, [
 
 
 set :application, 'reserves'
-set :repository,  "git@git.library.nd.edu:griffin"
+set :repository,  "https://github.com/ndlib/griffin-review.git"
 
 
 
