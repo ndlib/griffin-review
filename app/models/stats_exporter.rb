@@ -63,7 +63,7 @@ class StatsExporter
       csv << output_fields
       @courses.each do | key, value |
         csv << [
-          key, value[:title], value[:primary_instructor], value[:course_code],
+          key, value[:title], value[:primary_instructor], value[:email], value[:course_code],
           value[:uploaded_readings], value[:url_readings], value[:videos],
           value[:sipx], value[:physical_reserves]
         ]
