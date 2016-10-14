@@ -73,7 +73,7 @@ class StatsExporter
 
   def output_fields
     %w(
-      id title instructor course_code uploaded_readings
+      id title instructor email course_code uploaded_readings
       url_readings videos sipx physical_reserves
     )
   end
