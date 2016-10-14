@@ -26,6 +26,7 @@ class StatsExporter
     @courses[reserve.course_id] ||= {
       title: reserve.course.title,
       primary_instructor: reserve.course.primary_instructor_hash['full_name'],
+      email: reserve.course.primary_instructor_hash["contact_information"]["email"],
       course_code: reserve.course.crosslisted_course_ids.first,
       uploaded_readings: 0,
       url_readings: 0,
