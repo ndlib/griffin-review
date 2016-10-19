@@ -47,8 +47,6 @@ class ParsePlaylistCsv
     end
 
     def parsed_directory(row)
-      puts filename_from_row(row)
-      puts filename_from_row(row).match(/^([0-9a-zA-Z]*)([-]|[_])/).inspect
       filename_from_row(row).match(/^([0-9a-zA-Z]*)([-]|[_])/).captures.first
     end
 
