@@ -11,7 +11,7 @@ describe DeleteReserveElectronicResourceForm do
   describe :delete_link do
 
     it "returns the an <a tag" do
-      expect(@form.delete_link).to eq("<a class=\"btn btn-danger\" data-confirm=\"Clicking &quot;ok&quot; will permamently remove any associated urls and uploaded files. Are you sure you wish to continue?\" data-method=\"delete\" href=\"/admin/resources/1\" id=\"delete_reserve_1\" rel=\"nofollow\"><i class=\"icon-remove\"></i> Delete Electronic Resource</a>")
+      expect(@form.delete_link).to eq("<a data-confirm=\"Clicking &quot;ok&quot; will permamently remove any associated urls and uploaded files. Are you sure you wish to continue?\" class=\"btn btn-danger\" id=\"delete_reserve_1\" rel=\"nofollow\" data-method=\"delete\" href=\"/admin/resources/1\"><i class=\"icon-remove\"></i> Delete Electronic Resource</a>")
     end
   end
 

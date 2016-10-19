@@ -63,7 +63,7 @@ describe ResyncReserveButton do
 
     it "returns a button if the reserve can be synched" do
       ResyncReserveButton.any_instance.stub(:can_be_resynced?).and_return(true)
-      expect(@button.button).to eq("<a class=\"btn\" data-method=\"put\" href=\"/admin/resync/1\" rel=\"nofollow\">Re-sync Meta Data</a>")
+      expect(@button.button).to eq("<a class=\"btn\" confirm=\"false\" rel=\"nofollow\" data-method=\"put\" href=\"/admin/resync/1\">Re-sync Meta Data</a>")
     end
 
     it "returns emptu sring if the the reserve cannot be synched " do
@@ -75,7 +75,7 @@ describe ResyncReserveButton do
       ResyncReserveButton.any_instance.stub(:can_be_resynced?).and_return(true)
       @reserve.stub(:overwrite_nd_meta_data).and_return(true)
 
-      expect(@button.button).to eq("<a class=\"btn\" data-confirm=\"The meta data has been manually edited clicking &quot;ok&quot; will overwrite those changes.\" data-method=\"put\" href=\"/admin/resync/1\" rel=\"nofollow\">Re-sync Meta Data</a>")
+      expect(@button.button).to eq("<a class=\"btn\" confirm=\"The meta data has been manually edited clicking &quot;ok&quot; will overwrite those changes.\" rel=\"nofollow\" data-method=\"put\" href=\"/admin/resync/1\">Re-sync Meta Data</a>")
     end
 
   end

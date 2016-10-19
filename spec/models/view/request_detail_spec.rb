@@ -38,7 +38,7 @@ describe RequestDetail do
   describe :delete_link do
 
     it "returns a link to delete the reserve from the course and return to this page " do
-      expect(@request_detail.delete_link).to eq("<a class=\"btn btn-danger\" data-confirm=\"Are you sure you wish to remove this reserve from this semester?\" data-method=\"delete\" href=\"/courses/id/reserves/1?redirect_to=admin\" id=\"delete_reserve_1\" rel=\"nofollow\"><i class=\"icon-remove\"></i> Delete Reserve</a>")
+      expect(@request_detail.delete_link).to eq("<a data-confirm=\"Are you sure you wish to remove this reserve from this semester?\" class=\"btn btn-danger\" id=\"delete_reserve_1\" rel=\"nofollow\" data-method=\"delete\" href=\"/courses/id/reserves/1?redirect_to=admin\"><i class=\"icon-remove\"></i> Delete Reserve</a>")
     end
   end
 end
