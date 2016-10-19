@@ -60,6 +60,7 @@ class Reserve
 
     # this is required for the state_machine gem do not forget again and remove
     super()
+    self.workflow_state ||= :new
   end
 
 
@@ -155,4 +156,3 @@ class Reserve
 
 
 end
-

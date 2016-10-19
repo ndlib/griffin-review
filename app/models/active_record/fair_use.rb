@@ -11,6 +11,13 @@ class FairUse < ActiveRecord::Base
   scope :request, lambda { | request | where(request_id: request.id).order("created_at") }
   scope :by_item, lambda { | item | where(item_id: item.id) }
 
+  # the state_machine gem is no longer maintained and initial values are broken in rails 4.2. This is a work around.
+  # see https://github.com/pluginaweek/state_machine/issues/334
+  after_initialize :set_initial_status
+  def set_initial_status
+    self.state ||= :update
+  end
+
   state_machine :state, :initial => :update do
 
     event :approve do

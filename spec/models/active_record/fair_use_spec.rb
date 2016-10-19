@@ -2,20 +2,16 @@ require 'spec_helper'
 
 
 describe FairUse do
-
   describe :validations  do
-
     it "requires the user_id" do
       FairUse.new.should have(1).error_on(:user_id)
     end
-
   end
-
 
   describe :checklist do
 
     it "allows you to set a checklist" do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), state: "update")
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), state: "update")
       f.checklist = { '1' => true, '2' => false}
       f.save!
       f.checklist.class.should == ActiveSupport::HashWithIndifferentAccess
@@ -27,38 +23,38 @@ describe FairUse do
   describe :copy_to_new_request! do
 
     it "resets the comments " do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
-      nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
+      nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
       nf.comments.should == ""
     end
 
 
     it "resets the state to update " do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
-      nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
+      nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
       nf.state.should == "update"
     end
 
 
     it "changes the request to the new one" do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
-      nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
+      nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
       nf.request.id.should == 2
     end
 
     it "changes the user to one passed in " do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
-      nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
+      nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
       nf.user.id.should == 2
     end
 
     it "saves the new request" do
-      f = FairUse.new(:user => mock_model(User, id: 1), request: mock_model(Request, id: 1), comments: "comments", state: "approved")
-      nf = f.copy_to_new_request!(mock_model(Request, id: 2), mock_model(User, id: 2))
+      f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
+      nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
       nf.new_record?.should be_false
     end
