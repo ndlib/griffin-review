@@ -4,7 +4,7 @@ describe CopyReserve do
 
   let(:semester) { FactoryGirl.create(:semester) }
   let(:course_search) { CourseSearch.new }
-  let(:user) { mock_model(User, id: 1, username: 'bobbobbers' )}
+  let(:user) { User.new(id: 1, username: 'bobbobbers')}
 
   before(:each) do
     @current_semester = FactoryGirl.create(:semester)
