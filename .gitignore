@@ -17,3 +17,4 @@ uploads/movs
 uploads/old_files
 .bundle/config
 site.reek
+config/secrets.yml

@@ -8,7 +8,7 @@ Griffin::Application.configure do
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
+  config.serve_static_files= true
   config.static_cache_control = "public, max-age=3600"
 
   # Log level
@@ -58,16 +58,4 @@ Griffin::Application.configure do
   config.api_token                        = "SCSGYmwqLqSyBTmxCQgM"
 
   config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
-
-  # Sakai integration
-  config.sakai_script_wsdl                = "https://nd-dev.rsmart.com/sakai-axis/SakaiScript.jws?wsdl"
-  config.sakai_login_wsdl                 = "https://nd-dev.rsmart.com/sakai-axis/SakaiLogin.jws?wsdl"
-  config.sakai_domain                     = "https://nd-test.rsmart.com"
-
-  config.sakai_domain                     = "https://nd-test.rsmart.com"
-  
-  # ND Calendar
-  config.nd_calendar                    = 'http://calendar.nd.edu'
-  config.nd_calendar_path               = '/webcache/v1.0/xmlDays/356/list-xml/%28catuid%3D%272c936ab1-29f6bcb3-012a-15374ec0-00000e64%27%29.xml'
-
 end
