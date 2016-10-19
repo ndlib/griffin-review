@@ -9,9 +9,6 @@ doc/apidocs/
 doc/api/
 doc/app/
 .sass-cache/
-config/database.yml
-config/sakai.yml
-script/sakai_test_connection.rb
 uploads/pdfs
 uploads/movs
 uploads/old_files
