@@ -15,7 +15,7 @@ Griffin::Application.configure do
   config.eager_load = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files= false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -85,8 +85,6 @@ Griffin::Application.configure do
   config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
 
   # Sakai integration
-  config.sakai_script_wsdl              = "https://sakailogin.nd.edu/sakai-axis/SakaiScript.jws?wsdl"
-  config.sakai_login_wsdl               = "https://sakailogin.nd.edu/sakai-axis/SakaiLogin.jws?wsdl"
   config.sakai_domain                   = "https://sakailogin.nd.edu"
 
   # ND Calendar

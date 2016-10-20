@@ -75,14 +75,5 @@ module Griffin
 
     # Admin list
     config.admin_list = %w{ jhartzle@nd.edu rfox2@nd.edu jkennel@nd.edu dwolfe2@nd.edu }
-
-
-    # Custom configs
-    config.reserves_ldap_host = 'directory.nd.edu'
-    config.reserves_ldap_port = 636
-    config.reserves_ldap_base = 'o=University of Notre Dame,st=Indiana,c=US'
-    config.reserves_ldap_service_dn = 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US'
-    config.reserves_ldap_service_password = 'not-a-password'
-    config.reserves_ldap_attrs = [ 'uid', 'givenname', 'sn', 'ndvanityname', 'nddepartment' ]
   end
 end

@@ -179,7 +179,7 @@ class InstructorReserveRequest
 
 
     def success_notify
-      ReserveMailer.new_request_notifier(reserve).deliver
+      ReserveMailer.new_request_notifier(reserve).deliver_now
 
       @controller.add_flash(:success, "<h4>New Request Made</h4><p> Your request has been received and will be processed as soon as possible.  </p><a href=\"#{routes.course_reserves_path(reserve.course.id)}\" class=\"btn btn-primary\">I am Done</a>")
     end

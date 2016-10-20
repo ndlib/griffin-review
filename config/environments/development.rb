@@ -2,7 +2,7 @@ Griffin::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files= false
 
   # Generate digests for assets URLs
   config.assets.digest = false
@@ -79,14 +79,7 @@ Griffin::Application.configure do
 
   config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
 
-  # Sakai integration
-  config.sakai_script_wsdl              = "https://nd.longsight.com/sakai-axis/SakaiScript.jws?wsdl"
-  config.sakai_login_wsdl               = "https://nd.longsight.com/sakai-axis/SakaiLogin.jws?wsdl"
   config.sakai_domain                   = "https://nd.longsight.com"
-
-  # ND Calendar
-  config.nd_calendar                    = 'http://calendar.nd.edu'
-  config.nd_calendar_path               = '/webcache/v1.0/xmlDays/356/list-xml/%28catuid%3D%272c936ab1-29f6bcb3-012a-15374ec0-00000e64%27%29.xml'
 
   config.middleware.use ExceptionNotification::Rack,
   :email => {

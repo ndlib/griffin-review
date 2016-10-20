@@ -1,0 +1,70 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+# #
+# # Install the MySQL driver:
+# #   gem install mysql2
+# #
+# # And be sure to use new-style password hashing:
+# #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+# # Shared settings
+
+mysql_settings: &mysql_settings
+  adapter:   mysql2
+  encoding:  utf8
+  reconnect: true
+  pool:      5
+
+development:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host:     <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+
+test:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host:     <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+
+pre_production:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host:     <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+
+production:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host:     <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+
+open_reserves_development:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.open_reserves["username"] %>
+  password: <%= Rails.application.secrets.open_reserves["password"] %>
+  host:     <%= Rails.application.secrets.open_reserves["host"] %>
+  database: <%= Rails.application.secrets.open_reserves["database"] %>
+
+open_reserves_test:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.open_reserves["username"] %>
+  password: <%= Rails.application.secrets.open_reserves["password"] %>
+  host:     <%= Rails.application.secrets.open_reserves["host"] %>
+  database: <%= Rails.application.secrets.open_reserves["database"] %>
+
+open_reserves_pprd:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.open_reserves["username"] %>
+  password: <%= Rails.application.secrets.open_reserves["password"] %>
+  host:     <%= Rails.application.secrets.open_reserves["host"] %>
+  database: <%= Rails.application.secrets.open_reserves["database"] %>
+
+open_reserves_prod:
+  <<: *mysql_settings
+  username: <%= Rails.application.secrets.open_reserves["username"] %>
+  password: <%= Rails.application.secrets.open_reserves["password"] %>
+  host:     <%= Rails.application.secrets.open_reserves["host"] %>
+  database: <%= Rails.application.secrets.open_reserves["database"] %>

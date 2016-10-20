@@ -29,7 +29,7 @@ class CopyOldCourseReservesForm
 
 
   def terms
-    @terms ||= OpenCourse.connection.select('SELECT DISTINCT term from course').collect { | t | t['term'] }
+    @terms ||= OpenCourse.connection.send(:select, 'SELECT DISTINCT term from course').collect { | t | t['term'] }
   end
 
 

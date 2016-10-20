@@ -201,7 +201,7 @@ describe Reserve do
 
     it "returns the current fair use if there is one associated with the reserve" do
       r = mock_reserve FactoryGirl.create(:request), nil
-      f = FairUse.new(request: r.request, user: mock_model(User, id: 1))
+      f = FairUse.new(request: r.request, user: User.new(id: 1))
       f.save!
 
       r.fair_use.id.should == f.id

@@ -13,42 +13,42 @@
 
 ActiveRecord::Schema.define(version: 20150929124005) do
 
-  create_table "assignments", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
+  create_table "assignments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "role_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "error_logs", force: true do |t|
-    t.string   "netid"
-    t.string   "path"
-    t.text     "message"
-    t.text     "params"
-    t.text     "stack_trace"
+  create_table "error_logs", force: :cascade do |t|
+    t.string   "netid",           limit: 255
+    t.string   "path",            limit: 255
+    t.text     "message",         limit: 65535
+    t.text     "params",          limit: 65535
+    t.text     "stack_trace",     limit: 65535
     t.datetime "created_at"
-    t.string   "state"
-    t.text     "user_agent"
-    t.string   "exception_class"
+    t.string   "state",           limit: 255
+    t.text     "user_agent",      limit: 65535
+    t.string   "exception_class", limit: 255
   end
 
-  create_table "fair_use_questions", force: true do |t|
-    t.text    "question"
+  create_table "fair_use_questions", force: :cascade do |t|
+    t.text    "question",    limit: 65535
     t.boolean "active"
-    t.string  "category"
-    t.integer "ord"
-    t.string  "subcategory"
+    t.string  "category",    limit: 255
+    t.integer "ord",         limit: 4
+    t.string  "subcategory", limit: 255
   end
 
   add_index "fair_use_questions", ["ord"], name: "index_fair_use_questions_on_ord", using: :btree
 
-  create_table "fair_uses", force: true do |t|
-    t.text     "fair_uses"
-    t.text     "comments"
-    t.string   "state"
-    t.integer  "user_id"
-    t.integer  "request_id"
-    t.integer  "item_id"
+  create_table "fair_uses", force: :cascade do |t|
+    t.text     "fair_uses",  limit: 65535
+    t.text     "comments",   limit: 65535
+    t.string   "state",      limit: 255
+    t.integer  "user_id",    limit: 4
+    t.integer  "request_id", limit: 4
+    t.integer  "item_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,76 +56,76 @@ ActiveRecord::Schema.define(version: 20150929124005) do
   add_index "fair_uses", ["item_id"], name: "index_fair_uses_on_item_id", using: :btree
   add_index "fair_uses", ["request_id"], name: "index_fair_uses_on_request_id", using: :btree
 
-  create_table "items", force: true do |t|
-    t.string   "selection_title"
-    t.text     "description"
-    t.integer  "item_type_id"
+  create_table "items", force: :cascade do |t|
+    t.string   "selection_title",               limit: 255
+    t.text     "description",                   limit: 65535
+    t.integer  "item_type_id",                  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "creator"
-    t.text     "title"
-    t.text     "journal_title"
-    t.string   "nd_meta_data_id"
+    t.string   "creator",                       limit: 255
+    t.text     "title",                         limit: 65535
+    t.text     "journal_title",                 limit: 65535
+    t.string   "nd_meta_data_id",               limit: 255
     t.boolean  "overwrite_nd_meta_data"
-    t.text     "length"
-    t.string   "pdf_file_name"
-    t.string   "pdf_file_size"
-    t.string   "pdf_content_type"
-    t.string   "pdf_updated_at"
-    t.text     "url"
-    t.string   "type"
-    t.string   "publisher"
+    t.text     "length",                        limit: 65535
+    t.string   "pdf_file_name",                 limit: 255
+    t.string   "pdf_file_size",                 limit: 255
+    t.string   "pdf_content_type",              limit: 255
+    t.string   "pdf_updated_at",                limit: 255
+    t.text     "url",                           limit: 65535
+    t.string   "type",                          limit: 255
+    t.string   "publisher",                     limit: 255
     t.boolean  "on_order"
-    t.text     "details"
+    t.text     "details",                       limit: 65535
     t.datetime "metadata_synchronization_date"
-    t.string   "display_length"
-    t.text     "citation"
+    t.string   "display_length",                limit: 255
+    t.text     "citation",                      limit: 65535
     t.boolean  "physical_reserve"
-    t.string   "realtime_availability_id"
+    t.string   "realtime_availability_id",      limit: 255
     t.boolean  "electronic_reserve"
-    t.string   "contributor"
+    t.string   "contributor",                   limit: 255
   end
 
   add_index "items", ["type"], name: "index_items_on_type", using: :btree
 
-  create_table "media_playlists", force: true do |t|
-    t.integer "item_id"
-    t.text    "data",    limit: 2147483647
+  create_table "media_playlists", force: :cascade do |t|
+    t.integer "item_id", limit: 4
+    t.text    "data",    limit: 4294967295
   end
 
-  create_table "requests", force: true do |t|
-    t.integer  "user_id"
+  create_table "requests", force: :cascade do |t|
+    t.integer  "user_id",                    limit: 4
     t.date     "needed_by"
-    t.integer  "semester_id"
-    t.string   "title"
-    t.string   "course"
+    t.integer  "semester_id",                limit: 4
+    t.string   "title",                      limit: 255
+    t.string   "course",                     limit: 255
     t.boolean  "repeat_request"
     t.boolean  "library_owned"
-    t.string   "language"
-    t.string   "subtitles"
-    t.text     "note"
+    t.string   "language",                   limit: 255
+    t.string   "subtitles",                  limit: 255
+    t.text     "note",                       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "workflow_state"
+    t.string   "workflow_state",             limit: 255
     t.datetime "workflow_state_change_date"
-    t.integer  "workflow_state_change_user"
-    t.integer  "video_id"
-    t.integer  "number_of_copies"
-    t.string   "requestor_owns_a_copy"
-    t.string   "library"
-    t.string   "course_id"
-    t.string   "crosslist_id"
-    t.string   "requestor_netid"
-    t.integer  "item_id"
+    t.integer  "workflow_state_change_user", limit: 4
+    t.integer  "video_id",                   limit: 4
+    t.integer  "number_of_copies",           limit: 4
+    t.string   "requestor_owns_a_copy",      limit: 255
+    t.string   "library",                    limit: 255
+    t.string   "course_id",                  limit: 255
+    t.string   "crosslist_id",               limit: 255
+    t.string   "requestor_netid",            limit: 255
+    t.integer  "item_id",                    limit: 4
     t.boolean  "reviewed"
     t.boolean  "currently_in_aleph"
-    t.text     "item_title"
-    t.string   "item_selection_title"
-    t.string   "item_type"
+    t.text     "item_title",                 limit: 65535
+    t.string   "item_selection_title",       limit: 255
+    t.string   "item_type",                  limit: 255
     t.boolean  "item_physical_reserve"
     t.boolean  "item_electronic_reserve"
     t.boolean  "item_on_order"
-    t.text     "sortable_title"
+    t.text     "sortable_title",             limit: 65535
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
@@ -134,11 +134,11 @@ ActiveRecord::Schema.define(version: 20150929124005) do
   add_index "requests", ["requestor_netid"], name: "index_requests_on_requestor_netid", using: :btree
   add_index "requests", ["workflow_state"], name: "index_requests_on_workflow_state", using: :btree
 
-  create_table "reserve_stats", force: true do |t|
-    t.integer  "request_id"
-    t.integer  "item_id"
-    t.integer  "semester_id"
-    t.integer  "user_id"
+  create_table "reserve_stats", force: :cascade do |t|
+    t.integer  "request_id",  limit: 4
+    t.integer  "item_id",     limit: 4
+    t.integer  "semester_id", limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.boolean  "from_lms"
   end
@@ -146,10 +146,10 @@ ActiveRecord::Schema.define(version: 20150929124005) do
   add_index "reserve_stats", ["item_id"], name: "index_reserve_stats_on_item_id", using: :btree
   add_index "reserve_stats", ["request_id"], name: "index_reserve_stats_on_request_id", using: :btree
 
-  create_table "sakai_context_cache", force: true do |t|
-    t.string   "context_id"
-    t.string   "course_id"
-    t.string   "term"
+  create_table "sakai_context_cache", force: :cascade do |t|
+    t.string   "context_id", limit: 255
+    t.string   "course_id",  limit: 255
+    t.string   "term",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -158,62 +158,62 @@ ActiveRecord::Schema.define(version: 20150929124005) do
   add_index "sakai_context_cache", ["course_id"], name: "index_sakai_context_cache_on_course_id", using: :btree
   add_index "sakai_context_cache", ["term"], name: "index_sakai_context_cache_on_term", using: :btree
 
-  create_table "semesters", force: true do |t|
-    t.string   "code"
-    t.string   "full_name"
+  create_table "semesters", force: :cascade do |t|
+    t.string   "code",            limit: 255
+    t.string   "full_name",       limit: 255
     t.date     "date_begin"
     t.date     "date_end"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "movie_directory"
+    t.string   "movie_directory", limit: 255
   end
 
-  create_table "user_course_exceptions", force: true do |t|
-    t.string "netid"
-    t.string "role"
-    t.string "course_id"
-    t.string "term"
+  create_table "user_course_exceptions", force: :cascade do |t|
+    t.string "netid",     limit: 255
+    t.string "role",      limit: 255
+    t.string "course_id", limit: 255
+    t.string "term",      limit: 255
   end
 
   add_index "user_course_exceptions", ["course_id", "term", "role"], name: "uce_search_index", using: :btree
   add_index "user_course_exceptions", ["netid", "term"], name: "index_user_course_exceptions_on_netid_and_term", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "display_name"
-    t.string   "email",              default: "", null: false
-    t.integer  "sign_in_count",      default: 0
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
+    t.string   "display_name",       limit: 255
+    t.string   "email",              limit: 255,   default: "", null: false
+    t.integer  "sign_in_count",      limit: 4,     default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "username"
+    t.string   "current_sign_in_ip", limit: 255
+    t.string   "last_sign_in_ip",    limit: 255
+    t.string   "username",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
-    t.text     "admin_preferences"
+    t.text     "admin_preferences",  limit: 65535
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  limit: 255,   null: false
+    t.integer  "item_id",    limit: 4,     null: false
+    t.string   "event",      limit: 255,   null: false
+    t.string   "whodunnit",  limit: 255
+    t.text     "object",     limit: 65535
     t.datetime "created_at"
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
-  create_table "wowza_tokens", force: true do |t|
-    t.string   "username"
-    t.string   "token"
-    t.string   "ip"
-    t.integer  "timestamp"
+  create_table "wowza_tokens", force: :cascade do |t|
+    t.string   "username",   limit: 255
+    t.string   "token",      limit: 255
+    t.string   "ip",         limit: 255
+    t.integer  "timestamp",  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

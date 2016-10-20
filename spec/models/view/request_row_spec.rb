@@ -12,14 +12,14 @@ describe RequestRow do
 
   it "links to the request item_title" do
     request.item_title = 'title'
-    expect(subject.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">title</a>")
+    expect(subject.title).to eq("<a target=\"_blank\" href=\"/admin/requests/1\">title</a>")
   end
 
 
   it "shows the selection title when there is a selection title" do
     request.item_title = 'title'
     request.item_selection_title = 'selection_title'
-    expect(subject.title).to eq("<a href=\"/admin/requests/1\" target=\"_blank\">selection_title</a><br>title")
+    expect(subject.title).to eq("<a target=\"_blank\" href=\"/admin/requests/1\">selection_title</a><br>title")
   end
 
 
@@ -221,8 +221,9 @@ describe RequestRow do
     Reserve.any_instance.stub(:course).and_return(double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), full_title: 'Course', primary_instructor: double(User, first_name: 'fname', last_name: 'lname', username: 'username')))
     r = Reserve.new(title: 'Title', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false, library: 'hesburgh')
     r.save!
+    allow_any_instance_of(RequestRow).to receive(:request_date_timestamp).and_return("request_date_timestamp")
 
-    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a href=\"/admin/requests/2\" target=\"_blank\">Title</a>", Time.now.to_date.to_s(:short), "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a href=\"/courses/course_id/reserves\" target=\"_blank\">Course</a>", "Video", r.created_at.to_time.to_i, 1357016400, "physical", "new not_in_aleph", "hesburgh", "VideoReserve", "title"])
+    expect(RequestRow.new(r).to_json).to eq([" 1 Jan", "<a target=\"_blank\" href=\"/admin/requests/2\">Title</a>", "19 Oct", "<a href=\"/masquerades/new?username=username\">lname, fname</a>", "<a target=\"_blank\" href=\"/courses/course_id/reserves\">Course</a>", "Video", "request_date_timestamp", 1357016400, "physical", "new not_in_aleph", "hesburgh", "VideoReserve", "title"])
   end
 
 

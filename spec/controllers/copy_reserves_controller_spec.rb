@@ -1,17 +1,14 @@
 require 'spec_helper'
 
 describe CopyReservesController do
-
   let(:previous_semester) { FactoryGirl.create(:previous_semester) }
 
   before(:each) do
-
     @to_course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
     @from_course = double(Course, id: 'id', semester: FactoryGirl.create(:previous_semester))
 
     CourseSearch.any_instance.stub(:get).and_return(@to_course)
     CourseSearch.any_instance.stub(:get).with(@from_course.id).and_return(@to_course)
-
   end
 
 

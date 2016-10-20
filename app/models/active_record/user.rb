@@ -117,15 +117,15 @@ class User < ActiveRecord::Base
   # ldap
   def self.ldap_lookup(username)
     return nil if username.blank?
-    ldap = Net::LDAP.new :host => Rails.configuration.reserves_ldap_host,
-                         :port => Rails.configuration.reserves_ldap_port,
+    ldap = Net::LDAP.new :host => Rails.application.secrets.ldap["host"],
+                         :port => Rails.application.secrets.ldap["port"],
                          :auth => { :method   => :simple,
-                                    :username => Rails.configuration.reserves_ldap_service_dn,
-                                    :password => Rails.configuration.reserves_ldap_service_password
+                                    :username => Rails.application.secrets.ldap["service_dn"],
+                                    :password => Rails.application.secrets.ldap["service_password"]
                                   },
                          :encryption => :simple_tls
     results = ldap.search(
-      :base          => Rails.configuration.reserves_ldap_base,
+      :base          => Rails.application.secrets.ldap["base_dn"],
       :attributes    => [
                          'uid',
                          'givenname',

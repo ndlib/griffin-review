@@ -6,7 +6,7 @@ describe CopyCourseReservesForm do
     double(CopyReservesController, params: params)
   end
 
-  let(:user) { mock_model(User, :id => 1, :username => 'instructor', :admin? => false) }
+  let(:user) { User.new(:id => 1, :username => 'instructor', :admin => false) }
   let(:course_search) { CourseSearch.new }
   let(:semester) { FactoryGirl.create(:semester) }
   let(:next_semester) { FactoryGirl.create(:next_semester) }
