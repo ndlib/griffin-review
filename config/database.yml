@@ -9,7 +9,7 @@ mysql_settings: &mysql_settings
   reconnect: false
   timeout: 5000
   host: <%= Rails.application.secrets[:database][:host] %>
-  database: <%= Rails.application.secrets[:database][:name] %>
+  database: <%= Rails.application.secrets[:database][:database] %>
   username: <%= Rails.application.secrets[:database][:username] %>
   password: <%= Rails.application.secrets[:database][:password] %>
 
