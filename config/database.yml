@@ -8,10 +8,10 @@ mysql_settings: &mysql_settings
   encoding: utf8
   reconnect: false
   timeout: 5000
-  host: <%= Rails.application.secrets[:database][:host] %>
-  database: <%= Rails.application.secrets[:database][:database] %>
-  username: <%= Rails.application.secrets[:database][:username] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host: <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
 
 open_reserves_mysql_settings: &open_reserves_mysql_settings
   adapter: mysql2
