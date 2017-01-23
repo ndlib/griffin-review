@@ -7,7 +7,7 @@ class Semester < ActiveRecord::Base
   scope :current, ->{where("date_begin <= ? AND date_end >= ?", Time.zone.today, Time.zone.today)}
   scope :previous, lambda { | date |  where('date_end <= ? ', date) }
   scope :future, ->{ where("date_end >= ? ", Time.now) }
-  # default_scope where('date_begin >= ?', Date.today << 6)
+  # default_scope { where('date_begin >= ?', Date.today << 6) }
 
   def name
     full_name

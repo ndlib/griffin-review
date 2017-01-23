@@ -70,9 +70,6 @@ module Griffin
       g.form_builder :simple_form
     end
 
-    # Sakai admin access
-    ENV.update YAML.load(File.read(File.expand_path('../sakai.yml', __FILE__)))
-
     # Admin list
     config.admin_list = %w{ jhartzle@nd.edu rfox2@nd.edu jkennel@nd.edu dwolfe2@nd.edu }
   end
