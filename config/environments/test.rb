@@ -53,10 +53,6 @@ Griffin::Application.configure do
   config.rspec_cn                         = 'Robert Fox'
   config.rspec_last_name                  = "Fox"
 
-
-  config.api_url                          = "https://apipprd.library.nd.edu/"
-  config.api_token                        = "SCSGYmwqLqSyBTmxCQgM"
-
   config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
 
   config.sakai_domain                     = "https://nd-test.rsmart.com"
