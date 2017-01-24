@@ -3,6 +3,9 @@ class ReportProblemsController < ApplicationController
   end
 
   def create
-    SpiceworksMailer.create_ticket(current_user, params[:path], params[:comments]).deliver_now
+    m = Masquerade.new(self)
+    user = m.masquerading? ? m.original_user : current_user
+
+    SpiceworksMailer.create_ticket(user, params[:path], params[:comments]).deliver_now
   end
 end
