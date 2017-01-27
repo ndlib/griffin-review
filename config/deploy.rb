@@ -28,6 +28,8 @@ task :pre_production do
   set :rails_env, 'pre_production'
   role :app, "reservespprd.library.nd.edu"
 
+  set :user,      'app'
+
   set :hipchat_token, "c290a842542721d6aee18a3cb900a1"
   set :hipchat_room_name, "Web and Software Engineering"
   set :hipchat_announce, false # notify users?
@@ -39,6 +41,7 @@ task :production do
   # Customize production configuration
   set :rails_env, 'production'
   role :app, "reserves.library.nd.edu"
+  set :user,      'app'
 
   set :hipchat_token, "c290a842542721d6aee18a3cb900a1"
   set :hipchat_room_name, "Web and Software Engineering"
