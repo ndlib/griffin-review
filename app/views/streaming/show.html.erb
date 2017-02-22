@@ -18,6 +18,11 @@
   </p>
 <% end %>
 
+<p class="alert alert-error">
+  Recent upgrades to campus computing infastructure have made the video streaming service unstable.  
+  You may experince issues with the video stopping during playback.  We are working to resolve this issue in a timely manner.
+</p>
+
 <%= @get_reserve.video_player %>
 <p>
   <%= link_to('Back to Course', course_reserves_path(@get_reserve.course.id), class: 'btn') %>
