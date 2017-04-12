@@ -5,7 +5,7 @@ class SpiceworksMailer < ActionMailer::Base
     @path = path
     @current_user = current_user
 
-    mail(:to => 'library@nd.edu', :from => current_user.email, :subject => "Reserves Problem")
+    mail(:to => 'nd@service-now.com', :from => current_user.email, :subject => "Reserves Problem")
   end
 
 end
