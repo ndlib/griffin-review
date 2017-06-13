@@ -11,7 +11,7 @@ class WowzaUrlGenerator
   end
 
   def html5
-    "https://#{base_url}#{wowza_application}/_definst_/#{filename}/playlist.m3u8?#{token}"
+    "http://#{base_url}#{wowza_application}/_definst_/#{filename}/playlist.m3u8?#{token}"
   end
 
   def rtmp
