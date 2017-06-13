@@ -43,10 +43,7 @@ class Jwplayer
         fallback: false,
         primary: 'html5',
         id: 'jwplayer',
-        html5player: '/assets/jwplayer.html5.js',
-        flashplayer: '/assets/jwplayer.flash.swf',
         playlist: sources,
-        androidhls: true,
         logo: { file:"/assets/hesburgh.png", link:"http://library.nd.edu"},
       }
 

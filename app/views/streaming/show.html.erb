@@ -4,7 +4,6 @@
   <a href="/documentation/troubleshooting" target="blank" class="btn">Trouble Viewing the Material?</a>
 <% end %>
 
-
 <% breadcrumb([
     link_to('Courses', courses_path),
     link_to(@get_reserve.course.title, course_reserves_path(@get_reserve.course.id)),
@@ -17,11 +16,6 @@
     Support for streaming to android devices is not available on all Android devices.  If you are having trouble try using a desktop computer.
   </p>
 <% end %>
-
-<p class="alert alert-error">
-  Recent upgrades to campus computing infastructure have made the video streaming service unstable.  
-  You may experince issues with the video stopping during playback.  We are working to resolve this issue in a timely manner.
-</p>
 
 <%= @get_reserve.video_player %>
 <p>
