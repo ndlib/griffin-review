@@ -148,7 +148,7 @@ class Jwplayer
     def sources_for_filename(filename)
       generator = wowza_url_generator(filename)
 
-      [{ file: generator.rtmp },{ file: generator.html5 }]
+      [{ file: generator.html5 }]
     end
 
     def wowza_url_generator(filename)
