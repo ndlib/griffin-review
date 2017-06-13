@@ -62,7 +62,7 @@ class WowzaUrlGenerator
       if Rails.env == 'production'
         "wowza.library.nd.edu:1935/"
       else
-        "wowza-pprd-vm.library.nd.edu:1935/"
+        "lib-wowza-pprd.library.nd.edu:1935/"
       end
     end
 end
