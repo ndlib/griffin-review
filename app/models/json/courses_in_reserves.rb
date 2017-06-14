@@ -13,7 +13,6 @@ class CoursesInReserves
     @user_course_listing = ListUsersCourses.new(u)
   end
 
-
   def to_hash(options = {})
     {
       netid: netid,
@@ -25,8 +24,8 @@ class CoursesInReserves
   private
 
   def enrollments
-    user_course_listing.enrolled_courses.collect do | course |
-      return {
+    user_course_listing.enrolled_courses.map do | course |
+      {
         course_id: course.id,
         title: course.title,
         has_reserves: (course.reserves.size > 0),
