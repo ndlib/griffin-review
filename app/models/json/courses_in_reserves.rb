@@ -17,31 +17,18 @@ class CoursesInReserves
     {
       netid: netid,
       enrollments: enrollments,
-      instructor: instructor,
     }
   end
 
   private
 
   def enrollments
+    ret = {}
     user_course_listing.enrolled_courses.map do | course |
-      {
+      ret[course.id] = {
         course_id: course.id,
         title: course.title,
-        has_reserves: (course.reserves.size > 0),
         course_link: routes.course_reserves_url(course.id),
-      }
-    end
-  end
-
-  def instructor
-    user_course_listing.instructed_courses.map do | course |
-      {
-        course_id: course.id,
-        title: course.title,
-        has_reserves: (course.reserves.size > 0),
-        course_link: routes.course_reserves_url(course.id),
-        add_reserves_link: routes.new_course_reserve_url(course.id),
       }
     end
   end

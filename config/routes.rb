@@ -58,7 +58,7 @@ Griffin::Application.routes.draw do
   resources :documentation_admin
 
   scope '/api' do
-    get 'courses/:id', controller: 'api', action: :courses
+    get 'courses_with_reserves/:id', controller: 'api', action: :courses
   end
 
   scope '/admin' do
