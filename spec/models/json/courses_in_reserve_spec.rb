@@ -23,17 +23,17 @@ describe CoursesInReserves do
 
     it "returns the course id in the enrollments" do
       hash = courses_in_reserves.to_hash
-      expect(hash[:enrollments][0][:course_id]).to eq("id")
+      expect(hash[:enrollments]["id"][:course_id]).to eq("id")
     end
 
     it "returns the course title in the enrollments" do
       hash = courses_in_reserves.to_hash
-      expect(hash[:enrollments][0][:title]).to eq("title")
+      expect(hash[:enrollments]["id"][:title]).to eq("title")
     end
 
     it "returns the link to the course" do
       hash = courses_in_reserves.to_hash
-      expect(hash[:enrollments][0][:course_link]).to eq("http://reserves.library.nd.edu/courses/id/reserves")
+      expect(hash[:enrollments]["id"][:course_link]).to eq("http://reserves.library.nd.edu/courses/id/reserves")
     end
   end
 end

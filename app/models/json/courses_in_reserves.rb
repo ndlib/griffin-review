@@ -31,6 +31,7 @@ class CoursesInReserves
         course_link: routes.course_reserves_url(course.id),
       }
     end
+    ret 
   end
 
 
