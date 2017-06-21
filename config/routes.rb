@@ -1,4 +1,5 @@
 Griffin::Application.routes.draw do
+  default_url_options :host => "reserves.library.nd.edu"
 
   devise_for :users
 
@@ -37,7 +38,6 @@ Griffin::Application.routes.draw do
 
     resources :archived_courses, controller: 'user_archive_course_listings', only: [ 'index' ]
     resource :report_problem
-
   end
 
   course_routes
@@ -55,9 +55,11 @@ Griffin::Application.routes.draw do
 
   resources :documentation
 
-
   resources :documentation_admin
 
+  scope '/api' do
+    get 'courses_with_reserves/:id', controller: 'api', action: :courses
+  end
 
   scope '/admin' do
     resources :requests

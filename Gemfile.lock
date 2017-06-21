@@ -219,7 +219,7 @@ GEM
       rspec (~> 2.0)
     launchy (2.1.2)
       addressable (~> 2.3)
-    libv8 (3.11.8.17)
+    libv8 (3.16.14.19)
     listen (1.2.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -304,7 +304,7 @@ GEM
     rb-readline (0.5.1)
     rdoc (4.0.1)
       json (~> 1.4)
-    ref (1.0.5)
+    ref (2.0.0)
     request_store (1.0.8)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -352,6 +352,10 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     slop (3.4.5)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
@@ -366,8 +370,8 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     state_machine (1.2.0)
-    therubyracer (0.11.4)
-      libv8 (~> 3.11.8.12)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -471,6 +475,7 @@ DEPENDENCIES
   selenium-webdriver
   sextant
   simple_form (~> 3.0.0)
+  simple_token_authentication (~> 1.0)
   sort_alphabetical
   spork-rails!
   state_machine
@@ -487,4 +492,4 @@ DEPENDENCIES
   xml-simple
 
 BUNDLED WITH
-   1.11.2
+   1.14.6

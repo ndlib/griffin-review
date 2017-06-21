@@ -1,0 +1,38 @@
+Struct.new("CurrentUser", :username)
+
+class CoursesInReserves
+  include RailsHelpers
+
+  attr_accessor :user_course_listing, :netid
+
+  include ModelErrorTrapping
+
+  def initialize(netid)
+    @netid = netid
+    u = Struct::CurrentUser.new(netid)
+    @user_course_listing = ListUsersCourses.new(u)
+  end
+
+  def to_hash(options = {})
+    {
+      netid: netid,
+      enrollments: enrollments,
+    }
+  end
+
+  private
+
+  def enrollments
+    ret = {}
+    user_course_listing.enrolled_courses.map do | course |
+      ret[course.id] = {
+        course_id: course.id,
+        title: course.title,
+        course_link: routes.course_reserves_url(course.id),
+      }
+    end
+    ret 
+  end
+
+
+end

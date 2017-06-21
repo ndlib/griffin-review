@@ -28,6 +28,9 @@ gem 'rubycas-client'
 gem 'devise', "~> 3.4.0"
 gem 'devise_cas_authenticatable'
 
+gem 'simple_token_authentication', '~> 1.0' # see semver.org
+
+
 gem 'breach-mitigation-rails'
 
 # exception logging
