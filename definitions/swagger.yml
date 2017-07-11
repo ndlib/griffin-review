@@ -24,14 +24,17 @@ paths:
       parameters:
       - in: "path"
         name: "netid"
+        type: string
         description: "The user's netid to return"
         required: true
       - in: "url"
         name: "user_email"
+        type: string
         description: "The login email"
         required: true
       - in: "url"
         name: "user_token"
+        type: string
         description: "The token to get the user in"
         required: true
       responses:
