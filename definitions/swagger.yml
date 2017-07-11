@@ -5,7 +5,6 @@ info:
   title: "Reserves"
   contact:
     email: "jhartzle@nd.edu"
-host: "reserves.library.edu"
 basePath: "/api"
 schemes:
 - "https"
@@ -14,29 +13,24 @@ paths:
     get:
       summary: "Gets a user's netid"
       description: "Gets a user's netid"
-      operationId: "addPet"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/xml"
-      - "application/json"
       parameters:
       - in: "path"
         name: "netid"
         type: string
         description: "The user's netid to return"
         required: true
-      - in: "url"
+      - in: "query"
         name: "user_email"
         type: string
         description: "The login email"
         required: true
-      - in: "url"
+      - in: "query"
         name: "user_token"
         type: string
         description: "The token to get the user in"
         required: true
+      schema:
+        $ref: '#/definitions/ValidResponse'
       responses:
         200:
           description: "successful operation"
@@ -46,3 +40,11 @@ paths:
           description: "Invalid netid"
         500:
           description: "System Errors"
+definitions:
+  ValidResponse:
+    type: object
+    properties:
+      netid:
+        type: string
+      enrollments:
+        type: json
