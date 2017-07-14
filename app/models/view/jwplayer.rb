@@ -116,9 +116,9 @@ class Jwplayer
         if row[:file].blank?
           ret << {
             sources: [{
-                file: wowza_category_file.rtmp,
- -              },{
-                file: wowza_category_file.html5,
+                file: wowza_category_file.rtmp
+               },{
+                file: wowza_category_file.html5
             }],
             title: row[:title]
           }
