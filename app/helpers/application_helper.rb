@@ -71,9 +71,9 @@ module ApplicationHelper
 
     def jwplayer(file_name, options = {})
       sources =  [{
-            file: "http://wowza.library.nd.edu:1935/vod/mp4:#{file_name}/playlist.m3u8"
+            file: "https://wowza.library.nd.edu:443/vod/mp4:#{file_name}/playlist.m3u8"
         },{
-            file: "rtmpt://wowza.library.nd.edu:1935/vod/mp4:#{file_name}"
+            file: "rtmps://wowza.library.nd.edu:443/vod/mp4:#{file_name}"
         }
       ]
 
@@ -83,7 +83,7 @@ module ApplicationHelper
                   <script type='text/javascript'>
                     jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
                   </script>
-                  <a href="rtsp://wowza.library.nd.edu:1935/vod/mp4:#{file_name}">Android</a>
+                  <a href="rtsps://wowza.library.nd.edu:443/vod/mp4:#{file_name}">Android</a>
                 }
 
       result.respond_to?(:html_safe) ? result.html_safe : result
