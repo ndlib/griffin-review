@@ -36,7 +36,7 @@ class WowzaUrlGenerator
       if specific_token
         "t=#{specific_token}"
       elsif Rails.env == 'development'
-        "t=!localtoken662778!"
+        "t=f397dafeae98a6db94f7baee1bc0b2df"
       else
         "t=#{wowza_token}"
       end
