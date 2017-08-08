@@ -3,16 +3,6 @@ module AssetsHelper
   include HesburghAssets::AssetsHelper
 
 
-  # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
-  def include_ssi(filepath)
-    if Rails.env == 'test'
-      "SSI INCLUDE !!!"
-    else
-      render :partial => "/layouts/hesburgh_assets/include_ssi", :locals => {:filepath => filepath}
-    end
-  end
-
-
   def breadcrumb(*crumbs)
     crumbs.unshift(link_to("Home", root_path()))
     content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))

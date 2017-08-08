@@ -10,12 +10,6 @@ module ApiMocks
     end
   end
 
-
-  def stub_ssi!
-    ApplicationController.any_instance.stub(:include_ssi).and_return("SSI INCLUDE!!!!")
-  end
-
-
   def turn_on_ldap!
     Rails.configuration.stub(:ldap_lookup_flag).and_return(true)
   end
