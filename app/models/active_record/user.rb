@@ -45,12 +45,12 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    self.admin || ['rfox2', 'jhartzle', 'fboze'].include?(self.username)
+    self.admin || ['rfox2', 'jhartzle', 'fboze', 'dwolfe2'].include?(self.username)
   end
 
 
   def wse_admin?
-    ['rfox2', 'jhartzle'].include?(self.username)
+    ['rfox2', 'jhartzle', 'dwolfe2'].include?(self.username)
   end
 
 

@@ -11,7 +11,7 @@ class WowzaUrlGenerator
   end
 
   def html5
-    "http://#{base_url}#{wowza_application}/_definst_/#{filename}/playlist.m3u8?#{token}"
+    "https://#{base_url}#{wowza_application}/_definst_/#{filename}/playlist.m3u8?#{token}"
   end
 
   def rtmp
@@ -36,7 +36,7 @@ class WowzaUrlGenerator
       if specific_token
         "t=#{specific_token}"
       elsif Rails.env == 'development'
-        "t=!localtoken662778!"
+        "t=232739d9a8a601a035bfbba23093e671"
       else
         "t=#{wowza_token}"
       end
@@ -60,9 +60,9 @@ class WowzaUrlGenerator
 
     def base_url
       if Rails.env == 'production'
-        "wowza.library.nd.edu:1935/"
+        "wowza.library.nd.edu:443/"
       else
-        "wowza-pprd-vm.library.nd.edu:1935/"
+        "lib-wowza-pprd.library.nd.edu:443/"
       end
     end
 end
