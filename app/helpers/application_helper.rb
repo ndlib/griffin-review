@@ -71,9 +71,8 @@ module ApplicationHelper
 
     def jwplayer(file_name, options = {})
       sources =  [{
-          {
             file: "rtmpt://wowza.library.nd.edu:443/vod/mp4:#{file_name}"
-          }
+        }
       ]
 
       options = { fallback: false, primary: 'flash', id: 'jwplayer', html5player: '/assets/jwplayer.html5.js', autostart: true, sources: sources }.merge(options)
