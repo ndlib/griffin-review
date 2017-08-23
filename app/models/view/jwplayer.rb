@@ -116,8 +116,6 @@ class Jwplayer
         if row[:file].blank?
           ret << {
             sources: [{
-                file: wowza_category_file.rtmp
-               },{
                 file: wowza_category_file.html5
             }],
             title: row[:title]
@@ -150,7 +148,7 @@ class Jwplayer
     def sources_for_filename(filename)
       generator = wowza_url_generator(filename)
 
-      [{ file: generator.rtmp },{ file: generator.html5 }]
+      [{ file: generator.html5 }]
     end
 
     def wowza_url_generator(filename)

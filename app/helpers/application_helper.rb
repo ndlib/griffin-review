@@ -72,8 +72,6 @@ module ApplicationHelper
     def jwplayer(file_name, options = {})
       sources =  [{
             file: "https://wowza.library.nd.edu:443/vod/mp4:#{file_name}/playlist.m3u8"
-        },{
-            file: "rtmpt://wowza.library.nd.edu:443/vod/mp4:#{file_name}"
         }
       ]
 

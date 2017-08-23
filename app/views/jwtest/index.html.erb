@@ -69,50 +69,6 @@ c = CourseSearch.new.get('video_test_course')
   </div>
 </div>
 
-<!-- script type='text/javascript'>
-jwplayer('jwplayer').setup({
-  "androidhls": true,
-  "fallback":true,
-  "html5player":"/assets/jwplayer.html5.js",
-  "flashplayer":"/assets/jwplayer.flash.swf",
-  "logo": { "file":"/assets/hesburgh.png", "link":"http://library.nd.edu"},
-  <% if type == 'audio' %>
-    "autostart":false,
-    "width": 480,
-    "height": 480,
-    <% if size == 'multiple' %>
-    "listbar": {
-      "layout":"basic",
-      "position":"bottom",
-      "size": 400
-    },
-    <% end %>
-  <% else %>
-    "autostart":true,
-    "aspectratio":"16:9",
-    "width": '80%',
-    <% if size == 'multiple' %>
-    "listbar": {
-        "position": "right",
-        "size": '20%',
-        "layout": 'basic'
-      },
-    <% end %>
-  <% end %>
-  "playlist": [
-  <% playlist.each do | id, list | %>
-    {
-    "sources":[
-      {"file":"http://<%= list[:file] %>/playlist.m3u8<%= list[:token] %>"},
-      {"file":"rtmpt://<%= list[:file] %><%= list[:token] %>"}
-    ],
-    "title": "<%= list[:title] %>"
-    },
-  <% end %>
-    ]}
-  );
-</script -->
-
 <div id='jwplayer'>Loading the player...<h3>Troubleshooting</h3><ol><li>Check to see if you have <a href="http://get.adobe.com/flashplayer/" target="_blank">flash</a> installed.</li><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('jwplayer').setup({"fallback":false,"primary":"html5","html5player":"/assets/jwplayer.html5.js","flashplayer":"/assets/jwplayer.flash.swf","playlist":[{"sources":[{"file":"rtmpt://wowza-pprd.library.nd.edu:443/vod?t=!232739d9a8a601a035bfbba23093e671!mp4:StreamingVideo/big_buck_bunny_full.mov"},{"file":"https://wowza-pprd.library.nd.edu:443/vod/mp4:StreamingVideo/big_buck_bunny_full.mov/playlist.m3u8?t=232739d9a8a601a035bfbba23093e671"}],"title":"test"}],"androidhls":true,"logo":{"file":"/assets/hesburgh.png","link":"http://library.nd.edu"},"autostart":true,"aspectratio":"16:9","width":"80%"});</script>
 
 <a href="rtsps://wowza-pprd.library.nd.edu:443/aod/_definst_/mp3:C00139/C00139_0114.mp3">Play Audio</a>
