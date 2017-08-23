@@ -14,7 +14,7 @@ class Jwplayer
   def jwplayer(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>Loading the player...<h3>Troubleshooting</h3><ol><li>Check to see if you have <a href="http://get.adobe.com/flashplayer/" target="_blank">flash</a> installed.</li><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
+    result = %Q{<div id='#{options[:id]}'>Loading the player...<h3>Troubleshooting</h3><ol><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
 
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
