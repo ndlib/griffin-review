@@ -60,6 +60,7 @@ en:
     business: "Mahaffey Business Library"
     architecture: "Architecture Library"
     engineering: "Engineering Library"
+    music: "Music Library"
   requests_admin:
     libraries:
       hesburgh: "Hesburgh"

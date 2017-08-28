@@ -39,7 +39,7 @@ describe RequestFilter do
 
   describe '#all_libraries' do
     it "is all libraries" do
-      expect(subject.all_libraries).to eq(["hesburgh", "math", "chem", "business", "architecture", "engineering"])
+      expect(subject.all_libraries).to eq(["hesburgh", "math", "chem", "business", "architecture", "engineering", "music"])
     end
   end
 
