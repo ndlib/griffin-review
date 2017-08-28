@@ -19,7 +19,7 @@ class Jwplayer
     if(playlist.length > 1) {
       var playbar = "<ol id='playbar'>";
       for(var index=0;index<playlist.length;index++) {
-        playbar +="<li><a onclick='playThis(index)'>" + playlist[index].title + "</a></li>";
+        playbar +="<li><a onclick='playThis(" + index + ")'>" + playlist[index].title + "</a></li>";
       }
       playbar += "</ol>";
       $("#playlist").html(playbar);
