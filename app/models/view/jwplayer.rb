@@ -16,11 +16,14 @@ class Jwplayer
 
     result = %Q{<div id='#{options[:id]}'>Loading the player...<h3>Troubleshooting</h3><ol><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><div id='playlist'/><script type='text/javascript'>var jwp = jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
     var playlist = jwp.getPlaylist();
-    var playbar = "";
-    for(var index=0;index<playlist.length;index++) {
-      playbar +="<div><a onclick='playThis(index)'>" + playlist[index].title + "</a></div>";
+    if(playlist.length > 1) {
+      var playbar = "<ol id='playbar'>";
+      for(var index=0;index<playlist.length;index++) {
+        playbar +="<li><a onclick='playThis(index)'>" + playlist[index].title + "</a></li>";
+      }
+      playbar += "</ol>";
+      $("#playlist").html(playbar);
     }
-    $("#playlist").html(playbar);
     function playThis(index) {
       jwp.playlistItem(index);
     }
