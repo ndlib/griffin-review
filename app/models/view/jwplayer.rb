@@ -20,7 +20,7 @@ class Jwplayer
     for(var index=0;index<playlist.length;index++) {
       playbar +="<div><a onclick='playThis(index)'>" + playlist[index].title + "</a></div>";
     }
-    $("#playbar").html(playbar);
+    $("#playlist").html(playbar);
     function playThis(index) {
       playerInstance.playlistItem(index);
     }
