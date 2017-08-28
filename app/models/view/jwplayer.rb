@@ -18,7 +18,7 @@ class Jwplayer
     var playlist = jwp.getPlaylist();
     var playbar = []
     for(var index=0;index<playlist.length;index++) {
-      playbar.push(`<a>${​playlist[index].title}</a>`);
+      playbar.push("<a>" + playlist[index].title + "</a>");
     }
     function playThis(index) {
       playerInstance.playlistItem(index);
