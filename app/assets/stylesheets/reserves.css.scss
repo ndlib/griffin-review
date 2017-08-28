@@ -321,5 +321,9 @@ label.checkbox.last {
   #playlist {
     display: inline-block;
     vertical-align: top;
+
+    a {
+      cursor: pointer;
+    }
   }
 }
