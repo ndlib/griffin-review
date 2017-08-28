@@ -22,7 +22,7 @@ class Jwplayer
     }
     $("#playlist").html(playbar);
     function playThis(index) {
-      playerInstance.playlistItem(index);
+      jwp.playlistItem(index);
     }
     </script>}
 
