@@ -311,3 +311,15 @@ label.checkbox.last {
 .librarieslogo img {
   width: 200px;
 }
+
+#player-area {
+  display: block;
+
+  #jwplayer {
+    display: inline-block;
+  }
+  #playlist {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
