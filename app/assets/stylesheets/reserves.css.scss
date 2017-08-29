@@ -314,20 +314,32 @@ label.checkbox.last {
 
 #player-area {
   display: block;
+  margin-bottom: 1em;
 
-  #jwplayer {
-    display: inline-block;
-  }
   #playlist {
-    display: inline-block;
     vertical-align: top;
-
+    width: 480px;
+    background-color: #4d4d4d;
+    color: white;
+    padding: 8px;
+    ol {
+      margin: 0;
+    }
+    li {
+      list-style-position: inside;
+      padding: 4px;
+    }
     li.active {
       background-color: gray;
     }
 
     a {
       cursor: pointer;
+      color: white
+    }
+    a:hover {
+      text-decoration: none;
+      background-color: #4d4d4d;
     }
   }
 }
