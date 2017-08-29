@@ -23,14 +23,14 @@ class Jwplayer
       }
       playbar += "</ol>";
       $("#playlist").html(playbar);
-      jwp.onPlay(() => {setActiveClass(jwp.getItem())});
+      jwp.onPlay(() => {setActiveClass(jwp.getItem() + 1)});
     }
     function playThis(index) {
       jwp.playlistItem(index);
     }
     function setActiveClass(index) {
-      $("#playbar li.active").removeClass('active')
-      $("#playbar li:nth-child(index + 1)").addClass('active');
+      $("#playbar li.active").removeClass('active');
+      $("#playbar li:nth-child(" + index + ")").addClass('active');
     }
     </script>}
 
