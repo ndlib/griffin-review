@@ -328,16 +328,14 @@ label.checkbox.last {
     li {
       list-style-position: inside;
       padding: 4px;
+      cursor: pointer;
     }
-    li:hover {
-      background-color: #gray;
-    }
+
     li.active {
       background-color: gray;
     }
 
     a {
-      cursor: pointer;
       color: white
     }
     a:hover {
