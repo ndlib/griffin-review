@@ -14,7 +14,25 @@ class Jwplayer
   def jwplayer(options = {})
     options = default_options.merge(options)
 
-    result = %Q{<div id='#{options[:id]}'>Loading the player...<h3>Troubleshooting</h3><ol><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><script type='text/javascript'>jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});</script>}
+    result = %Q{<div id='player-area'><div id='#{options[:id]}'>Loading the player...<h3>Troubleshooting</h3><ol><li>We recommend using <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a></li></div><div id='playlist'></div></div><script type='text/javascript'>var jwp = jwplayer('#{options[:id]}').setup(#{options.except(:id).to_json});
+    var playlist = jwp.getPlaylist();
+    if(playlist.length > 1) {
+      var playbar = "<ol id='playbar'>";
+      for(var index=0;index<playlist.length;index++) {
+        playbar +="<li onclick='playThis(" + index + ")'><a >" + playlist[index].title + "</a></li>";
+      }
+      playbar += "</ol>";
+      $("#playlist").html(playbar);
+      jwp.onPlay(() => {setActiveClass(jwp.getItem() + 1)});
+    }
+    function playThis(index) {
+      jwp.playlistItem(index);
+    }
+    function setActiveClass(index) {
+      $("#playbar li.active").removeClass('active');
+      $("#playbar li:nth-child(" + index + ")").addClass('active');
+    }
+    </script>}
 
     result.respond_to?(:html_safe) ? result.html_safe : result
   end
@@ -62,12 +80,7 @@ class Jwplayer
       }
 
       if multiple?
-        vo.merge!( {
-        listbar: {
-          position: "right",
-          size: '20%',
-          layout: 'basic'
-        }})
+        vo.merge!( {})
       end
 
       vo
@@ -78,21 +91,10 @@ class Jwplayer
         autostart: false,
       }
 
-      if multiple?
-        ao.merge!( {
-          width: 480,
-          height: 480,
-          listbar: {
-            position: "bottom",
-            size: '422',
-            layout: 'basic'
-        }})
-      else
-        ao.merge!( {
-          width: 480,
-          height: 56,
-        })
-      end
+      ao.merge!( {
+        width: 480,
+        height: 32,
+      })
 
       ao
     end

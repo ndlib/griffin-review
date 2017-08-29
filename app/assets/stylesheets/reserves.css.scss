@@ -311,3 +311,35 @@ label.checkbox.last {
 .librarieslogo img {
   width: 200px;
 }
+
+#player-area {
+  display: block;
+  margin-bottom: 1em;
+
+  #playlist {
+    vertical-align: top;
+    width: 480px;
+    background-color: #4d4d4d;
+    color: white;
+    padding: 8px;
+    ol {
+      margin: 0;
+    }
+    li {
+      list-style-position: inside;
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    li.active {
+      background-color: gray;
+    }
+
+    a {
+      color: white
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
