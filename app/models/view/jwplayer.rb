@@ -23,9 +23,14 @@ class Jwplayer
       }
       playbar += "</ol>";
       $("#playlist").html(playbar);
+      jwp.onPlay(() => {setActiveClass(jwp.getItem())});
     }
     function playThis(index) {
       jwp.playlistItem(index);
+    }
+    function setActiveClass(index) {
+      $("#playbar li.active").removeClass('active')
+      $("#playbar li:nth-child(index + 1)").addClass('active');
     }
     </script>}
 
@@ -75,12 +80,7 @@ class Jwplayer
       }
 
       if multiple?
-        vo.merge!( {
-        listbar: {
-          position: "right",
-          size: '20%',
-          layout: 'basic'
-        }})
+        vo.merge!( {})
       end
 
       vo
@@ -91,21 +91,10 @@ class Jwplayer
         autostart: false,
       }
 
-      if multiple?
-        ao.merge!( {
-          width: 480,
-          height: 480,
-          listbar: {
-            position: "bottom",
-            size: '422',
-            layout: 'basic'
-        }})
-      else
-        ao.merge!( {
-          width: 480,
-          height: 56,
-        })
-      end
+      ao.merge!( {
+        width: 480,
+        height: 32,
+      })
 
       ao
     end

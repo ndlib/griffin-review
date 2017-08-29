@@ -322,6 +322,11 @@ label.checkbox.last {
     display: inline-block;
     vertical-align: top;
 
+    li {
+      .active: {
+        background-color: gray;
+      }
+    }
     a {
       cursor: pointer;
     }
