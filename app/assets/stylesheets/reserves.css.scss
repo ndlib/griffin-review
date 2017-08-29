@@ -329,6 +329,9 @@ label.checkbox.last {
       list-style-position: inside;
       padding: 4px;
     }
+    li:hover {
+      background-color: #gray;
+    }
     li.active {
       background-color: gray;
     }
@@ -339,7 +342,6 @@ label.checkbox.last {
     }
     a:hover {
       text-decoration: none;
-      background-color: #4d4d4d;
     }
   }
 }
