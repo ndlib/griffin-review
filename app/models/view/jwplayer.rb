@@ -77,22 +77,10 @@ class Jwplayer
       ao = {
         autostart: false,
       }
-
-      if multiple?
-        ao.merge!( {
-          width: 480,
-          height: 480,
-          listbar: {
-            position: "bottom",
-            size: '422',
-            layout: 'basic'
-        }})
-      else
-        ao.merge!( {
-          width: 480,
-          height: 56,
-        })
-      end
+      ao.merge!( {
+        width: '80%'
+        height: 32,
+      })
 
       ao
     end
