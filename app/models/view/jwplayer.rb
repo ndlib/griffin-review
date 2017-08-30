@@ -89,7 +89,7 @@ class Jwplayer
     def audio_options
       ao = {
         autostart: false,
-        width: '80%'
+        width: '80%',
         height: 32
       }
       ao.merge!( {})
