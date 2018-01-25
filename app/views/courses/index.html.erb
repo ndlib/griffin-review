@@ -8,26 +8,24 @@
 
 <% breadcrumb([ 'Courses ']) %>
 
-<% if @user_course_listing.show_both_enrolled_and_instructed_courses? %>
-
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#enrolled" data-toggle="tab">Courses I am Taking</a></li>
-    <li><a href="#instructed" data-toggle="tab">Courses I am Teaching</a></li>
-  </ul>
-<% end %>
-
 
 <div class="tab-content">
 
   <% if @user_course_listing.show_enrolled_courses? %>
-    <div class="tab-pane active" id="enrolled">
+    <% if @user_course_listing.show_both_enrolled_and_instructed_courses? %>
+      <h2>Courses I am Taking</h2>
+    <% end %>
+    <div id="enrolled">
       <%= render :partial => 'enrolled_course_list', locals: { enrolled_courses: @user_course_listing.enrolled_courses } %>
     </div>
   <% end %>
 
   <% if @user_course_listing.show_instructed_courses? %>
-
-    <div class="tab-pane <%= (@user_course_listing.show_both_enrolled_and_instructed_courses?) ? '' : 'active' %>" id="instructed" >
+    <% if @user_course_listing.show_both_enrolled_and_instructed_courses? %>
+      <hr>
+      <h2>Courses I am Teaching</h2>
+    <% end %>
+    <div id="instructed" >
       <%= render :partial => 'instructed_course_list', locals: { instructed_courses: @user_course_listing.instructed_courses } %>
       <p><%= link_to "Go to course archive", archived_courses_path, class: 'btn btn-link' %></p>
       <br><br><br><br><br><br>
