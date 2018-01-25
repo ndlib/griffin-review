@@ -17,7 +17,7 @@ class CoursesInReserves
     {
       netid: netid,
       enrollments: enrollments,
-      instructed_courses: instructed_courses,
+      instructed: instructed_courses,
     }
   end
 
