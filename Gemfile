@@ -52,7 +52,7 @@ gem 'excon'
 gem 'json'
 
 # LDAP lookups
-gem 'net-ldap'
+gem 'net-ldap', '~> 0.16.0'
 
 # form generation
 gem 'simple_form', '~> 3.0.0'
@@ -70,7 +70,7 @@ gem "state_machine"
 
 gem 'virtus'
 
-gem "paperclip"
+gem "paperclip", '~> 4.2.2'
 
 # gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
 # gem "paper_trail"
@@ -144,7 +144,7 @@ group :development, :test do
   gem 'growl-rspec'
 end
 
-gem 'rack-mini-profiler'
+gem 'rack-mini-profiler', '~> 0.10.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
