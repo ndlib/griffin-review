@@ -17,6 +17,7 @@ class CoursesInReserves
     {
       netid: netid,
       enrollments: enrollments,
+      instructed_courses: instructed_courses,
     }
   end
 
@@ -31,7 +32,19 @@ class CoursesInReserves
         course_link: routes.course_reserves_url(course.id),
       }
     end
-    ret 
+    ret
+  end
+
+  def instructed_courses
+    ret = {}
+    user_course_listing.instructed_courses.map do | course |
+      ret[course.id] = {
+        course_id: course.id,
+        title: course.title,
+        course_link: routes.course_reserves_url(course.id),
+      }
+    end
+    ret
   end
 
 
