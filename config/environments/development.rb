@@ -59,9 +59,9 @@ Griffin::Application.configure do
   # Custom configuration
   config.ldap_lookup_flag                 = true
   config.reserves_upload_path             = '/shared/data/reserves_files'
-  config.reserves_cas_base                = 'https://cas.library.nd.edu/cas'
-  config.reserves_cas_validate            = 'https://cas.library.nd.edu/cas/serviceValidate'
-  config.reserves_cas_logout              = 'https://cas.library.nd.edu/cas/logout'
+  config.reserves_cas_base                = 'https://login-test.cc.nd.edu/cas'
+  config.reserves_cas_validate            = 'https://login-test.cc.nd.edu/cas/serviceValidate'
+  config.reserves_cas_logout              = 'https://login-test.cc.nd.edu/cas/logout'
 
   config.path_to_old_files                = File.join(Rails.root, 'uploads', 'old_files')
 
@@ -74,4 +74,5 @@ Griffin::Application.configure do
     :exception_recipients => %w{ jhartzle@nd.edu rfox2@nd.edu}
   }
 
+  config.force_ssl = true
 end
