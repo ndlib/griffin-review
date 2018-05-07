@@ -4,6 +4,8 @@ class Item < ActiveRecord::Base
   has_one :media_playlist
 
   validates :title, :type, presence: true
+  do_not_validate_attachment_file_type :pdf
+
 
   self.inheritance_column = nil
 
