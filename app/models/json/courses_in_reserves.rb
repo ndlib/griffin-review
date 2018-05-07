@@ -18,6 +18,7 @@ class CoursesInReserves
       netid: netid,
       enrollments: enrollments,
       instructed: instructed_courses,
+      currentSemester: Semester.current.first.code,
     }
   end
 
