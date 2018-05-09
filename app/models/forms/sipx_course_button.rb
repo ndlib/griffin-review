@@ -15,7 +15,7 @@ class SipxCourseButton
 
 
   def goto_sipx_button
-    link_to(helpers.raw("<i class=\"icon icon-arrow-up\"></i> Go To Sipx</a>"), course_sipx_admin_redirect_path(course.id), class: "btn", target: "_blank")
+    link_to(helpers.raw("<i class=\"icon icon-arrow-up\"></i> Go To Leganto</a>"), course_sipx_admin_redirect_path(course.id), class: "btn", target: "_blank")
   end
 
 

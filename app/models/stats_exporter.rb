@@ -46,7 +46,8 @@ class StatsExporter
       increment_stat(r, :videos)
     elsif erp.electronic_resource_type == 'Website Redirect'
       increment_stat(r, :url_readings)
-    elsif erp.electronic_resource_type == 'SIPX'
+    elsif erp.electronic_resource_type == 'Leganto ID' ||
+          erp.electronic_resource_type == 'SIPX'
       increment_stat(r, :sipx)
     else
       @unacconted_readers ||= []

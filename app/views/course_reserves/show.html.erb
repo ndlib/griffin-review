@@ -12,10 +12,13 @@
 </p>
 
 <h3>No Further Transmission or distribution of this material is permitted</h3>
-
-<form>
+<% lti = LtiConnection.new(@get_reserve.course, @get_reserve.reserve.url, current_user) %>
+<form id='lti_form' action="<%= lti.launch_url %>" method='post'>
+  <% lti.launch_data.each do |key, value| %>
+    <%= hidden_field_tag "#{key}", "#{value}" %>
+  <% end %>
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary" name="accept_terms_of_service" value="1">I Accept</button>
+    <button type="submit" class="btn btn-primary">I Accept</button>
     <%= link_to 'I do not accept', course_reserve_path(@get_reserve.course.id, @get_reserve.reserve.id), class: "btn" %>
   </div>
 </form>

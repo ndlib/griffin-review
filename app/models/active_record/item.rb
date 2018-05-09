@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
 
   validates :title, :type, presence: true
   do_not_validate_attachment_file_type :pdf
-
+  before_save :normalize_url, :on => :save
 
   self.inheritance_column = nil
 
@@ -25,9 +25,20 @@ class Item < ActiveRecord::Base
     end
   end
 
-
   def publisher_provider
     self.journal_title
+  end
+
+  private
+
+  # Takes standard Leganto citation and strips irrelevant prefix
+  # and stores the id.
+  # initial url: citation_id=1456343252335
+  # normalized url:  1456343252335
+  def normalize_url
+    if !self.url.blank? and self.url.include? "="
+      self.url = self.url.split('=').at(1)
+    end
   end
 
 end
