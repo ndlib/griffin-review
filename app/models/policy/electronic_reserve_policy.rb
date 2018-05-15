@@ -15,7 +15,7 @@ class ElectronicReservePolicy
     elsif has_streaming_resource?
       "Streaming Video"
     elsif has_sipx_resource?
-      "SIPX"
+      "Leganto ID"
     elsif has_url_resource?
       "Website Redirect"
     elsif has_media_playlist?
@@ -89,7 +89,7 @@ class ElectronicReservePolicy
   end
 
   def has_sipx_resource?
-    can_have_sipx_resource? && @reserve.url.present? && @reserve.url.scan(/^http[s]?:\/\/service.sipx.com/).present?
+    can_have_sipx_resource? && @reserve.url.present? && @reserve.url.scan(/\D/).empty?
   end
 
 

@@ -1,20 +1,29 @@
 <h5> Instructions </h5>
 <div class="twelve columns">
+
+<% lti = LtiConnection.new(@request.course, @request.reserve.url, current_user) %>
+<form id='lti_form' action='<%= lti.launch_url %>' method='post' target="_blank">
+  <% lti.launch_data.each do |key, value| %>
+    <%= hidden_field_tag "#{key}", "#{value}" %>
+  <% end %>
   <ol>
-    <li><%= f.object.sipx_button %></li>
-    <li>Find the item in the search.</li>
-    <li>Upload the pdf of the item.</li>
-    <li>Select Student View</li>
-    <li>Paste that url into the box labeled SIPX URL below click "Save".</li>
+    <li>
+    <button type="submit" class="btn" >Go To Leganto</button></li>
+    <li>Locate the item in the Reading List.</li>
+    <li>Click the elipsis next to the item and select LTI Direct Access.</li>
+    <li>Paste the content into the box labeled LEGANTO CITATION below and click "Save".</li>
   </ol>
 </div>
+</form>
 
-<h5>SIPX URL</h5>
+<%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
+<h5>LEGANTO CITATION</h5>
 
-<%= f.input :url, :label => false %>
+<%= f.input :url, :label => false, placeholder: 'citation_id=123456789' %>
 
 <div class="form-actions">
   <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
 
   <%= link_to 'Cancel', request_path(@request.id) %>
 </div>
+<% end %>

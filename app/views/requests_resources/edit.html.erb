@@ -23,7 +23,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
         <%= link_to "Streaming Video", '#streaming', class: 'btn ', "data-toggle" => 'tab' %>
         <%= link_to "File", '#file', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "URL", '#url', class: 'btn', "data-toggle" => 'tab' %>
-        <%= link_to "Sipx", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
+        <%= link_to "Leganto", '#sipx', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Media Playlist", '#playlist', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Upload Playlist", '#upload_playlist', class: 'btn', "data-toggle" => 'tab' %>
         <%= link_to "Cancel", request_path(@request.id) %>
@@ -50,9 +50,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.reserve.title,
         </div>
 
         <div class="tab-pane" id="sipx">
-          <%= simple_form_for @request, :url => resource_path(@request.id), :method=>'put' do | f | %>
-            <%= render partial: 'sipx_form', locals: { f: f } %>
-          <% end %>
+          <%= render partial: 'sipx_form' %>
         </div>
         <div class="tab-pane" id="playlist">
           <%= render partial: 'playlist_form' %>
