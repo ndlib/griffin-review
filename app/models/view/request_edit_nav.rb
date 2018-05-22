@@ -65,7 +65,11 @@ class RequestEditNav
     uls = []
     if requires_fair_use?
       if fair_use_complete?
-        uls << reserve.fair_use.state.titleize
+        if reserve.fair_use.state.eql? "sipx_cleared"
+          uls << "Leganto Cleared"
+        else
+          uls << reserve.fair_use.state.titleize
+        end
       else
         uls << "Requires Form Completion"
       end
