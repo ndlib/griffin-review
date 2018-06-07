@@ -23,6 +23,9 @@ class GetReserve
     @reserve.course
   end
 
+  def sipx_reserve?
+    ElectronicReservePolicy.new(@reserve).has_sipx_resource?
+  end
 
   def approval_required?
     reserve_requires_approval? && !term_of_service_approved?
@@ -108,4 +111,3 @@ class GetReserve
       @search ||= ReserveSearch.new
     end
 end
-
