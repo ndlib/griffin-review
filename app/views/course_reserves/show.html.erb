@@ -26,8 +26,8 @@
 <% else %>
 <form>
    <div class="form-actions">
-    <button type="submit" class="btn btn-primary" name="accept_terms_of_service" value="1">I Accept</button>	+    <button type="submit" class="btn btn-primary">I Accept</button>
-     <%= link_to 'I do not accept', course_reserve_path(@get_reserve.course.id, @get_reserve.reserve.id), class: "btn" %>	     <%= link_to 'I do not accept', course_reserve_path(@get_reserve.course.id, @get_reserve.reserve.id), class: "btn" %>
+    <button type="submit" class="btn btn-primary" name="accept_terms_of_service" value="1">I Accept</button>
+     <%= link_to 'I do not accept', course_reserve_path(@get_reserve.course.id, @get_reserve.reserve.id), class: "btn" %>
    </div>
  </form>
 <% end %>
