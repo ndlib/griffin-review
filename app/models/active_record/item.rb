@@ -36,7 +36,7 @@ class Item < ActiveRecord::Base
   # initial url: citation_id=1456343252335
   # normalized url:  1456343252335
   def normalize_url
-    if !self.url.blank? and self.url.include? "="
+    if !self.url.blank? and self.url.include? "citation_id="
       self.url = self.url.split('=').at(1)
     end
   end
