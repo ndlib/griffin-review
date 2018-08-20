@@ -15,8 +15,6 @@
     <%= f.input_field :needed_by, as: "string", id: "audio_needed_by_id", class: 'datepicker span2 needed_by_datepicker' %>
   <% end %>
 
-  <%= music_video_select_form(f, "Library to hold the reserved item.") %>
-
   <%= f.input :note, label: "Special Instructions" do %>
     <%= f.input_field :note, as: "text", placeholder: "Other notes to identify the work. ", rows: 5 %>
   <% end %>
