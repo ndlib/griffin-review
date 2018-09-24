@@ -143,6 +143,10 @@ class Reserve
     end
   end
 
+  def can_copy_reserve?
+    !self.removed?
+  end
+
   def destroy!
     if self.remove
       self.save!

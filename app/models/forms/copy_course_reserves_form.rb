@@ -87,7 +87,7 @@ class CopyCourseReservesForm
     items_to_copy.each do | rid |
       begin
         reserve = reserve_search.get(rid, from_course)
-        if reserve
+        if reserve && reserve.can_copy_reserve?
           @copied_items << CopyReserve.new(user, to_course, reserve).copy
         end
       rescue ActiveRecord::RecordNotFound
