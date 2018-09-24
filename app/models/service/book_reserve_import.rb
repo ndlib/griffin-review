@@ -160,7 +160,7 @@ class BookReserveImport
     def process_reserve_type
       reserves.each do | reserve |
         reserve_type = AlephImporter::DetermineReserveType.new(@api_data)
-        reserve.type = reserve_type.determine_type
+        reserve.type ||= reserve_type.determine_type
 
         if reserve.type.nil?
           add_error("format of '#{format}' not found in the list of traped formats")
