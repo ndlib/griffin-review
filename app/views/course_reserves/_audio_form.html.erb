@@ -18,10 +18,10 @@
   <%= f.input :electronic_reserve, label: "This recording shoule be:", required: true do %>
 
     <label class="checkbox">
-      <%= f.radio_button :resource_format, 'electronic' %> streamed
+      <%= f.radio_button :resource_format, 'electronic' %> streamed online
     </label>
     <label class="checkbox">
-      <%= f.radio_button :resource_format, 'physical' %> on reserve at <%= f.input_field :library,
+      <%= f.radio_button :resource_format, 'physical' %> on physical reserve at <%= f.input_field :library,
         as: "select",
         collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Chemistry - Physics Library' => :chem, 'Engineering Library' => :engineering, 'Mahaffey Business Library' => :business, 'O\' Meara Mathematics Library' => :math, 'Music Library' => :music },
         :default => 'Hesburgh'
