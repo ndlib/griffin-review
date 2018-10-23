@@ -8,7 +8,7 @@ group :application do
   # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
   # ILS compendium gem
-  gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
+  # gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
