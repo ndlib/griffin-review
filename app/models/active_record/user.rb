@@ -124,7 +124,8 @@ class User < ActiveRecord::Base
                                     :username => Rails.application.secrets.ldap["service_dn"],
                                     :password => Rails.application.secrets.ldap["service_password"]
                                   },
-                         :encryption => :simple_tls
+                         :encryption => :simple_tls,
+                         :connect_timeout => 15
     results = ldap.search(
       :base          => Rails.application.secrets.ldap["base_dn"],
       :attributes    => [
@@ -142,7 +143,7 @@ class User < ActiveRecord::Base
                          'ndlevel',
                          'title'
                         ],
-      :filter        => Net::LDAP::Filter.eq( 'uid', username ),
+      :filter        => Net::LDAP::Filter.equals( 'uid', username ),
       :return_result => true
     )
     if results.empty?
