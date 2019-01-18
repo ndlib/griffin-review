@@ -21,7 +21,7 @@ class ReserveMailer < ActionMailer::Base
     if ['VideoReserve'].include?(reserve.type)
       'prader@nd.edu'
     elsif ['AudioReserve'].include?(reserve.type)
-      'Robert.C.Simon.41@nd.edu'
+      'tgillasp@nd.edu'
     else
       'reserves.1@nd.edu'
     end
