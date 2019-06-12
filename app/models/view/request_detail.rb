@@ -84,8 +84,12 @@ class RequestDetail
     semester_codes = Hash.new
     totals.each do |key,val|
       semester = Semester.find_by(id: totals[key])
-      semester_codes[key] = semester['code']
-      total_views += val
+      if semester.present?
+        semester_codes[key] = semester['code']
+        total_views += val
+      else
+        totals.delete(key)
+      end
     end
 
     # swap semester ids for semester codes
