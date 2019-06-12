@@ -79,7 +79,7 @@ class RequestDetail
       end
     end
 
-    # retrieve semester ids for codes
+    # retrieve semester ids for codes and get a totals count
     total_views = 0
     semester_codes = Hash.new
     totals.each do |key,val|
@@ -87,11 +87,13 @@ class RequestDetail
       semester_codes[key] = semester['code']
       total_views += val
     end
-    totals["Alltime"] = total_views
-    
+
     # swap semester ids for semester codes
     totals.keys.each { |k| totals[ semester_codes[k] ] = totals.delete(k) if semester_codes[k] }
     totals = totals.sort.to_h
+    totals["Alltime"] = total_views
+
+    totals
   end
 
 
