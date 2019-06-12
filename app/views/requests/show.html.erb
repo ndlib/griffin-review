@@ -53,11 +53,10 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
 
   <h4>Statistics</h4>
   <dl class="dl-horizontal long-dt">
-    <dt>Number of Clicks for <%= @admin_reserve.semester_code %>:</dt>
-    <dd><%= @admin_reserve.number_of_views_for_current_request %></dd>
-
-    <dt>Number of Clicks Alltime:</dt>
-    <dd><%= @admin_reserve.number_of_views_all_time %></dd>
+    <%= @admin_reserve.overall_views.each do |key, val| %>
+      <dt>Number of Clicks for <%= key %></dt>
+      <dd><%= val %></dd>
+    <% end %>
   </dl>
 
 </div>

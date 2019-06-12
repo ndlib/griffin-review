@@ -68,6 +68,33 @@ class RequestDetail
   end
 
 
+  def overall_views
+    result = ReserveStat.all_item_stats(@reserve)
+    totals = Hash.new
+    result.each do |row|
+      if totals.has_key?(row['semester_id'])
+        totals[row['semester_id']] = totals[row['semester_id']] + 1
+      else
+        totals[row['semester_id']] = 1
+      end
+    end
+
+    # retrieve semester ids for codes
+    total_views = 0
+    semester_codes = Hash.new
+    totals.each do |key,val|
+      semester = Semester.find_by(id: totals[key])
+      semester_codes[key] = semester['code']
+      total_views += val
+    end
+    totals["Alltime"] = total_views
+    
+    # swap semester ids for semester codes
+    totals.keys.each { |k| totals[ semester_codes[k] ] = totals.delete(k) if semester_codes[k] }
+    totals = totals.sort.to_h
+  end
+
+
   def semester_code
     @reserve.semester.code
   end
