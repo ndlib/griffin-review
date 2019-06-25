@@ -36,6 +36,8 @@
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'BookChapterReserve' %>
   <%= hidden_field_tag 'instructor_reserve_request[resource_format]', 'electronic' %>
 
+  <%= f.input :required_material, as: :radio_buttons %>
+
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary'%> or
     <div class="pull-right">

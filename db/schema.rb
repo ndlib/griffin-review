@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614172334) do
+ActiveRecord::Schema.define(version: 20190614201116) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20170614172334) do
     t.boolean  "item_electronic_reserve"
     t.boolean  "item_on_order"
     t.text     "sortable_title",             limit: 65535
+    t.boolean  "required_material"
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
