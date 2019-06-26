@@ -36,6 +36,7 @@
   <% end %>
 
   <%= f.input :requestor_owns_a_copy, as: :boolean, inline_label: "I own a copy of the recording.", label: false %>
+  <%= f.input :required_material, as: :radio_buttons %>
 
   <%= hidden_field_tag 'instructor_reserve_request[library]', 'hesburgh' %>
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'AudioReserve' %>

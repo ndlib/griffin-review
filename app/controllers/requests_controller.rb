@@ -17,6 +17,7 @@ class RequestsController  < ApplicationController
     @admin_reserve = RequestDetail.new(self)
     @library_form = LibraryReserveForm.build_from_params(self)
     @needed_by_form = NeededByReserveForm.build_from_params(self)
+    @required_material_form = RequiredMaterialReserveForm.build_from_params(self)
   end
 
 

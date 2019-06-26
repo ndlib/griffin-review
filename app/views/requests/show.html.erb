@@ -41,6 +41,21 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
       <tr><td>Requested On: </td><td><%= @admin_reserve.created_at.to_s(:long) %></td></tr>
       <tr><td>Requestor:</td><td><%= @admin_reserve.requestor %></td></tr>
       <tr><td>Instructor Input:</td><td><%= @admin_reserve.instructor_notes %></td></tr>
+
+      <tr>
+        <td>Required Material: </td>
+        <td id="required_material">
+          <%= @admin_reserve.required_material %>
+          <span id="required_material_change"><a href="">change</a></span>
+        </td>
+        <td id="required_material_select" nowrap>
+          <%= simple_form_for @required_material_form, url: required_material_path(@required_material_form.reserve.id), method: 'put' do | f | %>
+            <%= f.input :required_material, as: :radio_buttons %>
+            <%= f.button :submit, "Save", :class => 'btn btn-primary horizontal-button' %>
+          <% end %>
+        </td>
+      </tr>
+
       <tr><td>Type:</td><td><%= @admin_reserve.physical_electronic_link %></td></tr>
     </tbody>
   </table>

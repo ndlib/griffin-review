@@ -42,6 +42,7 @@
 
   <%= hidden_field_tag 'instructor_reserve_request[type]', 'VideoReserve' %>
 
+  <%= f.input :required_material, as: :radio_buttons %>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => 'btn-primary video_button' %>

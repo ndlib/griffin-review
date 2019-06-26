@@ -42,6 +42,10 @@
   display: none;
 }
 
+#required_material_select {
+  display: none;
+}
+
 .horizontal-button {
   display: inline;
   white-space: nowrap;
@@ -65,6 +69,12 @@
 }
 
 #needed_by_reserve_form_needed_by {
+  width: auto;
+  margin: 5px;
+  display: inline;
+}
+
+#required_material_reserve_form_required_material {
   width: auto;
   margin: 5px;
   display: inline;

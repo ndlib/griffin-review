@@ -18,6 +18,11 @@ jQuery ($) ->
     $('#needed_by_reserve_form_needed_by').datepicker()
     return false
 
+  $('#required_material_change').click ->
+    $('#required_material_select').show()
+    $('#required_material').hide()
+    return false
+
   $('#q').focus()
 
   setupStudentDatatable = () ->

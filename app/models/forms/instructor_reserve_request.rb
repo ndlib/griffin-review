@@ -25,6 +25,7 @@ class InstructorReserveRequest
   attribute :requestor_has_an_electronic_copy, Boolean
   attribute :physical_reserve, Boolean
   attribute :electronic_reserve, Boolean
+  attribute :required_material, Boolean
 
   attribute :resource_format, String
 
@@ -39,6 +40,7 @@ class InstructorReserveRequest
   validates :length, :presence =>  true, :if => :length_required?
   validates :journal_title, :presence =>  true, :if => :journal_title_required?
   validates :citation, :presence => true, :if => :citation_required?
+  validates :required_material, :inclusion => { :in => [true, false] }
   validates :resource_format, :presence => true, :inclusion => { :in => %w( electronic physical both) }
   validates :type, :inclusion => { :in => %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve) }
   # validates :needed_by, :timeliness => { :on_or_after => lambda { Date.current + 2.weeks } }

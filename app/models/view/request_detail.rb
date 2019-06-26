@@ -135,6 +135,15 @@ class RequestDetail
   end
 
 
+  def required_material
+    if @reserve.required_material
+      "Yes"
+    else
+      "No"
+    end
+  end
+
+
   private
 
     def reserve_search(id)
