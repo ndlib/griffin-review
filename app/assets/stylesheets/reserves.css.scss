@@ -24,6 +24,9 @@
   background: white url('/assets/ajax-bar-loader.gif') no-repeat center bottom;
 }
 
+// library banner width/height
+#frame { background-size: 100% 170px; }
+
 .instructor_datatable ul {  list-style-type: none; margin-left: 2px; }
 
 .table_filter { display: none; }
