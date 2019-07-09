@@ -11,8 +11,8 @@ Capistrano::Configuration.instance.load do
   end
 
   def current_git_branch
-    result = `git branch | grep '^\*'`.gsub(/^\*\ */, '').strip.chomp rescue 'master'
-    result.to_s.empty? ? 'master' : result
+    result = 'RES-483' #`git branch | grep '^\*'`.gsub(/^\*\ */, '').strip.chomp rescue 'master'
+    # result.to_s.empty? ? 'master' : result
   end
 
   before 'deploy:update_code', 'deploy:set_scm_branch'

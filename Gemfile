@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
 group :application do
-  gem 'rails','~> 4.2.0'
+  gem 'rails'
 
   # '3.2.13'
   # Bundle edge Rails instead:
   # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
   # ILS compendium gem
-  gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
+  # gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
@@ -16,10 +16,10 @@ group :application do
   gem 'addressable'
 
   # db backends
-  gem 'mysql2', "~> 0.3.11"
+  gem 'mysql2'
 
   # SOAP interface
-  gem 'savon', '2.2.0'
+  gem 'savon'
 
   #memcache
   gem 'dalli'
@@ -84,8 +84,6 @@ group :application do
 
   gem 'newrelic_rpm'
 
-  gem 'hipchat'
-
   gem 'user_agent_parser'
 
   gem 'rb-readline'
@@ -105,7 +103,6 @@ gem 'capistrano'
 group :development do
   gem 'rdoc'
   gem 'awesome_print'
-  gem 'sextant'
   gem 'bullet'
   gem 'quiet_assets'
 end
@@ -124,7 +121,7 @@ group :test do
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
-  gem 'guard-rspec'
+  #gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-coffeescript'
   gem 'guard-rails'
@@ -138,11 +135,11 @@ end
 
 
 group :development, :test do
-  gem 'rspec-rails'
+  #gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
 
   gem 'growl'
-  gem 'growl-rspec'
+  #gem 'growl-rspec'
 end
 
 gem 'rack-mini-profiler', '~> 0.10.1'
