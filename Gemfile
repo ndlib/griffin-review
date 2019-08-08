@@ -14,7 +14,7 @@ group :application do
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
 
   gem 'addressable'
-
+  gem 'bigdecimal', '1.3.2'
   # db backends
   gem 'mysql2', '0.5.2'
 
