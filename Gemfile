@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :application do
-  gem 'rails'
+  gem 'rails','~> 4.2.11'
 
   # '3.2.13'
   # Bundle edge Rails instead:
@@ -16,10 +16,10 @@ group :application do
   gem 'addressable'
 
   # db backends
-  gem 'mysql2'
+  gem 'mysql2', '0.5.2'
 
   # SOAP interface
-  gem 'savon'
+  gem 'savon', '2.2.0'
 
   #memcache
   gem 'dalli'
@@ -44,8 +44,8 @@ group :application do
   gem 'workflow', '0.8.1'
 
   # external service interaction
-  gem 'faraday', '0.9.0'
-  gem 'faraday_middleware'
+  gem 'faraday', '0.15.4'
+  gem 'faraday_middleware', '0.13.1'
   gem 'typhoeus'
   gem 'excon'
 
@@ -135,11 +135,11 @@ end
 
 
 group :development, :test do
-  #gem 'rspec-rails'
+  gem 'rspec-rails'
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
 
   gem 'growl'
-  #gem 'growl-rspec'
+  gem 'growl-rspec'
 end
 
 gem 'rack-mini-profiler', '~> 0.10.1'

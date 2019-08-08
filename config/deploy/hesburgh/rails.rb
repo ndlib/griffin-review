@@ -4,11 +4,11 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   set :recipe_symlinks, fetch(:recipe_symlinks) + ['/log', '/vendor/bundle', '/config/database.yml']
 
-  _cset(:ruby) {fetch(:ruby_bin) ? File.join(ruby_bin, 'ruby') : 'ruby'}
-  _cset(:bundler) {fetch(:ruby_bin) ? File.join(ruby_bin, 'bundle') : 'bundle'}
+  _cset(:ruby) {"/usr/bin/ruby"}
+  _cset(:bundler) {"/usr/local/bin/bundle"}
   _cset(:binstubs_path)  {File.join(shared_path, 'vendor/bundle/bin')}
   unset(:rake)
-  _cset(:rake) {"cd #{release_path}; #{fetch(:bundler)} exec #{File.join(fetch(:binstubs_path), 'rake')} RAILS_ENV=#{fetch(:rails_env)}"}
+  _cset(:rake) {"cd #{release_path}; #{fetch(:bundler)} exec /usr/local/bin/rake } RAILS_ENV=#{fetch(:rails_env)}"}
 
   after 'deploy:update_code',
     'bundle:install',

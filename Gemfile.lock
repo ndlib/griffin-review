@@ -67,7 +67,7 @@ GEM
       activerecord (>= 4.2.8)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    akami (1.3.1)
+    akami (1.2.2)
       gyoku (>= 0.4.0)
       nokogiri
     american_date (1.1.1)
@@ -166,7 +166,7 @@ GEM
       tty-pager (~> 0.12.0)
       tty-screen (~> 0.6.5)
       tty-tree (~> 0.3.0)
-    faraday (0.9.0)
+    faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
@@ -175,6 +175,9 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     growl (1.0.3)
+    growl-rspec (3.0.0)
+      growl
+      rspec (~> 3.0)
     guard (2.15.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -209,14 +212,13 @@ GEM
       guard (~> 2.0)
       guard-compat (~> 1.0)
       spork (>= 0.8.4)
-    gyoku (1.3.1)
+    gyoku (1.0.0)
       builder (>= 2.1.2)
     hashdiff (0.4.0)
     highline (2.0.2)
     http_parser.rb (0.6.0)
-    httpi (2.4.4)
+    httpi (2.0.2)
       rack
-      socksify
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -274,7 +276,7 @@ GEM
     newrelic_rpm (6.5.0.357)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
-    nori (2.6.0)
+    nori (2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -349,6 +351,14 @@ GEM
     rspec-mocks (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
+    rspec-rails (3.8.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
     ruby_dep (1.5.0)
     rubycas-client (2.3.9)
@@ -366,14 +376,14 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    savon (2.12.0)
-      akami (~> 1.2)
+    savon (2.2.0)
+      akami (~> 1.2.0)
       builder (>= 2.1.2)
-      gyoku (~> 1.2)
-      httpi (~> 2.3)
-      nokogiri (>= 1.8.1)
-      nori (~> 2.4)
-      wasabi (~> 3.4)
+      gyoku (~> 1.0.0)
+      httpi (~> 2.0.2)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.1.0)
+      wasabi (~> 3.1.0)
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -385,7 +395,6 @@ GEM
       actionmailer (>= 3.2.6, < 6)
       actionpack (>= 3.2.6, < 6)
       devise (>= 3.2, < 6)
-    socksify (1.7.1)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
     spork (1.0.0rc4)
@@ -442,9 +451,9 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.7)
       rack (>= 1.0)
-    wasabi (3.5.0)
+    wasabi (3.1.0)
       httpi (~> 2.0)
-      nokogiri (>= 1.4.2)
+      nokogiri (>= 1.4.0)
     webmock (3.6.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -479,9 +488,10 @@ DEPENDENCIES
   factory_girl (~> 2.6.0)
   factory_girl_rails (~> 1.7.0)
   faker
-  faraday (= 0.9.0)
-  faraday_middleware
+  faraday (= 0.15.4)
+  faraday_middleware (= 0.13.1)
   growl
+  growl-rspec
   guard-bundler
   guard-coffeescript
   guard-livereload
@@ -494,20 +504,21 @@ DEPENDENCIES
   json
   json_spec
   launchy (~> 2.1.0)
-  mysql2
+  mysql2 (= 0.5.2)
   net-ldap (~> 0.16.0)
   newrelic_rpm
   paperclip (~> 4.2.2)
   pry-rails
   quiet_assets
   rack-mini-profiler (~> 0.10.1)
-  rails
+  rails (~> 4.2.11)
   rb-fsevent
   rb-readline
   rdoc
+  rspec-rails
   rubycas-client
   sass-rails
-  savon
+  savon (= 2.2.0)
   selenium-webdriver
   simple_form (~> 3.0.0)
   simple_token_authentication (~> 1.0)
