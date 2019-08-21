@@ -128,21 +128,16 @@ class User < ActiveRecord::Base
     results = ldap.search(
       :base          => Rails.application.secrets.ldap["base_dn"],
       :attributes    => [
-                         'uid',
+                         'cn',
                          'givenname',
                          'sn',
-                         'ndvanityname',
                          'mail',
                          'displayname',
-                         'edupersonaffiliation',
                          'ndaffiliation',
                          'edupersonprimaryaffiliation',
                          'ndprimaryaffiliation',
-                         'ndtitle',
-                         'ndlevel',
-                         'title'
                         ],
-      :filter        => Net::LDAP::Filter.eq( 'uid', username ),
+      :filter        => Net::LDAP::Filter.eq( 'cn', username ),
       :return_result => true
     )
     if results.empty?
@@ -166,27 +161,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def preferred_name_from_nickname(first_name, last_name, nickname)
-    if nickname
-      nickname_array = nickname.split(' ')
-      if nickname_array.count == 1
-        # If there is only one word in the nickname assume it is the first name
-        return [nickname, last_name]
-      else
-        # If there is more than one word in the nickname assume it the full name
-        return [nickname_array[0], last_name]
-      end
-    end
-    [first_name, last_name]
-  end
-
   def fetch_attributes_from_ldap
     if Rails.configuration.ldap_lookup_flag
       attributes = User.ldap_lookup(username)
-      fn = attributes[:givenname].first
-      sn = attributes[:sn].first
-      nickname = attributes[:ndvanityname].first
-      self.first_name, self.last_name = preferred_name_from_nickname(fn, sn, nickname)
+      self.first_name = attributes[:givenname].first
+      self.last_name = attributes[:sn].first      
       self.email = attributes[:mail].first
       self.display_name = attributes[:displayname].first
     end
