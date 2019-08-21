@@ -52,7 +52,7 @@ describe FairUseQuestion do
 
     it "adds a new question with valid params" do
       fuq = FairUseQuestion.add_new_question!('something1', 'category', 1, true)
-      fuq.new_record?.should be_false
+      fuq.new_record?.should be_falsey
     end
 
 

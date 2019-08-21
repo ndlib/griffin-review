@@ -33,7 +33,7 @@ describe Masquerade do
     it "traps and returns false when the User throws a User::LDAPExeception " do
       m = Masquerade.new(@controller)
       m.stub(:find_or_create_user).and_raise(User::LDAPException.new("LDAP Lookup failed for 'username'"))
-      expect(m.start!('username')).to be_false
+      expect(m.start!('username')).to be_falsey
     end
 
   end

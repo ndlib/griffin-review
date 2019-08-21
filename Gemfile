@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :application do
-  gem 'rails','~> 4.2.11'
+  gem 'rails', '~> 4.2.11'
 
   # '3.2.13'
   # Bundle edge Rails instead:
@@ -36,6 +36,7 @@ group :application do
 
   # exception logging
   # gem 'airbrake'
+  gem "sentry-raven", "~> 2.7"
   gem 'exception_notification', "~> 4.0.0"
 
   gem 'acts-as-taggable-on'
@@ -121,7 +122,7 @@ group :test do
 	gem 'factory_girl_rails', "~> 1.7.0"
 	gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
-  #gem 'guard-rspec'
+  gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-coffeescript'
   gem 'guard-rails'

@@ -7,7 +7,7 @@ describe RequestRow do
   subject { described_class.new(reserve) }
 
   it "has a title" do
-    expect(subject.respond_to?(:title)).to be_true
+    expect(subject.respond_to?(:title)).to be_truthy
   end
 
   it "links to the request item_title" do
@@ -24,11 +24,11 @@ describe RequestRow do
 
 
   it "has an id" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:id)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:id)).to be_truthy
   end
 
   it "has the date needed" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:needed_by)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:needed_by)).to be_truthy
   end
 
 
@@ -63,22 +63,22 @@ describe RequestRow do
       end
 
       it 'is true' do
-        expect(subject.not_in_aleph?).to be_true
+        expect(subject.not_in_aleph?).to be_truthy
       end
 
       it 'is false for removed' do
         request.stub(:workflow_state).and_return('removed')
-        expect(subject.not_in_aleph?).to be_false
+        expect(subject.not_in_aleph?).to be_falsey
       end
 
       it 'is false if not a physical reserve' do
         request.stub(:item_physical_reserve?).and_return(false)
-        expect(subject.not_in_aleph?).to be_false
+        expect(subject.not_in_aleph?).to be_falsey
       end
 
       it 'is false if currently in aleph' do
         request.stub(:currently_in_aleph?).and_return(true)
-        expect(subject.not_in_aleph?).to be_false
+        expect(subject.not_in_aleph?).to be_falsey
       end
     end
   end
@@ -183,21 +183,21 @@ describe RequestRow do
 
 
   it "has the workflow state" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:workflow_state)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:workflow_state)).to be_truthy
   end
 
 
   it "has a requestor column" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:requestor_col)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:requestor_col)).to be_truthy
   end
 
 
   it "has a instructor_col" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:instructor_col)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:instructor_col)).to be_truthy
   end
 
   it "has a column for course" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:course_col)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:course_col)).to be_truthy
   end
 
   it "#library exists" do
@@ -207,7 +207,7 @@ describe RequestRow do
 
 
   it "has a cache key" do
-    expect(RequestRow.new(Reserve.new).respond_to?(:cache_key)).to be_true
+    expect(RequestRow.new(Reserve.new).respond_to?(:cache_key)).to be_truthy
   end
 
 

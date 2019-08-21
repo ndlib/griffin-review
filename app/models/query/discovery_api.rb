@@ -23,7 +23,6 @@ class DiscoveryApi
   def data
     {
       title: title,
-      type: type,
       creator_contributor: creator_contributor,
       details: details,
       publisher_provider: publisher_provider,

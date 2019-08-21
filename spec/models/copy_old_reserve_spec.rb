@@ -13,7 +13,7 @@ describe CopyReserve do
     end
 
     it "sets reviewed to be true " do
-      expect(@new_reserve.reviewed?).to be_true
+      expect(@new_reserve.reviewed?).to be_truthy
     end
 
     it "sets the book chapter title" do
@@ -32,7 +32,7 @@ describe CopyReserve do
 
 
     it "sets the overwrite_nd_meta_data to true" do
-      @new_reserve.overwrite_nd_meta_data?.should be_true
+      @new_reserve.overwrite_nd_meta_data?.should be_truthy
     end
 
 
@@ -88,7 +88,7 @@ describe CopyReserve do
 
     it "should say that the metadata is overwriten" do
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      expect(@new_reserve.overwrite_nd_meta_data).to be_false
+      expect(@new_reserve.overwrite_nd_meta_data).to be_falsey
     end
   end
 
@@ -101,7 +101,7 @@ describe CopyReserve do
     end
 
     it "sets a pdf for download" do
-      @new_reserve.pdf.present?.should be_true
+      @new_reserve.pdf.present?.should be_truthy
     end
 
 
@@ -150,7 +150,7 @@ describe CopyReserve do
 
     it "gets a pdf when the article has a pdf associated with it" do
       new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      new_reserve.pdf.present?.should be_true
+      new_reserve.pdf.present?.should be_truthy
     end
 
 
@@ -220,7 +220,7 @@ describe CopyReserve do
 
     it "should say that the metadata is overwriten" do
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      expect(@new_reserve.overwrite_nd_meta_data).to be_false
+      expect(@new_reserve.overwrite_nd_meta_data).to be_falsey
     end
 
   end
@@ -255,7 +255,7 @@ describe CopyReserve do
 
     it "should say that the metadata is overwriten" do
       @new_reserve = CopyOldReserve.new(user, to_course, @old_reserve).copy
-      expect(@new_reserve.overwrite_nd_meta_data).to be_false
+      expect(@new_reserve.overwrite_nd_meta_data).to be_falsey
     end
 
 

@@ -1,5 +1,5 @@
 class LibraryReserveForm
-  include Virtus
+  include Virtus.model
   include VirtusFormHelpers
   include ModelErrorTrapping
   include RailsHelpers

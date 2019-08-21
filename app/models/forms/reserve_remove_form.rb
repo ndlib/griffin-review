@@ -1,5 +1,5 @@
 class ReserveRemoveForm
-  include Virtus
+  include Virtus.model
   include ModelErrorTrapping
 
 

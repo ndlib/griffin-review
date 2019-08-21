@@ -2,7 +2,7 @@ class AdminUpdateResource
   attr_reader :reserve
 
   include RailsHelpers
-  include Virtus
+  include Virtus.model
   include ModelErrorTrapping
 
   extend ActiveModel::Naming

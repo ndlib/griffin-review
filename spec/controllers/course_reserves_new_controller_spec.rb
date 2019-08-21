@@ -30,7 +30,7 @@ describe CourseReservesController do
         CourseReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
         get :new, :course_id => "current_multisection_crosslisted"
-        assigns(:new_reserve).should be_true
+        assigns(:new_reserve).should be_truthy
       end
 
     end

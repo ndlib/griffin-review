@@ -100,12 +100,12 @@ describe CopyCourseReservesForm do
 
     it "returns true if the to course is set and the from course is not " do
       valid_params.delete(:from_course_id)
-      subject.step1?.should be_true
+      subject.step1?.should be_truthy
     end
 
 
     it "returns false if the to course is set" do
-      subject.step1?.should be_false
+      subject.step1?.should be_falsey
     end
 
   end
@@ -114,12 +114,12 @@ describe CopyCourseReservesForm do
   describe :step2 do
 
     it "returns true if both the from course and the to course are set " do
-      subject.step2?.should be_true
+      subject.step2?.should be_truthy
     end
 
     it "returns false if the the from course is not set " do
       valid_params.delete(:from_course_id)
-      subject.step2?.should be_false
+      subject.step2?.should be_falsey
     end
 
   end

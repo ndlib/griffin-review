@@ -22,6 +22,7 @@ class InstructorTopicsForm
         @reserve = get_course(params[:course_id]).reserve(params[:id])
       end
     rescue ActiveRecord::RecordNotFound => e
+      Raven.capture_exception(e)
       raise e
     end
 

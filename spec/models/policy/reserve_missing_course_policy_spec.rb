@@ -8,11 +8,11 @@ describe ReserveIsMissingCoursePolicy do
 
     it "returns true if the class is the course mock" do
       reserve.course.stub(:is_a?).and_return(true)
-      expect(ReserveIsMissingCoursePolicy.call(reserve)).to be_true
+      expect(ReserveIsMissingCoursePolicy.call(reserve)).to be_truthy
     end
 
     it "returns false if it is a course" do
-      expect(ReserveIsMissingCoursePolicy.call(reserve)).to be_false
+      expect(ReserveIsMissingCoursePolicy.call(reserve)).to be_falsey
     end
   end
 

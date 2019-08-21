@@ -14,39 +14,39 @@ describe Reserve do
   describe "attribute fields" do
 
     it "has a title" do
-      course_listing.respond_to?(:title).should be_true
+      course_listing.respond_to?(:title).should be_truthy
     end
 
     it "has a creator" do
-      course_listing.respond_to?(:creator).should be_true
+      course_listing.respond_to?(:creator).should be_truthy
     end
 
     it "has a contributor" do
-      course_listing.respond_to?(:contributor).should be_true
+      course_listing.respond_to?(:contributor).should be_truthy
     end
 
     it "has a journal title" do
-      course_listing.respond_to?(:journal_title).should be_true
+      course_listing.respond_to?(:journal_title).should be_truthy
     end
 
 
     it "has a length" do
-      course_listing.respond_to?(:length).should be_true
+      course_listing.respond_to?(:length).should be_truthy
     end
 
 
     it "has a pdf" do
-      course_listing.respond_to?(:pdf).should be_true
+      course_listing.respond_to?(:pdf).should be_truthy
     end
 
 
     it "has a url" do
-      course_listing.respond_to?(:url).should be_true
+      course_listing.respond_to?(:url).should be_truthy
     end
 
 
     it "has note" do
-      course_listing.respond_to?(:note).should be_true
+      course_listing.respond_to?(:note).should be_truthy
     end
 
 
@@ -56,11 +56,11 @@ describe Reserve do
 
 
     it "has a physical reserve flag" do
-      expect(course_listing.respond_to?(:physical_reserve)).to be_true
+      expect(course_listing.respond_to?(:physical_reserve)).to be_truthy
     end
 
     it "has a currently_in_aleph" do
-      expect(course_listing.respond_to?(:currently_in_aleph)).to be_true
+      expect(course_listing.respond_to?(:currently_in_aleph)).to be_truthy
     end
 
     it 'delegates sortable_title to request' do
@@ -196,7 +196,7 @@ describe Reserve do
 
     it "creates an empty fair use object when there isn't one " do
       r = mock_reserve FactoryGirl.create(:request), nil
-      r.fair_use.new_record?.should be_true
+      r.fair_use.new_record?.should be_truthy
     end
 
     it "returns the current fair use if there is one associated with the reserve" do

@@ -15,11 +15,11 @@ describe ElectronicReservePolicy do
   describe :is_electronic_reserve? do
     it "returns true of the reserve is an electronic reserve" do
       @reserve.stub(:electronic_reserve?).and_return(true)
-      expect(@policy.is_electronic_reserve?).to be_true
+      expect(@policy.is_electronic_reserve?).to be_truthy
     end
 
     it "returns false if the reserve is not an electronic reserve" do
-      expect(@policy.is_electronic_reserve?).to be_false
+      expect(@policy.is_electronic_reserve?).to be_falsey
     end
   end
 
@@ -125,12 +125,12 @@ describe ElectronicReservePolicy do
 
     it "returns true if the reserve is an electronic reserve " do
       @policy.stub(:is_electronic_reserve?).and_return(true)
-      expect(@policy.can_have_resource?).to be_true
+      expect(@policy.can_have_resource?).to be_truthy
     end
 
     it "returns false if the reserve is not an electronic reserve" do
       @policy.stub(:is_electronic_reserve?).and_return(false)
-      expect(@policy.can_have_resource?).to be_false
+      expect(@policy.can_have_resource?).to be_falsey
     end
   end
 
@@ -143,14 +143,14 @@ describe ElectronicReservePolicy do
 
 
       it "returns true if the reserve is electronic" do
-        expect(@policy.can_have_file_resource?).to be_true
+        expect(@policy.can_have_file_resource?).to be_truthy
       end
 
 
       it "returns true if no matter the type of the request as long as the reserves is electronic" do
         ['BookChapterReserve', 'BookReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_file_resource?).to be_true
+          expect(@policy.can_have_file_resource?).to be_truthy
         end
       end
     end
@@ -162,7 +162,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns false if the reserve is not electronic" do
-        expect(@policy.can_have_file_resource?).to be_false
+        expect(@policy.can_have_file_resource?).to be_falsey
       end
     end
   end
@@ -176,14 +176,14 @@ describe ElectronicReservePolicy do
 
 
       it "returns true if the reserve is electronic" do
-        expect(@policy.can_have_url_resource?).to be_true
+        expect(@policy.can_have_url_resource?).to be_truthy
       end
 
 
       it "returns true if no matter the type of the request as long as the reserves is electronic" do
         ['BookChapterReserve', 'BookReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_url_resource?).to be_true
+          expect(@policy.can_have_url_resource?).to be_truthy
         end
       end
     end
@@ -195,7 +195,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns false if the reserve is not electronic" do
-        expect(@policy.can_have_url_resource?).to be_false
+        expect(@policy.can_have_url_resource?).to be_falsey
       end
     end
   end
@@ -209,14 +209,14 @@ describe ElectronicReservePolicy do
 
 
       it "returns true if the reserve is electronic" do
-        expect(@policy.can_have_sipx_resource?).to be_true
+        expect(@policy.can_have_sipx_resource?).to be_truthy
       end
 
 
       it "returns true if no matter the type of the request as long as the reserves is electronic" do
         ['BookChapterReserve', 'BookReserve', 'JournalReserve', 'VideoReserve', 'AudioReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_sipx_resource?).to be_true
+          expect(@policy.can_have_sipx_resource?).to be_truthy
         end
       end
     end
@@ -228,7 +228,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns false if the reserve is not electronic" do
-        expect(@policy.can_have_sipx_resource?).to be_false
+        expect(@policy.can_have_sipx_resource?).to be_falsey
       end
     end
   end
@@ -244,7 +244,7 @@ describe ElectronicReservePolicy do
       it "returns true if the reserve is electronic and it is video or audio" do
         ['VideoReserve', 'AudioReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_streaming_resource?).to be_true
+          expect(@policy.can_have_streaming_resource?).to be_truthy
         end
       end
 
@@ -252,7 +252,7 @@ describe ElectronicReservePolicy do
       it "returns true if no matter the type of the request as long as the reserves is electronic" do
         ['BookChapterReserve', 'BookReserve', 'JournalReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_streaming_resource?).to be_false
+          expect(@policy.can_have_streaming_resource?).to be_falsey
         end
       end
     end
@@ -264,7 +264,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns false if the reserve is not electronic" do
-        expect(@policy.can_have_streaming_resource?).to be_false
+        expect(@policy.can_have_streaming_resource?).to be_falsey
       end
     end
   end
@@ -280,7 +280,7 @@ describe ElectronicReservePolicy do
       it "returns true if the reserve is electronic and it is video or audio" do
         ['VideoReserve', 'AudioReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_media_playlist?).to be_true
+          expect(@policy.can_have_media_playlist?).to be_truthy
         end
       end
 
@@ -288,7 +288,7 @@ describe ElectronicReservePolicy do
       it "returns true if no matter the type of the request as long as the reserves is electronic" do
         ['BookChapterReserve', 'BookReserve', 'JournalReserve'].each do | type |
           @reserve.stub(:type).and_return(type)
-          expect(@policy.can_have_media_playlist?).to be_false
+          expect(@policy.can_have_media_playlist?).to be_falsey
         end
       end
     end
@@ -300,7 +300,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns false if the reserve is not electronic" do
-        expect(@policy.can_have_media_playlist?).to be_false
+        expect(@policy.can_have_media_playlist?).to be_falsey
       end
     end
   end
@@ -316,32 +316,32 @@ describe ElectronicReservePolicy do
     end
 
     it "is false if it does not have any resources" do
-      expect(@policy.has_resource?).to be_false
+      expect(@policy.has_resource?).to be_falsey
     end
 
     it "is true if it has a url" do
       @policy.stub(:has_url_resource?).and_return(true)
-      expect(@policy.has_resource?).to be_true
+      expect(@policy.has_resource?).to be_truthy
     end
 
     it "is true if it has a file" do
       @policy.stub(:has_file_resource?).and_return(true)
-      expect(@policy.has_resource?).to be_true
+      expect(@policy.has_resource?).to be_truthy
     end
 
     it "is true if it has streaming" do
       @policy.stub(:has_streaming_resource?).and_return(true)
-      expect(@policy.has_resource?).to be_true
+      expect(@policy.has_resource?).to be_truthy
     end
 
     it "is true if it has a media_playlist" do
       @policy.stub(:has_media_playlist?).and_return(true)
-      expect(@policy.has_resource?).to be_true
+      expect(@policy.has_resource?).to be_truthy
     end
 
     it "is true if it has sipx" do
       @policy.stub(:has_sipx_resource?).and_return(true)
-      expect(@policy.has_resource?).to be_true
+      expect(@policy.has_resource?).to be_truthy
     end
   end
 
@@ -356,11 +356,11 @@ describe ElectronicReservePolicy do
 
       it "returns true if the reserve has a file " do
         @pdf.stub(:present?).and_return(true)
-        expect(@policy.has_file_resource?).to be_true
+        expect(@policy.has_file_resource?).to be_truthy
       end
 
       it "returns false if the reserve does not have a file" do
-        expect(@policy.has_file_resource?).to be_false
+        expect(@policy.has_file_resource?).to be_falsey
       end
     end
 
@@ -371,11 +371,11 @@ describe ElectronicReservePolicy do
 
       it "returns false if the reserve has a file " do
         @pdf.stub(:present?).and_return(true)
-        expect(@policy.has_file_resource?).to be_false
+        expect(@policy.has_file_resource?).to be_falsey
       end
 
       it "returns false if the reserve does not have a file" do
-        expect(@policy.has_file_resource?).to be_false
+        expect(@policy.has_file_resource?).to be_falsey
       end
 
 
@@ -393,16 +393,16 @@ describe ElectronicReservePolicy do
 
       it "returns true if the reserve has a url " do
         @reserve.stub(:url).and_return("url")
-        expect(@policy.has_url_resource?).to be_true
+        expect(@policy.has_url_resource?).to be_truthy
       end
 
       it "returns false if the reserve url is nil" do
-        expect(@policy.has_url_resource?).to be_false
+        expect(@policy.has_url_resource?).to be_falsey
       end
 
       it "returns false if the reserve url is empty " do
         @reserve.stub(:url).and_return("")
-        expect(@policy.has_url_resource?).to be_false
+        expect(@policy.has_url_resource?).to be_falsey
       end
     end
 
@@ -413,11 +413,11 @@ describe ElectronicReservePolicy do
 
       it "returns false if the reserve has a url " do
         @reserve.stub(:url).and_return("url")
-        expect(@policy.has_url_resource?).to be_false
+        expect(@policy.has_url_resource?).to be_falsey
       end
 
       it "returns false if the reserve does not have a url" do
-        expect(@policy.has_url_resource?).to be_false
+        expect(@policy.has_url_resource?).to be_falsey
       end
     end
   end
@@ -432,21 +432,21 @@ describe ElectronicReservePolicy do
 
       it "returns true if the reserve has a url " do
         @reserve.stub(:url).and_return("https://service.sipx.com")
-        expect(@policy.has_sipx_resource?).to be_true
+        expect(@policy.has_sipx_resource?).to be_truthy
       end
 
       it "returns false if the url is not a sipx url" do
         @reserve.stub(:url).and_return("https://www.google.com")
-        expect(@policy.has_sipx_resource?).to be_false
+        expect(@policy.has_sipx_resource?).to be_falsey
       end
 
       it "returns false if the reserve url is nil" do
-        expect(@policy.has_sipx_resource?).to be_false
+        expect(@policy.has_sipx_resource?).to be_falsey
       end
 
       it "returns false if the reserve url is empty " do
         @reserve.stub(:url).and_return("")
-        expect(@policy.has_sipx_resource?).to be_false
+        expect(@policy.has_sipx_resource?).to be_falsey
       end
     end
 
@@ -457,11 +457,11 @@ describe ElectronicReservePolicy do
 
       it "returns false if the reserve has a url " do
         @reserve.stub(:url).and_return("url")
-        expect(@policy.has_sipx_resource?).to be_false
+        expect(@policy.has_sipx_resource?).to be_falsey
       end
 
       it "returns false if the reserve does not have a url" do
-        expect(@policy.has_sipx_resource?).to be_false
+        expect(@policy.has_sipx_resource?).to be_falsey
       end
     end
   end
@@ -475,23 +475,23 @@ describe ElectronicReservePolicy do
 
       it "returns true if the reserve has a url and it is a mov " do
         @reserve.stub(:url).and_return("movie.mov")
-        expect(@policy.has_streaming_resource?).to be_true
+        expect(@policy.has_streaming_resource?).to be_truthy
       end
 
       it "returns false if the reserve has a redirect url" do
         @reserve.stub(:url).and_return("http://www.google.com")
-        expect(@policy.has_streaming_resource?).to be_false
+        expect(@policy.has_streaming_resource?).to be_falsey
       end
 
 
       it "returns false if the reserve url is nil" do
-        expect(@policy.has_streaming_resource?).to be_false
+        expect(@policy.has_streaming_resource?).to be_falsey
       end
 
 
       it "returns false if the reserve url is empty " do
         @reserve.stub(:url).and_return("")
-        expect(@policy.has_streaming_resource?).to be_false
+        expect(@policy.has_streaming_resource?).to be_falsey
       end
 
     end
@@ -504,12 +504,12 @@ describe ElectronicReservePolicy do
 
       it "returns true if the reserve has a url and it is a mov " do
         @reserve.stub(:url).and_return("movie.mov")
-        expect(@policy.has_streaming_resource?).to be_false
+        expect(@policy.has_streaming_resource?).to be_falsey
       end
 
 
       it "returns false if the reserve does not have a url" do
-        expect(@policy.has_streaming_resource?).to be_false
+        expect(@policy.has_streaming_resource?).to be_falsey
       end
 
     end
@@ -523,12 +523,12 @@ describe ElectronicReservePolicy do
 
       it "returns true if the media playlist is present" do
         @reserve.stub(:media_playlist).and_return(MediaPlaylist.new)
-        expect(@policy.has_media_playlist?).to be_true
+        expect(@policy.has_media_playlist?).to be_truthy
       end
 
       it "returns false if the media playlist is not present" do
         @reserve.stub(:media_playlist).and_return(nil)
-        expect(@policy.has_media_playlist?).to be_false
+        expect(@policy.has_media_playlist?).to be_falsey
       end
     end
 
@@ -539,12 +539,12 @@ describe ElectronicReservePolicy do
 
       it "returns false if the media playlist is present" do
         @reserve.stub(:media_playlist).and_return(MediaPlaylist.new)
-        expect(@policy.has_media_playlist?).to be_false
+        expect(@policy.has_media_playlist?).to be_falsey
       end
 
       it "returns false if the media playlst is not present" do
         @reserve.stub(:media_playlist).and_return(nil)
-        expect(@policy.has_media_playlist?).to be_false
+        expect(@policy.has_media_playlist?).to be_falsey
       end
     end
   end
@@ -565,7 +565,7 @@ describe ElectronicReservePolicy do
     context :does_not_have_resource do
       it "returns false" do
         @policy.stub(:has_url_resource?).and_return(false)
-        expect(@policy.redirect_url).to be_false
+        expect(@policy.redirect_url).to be_falsey
       end
     end
   end
@@ -587,7 +587,7 @@ describe ElectronicReservePolicy do
     context :no_file do
       it "returns the false" do
         @policy.stub(:has_file_resource?).and_return(false)
-        expect(@policy.download_file_path).to be_false
+        expect(@policy.download_file_path).to be_falsey
       end
     end
   end
@@ -608,7 +608,7 @@ describe ElectronicReservePolicy do
     context :no_file do
       it "returns the false" do
         @policy.stub(:has_streaming_resource?).and_return(false)
-        expect(@policy.streaming_download_file).to be_false
+        expect(@policy.streaming_download_file).to be_falsey
       end
     end
   end
@@ -624,13 +624,13 @@ describe ElectronicReservePolicy do
 
       it "returns true if the item can have resources and it has a resource " do
         @policy.stub(:has_resource?).and_return(true)
-        expect(@policy.complete?).to be_true
+        expect(@policy.complete?).to be_truthy
       end
 
 
       it "returns false if the item can have resources and it does not have a resource" do
         @policy.stub(:has_resource?).and_return(false)
-        expect(@policy.complete?).to be_false
+        expect(@policy.complete?).to be_falsey
       end
     end
 
@@ -641,7 +641,7 @@ describe ElectronicReservePolicy do
 
 
       it "returns true if the item cannot have resources" do
-        expect(@policy.complete?).to be_true
+        expect(@policy.complete?).to be_truthy
       end
     end
   end

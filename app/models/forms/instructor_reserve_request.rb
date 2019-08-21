@@ -1,5 +1,5 @@
 class InstructorReserveRequest
-  include Virtus
+  include Virtus.model
   include ModelErrorTrapping
   include GetCourse
   include RailsHelpers

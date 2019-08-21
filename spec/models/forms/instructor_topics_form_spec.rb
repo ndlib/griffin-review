@@ -25,7 +25,7 @@ describe InstructorTopicsForm do
     form = InstructorTopicsForm.new(user, params )
 
     form.reserve.topics.size.should == 0
-    form.save_topics.should be_true
+    form.save_topics.should be_truthy
     form.reserve.topics.size.should == 3
   end
 
@@ -39,7 +39,7 @@ describe InstructorTopicsForm do
     form = InstructorTopicsForm.new(user, params)
 
     form.reserve.topics.size.should == 0
-    form.save_topics.should be_true
+    form.save_topics.should be_truthy
     form.reserve.topics.size.should == 3
   end
 
@@ -56,7 +56,7 @@ describe InstructorTopicsForm do
     form = InstructorTopicsForm.new(user, params)
     form.save_topics
 
-    form.save_topics.should be_true
+    form.save_topics.should be_truthy
     form.reserve.topics.size.should == 2
   end
 

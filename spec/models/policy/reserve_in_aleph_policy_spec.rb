@@ -9,7 +9,7 @@ describe ReserveInAlephPolicy do
       subject { described_class.new(reserve)}
 
       it "returns true" do
-        expect(subject.in_aleph?).to be_true
+        expect(subject.in_aleph?).to be_truthy
       end
     end
 
@@ -18,7 +18,7 @@ describe ReserveInAlephPolicy do
       subject { described_class.new(reserve)}
 
       it "returns true" do
-        expect(subject.in_aleph?).to be_false
+        expect(subject.in_aleph?).to be_falsey
       end
     end
 

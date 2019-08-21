@@ -13,12 +13,12 @@ describe Permission do
   describe :current_user_views_all_courses? do
     it "returns true if the user is the circ user" do
       UserCanViewAllCoursesPolicy.any_instance.stub(:can_view_all_courses?).and_return(true)
-      Permission.new(circ_user, controller).current_user_views_all_courses?.should be_true
+      Permission.new(circ_user, controller).current_user_views_all_courses?.should be_truthy
     end
 
     it "returns false for another user" do
       UserCanViewAllCoursesPolicy.any_instance.stub(:can_view_all_courses?).and_return(false)
-      Permission.new(student_user, controller).current_user_views_all_courses?.should be_false
+      Permission.new(student_user, controller).current_user_views_all_courses?.should be_falsey
     end
   end
 
@@ -27,13 +27,13 @@ describe Permission do
 
     it "returns true if the current user is an instructor for the course" do
       UserRoleInCoursePolicy.any_instance.stub(:user_instructs_course?).and_return(true)
-      Permission.new(instructor_user, controller).current_user_instructs_course?(course).should be_true
+      Permission.new(instructor_user, controller).current_user_instructs_course?(course).should be_truthy
     end
 
 
     it "returns false if the current user does not instruct the course" do
       UserRoleInCoursePolicy.any_instance.stub(:user_instructs_course?).and_return(false)
-      Permission.new(student_user, controller).current_user_instructs_course?(course).should be_false
+      Permission.new(student_user, controller).current_user_instructs_course?(course).should be_falsey
     end
   end
 
@@ -44,7 +44,7 @@ describe Permission do
       UserRoleInCoursePolicy.any_instance.stub(:user_enrolled_in_course?).and_return(true)
       Permission.any_instance.stub(:course_in_current_semester?).and_return(true)
 
-      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_true
+      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_truthy
     end
 
 
@@ -52,7 +52,7 @@ describe Permission do
       UserRoleInCoursePolicy.any_instance.stub(:user_enrolled_in_course?).and_return(false)
       Permission.any_instance.stub(:course_in_current_semester?).and_return(true)
 
-      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_false
+      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_falsey
     end
 
 
@@ -60,7 +60,7 @@ describe Permission do
       UserRoleInCoursePolicy.any_instance.stub(:user_enrolled_in_course?).and_return(true)
       Permission.any_instance.stub(:course_in_current_semester?).and_return(false)
 
-      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_false
+      Permission.new(student_user, controller).current_user_enrolled_in_course?(course).should be_falsey
     end
   end
 
@@ -68,12 +68,12 @@ describe Permission do
   describe :current_user_is_admin? do
 
     it "returns true if the user is marked as an admin"   do
-      Permission.new(admin_user, controller).current_user_is_administrator?.should be_true
+      Permission.new(admin_user, controller).current_user_is_administrator?.should be_truthy
     end
 
 
     it "returns false if the is no an admin" do
-      Permission.new(student_user, controller).current_user_is_administrator?.should be_false
+      Permission.new(student_user, controller).current_user_is_administrator?.should be_falsey
     end
   end
 
@@ -84,14 +84,14 @@ describe Permission do
       Masquerade.any_instance.stub(:masquerading?).and_return(true)
       Masquerade.any_instance.stub(:original_user).and_return(admin_user)
 
-      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_true
+      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_truthy
     end
 
     it "returns false if the masqing users is not an admin" do
       Masquerade.any_instance.stub(:masquerading?).and_return(true)
       Masquerade.any_instance.stub(:original_user).and_return(instructor_user)
 
-      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_false
+      Permission.new(student_user, controller).current_user_is_admin_in_masquerade?.should be_falsey
     end
 
   end

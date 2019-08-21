@@ -1,5 +1,5 @@
 class NeededByReserveForm
-  include Virtus
+  include Virtus.model
   include VirtusFormHelpers
   include ModelErrorTrapping
   include RailsHelpers

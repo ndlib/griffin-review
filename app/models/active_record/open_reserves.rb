@@ -3,7 +3,7 @@ class OpenReserves < ActiveRecord::Base
   case Rails.env
   when "production"
     establish_connection configurations['open_reserves_prod']
-  when "pre_production"
+  when "prep"
     # establish_connection configurations['open_reserves_pprd']
     establish_connection configurations['open_reserves_prod']
 

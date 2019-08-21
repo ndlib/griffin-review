@@ -3,7 +3,7 @@ class RequestFixMissingCourseForm
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  include Virtus
+  include Virtus.model
 
   attr_accessor :reserve
 

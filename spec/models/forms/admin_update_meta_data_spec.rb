@@ -36,7 +36,7 @@ describe AdminUpdateMetaData do
       ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id' ].each do | field |
         expect(@form.send(field)).to eq(field)
       end
-      expect(@form.overwrite_nd_meta_data).to be_true
+      expect(@form.overwrite_nd_meta_data).to be_truthy
     end
 
 
@@ -47,7 +47,7 @@ describe AdminUpdateMetaData do
       ['title', 'creator', 'details', 'publisher', 'journal_title', 'length', 'selection_title', 'nd_meta_data_id'].each do | field |
         expect(@form.send(field)).to eq("#{field}params")
       end
-      expect(@form.overwrite_nd_meta_data).to be_false
+      expect(@form.overwrite_nd_meta_data).to be_falsey
     end
 
 
@@ -138,7 +138,7 @@ describe AdminUpdateMetaData do
     it "returns false if the udates is invalid" do
       @update_meta_data.stub(:valid?).and_return(false)
 
-      expect(@update_meta_data.save_meta_data).to be_false
+      expect(@update_meta_data.save_meta_data).to be_falsey
     end
 
 
@@ -174,15 +174,15 @@ describe AdminUpdateMetaData do
 
 
       it "sets the reviewed to be true when it is saved" do
-        expect(@reserve.reviewed?).to be_false
+        expect(@reserve.reviewed?).to be_falsey
 
         @update_admin_meta_data.save_meta_data
-        expect(@reserve.reviewed?).to be_true
+        expect(@reserve.reviewed?).to be_truthy
       end
 
 
       it "returns true if the update is valid" do
-        expect(@update_admin_meta_data.save_meta_data).to be_true
+        expect(@update_admin_meta_data.save_meta_data).to be_truthy
       end
 
 

@@ -1,5 +1,5 @@
 class AdminUpdateMetaData
-  include Virtus
+  include Virtus.model
   include VirtusFormHelpers
   include RailsHelpers
 

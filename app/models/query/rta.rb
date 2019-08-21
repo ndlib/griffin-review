@@ -12,7 +12,8 @@ class Rta
 
     begin
       @items = search(@rta_id, @key)
-    rescue OpenURI::HTTPError
+    rescue OpenURI::HTTPError => e
+      Raven.capture_exception(e)
       ErrorLog.log_message("no netid", 'Second RTA Attempt')
       @items = search(@rta_id, @key)
     end

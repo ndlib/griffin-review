@@ -31,7 +31,7 @@ describe Course do
 
 
   it "has supersection ids" do
-    @crosslist_course.respond_to?(:unique_supersection_ids).should be_true
+    @crosslist_course.respond_to?(:unique_supersection_ids).should be_truthy
     @crosslist_course.unique_supersection_ids.should == ["FA13-ACCT-20100-SSJK"]
   end
 
@@ -61,21 +61,21 @@ describe Course do
   describe :enrollment_netids do
 
     it "lists has an enrollment_netids" do
-      @crosslist_course.respond_to?(:enrollment_netids).should be_true
+      @crosslist_course.respond_to?(:enrollment_netids).should be_truthy
     end
 
 
     it "lowercases all enromment_netids" do
       @crosslist_course.sections.first.stub(:enrollment_netids).and_return(['UPPER'])
-      expect(@crosslist_course.enrollment_netids.include?('upper')).to be_true
-      expect(@crosslist_course.enrollment_netids.include?('UPPER')).to be_false
+      expect(@crosslist_course.enrollment_netids.include?('upper')).to be_truthy
+      expect(@crosslist_course.enrollment_netids.include?('UPPER')).to be_falsey
     end
 
 
     it "strips all enromment netids" do
       @crosslist_course.sections.first.stub(:enrollment_netids).and_return([' strip '])
-      expect(@crosslist_course.enrollment_netids.include?('strip')).to be_true
-      expect(@crosslist_course.enrollment_netids.include?(' strip ')).to be_false
+      expect(@crosslist_course.enrollment_netids.include?('strip')).to be_truthy
+      expect(@crosslist_course.enrollment_netids.include?(' strip ')).to be_falsey
     end
 
 
@@ -87,7 +87,7 @@ describe Course do
 
     it "adds in the students who have exceptions " do
       UserCourseException.create_enrollment_exception!(@crosslist_course.id, @crosslist_course.term, 'netid')
-      @crosslist_course.enrollment_netids.include?('netid').should be_true
+      @crosslist_course.enrollment_netids.include?('netid').should be_truthy
     end
 
   end
@@ -108,7 +108,7 @@ describe Course do
   describe :instructors do
 
     it "lists all the instructors for a course" do
-      @crosslist_course.respond_to?(:instructors).should be_true
+      @crosslist_course.respond_to?(:instructors).should be_truthy
     end
 
 
@@ -121,15 +121,15 @@ describe Course do
 
     it "lowercases all enromment_netids" do
       @crosslist_course.sections.first.stub(:instructor_netids).and_return(['UPPER'])
-      expect(@crosslist_course.instructor_netids.include?('upper')).to be_true
-      expect(@crosslist_course.instructor_netids.include?('UPPER')).to be_false
+      expect(@crosslist_course.instructor_netids.include?('upper')).to be_truthy
+      expect(@crosslist_course.instructor_netids.include?('UPPER')).to be_falsey
     end
 
 
     it "strips all instructor netids" do
       @crosslist_course.sections.first.stub(:instructor_netids).and_return([' strip '])
-      expect(@crosslist_course.instructor_netids.include?('strip')).to be_true
-      expect(@crosslist_course.instructor_netids.include?(' strip ')).to be_false
+      expect(@crosslist_course.instructor_netids.include?('strip')).to be_truthy
+      expect(@crosslist_course.instructor_netids.include?(' strip ')).to be_falsey
     end
 
 

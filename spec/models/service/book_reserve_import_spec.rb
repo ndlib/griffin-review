@@ -21,7 +21,7 @@ describe BookReserveImport do
 
     it "sets the reserve as being a physical reserve" do
       @ibr.import!
-      expect(@ibr.reserves.first.physical_reserve).to be_true
+      expect(@ibr.reserves.first.physical_reserve).to be_truthy
     end
 
 
@@ -32,7 +32,7 @@ describe BookReserveImport do
 
     it "imports a book that does not have an existing reserve to the course" do
       @ibr.import!
-      expect(@ibr.reserves.first.request.new_record?).to be_false
+      expect(@ibr.reserves.first.request.new_record?).to be_falsey
     end
 
 
@@ -64,7 +64,7 @@ describe BookReserveImport do
 
     it "sets the reserve as being currently in aleph" do
       @ibr.import!
-      expect(@ibr.reserves.first.currently_in_aleph).to be_true
+      expect(@ibr.reserves.first.currently_in_aleph).to be_truthy
     end
 
     it "sets the synchronization date" do
@@ -111,7 +111,7 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.reserves.first.electronic_reserve).to be_false
+      expect(@ibr.reserves.first.electronic_reserve).to be_falsey
     end
 
   end
@@ -121,7 +121,7 @@ describe BookReserveImport do
     it "returns false if this happens" do
       @api_data['format'] = "not a format"
       @ibr = BookReserveImport.new(@api_data)
-      expect(@ibr.import!).to be_false
+      expect(@ibr.import!).to be_falsey
     end
 
 
@@ -159,7 +159,7 @@ describe BookReserveImport do
 
       @existing_reserve.item.reload()
       expect(@existing_reserve.type).to eq("BookReserve")
-      expect(@existing_reserve.physical_reserve).to be_false
+      expect(@existing_reserve.physical_reserve).to be_falsey
     end
 
 
@@ -177,7 +177,7 @@ describe BookReserveImport do
 
       @existing_reserve.item.reload()
       expect(@existing_reserve.type).to eq("VideoReserve")
-      expect(@existing_reserve.electronic_reserve).to be_false
+      expect(@existing_reserve.electronic_reserve).to be_falsey
     end
 
 
@@ -204,14 +204,14 @@ describe BookReserveImport do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.import!
 
-      expect(@ibr.success?).to be_true
+      expect(@ibr.success?).to be_truthy
     end
 
     it "can tell you if it failed" do
       @ibr = BookReserveImport.new(@api_data)
       @ibr.errors << "HI"
 
-      expect(@ibr.success?).to be_false
+      expect(@ibr.success?).to be_falsey
     end
   end
 

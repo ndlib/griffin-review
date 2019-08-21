@@ -12,7 +12,7 @@ describe LibraryReserveForm do
 
     it "sets reserve attributes to the virtus attributes" do
       @form = LibraryReserveForm.new(@reserve, {})
-      expect(@form.send(:library)).to be_true
+      expect(@form.send(:library)).to be_truthy
     end
 
 

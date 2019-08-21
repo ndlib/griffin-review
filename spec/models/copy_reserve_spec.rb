@@ -35,7 +35,7 @@ describe CopyReserve do
     @reserve.currently_in_aleph = true
     @reserve.save!
 
-    expect(@copy_reserve.copy.currently_in_aleph).to be_false
+    expect(@copy_reserve.copy.currently_in_aleph).to be_falsey
   end
 
   it "changes the course to the new course" do
@@ -49,7 +49,7 @@ describe CopyReserve do
     @reserve.currently_in_aleph = true
     @copy_reserve = CopyReserve.new(user, to_course, @reserve)
 
-    expect(@copy_reserve.copy.currently_in_aleph).to be_true
+    expect(@copy_reserve.copy.currently_in_aleph).to be_truthy
   end
 
   it "changes the state to new " do

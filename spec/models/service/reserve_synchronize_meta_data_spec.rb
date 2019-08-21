@@ -43,7 +43,7 @@ describe ReserveSynchronizeMetaData do
       it "sets the overwrite_nd_meta_data back to false" do
         @reserve.overwrite_nd_meta_data = true
         ReserveSynchronizeMetaData.new(@reserve).synchronize!
-        @reserve.overwrite_nd_meta_data.should be_false
+        @reserve.overwrite_nd_meta_data.should be_falsey
       end
 
       it "sets the metadata_synchronization_date to time.now" do
@@ -123,12 +123,12 @@ describe ReserveSynchronizeMetaData do
 
       it "returns true if the record is found" do
         DiscoveryApi.stub(:search_by_ids).and_return([ @discovery_record ])
-        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_true
+        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_truthy
       end
 
       it "returns false if the record is not found" do
         DiscoveryApi.stub(:search_by_ids).and_return([ ])
-        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_false
+        expect(ReserveSynchronizeMetaData.new(@reserve).valid_discovery_id?).to be_falsey
       end
     end
 

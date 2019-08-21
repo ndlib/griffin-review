@@ -70,7 +70,7 @@ Griffin::Application.configure do
 
   # Action mailer settings
   config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.default_url_options = { :host => "reservespprd.library.nd.edu" }
+  config.action_mailer.default_url_options = { :host => "reserves-prep.library.nd.edu" }
 
   # Custom configuration
   config.ldap_lookup_flag               = true
@@ -88,4 +88,7 @@ Griffin::Application.configure do
   config.nd_calendar                    = 'http://calendar.nd.edu'
   config.nd_calendar_path               = '/webcache/v1.0/xmlDays/356/list-xml/%28catuid%3D%272c936ab1-29f6bcb3-012a-15374ec0-00000e64%27%29.xml'
 
+  Raven.configure do |sentry|
+    sentry.dsn = Rails.application.secrets.sentry["dsn"]
+  end
 end

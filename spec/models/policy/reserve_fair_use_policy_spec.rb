@@ -11,7 +11,7 @@ describe ReserveFairUsePolicy do
 
       policy.stub(:requires_fair_use?).and_return(true)
 
-      policy.complete?.should be_false
+      policy.complete?.should be_falsey
     end
 
 
@@ -21,7 +21,7 @@ describe ReserveFairUsePolicy do
 
       policy.stub(:requires_fair_use?).and_return(false)
 
-      policy.complete?.should be_true
+      policy.complete?.should be_truthy
     end
 
 
@@ -32,7 +32,7 @@ describe ReserveFairUsePolicy do
       policy = ReserveFairUsePolicy.new(reserve)
       policy.stub(:requires_fair_use?).and_return(true)
 
-      policy.complete?.should be_true
+      policy.complete?.should be_truthy
     end
 
   end
@@ -45,7 +45,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book_chapter), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_true
+      policy.requires_fair_use?.should be_truthy
     end
 
 
@@ -56,14 +56,14 @@ describe ReserveFairUsePolicy do
 
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_false
+      policy.requires_fair_use?.should be_falsey
     end
 
     it "returns true is the type of the request is a journal with a file attached" do
       reserve = mock_reserve FactoryGirl.create(:request, :journal_file), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_true
+      policy.requires_fair_use?.should be_truthy
     end
 
 
@@ -71,7 +71,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :video), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_true
+      policy.requires_fair_use?.should be_truthy
     end
 
 
@@ -79,7 +79,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :audio), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_true
+      policy.requires_fair_use?.should be_truthy
     end
 
 
@@ -87,7 +87,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :journal_url), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_false
+      policy.requires_fair_use?.should be_falsey
     end
 
 
@@ -95,7 +95,7 @@ describe ReserveFairUsePolicy do
       reserve = mock_reserve FactoryGirl.create(:request, :book), nil
       policy = ReserveFairUsePolicy.new(reserve)
 
-      policy.requires_fair_use?.should be_false
+      policy.requires_fair_use?.should be_falsey
     end
 
   end

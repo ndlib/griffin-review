@@ -10,13 +10,13 @@ describe PlaceItemOnOrderForm do
 
     it "#currently_on_order? is true" do
       @reserve.stub(on_order: true)
-      expect(@form.currently_on_order?).to be_true
+      expect(@form.currently_on_order?).to be_truthy
     end
 
 
     it "#currently_on_order? is false" do
       @reserve.stub(on_order: false)
-      expect(@form.currently_on_order?).to be_false
+      expect(@form.currently_on_order?).to be_falsey
     end
   end
 
@@ -30,14 +30,14 @@ describe PlaceItemOnOrderForm do
 
     it "returns true if the status is inprocess" do
       @reserve.stub(:workflow_state).and_return('inprocess')
-      expect(@form.can_place_on_order?).to be_true
+      expect(@form.can_place_on_order?).to be_truthy
     end
 
 
     it "returns false for the other states" do
       ['new', 'completed', 'removed'].each do | state |
         @reserve.stub(:workflow_state).and_return(state)
-        expect(@form.can_place_on_order?).to be_false
+        expect(@form.can_place_on_order?).to be_falsey
       end
     end
 
@@ -74,7 +74,7 @@ describe PlaceItemOnOrderForm do
       @reserve.on_order = false
       @form.toggle_on_order!
 
-      expect(@form.reserve.on_order).to be_true
+      expect(@form.reserve.on_order).to be_truthy
     end
 
 
@@ -82,7 +82,7 @@ describe PlaceItemOnOrderForm do
       @reserve.on_order = nil
       @form.toggle_on_order!
 
-      expect(@form.reserve.on_order).to be_true
+      expect(@form.reserve.on_order).to be_truthy
     end
 
 
@@ -90,7 +90,7 @@ describe PlaceItemOnOrderForm do
       @reserve.on_order = true
       @form.toggle_on_order!
 
-      expect(@form.reserve.on_order).to be_false
+      expect(@form.reserve.on_order).to be_falsey
     end
   end
 end

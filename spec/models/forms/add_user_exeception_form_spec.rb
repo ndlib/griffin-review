@@ -21,7 +21,7 @@ describe AddUserExeceptionForm do
     it "validates that the netid is in LDAP" do
       User.any_instance.stub(:save!).and_raise(User::LDAPException.new("LDAP Lookup failed for 'username'"))
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'enrollment', netid: 'netid' } } )
-      expect(auef.save_user_exception).to be_false
+      expect(auef.save_user_exception).to be_falsey
       expect(auef.errors.size).to eq(1)
     end
 
@@ -52,7 +52,7 @@ describe AddUserExeceptionForm do
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'enrollment', netid: 'netid' } } )
       auef.stub(:test_user?).and_return(true)
 
-      expect(auef.save_user_exception).to be_true
+      expect(auef.save_user_exception).to be_truthy
       expect(UserCourseException.user_exceptions('netid', @course.term).size).to eq(1)
     end
 
@@ -61,7 +61,7 @@ describe AddUserExeceptionForm do
       auef = AddUserExeceptionForm.new(user, { course_id: 'current_multisection_crosslisted', add_user_exeception_form: { role: 'instructor', netid: 'netid' } } )
       auef.stub(:test_user?).and_return(true)
 
-      expect(auef.save_user_exception).to be_true
+      expect(auef.save_user_exception).to be_truthy
       expect(UserCourseException.user_exceptions('netid', @course.term).size).to eq(1)
     end
 

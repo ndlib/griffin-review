@@ -8,7 +8,7 @@ describe ReserveIsEditablePolicy do
     semester = double(Semester, :current? => true )
     reserve = double(Reserve, :semester => semester)
 
-    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_true
+    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_truthy
 
   end
 
@@ -17,7 +17,7 @@ describe ReserveIsEditablePolicy do
     semester = double(Semester, :current? => false, :future? => true )
     reserve = double(Reserve, :semester => semester)
 
-    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_true
+    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_truthy
 
   end
 
@@ -25,7 +25,7 @@ describe ReserveIsEditablePolicy do
     semester = double(Semester, :current? => false, :future? => false )
     reserve = double(Reserve, :semester => semester)
 
-    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_false
+    ReserveIsEditablePolicy.new(reserve).is_editable?.should be_falsey
   end
 
 end

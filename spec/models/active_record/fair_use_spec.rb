@@ -56,7 +56,7 @@ describe FairUse do
       f = FairUse.new(:user => User.new(id: 1), request: Request.new(id: 1), comments: "comments", state: "approved")
       nf = f.copy_to_new_request!(Request.new(id: 2), User.new(id: 2))
 
-      nf.new_record?.should be_false
+      nf.new_record?.should be_falsey
     end
   end
 
@@ -97,31 +97,31 @@ describe FairUse do
   describe :complete? do
 
     it "is comeplete if the state is approved" do
-      FairUse.new(user_id: 1, state: "approved").complete?.should be_true
+      FairUse.new(user_id: 1, state: "approved").complete?.should be_truthy
     end
 
 
     it "is complete if the state is denied" do
-      FairUse.new(user_id: 1, state: "denied").complete?.should be_true
+      FairUse.new(user_id: 1, state: "denied").complete?.should be_truthy
     end
 
 
     it "is complete if the state is temporary_approval" do
-      FairUse.new(user_id: 1, state: "temporary_approval").complete?.should be_true
+      FairUse.new(user_id: 1, state: "temporary_approval").complete?.should be_truthy
     end
 
 
     it "is complete if the state is sipx_cleared" do
-      FairUse.new(user_id: 1, state: "sipx_cleared").complete?.should be_true
+      FairUse.new(user_id: 1, state: "sipx_cleared").complete?.should be_truthy
     end
 
 
     it "is complete if the state is copy_rights_cleared" do
-      FairUse.new(user_id: 1, state: "copy_rights_cleared").complete?.should be_true
+      FairUse.new(user_id: 1, state: "copy_rights_cleared").complete?.should be_truthy
     end
 
     it "is not complete if the state is update" do
-      FairUse.new(user_id: 1, state: "update").complete?.should be_false
+      FairUse.new(user_id: 1, state: "update").complete?.should be_falsey
     end
 
 

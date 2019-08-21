@@ -22,10 +22,10 @@ set :repository,  "https://github.com/ndlib/griffin.git"
 
 set :user, 'app'
 
-desc "Setup for the Pre-Production environment"
-task :pre_production do
-  # Customize pre_production configuration
-  set :rails_env, 'pre_production'
+desc "Setup for the prep environment"
+task :prep do
+  # Customize prep configuration
+  set :rails_env, 'prep'
   role :app, "reserves-prep.lc.nd.edu"
 
   set :hipchat_token, "c290a842542721d6aee18a3cb900a1"
