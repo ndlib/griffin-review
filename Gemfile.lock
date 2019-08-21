@@ -392,6 +392,8 @@ GEM
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
+    sentry-raven (2.11.0)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     simple_form (3.0.4)
       actionpack (~> 4.0)
@@ -527,6 +529,7 @@ DEPENDENCIES
   sass-rails
   savon (= 2.2.0)
   selenium-webdriver
+  sentry-raven (~> 2.7)
   simple_form (~> 3.0.0)
   simple_token_authentication (~> 1.0)
   sort_alphabetical
