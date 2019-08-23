@@ -176,9 +176,6 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     growl (1.0.3)
-    growl-rspec (3.0.0)
-      growl
-      rspec (~> 3.0)
     guard (2.15.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -499,7 +496,6 @@ DEPENDENCIES
   faraday (= 0.15.4)
   faraday_middleware (= 0.13.1)
   growl
-  growl-rspec
   guard-bundler
   guard-coffeescript
   guard-livereload

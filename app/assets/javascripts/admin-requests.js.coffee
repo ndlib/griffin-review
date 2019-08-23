@@ -27,7 +27,7 @@ class AdminDataTable
       object.infoCallback(settings, start, end, max, total, pre)
     @table = @tableElement.DataTable(
       dom: "f<'row-fluid'<'span6'i><'span6 paginate-right'p>r>t<'row-fluid'<'span6'i><'span6 paginate-right'p>>",
-      pagingType: "bootstrap"
+      pagingType: "full_numbers"
       lengthChange: false
       deferRender: true
       pageLength: 100

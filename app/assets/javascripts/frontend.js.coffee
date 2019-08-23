@@ -29,7 +29,7 @@ jQuery ($) ->
     if $(".student_datatable").size() > 0
       # For student table
       oTable = $(".student_datatable").dataTable(
-        sPaginationType: "bootstrap"
+        sPaginationType: "full_numbers"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
@@ -117,7 +117,7 @@ jQuery ($) ->
   setupCopyOldReserveDatatable = () ->
     if $(".copy_old_reserve_datatable").size() > 0
       oTable = $(".copy_old_reserve_datatable").dataTable(
-        sPaginationType: "bootstrap"
+        sPaginationType: "full_numbers"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
@@ -134,7 +134,7 @@ jQuery ($) ->
   setupUsersDatatable = () ->
     if $(".users_datatable").size() > 0
       oTable = $(".users_datatable").dataTable(
-        sPaginationType: "bootstrap"
+        sPaginationType: "full_numbers"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
