@@ -29,7 +29,7 @@ jQuery ($) ->
     if $(".student_datatable").size() > 0
       # For student table
       oTable = $(".student_datatable").dataTable(
-        sPaginationType: "full_numbers"
+        sPaginationType: "simple"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
@@ -51,7 +51,7 @@ jQuery ($) ->
     if $(".instructor_datatable").size() > 0
       # For instructor table
       oTable = $(".instructor_datatable").dataTable(
-        pagingType: "bootstrap"
+        pagingType: "simple"
         pageLength: 1000
         lengthChange: false
         columnDefs: [
@@ -93,7 +93,7 @@ jQuery ($) ->
       sortableTitle: 2
     if $(".copy_reserve_datatable").size() > 0
       oTable = $(".copy_reserve_datatable").dataTable(
-        pagingType: "bootstrap"
+        pagingType: "simple"
         searching: false
         pageLength: 1000
         lengthChange: false
@@ -117,7 +117,7 @@ jQuery ($) ->
   setupCopyOldReserveDatatable = () ->
     if $(".copy_old_reserve_datatable").size() > 0
       oTable = $(".copy_old_reserve_datatable").dataTable(
-        sPaginationType: "full_numbers"
+        sPaginationType: "simple"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
@@ -134,7 +134,7 @@ jQuery ($) ->
   setupUsersDatatable = () ->
     if $(".users_datatable").size() > 0
       oTable = $(".users_datatable").dataTable(
-        sPaginationType: "full_numbers"
+        sPaginationType: "simple"
         iDisplayLength: 1000
         bLengthChange: false
         aoColumnDefs: [
@@ -191,6 +191,9 @@ jQuery ($) ->
         $(this).popover('hide')
 
       input.focus()
+    $('.span6').first().remove();
+    $('.span6').first().toggleClass('span6 span12');
+    $('div.dataTables_filter').first().removeClass('dataTables_filter');
 
 
   $('.has_electronic_copy_checkbox').change ->
