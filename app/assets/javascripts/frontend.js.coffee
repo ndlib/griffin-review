@@ -114,23 +114,6 @@ jQuery ($) ->
       setupTableFilters()
 
 
-  setupCopyOldReserveDatatable = () ->
-    if $(".copy_old_reserve_datatable").size() > 0
-      oTable = $(".copy_old_reserve_datatable").dataTable(
-        sPaginationType: "bootstrap"
-        iDisplayLength: 1000
-        bLengthChange: false
-        aoColumnDefs: [
-          bVisible: true
-          bSortable: false
-          bSearchable: false
-          aTargets: [4]
-        ]
-      )
-
-      setupTableFilters()
-
-
   setupUsersDatatable = () ->
     if $(".users_datatable").size() > 0
       oTable = $(".users_datatable").dataTable(
@@ -270,7 +253,6 @@ jQuery ($) ->
   setupStudentDatatable()
   setupInstructorDatatable()
   setupCopyReserveDatatable()
-  setupCopyOldReserveDatatable()
   setupUsersDatatable()
   setupPlaylistForm()
 
