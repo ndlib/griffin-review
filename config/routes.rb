@@ -28,8 +28,6 @@ Griffin::Application.routes.draw do
       get 'copy', to: 'copy_reserves#copy_step1'
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
       post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
-      get 'copy_old_reserves', to: 'copy_old_reserves#new'
-      post 'copy_old_reserves', to: 'copy_old_reserves#create'
       resources :users, controller: 'course_users', only: [:new, :create, :index, :destroy]
 
       get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
