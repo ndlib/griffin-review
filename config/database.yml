@@ -13,17 +13,6 @@ mysql_settings: &mysql_settings
   host: <%= Rails.application.secrets.database["host"] %>
   database: <%= Rails.application.secrets.database["database"] %>
 
-open_reserves_mysql_settings: &open_reserves_mysql_settings
-  adapter: mysql2
-  pool:    5
-  encoding: utf8
-  reconnect: false
-  timeout: 5000
-  username: <%= Rails.application.secrets.open_reserves["username"] %>
-  password: <%= Rails.application.secrets.open_reserves["password"] %>
-  host:     <%= Rails.application.secrets.open_reserves["host"] %>
-  database: <%= Rails.application.secrets.open_reserves["database"] %>
-
 ##########################################
 # Environments
 ##########################################
@@ -39,16 +28,3 @@ prep:
 
 production:
   <<: *mysql_settings
-
-
-open_reserves_development:
-  <<: *open_reserves_mysql_settings
-
-open_reserves_test:
-  <<: *open_reserves_mysql_settings
-
-open_reserves_pprd:
-  <<: *open_reserves_mysql_settings
-
-open_reserves_prod:
-  <<: *open_reserves_mysql_settings
