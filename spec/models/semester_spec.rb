@@ -49,23 +49,23 @@ describe Semester do
   it "can get all the semesters before a semster " do
     semesters = Semester.semesters_before_semester(@next_semester)
     semesters.size.should == 2
-    semesters.include?(@current_semester).should be_true
-    semesters.include?(@last_semester).should be_true
+    semesters.include?(@current_semester).should be_truthy
+    semesters.include?(@last_semester).should be_truthy
   end
 
 
   it "can determine if it is the current semester" do
-    @current_semester.current?.should be_true
-    @next_semester.current?.should be_false
-    @distant_semester.current?.should be_false
-    @last_semester.current?.should be_false
+    @current_semester.current?.should be_truthy
+    @next_semester.current?.should be_falsey
+    @distant_semester.current?.should be_falsey
+    @last_semester.current?.should be_falsey
   end
 
 
   it "can determine if it is in the future" do
-    @current_semester.future?.should be_false
-    @next_semester.future?.should be_true
-    @distant_semester.future?.should be_true
-    @last_semester.future?.should be_false
+    @current_semester.future?.should be_falsey
+    @next_semester.future?.should be_truthy
+    @distant_semester.future?.should be_truthy
+    @last_semester.future?.should be_falsey
   end
 end

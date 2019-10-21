@@ -20,7 +20,7 @@ describe API::PrintReserves do
         record = API::PrintReserves.all.first
       end
 
-      expect(record.has_key?("bib_id")).to be_true
+      expect(record.has_key?("bib_id")).to be_truthy
     end
 
     it "has a crosslist id" do
@@ -29,7 +29,7 @@ describe API::PrintReserves do
         record = API::PrintReserves.all.first
       end
 
-      expect(record.has_key?("crosslist_id")).to be_true
+      expect(record.has_key?("crosslist_id")).to be_truthy
     end
 
 
@@ -39,7 +39,7 @@ describe API::PrintReserves do
         record = API::PrintReserves.all.first
       end
 
-      expect(record.has_key?("doc_number")).to be_true
+      expect(record.has_key?("doc_number")).to be_truthy
     end
   end
 

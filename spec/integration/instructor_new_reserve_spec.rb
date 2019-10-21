@@ -44,8 +44,8 @@ describe "Instructor New Reserve" do
     expect(page).to have_selector('.title', text: 'title')
 
     reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_true
-    expect(reserve.electronic_reserve?).to be_false
+    expect(reserve.physical_reserve?).to be_truthy
+    expect(reserve.electronic_reserve?).to be_falsey
   end
 
 
@@ -70,8 +70,8 @@ describe "Instructor New Reserve" do
     expect(page).to have_selector('.title', text: 'title')
 
     reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_false
-    expect(reserve.electronic_reserve?).to be_true
+    expect(reserve.physical_reserve?).to be_falsey
+    expect(reserve.electronic_reserve?).to be_truthy
   end
 
 
@@ -95,8 +95,8 @@ describe "Instructor New Reserve" do
     expect(page).to have_selector('.title', text: 'title')
 
     reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_false
-    expect(reserve.electronic_reserve?).to be_true
+    expect(reserve.physical_reserve?).to be_falsey
+    expect(reserve.electronic_reserve?).to be_truthy
   end
 
 
@@ -121,8 +121,8 @@ describe "Instructor New Reserve" do
     expect(page).to have_selector('.title', text: 'title')
 
     reserve = Reserve.factory(Request.last)
-    expect(reserve.physical_reserve?).to be_false
-    expect(reserve.electronic_reserve?).to be_true
+    expect(reserve.physical_reserve?).to be_falsey
+    expect(reserve.electronic_reserve?).to be_truthy
   end
 
 

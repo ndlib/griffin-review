@@ -26,7 +26,7 @@ describe SaveReserveMediaPlaylist do
   end
 
   it "does not save a new record if there is no rows" do
-    expect(SaveReserveMediaPlaylist.call(reserve)).to be_false
+    expect(SaveReserveMediaPlaylist.call(reserve)).to be_falsey
     expect(reserve.media_playlist).to be_nil
   end
 
@@ -41,7 +41,7 @@ describe SaveReserveMediaPlaylist do
     playlist = SaveReserveMediaPlaylist.call(reserve) do | srmp |
       srmp.add_row('', '')
     end
-    expect(playlist).to be_false  # can't add with no rows
+    expect(playlist).to be_falsey  # can't add with no rows
   end
 
 end

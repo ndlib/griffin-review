@@ -74,8 +74,8 @@ describe CopyCourseReservesForm do
       items = CopyOldCourseReservesForm.new(user, valid_params).copy!
       items.size.should == 1
       items.first.title.should=="title"
-      items.first.valid?.should be_true
-      items.first.request.new_record?.should be_false
+      items.first.valid?.should be_truthy
+      items.first.request.new_record?.should be_falsey
     end
 
 

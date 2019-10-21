@@ -66,11 +66,11 @@ describe CourseUser do
   describe :can_be_deleted? do
 
     it "returns true if the users is an exception " do
-      expect(CourseUser.new(@user, @course, 'enrollment', 'exception').can_be_deleted?).to be_true
+      expect(CourseUser.new(@user, @course, 'enrollment', 'exception').can_be_deleted?).to be_truthy
     end
 
     it "returns false if the user is from banner" do
-      expect(CourseUser.new(@user, @course, 'enrollment', 'banner').can_be_deleted?).to be_false
+      expect(CourseUser.new(@user, @course, 'enrollment', 'banner').can_be_deleted?).to be_falsey
     end
   end
 
@@ -83,7 +83,7 @@ describe CourseUser do
       Rails.configuration.stub(:ldap_lookup_flag).and_return(true)
 
       user = CourseUser.netid_factory('jhartzle', @course, 'enrollment', 'banner')
-      expect(user.user.new_record?).to be_false
+      expect(user.user.new_record?).to be_falsey
       expect(user.username).to eq('jhartzle')
       expect(user.display_name).to eq('Bob J Bobbers')
     end

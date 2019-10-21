@@ -35,7 +35,7 @@ describe CopyReservesController do
         CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
         post :copy, :course_id => "current_multisection_crosslisted", :from_course_id => "previous_multisection"
-        assigns(:copy_course_listing).should be_true
+        assigns(:copy_course_listing).should be_truthy
       end
 
 
@@ -56,7 +56,7 @@ describe CopyReservesController do
         CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
         get :copy_step1, :course_id => "current_multisection_crosslisted"
-        assigns(:copy_course_listing).should be_true
+        assigns(:copy_course_listing).should be_truthy
       end
     end
 
@@ -74,7 +74,7 @@ describe CopyReservesController do
         CopyReservesController.any_instance.stub(:check_instructor_permissions!).and_return(true)
 
         get :copy_step2, :course_id => "current_multisection_crosslisted", :from_course_id => "previous_multisection"
-        assigns(:copy_course_listing).should be_true
+        assigns(:copy_course_listing).should be_truthy
       end
 
     end

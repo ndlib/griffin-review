@@ -23,7 +23,7 @@ development:
 test: &test
   <<: *mysql_settings
 
-pre_production:
+prep:
   <<: *mysql_settings
 
 production:

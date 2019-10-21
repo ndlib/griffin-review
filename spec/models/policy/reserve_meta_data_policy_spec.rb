@@ -14,19 +14,19 @@ describe ReserveMetaDataPolicy do
         reserve.stub(:nd_meta_data_id).and_return("metadataid")
         subject.stub(:reserve_in_aleph?).and_return(true)
 
-        subject.complete?.should be_true
+        subject.complete?.should be_truthy
       end
 
 
       it "returns false if the record id has not been set" do
         subject.stub(:reserve_in_aleph?).and_return(true)
 
-        subject.complete?.should be_false
+        subject.complete?.should be_falsey
       end
 
       it "returns false if it is not currently in aleph " do
         @reserve.stub(:nd_meta_data_id).and_return("metadataid")
-        subject.complete?.should be_false
+        subject.complete?.should be_falsey
       end
 
     end
@@ -42,14 +42,14 @@ describe ReserveMetaDataPolicy do
         reserve.stub(:reviewed?).and_return(true)
         reserve.stub(:workflow_state).and_return('inprocess')
 
-        subject.complete?.should be_true
+        subject.complete?.should be_truthy
       end
 
 
       it "returns false if the reserve has not been reviewed and it is not a physical_reserve" do
         reserve.stub(:reviewed?).and_return(false)
 
-        subject.complete?.should be_false
+        subject.complete?.should be_falsey
       end
 
     end

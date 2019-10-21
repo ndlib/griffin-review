@@ -6,7 +6,8 @@ class CourseReservesController < ApplicationController
     # begin code can be removed after fall 2013
     begin
       @user_course_show = CourseReserveList.build_from_params(self)
-    rescue OpenURI::HTTPError
+    rescue OpenURI::HTTPError => e
+      Raven.capture_exception(e)
       lookup = API::CourseSearchApi.course_id(params[:course_id])
       if lookup['section_groups'].first['crosslist_id']
         redirect_to course_reserves_path(lookup['section_groups'].first['crosslist_id'])

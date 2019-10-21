@@ -40,13 +40,13 @@ describe RequestFixMissingCourseForm do
       res2 = FactoryGirl.create(:request, course_id: 'missing_course_id')
       reserve
       params[:fix_all_courses_with_old_course_id] = true
-      expect(subject.update_course_id!).to be_true
+      expect(subject.update_course_id!).to be_truthy
     end
 
 
     it "does nothing if the form is not valid" do
       subject.stub(:valid?).and_return(false)
-      expect(subject.update_course_id!).to be_false
+      expect(subject.update_course_id!).to be_falsey
     end
 
   end

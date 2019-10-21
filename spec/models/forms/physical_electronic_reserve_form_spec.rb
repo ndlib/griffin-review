@@ -15,7 +15,7 @@ describe PhysicalElectronicReserveForm do
     it "sets reserve attributes to the virtus attributes" do
       @form = PhysicalElectronicReserveForm.new(@reserve, {})
       ['physical_reserve', 'electronic_reserve'].each do | attr |
-        expect(@form.send(attr)).to be_true
+        expect(@form.send(attr)).to be_truthy
       end
     end
 
@@ -24,7 +24,7 @@ describe PhysicalElectronicReserveForm do
       params = { physical_reserve: false, electronic_reserve: false }
       @form = PhysicalElectronicReserveForm.new(@reserve, params)
       ['physical_reserve', 'electronic_reserve'].each do | attr |
-        expect(@form.send(attr)).to be_false
+        expect(@form.send(attr)).to be_falsey
       end
     end
 
@@ -73,7 +73,7 @@ describe PhysicalElectronicReserveForm do
 
     it "fails validation when both physical and electronic is false" do
       @form = PhysicalElectronicReserveForm.new(@reserve, {physical_reserve: false, electronic_reserve: false})
-      expect(@form.valid?).to be_false
+      expect(@form.valid?).to be_falsey
     end
 
 
@@ -81,7 +81,7 @@ describe PhysicalElectronicReserveForm do
       @form = PhysicalElectronicReserveForm.new(@reserve, {physical_reserve: false, electronic_reserve: true})
       @form.update_reserve_type!
 
-      expect(@form.reserve.electronic_reserve?).to be_true
+      expect(@form.reserve.electronic_reserve?).to be_truthy
     end
 
 
@@ -89,7 +89,7 @@ describe PhysicalElectronicReserveForm do
       @form = PhysicalElectronicReserveForm.new(@reserve, {physical_reserve: true, electronic_reserve: false})
       @form.update_reserve_type!
 
-      expect(@form.reserve.physical_reserve?).to be_true
+      expect(@form.reserve.physical_reserve?).to be_truthy
     end
   end
 end

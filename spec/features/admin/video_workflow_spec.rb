@@ -39,11 +39,11 @@ describe "Video Workflow Integration" do
     end
     it "marks the video as library owned" do
       visit request_admin_edit_path(@request_b)
-      find_field('Library Owns?').checked?.should be_false
+      find_field('Library Owns?').checked?.should be_falsey
       check('Library Owns?')
       click_button('Save')
       visit request_admin_edit_path(@request_b)
-      find_field('Library Owns?').value.should be_true
+      find_field('Library Owns?').value.should be_truthy
     end
     it "transitions workflow state to awaiting_acquisitions" do
       visit request_admin_edit_path(@request_b)

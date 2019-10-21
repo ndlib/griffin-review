@@ -96,7 +96,7 @@ describe ListUsersCourses do
 
     it "only returns courses with reserves" do
       reserves = ListUsersCourses.new(student_user)
-      expect(reserves.enrolled_courses.include?(@no_reserve_course)).to be_false
+      expect(reserves.enrolled_courses.include?(@no_reserve_course)).to be_falsey
     end
 
   end

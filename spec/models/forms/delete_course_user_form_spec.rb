@@ -11,7 +11,7 @@ describe DeleteCourseUserForm do
 
     it "returns a link if the course user can be deleted from the course" do
       @course_user.stub(:can_be_deleted?).and_return(true)
-      expect(@delete_course_user.delete_link.include?("<a ")).to be_true
+      expect(@delete_course_user.delete_link.include?("<a ")).to be_truthy
     end
 
     it "returns empty string if the course user can not be deleted" do

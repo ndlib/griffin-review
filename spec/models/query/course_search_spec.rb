@@ -197,7 +197,7 @@ describe CourseSearch do
     courses.size.should == valid_ids.size
 
     courses.each do | course |
-      valid_ids.include?(course.id).should be_true
+      valid_ids.include?(course.id).should be_truthy
     end
   end
 

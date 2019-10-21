@@ -43,13 +43,13 @@ describe AdminUpdateResource do
 
     it "default_to_streaming? returns true for video files" do
       @reserve.stub(:type).and_return('VideoReserve')
-      expect(@form.default_to_streaming?).to be_true
+      expect(@form.default_to_streaming?).to be_truthy
     end
 
 
     it "default_to_streaming? returns true for audio files" do
       @reserve.stub(:type).and_return('AudioReserve')
-      expect(@form.default_to_streaming?).to be_true
+      expect(@form.default_to_streaming?).to be_truthy
     end
   end
 
@@ -75,7 +75,7 @@ describe AdminUpdateResource do
 
       aur = AdminUpdateResource.new(@user, { :id => pdf_reserve.id, :admin_update_resource => { :pdf => mock_file }})
 
-      aur.save_resource.should be_true
+      aur.save_resource.should be_truthy
       aur.reserve.pdf.original_filename.should == "test.pdf"
     end
 
@@ -87,7 +87,7 @@ describe AdminUpdateResource do
 
       aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { :url => "url" }})
 
-      aur.save_resource.should be_true
+      aur.save_resource.should be_truthy
       aur.reserve.url.should == "url"
     end
 
@@ -96,7 +96,7 @@ describe AdminUpdateResource do
       url_reserve.save!
 
       aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { playlist_rows: [ {'title' => 'title', 'filename' => 'file'} ] }})
-      expect(aur.save_resource).to be_true
+      expect(aur.save_resource).to be_truthy
 
       url_reserve.item.reload()
       expect(url_reserve.media_playlist).to be_a(MediaPlaylist)

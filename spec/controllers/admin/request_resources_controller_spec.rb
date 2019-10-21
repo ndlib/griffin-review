@@ -102,7 +102,7 @@ describe RequestsResourcesController do
 
       delete :destroy, id: reserve.id
       reserve.item.reload()
-      expect(reserve.pdf.present?).to be_false
+      expect(reserve.pdf.present?).to be_falsey
     end
 
 
@@ -112,7 +112,7 @@ describe RequestsResourcesController do
       delete :destroy, id: reserve.id
 
       reserve.item.reload()
-      expect(reserve.url.present?).to be_false
+      expect(reserve.url.present?).to be_falsey
     end
   end
 

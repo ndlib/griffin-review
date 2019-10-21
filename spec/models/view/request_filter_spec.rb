@@ -13,7 +13,7 @@ describe RequestFilter do
     end
   end
 
-  subject { described_class.new(controller)}
+  subject { described_class.new(controller: controller)}
 
   describe :session_saving do
 
@@ -114,33 +114,33 @@ describe RequestFilter do
 
       describe '#default_library?' do
         it 'is true for library1' do
-          expect(subject.default_library?('library1')).to be_true
+          expect(subject.default_library?('library1')).to be_truthy
         end
 
         it 'is false for library3' do
-          expect(subject.default_library?('library3')).to be_false
+          expect(subject.default_library?('library3')).to be_falsey
         end
 
         it 'is true if the params change the selected libraries' do
           params[:admin_request_filter] = { libraries: [ 'library3', 'library4'] }
-          expect(subject.library_selected?('library1')).to be_false
-          expect(subject.default_library?('library1')).to be_true
+          expect(subject.library_selected?('library1')).to be_falsey
+          expect(subject.default_library?('library1')).to be_truthy
         end
       end
 
       describe '#default_type?' do
         it 'is true for type1' do
-          expect(subject.default_type?('type1')).to be_true
+          expect(subject.default_type?('type1')).to be_truthy
         end
 
         it 'is false for type3' do
-          expect(subject.default_type?('type3')).to be_false
+          expect(subject.default_type?('type3')).to be_falsey
         end
 
         it 'is true if the params change the selected types' do
           params[:admin_request_filter] = { types: [ 'type3', 'type4' ] }
-          expect(subject.type_selected?('type1')).to be_false
-          expect(subject.default_type?('type1')).to be_true
+          expect(subject.type_selected?('type1')).to be_falsey
+          expect(subject.default_type?('type1')).to be_truthy
         end
       end
 
@@ -173,14 +173,14 @@ describe RequestFilter do
     it "returns true if the library selected is in the filters for the library" do
       params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
-      expect(subject.library_selected?('library1')).to be_true
+      expect(subject.library_selected?('library1')).to be_truthy
     end
 
 
     it "returns false if the library selected is in the filters for the library" do
       params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
-      expect(subject.library_selected?('library3')).to be_false
+      expect(subject.library_selected?('library3')).to be_falsey
     end
   end
 
@@ -190,34 +190,34 @@ describe RequestFilter do
     it "returns true if the type selected is in the filters for the type" do
       params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
-      expect(subject.type_selected?('types')).to be_true
+      expect(subject.type_selected?('types')).to be_truthy
     end
 
 
     it "returns false if the type selected is in the filters for the types" do
       params[:admin_request_filter] = { libraries: [ 'library1', 'library2'], types: [ 'types' ] }
 
-      expect(subject.type_selected?('other type')).to be_false
+      expect(subject.type_selected?('other type')).to be_falsey
     end
   end
 
   describe '#status_selected?' do
     it 'is true for new|inprocess' do
-      expect(subject.status_selected?('new|inprocess')).to be_true
+      expect(subject.status_selected?('new|inprocess')).to be_truthy
     end
 
     it 'is false for another status' do
-      expect(subject.status_selected?('new')).to be_false
+      expect(subject.status_selected?('new')).to be_falsey
     end
   end
 
   describe '#default_status?' do
     it 'is true for new|inprocess' do
-      expect(subject.default_status?('new|inprocess')).to be_true
+      expect(subject.default_status?('new|inprocess')).to be_truthy
     end
 
     it 'is false for another status' do
-      expect(subject.default_status?('new')).to be_false
+      expect(subject.default_status?('new')).to be_falsey
     end
   end
 

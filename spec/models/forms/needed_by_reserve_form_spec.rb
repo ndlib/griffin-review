@@ -12,7 +12,7 @@ describe NeededByReserveForm do
 
     it "sets reserve attributes to the virtus attributes" do
       @form = NeededByReserveForm.new(@reserve, {})
-      expect(@form.send(:needed_by)).to be_true
+      expect(@form.send(:needed_by)).to be_truthy
     end
 
 

@@ -26,7 +26,7 @@ describe DeleteReserveElectronicResourceForm do
 
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
 
-      expect(@form.remove!).to be_true
+      expect(@form.remove!).to be_truthy
     end
 
   end

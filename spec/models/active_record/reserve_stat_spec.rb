@@ -15,8 +15,8 @@ describe ReserveStat do
 
   it "can add new stat records " do
     obj = ReserveStat.add_statistic!(@user, @reserve, true)
-    expect(obj.valid?).to be_true
-    expect(obj.new_record?).to be_false
+    expect(obj.valid?).to be_truthy
+    expect(obj.new_record?).to be_falsey
   end
 
   it "has as created at field" do

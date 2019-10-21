@@ -18,7 +18,7 @@ describe 'Report a Problem Spec' do
 
     click_on "Send Message"
 
-    expect(last_email.to.include?('nd@service-now.com')).to be_true
+    expect(last_email.to.include?('nd@service-now.com')).to be_truthy
   end
 
 

@@ -66,7 +66,7 @@ describe ReserveCheckIsComplete do
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_true
+      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_truthy
     end
 
 
@@ -77,7 +77,7 @@ describe ReserveCheckIsComplete do
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_falsey
     end
 
 
@@ -88,7 +88,7 @@ describe ReserveCheckIsComplete do
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_falsey
     end
 
 
@@ -99,7 +99,7 @@ describe ReserveCheckIsComplete do
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(false)
       ElectronicReservePolicy.any_instance.stub(:complete?).and_return(true)
 
-      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_falsey
     end
 
 
@@ -110,7 +110,7 @@ describe ReserveCheckIsComplete do
       ReserveMetaDataPolicy.any_instance.stub(:complete?).and_return(true)
       ElectronicReservePolicy.any_instance.stub(:complete?).and_return(false)
 
-      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_false
+      ReserveCheckIsComplete.new(double(Reserve)).complete?.should be_falsey
     end
   end
 end

@@ -107,10 +107,10 @@ describe RequestTab do
 
   def test_status_filter!(filter, object)
     (RequestTab::VALID_FILTERS - [filter]).each do | f |
-      expect(object.status_filter?(f)).to be_false
+      expect(object.status_filter?(f)).to be_falsey
     end
 
-    expect(object.status_filter?(filter)).to be_true
+    expect(object.status_filter?(filter)).to be_truthy
   end
 
 

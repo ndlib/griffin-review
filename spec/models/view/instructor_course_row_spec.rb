@@ -43,8 +43,8 @@ describe InstructorCourseRow do
     it "returns the special state with a link to the modal if the state is temporary_approval" do
       fair_use.stub(:temporary_approval?).and_return(true)
 
-      expect(subject.workflow_state.include?("Temporarily Approved")).to be_true
-      expect(subject.workflow_state.include?("<a data-toggle=\"modal\" href=\"#temporarily_available_text\"")).to be_true
+      expect(subject.workflow_state.include?("Temporarily Approved")).to be_truthy
+      expect(subject.workflow_state.include?("<a data-toggle=\"modal\" href=\"#temporarily_available_text\"")).to be_truthy
     end
   end
 
@@ -53,12 +53,12 @@ describe InstructorCourseRow do
 
     it "returns true if the item is in a state that it cannot be deleted  " do
       reserve.stub(:workflow_state_events).and_return( [:remove] )
-      expect(subject.can_delete?).to be_true
+      expect(subject.can_delete?).to be_truthy
     end
 
     it "returns false if item is in a state it can be deleted in " do
       reserve.stub(:workflow_state_events).and_return( [:other_event] )
-      expect(subject.can_delete?).to be_false
+      expect(subject.can_delete?).to be_falsey
     end
   end
 
@@ -73,13 +73,13 @@ describe InstructorCourseRow do
 
     it "returns a link if the row can be deleted " do
       subject.stub(:can_delete?).and_return(true)
-      expect(subject.delete_link.match(/<a.*href="/)).to be_true
+      expect(subject.delete_link.match(/<a.*href="/)).to be_truthy
     end
 
 
     it "returns a link if the row can be deleted " do
       subject.stub(:can_delete?).and_return(true)
-      expect(subject.delete_link.match(/<a.*data-confirm="/)).to be_true
+      expect(subject.delete_link.match(/<a.*data-confirm="/)).to be_truthy
     end
   end
 
@@ -89,21 +89,21 @@ describe InstructorCourseRow do
       Permission.any_instance.stub(:current_user_is_administrator?).and_return(true)
       Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(false)
 
-      expect(subject.can_edit?).to be_true
+      expect(subject.can_edit?).to be_truthy
     end
 
     it "returns true if the user is an admin in masq" do
       Permission.any_instance.stub(:current_user_is_administrator?).and_return(false)
       Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(true)
 
-      expect(subject.can_edit?).to be_true
+      expect(subject.can_edit?).to be_truthy
     end
 
     it "returns false if the user is not an admin" do
       Permission.any_instance.stub(:current_user_is_administrator?).and_return(false)
       Permission.any_instance.stub(:current_user_is_admin_in_masquerade?).and_return(false)
 
-      expect(subject.can_edit?).to be_false
+      expect(subject.can_edit?).to be_falsey
     end
   end
 
@@ -118,7 +118,7 @@ describe InstructorCourseRow do
 
     it "returns a link if the row can be edit " do
       subject.stub(:can_edit?).and_return(true)
-      expect(subject.edit_link.match(/<a.*href="/)).to be_true
+      expect(subject.edit_link.match(/<a.*href="/)).to be_truthy
     end
 
   end

@@ -1,7 +1,7 @@
 class AddUserExeceptionForm
   include ModelErrorTrapping
   include GetCourse
-  include Virtus
+  include Virtus.model
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -58,7 +58,8 @@ class AddUserExeceptionForm
         if u.new_record?
           u.save!
         end
-      rescue User::LDAPException
+      rescue User::LDAPException => e
+        Raven.capture_exception(e)
         self.errors.add(:netid, 'Cannot find the netid in LDAP.')
         return false
       end

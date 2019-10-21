@@ -1,22 +1,22 @@
 source 'https://rubygems.org'
 
 group :application do
-  gem 'rails','~> 4.2.0'
+  gem 'rails', '~> 4.2.11'
 
   # '3.2.13'
   # Bundle edge Rails instead:
   # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
   # ILS compendium gem
-  gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
+  # gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
 
   gem 'addressable'
-
+  gem 'bigdecimal', '1.3.2'
   # db backends
-  gem 'mysql2', "~> 0.3.11"
+  gem 'mysql2', '0.5.2'
 
   # SOAP interface
   gem 'savon', '2.2.0'
@@ -36,6 +36,7 @@ group :application do
 
   # exception logging
   # gem 'airbrake'
+  gem "sentry-raven", "~> 2.7"
   gem 'exception_notification', "~> 4.0.0"
 
   gem 'acts-as-taggable-on'
@@ -44,8 +45,8 @@ group :application do
   gem 'workflow', '0.8.1'
 
   # external service interaction
-  gem 'faraday', '0.9.0'
-  gem 'faraday_middleware'
+  gem 'faraday', '0.15.4'
+  gem 'faraday_middleware', '0.13.1'
   gem 'typhoeus'
   gem 'excon'
 
@@ -84,8 +85,6 @@ group :application do
 
   gem 'newrelic_rpm'
 
-  gem 'hipchat'
-
   gem 'user_agent_parser'
 
   gem 'rb-readline'
@@ -105,7 +104,6 @@ gem 'capistrano'
 group :development do
   gem 'rdoc'
   gem 'awesome_print'
-  gem 'sextant'
   gem 'bullet'
   gem 'quiet_assets'
 end
@@ -142,7 +140,7 @@ group :development, :test do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
 
   gem 'growl'
-  gem 'growl-rspec'
+  #gem 'growl-rspec'
 end
 
 gem 'rack-mini-profiler', '~> 0.10.1'

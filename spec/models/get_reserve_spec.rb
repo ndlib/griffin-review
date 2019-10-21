@@ -43,14 +43,14 @@ describe GetReserve do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(true)
 
       gcl = GetReserve.new(@controller)
-      gcl.approval_required?.should be_true
+      gcl.approval_required?.should be_truthy
     end
 
     it "returns false if the item needs not approval" do
       GetReserve.any_instance.stub(:reserve_requires_approval?).and_return(false)
 
       gcl = GetReserve.new(@controller)
-      gcl.approval_required?.should be_false
+      gcl.approval_required?.should be_falsey
     end
 
     it "returns false if the item terms needs approval and it has been approved" do
@@ -58,7 +58,7 @@ describe GetReserve do
       @reserve.stub(:term_of_service_approved?).and_return(true)
 
       gcl = GetReserve.new(@controller)
-      gcl.approval_required?.should be_true
+      gcl.approval_required?.should be_truthy
     end
   end
 
@@ -68,7 +68,7 @@ describe GetReserve do
       @reserve.stub(:file).and_return("FILE")
 
       gcl = GetReserve.new(@controller)
-      gcl.download_listing?.should be_true
+      gcl.download_listing?.should be_truthy
     end
 
     it "returns false if the listing should not download a file"  do
@@ -76,7 +76,7 @@ describe GetReserve do
       @reserve.pdf.clear
 
       gcl = GetReserve.new(@controller)
-      gcl.download_listing?.should be_false
+      gcl.download_listing?.should be_falsey
     end
   end
 
@@ -85,7 +85,7 @@ describe GetReserve do
 
     it "returns the path the to file for download" do
       gcl = GetReserve.new(@controller)
-      gcl.download_file_path.include?(@reserve.pdf.path).should be_true
+      gcl.download_file_path.include?(@reserve.pdf.path).should be_truthy
     end
 
   end
@@ -96,14 +96,14 @@ describe GetReserve do
       @reserve.stub(:url).and_return("URL")
 
       gcl = GetReserve.new(@controller)
-      gcl.redirect_to_listing?.should be_true
+      gcl.redirect_to_listing?.should be_truthy
     end
 
     it "returns false if the listing should not redirect" do
       @reserve.stub(:url).and_return(nil)
 
       gcl = GetReserve.new(@controller)
-      gcl.redirect_to_listing?.should be_false
+      gcl.redirect_to_listing?.should be_falsey
     end
   end
 
@@ -124,13 +124,13 @@ describe GetReserve do
     it "approves the terms of service for the current user" do
       gcl = GetReserve.new(@controller)
       gcl.approve_terms_of_service!
-      gcl.term_of_service_approved?.should be_true
+      gcl.term_of_service_approved?.should be_truthy
     end
 
 
     it "defaults to false if there is no approval" do
       gcl = GetReserve.new(@controller)
-      gcl.term_of_service_approved?.should be_false
+      gcl.term_of_service_approved?.should be_falsey
     end
 
   end
@@ -145,13 +145,13 @@ describe GetReserve do
 
     it "returns true if the listing can be linked to" do
       ReserveCanBeViewedPolicy.any_instance.stub(:can_be_viewed?).and_return(true)
-      @get_reserve.link_to_listing?.should be_true
+      @get_reserve.link_to_listing?.should be_truthy
     end
 
 
     it "returns false if cannot be linked to" do
       ReserveCanBeViewedPolicy.any_instance.stub(:can_be_viewed?).and_return(false)
-      @get_reserve.link_to_listing?.should be_false
+      @get_reserve.link_to_listing?.should be_falsey
     end
 
   end

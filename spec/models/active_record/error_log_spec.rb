@@ -19,7 +19,7 @@ describe ErrorLog do
 
 
     it "logs an error " do
-      expect(@error_log.valid?).to be_true
+      expect(@error_log.valid?).to be_truthy
     end
 
 
@@ -87,7 +87,7 @@ describe ErrorLog do
     end
 
     it "logs the message" do
-      expect(@error_log.valid?).to be_true
+      expect(@error_log.valid?).to be_truthy
     end
 
     it "saves the passed in message" do

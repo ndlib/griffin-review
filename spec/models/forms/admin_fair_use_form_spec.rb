@@ -36,14 +36,14 @@ describe AdminFairUseForm do
 
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
 
-      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_true
+      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_truthy
     end
 
 
     it "returns true if the fair use was checked in the form params" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" } } }  )
 
-      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_true
+      afuf.question_checked?(double(FairUseQuestion, id: 1)).should be_truthy
     end
 
 
@@ -53,13 +53,13 @@ describe AdminFairUseForm do
 
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
 
-      afuf.question_checked?(double(FairUseQuestion, id: 2)).should be_false
+      afuf.question_checked?(double(FairUseQuestion, id: 2)).should be_falsey
     end
 
 
     it "returns false if the question value is not set" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id} )
-      afuf.question_checked?(double(FairUseQuestion, id: 2, category: 'Trending Toward Fair Use')).should be_false
+      afuf.question_checked?(double(FairUseQuestion, id: 2, category: 'Trending Toward Fair Use')).should be_falsey
     end
 
   end
@@ -115,7 +115,7 @@ describe AdminFairUseForm do
 
     it "saves its self with valid params" do
       afuf = AdminFairUseForm.new(user, { id:  @reserve.id, admin_fair_use_form: { checklist: { '1' => "true" }, comments: "comments" } } )
-      afuf.save_fair_use.should be_true
+      afuf.save_fair_use.should be_truthy
     end
 
 

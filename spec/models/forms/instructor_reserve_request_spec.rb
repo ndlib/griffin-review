@@ -34,7 +34,7 @@ describe InstructorReserveRequest do
         :title, :publisher, :journal_title, :creator, :length, :note, :needed_by, :type, :pdf,
         :requestor_owns_a_copy, :requestor_has_an_electronic_copy, :library, :number_of_copies, :citation, :physical_reserve
       ].each do | at |
-        @instructor_reserve.respond_to?(at).should be_true
+        @instructor_reserve.respond_to?(at).should be_truthy
       end
     end
   end
@@ -157,7 +157,7 @@ describe InstructorReserveRequest do
       @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", resource_format: 'both', type: "BookReserve", citation: "creator", needed_by: 22.days.from_now, library: "Hesburgh" }} )
 
       @instructor_reserve = InstructorReserveRequest.new(@controller)
-      @instructor_reserve.make_request.should be_true
+      @instructor_reserve.make_request.should be_truthy
     end
 
 
@@ -165,7 +165,7 @@ describe InstructorReserveRequest do
       @controller.stub(:params).and_return ({ :course_id => @course.id, :instructor_reserve_request => {'title' => "title", type: "BookReserve" } })
 
       @instructor_reserve = InstructorReserveRequest.new(@controller)
-      @instructor_reserve.make_request.should be_false
+      @instructor_reserve.make_request.should be_falsey
     end
 
 
@@ -203,8 +203,8 @@ describe InstructorReserveRequest do
       @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request
 
-      expect(@instructor_reserve.reserve.electronic_reserve).to be_true
-      expect(@instructor_reserve.reserve.physical_reserve).to be_false
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_truthy
+      expect(@instructor_reserve.reserve.physical_reserve).to be_falsey
     end
 
 
@@ -213,8 +213,8 @@ describe InstructorReserveRequest do
       @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request
 
-      expect(@instructor_reserve.reserve.electronic_reserve).to be_true
-      expect(@instructor_reserve.reserve.physical_reserve).to be_true
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_truthy
+      expect(@instructor_reserve.reserve.physical_reserve).to be_truthy
     end
 
 
@@ -223,8 +223,8 @@ describe InstructorReserveRequest do
       @instructor_reserve = InstructorReserveRequest.new(@controller)
       @instructor_reserve.make_request
 
-      expect(@instructor_reserve.reserve.electronic_reserve).to be_false
-      expect(@instructor_reserve.reserve.physical_reserve).to be_true
+      expect(@instructor_reserve.reserve.electronic_reserve).to be_falsey
+      expect(@instructor_reserve.reserve.physical_reserve).to be_truthy
     end
   end
 

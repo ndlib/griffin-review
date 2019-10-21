@@ -25,7 +25,7 @@ describe UserArchiveCourseListing do
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
 
-      UserArchiveCourseListing.new(instructor_user).has_any_archived_instructed_courses?.should be_true
+      UserArchiveCourseListing.new(instructor_user).has_any_archived_instructed_courses?.should be_truthy
     end
 
 
@@ -36,7 +36,7 @@ describe UserArchiveCourseListing do
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
 
-      UserArchiveCourseListing.new(instructor_user).has_any_archived_instructed_courses?.should be_false
+      UserArchiveCourseListing.new(instructor_user).has_any_archived_instructed_courses?.should be_falsey
     end
   end
 
@@ -50,7 +50,7 @@ describe UserArchiveCourseListing do
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
 
-      UserArchiveCourseListing.new(instructor_user).semester_has_courses?(semester).should be_true
+      UserArchiveCourseListing.new(instructor_user).semester_has_courses?(semester).should be_truthy
     end
 
 
@@ -60,7 +60,7 @@ describe UserArchiveCourseListing do
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
 
-      UserArchiveCourseListing.new(instructor_user).semester_has_courses?(semester).should be_false
+      UserArchiveCourseListing.new(instructor_user).semester_has_courses?(semester).should be_falsey
     end
   end
 

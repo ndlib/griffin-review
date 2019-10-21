@@ -24,13 +24,13 @@ describe CourseReserveList do
 
 
   it "has a title" do
-    @user_course_show.respond_to?(:title).should be_true
+    @user_course_show.respond_to?(:title).should be_truthy
     @user_course_show.title.should == "title"
   end
 
 
   it "has a course id " do
-    @user_course_show.respond_to?(:course_id).should be_true
+    @user_course_show.respond_to?(:course_id).should be_truthy
     @user_course_show.course_id.should == 1
   end
 
@@ -66,13 +66,13 @@ describe CourseReserveList do
 
     it "returns true if the course can have new reserves added to it" do
       CreateNewReservesPolicy.any_instance.stub(:can_create_new_reserves?).and_return(true)
-      @user_course_show.can_have_new_reserves?.should be_true
+      @user_course_show.can_have_new_reserves?.should be_truthy
     end
 
 
     it "returns false if the course cannot have new reserves added to it" do
       CreateNewReservesPolicy.any_instance.stub(:can_create_new_reserves?).and_return(false)
-      @user_course_show.can_have_new_reserves?.should be_false
+      @user_course_show.can_have_new_reserves?.should be_falsey
     end
   end
 
