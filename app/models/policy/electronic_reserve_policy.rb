@@ -109,7 +109,7 @@ class ElectronicReservePolicy
 
   def download_file_path
     return false if !has_file_resource?
-
+    p @reserve.pdf.path
     @reserve.pdf.path
   end
 
