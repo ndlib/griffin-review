@@ -27,6 +27,8 @@ class AdminUpdateResource
       self.attributes = params[:admin_update_resource]
     elsif electronic_reserve.has_media_playlist?
       self.playlist_rows = reserve.media_playlist.rows
+    else
+      self.playlist_rows = []
     end
 
     validate_input!
