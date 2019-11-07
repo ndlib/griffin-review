@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :cas_authenticatable, :trackable
+  devise :omniauthable, omniauth_providers: [:oktaoauth]
 
   before_validation :fetch_attributes_from_ldap
 
@@ -45,12 +45,12 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    self.admin || ['rfox2', 'jhartzle', 'fboze', 'dwolfe2'].include?(self.username)
+    self.admin || ['rfox2', 'jhartzle', 'fboze', 'dwolfe2', 'mkirkpa2'].include?(self.username)
   end
 
 
   def wse_admin?
-    ['rfox2', 'jhartzle', 'dwolfe2'].include?(self.username)
+    ['rfox2', 'jhartzle', 'dwolfe2', 'mkirkpa2'].include?(self.username)
   end
 
 
@@ -165,7 +165,7 @@ class User < ActiveRecord::Base
     if Rails.configuration.ldap_lookup_flag
       attributes = User.ldap_lookup(username)
       self.first_name = attributes[:givenname].first
-      self.last_name = attributes[:sn].first      
+      self.last_name = attributes[:sn].first
       self.email = attributes[:mail].first
       self.display_name = attributes[:displayname].first
     end

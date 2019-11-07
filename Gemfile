@@ -10,8 +10,7 @@ group :application do
   # ILS compendium gem
   # gem 'compendium', :git => 'ssh://git@git.library.nd.edu/compendium'
 
-  gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
-  gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
+  gem 'hesburgh_assets', :github => 'ndlib/hesburgh_assets'
 
   gem 'addressable'
   gem 'bigdecimal', '1.3.2'
@@ -25,9 +24,8 @@ group :application do
   gem 'dalli'
 
   # authentication
-  gem 'rubycas-client'
   gem 'devise', "~> 3.4.0"
-  gem 'devise_cas_authenticatable'
+  gem 'omniauth-oktaoauth'
 
   gem 'simple_token_authentication', '~> 1.0' # see semver.org
 

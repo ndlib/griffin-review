@@ -46,9 +46,6 @@ Griffin::Application.configure do
   # Custom configuration
   config.ldap_lookup_flag                 = false
   config.reserves_upload_path             = '/shared/data/reserves_files'
-  config.reserves_cas_base                = 'https://cas.library.nd.edu/cas'
-  config.reserves_cas_validate            = 'https://cas.library.nd.edu/cas/serviceValidate'
-  config.reserves_cas_logout              = 'https://cas.library.nd.edu/cas/logout'
   config.rspec_uid                        = 'rfox2'
   config.rspec_cn                         = 'Robert Fox'
   config.rspec_last_name                  = "Fox"
