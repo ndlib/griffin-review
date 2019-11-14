@@ -43,6 +43,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def authenticate_user!
+      if session[:netid]
+        super
+      else
+        redirect_to user_omniauth_authorize_path(:oktaoauth)
+      end
+    end
+
     def determine_layout
       current_path_is_sakai? ? 'sakai' : 'application'
     end
@@ -113,6 +121,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+  private
 
+    # Overwriting the sign_out redirect path method
+    def after_sign_out_path_for(resource_or_scope)
+      Rails.application.secrets.okta["logout_url"]
+    end
 
 end

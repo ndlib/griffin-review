@@ -75,9 +75,6 @@ Griffin::Application.configure do
   # Custom configuration
   config.ldap_lookup_flag               = true
   config.reserves_upload_path           = '/shared/reserves_pprd/data/files'
-  config.reserves_cas_base              = 'https://login.nd.edu/cas'
-  config.reserves_cas_validate          = 'https://login.nd.edu/cas/serviceValidate'
-  config.reserves_cas_logout            = 'https://login.nd.edu/cas/logout'
 
   config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')
 
