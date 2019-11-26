@@ -8,4 +8,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.where(username: session[:netid]).first_or_create
       sign_in_and_redirect @user
     end
+
+    protected
+      def after_omniauth_failure_path_for resource
+        root_path
+      end
 end

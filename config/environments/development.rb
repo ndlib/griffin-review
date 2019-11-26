@@ -70,6 +70,4 @@ Griffin::Application.configure do
     :sender_address => %{"reserves notifier" <reserves_notifier@nd.edu>},
     :exception_recipients => %w{ jhartzle@nd.edu rfox2@nd.edu}
   }
-
-  config.force_ssl = true
 end
