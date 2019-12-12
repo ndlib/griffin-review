@@ -89,4 +89,8 @@ Griffin::Application.configure do
     :exception_recipients => %w{ jhartzle@nd.edu rfox2@nd.edu}
   }
 
+  Raven.configure do |sentry|
+    sentry.dsn = Rails.application.secrets.sentry["dsn"]
+  end
+
 end
