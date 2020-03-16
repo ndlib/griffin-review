@@ -111,8 +111,8 @@ en:
         </ul>
         <h4>Sakai Access</h4>
         <ul >
-          <li>Go to <a href="https://sakailogin.nd.edu">https://sakai.nd.edu</a></li>
-          <li>It appears as "Library Reserves" on the left navigiation.</li>
+          <li>Log in to your Sakai course.</li>
+          <li>It appears as "Library Reserves" on the left navigiation -- NOT "Library Resources".</li>
           <li>If it is not there you need to <a href="https://reserves.library.nd.edu/documentation/instructor-sakai">configure library reserves</a></li>
         </ul>
       why_title: "Why should I use Library Reserves?"
