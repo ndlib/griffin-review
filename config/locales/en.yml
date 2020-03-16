@@ -103,7 +103,18 @@ en:
       software_html: <p>Readings are usually available as a web page or as a pdf.  Most computers have software installed to view pdfs.  If not you may download Acrobat from the oit site. <a href="https://oit.nd.edu/software-downloads/">https://oit.nd.edu/software-downloads/</a></p><p>Streaming Video and Audio requires <a href="/documentation/troubleshooting">quicktime</a> be installed.</p>
     instructor:
       access_title: "How do I access my reserves?"
-      access_html: "<h4>Website Access</h5><ul ><li>Go to <a href='https://reserves.library.nd.edu'>https://reserves.library.nd.edu</a></li><li>You will see a list of courses that have reserves.  Select the course you wish to view reserves for.</li></ul><h4>Sakai Access</h5><ul ><li>Go to <a href='https://sakailogin.nd.edu'>https://sakailogin.nd.edu</a></li><li>You may integrate your sakai courses with library reserves.  If you have done this there will be a link titled “Library Reserves” in the navigation on the left side of the page.</li></ul>"
+      access_html: |
+        <h4>Website Access</h4>
+        <ul >
+          <li>Go to <a href="https://reserves.library.nd.edu">https://reserves.library.nd.edu</a></li>
+          <li>You will see a list of courses that have reserves.  Select the course you wish to view reserves for.</li>
+        </ul>
+        <h4>Sakai Access</h4>
+        <ul >
+          <li>Go to <a href="https://sakailogin.nd.edu">https://sakai.nd.edu</a></li>
+          <li>It appears as "Library Reserves" on the left navigiation.</li>
+          <li>If it is not there you need to <a href="https://reserves.library.nd.edu/documentation/instructor-sakai">configure library reserves</a></li>
+        </ul>
       why_title: "Why should I use Library Reserves?"
       why_html: "Using the Library Reserves tool can help protect you from violating copyright.  The reserve staff can help connect you with resources within the library's collection.  We will help with making fair use assessments of existing content.  We can also help acquire the rights to the content not within the collection."
       course_title: "I do not see my course."
