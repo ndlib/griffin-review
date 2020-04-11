@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190614201116) do
+ActiveRecord::Schema.define(version: 20200408000238) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(version: 20190614201116) do
     t.integer "item_id", limit: 4
     t.text    "data",    limit: 4294967295
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "creator",    limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "content",    limit: 65535
+    t.integer  "request_id", limit: 4
+  end
+
+  add_index "messages", ["request_id"], name: "index_messages_on_request_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id",                    limit: 4
@@ -223,4 +233,5 @@ ActiveRecord::Schema.define(version: 20190614201116) do
 
   add_index "wowza_tokens", ["token"], name: "index_wowza_tokens_on_token", using: :btree
 
+  add_foreign_key "messages", "requests"
 end

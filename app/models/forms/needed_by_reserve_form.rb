@@ -36,6 +36,10 @@ class NeededByReserveForm
   private
 
   def persist!
+    if self.attributes.key?(:needed_by)
+      value = self.attributes.fetch(:needed_by, 'unknown')
+      Message.create({'content'=>"Needed By date changed to #{value}.",'request_id'=>@reserve.id})
+    end
     @reserve.attributes = self.attributes
     @reserve.save!
 

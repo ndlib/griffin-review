@@ -1,6 +1,7 @@
 class Request < ActiveRecord::Base
   belongs_to :semester
   belongs_to :item
+  has_many :message, dependent: :destroy
 
   validates :semester, :course_id, :requestor_netid, :item, :presence => true
 

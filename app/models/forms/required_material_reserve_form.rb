@@ -35,6 +35,13 @@ class RequiredMaterialReserveForm
     private
   
     def persist!
+      if self.attributes.key?(:required_material)
+        value = 'Yes'
+        if self.attributes.fetch(:required_material, false) == false
+          value = 'No'
+        end
+        Message.create({'content'=>"Required material changed to #{value}.",'request_id'=>@reserve.id})
+      end
       @reserve.attributes = self.attributes
       @reserve.save!
   

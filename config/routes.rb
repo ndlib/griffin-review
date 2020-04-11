@@ -73,6 +73,7 @@ Griffin::Application.routes.draw do
     resources :libraries, controller: 'requests_library', only: ['update']
     resources :needed_by, controller: 'requests_needed_by', only: ['update']
     resources :required_material, controller: 'requests_required_material', only: ['update']
+    resources :add_message, controller: 'requests_message', only: ['create']
     resources :fix_missing_course, controller: 'requests_fix_missing_courses', only: ['update', 'edit']
 
     resources :semesters, controller: 'semesters'

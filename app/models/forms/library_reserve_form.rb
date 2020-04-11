@@ -36,6 +36,10 @@ class LibraryReserveForm
   private
 
   def persist!
+    if self.attributes.key?(:library)
+      value = self.attributes.fetch(:library, 'unknown')
+      Message.create({'content'=>"Fulfillment Library changed to #{value}.",'request_id'=>@reserve.id})
+    end
     @reserve.attributes = self.attributes
     @reserve.save!
 
