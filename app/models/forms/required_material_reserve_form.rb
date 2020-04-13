@@ -25,7 +25,7 @@ class RequiredMaterialReserveForm
   
     def update_reserve_required_material!(*additions)
       if valid?
-        persist!(additions)
+        persist!(additions[0])
         true
       else
         return false

@@ -26,7 +26,7 @@ class LibraryReserveForm
 
   def update_reserve_library!(*additions)
     if valid?
-      persist!(additions)
+      persist!(additions[0])
       true
     else
       return false

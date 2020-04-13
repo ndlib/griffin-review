@@ -26,7 +26,7 @@ class NeededByReserveForm
   
   def update_reserve_needed_by!(*additions)
     if valid?
-      persist!(additions)
+      persist!(additions[0])
       true
     else
       return false
