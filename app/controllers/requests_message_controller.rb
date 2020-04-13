@@ -1,9 +1,7 @@
 class RequestsMessageController  < ApplicationController
 
     def create
-      puts "DEBUG REQUEST MESSAGE CONTROLLER MESSAGE"
-      puts session[:netid]
-      puts current_user
+      params[:add_message][:creator] = current_user.display_name
       message = Message.new(message_params)
       if message.save!
         flash[:success] = 'The requests note has been added.'
@@ -16,7 +14,7 @@ class RequestsMessageController  < ApplicationController
     private
 
     def message_params
-      params.require(:add_message).permit(:content, :request_id)
+      params.require(:add_message).permit(:creator, :content, :request_id)
     end
   
   end
