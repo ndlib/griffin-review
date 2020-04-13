@@ -5,7 +5,7 @@ class RequestsNeededByController  < ApplicationController
 
     @form = NeededByReserveForm.build_from_params(self)
 
-    if @form.update_reserve_needed_by!
+    if @form.update_reserve_needed_by!(current_user.display_name)
       flash[:success] = 'The reserve needed by date has been changed.'
       redirect_to request_path(@form.reserve.id)
     else

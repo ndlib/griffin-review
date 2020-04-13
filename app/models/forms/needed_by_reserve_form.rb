@@ -24,9 +24,9 @@ class NeededByReserveForm
     set_attributes_from_params(update_params)
   end
   
-  def update_reserve_needed_by!
+  def update_reserve_needed_by!(*additions)
     if valid?
-      persist!
+      persist!(additions)
       true
     else
       return false
@@ -35,10 +35,12 @@ class NeededByReserveForm
 
   private
 
-  def persist!
-    if self.attributes.key?(:needed_by)
+  def persist!(*additions)
+    if self.attributes.key?(:needed_by) && additions.present?
       value = self.attributes.fetch(:needed_by, 'unknown')
-      Message.create({'content'=>"Needed By date changed to #{value}.",'request_id'=>@reserve.id})
+      Message.create({'creator'=>additions[0],
+        'content'=>"Needed By date changed to #{value}.",
+        'request_id'=>@reserve.id})
     end
     @reserve.attributes = self.attributes
     @reserve.save!
