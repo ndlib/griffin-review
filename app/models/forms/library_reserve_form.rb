@@ -39,7 +39,7 @@ class LibraryReserveForm
     if self.attributes.key?(:library) && additions.present?
       value = self.attributes.fetch(:library, 'unknown')
       Message.create({'creator'=>additions[0],
-        'content'=>"Fulfillment Library changed to #{value}.",
+        'content'=>"Fulfillment Library changed from #{@reserve.library} to #{value}.",
         'request_id'=>@reserve.id})
     end
     @reserve.attributes = self.attributes
