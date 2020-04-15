@@ -69,7 +69,7 @@ describe ListRequests do
 
 
   it "switches the semester to the one passed in" do
-    s = FactoryGirl.create(:previous_semester)
+    s = FactoryBot.create(:previous_semester)
 
     filter = double(RequestFilter, libraries: [ 'library1' ], types: [ 'type'], semester_filter: s.id )
     ReserveSearch.any_instance.should_receive(:admin_requests).with(s)

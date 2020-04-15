@@ -4,7 +4,7 @@ describe AdminUpdateResource do
 
   before(:each) do
     @user = double(User, :username => 'admin')
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
   end
 
 
@@ -69,7 +69,7 @@ describe AdminUpdateResource do
     it "saves a new file " do
       mock_file = fixture_file_upload(Rails.root.join('spec', 'files', 'test.pdf'), 'application/pdf')
 
-      pdf_reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+      pdf_reserve = mock_reserve(FactoryBot.create(:request, :book_chapter), @course)
       pdf_reserve.pdf.clear
       pdf_reserve.save!
 
@@ -81,7 +81,7 @@ describe AdminUpdateResource do
 
 
     it "saves a url" do
-      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      url_reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
       url_reserve.url = nil
       url_reserve.save!
 
@@ -92,7 +92,7 @@ describe AdminUpdateResource do
     end
 
     it "saves a playlist" do
-      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      url_reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
       url_reserve.save!
 
       aur = AdminUpdateResource.new(@user, { :id => url_reserve.id, :admin_update_resource => { playlist_rows: [ {'title' => 'title', 'filename' => 'file'} ] }})
@@ -107,7 +107,7 @@ describe AdminUpdateResource do
     it "checks to seed if the item is complete" do
       ReserveCheckIsComplete.any_instance.should_receive(:check!)
 
-      url_reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      url_reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
       url_reserve.url = nil
       url_reserve.save!
 

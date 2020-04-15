@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "Semester Admin Integration" do
 
   before(:all) do
-    @admin_role = Factory.create(:admin_role)
-    @admin_user = Factory.create(:user)
+    @admin_role = FactoryBot.create(:admin_role)
+    @admin_user = FactoryBot.create(:user)
     @admin_user.roles = [@admin_role]
-    @semester_a = Factory.create(:semester)
-    @semester_b = Factory.create(:semester)
-    @semester_c = Factory.build(:semester)
+    @semester_a = FactoryBot.create(:semester)
+    @semester_b = FactoryBot.create(:semester)
+    @semester_c = FactoryBot.build(:semester)
   end
 
   describe "Create new semester" do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe SaveReserveMediaPlaylist do
-  let(:reserve) { Reserve.factory(FactoryGirl.create(:request))}
+  let(:reserve) { Reserve.factory(FactoryBot.create(:request))}
   let(:media_playlist) { m = MediaPlaylist.new(item_id: reserve.item.id, rows: [{}]); m.save!; m}
 
   it "creates a playlist if there is not one" do

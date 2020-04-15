@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe CopyReservesController do
-  let(:previous_semester) { FactoryGirl.create(:previous_semester) }
+  let(:previous_semester) { FactoryBot.create(:previous_semester) }
 
   before(:each) do
-    @to_course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-    @from_course = double(Course, id: 'id', semester: FactoryGirl.create(:previous_semester))
+    @to_course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
+    @from_course = double(Course, id: 'id', semester: FactoryBot.create(:previous_semester))
 
     CourseSearch.any_instance.stub(:get).and_return(@to_course)
     CourseSearch.any_instance.stub(:get).with(@from_course.id).and_return(@to_course)
@@ -14,7 +14,7 @@ describe CopyReservesController do
 
   describe :instructor do
     before(:each) do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
 
       @to_course.stub(instructor_netids: [u.username])
@@ -83,7 +83,7 @@ describe CopyReservesController do
   describe :student do
 
     before(:each) do
-      u = FactoryGirl.create(:student)
+      u = FactoryBot.create(:student)
       sign_in u
 
       @to_course.stub(instructor_netids: [])

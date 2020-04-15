@@ -160,7 +160,7 @@ describe AdminUpdateMetaData do
   describe :persistance do
 
     before(:each) do
-      @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+      @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
       @reserve = Reserve.new(id: 1, title: 'title', type: 'BookReserve', course: @course, requestor_netid: 'username')
 
     end

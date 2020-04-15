@@ -4,7 +4,7 @@ describe CoursesController do
 
 
   before(:each) do
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     CourseSearch.any_instance.stub(:get).and_return(@course)
   end
 
@@ -12,7 +12,7 @@ describe CoursesController do
   describe :logged_in_as_student do
 
     before(:each) do
-      @u = FactoryGirl.create(:student)
+      @u = FactoryBot.create(:student)
       sign_in @u
     end
 
@@ -38,7 +38,7 @@ describe CoursesController do
 
   describe :logged_in_as_an_instructor do
     before(:each) do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
     end
 

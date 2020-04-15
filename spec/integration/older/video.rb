@@ -3,22 +3,22 @@ require 'spec_helper'
 describe "Video Integration" do
   
   before(:all) do
-    @metadata1 = Factory.create(:metadata_attribute)
-    @metadata2 = Factory.create(:metadata_attribute, :metadata_type => 'basic')
-    @metadata3 = Factory.create(:metadata_attribute, :metadata_type => 'technical')
-    @generic_item_type = Factory.create(:item_type)
-    @video_item_type = Factory.create(:item_type, :name => 'Video')
-    @generic_item = Factory.create(:item, :item_type => @generic_item_type)
-    @video_item1 = Factory.build(:video, :item_type => @video_item_type)
-    @video_item2 = Factory.build(:video, :item_type => @video_item_type)
-    @video_item3 = Factory.build(:video, :item_type => @video_item_type)
-    @reserves_admin_role = Factory.create(:reserves_admin_role)
-    @reserves_admin_user = Factory.create(:user)
+    @metadata1 = FactoryBot.create(:metadata_attribute)
+    @metadata2 = FactoryBot.create(:metadata_attribute, :metadata_type => 'basic')
+    @metadata3 = FactoryBot.create(:metadata_attribute, :metadata_type => 'technical')
+    @generic_item_type = FactoryBot.create(:item_type)
+    @video_item_type = FactoryBot.create(:item_type, :name => 'Video')
+    @generic_item = FactoryBot.create(:item, :item_type => @generic_item_type)
+    @video_item1 = FactoryBot.build(:video, :item_type => @video_item_type)
+    @video_item2 = FactoryBot.build(:video, :item_type => @video_item_type)
+    @video_item3 = FactoryBot.build(:video, :item_type => @video_item_type)
+    @reserves_admin_role = FactoryBot.create(:reserves_admin_role)
+    @reserves_admin_user = FactoryBot.create(:user)
     @reserves_admin_user.roles = [@reserves_admin_role]
-    @media_admin_role = Factory.create(:media_admin_role)
-    @media_admin_user = Factory.create(:user)
+    @media_admin_role = FactoryBot.create(:media_admin_role)
+    @media_admin_user = FactoryBot.create(:user)
     @media_admin_user.roles = [@media_admin_role]
-    @jane_user = Factory.create(:user)
+    @jane_user = FactoryBot.create(:user)
   end
 
   describe "Adding, updating and deleting a video record" do

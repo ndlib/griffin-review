@@ -82,8 +82,8 @@ describe FairUse do
   describe :by_item do
 
     it "can return all the fair uses for a specific item" do
-      r1 = mock_reserve FactoryGirl.create(:request), nil
-      r2 = mock_reserve FactoryGirl.create(:request), nil
+      r1 = mock_reserve FactoryBot.create(:request), nil
+      r2 = mock_reserve FactoryBot.create(:request), nil
 
       FairUse.create!(user_id: 1, item_id: r1.item_id)
       FairUse.create!(user_id: 1, item_id: r1.item_id)

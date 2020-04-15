@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CourseSearch do
 
   let(:course_search) { CourseSearch.new }
-  let(:semester) { FactoryGirl.create(:semester)}
+  let(:semester) { FactoryBot.create(:semester)}
 
 
   describe "api_access" do

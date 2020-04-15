@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe ReserveSearch do
 
-  let(:semester) { FactoryGirl.create(:semester) }
-  let(:previous_semester) { FactoryGirl.create(:previous_semester) }
-  let(:next_semester) { FactoryGirl.create(:next_semester) }
+  let(:semester) { FactoryBot.create(:semester) }
+  let(:previous_semester) { FactoryBot.create(:previous_semester) }
+  let(:next_semester) { FactoryBot.create(:next_semester) }
 
   let(:course_search) { CourseSearch.new }
 
@@ -15,9 +15,9 @@ describe ReserveSearch do
   describe :student_and_instructor_requests do
 
     before(:each) do
-      @new_reserve       = mock_reserve FactoryGirl.create(:request, :new, :book), @course
-      @inprogress_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :book), @course
-      @available_reserve = mock_reserve FactoryGirl.create(:request, :available, :book), @course
+      @new_reserve       = mock_reserve FactoryBot.create(:request, :new, :book), @course
+      @inprogress_reserve = mock_reserve FactoryBot.create(:request, :inprocess, :book), @course
+      @available_reserve = mock_reserve FactoryBot.create(:request, :available, :book), @course
     end
 
 
@@ -69,7 +69,7 @@ describe ReserveSearch do
 
     before(:each) do
       stub_discovery!
-      @inprocess_semester = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), @course
+      @inprocess_semester = mock_reserve FactoryBot.create(:request, :inprocess, :item => FactoryBot.create(:item_with_bib_record)), @course
     end
 
     it "returns the reserve for the course that has a bib id" do
@@ -84,17 +84,17 @@ describe ReserveSearch do
 
   describe :admin_reserve_requests do
     before(:each) do
-      @new_semester1 = mock_reserve FactoryGirl.create(:request, :book, :new, :library => 'library1', :semester_id => semester.id), @course
-      @new_semester2 = mock_reserve FactoryGirl.create(:request, :journal_file, :new, :library => 'library1', :semester_id => previous_semester.id), @course
-      @new_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :new, :library => 'library2', :semester_id => next_semester.id), @course
+      @new_semester1 = mock_reserve FactoryBot.create(:request, :book, :new, :library => 'library1', :semester_id => semester.id), @course
+      @new_semester2 = mock_reserve FactoryBot.create(:request, :journal_file, :new, :library => 'library1', :semester_id => previous_semester.id), @course
+      @new_semester3 = mock_reserve FactoryBot.create(:request, :book_chapter, :new, :library => 'library2', :semester_id => next_semester.id), @course
 
-      @inprocess_semester1 = mock_reserve FactoryGirl.create(:request, :journal_url, :inprocess, :library => 'library1', :semester_id => semester.id), @course
-      @inprocess_semester2 = mock_reserve FactoryGirl.create(:request, :video, :inprocess, :library => 'library1', :semester_id => previous_semester.id), @course
-      @inprocess_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :inprocess, :library => 'library2', :semester_id => next_semester.id), @course
+      @inprocess_semester1 = mock_reserve FactoryBot.create(:request, :journal_url, :inprocess, :library => 'library1', :semester_id => semester.id), @course
+      @inprocess_semester2 = mock_reserve FactoryBot.create(:request, :video, :inprocess, :library => 'library1', :semester_id => previous_semester.id), @course
+      @inprocess_semester3 = mock_reserve FactoryBot.create(:request, :book_chapter, :inprocess, :library => 'library2', :semester_id => next_semester.id), @course
 
-      @available_semester1 = mock_reserve FactoryGirl.create(:request, :audio, :available, :library => 'library1', :semester_id => semester.id), @course
-      @available_semester2 = mock_reserve FactoryGirl.create(:request, :book, :available, :library => 'library1', :semester_id => previous_semester.id), @course
-      @available_semester3 = mock_reserve FactoryGirl.create(:request, :book_chapter, :available, :library => 'library2', :semester_id => next_semester.id), @course
+      @available_semester1 = mock_reserve FactoryBot.create(:request, :audio, :available, :library => 'library1', :semester_id => semester.id), @course
+      @available_semester2 = mock_reserve FactoryBot.create(:request, :book, :available, :library => 'library1', :semester_id => previous_semester.id), @course
+      @available_semester3 = mock_reserve FactoryBot.create(:request, :book_chapter, :available, :library => 'library2', :semester_id => next_semester.id), @course
     end
 
 

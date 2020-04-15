@@ -4,15 +4,15 @@ require 'spec_helper'
 describe "Digitization Request Integration" do
 
   before(:all) do
-    @faculty_role = Factory.create(:faculty_role)
-    @faculty_user = Factory.create(:user)
+    @faculty_role = FactoryBot.create(:faculty_role)
+    @faculty_user = FactoryBot.create(:user)
     @faculty_user.roles = [@faculty_role]
-    @media_admin_role = Factory.create(:media_admin_role)
-    @media_admin_user = Factory.create(:user, :roles => [@media_admin_role])
-    @semester_a = Factory.create(:semester)
-    @semester_b = Factory.create(:semester)
-    @semester_c = Factory.create(:semester)
-    @request_a = Factory.build(:generic_request)
+    @media_admin_role = FactoryBot.create(:media_admin_role)
+    @media_admin_user = FactoryBot.create(:user, :roles => [@media_admin_role])
+    @semester_a = FactoryBot.create(:semester)
+    @semester_b = FactoryBot.create(:semester)
+    @semester_c = FactoryBot.create(:semester)
+    @request_a = FactoryBot.build(:generic_request)
   end
 
   describe "Visits new video processing request form" do

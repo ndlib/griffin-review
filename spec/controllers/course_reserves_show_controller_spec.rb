@@ -4,16 +4,16 @@ Reserve
 describe CourseReservesController do
 
   before(:each) do
-    @user = FactoryGirl.create(:student)
+    @user = FactoryBot.create(:student)
     sign_in @user
 
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester), title: 'Title', instructor_netids: [],  enrollment_netids: [@user.username] )
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester), title: 'Title', instructor_netids: [],  enrollment_netids: [@user.username] )
 
-    request = FactoryGirl.create(:request, :available, :book_chapter)
+    request = FactoryBot.create(:request, :available, :book_chapter)
     @reserve = mock_reserve request, @course
     Reserve.any_instance.stub(:course).and_return(@course)
 
-    @url_reserve = mock_reserve FactoryGirl.create(:request, :available, :video), @course
+    @url_reserve = mock_reserve FactoryBot.create(:request, :available, :video), @course
   end
 
   describe :show do
@@ -35,7 +35,7 @@ describe CourseReservesController do
       end
 
       it "redirects if the copyright acceptance has has been accepted and it is a redirect item" do
-        reserve = mock_reserve FactoryGirl.create(:request, :available, :journal_url), @course
+        reserve = mock_reserve FactoryBot.create(:request, :available, :journal_url), @course
 
         get :show, id: reserve.id, course_id: @course.id, accept_terms_of_service: 1
 
@@ -44,7 +44,7 @@ describe CourseReservesController do
 
 
       it "renders a 404 if the reserve is not in the current semester" do
-        request = FactoryGirl.create(:request, :available, :book_chapter, :previous_semester)
+        request = FactoryBot.create(:request, :available, :book_chapter, :previous_semester)
         previous_course = double(Course, id: 'id', semester: request.semester, title: 'Title', instructor_netids: [],  enrollment_netids: [@user.username] )
 
         previous_reserve = Reserve.factory(request, previous_course)
@@ -68,7 +68,7 @@ describe CourseReservesController do
       end
 
       it "redirects if the file is a redierect item" do
-        reserve = mock_reserve FactoryGirl.create(:request, :available, :journal_url), @course
+        reserve = mock_reserve FactoryBot.create(:request, :available, :journal_url), @course
 
         get :show, id: reserve.id, course_id: @course.id
         response.should redirect_to(reserve.url)

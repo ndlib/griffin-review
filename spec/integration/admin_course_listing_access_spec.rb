@@ -3,13 +3,13 @@ require 'spec_helper'
 describe "Course Search" do
 
   before(:each) do
-    @semester = FactoryGirl.create(:semester)
-    @next_semester = FactoryGirl.create(:next_semester)
+    @semester = FactoryBot.create(:semester)
+    @next_semester = FactoryBot.create(:next_semester)
 
     stub_ssi!
     stub_discovery!
 
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     login_as u
 
     @course = double(Course, id: 'id', semester: @semester, title: 'title', primary_instructor: double(User, display_name: 'bob bobbers', username: 'username'), instructor_netid: [], crosslisted_course_ids: [], section_numbers: [] )

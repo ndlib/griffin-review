@@ -5,12 +5,12 @@ describe RequestsMetaDataController do
   before(:each) do
     stub_discovery!
 
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     CourseSearch.any_instance.stub(:get).and_return(@course)
 
-    @reserve = mock_reserve FactoryGirl.create(:request), @course
+    @reserve = mock_reserve FactoryBot.create(:request), @course
 
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     sign_in u
   end
 
@@ -24,7 +24,7 @@ describe RequestsMetaDataController do
 
 
     it "does not allow non admins in" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 
@@ -47,7 +47,7 @@ describe RequestsMetaDataController do
 
 
     it "does not allow non admins in" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 

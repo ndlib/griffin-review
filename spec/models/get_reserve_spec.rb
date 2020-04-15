@@ -3,13 +3,13 @@ require 'spec_helper'
 describe GetReserve do
 
   before(:each) do
-    @user = FactoryGirl.create(:student)
+    @user = FactoryBot.create(:student)
 
-    @semester = FactoryGirl.create(:semester)
+    @semester = FactoryBot.create(:semester)
 
     @course = double(Course, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'crosslist_id', :reserve_id => 'from_reserve_id', semester: @semester)
 
-    @reserve =  mock_reserve FactoryGirl.create(:request, :book_chapter), @course
+    @reserve =  mock_reserve FactoryBot.create(:request, :book_chapter), @course
     @reserve.stub(:course).and_return(@course)
 
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)

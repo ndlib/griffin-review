@@ -20,7 +20,7 @@ describe "Instructor Copy Spec" do
     semester = Factory(:semester, code: semester_code)
     next_semester = Factory(:next_semester, code: next_semester_code)
 
-    u = FactoryGirl.create(:student, username: username)
+    u = FactoryBot.create(:student, username: username)
     login_as u
 
     stub_ssi!
@@ -40,7 +40,7 @@ describe "Instructor Copy Spec" do
   describe :step1 do
 
     it "loads " do
-      mock_reserve FactoryGirl.create(:request, :available, :book), @current_course
+      mock_reserve FactoryBot.create(:request, :available, :book), @current_course
 
       VCR.use_cassette listing_course_key do
         visit course_copy_path(@next_course.id)
@@ -63,7 +63,7 @@ describe "Instructor Copy Spec" do
 
       expect(page).to have_content("You do not have any courses that have reserves to copy from.")
 
-      mock_reserve FactoryGirl.create(:request, :available, :book), @current_course
+      mock_reserve FactoryBot.create(:request, :available, :book), @current_course
 
       VCR.use_cassette listing_course_key do
         visit course_copy_path(@next_course.id)
@@ -80,7 +80,7 @@ describe "Instructor Copy Spec" do
   describe :step2 do
 
     it "loads" do
-      mock_reserve FactoryGirl.create(:request, :available, :book), @current_course
+      mock_reserve FactoryBot.create(:request, :available, :book), @current_course
 
       VCR.use_cassette listing_course_key do
         visit course_copy_path(@next_course.id)

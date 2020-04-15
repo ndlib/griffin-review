@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe RequestFixMissingCourseForm do
-  semester = FactoryGirl.create(:semester)
+  semester = FactoryBot.create(:semester)
   let(:course) { double(Course, id: 'missing_course_id', semester: double(Semester, id: 1)) }
   let(:reserve) { double(Reserve, id: 1, course_id: 'missing_course_id', course: course) }
   let(:params) { {} }
@@ -23,7 +23,7 @@ describe RequestFixMissingCourseForm do
 
   describe :persistance do
     let(:reserve) {
-      r = FactoryGirl.create(:request, course_id: 'missing_course_id')
+      r = FactoryBot.create(:request, course_id: 'missing_course_id')
       r = Reserve.factory(r, course)
 
     }
@@ -36,8 +36,8 @@ describe RequestFixMissingCourseForm do
 
 
     it "can update all the reserves with the old course_id to have the new one" do
-      FactoryGirl.create(:semester, id: 1 )
-      res2 = FactoryGirl.create(:request, course_id: 'missing_course_id')
+      FactoryBot.create(:semester, id: 1 )
+      res2 = FactoryBot.create(:request, course_id: 'missing_course_id')
       reserve
       params[:fix_all_courses_with_old_course_id] = true
       expect(subject.update_course_id!).to be_truthy

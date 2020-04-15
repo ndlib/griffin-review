@@ -5,7 +5,7 @@ describe Reserve do
   let(:course_listing) { Reserve.new(request: request) }
   let(:request) { Request.new }
   let(:course_search) { CourseSearch.new }
-  let(:semester) { FactoryGirl.create(:semester) }
+  let(:semester) { FactoryBot.create(:semester) }
   let(:course) { double(Course, id: 'crossid', semester: semester) }
 
   subject { course_listing }
@@ -195,12 +195,12 @@ describe Reserve do
   describe :fair_use do
 
     it "creates an empty fair use object when there isn't one " do
-      r = mock_reserve FactoryGirl.create(:request), nil
+      r = mock_reserve FactoryBot.create(:request), nil
       r.fair_use.new_record?.should be_truthy
     end
 
     it "returns the current fair use if there is one associated with the reserve" do
-      r = mock_reserve FactoryGirl.create(:request), nil
+      r = mock_reserve FactoryBot.create(:request), nil
       f = FairUse.new(request: r.request, user: User.new(id: 1))
       f.save!
 
@@ -210,7 +210,7 @@ describe Reserve do
   end
 
   describe 'valid reserve' do
-    let(:request) { FactoryGirl.create(:request) }
+    let(:request) { FactoryBot.create(:request) }
     let(:item) { request.item }
     subject { described_class.factory(request, course)}
 
@@ -244,7 +244,7 @@ describe Reserve do
   describe "presistance" do
 
     it "addes the course reserve id to the reserve record" do
-      request = FactoryGirl.create(:request)
+      request = FactoryBot.create(:request)
       reserve = Reserve.factory(request, course)
       reserve.save!
 
@@ -266,7 +266,7 @@ describe Reserve do
 
   describe "new" do
     it "can take the database request object to decorate" do
-      req = FactoryGirl.create(:request)
+      req = FactoryBot.create(:request)
       reserve = Reserve.new(request: req)
 
       reserve.requestor_netid.should == req.requestor_netid

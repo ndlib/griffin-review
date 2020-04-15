@@ -4,7 +4,7 @@ describe CopyCourseReservesForm do
   let(:user) { mock_model(User, :id => 1, :username => 'instructor') }
 
   before(:each) do
-    @to_course = double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), :crosslist_id => 'crosslist_id')
+    @to_course = double(Course, id: 'course_id', semester: FactoryBot.create(:semester), :crosslist_id => 'crosslist_id')
     @from_course = double(OpenCourse, id: 'from_course_id', course_id: 'from_course_id')
 
     CopyOldCourseReservesForm.any_instance.stub(:get_course).and_return(nil)

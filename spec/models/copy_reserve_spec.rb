@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe CopyReserve do
 
-  let(:semester) { FactoryGirl.create(:semester) }
+  let(:semester) { FactoryBot.create(:semester) }
   let(:course_search) { CourseSearch.new }
   let(:user) { User.new(id: 1, username: 'bobbobbers')}
 
   before(:each) do
-    @current_semester = FactoryGirl.create(:semester)
+    @current_semester = FactoryBot.create(:semester)
     @from_course = double(Course, id: 'from_id', semester: @current_semester)
-    @to_course = double(Course, id: 'to_id', semester: FactoryGirl.create(:previous_semester))
+    @to_course = double(Course, id: 'to_id', semester: FactoryBot.create(:previous_semester))
 
-    @reserve = Reserve.factory(FactoryGirl.create(:request, :available), @from_course)
+    @reserve = Reserve.factory(FactoryBot.create(:request, :available), @from_course)
 
     @copy_reserve = CopyReserve.new(user, @to_course, @reserve)
 

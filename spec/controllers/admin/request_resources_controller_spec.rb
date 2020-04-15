@@ -5,10 +5,10 @@ describe RequestsResourcesController do
 
   before(:each) do
 
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     sign_in u
 
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     CourseSearch.any_instance.stub(:get).and_return(@course)
   end
 
@@ -16,14 +16,14 @@ describe RequestsResourcesController do
   describe :edit do
 
     it "shows the edit page " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
 
       get :edit, { id: reserve.id }
     end
 
 
     it "assigns a view object " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
 
       get :edit, { id: reserve.id }
       assigns(:request)
@@ -31,7 +31,7 @@ describe RequestsResourcesController do
 
 
     it "renders a 404 if the item cannot have a resource" do
-      reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :book), @course)
       lambda {
         get :edit, { id: reserve.id }
       }.should render_template(nil)
@@ -39,9 +39,9 @@ describe RequestsResourcesController do
 
 
     it "does not allow non admins in" do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
 
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 
@@ -54,7 +54,7 @@ describe RequestsResourcesController do
 
   describe :update do
     it "allows you to upload a file" do
-      reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :book_chapter), @course)
       reserve.pdf.clear
       reserve.save!
 
@@ -64,7 +64,7 @@ describe RequestsResourcesController do
 
 
     it "allows you to update the url " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
       reserve.url = ""
       reserve.save!
 
@@ -74,9 +74,9 @@ describe RequestsResourcesController do
 
 
     it "does not allow non admins in" do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
 
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 
@@ -91,14 +91,14 @@ describe RequestsResourcesController do
   describe :destroy do
 
     it "redirects to the edit page " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :book_chapter), @course)
 
       delete :destroy, id: reserve.id
       expect(response).to redirect_to edit_resource_path(reserve.id)
     end
 
     it "removes an loaded file " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :book_chapter), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :book_chapter), @course)
 
       delete :destroy, id: reserve.id
       reserve.item.reload()
@@ -107,7 +107,7 @@ describe RequestsResourcesController do
 
 
     it "removes a url " do
-      reserve = mock_reserve(FactoryGirl.create(:request, :video), @course)
+      reserve = mock_reserve(FactoryBot.create(:request, :video), @course)
 
       delete :destroy, id: reserve.id
 

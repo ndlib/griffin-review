@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :video do
-    name "MyVideo"
-    description "MyVideo Description"
-    item_type_id 1
+    name { "MyVideo" }
+    description { "MyVideo Description" }
+    item_type_id { 1 }
   end
 end

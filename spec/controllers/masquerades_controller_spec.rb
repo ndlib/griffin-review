@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MasqueradesController do
 
   before(:each) do
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     sign_in u
   end
 
@@ -33,7 +33,7 @@ describe MasqueradesController do
 
     it "requires the user to be an admin" do
       Permission.any_instance.stub(:current_user_is_administrator?).and_return(true)
-      masquser = FactoryGirl.create(:student)
+      masquser = FactoryBot.create(:student)
 
       post :create, :username => masquser.username
       response.should be_redirect

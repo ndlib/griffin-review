@@ -4,13 +4,13 @@ require 'spec_helper'
 describe RequestsFairUseController do
 
   before(:each) do
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     sign_in u
 
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     CourseSearch.any_instance.stub(:get).and_return(@course)
 
-    @reserve = mock_reserve(FactoryGirl.create(:request, :book), @course)
+    @reserve = mock_reserve(FactoryBot.create(:request, :book), @course)
   end
 
 
@@ -23,7 +23,7 @@ describe RequestsFairUseController do
 
 
     it "does not allow non admins in" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 
@@ -44,7 +44,7 @@ describe RequestsFairUseController do
 
 
     it "does not allow non admins in" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 

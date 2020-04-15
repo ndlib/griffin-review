@@ -8,8 +8,8 @@ describe UserArchiveCourseListing do
   describe :archived_semesters do
 
     it "returns all the semesters that are in the past." do
-      FactoryGirl.create(:semester)
-      previous_semester = FactoryGirl.create(:previous_semester)
+      FactoryBot.create(:semester)
+      previous_semester = FactoryBot.create(:previous_semester)
 
       UserArchiveCourseListing.new(instructor_user).archived_semesters.should == [previous_semester]
     end
@@ -18,7 +18,7 @@ describe UserArchiveCourseListing do
 
   describe :has_any_archived_instructed_courses? do
     it "returns true if there is a single archived course that have reserves" do
-      previous_semester = FactoryGirl.create(:previous_semester)
+      previous_semester = FactoryBot.create(:previous_semester)
 
       UserArchiveCourseListing.any_instance.stub(:archived_semesters).and_return([ previous_semester])
       course = mock_course_with_reserve
@@ -30,7 +30,7 @@ describe UserArchiveCourseListing do
 
 
     it "returns false if there are no archived courses that have reserves" do
-      previous_semester = FactoryGirl.create(:previous_semester)
+      previous_semester = FactoryBot.create(:previous_semester)
       UserArchiveCourseListing.any_instance.stub(:archived_semesters).and_return([previous_semester])
       course = mock_course_without_reserve
 
@@ -45,7 +45,7 @@ describe UserArchiveCourseListing do
   describe :semester_has_courses? do
 
     it "returns true if the semester has courses" do
-      semester = FactoryGirl.create(:semester)
+      semester = FactoryBot.create(:semester)
       course = mock_course_with_reserve
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
@@ -55,7 +55,7 @@ describe UserArchiveCourseListing do
 
 
     it "returns false if the semester does not have courses" do
-      semester = FactoryGirl.create(:semester)
+      semester = FactoryBot.create(:semester)
       course = mock_course_without_reserve
 
       CourseSearch.any_instance.stub(:instructed_courses).and_return([course])
@@ -68,7 +68,7 @@ describe UserArchiveCourseListing do
   describe :semester_instructed_courses_with_reserves do
 
     it "returns only courses that have reserves" do
-      semester = FactoryGirl.create(:semester)
+      semester = FactoryBot.create(:semester)
       course1 = mock_course_with_reserve
       course2 = mock_course_without_reserve
 
@@ -86,7 +86,7 @@ describe UserArchiveCourseListing do
 
   def mock_course_with_reserve
     course1 = double(Course, id: 'course_id', crosslist_id: 'crosslist_id', title: 'course 1')
-    reserve = mock_reserve FactoryGirl.create(:request, :available), course1
+    reserve = mock_reserve FactoryBot.create(:request, :available), course1
     course1.stub(:reserves).and_return([reserve])
 
     course1

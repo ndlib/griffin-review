@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Course do
 
   let(:username) { 'student' }
-  let(:semester) { FactoryGirl.create(:semester) }
+  let(:semester) { FactoryBot.create(:semester) }
   let(:course_search) { CourseSearch.new }
 
 
@@ -157,7 +157,7 @@ describe Course do
 
 
   it "gets the current semester for a course" do
-    semester = FactoryGirl.create(:semester, code: "201310")
+    semester = FactoryBot.create(:semester, code: "201310")
     @crosslist_course.semester.should == semester
   end
 
@@ -168,9 +168,9 @@ describe Course do
   describe "reserves" do
 
     it "returns all the reserves associated with the course reguardless of state" do
-      mock_reserve FactoryGirl.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
-      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
-      mock_reserve FactoryGirl.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
 
       @crosslist_course.reserves.size.should == 3
     end
@@ -180,9 +180,9 @@ describe Course do
   describe "published_reserves" do
 
     it "returns only the published reserves" do
-      mock_reserve FactoryGirl.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
-      mock_reserve FactoryGirl.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
-      mock_reserve FactoryGirl.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :new, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :inprocess, course_id: @crosslist_course.id), @crosslist_course
+      mock_reserve FactoryBot.create(:request, :available, course_id: @crosslist_course.id), @crosslist_course
 
       @crosslist_course.published_reserves.size.should == 1
 

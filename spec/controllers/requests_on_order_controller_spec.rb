@@ -10,7 +10,7 @@ describe RequestsOnOrderController do
 
   describe :admin do
     before(:each) do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       sign_in u
 
       RequestsOnOrderController.any_instance.stub(:check_admin_permission!).and_return(true)
@@ -37,7 +37,7 @@ describe RequestsOnOrderController do
 
   describe :not_admin do
     before(:each) do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
 
       RequestsOnOrderController.any_instance.stub(:check_admin_permission!).and_raise(ActionController::RoutingError.new("error"))

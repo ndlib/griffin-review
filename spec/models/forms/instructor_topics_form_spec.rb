@@ -5,7 +5,7 @@ describe InstructorTopicsForm do
   let(:user) { double(User, :username => 'instructor') }
   let(:course_search) { CourseSearch.new }
   let(:course) { course_search.get('current_multisection_crosslisted') }
-  let(:semester) { FactoryGirl.create(:semester)}
+  let(:semester) { FactoryBot.create(:semester)}
 
   before(:each) do
 
@@ -18,7 +18,7 @@ describe InstructorTopicsForm do
 
 
   it "saves the topics passed in as string" do
-    reserve = mock_reserve FactoryGirl.create(:request, :available, course_id: @course.reserve_id), @course
+    reserve = mock_reserve FactoryBot.create(:request, :available, course_id: @course.reserve_id), @course
     @course.stub(:reserve).with(reserve.id).and_return(reserve)
 
     params =  { course_id: @course.id, id: reserve.id, topics: "topic 1, topic 2, topic 3" }
@@ -31,7 +31,7 @@ describe InstructorTopicsForm do
 
 
   it "saves the topics passed in as arrays" do
-    reserve = mock_reserve FactoryGirl.create(:request, :available, course_id: @course.reserve_id), @course
+    reserve = mock_reserve FactoryBot.create(:request, :available, course_id: @course.reserve_id), @course
     @course.stub(:reserve).with(reserve.id).and_return(reserve)
 
     params =  { course_id: @course.id, id: reserve.id, topics: "topic 1, topic 2, topic 3" }
@@ -45,7 +45,7 @@ describe InstructorTopicsForm do
 
 
   it "changes the topics" do
-    reserve = mock_reserve FactoryGirl.create(:request, :available, course_id: @course.reserve_id), @course
+    reserve = mock_reserve FactoryBot.create(:request, :available, course_id: @course.reserve_id), @course
     @course.stub(:reserve).with(reserve.id).and_return(reserve)
 
     params =  { course_id: @course.id, id: reserve.id, topics: "topic 1, topic 2, topic 3" }

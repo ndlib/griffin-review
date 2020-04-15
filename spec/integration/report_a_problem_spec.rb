@@ -6,7 +6,7 @@ describe 'Report a Problem Spec' do
 
   it "allows you to submit a report" do
     semester = Factory(:semester, code: '201300')
-    u = FactoryGirl.create(:student, username: 'abuchman')
+    u = FactoryBot.create(:student, username: 'abuchman')
     login_as u
 
     VCR.use_cassette 'report_a_problem_form' do

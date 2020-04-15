@@ -64,7 +64,7 @@ describe PlaceItemOnOrderForm do
 
   describe :toggle_on_order do
     before(:each) do
-      CourseSearch.any_instance.stub(:get).and_return(double(Course, id: 1, semester: FactoryGirl.create(:semester)))
+      CourseSearch.any_instance.stub(:get).and_return(double(Course, id: 1, semester: FactoryBot.create(:semester)))
       @reserve = Reserve.new(title: 'title', type: 'BookChapterReserve', requestor_netid: 'netid')
 
       @form = PlaceItemOnOrderForm.new(@reserve)

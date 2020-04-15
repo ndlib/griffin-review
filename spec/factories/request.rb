@@ -1,31 +1,31 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :request do
-    needed_by Date.today + 2.weeks
+    needed_by { Date.today + 2.weeks }
     sequence(:title) { |n| "Request Title #{n}" }
-    course_id "course_id"
-    requestor_netid "netid"
+    course_id { "course_id" }
+    requestor_netid { "netid" }
     association(:item)
     note { Faker::Lorem.paragraph }
-    semester { Semester.current.first || FactoryGirl.create(:semester) }
+    semester { Semester.current.first || FactoryBot.create(:semester) }
   end
 
   trait :new do
-    workflow_state "new"
+    workflow_state { "new" }
   end
 
   trait :inprocess do
-    workflow_state "inprocess"
+    workflow_state { "inprocess" }
   end
 
   trait :available do
-    workflow_state "available"
+    workflow_state { "available" }
   end
 
   trait :removed do
-    workflow_state "removed"
+    workflow_state { "removed" }
   end
 
   trait :book do
@@ -62,7 +62,7 @@ FactoryGirl.define do
   end
 
   trait :previous_semester do
-    semester { FactoryGirl.create(:previous_semester) }
+    semester { FactoryBot.create(:previous_semester) }
   end
 
 end

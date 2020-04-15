@@ -10,8 +10,8 @@ module ControllerMacros
 
       #   before(:each) do
       #     @request.env["devise.mapping"] = Devise.mappings[:user]
-      #     @admin_role = Factory.create(:admin_role)
-      #     @admin_user = Factory.create(:user, :roles => [@admin_role])
+      #     @admin_role = FactoryBot.create(:admin_role)
+      #     @admin_user = FactoryBot.create(:user, :roles => [@admin_role])
       #     sign_in @admin_user
       #   end
 

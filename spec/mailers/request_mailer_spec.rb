@@ -3,20 +3,20 @@ require "spec_helper"
 describe RequestMailer do
 
   before(:all) do
-    @faculty_user_a = Factory.create(:user)
-    @faculty_user_b = Factory.create(:user)
-    @faculty_role = Factory.create(:faculty_role)
+    @faculty_user_a = FactoryBot.create(:user)
+    @faculty_user_b = FactoryBot.create(:user)
+    @faculty_role = FactoryBot.create(:faculty_role)
     @faculty_user_a.roles = [@faculty_role]
     @faculty_user_b.roles = [@faculty_role]
-    @current_semester = Factory.create(:semester, :code => 'code1')
-    @next_semester = Factory.create(:semester, :code => 'code2', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
-    @distant_semester = Factory.create(:semester, :code => 'code3', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
-    @old_semester = Factory.create(:semester, :code => 'code4', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
-    @request_a = Factory.create(:generic_request, :semester_id => @current_semester.id)
-    @request_b = Factory.create(:generic_request, :needed_by => Date.today + 4.weeks, :semester_id => @current_semester.id)
-    @request_c = Factory.create(:generic_request, :needed_by => Date.today + 14.days, :semester_id => @current_semester.id)
-    @media_admin_role = Factory.create(:media_admin_role)
-    @media_admin_user = Factory.create(:user)
+    @current_semester = FactoryBot.create(:semester, :code => 'code1')
+    @next_semester = FactoryBot.create(:semester, :code => 'code2', :date_begin => Date.today + 3.months, :date_end => Date.today + 6.months)
+    @distant_semester = FactoryBot.create(:semester, :code => 'code3', :date_begin => Date.today + 7.months, :date_end => Date.today + 12.months)
+    @old_semester = FactoryBot.create(:semester, :code => 'code4', :date_begin => Date.today - 6.months, :date_end => Date.today - 2.months)
+    @request_a = FactoryBot.create(:generic_request, :semester_id => @current_semester.id)
+    @request_b = FactoryBot.create(:generic_request, :needed_by => Date.today + 4.weeks, :semester_id => @current_semester.id)
+    @request_c = FactoryBot.create(:generic_request, :needed_by => Date.today + 14.days, :semester_id => @current_semester.id)
+    @media_admin_role = FactoryBot.create(:media_admin_role)
+    @media_admin_user = FactoryBot.create(:user)
     @media_admin_user.roles = [@media_admin_role]
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true

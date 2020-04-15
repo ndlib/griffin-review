@@ -14,13 +14,13 @@ describe 'Student Course Access ' do
 
 
   let(:ldap) { Net::LDAP::Entry.new }
-  let(:instructor) { FactoryGirl.create(:instructor, username: 'jhartzle' )}
+  let(:instructor) { FactoryBot.create(:instructor, username: 'jhartzle' )}
 
   before(:each) do
     semester = Factory(:semester, code: semester_code)
     next_semester = Factory(:next_semester, code: next_semester_code)
 
-    u = FactoryGirl.create(:student, username: username)
+    u = FactoryBot.create(:student, username: username)
     login_as u
 
     stub_ssi!
@@ -36,7 +36,7 @@ describe 'Student Course Access ' do
 
 
   # it "homepage -> show page" do
-  #   res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
+  #   res = mock_reserve FactoryBot.create(:request, :available, :book_chapter), @current_course
 
   #   VCR.use_cassette listing_course_key do
   #     visit root_path
