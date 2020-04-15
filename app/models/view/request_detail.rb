@@ -143,6 +143,9 @@ class RequestDetail
     end
   end
 
+  def message
+    @reserve.message
+  end
 
   private
 

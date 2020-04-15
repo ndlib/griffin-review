@@ -5,7 +5,7 @@ class RequestsLibraryController  < ApplicationController
 
     @form = LibraryReserveForm.build_from_params(self)
 
-    if @form.update_reserve_library!
+    if @form.update_reserve_library!(current_user.display_name)
       flash[:success] = 'The reserve fulfillment library has been changed.'
       redirect_to request_path(@form.reserve.id)
     else

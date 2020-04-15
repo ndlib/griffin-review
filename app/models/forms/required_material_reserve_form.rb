@@ -23,9 +23,9 @@ class RequiredMaterialReserveForm
       set_attributes_from_params(update_params)
     end
   
-    def update_reserve_required_material!
+    def update_reserve_required_material!(*additions)
       if valid?
-        persist!
+        persist!(additions[0])
         true
       else
         return false
@@ -34,7 +34,16 @@ class RequiredMaterialReserveForm
   
     private
   
-    def persist!
+    def persist!(*additions)
+      if self.attributes.key?(:required_material) && additions.present?
+        value = 'Yes'
+        if self.attributes.fetch(:required_material, false) == false
+          value = 'No'
+        end
+        Message.create({'creator'=>additions[0],
+          'content'=>"Required material changed to #{value}.",
+          'request_id'=>@reserve.id})
+      end
       @reserve.attributes = self.attributes
       @reserve.save!
   

@@ -23,6 +23,11 @@ jQuery ($) ->
     $('#required_material').hide()
     return false
 
+  $('#add_request_message').click ->
+    $('#request_message_note').show()
+    $('#request_message').hide()
+    return false
+
   $('#q').focus()
 
   setupStudentDatatable = () ->

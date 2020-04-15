@@ -5,7 +5,7 @@ class RequestsRequiredMaterialController  < ApplicationController
   
       @form = RequiredMaterialReserveForm.build_from_params(self)
   
-      if @form.update_reserve_required_material!
+      if @form.update_reserve_required_material!(current_user.display_name)
         flash[:success] = 'The reserve required material setting has been changed.'
         redirect_to request_path(@form.reserve.id)
       else
