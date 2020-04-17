@@ -17,12 +17,17 @@ class PlaceItemOnOrderForm
   end
 
 
-  def toggle_on_order!
+  def toggle_on_order!(*additions)
     if @reserve.on_order
       @reserve.on_order = false
+      msg = "Item no longer to be purchased."
     else
       @reserve.on_order = true
+      msg = "Item to be purchased."
     end
+    Message.create({'creator'=>additions[0],
+      'content'=>msg,
+      'request_id'=>@reserve.id})
 
     @reserve.save!
   end
