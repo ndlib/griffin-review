@@ -7,6 +7,13 @@
     display: none;
   }
 
+  .vertical {
+    a {
+      display: block;
+      padding: 12px;
+    }
+  }
+
   .six fieldset {
     border:solid 1px #2C5882;
     padding:5px 12px;

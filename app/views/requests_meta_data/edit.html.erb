@@ -32,10 +32,6 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
     <%= f.hidden_field :overwrite_nd_meta_data %>
 
-    <div class="pull-right">
-      <a href="" id="swank_lookup"><i class="icon icon-search"></i>Swank</a>
-      <a href="" id="kanopy_lookup"><i class="icon icon-search"></i>Kanopy</a>
-    </div>
     <div id="full_meta_data" style="<%= f.object.overwrite_nd_meta_data ? '' : 'display:none;' %>">
       <%= f.input :title, label: f.object.title_field_name %>
 
@@ -58,7 +54,11 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
   <div class="seven columns find-resources">
     <h4>Instructor Input</h4>
     <%= raw f.object.instructor_notes  %>
-    <%= link_to raw("<i class=\"icon icon-chevron-right\"></i> Search in One Search"), f.object.catalog_search_href, target: '_blank' %>
+    <span class="vertical">
+      <%= link_to raw("<i class=\"icon icon-chevron-right\"></i> Search in One Search"), f.object.catalog_search_href, target: '_blank' %>
+      <a id="swank_lookup"><i class="icon icon-chevron-right"></i> Search in Swank</a>
+      <a id="kanopy_lookup"><i class="icon icon-chevron-right"></i> Search in Kanopy</a>
+    </span>
     <hr>
     <h4>Record Preview</h4>
     <%= render :partial => '/course_reserves/list_record', locals: { object: @request.reserve } %>
