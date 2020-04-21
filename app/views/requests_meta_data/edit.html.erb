@@ -32,6 +32,10 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
     <%= f.hidden_field :overwrite_nd_meta_data %>
 
+    <div class="pull-right">
+      <a href="" id="swank_lookup"><i class="icon icon-search"></i>Swank</a>
+      <a href="" id="kanopy_lookup"><i class="icon icon-search"></i>Kanopy</a>
+    </div>
     <div id="full_meta_data" style="<%= f.object.overwrite_nd_meta_data ? '' : 'display:none;' %>">
       <%= f.input :title, label: f.object.title_field_name %>
 

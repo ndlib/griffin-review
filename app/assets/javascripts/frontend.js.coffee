@@ -30,6 +30,21 @@ jQuery ($) ->
 
   $('#q').focus()
 
+  $('#swank_lookup').click ->
+    url = "https://digitalcampus.swankmp.net/nd270436#/digitalCampus/grid?LicenseStatus=All&Title="
+    url += $('#admin_update_meta_data_title').val()
+    url += "&Category=All&Sort=Relevance&Start=1&IsDescending=false&Page=1"
+    win = window.open(url, '_blank')
+    win.focus()
+    return false
+
+  $('#kanopy_lookup').click ->
+    url = "https://notredame.kanopy.com/s?query="
+    url += $('#admin_update_meta_data_title').val()
+    win = window.open(url, '_blank')
+    win.focus()
+    return false
+
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
       # For student table
@@ -287,6 +302,3 @@ jQuery ($) ->
       $(this).val("")
     else
       $(this).parents('.control-group').removeClass('error')
-
-
-
