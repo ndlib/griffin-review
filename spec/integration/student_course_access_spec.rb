@@ -15,7 +15,7 @@ describe 'Student Course Access ' do
     semester = Factory(:semester, code: semester_code)
     next_semester = Factory(:next_semester, code: next_semester_code)
 
-    @u = FactoryGirl.create(:student, username: username)
+    @u = FactoryBot.create(:student, username: username)
     login_as @u
 
     stub_ssi!
@@ -28,7 +28,7 @@ describe 'Student Course Access ' do
 
 
   it "Shows an avaiable book reserve" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :book), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :book), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -42,7 +42,7 @@ describe 'Student Course Access ' do
 
 
   it "shows an available book chapter" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :book_chapter), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -59,7 +59,7 @@ describe 'Student Course Access ' do
 
 
   it "shows a journal with a url redirect" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :journal_url), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :journal_url), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -72,7 +72,7 @@ describe 'Student Course Access ' do
 
 
   it "shows a journal with a file attached to it" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :journal_file), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :journal_file), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -89,7 +89,7 @@ describe 'Student Course Access ' do
 
 
   it "shows a video from our streaming server" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :video), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :video), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -106,7 +106,7 @@ describe 'Student Course Access ' do
 
 
   it "does not show a request that is in the new phase" do
-    res = mock_reserve FactoryGirl.create(:request, :new, :book_chapter), @current_course
+    res = mock_reserve FactoryBot.create(:request, :new, :book_chapter), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -117,7 +117,7 @@ describe 'Student Course Access ' do
 
 
   it "does not show a request that is inprocess " do
-    res = mock_reserve FactoryGirl.create(:request, :inprocess, :book_chapter), @current_course
+    res = mock_reserve FactoryBot.create(:request, :inprocess, :book_chapter), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -128,7 +128,7 @@ describe 'Student Course Access ' do
 
 
   it " does not show a request that is removed" do
-    res = mock_reserve FactoryGirl.create(:request, :removed, :book_chapter), @current_course
+    res = mock_reserve FactoryBot.create(:request, :removed, :book_chapter), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserves_path(@current_course.id)
@@ -139,7 +139,7 @@ describe 'Student Course Access ' do
 
 
   it "allows a copyright to be canceled" do
-    res = mock_reserve FactoryGirl.create(:request, :available, :book_chapter), @current_course
+    res = mock_reserve FactoryBot.create(:request, :available, :book_chapter), @current_course
 
     VCR.use_cassette current_course_by_student_key do
       visit course_reserve_path(@current_course.id, res.id)

@@ -1,5 +1,7 @@
-Factory.define :open_video do |i|
-  i.sequence(:title) { |n| "open_video_title#{n}" }
-  i.sequence(:url) { |n| "open_video_url#{n}" }
-  i.item_type 'video'
+FactoryBot.define do
+  factory :open_video do
+    sequence(:title) { |n| "open_video_title#{n}" }
+    sequence(:url) { |n| "open_video_url#{n}" }
+    item_type { 'video' }
+  end
 end

@@ -116,8 +116,8 @@ group :test do
 
 	gem 'rb-fsevent'
   gem 'database_cleaner'
-	gem 'factory_girl', "~> 2.6.0"
-	gem 'factory_girl_rails', "~> 1.7.0"
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
 	gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
   gem 'guard-rspec'

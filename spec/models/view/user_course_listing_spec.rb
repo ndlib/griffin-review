@@ -6,12 +6,12 @@ describe ListUsersCourses do
   let(:instructor_user) { double(User, :username => 'instructor') }
   let(:inst_stu_user)  { double(User, :username => 'inst_stu') }
 
-  let(:semester) { FactoryGirl.create(:semester)}
-  let(:previous_semester) { FactoryGirl.create(:previous_semester)}
+  let(:semester) { FactoryBot.create(:semester)}
+  let(:previous_semester) { FactoryBot.create(:previous_semester)}
 
   before(:each) do
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
-    @upcoming_course = double(Course, id: 'next_id', semester: FactoryGirl.create(:next_semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
+    @upcoming_course = double(Course, id: 'next_id', semester: FactoryBot.create(:next_semester))
   end
 
 

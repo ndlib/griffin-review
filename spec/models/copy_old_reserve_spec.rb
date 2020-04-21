@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CopyReserve do
 
-  let(:semester) { FactoryGirl.create(:semester) }
+  let(:semester) { FactoryBot.create(:semester) }
   let(:user) { mock_model(User, id: 1, username: 'username' )}
   let(:to_course) { double(Course, id: 'course_id', semester: semester, crosslist_id: 'crosslist_id') }
 

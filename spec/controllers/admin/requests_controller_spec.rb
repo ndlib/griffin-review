@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RequestsController do
 
   before(:each) do
-    u = FactoryGirl.create(:admin_user)
+    u = FactoryBot.create(:admin_user)
     sign_in u
   end
 
@@ -11,7 +11,7 @@ describe RequestsController do
   describe :index do
 
     it "displays the index page" do
-      FactoryGirl.create(:semester)
+      FactoryBot.create(:semester)
 
       get :index
       response.should be_success
@@ -19,7 +19,7 @@ describe RequestsController do
 
 
     it "does not allow non admins in" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       u.revoke_admin!
       sign_in u
 

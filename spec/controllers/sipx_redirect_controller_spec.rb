@@ -11,7 +11,7 @@ describe SipxRedirectController do
     end
 
     it " restricts the access from students " do
-      u = FactoryGirl.create(:student)
+      u = FactoryBot.create(:student)
       sign_in u
 
       expect {
@@ -20,7 +20,7 @@ describe SipxRedirectController do
     end
 
     it "restricts the access from instructors" do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
 
       expect {
@@ -29,7 +29,7 @@ describe SipxRedirectController do
     end
 
     it "allows access to admins" do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       sign_in u
 
       get :admin_redirect, course_id: '1'
@@ -38,7 +38,7 @@ describe SipxRedirectController do
 
 
     it "redirects to the url the sipx redirect provides " do
-      u = FactoryGirl.create(:admin_user)
+      u = FactoryBot.create(:admin_user)
       sign_in u
 
       get :admin_redirect, course_id: '1'

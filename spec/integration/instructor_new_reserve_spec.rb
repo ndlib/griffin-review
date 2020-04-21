@@ -12,7 +12,7 @@ describe "Instructor New Reserve" do
     semester = Factory(:semester, code: semester_code)
     next_semester = Factory(:next_semester, code: next_semester_code)
 
-    u = FactoryGirl.create(:student, username: username)
+    u = FactoryBot.create(:student, username: username)
     login_as u
 
     stub_ssi!

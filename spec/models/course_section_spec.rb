@@ -4,7 +4,7 @@ require 'spec_helper'
 describe CourseSection do
 
   before(:each) do
-    @semester = FactoryGirl.create(:semester, :code => default_data[:term])
+    @semester = FactoryBot.create(:semester, :code => default_data[:term])
     @course_section = CourseSection.factory('crosslist_id', default_data)
   end
 

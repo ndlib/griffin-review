@@ -8,8 +8,8 @@ describe CopyCourseReservesForm do
 
   let(:user) { User.new(:id => 1, :username => 'instructor', :admin => false) }
   let(:course_search) { CourseSearch.new }
-  let(:semester) { FactoryGirl.create(:semester) }
-  let(:next_semester) { FactoryGirl.create(:next_semester) }
+  let(:semester) { FactoryBot.create(:semester) }
+  let(:next_semester) { FactoryBot.create(:next_semester) }
   let(:from_course) { double(Course, semester: semester, :id => 'from_course_id', :title => 'from title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'from_reserve_id') }
   let(:to_course) { double(Course, semester: next_semester, :id => 'to_course_id', :title => 'to title', :primary_instructor => double(User, display_name: 'name'), :crosslist_id => 'to_reserve_id') }
   let(:valid_params) { { course_id: to_course.id, from_course_id: from_course.id } }
@@ -38,7 +38,7 @@ describe CopyCourseReservesForm do
   describe :copy do
 
     it "is returns true when it is successful" do
-      reserve = Reserve.factory(FactoryGirl.create(:request, :available), from_course)
+      reserve = Reserve.factory(FactoryBot.create(:request, :available), from_course)
       from_course.stub(:reserve).with(reserve.id).and_return(reserve)
 
       valid_params.merge!({reserve_ids: [ reserve.id ]})

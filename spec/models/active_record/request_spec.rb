@@ -4,7 +4,7 @@ describe Request do
   subject { described_class.new }
 
   describe 'valid subject' do
-    let(:valid_params) { {:course_id => 'course id', :requestor_netid => 'requestornetid', :item => Item.new, :semester => FactoryGirl.create(:semester)} }
+    let(:valid_params) { {:course_id => 'course id', :requestor_netid => 'requestornetid', :item => Item.new, :semester => FactoryBot.create(:semester)} }
     subject { described_class.new(valid_params) }
     it "passes validation" do
       expect(subject).to be_valid

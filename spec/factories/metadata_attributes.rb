@@ -1,5 +1,7 @@
-Factory.define :metadata_attribute do |ma|
-    ma.sequence(:name) { |n| "Meta Name #{n}" }
-    ma.metadata_type "technical"
-    ma.definition "Meta Description"
+FactoryBot.define do
+    factory :metadata_attribute do
+        sequence(:name) { |n| "Meta Name #{n}" }
+        metadata_type { "technical" }
+        definition { "Meta Description" }
+    end
 end

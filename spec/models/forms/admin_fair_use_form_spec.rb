@@ -6,14 +6,14 @@ describe AdminFairUseForm do
   let (:user) { double(User, id: 1)}
 
   before(:each) {
-    FactoryGirl.create(:semester)
+    FactoryBot.create(:semester)
 
     @c =  double(Course, id: 1, crosslist_id: 'crosslist_id', semester: Semester.first)
 
     CourseSearch.any_instance.stub(:get).and_return(@c)
 
-    @item = FactoryGirl.create(:item)
-    @reserve = mock_reserve FactoryGirl.create(:request, item: @item), @c
+    @item = FactoryBot.create(:item)
+    @reserve = mock_reserve FactoryBot.create(:request, item: @item), @c
 
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
   }
@@ -68,7 +68,7 @@ describe AdminFairUseForm do
   describe :previous_fair_uses do
 
     it "gets all the previous_comments" do
-      @reserve2 = mock_reserve FactoryGirl.create(:request, item: @item), @c
+      @reserve2 = mock_reserve FactoryBot.create(:request, item: @item), @c
 
       fu1 = FairUse.new(request_id: (@reserve2.id), item_id: @reserve.item.id, user_id: 2, created_at: 1.day.ago)
       fu1.save!
@@ -91,8 +91,8 @@ describe AdminFairUseForm do
 
 
     it "orders them chronologically" do
-      @reserve2 = mock_reserve FactoryGirl.create(:request, item: @item), @c
-      @reserve3 = mock_reserve FactoryGirl.create(:request, item: @item), @c
+      @reserve2 = mock_reserve FactoryBot.create(:request, item: @item), @c
+      @reserve3 = mock_reserve FactoryBot.create(:request, item: @item), @c
 
       fu1 = FairUse.new(request_id: (@reserve2.id), item_id: @reserve.item.id, user_id: 2, created_at: 2.days.ago)
       fu1.save!

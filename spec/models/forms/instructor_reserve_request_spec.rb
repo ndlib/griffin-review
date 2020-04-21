@@ -4,7 +4,7 @@ Reserve
 describe InstructorReserveRequest do
 
   let(:user) { double(User, :username => 'instructor') }
-  let(:semester) { FactoryGirl.create(:semester)}
+  let(:semester) { FactoryBot.create(:semester)}
 
 
   before(:each) do

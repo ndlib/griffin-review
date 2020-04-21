@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe UserCourseException do
 
-  let(:semester) { FactoryGirl.create(:semester) }
-  let(:previous_semester) { FactoryGirl.create(:previous_semester) }
+  let(:semester) { FactoryBot.create(:semester) }
+  let(:previous_semester) { FactoryBot.create(:previous_semester) }
 
   describe "validations" do
 

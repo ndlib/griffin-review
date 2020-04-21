@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CourseReservesController do
 
   before(:each) do
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     @reserve = double(Reserve, id: 1, course: @course, title: "title")
 
     ReserveSearch.any_instance.stub(:get).and_return(@reserve)
@@ -12,7 +12,7 @@ describe CourseReservesController do
 
   describe :instructor do
     before(:each) do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
     end
 
@@ -67,7 +67,7 @@ describe CourseReservesController do
 
   describe :student do
     before(:each) do
-      u = FactoryGirl.create(:student)
+      u = FactoryBot.create(:student)
       sign_in u
 
       CourseReservesController.any_instance.stub(:check_instructor_permissions!).and_raise(ActionController::RoutingError.new("404"))

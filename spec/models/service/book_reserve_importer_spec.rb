@@ -7,7 +7,7 @@ describe BookReserveImporter do
     @bri.stub(:print_reserves).and_return([ {'bib_id' => 'id'} ])
     BookReserveImport.any_instance.stub(:reserves).and_return([double(Reserve, id: 'id')])
 
-    semester = FactoryGirl.create(:semester)
+    semester = FactoryBot.create(:semester)
     @course = double(Course, id: 'crosslist_id', semester: semester)
     BookReserveImport.any_instance.stub(:course).and_return(@course)
   end

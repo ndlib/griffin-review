@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SakaiIntegratorController do
   before(:each) do
-    u = FactoryGirl.create(:student, username: 'bwright6')
+    u = FactoryBot.create(:student, username: 'bwright6')
     sign_in u
   end
   let (:course) { double(Course, id: 'id') }

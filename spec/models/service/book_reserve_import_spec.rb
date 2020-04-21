@@ -4,7 +4,7 @@ require 'spec_helper'
 describe BookReserveImport do
 
   before(:each) do
-    semester = FactoryGirl.create(:semester)
+    semester = FactoryBot.create(:semester)
 
     stub_discovery!
 
@@ -138,7 +138,7 @@ describe BookReserveImport do
   describe :existing_record do
 
     it "passes records that already exist" do
-      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record)), @course
+      @existing_reserve = mock_reserve FactoryBot.create(:request, :inprocess, :item => FactoryBot.create(:item_with_bib_record)), @course
 
       @ibr = BookReserveImport.new(@api_data)
       @ibr.reserves.first.should_receive(:save!).exactly(0).times
@@ -147,7 +147,7 @@ describe BookReserveImport do
     end
 
     it "does not overwrite an existing type or physical_reserve with BookReserve" do
-      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve = mock_reserve FactoryBot.create(:request, :inprocess, :item => FactoryBot.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
       @existing_reserve.type = 'BookReserve'
       @existing_reserve.physical_reserve = false
       @existing_reserve.save!
@@ -164,7 +164,7 @@ describe BookReserveImport do
 
 
     it "does not set the videos to be electronic if the electronic is false" do
-      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve = mock_reserve FactoryBot.create(:request, :inprocess, :item => FactoryBot.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
       @existing_reserve.type = 'VideoReserve'
       @existing_reserve.electronic_reserve = false
       @existing_reserve.save!
@@ -182,7 +182,7 @@ describe BookReserveImport do
 
 
     it "does not change an existing needed_by date" do
-      @existing_reserve = mock_reserve FactoryGirl.create(:request, :inprocess, needed_by: 6.weeks.ago, :item => FactoryGirl.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
+      @existing_reserve = mock_reserve FactoryBot.create(:request, :inprocess, needed_by: 6.weeks.ago, :item => FactoryBot.create(:item_with_bib_record, nd_meta_data_id: 'generic' )), @course
       @existing_reserve.type = 'BookReserve'
       @existing_reserve.physical_reserve = false
       @existing_reserve.save!

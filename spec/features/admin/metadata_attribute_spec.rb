@@ -3,12 +3,12 @@ require 'spec_helper'
 =begin
 describe "Metadata Attribute Integration" do
   before(:all) do
-    @media_admin_role = Factory.create(:media_admin_role)
-    @media_admin_user = Factory.create(:user)
+    @media_admin_role = FactoryBot.create(:media_admin_role)
+    @media_admin_user = FactoryBot.create(:user)
     @media_admin_user.roles = [@media_admin_role]
-    @jane_user = Factory.create(:user)
-    @metadata_a = Factory.create(:metadata_attribute)
-    @metadata_b = Factory.create(:metadata_attribute)
+    @jane_user = FactoryBot.create(:user)
+    @metadata_a = FactoryBot.create(:metadata_attribute)
+    @metadata_b = FactoryBot.create(:metadata_attribute)
   end
   describe "Change metadata attribute parameters via edit screen" do
     before :all do

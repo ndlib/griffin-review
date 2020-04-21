@@ -66,7 +66,7 @@ describe PhysicalElectronicReserveForm do
 
   describe :persistance do
     before(:each) do
-      @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+      @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
       @reserve = Reserve.new(id: 'id', title: 'title', course: @course, type: 'BookChapterReserve', requestor_netid: 'netid', physical_reserve: false, electronic_reserve: false)
     end
 

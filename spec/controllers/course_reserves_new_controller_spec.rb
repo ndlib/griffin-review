@@ -3,14 +3,14 @@ require 'spec_helper'
 describe CourseReservesController do
 
   before(:each) do
-    @course = double(Course, id: 'id', semester: FactoryGirl.create(:semester))
+    @course = double(Course, id: 'id', semester: FactoryBot.create(:semester))
     CourseSearch.any_instance.stub(:get).and_return(@course)
   end
 
 
   describe :instructor do
     before(:each) do
-      u = FactoryGirl.create(:instructor)
+      u = FactoryBot.create(:instructor)
       sign_in u
 
       @course.stub(instructor_netids: [u.username])
@@ -59,7 +59,7 @@ describe CourseReservesController do
 
   describe :student do
     before(:each) do
-      u = FactoryGirl.create(:student)
+      u = FactoryBot.create(:student)
       sign_in u
 
       @course.stub(instructor_netids: [])

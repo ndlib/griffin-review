@@ -8,7 +8,7 @@ describe ReserveSynchronizeMetaData do
     context "reserve can be synchronized " do
 
       before(:each) do
-        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryGirl.create(:semester))
+        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryBot.create(:semester))
         CourseSearch.any_instance.stub(:get).and_return(course)
 
         @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", requestor_netid: 'netid', course: course)
@@ -88,7 +88,7 @@ describe ReserveSynchronizeMetaData do
 
     context "journal" do
       before(:each) do
-        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryGirl.create(:semester))
+        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryBot.create(:semester))
         CourseSearch.any_instance.stub(:get).and_return(course)
 
         @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", title: 'original_title', requestor_netid: 'netid', course: course)
@@ -111,7 +111,7 @@ describe ReserveSynchronizeMetaData do
 
     context "valid_discovery_id?" do
       before(:each) do
-        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryGirl.create(:semester))
+        course = double(Course, id: "id", crosslist_id: "crosslist_id", semester: FactoryBot.create(:semester))
         CourseSearch.any_instance.stub(:get).and_return(course)
 
         @reserve = Reserve.new(nd_meta_data_id: "ndid", type: "BookReserve", requestor_netid: 'netid', course: course)

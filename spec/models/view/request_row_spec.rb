@@ -212,13 +212,13 @@ describe RequestRow do
 
 
   it "makes the key out of the reserve" do
-    reserve = mock_reserve FactoryGirl.create(:request), nil
+    reserve = mock_reserve FactoryBot.create(:request), nil
     expect(RequestRow.new(reserve).cache_key).to eq("admin-reserve-v1-#{reserve.id}-#{reserve.updated_at.to_i}")
   end
 
 
   it "makes an array for json rendering" do
-    Reserve.any_instance.stub(:course).and_return(double(Course, id: 'course_id', semester: FactoryGirl.create(:semester), full_title: 'Course', primary_instructor: double(User, first_name: 'fname', last_name: 'lname', username: 'username')))
+    Reserve.any_instance.stub(:course).and_return(double(Course, id: 'course_id', semester: FactoryBot.create(:semester), full_title: 'Course', primary_instructor: double(User, first_name: 'fname', last_name: 'lname', username: 'username')))
     r = Reserve.new(title: 'Title', needed_by: '1/1/2013', requestor_netid: 'jhartzle', course_id: 'course_id', type: 'VideoReserve', physical_reserve: true, electronic_reserve: false, library: 'hesburgh')
     r.save!
     allow_any_instance_of(RequestRow).to receive(:request_date_timestamp).and_return("request_date_timestamp")
