@@ -12,6 +12,9 @@ class RequestsResourcesController  < ApplicationController
     @request = AdminUpdateResource.new(current_user, params)
 
     if @request.save_resource
+      Message.create({'creator'=>current_user.display_name,
+        'content'=>'Electronic Resources changes made.',
+        'request_id'=>@request.id})
       flash[:success] = "Resource Saved"
       redirect_to request_path(@request.id)
     else
@@ -27,6 +30,9 @@ class RequestsResourcesController  < ApplicationController
     @delete_form = DeleteReserveElectronicResourceForm.new(reserve)
 
     if @delete_form.remove!
+      Message.create({'creator'=>current_user.display_name,
+        'content'=>'Electronic Resources removed.',
+        'request_id'=>reserve.id})
       flash[:success] = "Electronic Resource Removed"
     else
       flash[:error] = "Unable to remove electronic resource.  Please try again or contact Jon."
