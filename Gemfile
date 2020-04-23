@@ -76,6 +76,7 @@ group :application do
   # gem "paper_trail"
 
   gem 'jquery-datatables-rails'
+  gem 'rails-jquery-autocomplete'
 
   gem 'sass-rails'
   gem 'coffee-rails'

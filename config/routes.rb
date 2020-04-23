@@ -88,6 +88,10 @@ Griffin::Application.routes.draw do
     get "discovery_id_test", to: 'discovery_id_test#show'
   end
 
+  resources :videos do
+    get :autocomplete_video_title_name, :on => :collection
+  end
+
   resources :realtime_availability
 
   get "video/request/new", to: "homepage#index"
