@@ -5,7 +5,7 @@
 
 <%= simple_form_for object, :html => {id: "video_form"}, :url => course_reserves_path() do |f| %>
 
-  <%= f.input :title, :url => autocomplete_video_title_name_videos_path, :as => :autocomplete %>
+  <%= f.input :title %>
   <%= f.input :creator, label: "Director or Publisher" %>
 
   <%= f.input :needed_by, hint: "Please plan on a 2 week lead time.", label: "Date Needed By" do %>

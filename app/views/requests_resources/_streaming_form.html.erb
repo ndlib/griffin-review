@@ -1,6 +1,6 @@
 
 <h5>Streaming Server Filename</h5>
-<%= f.input :url, :label => false %>
+<%= f.input :url, :url => autocomplete_video_title_name_videos_path, :as => :autocomplete, :label => false %>
 
 <div class="form-actions">
   <%= f.button :submit, "Save", :class => 'btn btn-primary' %>
