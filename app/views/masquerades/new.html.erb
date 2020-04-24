@@ -1,14 +1,14 @@
 <% content_for(:content_title) do %>
   <div class="page-header">
-    <h1>Masquerade as Another User</h1>
+    <h1>Reserves Utilities</h1>
   </div>
 <% end %>
 
 <% breadcrumb(['Masquerade']) %>
 
 <div class="six columns">
-
-   <%= form_tag masquerades_path, class: "form-inline" do %>
+    <h2>Masquerade as Another User</h2>
+    <%= form_tag masquerades_path, class: "form-inline" do %>
 
     <label for="netid">Netid: </label>
     <input id="netid" type="text" name="username" class="span3" value="<%= params[:username] %>">
@@ -30,6 +30,14 @@
   <p>Students: xzhou1, arabasa, obrogan, abuechle, jgordon4, bhank, gsmith12, pconroy, maguayo</p>
 
   <p>Instructors: jotousa1, mmeyer9, wschmuhl, kmilani, mnguyen1</p>
+</div>
 
+<hr>
 
+<div class="twelve columns">
+  <h2> Upload Video Titles </h2>
+  <%= simple_form_for :upload, url: upload_titles_path do | f | %>
+    <%= f.input :vidfile, :label => false, :as => :file, class: "d-inline-block" %>
+    <%= f.button :submit, "Load", :class => 'd-inline-block btn btn-primary' %>
+  <% end %>
 </div>
