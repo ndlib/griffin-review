@@ -27,7 +27,7 @@ group :application do
   gem 'devise', "~> 3.4.0"
   gem 'omniauth-oktaoauth'
 
-  gem 'simple_token_authentication', '~> 1.0' # see semver.org
+  gem 'simple_token_authentication', '1.17.0'
 
 
   gem 'breach-mitigation-rails'
