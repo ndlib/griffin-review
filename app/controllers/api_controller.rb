@@ -1,5 +1,5 @@
 class ApiController < ActionController::Base
-  acts_as_token_authentication_handler_for User, fallback_to_devise: false
+  acts_as_token_authentication_handler_for User
 
   force_ssl if: :ssl_configured?
 
