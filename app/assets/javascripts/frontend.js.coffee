@@ -45,6 +45,13 @@ jQuery ($) ->
     win.focus()
     return false
 
+  $('#worldcinema_lookup').click ->
+    url = "https://fod-infobase-com.proxy.library.nd.edu/p_Search.aspx?bc=0&rd=a&q="
+    url += $('#admin_update_meta_data_title').val()
+    win = window.open(url, '_blank')
+    win.focus()
+    return false
+
   setupStudentDatatable = () ->
     if $(".student_datatable").size() > 0
       # For student table
