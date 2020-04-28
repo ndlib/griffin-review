@@ -1,6 +1,6 @@
-Setup Development
-============
+# Reserves
 
+## Setup Development
 1. bundle install
 2. copy secrets.example.yml -> secrets.yml
 3. check database config
