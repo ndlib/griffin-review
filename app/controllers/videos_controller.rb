@@ -1,3 +1,3 @@
 class VideosController < ApplicationController
-  autocomplete :video_title, :name
+  autocomplete :video_title, :name, :full => true
 end
