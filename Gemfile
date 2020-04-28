@@ -24,7 +24,7 @@ group :application do
   gem 'dalli'
 
   # authentication
-  gem 'devise', "~> 3.4.0"
+  gem 'devise', "~> 4.7.1"
   gem 'omniauth-oktaoauth'
 
   gem 'simple_token_authentication', '1.17.0'
