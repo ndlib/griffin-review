@@ -28,6 +28,11 @@ jQuery ($) ->
     $('#request_message').hide()
     return false
 
+  $('#workflow_state_change').click ->
+    $('#workflow_state_select').show()
+    $('#workflow_state').hide()
+    return false
+
   $('#q').focus()
 
   $('#swank_lookup').click ->

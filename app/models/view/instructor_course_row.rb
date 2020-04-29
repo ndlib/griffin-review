@@ -22,6 +22,12 @@ class InstructorCourseRow
       'Published'
     elsif @reserve.workflow_state == "new" || @reserve.workflow_state == 'inprocess'
       'In Process'
+    elsif @reserve.workflow_state == 'onhold'
+      'On Hold'
+    elsif @reserve.workflow_state == 'onorder'
+      'On Order'
+    elsif @reserve.workflow_state == 'awaitinginfo'
+      'Awaiting Information'
     else
       @reserve.workflow_state.titleize
     end

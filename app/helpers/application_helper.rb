@@ -28,6 +28,14 @@ module ApplicationHelper
       label: label
   end
 
+  def workflow_select_form(f, label = "")
+    f.input :workflow_state,
+      as: "select",
+      wrapper_html: { id: 'workflow_select_list' },
+      collection: { 'On Hold' => :onhold, 'On Order' => :onorder, 'Awaiting Information' => :awaitinginfo },
+      label: label
+  end
+
 
   def permission
     @permission ||= Permission.new(current_user, self)
