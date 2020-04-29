@@ -19,12 +19,12 @@ class Reserve
   state_machine :workflow_state, :initial => :new do
 
     event :complete do
-      transition [:new, :inprocess, :on_order] => :available
+      transition [:new, :inprocess, :on_order, :onhold, :awaitinginfo ] => :available
     end
 
 
     event :remove do
-      transition [:new, :inprocess, :available, :on_order] => :removed
+      transition [:new, :inprocess, :available, :on_order, :onhold, :awaitinginfo ] => :removed
     end
 
 
