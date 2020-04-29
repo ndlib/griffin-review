@@ -39,7 +39,7 @@ class Reserve
 
 
     event :purchased do
-      transition [:new, :inprocess] => :on_order
+      transition [:on_order] => :inprocess
     end
 
 
