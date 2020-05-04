@@ -1,0 +1,9 @@
+Video Reserves Request Approvals
+
+The following has been approved:
+<% @notify['requests'].each do |requests| %>
+  * <%= requests %>
+<% end %>
+
+
+Thank you! If you have further questions please contact <%= @notify['reserve_contact'] %>.

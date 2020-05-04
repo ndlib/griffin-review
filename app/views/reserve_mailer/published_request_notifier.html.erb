@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Video Reserves Request Approvals</h1>
+    <p>
+      The following has been approved:
+    </p>
+    <ul>
+      <% @notify['requests'].each do |requests| %>
+        <li><%= requests %></li>
+      <% end %>
+    </ul>
+    <p>
+    Thank you! If you have further questions please contact
+    <a href="mailto:<%= @notify['reserve_contact'] %>">reserves staff</a>.
+    </p>
+  </body>
+</html>

@@ -31,3 +31,8 @@ end
 every "30 5 * * *" do
   runner "BookReserveImporter.import!"
 end
+
+# check for published video reserves
+every "15 1 * * *" do
+  runner "NotifyReserveRequestor.notify"
+end
