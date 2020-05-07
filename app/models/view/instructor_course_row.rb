@@ -24,6 +24,8 @@ class InstructorCourseRow
       'In Process'
     elsif @reserve.workflow_state == "on_order"
       'On Order'
+    elsif @reserve.workflow_state == "onhold"
+      'On Hold'
     elsif @reserve.workflow_state == "awaitinginfo"
       'Awaiting Information'
     else
