@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Video Reserves Request Approvals</h1>
+    <h1>Video Reserves Notification</h1>
     <p>
-      The following has been approved:
+    The following title(s) are now now available for streaming:
     </p>
     <ul>
       <% @notify['requests'].each do |requests| %>
@@ -14,8 +14,7 @@
       <% end %>
     </ul>
     <p>
-    Thank you! If you have further questions please contact
-    <a href="mailto:<%= @notify['reserve_contact'] %>">reserves staff</a>.
+    <a href="/report_problem/new">Click here</a> if you have any questions or issues with playback.
     </p>
   </body>
 </html>
