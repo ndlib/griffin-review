@@ -1,17 +1,18 @@
 adminIndexes =
   dateNeededDisplay: 0
-  title: 1
-  requestDateDisplay: 2
-  instructor: 3
-  course: 4
-  typeDisplay: 5
-  requestDateTimestamp: 6
-  dateNeededTimestamp: 7
-  physicalElectronic: 8
-  status: 9
-  library: 10
-  type: 11
-  sortableTitle: 12
+  progress: 1
+  title: 2
+  requestDateDisplay: 3
+  instructor: 4
+  course: 5
+  typeDisplay: 6
+  requestDateTimestamp: 7
+  dateNeededTimestamp: 8
+  physicalElectronic: 9
+  status: 10
+  library: 11
+  type: 12
+  sortableTitle: 13
 
 class AdminDataTable
   constructor: (@tableElement) ->
@@ -38,6 +39,10 @@ class AdminDataTable
       columnDefs: [
         targets: adminIndexes['requestDateDisplay']
         orderData: [adminIndexes['requestDateTimestamp']]
+      ,
+        targets: adminIndexes['progress']
+        sortable: false
+        searchable: false
       ,
         targets: adminIndexes['dateNeededDisplay']
         orderData: [adminIndexes['dateNeededTimestamp']]

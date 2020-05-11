@@ -122,6 +122,36 @@ class RequestRow
     reserve.library
   end
 
+  def progress
+    if ReserveMetaDataPolicy.new(@reserve).complete?
+      rmdp_bg = 'status-complete'
+    else
+      rmdp_bg ='status-todo'
+    end
+    if ElectronicReservePolicy.new(@reserve).is_electronic_reserve?
+      if ElectronicReservePolicy.new(@reserve).has_resource?
+        erp_bg = 'status-complete'
+        if @reserve.fair_use.complete?
+          rfup_bg = 'status-complete'
+        else
+          rfup_bg = 'status-todo'
+        end
+      else
+        erp_bg = 'status-todo'
+        rfup_bg = 'status-todo'
+      end
+    else
+      erp_bg = 'status-na'
+      rfup_bg = 'status-na'
+    end
+    "<div style='width: 100%'>
+      <div class='status-left #{rmdp_bg}'>&nbsp;</div>
+      <div class='status-middle #{erp_bg}'>&nbsp;</div>
+      <div class='status-right #{rfup_bg}'>&nbsp;</div>
+      <br style='clear: left;' />
+    </div>"
+  end
+
   def cached_json
     # puts "Item to_json - #{cache_key}"
     Rails.cache.fetch(cache_key) do
@@ -131,7 +161,7 @@ class RequestRow
   end
 
   def to_json
-    [needed_by, title, request_date, instructor_col, course_col, type_display,  request_date_timestamp, needed_by_json, search_keywords, request_statuses, library, type, sortable_title]
+    [needed_by, progress, title, request_date, instructor_col, course_col, type_display,  request_date_timestamp, needed_by_json, search_keywords, request_statuses, library, type, sortable_title]
   end
 
 end

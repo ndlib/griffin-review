@@ -259,6 +259,40 @@ label.checkbox.last {
   padding-bottom: 20px;
 }
 
+.status-left {
+  border-radius: 5px 0px 0px 5px;
+  border-style: solid;
+  border-width: thin;
+  float: left;
+  width: 33%;
+}
+
+.status-middle {
+  border-style: solid;
+  border-width: thin;
+  float: left;
+  width: 33%;
+}
+
+.status-right {
+  border-radius: 0px 5px 5px 0px;
+  border-style: solid;
+  border-width: thin;
+  float: left;
+  width: 33%;
+}
+
+.status-complete {
+  background-color: #468847
+}
+
+.status-todo {
+  background-color: white
+}
+
+.status-na {
+  background-color: #6c757d
+}
 
 .controls > .radio:first-child,
 .controls > .checkbox:first-child {
