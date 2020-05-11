@@ -19,9 +19,11 @@ class PlaceItemOnOrderForm
 
   def toggle_on_order!(*additions)
     if @reserve.on_order
+      @reserve.workflow_state = 'inprocess'
       @reserve.on_order = false
       msg = "Item no longer to be purchased."
     else
+      @reserve.workflow_state = 'on_order'
       @reserve.on_order = true
       msg = "Item to be purchased."
     end

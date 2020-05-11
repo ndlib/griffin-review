@@ -78,6 +78,8 @@ en:
   request_status:
     new|inprocess: "New & In Process"
     new: "New"
+    awaitinginfo: "Awaiting Information"
+    onhold: "On Hold"
     inprocess: "In Process"
     on_order: "On Order"
     available: "Published"

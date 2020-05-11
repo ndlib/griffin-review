@@ -70,6 +70,7 @@ Griffin::Application.routes.draw do
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'
     resources :types, controller: 'requests_type', only: ['update', 'edit']
+    resources :workflow_state, controller: 'requests_workflow', only: ['update']
     resources :libraries, controller: 'requests_library', only: ['update']
     resources :needed_by, controller: 'requests_needed_by', only: ['update']
     resources :required_material, controller: 'requests_required_material', only: ['update']
