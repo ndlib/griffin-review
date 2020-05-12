@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Video Reserves Notification</h1>
+    <p>
+    The following title(s) are now now available for streaming:
+    </p>
+    <ul>
+      <% @notify['requests'].each do |requests| %>
+        <li><%= requests %></li>
+      <% end %>
+    </ul>
+    <p>
+    <a href="/report_problem/new">Click here</a> if you have any questions or issues with playback.
+    </p>
+  </body>
+</html>

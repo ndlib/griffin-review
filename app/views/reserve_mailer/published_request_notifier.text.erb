@@ -1,0 +1,9 @@
+Video Reserves Notification
+
+The following title(s) are now now available for streaming:
+<% @notify['requests'].each do |requests| %>
+  * <%= requests %>
+<% end %>
+
+
+<a href="/report_problem/new">Click here</a> if you have any questions or issues with playback.
