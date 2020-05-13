@@ -108,6 +108,7 @@ class AdminUpdateResource
 
       create_new_playlist!
 
+      @reserve.request.updated_at = Time.now
       @reserve.save!
 
       ReserveCheckIsComplete.new(@reserve).check!
