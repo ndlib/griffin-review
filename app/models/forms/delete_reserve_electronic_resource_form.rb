@@ -25,7 +25,7 @@ class DeleteReserveElectronicResourceForm
     @reserve.pdf.clear
     @reserve.media_playlist.destroy if @reserve.media_playlist.present?
 
-
+    @reserve.request.updated_at = Time.now
     @reserve.save!
 
     ReserveCheckIsComplete.new(@reserve).check!

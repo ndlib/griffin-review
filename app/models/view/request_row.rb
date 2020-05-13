@@ -128,13 +128,19 @@ class RequestRow
     else
       rmdp_bg ='status-todo'
     end
-    if ElectronicReservePolicy.new(@reserve).is_electronic_reserve?
-      if ElectronicReservePolicy.new(@reserve).has_resource?
+    erp = ElectronicReservePolicy.new(@reserve)
+    if erp.is_electronic_reserve?
+      if erp.has_resource?
         erp_bg = 'status-complete'
-        if @reserve.fair_use.complete?
-          rfup_bg = 'status-complete'
+        rfp = ReserveFairUsePolicy.new(@reserve)
+        if rfp.requires_fair_use?
+          if rfp.complete?
+            rfup_bg = 'status-complete'
+          else
+            rfup_bg = 'status-todo'
+          end
         else
-          rfup_bg = 'status-todo'
+          rfup_bg = 'status-na'
         end
       else
         erp_bg = 'status-todo'
