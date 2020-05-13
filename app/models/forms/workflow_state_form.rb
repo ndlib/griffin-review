@@ -25,6 +25,12 @@ class WorkflowStateForm
   end
 
   def update_workflow_state!(*additions)
+    state = self.attributes.fetch(:workflow_state, 'unknown')
+    @reserve.on_order = false
+    if state == "on_order"
+      @reserve.on_order = true
+    end
+
     if valid?
       persist!(additions[0])
       true
@@ -36,7 +42,7 @@ class WorkflowStateForm
   private
 
   def persist!(*additions)
-    if self.attributes.key?(:library) && additions.present?
+    if additions.present?
       value = self.attributes.fetch(:workflow_state, 'unknown')
       Message.create({'creator'=>additions[0],
         'content'=>"State changed from #{@reserve.workflow_state} to #{value}.",

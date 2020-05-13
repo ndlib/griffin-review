@@ -32,7 +32,7 @@ module ApplicationHelper
     f.input :workflow_state,
       as: "select",
       wrapper_html: { id: 'workflow_select_list' },
-      collection: { 'On Hold' => :onhold, 'Awaiting Information' => :awaitinginfo, 'In Process' => :inprocess },
+      collection: { 'On Hold' => :onhold, 'Awaiting Information' => :awaitinginfo, 'In Process' => :inprocess, 'On Order' => :on_order },
       :default => 'On Hold',
       label: label
   end
