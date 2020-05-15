@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "7f48cc07-cbb9-4e7a-b4b6-bc67fa9bee94",
+		"name": "Reserves",
+		"description": "# Reserves (Griffin)\n\nTest suite for Reserves",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Smoke",
+			"item": [
+				{
+					"name": "Get Root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f5a5a8eb-93b7-4417-8cd8-0643d619a4a9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}",
+							"host": [
+								"{{BaseURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Courses Path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/courses",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## Smoke Tests for Reserves (griffin)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9fdf1cd4-086d-41b0-ba10-879678ce691f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "058989ab-4398-4638-a982-f497a9962e01",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
