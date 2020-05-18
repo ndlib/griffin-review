@@ -175,6 +175,8 @@ jQuery ($) ->
       oTable.fnFilter($(this).val(), 1, true, false, false)
 
     input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
+    input.css('box-sizing', 'border-box')
+    input.css('width', '200px')
     input.attr('placeholder', "Author name or Title")
 
     if ($('.show_popover_help').size() > 0)
