@@ -177,30 +177,31 @@ jQuery ($) ->
     input = $('.dataTables_filter').addClass('well').addClass('well-small').find('input')
     input.css('box-sizing', 'border-box')
     input.css('width', '200px')
+    input.css('height', '30px')
     input.attr('placeholder', "Author name or Title")
 
-    if ($('.show_popover_help').size() > 0)
-      input.attr('data-content', 'Search for a reserve by title or author.')
-      input.attr('data-title', 'Search')
+    # if ($('.show_popover_help').size() > 0)
+    #   input.attr('data-content', 'Search for a reserve by title or author.')
+    #   input.attr('data-title', 'Search')
 
-      input.popover({ trigger: 'manual',  })
+    #   input.popover({ trigger: 'manual',  })
 
-      input.focus ->
-        if ($(this).attr('data-popover-shown') != 'shown')
-          input = $(this)
+    #   input.focus ->
+    #     if ($(this).attr('data-popover-shown') != 'shown')
+    #       input = $(this)
 
-          setTimeout ( -> input.popover('show') ), 2000
-          input.attr('data-popover-shown', 'shown')
+    #       setTimeout ( -> input.popover('show') ), 2000
+    #       input.attr('data-popover-shown', 'shown')
 
-        true
+    #     true
 
-      input.blur ->
-        $(this).popover('hide')
+    #   input.blur ->
+    #     $(this).popover('hide')
 
-      input.keyup ->
-        $(this).popover('hide')
+    #   input.keyup ->
+    #     $(this).popover('hide')
 
-      input.focus()
+    #   input.focus()
     $('.span6').first().remove();
     $('.span6').first().toggleClass('span6 span12');
     $('div.dataTables_filter').first().removeClass('dataTables_filter');
