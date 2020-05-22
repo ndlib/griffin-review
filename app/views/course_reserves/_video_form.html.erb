@@ -28,7 +28,7 @@
     <label class="checkbox">
       <%= f.radio_button :resource_format, 'physical' %> on physical reserve at <%= f.input_field :library,
         as: "select",
-        collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Chemistry - Physics Library' => :chem, 'Engineering Library' => :engineering, 'Mahaffey Business Library' => :business, 'O\' Meara Mathematics Library' => :math, 'Music Library' => :music },
+        collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Mahaffey Business Library' => :business, 'Music Library' => :music },
         :default => 'Hesburgh'
       %>
     </label>
