@@ -46,7 +46,9 @@ jQuery ($) ->
     return false
 
   $('#worldcinema_lookup').click ->
-    url = "https://fod-infobase-com.proxy.library.nd.edu/p_Search.aspx?bc=0&rd=a&q="
+    nd_proxy_url = "https://login.proxy.library.nd.edu/login?url="
+    worldcinema_url = "https://fod-infobase-com.proxy.library.nd.edu/p_Search.aspx?bc=0&rd=a&q="
+    url = nd_proxy_url + worldcinema_url
     url += $('#admin_update_meta_data_title').val()
     win = window.open(url, '_blank')
     win.focus()
