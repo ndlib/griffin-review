@@ -52,9 +52,9 @@ jQuery ($) ->
 
   $('#worldcinema_lookup').click ->
     nd_proxy_url = "https://login.proxy.library.nd.edu/login?url="
-    worldcinema_url = "https://fod-infobase-com.proxy.library.nd.edu/p_Search.aspx?bc=0&rd=a&q="
+    worldcinema_url = "https://fod.infobase.com/PortalPlayLists.aspx?wid=107537&level=Subject&sid=1709&q=\""
     url = nd_proxy_url + worldcinema_url
-    url += $('#admin_update_meta_data_title').val()
+    url += $('#admin_update_meta_data_title').val() + "\""
     win = window.open(url, '_blank')
     win.focus()
     return false
