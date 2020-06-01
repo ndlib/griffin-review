@@ -61,6 +61,7 @@ en:
     architecture: "Architecture Library"
     engineering: "Engineering Library"
     music: "Music Library"
+    law: "Law Library"
   requests_admin:
     libraries:
       hesburgh: "Hesburgh"

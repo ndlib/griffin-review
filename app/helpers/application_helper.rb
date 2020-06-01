@@ -23,7 +23,7 @@ module ApplicationHelper
     f.input :library,
       as: "select",
       wrapper_html: { id: 'library_select_list' },
-      collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Mahaffey Business Library' => :business, 'Music Library' => :music },
+      collection: { 'Hesburgh Library' => :hesburgh , 'Architecture Library' => :architecture, 'Mahaffey Business Library' => :business, 'Music Library' => :music, 'Law Library' => :law },
       :default => 'Hesburgh',
       label: label
   end
