@@ -78,3 +78,24 @@ div.yield_content {
 .navbar .nav > li {
   border-width:0 1px 0 0;
 }
+
+#header_alerts {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  div {
+    background: url('/assets/ic_info_outline_white_24px.svg') no-repeat;
+    background-position: 0;
+    padding-top: 12px;
+    padding-left: 34px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: #333333;
+  }
+}
+
+#alert_box {
+  border: 2px solid #aa272f;
+  background-color: #FFB073;
+}
