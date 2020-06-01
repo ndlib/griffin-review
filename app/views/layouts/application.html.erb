@@ -37,6 +37,13 @@
           <h2>Library<em>Reserves</em></h2>
         </div>
       </div>
+      <% if I18n.exists? "alerts.header_alert_html" %>
+        <div id="alert_box" class="twelve columns" >
+          <div id="header_alerts">
+            <%= t "alerts.header_alert_html" %>
+          </div>
+        </div>
+      <% end %>
       <div class="row menu">
         <div class="twelve columns">
           <%= user_top_nav %>

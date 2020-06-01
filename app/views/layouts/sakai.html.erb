@@ -19,6 +19,13 @@
       <%= image_tag "header-home.jpg", height: '45', alt: '' %>
       <h3>Library Reserves</h3>
     </div>
+    <% if I18n.exists? "alerts.header_alert_html" %>
+      <div id="alert_box" class="twelve columns" >
+        <div id="header_alerts">
+          <%= t "alerts.header_alert_html" %>
+        </div>
+      </div>
+    <% end %>
     <div class="rcontainer">
       <% if params[:course_id] %>
         <div class="navbar navbar-inverse navbar-fixed-top">
