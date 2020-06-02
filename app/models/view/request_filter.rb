@@ -4,7 +4,7 @@ class RequestFilter
   delegate :session, :params, to: :controller
 
   VALID_TYPES = %w(BookReserve BookChapterReserve JournalReserve AudioReserve VideoReserve)
-  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering', 'music']
+  VALID_LIBRARIES = [ 'hesburgh', 'math', 'chem', 'business', 'architecture', 'engineering', 'music', 'law']
   RESERVE_TYPES = ["physical","electronic","physical electronic", "^physical$", "^electronic$"]
   INSTRUCTOR_RANGE_VALUES = ("A".."Z").to_a
 
