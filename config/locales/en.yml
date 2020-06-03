@@ -65,12 +65,10 @@ en:
   requests_admin:
     libraries:
       hesburgh: "Hesburgh"
-      math: "Mathematics"
       law: "Law"
-      chem: "Chemistry - Physics"
       business: "Business"
       architecture: "Architecture"
-      engineering: "Engineering"
+      music: "Music"
     reserve_types:
       physical: "Physical"
       electronic: "Electronic"
