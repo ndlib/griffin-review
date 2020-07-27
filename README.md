@@ -1,5 +1,8 @@
 # Reserves
 
+## Run Book
+The run book for Griffin (aka Reserves) is found in the [Technology Playbook](https://github.com/ndlib/TechnologistsPlaybook/blob/master/run-books/reserves.md) 
+
 ## Development Setup
 1. bundle install
 2. copy secrets.example.yml -> secrets.yml
