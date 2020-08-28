@@ -33,6 +33,21 @@ jQuery ($) ->
     $('#workflow_state').hide()
     return false
 
+  $("#request_message_display tr:gt(2)").hide();
+  $('#request_messages_hide').hide();
+
+  $('#request_messages_show').click ->
+    $('#request_message_display tr').show();
+    $('#request_messages_show').hide();
+    $('#request_messages_hide').show();
+    return false
+
+  $('#request_messages_hide').click ->
+    $("#request_message_display tr:gt(2)").hide();
+    $('#request_messages_show').show();
+    $('#request_messages_hide').hide();
+    return false
+
   $('#q').focus()
 
   $('#swank_lookup').click ->
