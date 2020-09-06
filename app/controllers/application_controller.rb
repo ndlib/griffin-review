@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
       if session[:netid]
         super
       else
-        redirect_to user_omniauth_authorize_path(:oktaoauth)
+        redirect_to user_oktaoauth_omniauth_authorize_path()
       end
     end
 
