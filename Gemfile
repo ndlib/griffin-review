@@ -69,7 +69,7 @@ group :application do
 
   gem 'virtus'
 
-  gem "paperclip", '~> 4.2.2'
+  gem "paperclip", '~> 6.1.0'
 
   # gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
   # gem "paper_trail"
