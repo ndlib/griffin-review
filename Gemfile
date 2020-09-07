@@ -24,7 +24,7 @@ group :application do
   gem 'dalli'
 
   # authentication
-  gem 'devise', "~> 3.4.0"
+  gem 'devise', "~> 4.7.1"
   gem 'omniauth-oktaoauth'
 
   gem 'simple_token_authentication', '1.17.0'
@@ -46,7 +46,6 @@ group :application do
   gem 'faraday', '0.15.4'
   gem 'faraday_middleware', '0.13.1'
   gem 'typhoeus'
-  gem 'excon'
 
 
   gem 'json'
