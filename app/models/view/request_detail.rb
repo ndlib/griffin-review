@@ -21,9 +21,17 @@ class RequestDetail
                     :method => :delete,
                     class: 'btn btn-danger',
                     :id => "delete_reserve_#{@reserve.id}")
-
   end
 
+  def copy_link
+    if @reserve.workflow_state != 'removed'
+      helpers.link_to(helpers.raw("<i class=\"icon-file\"></i> Copy Reserve"),
+                      routes.new_copy_request_path(id: @reserve.id, course_id: @reserve.course_id),
+                      :method => :get,
+                      class: 'btn btn-primary',
+                      :id => "copy_reserve_#{@reserve.id}")
+    end
+  end
 
   def workflow_state_html
     if @reserve.workflow_state == 'available'

@@ -7,7 +7,7 @@ class CopyReserve
   end
 
 
-  def copy
+  def copy(*new_item_flag)
     new_request = @reserve.request.dup
 
     new_request.created_at = Time.now
@@ -25,6 +25,10 @@ class CopyReserve
         new_request.currently_in_aleph = @reserve.currently_in_aleph
     else
         new_request.currently_in_aleph = false
+    end
+
+    if new_item_flag.any?
+        new_request.item = @reserve.request.item.dup
     end
 
     new_request.save!
