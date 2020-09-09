@@ -73,7 +73,9 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
       <tr>
         <td>Notes: </td>
         <td id="request_message">
-          <span id="add_request_message"><a href="">add</a></span>
+          <span id="add_request_message" style="display: inline-block; width: 20%"><a href="">Add</a></span>
+          <a id="request_messages_show">Show All</a>
+          <a id="request_messages_hide">Hide</a>
         </td>
         <td id="request_message_note" nowrap>
           <%= simple_form_for :add_message, url: '/admin/add_message', method: 'post' do | f | %>
@@ -85,7 +87,7 @@ breadcrumb([link_to('Requests', requests_path(:filter => @admin_reserve.workflow
       </tr>
       <tr>
         <td colspan="2">
-          <table class="table table-striped table-hover">
+          <table id="request_message_display" class="table table-striped table-hover">
             <tbody>
               <% @admin_reserve.message.each do |msg| %>
                 <tr>
