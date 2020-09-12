@@ -70,7 +70,7 @@ Griffin::Application.configure do
   config.action_mailer.default_url_options = { :host => "reserves.library.nd.edu" }
 
   # Custom configuration
-  config.ldap_lookup_flag               = true
+  config.api_lookup_flag               = true
   config.reserves_upload_path           = '/shared/data/reserves_files'
 
   config.path_to_old_files              = File.join(Rails.root, 'uploads', 'old_files')

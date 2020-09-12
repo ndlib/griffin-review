@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :omniauthable, omniauth_providers: [:oktaoauth]
 
-  before_validation :fetch_attributes_from_ldap
+  before_validation :map_user
 
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   validates :username, :email, :uniqueness => true
   validates_presence_of :email, :username, :first_name, :last_name, :display_name
-  validate :must_exist_in_ldap
+  validate :must_exist_in_api
 
   scope :username, lambda { | username |  where(username: username) }
 
@@ -65,112 +65,26 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-
-  def self.get_affiliation(ldap_result)
-    # This is engineered to get the most important affiliation in
-    # LDAP for authorization purposes. The order of preference, if someone
-    # falls into multiple categories is: staff -> faculty -> graduate student
-    # -> undergrad
-
-    total_affiliation = []
-    ldap_result[:edupersonalaffiliation].each {|a| total_affiliation.push(a.downcase)}
-    ldap_result[:ndaffiliation].each {|a| total_affiliation.push(a.downcase)}
-    ldap_result[:edupersonprimaryaffiliation].each {|a| total_affiliation.push(a.downcase)}
-    ldap_result[:ndprimaryaffiliation].each {|a| total_affiliation.push(a.downcase)}
-    total_affiliation.flatten!
-    secondary_affiliation = []
-    ldap_result[:ndtitle].each {|s| secondary_affiliation.push(s.downcase)}
-    ldap_result[:title].each {|s| secondary_affiliation.push(s.downcase)}
-    ldap_result[:ndlevel].each {|s| secondary_affiliation.push(s.downcase)}
-    secondary_affiliation.flatten!
-    final_affiliation = ''
-    temp_affiliation = ''
-    case
-    when total_affiliation.include?('student')
-      temp_affiliation = 'student'
-    when total_affiliation.include?('staff')
-      final_affiliation = 'staff'
-    when total_affiliation.include?('faculty')
-      final_affiliation = 'faculty'
-    else
-      final_affiliation = 'unknown'
-    end
-
-    case temp_affiliation
-    when 'student'
-      secondary_array = secondary_affiliation.grep /grad/i
-      if secondary_array.empty? == false
-        final_affiliation = 'grad'
-      elsif secondary_affiliation.include?('senior')
-        final_affiliation = 'undergrad'
-      elsif secondary_affiliation.include?('junior')
-        final_affiliation = 'undergrad'
-      elsif secondary_affiliation.include?('sophomore')
-        final_affiliation = 'undergrad'
-      elsif secondary_affiliation.include?('freshman')
-        final_affiliation = 'undergrad'
-      end
-    end
-
-    final_affiliation
-  end
-
-  # ldap
-  def self.ldap_lookup(username)
-    return nil if username.blank?
-    ldap = Net::LDAP.new :host => Rails.application.secrets.ldap["host"],
-                         :port => Rails.application.secrets.ldap["port"],
-                         :auth => { :method   => :simple,
-                                    :username => Rails.application.secrets.ldap["service_dn"],
-                                    :password => Rails.application.secrets.ldap["service_password"]
-                                  },
-                         :encryption => :simple_tls
-    results = ldap.search(
-      :base          => Rails.application.secrets.ldap["base_dn"],
-      :attributes    => [
-                         'cn',
-                         'givenname',
-                         'sn',
-                         'mail',
-                         'displayname',
-                         'ndaffiliation',
-                         'edupersonprimaryaffiliation',
-                         'ndprimaryaffiliation',
-                        ],
-      :filter        => Net::LDAP::Filter.eq( 'cn', username ),
-      :return_result => true
-    )
-    if results.empty?
-      raise LDAPException.new("LDAP Lookup failed for '#{username}'")
-    end
-    results.first
-  end
-
-
   def self.generate_imported_user
     User.new(display_name: 'Imported')
   end
 
   private
 
-  def must_exist_in_ldap
-    if Rails.configuration.ldap_lookup_flag
-      if !User.ldap_lookup(username)
-        errors.add(:username, "not valid username")
+  def must_exist_in_api
+    if Rails.configuration.api_lookup_flag
+      if API::Person.find(username)["first_name"].nil?
+        errors.add(:username, " not valid username")
       end
     end
   end
 
-  def fetch_attributes_from_ldap
-    if Rails.configuration.ldap_lookup_flag
-      attributes = User.ldap_lookup(username)
-      self.first_name = attributes[:givenname].first
-      self.last_name = attributes[:sn].first
-      self.email = attributes[:mail].first
-      self.display_name = attributes[:displayname].first
+  def map_user
+    if Rails.configuration.api_lookup_flag
+      MapUserToApi.call(self)
     end
   end
 
-  class LDAPException < Exception
+  class APIException < Exception
   end
 end
