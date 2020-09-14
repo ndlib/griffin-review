@@ -27,7 +27,7 @@
       <% end %>
     </tbody>
   </table>
-  <%= submit_tag "Delete Checked" %>
+  <%= submit_tag "Delete Checked", :class => "btn btn-danger", data: { confirm: 'Are you sure you want to delete the selected?' }%>
   <% end %>
 <% else %>
   <p class="alert">
