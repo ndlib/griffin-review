@@ -24,6 +24,7 @@ Griffin::Application.routes.draw do
       resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy'] do
         collection do
           post 'multidelete_requests', to: 'multidelete_requests#destroy'
+          get 'oclc'
         end
         get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
       end
