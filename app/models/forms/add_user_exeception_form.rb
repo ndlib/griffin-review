@@ -58,9 +58,9 @@ class AddUserExeceptionForm
         if u.new_record?
           u.save!
         end
-      rescue User::LDAPException => e
+      rescue Exception => e
         Raven.capture_exception(e)
-        self.errors.add(:netid, 'Cannot find the netid in LDAP.')
+        self.errors.add(:netid, 'Cannot find/save the netid from API.')
         return false
       end
 

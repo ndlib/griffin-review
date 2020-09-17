@@ -44,7 +44,7 @@ Griffin::Application.configure do
   config.action_mailer.default_url_options = { :host => "localhost" }
 
   # Custom configuration
-  config.ldap_lookup_flag                 = false
+  config.api_lookup_flag                 = false
   config.reserves_upload_path             = '/shared/data/reserves_files'
   config.rspec_uid                        = 'rfox2'
   config.rspec_cn                         = 'Robert Fox'

@@ -13,7 +13,7 @@ class Masquerade
         if !user
           return false
         end
-      rescue User::LDAPException
+      rescue User::APIException
         return false
       end
 
@@ -65,7 +65,7 @@ class Masquerade
 
         if !u
           u = User.new(:username => username)
-          u.send(:fetch_attributes_from_ldap)
+          u.send(:map_user)
           u.save!
         end
 

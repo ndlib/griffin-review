@@ -47,11 +47,7 @@ group :application do
   gem 'faraday_middleware', '0.13.1'
   gem 'typhoeus'
 
-
   gem 'json'
-
-  # LDAP lookups
-  gem 'net-ldap', '~> 0.16.0'
 
   # form generation
   gem 'simple_form', '~> 3.0.0'
