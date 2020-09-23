@@ -333,9 +333,9 @@ jQuery ($) ->
     test_date.setDate(test_date.getDate() + 14)
 
     if d < test_date
-      $('#video_needed_by_modal').modal(
-        show: true
-      )
+      # $('#video_needed_by_modal').modal(
+      #   show: true
+      # )
       $(this).parents('.control-group').addClass('error')
       $(this).val("")
     else
