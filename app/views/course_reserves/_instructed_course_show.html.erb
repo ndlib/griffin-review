@@ -9,14 +9,14 @@
 
 <% if user_course_show.reserves.size > 0 %>
   <%= form_tag( :controller => "multidelete_requests", :action => "destroy", :method => :post) do %>
+  <%= submit_tag "Delete Checked", :class => "pull-right btn btn-danger", :style => "margin-bottom: 10px", data: { confirm: 'Are you sure you want to delete the selected?' }%>
   <table class="table table-striped find-resources instructor_datatable datatable show_popover_help">
     <thead>
       <tr>
         <th>Reserve</th>
         <th>Status</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Edit</th>
+        <th>Remove</th>
         <th>Sortable Title</th>
         <th></th>
       </tr>
@@ -27,7 +27,7 @@
       <% end %>
     </tbody>
   </table>
-  <%= submit_tag "Delete Checked", :class => "btn btn-danger", data: { confirm: 'Are you sure you want to delete the selected?' }%>
+  <%= submit_tag "Delete Checked", :class => "pull-right btn btn-danger", data: { confirm: 'Are you sure you want to delete the selected?' }%>
   <% end %>
 <% else %>
   <p class="alert">

@@ -8,9 +8,8 @@
     <% # render partial: '/topics/add_topics_form', locals: { reserve: object } %>
   </td -->
   <td><%= row.workflow_state %></td>
-  <td><p class="text-center"><%= row.edit_link %></p></td>
-  <td><p class="text-center"><%= row.delete_link %></p></td>
+  <td><%= row.edit_link %></td>
+  <td><%= check_box_tag 'request_ids[]', object.id %></td>
   <td><%= row.delete_sort %></td>
   <td><%= row.sortable_title %></td>
-  <td><%= check_box_tag 'request_ids[]', object.id %></td>
 </tr>
