@@ -94,10 +94,9 @@ jQuery ($) ->
       title: 0
       status: 1
       editLink: 2
-      deleteLink: 3
+      multiDelete: 3
       deleteSort: 4
       sortableTitle: 5
-      multiDelete: 6
     if $(".instructor_datatable").size() > 0
       # For instructor table
       oTable = $(".instructor_datatable").dataTable(
@@ -113,16 +112,16 @@ jQuery ($) ->
         ,
           sortable: false
           searchable: false
-          targets: [instructorIndexes['editLink'], instructorIndexes['deleteLink']]
+          targets: instructorIndexes['editLink']
+        ,
+          sortable: false
+          searchable: false
+          targets: instructorIndexes['multiDelete']
         ,
           sortable: false
           searchable: false
           visible: false
           targets: [instructorIndexes['sortableTitle']]
-        ,
-          sortable: false
-          searchable: false
-          targets: instructorIndexes['multiDelete']
         ,
         ]
       )
