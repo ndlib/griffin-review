@@ -73,6 +73,8 @@ group :application do
   gem 'jquery-datatables-rails'
   gem 'rails-jquery-autocomplete'
 
+  gem 'worldcat'
+
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier', '>= 1.2.4'

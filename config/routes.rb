@@ -24,7 +24,6 @@ Griffin::Application.routes.draw do
       resources :reserves, controller: 'course_reserves', only: ['index', 'show', 'new', 'create', 'destroy'] do
         collection do
           post 'multidelete_requests', to: 'multidelete_requests#destroy'
-          get 'oclc'
         end
         get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
       end
@@ -70,7 +69,11 @@ Griffin::Application.routes.draw do
     resources :requests
     resources :on_order, controller: 'requests_on_order'
     resources :resync, controller: 'requests_resync', only: ['update']
-    resources :meta_datas, controller: 'requests_meta_data'
+    resources :meta_datas, controller: 'requests_meta_data', path: "" do
+      collection do
+        get 'oclc'
+      end
+    end
     resources :fair_use, controller: 'requests_fair_use'
     resources :resources, controller: 'requests_resources'
     resources :types, controller: 'requests_type', only: ['update', 'edit']

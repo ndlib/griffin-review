@@ -9,3 +9,4 @@
 //= require admin-requests
 //= require intro.js
 //= require autocomplete-rails
+//= require worldcat-import

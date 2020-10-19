@@ -96,4 +96,15 @@ module ApplicationHelper
       result.respond_to?(:html_safe) ? result.html_safe : result
     end
 
+    def worldcat_alerts
+      render partial: "shared/worldcat_alerts"
+    end
+
+    def text_with_help(title, content)
+      raw(title) + help_popover(title, content)
+    end
+
+    def worldcat_icon
+      raw %(<a href="http://www.worldcat.org/" target="_blank"><img border="0" src="https://www.worldcat.org/images/wc_badge_80x15.gif?ai=University_jkennel" width="80" height="15" alt="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]" title="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]"></a>)
+    end
 end
