@@ -128,4 +128,11 @@ class ApplicationController < ActionController::Base
       Rails.application.secrets.okta["logout_url"]
     end
 
+    def render_404
+      respond_to do |format|
+        format.html { render :file => Rails.root.join("public","404.html"), :status => "404 Not Found"}
+        format.json { render :nothing => true, :status => "404 Not Found"}
+      end
+    end
+
 end

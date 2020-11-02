@@ -8,7 +8,7 @@ class InstructorReserveRequest
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :course, :current_user
+  attr_accessor :course, :current_user, :isbn, :oclc_number
 
   attribute :title, String
   attribute :publisher, String

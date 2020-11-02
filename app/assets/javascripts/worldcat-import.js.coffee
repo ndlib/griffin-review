@@ -11,10 +11,23 @@ jQuery ($) ->
       $.getJSON(link.data('target'),{oclc_number: link.data('oclc-field').val(), isbn: link.data('isbn-field').val()}, (data, resp)->
         console.log(data)
         worldcat_hide_alerts()
-        form.find('.worldcat-import-author').val(data.creator.join('; ')).effect("highlight", 2000)
-        form.find('.worldcat-import-publication-year').val(data.date).effect("highlight", 2000)
-        form.find('.worldcat-import-publisher').val(data.publisher).effect("highlight", 2000)
-        form.find('.worldcat-import-title').val(data.title).keyup().effect("highlight", 2000)
+        citation_val = ''
+        if data.creator != null
+          citation_val += 'author: ' + data.creator.join('; ') + '\n'
+        if data.publisher != null
+          citation_val += 'publisher: ' + data.publisher + '\n'
+        if data.date != null 
+          citation_val += 'published date: ' + data.date + '\n'
+        if data.description != null
+          citation_val += 'description: ' + data.description + '\n'
+        if data.type != null
+          citation_val += 'type: ' + data.type + '\n'
+        if data.title  != null
+          form.find('.worldcat-import-title').val(data.title).keyup().effect("highlight", 2000)
+          form.find('.worldcat-import-title').attr('readonly','readonly');
+        if citation_val != ''
+          form.find('.worldcat-import-citation').val(citation_val).effect("highlight", 2000)
+          form.find('.worldcat-import-citation').attr('readonly','readonly');
       ).error ->
         worldcat_hide_alerts()
         $('#worldcat_import_failed').fadeIn()

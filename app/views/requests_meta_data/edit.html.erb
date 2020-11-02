@@ -26,15 +26,6 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
     <hr>
     <p><%= link_to "Edit Meta Data", "#", class: 'btn show_full_meta_data', id: "resync_meta_data", style: (!f.object.overwrite_nd_meta_data ? '' : 'display:none;') %></p>
 
-    <%= f.input :oclc_number, :label => "Optionally enter the OCLC or ISBN to fill metadata information from WorldCat" do %>
-      OCLC: <%= f.input_field :oclc_number, :class => "three worldcat-import-oclc" %>
-      or ISBN:
-      <%= f.input_field :isbn, :class => "three worldcat-import-isbn" %> &nbsp;
-      <%= button_tag("Import", class: "btn worldcat-import", "data-target" => oclc_meta_datas_path) %>
-      <%= worldcat_icon %>
-      <%= worldcat_alerts %>
-    <% end %>
-
     <% if f.object.type == 'BookChapterReserve' %>
       <%= f.input :selection_title, label: "Chapter Title"%>
     <% end %>
@@ -42,10 +33,9 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
     <%= f.hidden_field :overwrite_nd_meta_data %>
 
     <div id="full_meta_data" style="<%= f.object.overwrite_nd_meta_data ? '' : 'display:none;' %>">
-      <%= f.input :title, label: f.object.title_field_name, input_html: {class: 'worldcat-import-title'} %>
+      <%= f.input :title, label: f.object.title_field_name%>
 
-      <%= f.input :creator, label: 'Author or Creator of the work', input_html: {class: 'worldcat-import-author'} %>
-
+      <%= f.input :creator, label: 'Author or Creator of the work' %>
 
       <% if f.object.type == 'AudioReserve' %>
         <%= f.input :contributor, label: "Contributor or Performing Artist of the work" %>
@@ -53,7 +43,7 @@ breadcrumb([ link_to('Requests', requests_path), link_to(@request.title, request
 
       <%= f.input :details, label: "Journal and Volume" %>
 
-      <%= f.input :journal_title, label: "Publisher", input_html: {class: 'worldcat-import-publisher'} %>
+      <%= f.input :journal_title, label: "Publisher" %>
     </div>
     <% if f.object.type == 'BookChapterReserve' %>
       <%= f.input :length, label: "Reading Length" %>

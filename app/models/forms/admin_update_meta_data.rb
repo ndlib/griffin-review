@@ -7,7 +7,7 @@ class AdminUpdateMetaData
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :reserve, :isbn, :oclc_number
+  attr_accessor :reserve
 
   attribute :title, String
   attribute :creator, String
