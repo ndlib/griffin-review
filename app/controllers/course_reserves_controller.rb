@@ -74,6 +74,21 @@ class CourseReservesController < ApplicationController
   end
 
 
+  def oclc
+    @reserve = WorldCatOCLC.new(:oclc => params[:oclc_number], :isbn => params[:isbn])
+    respond_to do |format|
+      format.json { render :text => @reserve.as_json.reject{|k,v| k == "reserve"}.to_json}
+    end
+  rescue WorldCat::WorldCatError => exception
+    if exception.message == "Record does not exist"
+      render_404
+    else
+      Raven.capture_exception(exception)
+      raise exception
+    end
+  end
+
+
   protected
 
 
