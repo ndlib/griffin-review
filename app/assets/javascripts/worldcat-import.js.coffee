@@ -2,16 +2,20 @@ jQuery ($) ->
   worldcatLinks = $(".worldcat-import")
   if worldcatLinks.length > 0
     worldcat_hide_alerts = ->
-      $('#worldcat_alerts div').hide()
+      $('.worldcat-alerts div').hide()
 
     worldcat_search = (link) ->
       form = link.data('form')
       worldcat_hide_alerts()
-      $('#worldcat_import_loading').fadeIn()
+      $('.worldcat-import-loading').fadeIn()
       $.getJSON(link.data('target'),{oclc_number: link.data('oclc-field').val(), isbn: link.data('isbn-field').val()}, (data, resp)->
         console.log(data)
         worldcat_hide_alerts()
         citation_val = ''
+        if $('#instructor_reserve_request_oclc_number').val()
+          citation_val += 'oclc: ' + $('#instructor_reserve_request_oclc_number').val() + '\n'
+        if $('#instructor_reserve_request_isbn').val().length > 0
+          citation_val += 'isbn: ' + $('#instructor_reserve_request_isbn').val() + '\n'
         if data.creator != null
           citation_val += 'author: ' + data.creator.join('; ') + '\n'
         if data.publisher != null
@@ -30,7 +34,7 @@ jQuery ($) ->
           form.find('.worldcat-import-citation').attr('readonly','readonly');
       ).error ->
         worldcat_hide_alerts()
-        $('#worldcat_import_failed').fadeIn()
+        $('.worldcat-import-failed').fadeIn()
 
     worldcatLinks.each (index, element) ->
       link = $(element)
