@@ -6,9 +6,9 @@
 <%= simple_form_for object, :html => {id: "book_form"}, :url => course_reserves_path() do |f| %>
 
   <%= f.input :oclc_number, :label => "Optionally enter the OCLC or ISBN to fill metadata information from WorldCat" do %>
-    OCLC: <%= f.input_field :oclc_number, :class => "three worldcat-import-oclc" %>
+    OCLC: <%= f.input_field :oclc_number, id: "book_oclc", :class => "three worldcat-import-oclc" %>
     or ISBN:
-    <%= f.input_field :isbn, :class => "three worldcat-import-isbn" %> &nbsp;
+    <%= f.input_field :isbn, id: "book_isbn", :class => "three worldcat-import-isbn" %> &nbsp;
     <%= button_tag("Import", class: "btn worldcat-import", "data-target" => oclc_course_reserves_path) %>
     <%= worldcat_icon %>
     <%= worldcat_alerts %>

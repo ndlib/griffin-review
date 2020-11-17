@@ -12,10 +12,14 @@ jQuery ($) ->
         console.log(data)
         worldcat_hide_alerts()
         citation_val = ''
-        if $('#instructor_reserve_request_oclc_number').val()
-          citation_val += 'oclc: ' + $('#instructor_reserve_request_oclc_number').val() + '\n'
-        if $('#instructor_reserve_request_isbn').val().length > 0
-          citation_val += 'isbn: ' + $('#instructor_reserve_request_isbn').val() + '\n'
+        if $('#book_oclc').val()
+          citation_val += 'oclc: ' + $('#book_oclc').val() + '\n'
+        if $('#book_isbn').val()
+          citation_val += 'isbn: ' + $('#book_isbn').val() + '\n'
+        if $('#book_chapter_isbn').val()
+          citation_val += 'isbn: ' + $('#book_chapter_isbn').val() + '\n'
+        if $('#book_chapter_oclc').val()
+          citation_val += 'oclc: ' + $('#book_chapter_oclc').val() + '\n'
         if data.creator != null
           citation_val += 'author: ' + data.creator.join('; ') + '\n'
         if data.publisher != null
