@@ -12,4 +12,12 @@ class CoursesController < ApplicationController
     end
   end
 
+  # export physical available course reserves
+  def export_csv
+    check_admin_permission!
+    course_id = params[:course_id]
+    ce = CourseExporter.new(course_id)
+    send_data(ce.course_content, :filename => "#{course_id}.csv")
+  end
+
 end

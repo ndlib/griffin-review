@@ -36,6 +36,7 @@ Griffin::Application.routes.draw do
       get 'copy/:from_course_id', to: 'copy_reserves#copy_step2'
       post 'copy/:from_course_id/copy', to: 'copy_reserves#copy'
       resources :users, controller: 'course_users', only: [:new, :create, :index, :destroy]
+      get 'export_csv', to: 'courses#export_csv'
 
       get 'sipx_redirect', to: 'sipx_redirect#resource_redirect'
       get 'sipx_admin_redirect', to: 'sipx_redirect#admin_redirect'
