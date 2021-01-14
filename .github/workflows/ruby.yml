@@ -24,3 +24,5 @@ jobs:
         run: gem install bundler -v 1.17.3
       - name: Install Ruby gems
         run: bundle install
+      - name: Run rake tasks
+        run: bundle exec rspec
