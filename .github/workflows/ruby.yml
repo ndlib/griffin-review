@@ -24,6 +24,9 @@ jobs:
         run: gem install bundler -v 1.17.3
       - name: Install Ruby gems
         run: bundle install
+    # Start the local mysql service
+      - name: Start mysql
+        run: sudo systemctl start mysql.service
     # Put the Database and Secrets files into place. We use the files with the ".actions" extension to avoid confusion or development impact
       - name: Copy config files
         run: |
