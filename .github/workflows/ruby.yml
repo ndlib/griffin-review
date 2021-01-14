@@ -32,7 +32,11 @@ jobs:
         run: |
           cp config/database.yml.actions config/database.yml
           cp config/secrets.yml.actions config/secrets.yml
-      - name: Run rake tasks
+      - name: Prepare databases
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        run: rake db:create db:migrate db:seed --trace
+      - name: Run rake spec tasks
         env:
           MYSQL_ROOT_PASSWORD: root
         run: bundle exec rspec

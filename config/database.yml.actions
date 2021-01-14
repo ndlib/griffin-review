@@ -19,9 +19,17 @@ mysql_settings: &mysql_settings
 
 development:
   <<: *mysql_settings
-
+  username: root
+  host: localhost
+  database: reserves_test
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  
 test: &test
   <<: *mysql_settings
+  username: root
+  host: localhost
+  database: reserves_test
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
 
 prep:
   <<: *mysql_settings
