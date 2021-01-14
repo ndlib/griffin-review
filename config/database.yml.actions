@@ -1,0 +1,30 @@
+##########################################
+# Shared settings
+##########################################
+
+mysql_settings: &mysql_settings
+  adapter: mysql2
+  pool:    5
+  encoding: utf8
+  reconnect: false
+  timeout: 5000
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+  host: <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+
+##########################################
+# Environments
+##########################################
+
+development:
+  <<: *mysql_settings
+
+test: &test
+  <<: *mysql_settings
+
+prep:
+  <<: *mysql_settings
+
+production:
+  <<: *mysql_settings

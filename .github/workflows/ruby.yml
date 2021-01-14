@@ -24,5 +24,12 @@ jobs:
         run: gem install bundler -v 1.17.3
       - name: Install Ruby gems
         run: bundle install
+    # Put the Database and Secrets files into place. We use the files with the ".actions" extension to avoid confusion or development impact
+      - name: Copy config files
+        run: |
+          cp config/database.yml.actions config/database.yml
+          cp config/secrets.yml.actions config/secrets.yml
       - name: Run rake tasks
+        env:
+          MYSQL_ROOT_PASSWORD: root
         run: bundle exec rspec
