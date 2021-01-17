@@ -14,12 +14,8 @@ class WorldCatOCLC
 
 
   def initialize(values)
-    if values[:oclc].present?
-      if is_number?(values[:oclc]) # server side check that oclc is numeric only!
+    if values[:oclc].present? && is_number?(values[:oclc])
         @reserve = self.class.client.single_record(:oclc => values[:oclc].to_s.strip)
-      else
-        raise WorldCat::WorldCatError.new, "Record does not exist"
-      end
     elsif values[:isbn].present?
       @reserve = self.class.client.single_record(:isbn => values[:isbn].to_s.strip)
     else
