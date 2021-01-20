@@ -82,6 +82,13 @@ class DiscoveryApi
     @json_result['links']['fulltext_url']
   end
 
+  def barcode
+    @json_result['primo']['search']['lsr09']
+  end
+
+  def id
+    @json_result['id']
+  end
 
   private
 
