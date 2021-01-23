@@ -11,6 +11,7 @@ class CourseExporter
 
   def course_content
     reserves.each do | r |
+      next if r.removed?
       if PhysicalReservePolicy.new(r).is_physical_reserve?
         add_reserve(r)
       end
@@ -19,11 +20,11 @@ class CourseExporter
   end
 
   def reserves
-    ReserveSearch.new.student_reserves_for_course(@course)
+    ReserveSearch.new.instructor_reserves_for_course(@course)
   end
 
   def add_reserve(reserve)
-    da = DiscoveryApi.search_by_ids(reserve.id.to_s).first
+    da = DiscoveryApi.search_by_ids(reserve.nd_meta_data_id.to_s).first
     @physical_reserves[reserve.id] ||= {
       available_library: da.available_library,
       availability: da.availability,
