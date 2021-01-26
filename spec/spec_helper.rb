@@ -60,7 +60,7 @@ Spork.prefork do
       DatabaseCleaner.clean_with(:truncation)
     end
     config.infer_base_class_for_anonymous_controllers = false
-    config.formatter = 'Growl::RSpec::Formatter'
+    # config.formatter = 'Growl::RSpec::Formatter' // Commenting out to match API and Honeycomb
   
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
