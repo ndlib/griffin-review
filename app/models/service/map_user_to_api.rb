@@ -57,6 +57,6 @@ class MapUserToApi
   end
 
   def notify_error(exception)
-    NotifyError.call(exception: exception, parameters: { username: user.username }, component: self.class.to_s, action: "map!")
+    Raven.capture_exception(exception)
   end
 end
